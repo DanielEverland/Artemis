@@ -21,21 +21,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="OS Window\main.cpp">
       <Filter>Source Files\OS Window</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="OS Window\Window.cpp">
+      <Filter>Source Files\OS Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
+    <ClInclude Include="OS Window\main.h">
       <Filter>Header Files\OS Window</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="OS Window\PrettyWin32.h">
+      <Filter>Header Files\OS Window</Filter>
     </ClInclude>
-    <ClInclude Include="PrettyWin32.h">
+    <ClInclude Include="OS Window\Window.h">
       <Filter>Header Files\OS Window</Filter>
     </ClInclude>
   </ItemGroup>

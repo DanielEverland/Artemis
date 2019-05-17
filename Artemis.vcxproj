@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="OS Window\main.cpp" />
+    <ClCompile Include="OS Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h" />
-    <ClInclude Include="PrettyWin32.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="OS Window\main.h" />
+    <ClInclude Include="OS Window\PrettyWin32.h" />
+    <ClInclude Include="OS Window\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

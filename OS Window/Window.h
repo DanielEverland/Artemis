@@ -12,7 +12,7 @@ public:
 	int WindowBehaviour = 0;
 	Brush BackgroundBrush = (Brush)(COLOR_WINDOW + 1);
 
-	void Create();
+	void Show();
 
 private:
 	

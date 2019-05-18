@@ -8,7 +8,7 @@ Window::Window(HandleInstance handleInstance, const UnicodeChar* className, int 
 	this->windowState = windowState;
 }
 
-void Window::Create()
+void Window::Show()
 {
 	WindowClass windowClass = CreateWindowClass(handleInstance);
 	RegisterClass(&windowClass);

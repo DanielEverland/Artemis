@@ -4,7 +4,7 @@ int WINAPI wWinMain(HandleInstance handleInstance, HandleInstance, UnicodeChar* 
 {
 	Window mainWindow(handleInstance, L"ArtemisWindow", windowState);
 	mainWindow.Title = L"Artemis";
-	mainWindow.Create();
+	mainWindow.Show();
 
 	return 0;
 }

@@ -1,3 +1,3 @@
 #pragma once
 
-#include "MainWindow.h"
+#include "Window.h"

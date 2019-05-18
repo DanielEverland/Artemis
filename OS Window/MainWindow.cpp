@@ -14,15 +14,12 @@ LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PT
 	switch (messageCode)
 	{
 		case WM_DESTROY:
-		{
 			OnClose();
 			return 0;
-		}			
+		
 		case WM_PAINT:
-		{
 			OnPaint(handle);
 			return 0;
-		}
 	}
 
 	return DefWindowProc(handle, messageCode, wParam, lParam);

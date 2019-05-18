@@ -59,6 +59,10 @@ WindowClass Window::CreateWindowClass(HandleInstance handleInstance)
 
 	return windowClass;
 }
+
+//-------------------------------------------------------------------------------------------------------------
+//------------------------------------------MESSAGE HANDLER----------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 LONG_PTR Window::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam)
 {
 	switch (messageCode)
@@ -74,6 +78,11 @@ LONG_PTR Window::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lPara
 
 	return DefWindowProc(windowHandle, messageCode, wParam, lParam);
 }
+
+
+//-------------------------------------------------------------------------------------------------------------
+//---------------------------------------MESSAGE IMPLEMENTATIONS-----------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 void Window::OnClose()
 {
 	PostQuitMessage(0);
@@ -88,6 +97,9 @@ void Window::OnPaint()
 	EndPaint(windowHandle, &paintData);
 }
 
+//-------------------------------------------------------------------------------------------------------------
+//----------------------------------------WINDOW PROCEDURE-----------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 LONG_PTR CALLBACK Window::WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam)
 {
 	Window* instancePointer = GetInstancePointer(handle, messageCode, lParam);

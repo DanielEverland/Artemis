@@ -6,9 +6,7 @@
 
 #include <windows.h>
 
-namespace Windows
-{
-	// Handles
+// Handles
 #define WindowHandle HWND
 #define DisplayDeviceHandle HDC
 
@@ -22,4 +20,3 @@ namespace Windows
 #define DefaultHeight CW_USEDEFAULT
 #define Message MSG
 #define Brush HBRUSH
-}

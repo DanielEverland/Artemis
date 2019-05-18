@@ -21,7 +21,7 @@ void Window::Create()
 }
 void Window::RunMessageLoop()
 {
-	Message message = { };
+	Message message;
 	while (GetMessage(&message, NULL, 0, 0))
 	{
 		TranslateMessage(&message);

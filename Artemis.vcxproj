@@ -15,10 +15,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="OS Window\MainWindow.cpp" />
     <ClCompile Include="OS Window\main.cpp" />
     <ClCompile Include="OS Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="OS Window\MainWindow.h" />
     <ClInclude Include="OS Window\main.h" />
     <ClInclude Include="OS Window\PrettyWin32.h" />
     <ClInclude Include="OS Window\Window.h" />

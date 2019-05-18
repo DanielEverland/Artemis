@@ -22,7 +22,4 @@ private:
 	void RunMessageLoop();
 	WindowHandle CreateWindowHandle(HandleInstance handleInstance);
 	WindowClass CreateWindowClass(HandleInstance handleInstance);
-	
 };
-
-LONG_PTR CALLBACK WindowProcedure(HWND hwnd, UINT uMsg, UINT_PTR wParam, LONG_PTR lParam);

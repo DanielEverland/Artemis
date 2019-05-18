@@ -28,8 +28,9 @@ private:
 	static LONG_PTR GetStateInformation(WindowHandle handle);
 	static Window* GetInstancePointer(WindowHandle handle, UINT messageCode, LONG_PTR lParam);
 	
-	void OnClose();
-	void OnPaint();
+	LONG_PTR OnClose();
+	LONG_PTR OnPaint();
+
 	void RunMessageLoop();
 	WindowHandle CreateWindowHandle(HandleInstance handleInstance);
 	WindowClass CreateWindowClass(HandleInstance handleInstance);

@@ -68,12 +68,10 @@ LONG_PTR Window::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lPara
 	switch (messageCode)
 	{
 	case WM_DESTROY:
-		OnClose();
-		return 0;
+		return OnClose();
 
 	case WM_PAINT:
-		OnPaint();
-		return 0;
+		return OnPaint();
 	}
 
 	return DefWindowProc(windowHandle, messageCode, wParam, lParam);
@@ -83,11 +81,12 @@ LONG_PTR Window::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lPara
 //-------------------------------------------------------------------------------------------------------------
 //---------------------------------------MESSAGE IMPLEMENTATIONS-----------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
-void Window::OnClose()
+LONG_PTR Window::OnClose()
 {
 	PostQuitMessage(0);
+	return 0;
 }
-void Window::OnPaint()
+LONG_PTR Window::OnPaint()
 {
 	PAINTSTRUCT paintData;
 	DisplayDeviceHandle handleDisplayDevice = BeginPaint(windowHandle, &paintData);
@@ -95,6 +94,8 @@ void Window::OnPaint()
 		FillRect(handleDisplayDevice, &paintData.rcPaint, (Brush)(COLOR_WINDOW + 1));
 	}
 	EndPaint(windowHandle, &paintData);
+
+	return 0;
 }
 
 //-------------------------------------------------------------------------------------------------------------

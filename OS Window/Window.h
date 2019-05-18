@@ -21,17 +21,20 @@ private:
 	const UnicodeChar* className;
 	int windowState;
 
-	static LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
-	static Window* CreateStateInformation(WindowHandle handle, LONG_PTR lParam);
-	static void SetStateInformation(Window * instancePointer, WindowHandle handle);
-	static LONG_PTR GetStateInformation(WindowHandle handle);
-	static Window* GetInstancePointer(WindowHandle handle, UINT messageCode, LONG_PTR lParam);
-	
-	LONG_PTR OnClose();
-	LONG_PTR OnPaint();
 
 	void RunMessageLoop();
 	WindowHandle CreateWindowHandle(HandleInstance handleInstance);
 	WindowClass CreateWindowClass(HandleInstance handleInstance);
 	LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+
+	// Messages
+	LONG_PTR OnClose();
+	LONG_PTR OnPaint();	
+
+	// Window Procedure
+	static LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+	static Window* CreateStateInformation(WindowHandle handle, LONG_PTR lParam);
+	static void SetStateInformation(Window * instancePointer, WindowHandle handle);
+	static LONG_PTR GetStateInformation(WindowHandle handle);
+	static Window* GetInstancePointer(WindowHandle handle, UINT messageCode, LONG_PTR lParam);
 };

@@ -3,8 +3,8 @@
 #include "PrettyWin32.h"
 
 LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
-void Close();
-void Paint(WindowHandle handle);
+void OnClose();
+void OnPaint(WindowHandle handle);
 
 class MainWindow
 {

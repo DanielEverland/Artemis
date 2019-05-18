@@ -14,19 +14,19 @@ LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PT
 	switch (messageCode)
 	{
 		case WM_DESTROY:
-			Close();
+			OnClose();
 		case WM_PAINT:
-			Paint(handle);
+			OnPaint(handle);
 		return 0;
 	}
 
 	return DefWindowProc(handle, messageCode, wParam, lParam);
 }
-void Close()
+void OnClose()
 {
 	PostQuitMessage(0);
 }
-void Paint(WindowHandle handle)
+void OnPaint(WindowHandle handle)
 {
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(handle, &ps);

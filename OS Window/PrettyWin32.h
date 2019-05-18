@@ -20,6 +20,3 @@
 #define DefaultHeight CW_USEDEFAULT
 #define Message MSG
 #define Brush HBRUSH
-
-// Window Messages
-#define CreateWindowMessage WM_NCCREATE

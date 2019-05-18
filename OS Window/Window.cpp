@@ -116,7 +116,7 @@ LONG_PTR CALLBACK Window::WindowProcedure(WindowHandle handle, UINT messageCode,
 }
 Window* Window::GetInstancePointer(WindowHandle handle, UINT messageCode, LONG_PTR lParam)
 {
-	if (messageCode == CreateWindowMessage)
+	if (messageCode == WM_NCCREATE)
 	{
 		return CreateStateInformation(handle, lParam);
 	}

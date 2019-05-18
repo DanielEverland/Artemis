@@ -9,7 +9,6 @@ public:
 	Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
 
 	const UnicodeChar* Title = L"Window Title";
-	const UnicodeChar* Arguments;
 	int WindowBehaviour = 0;
 	Brush BackgroundBrush = (Brush)(COLOR_WINDOW + 1);
 

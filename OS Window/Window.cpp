@@ -91,7 +91,7 @@ LONG_PTR Window::OnPaint()
 	PAINTSTRUCT paintData;
 	DisplayDeviceHandle handleDisplayDevice = BeginPaint(windowHandle, &paintData);
 	{
-		FillRect(handleDisplayDevice, &paintData.rcPaint, (Brush)(COLOR_WINDOW + 1));
+		FillRect(handleDisplayDevice, &paintData.rcPaint, BackgroundBrush);
 	}
 	EndPaint(windowHandle, &paintData);
 

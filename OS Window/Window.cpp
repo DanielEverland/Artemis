@@ -68,7 +68,7 @@ LONG_PTR Window::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lPara
 		return 0;
 
 	case WM_PAINT:
-		OnPaint(windowHandle);
+		OnPaint();
 		return 0;
 	}
 
@@ -78,7 +78,7 @@ void Window::OnClose()
 {
 	PostQuitMessage(0);
 }
-void Window::OnPaint(WindowHandle windowHandle)
+void Window::OnPaint()
 {
 	PAINTSTRUCT paintData;
 	DisplayDeviceHandle handleDisplayDevice = BeginPaint(windowHandle, &paintData);
@@ -90,27 +90,45 @@ void Window::OnPaint(WindowHandle windowHandle)
 
 LONG_PTR CALLBACK Window::WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam)
 {
-	Window* instancePointer = NULL;
-
-	if (messageCode == WM_NCCREATE)
-	{
-		CREATESTRUCT* createStruct = (CREATESTRUCT*)lParam;
-		instancePointer = (Window*)createStruct->lpCreateParams;
-		SetWindowLongPtr(handle, GWLP_USERDATA, (LONG_PTR)instancePointer);
-
-		instancePointer->windowHandle = handle;
-	}
-	else
-	{
-		instancePointer = (Window*)GetWindowLongPtr(handle, GWLP_USERDATA);
-	}
-
-	if (instancePointer)
+	Window* instancePointer = GetInstancePointer(handle, messageCode, lParam);
+	
+	if (instancePointer != NULL)
 	{
 		return instancePointer->HandleMessage(messageCode, wParam, lParam);
 	}
-	else
+	else // This will only happen for messages invoked prior to WM_NCCREATE
 	{
 		return DefWindowProc(handle, messageCode, wParam, lParam);
 	}
+}
+Window* Window::GetInstancePointer(WindowHandle handle, UINT messageCode, LONG_PTR lParam)
+{
+	if (messageCode == CreateWindowMessage)
+	{
+		return CreateStateInformation(handle, lParam);
+	}
+	else
+	{
+		return (Window*)GetStateInformation(handle);
+	}
+}
+Window* Window::CreateStateInformation(WindowHandle handle, LONG_PTR lParam)
+{
+	Window* instancePointer = NULL;
+
+	CREATESTRUCT* createStruct = (CREATESTRUCT*)lParam;
+	instancePointer = (Window*)createStruct->lpCreateParams;
+	instancePointer->windowHandle = handle;
+
+	SetStateInformation(instancePointer, handle);
+
+	return instancePointer;
+}
+void Window::SetStateInformation(Window* instancePointer, WindowHandle handle)
+{
+	SetWindowLongPtr(handle, GWLP_USERDATA, (LONG_PTR)instancePointer);
+}
+LONG_PTR Window::GetStateInformation(WindowHandle handle)
+{
+	return GetWindowLongPtr(handle, GWLP_USERDATA);
 }

@@ -28,12 +28,12 @@ void OnClose()
 {
 	PostQuitMessage(0);
 }
-void OnPaint(WindowHandle handle)
+void OnPaint(WindowHandle windowHandle)
 {
-	PAINTSTRUCT ps;
-	HDC hdc = BeginPaint(handle, &ps);
-
-	FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
-
-	EndPaint(handle, &ps);
+	PAINTSTRUCT paintData;
+	DisplayDeviceHandle handleDisplayDevice = BeginPaint(windowHandle, &paintData);
+	{
+		FillRect(handleDisplayDevice, &paintData.rcPaint, (Brush)(COLOR_WINDOW + 1));
+	}
+	EndPaint(windowHandle, &paintData);
 }

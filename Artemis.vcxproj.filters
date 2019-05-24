@@ -27,6 +27,9 @@
     <ClCompile Include="OS Window\Window.cpp">
       <Filter>Source Files\OS Window</Filter>
     </ClCompile>
+    <ClCompile Include="OS Window\WindowProcedure.cpp">
+      <Filter>Source Files\OS Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OS Window\main.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files\OS Window</Filter>
     </ClInclude>
     <ClInclude Include="OS Window\Window.h">
+      <Filter>Header Files\OS Window</Filter>
+    </ClInclude>
+    <ClInclude Include="OS Window\WindowProcedure.h">
       <Filter>Header Files\OS Window</Filter>
     </ClInclude>
   </ItemGroup>

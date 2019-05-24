@@ -29,12 +29,8 @@ private:
 
 	// Messages
 	LONG_PTR OnClose();
-	LONG_PTR OnPaint();	
+	LONG_PTR OnPaint();
 
-	// Window Procedure
-	static LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
-	static Window* CreateStateInformation(WindowHandle handle, LONG_PTR lParam);
-	static void SetStateInformation(Window * instancePointer, WindowHandle handle);
-	static LONG_PTR GetStateInformation(WindowHandle handle);
-	static Window* GetInstancePointer(WindowHandle handle, UINT messageCode, LONG_PTR lParam);
+	friend LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+	friend Window* CreateStateInformation(WindowHandle handle, LONG_PTR lParam);
 };

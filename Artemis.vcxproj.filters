@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Main">
       <UniqueIdentifier>{ed832a20-69f4-4acd-9ed7-a503e195276c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Structs">
+      <UniqueIdentifier>{cc3e728b-6a65-4518-bbcc-3aeb2f93843e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OS Window\Window.cpp">
@@ -41,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="src\Main\main.cpp">
       <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Structs\Color.cpp">
+      <Filter>Source Files\Structs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

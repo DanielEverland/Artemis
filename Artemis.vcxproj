@@ -15,6 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Structs\Color.cpp" />
     <ClCompile Include="src\Main\main.cpp" />
     <ClCompile Include="src\OS Window\Window.cpp" />
     <ClCompile Include="src\OS Window\WindowProcedure.cpp" />

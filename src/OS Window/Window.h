@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Main/PrettyWin32.h"
+#include "../Structs/Color.h"
 
 class Window
 {
@@ -9,7 +10,7 @@ public:
 	const UnicodeChar* Title = L"Window Title";
 
 	int WindowBehaviour = 0;
-	Brush BackgroundBrush = (Brush)(COLOR_WINDOW + 1);
+	Color BackgroundBrush = Color::White;
 
 	Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
 

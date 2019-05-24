@@ -3,36 +3,41 @@
 #include "../Main/PrettyWin32.h"
 #include "../Structs/Color.h"
 
-class Window
+using ArtemisEngine::Color;
+
+namespace ArtemisWindow
 {
-public:
+	class Window
+	{
+	public:
 
-	const UnicodeChar* Title = L"Window Title";
+		const UnicodeChar* Title = L"Window Title";
 
-	int WindowBehaviour = 0;
-	Color BackgroundColor = Color::White;
+		int WindowBehaviour = 0;
+		Color BackgroundColor = Color::White;
 
-	Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
+		Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
 
-	void Show();
+		void Show();
 
-private:
-	
-	const UnicodeChar* className;
+	private:
 
-	HandleInstance handleInstance;
-	WindowHandle windowHandle;
-	int windowState;
-	
-	void RunMessageLoop();
-	WindowHandle CreateWindowHandle(HandleInstance handleInstance);
-	WindowClass CreateWindowClass(HandleInstance handleInstance);
-	LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+		const UnicodeChar* className;
 
-	// Messages
-	LONG_PTR OnClose();
-	LONG_PTR OnPaint();
+		HandleInstance handleInstance;
+		WindowHandle windowHandle;
+		int windowState;
 
-	friend LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
-	friend Window* CreateStateInformation(WindowHandle handle, LONG_PTR lParam);
-};
+		void RunMessageLoop();
+		WindowHandle CreateWindowHandle(HandleInstance handleInstance);
+		WindowClass CreateWindowClass(HandleInstance handleInstance);
+		LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+
+		// Messages
+		LONG_PTR OnClose();
+		LONG_PTR OnPaint();
+
+		friend LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+		friend Window* CreateStateInformation(WindowHandle handle, LONG_PTR lParam);
+	};
+}

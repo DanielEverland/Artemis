@@ -1,5 +1,7 @@
 #include "main.h"
 
+using namespace ArtemisWindow;
+
 int WINAPI wWinMain(HandleInstance handleInstance, HandleInstance, UnicodeChar* arguments, int windowState)
 {
 	Window mainWindow(handleInstance, L"ArtemisWindow", windowState);

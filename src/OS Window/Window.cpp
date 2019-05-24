@@ -9,6 +9,7 @@ namespace ArtemisWindow
 		this->handleInstance = handleInstance;
 		this->className = className;
 		this->windowState = windowState;
+		this->windowHandle = NULL;
 	}
 
 	void Window::Show()

@@ -6,22 +6,23 @@ class Window
 {
 public:
 
-	Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
-
 	const UnicodeChar* Title = L"Window Title";
+
 	int WindowBehaviour = 0;
 	Brush BackgroundBrush = (Brush)(COLOR_WINDOW + 1);
+
+	Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
 
 	void Show();
 
 private:
 	
+	const UnicodeChar* className;
+
 	HandleInstance handleInstance;
 	WindowHandle windowHandle;
-	const UnicodeChar* className;
 	int windowState;
-
-
+	
 	void RunMessageLoop();
 	WindowHandle CreateWindowHandle(HandleInstance handleInstance);
 	WindowClass CreateWindowClass(HandleInstance handleInstance);

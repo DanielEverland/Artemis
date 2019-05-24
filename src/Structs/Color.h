@@ -11,6 +11,14 @@ struct Color
 	BYTE b = 255;
 	BYTE a = 255;
 
+	Color(BYTE red, BYTE green, BYTE blue);
+	Color(BYTE red, BYTE green, BYTE blue, BYTE alpha);
+
+	operator Brush() { return CreateSolidBrush(RGB(r, g, b)); }
+
+	static Color FromFloat(float red, float green, float blue);
+	static Color FromFloat(float red, float green, float blue, float alpha);
+
 	static const Color AliceBlue;
 	static const Color AntiqueWhite;
 	static const Color Aqua;
@@ -152,12 +160,4 @@ struct Color
 	static const Color WhiteSmoke;
 	static const Color Yellow;
 	static const Color YellowGreen;
-	
-	Color(BYTE red, BYTE green, BYTE blue);
-	Color(BYTE red, BYTE green, BYTE blue, BYTE alpha);
-
-	operator Brush() { return CreateSolidBrush(RGB(r, g, b)); }
-
-	static Color FromFloat(float red, float green, float blue);
-	static Color FromFloat(float red, float green, float blue, float alpha);
 };

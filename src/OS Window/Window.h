@@ -10,7 +10,7 @@ public:
 	const UnicodeChar* Title = L"Window Title";
 
 	int WindowBehaviour = 0;
-	Color BackgroundBrush = Color::White;
+	Color BackgroundColor = Color::White;
 
 	Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
 

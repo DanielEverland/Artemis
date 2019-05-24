@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PrettyWin32.h"
+#include "../Main/PrettyWin32.h"
 
 class Window
 {

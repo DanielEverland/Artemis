@@ -16,33 +16,51 @@
     <Filter Include="Source Files\OS Window">
       <UniqueIdentifier>{28579a2c-078c-456a-a75f-b3f99c4e4a35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\OS Window">
+    <Filter Include="Header Files\src">
+      <UniqueIdentifier>{e8f7ef1f-0adb-42fb-aacf-ea710ee1f205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\OS Window">
       <UniqueIdentifier>{cdb7640c-c433-463b-96c8-4f069b1325e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\Structs">
+      <UniqueIdentifier>{3f1dd9c7-b334-4cc7-8022-a0bb80e69b03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\Main">
+      <UniqueIdentifier>{c5f6298f-5f78-4788-bf94-5d299aa5e267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main">
+      <UniqueIdentifier>{ed832a20-69f4-4acd-9ed7-a503e195276c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="OS Window\main.cpp">
+    <ClCompile Include="src\OS Window\Window.cpp">
       <Filter>Source Files\OS Window</Filter>
     </ClCompile>
-    <ClCompile Include="OS Window\Window.cpp">
+    <ClCompile Include="src\OS Window\WindowProcedure.cpp">
       <Filter>Source Files\OS Window</Filter>
     </ClCompile>
-    <ClCompile Include="OS Window\WindowProcedure.cpp">
-      <Filter>Source Files\OS Window</Filter>
+    <ClCompile Include="src\Main\main.cpp">
+      <Filter>Source Files\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OS Window\main.h">
-      <Filter>Header Files\OS Window</Filter>
+    <ClInclude Include="src\OS Window\Window.h">
+      <Filter>Header Files\src\OS Window</Filter>
     </ClInclude>
-    <ClInclude Include="OS Window\PrettyWin32.h">
-      <Filter>Header Files\OS Window</Filter>
+    <ClInclude Include="src\OS Window\WindowProcedure.h">
+      <Filter>Header Files\src\OS Window</Filter>
     </ClInclude>
-    <ClInclude Include="OS Window\Window.h">
-      <Filter>Header Files\OS Window</Filter>
+    <ClInclude Include="src\Structs\Color.h">
+      <Filter>Header Files\src\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="OS Window\WindowProcedure.h">
-      <Filter>Header Files\OS Window</Filter>
+    <ClInclude Include="src\Main\main.h">
+      <Filter>Header Files\src\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Main\PrettyWin32.h">
+      <Filter>Header Files\src\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ArtemisEngine.h">
+      <Filter>Header Files\src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

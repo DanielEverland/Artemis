@@ -1,4 +1,4 @@
-#include "PrettyWin32.h"
+#include "../Main/PrettyWin32.h"
 #include "WindowProcedure.h"
 #include "Window.h"
 

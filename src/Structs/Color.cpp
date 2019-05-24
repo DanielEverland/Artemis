@@ -155,3 +155,13 @@ Color::Color(BYTE red, BYTE green, BYTE blue, BYTE alpha)
 	b = blue;
 	a = alpha;
 }
+
+Color Color::FromFloat(float red, float green, float blue)
+{
+	return Color(BYTE(red * 0xFF), BYTE(green * 0xFF), BYTE(blue * 0xFF), 0xFF);
+}
+
+Color Color::FromFloat(float red, float green, float blue, float alpha)
+{
+	return Color(BYTE(red * 0xFF), BYTE(green * 0xFF), BYTE(blue * 0xFF), BYTE(alpha * 0xFF));
+}

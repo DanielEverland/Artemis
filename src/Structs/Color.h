@@ -157,4 +157,7 @@ struct Color
 	Color(BYTE red, BYTE green, BYTE blue, BYTE alpha);
 
 	operator Brush() { return CreateSolidBrush(RGB(r, g, b)); }
+
+	static Color FromFloat(float red, float green, float blue);
+	static Color FromFloat(float red, float green, float blue, float alpha);
 };

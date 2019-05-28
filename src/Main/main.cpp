@@ -2,7 +2,7 @@
 
 using namespace ArtemisWindow;
 
-int WINAPI wWinMain(HandleInstance handleInstance, HandleInstance, UnicodeChar* arguments, int windowState)
+int WINAPI wWinMain(_In_ HandleInstance handleInstance, _In_opt_ HandleInstance, _In_ UnicodeChar* arguments, _In_ int windowState)
 {
 	Window mainWindow(handleInstance, L"ArtemisWindow", windowState);
 	mainWindow.Title = L"Artemis";

@@ -21,7 +21,11 @@ namespace ArtemisWindow
 		void Show();
 
 	private:
-
+		const int DefaultXPosition = CW_USEDEFAULT;
+		const int DefaultYPosition = CW_USEDEFAULT;
+		const int DefaultWidth = CW_USEDEFAULT;
+		const int DefaultHeight = CW_USEDEFAULT;
+		const long DefaultWindowOptions = WS_OVERLAPPEDWINDOW;
 		const UnicodeChar* className;
 
 		HandleInstance handleInstance;

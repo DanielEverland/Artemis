@@ -22,7 +22,7 @@ namespace ArtemisWindow
 
 		RunMessageLoop();
 	}
-	void Window::RunMessageLoop()
+	void Window::RunMessageLoop() const
 	{
 		Message message;
 		while (GetMessage(&message, NULL, 0, 0))
@@ -53,7 +53,7 @@ namespace ArtemisWindow
 
 		return handle;
 	}
-	WindowClass Window::CreateWindowClass(HandleInstance handleInstance)
+	WindowClass Window::CreateWindowClass(HandleInstance handleInstance) const
 	{
 		WindowClass windowClass = { };
 

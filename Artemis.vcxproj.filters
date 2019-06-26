@@ -13,14 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\OS Window">
-      <UniqueIdentifier>{28579a2c-078c-456a-a75f-b3f99c4e4a35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\src">
       <UniqueIdentifier>{e8f7ef1f-0adb-42fb-aacf-ea710ee1f205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\src\OS Window">
-      <UniqueIdentifier>{cdb7640c-c433-463b-96c8-4f069b1325e5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\src\Structs">
       <UniqueIdentifier>{3f1dd9c7-b334-4cc7-8022-a0bb80e69b03}</UniqueIdentifier>
@@ -34,27 +28,36 @@
     <Filter Include="Source Files\Structs">
       <UniqueIdentifier>{cc3e728b-6a65-4518-bbcc-3aeb2f93843e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\src\Windows">
+      <UniqueIdentifier>{cdb7640c-c433-463b-96c8-4f069b1325e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Windows">
+      <UniqueIdentifier>{28579a2c-078c-456a-a75f-b3f99c4e4a35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\OS Window\Window.cpp">
-      <Filter>Source Files\OS Window</Filter>
-    </ClCompile>
-    <ClCompile Include="src\OS Window\WindowProcedure.cpp">
-      <Filter>Source Files\OS Window</Filter>
-    </ClCompile>
     <ClCompile Include="src\Main\main.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
     <ClCompile Include="src\Structs\Color.cpp">
       <Filter>Source Files\Structs</Filter>
     </ClCompile>
+    <ClCompile Include="src\Windows\GameWindow.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Windows\Window.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Windows\WindowProcedure.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\OS Window\Window.h">
-      <Filter>Header Files\src\OS Window</Filter>
+      <Filter>Header Files\src\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\OS Window\WindowProcedure.h">
-      <Filter>Header Files\src\OS Window</Filter>
+      <Filter>Header Files\src\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Structs\Color.h">
       <Filter>Header Files\src\Structs</Filter>

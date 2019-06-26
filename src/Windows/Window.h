@@ -16,11 +16,11 @@ namespace ArtemisWindow
 		int WindowBehaviour = 0;
 		Color BackgroundColor = Color::White;
 
-		Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
+		explicit Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
 
 		void Show();
 
-	private:
+	protected:
 		const int DefaultXPosition = CW_USEDEFAULT;
 		const int DefaultYPosition = CW_USEDEFAULT;
 		const int DefaultWidth = CW_USEDEFAULT;
@@ -32,10 +32,10 @@ namespace ArtemisWindow
 		WindowHandle windowHandle;
 		int windowState;
 
-		void RunMessageLoop();
-		WindowHandle CreateWindowHandle(HandleInstance handleInstance);
-		WindowClass CreateWindowClass(HandleInstance handleInstance);
-		LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+		virtual void RunMessageLoop() const;
+		virtual WindowHandle CreateWindowHandle(HandleInstance handleInstance);
+		virtual WindowClass CreateWindowClass(HandleInstance handleInstance) const;
+		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
 
 		// Messages
 		LONG_PTR OnClose();

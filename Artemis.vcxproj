@@ -17,8 +17,9 @@
   <ItemGroup>
     <ClCompile Include="src\Structs\Color.cpp" />
     <ClCompile Include="src\Main\main.cpp" />
-    <ClCompile Include="src\OS Window\Window.cpp" />
-    <ClCompile Include="src\OS Window\WindowProcedure.cpp" />
+    <ClCompile Include="src\Windows\GameWindow.cpp" />
+    <ClCompile Include="src\Windows\Window.cpp" />
+    <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ArtemisEngine.h" />

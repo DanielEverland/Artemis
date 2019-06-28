@@ -2,7 +2,7 @@
 
 #include <memory>
 
-using std::shared_ptr;
+using std::unique_ptr;
 
 class ApplicationArguments
 {
@@ -18,7 +18,7 @@ public:
 	inline static bool HasUseWARP() { return useWARPDefined; }
 
 private:
-	static shared_ptr<long> width;
-	static shared_ptr<long> height;
+	static unique_ptr<long> width;
+	static unique_ptr<long> height;
 	static bool useWARPDefined;
 };

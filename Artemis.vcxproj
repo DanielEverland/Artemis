@@ -23,6 +23,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ArtemisEngine.h" />
+    <ClInclude Include="src\Direct X\d3dx12.h" />
+    <ClInclude Include="src\Direct X\DXHelper.h" />
     <ClInclude Include="src\Structs\Color.h" />
     <ClInclude Include="src\Windows\GameWindow.h" />
     <ClInclude Include="src\Windows\Window.h" />

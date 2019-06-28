@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Windows">
       <UniqueIdentifier>{28579a2c-078c-456a-a75f-b3f99c4e4a35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\src\Direct X">
+      <UniqueIdentifier>{657826ab-3777-4e81-96c5-0caa1489112e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main\main.cpp">
@@ -64,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="src\Windows\WindowProcedure.h">
       <Filter>Header Files\src\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\d3dx12.h">
+      <Filter>Header Files\src\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\DXHelper.h">
+      <Filter>Header Files\src\Direct X</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

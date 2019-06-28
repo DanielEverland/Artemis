@@ -1,9 +1,25 @@
 #include "GameWindow.h"
+#include <d3d12.h>
+#include "..\Direct X\DXHelper.h"
 
 using ArtemisWindow::GameWindow;
 
 GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
-	: Window(handleInstance, className, windowState) { }
+	: Window(handleInstance, className, windowState)
+{
+#if defined(_DEBUG)
+	EnableDebugLayer();
+#endif
+
+
+}
+
+void GameWindow::EnableDebugLayer() const
+{
+	ComPtr<ID3D12Debug> debugInterface;
+	ThrowIfFailed(D3D12GetDebugInterface(IID_PPV_ARGS(&debugInterface)));
+	debugInterface->EnableDebugLayer();
+}
 
 void GameWindow::RunMessageLoop()
 {

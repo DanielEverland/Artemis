@@ -71,5 +71,7 @@ namespace ArtemisWindow
 		bool fullscreen = false;
 
 		virtual void RunMessageLoop() final;
+
+		void EnableDebugLayer() const;
 	};
 }

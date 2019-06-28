@@ -30,6 +30,37 @@ namespace ArtemisWindow
 		explicit GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState);
 
 	private:
+		static const uint8_t swapChainBufferSize = 3;
+		bool useWARPAdapter = false;
+
+		uint32_t clientWidth = 1280;
+		uint32_t clientHeight = 720;
+
+		bool directXInitialized = false;
+
+		RECT previousWindowRect;
+
+		// DirectX 12 Objects
+		ComPtr<ID3D12Device2> device;
+		ComPtr<ID3D12CommandQueue> commandQueue;
+		ComPtr<IDXGISwapChain4> swapChain;
+		ComPtr<ID3D12Resource> backBuffers[swapChainBufferSize];
+		ComPtr<ID3D12GraphicsCommandList> commandList;
+		ComPtr<ID3D12CommandAllocator> commandAllocators[swapChainBufferSize];
+		ComPtr<ID3D12DescriptorHeap> RTVDescriptorHeap;
+		UINT RTVDescriptorSize;
+		UINT currentBackBufferIndex;
+
+		// Synchronization objects
+		ComPtr<ID3D12Fence> fence;
+		uint64_t fenceValue = 0;
+		uint64_t frameFenceValues[swapChainBufferSize] = {};
+		HANDLE fenceEvent;
+
+		bool vSync = true;
+		bool tearingSupported = false;
+		bool fullscreen = false;
+
 		virtual void RunMessageLoop() final;
 	};
 }

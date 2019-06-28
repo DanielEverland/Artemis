@@ -1,10 +1,13 @@
-#include "../Main/PrettyWin32.h"
+#ifndef UNICODE
+#define UNICODE
+#endif
+
 #include "WindowProcedure.h"
 #include "Window.h"
 
 namespace ArtemisWindow
 {
-	Window::Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState)
+	Window::Window(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	{
 		this->handleInstance = handleInstance;
 		this->className = className;
@@ -14,26 +17,26 @@ namespace ArtemisWindow
 
 	void Window::Show()
 	{
-		WindowClass windowClass = CreateWindowClass(handleInstance);
+		WNDCLASS windowClass = CreateWindowClass(handleInstance);
 		RegisterClass(&windowClass);
 
-		WindowHandle windowHandle = CreateWindowHandle(handleInstance);
+		HWND windowHandle = CreateWindowHandle(handleInstance);
 		ShowWindow(windowHandle, windowState);
 
 		RunMessageLoop();
 	}
 	void Window::RunMessageLoop() const
 	{
-		Message message;
+		MSG message;
 		while (GetMessage(&message, NULL, 0, 0))
 		{
 			TranslateMessage(&message);
 			DispatchMessage(&message);
 		}
 	}
-	WindowHandle Window::CreateWindowHandle(HandleInstance handleInstance)
+	HWND Window::CreateWindowHandle(HINSTANCE handleInstance)
 	{
-		WindowHandle handle = CreateWindowEx(
+		HWND handle = CreateWindowEx(
 			WindowBehaviour,
 			className,
 			Title,
@@ -53,9 +56,9 @@ namespace ArtemisWindow
 
 		return handle;
 	}
-	WindowClass Window::CreateWindowClass(HandleInstance handleInstance) const
+	WNDCLASS Window::CreateWindowClass(HINSTANCE handleInstance) const
 	{
-		WindowClass windowClass = { };
+		WNDCLASS windowClass = { };
 
 		windowClass.lpfnWndProc = WindowProcedure;
 		windowClass.hInstance = handleInstance;
@@ -93,7 +96,7 @@ namespace ArtemisWindow
 	LONG_PTR Window::OnPaint()
 	{
 		PAINTSTRUCT paintData;
-		DisplayDeviceHandle handleDisplayDevice = BeginPaint(windowHandle, &paintData);
+		HDC handleDisplayDevice = BeginPaint(windowHandle, &paintData);
 		{
 			FillRect(handleDisplayDevice, &paintData.rcPaint, BackgroundColor);
 		}

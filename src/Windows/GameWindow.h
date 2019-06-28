@@ -5,7 +5,7 @@ namespace ArtemisWindow
 	class GameWindow : public Window
 	{
 	public:
-		explicit GameWindow(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
+		explicit GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState);
 
 	private:
 		virtual void RunMessageLoop() final;

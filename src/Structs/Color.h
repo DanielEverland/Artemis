@@ -2,7 +2,6 @@
 
 #include <windows.h>
 #include <wingdi.h>
-#include "../Main/PrettyWin32.h"
 
 namespace ArtemisEngine
 {
@@ -16,7 +15,7 @@ namespace ArtemisEngine
 		Color(BYTE red, BYTE green, BYTE blue);
 		Color(BYTE red, BYTE green, BYTE blue, BYTE alpha);
 
-		operator Brush() { return CreateSolidBrush(RGB(r, g, b)); }
+		operator HBRUSH() { return CreateSolidBrush(RGB(r, g, b)); }
 
 		static Color FromFloat(float red, float green, float blue);
 		static Color FromFloat(float red, float green, float blue, float alpha);

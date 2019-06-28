@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../Main/PrettyWin32.h"
 #include "../Structs/Color.h"
 
 using ArtemisEngine::Color;
@@ -11,12 +10,12 @@ namespace ArtemisWindow
 	{
 	public:
 
-		const UnicodeChar* Title = L"Window Title";
+		const WCHAR* Title = L"Window Title";
 
 		int WindowBehaviour = 0;
 		Color BackgroundColor = Color::White;
 
-		explicit Window(HandleInstance handleInstance, const UnicodeChar* className, int windowState);
+		explicit Window(HINSTANCE handleInstance, const LPCWSTR className, int windowState);
 
 		void Show();
 
@@ -26,22 +25,22 @@ namespace ArtemisWindow
 		const int DefaultWidth = CW_USEDEFAULT;
 		const int DefaultHeight = CW_USEDEFAULT;
 		const long DefaultWindowOptions = WS_OVERLAPPEDWINDOW;
-		const UnicodeChar* className;
-
-		HandleInstance handleInstance;
-		WindowHandle windowHandle;
+		
+		LPCWSTR className;
+		HINSTANCE handleInstance;
+		HWND windowHandle;
 		int windowState;
 
 		virtual void RunMessageLoop() const;
-		virtual WindowHandle CreateWindowHandle(HandleInstance handleInstance);
-		virtual WindowClass CreateWindowClass(HandleInstance handleInstance) const;
-		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+		HWND CreateWindowHandle(HINSTANCE handleInstance);
+		WNDCLASS CreateWindowClass(HINSTANCE handleInstance) const;
+		LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
 
 		// Messages
 		LONG_PTR OnClose();
 		LONG_PTR OnPaint();
 
-		friend LONG_PTR CALLBACK WindowProcedure(WindowHandle handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
-		friend Window* CreateStateInformation(WindowHandle handle, LONG_PTR lParam);
+		friend LONG_PTR CALLBACK WindowProcedure(HWND handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+		friend Window* CreateStateInformation(HWND handle, LONG_PTR lParam);
 	};
 }

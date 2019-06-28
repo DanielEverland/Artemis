@@ -2,13 +2,13 @@
 
 using ArtemisWindow::GameWindow;
 
-GameWindow::GameWindow(HandleInstance handleInstance, const UnicodeChar* className, int windowState)
+GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	: Window(handleInstance, className, windowState) { }
 
 void GameWindow::RunMessageLoop()
 {
 	bool currentMessage;
-	Message message;
+	MSG message;
 	message.message = WM_NULL;
 
 	PeekMessage(&message, NULL, 0U, 0U, PM_NOREMOVE);

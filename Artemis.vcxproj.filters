@@ -19,9 +19,6 @@
     <Filter Include="Header Files\src\Structs">
       <UniqueIdentifier>{3f1dd9c7-b334-4cc7-8022-a0bb80e69b03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\Main">
-      <UniqueIdentifier>{c5f6298f-5f78-4788-bf94-5d299aa5e267}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Main">
       <UniqueIdentifier>{ed832a20-69f4-4acd-9ed7-a503e195276c}</UniqueIdentifier>
     </Filter>
@@ -55,9 +52,6 @@
   <ItemGroup>
     <ClInclude Include="src\Structs\Color.h">
       <Filter>Header Files\src\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Main\PrettyWin32.h">
-      <Filter>Header Files\src\Main</Filter>
     </ClInclude>
     <ClInclude Include="src\ArtemisEngine.h">
       <Filter>Header Files\src</Filter>

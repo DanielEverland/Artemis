@@ -32,8 +32,8 @@ namespace ArtemisWindow
 		int windowState;
 
 		virtual void RunMessageLoop() const;
-		HWND CreateWindowHandle(HINSTANCE handleInstance);
-		WNDCLASS CreateWindowClass(HINSTANCE handleInstance) const;
+		HWND CreateWindowHandle();
+		WNDCLASS CreateWindowClass() const;
 		LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
 
 		// Messages

@@ -17,10 +17,10 @@ namespace ArtemisWindow
 
 	void Window::Show()
 	{
-		WNDCLASS windowClass = CreateWindowClass(handleInstance);
+		WNDCLASS windowClass = CreateWindowClass();
 		RegisterClass(&windowClass);
 
-		HWND windowHandle = CreateWindowHandle(handleInstance);
+		HWND windowHandle = CreateWindowHandle();
 		ShowWindow(windowHandle, windowState);
 
 		RunMessageLoop();
@@ -34,7 +34,7 @@ namespace ArtemisWindow
 			DispatchMessage(&message);
 		}
 	}
-	HWND Window::CreateWindowHandle(HINSTANCE handleInstance)
+	HWND Window::CreateWindowHandle()
 	{
 		HWND handle = CreateWindowEx(
 			WindowBehaviour,
@@ -56,7 +56,7 @@ namespace ArtemisWindow
 
 		return handle;
 	}
-	WNDCLASS Window::CreateWindowClass(HINSTANCE handleInstance) const
+	WNDCLASS Window::CreateWindowClass() const
 	{
 		WNDCLASS windowClass = { };
 

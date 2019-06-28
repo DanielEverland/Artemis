@@ -23,11 +23,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ArtemisEngine.h" />
-    <ClInclude Include="src\Main\main.h" />
     <ClInclude Include="src\Main\PrettyWin32.h" />
-    <ClInclude Include="src\OS Window\Window.h" />
-    <ClInclude Include="src\OS Window\WindowProcedure.h" />
     <ClInclude Include="src\Structs\Color.h" />
+    <ClInclude Include="src\Windows\GameWindow.h" />
+    <ClInclude Include="src\Windows\Window.h" />
+    <ClInclude Include="src\Windows\WindowProcedure.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

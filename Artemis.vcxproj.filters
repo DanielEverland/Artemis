@@ -53,23 +53,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\OS Window\Window.h">
-      <Filter>Header Files\src\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OS Window\WindowProcedure.h">
-      <Filter>Header Files\src\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Structs\Color.h">
       <Filter>Header Files\src\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Main\main.h">
-      <Filter>Header Files\src\Main</Filter>
     </ClInclude>
     <ClInclude Include="src\Main\PrettyWin32.h">
       <Filter>Header Files\src\Main</Filter>
     </ClInclude>
     <ClInclude Include="src\ArtemisEngine.h">
       <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Windows\Window.h">
+      <Filter>Header Files\src\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Windows\GameWindow.h">
+      <Filter>Header Files\src\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Windows\WindowProcedure.h">
+      <Filter>Header Files\src\Windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

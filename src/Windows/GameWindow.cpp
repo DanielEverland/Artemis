@@ -38,6 +38,40 @@ void GameWindow::CreateWindowClass() const
 	assert(atom > 0);
 }
 
+HWND ArtemisWindow::GameWindow::CreateWindowHandle()
+{
+	int screenWidth = ::GetSystemMetrics(SM_CXSCREEN);
+	int screenHeight = ::GetSystemMetrics(SM_CYSCREEN);
+
+	RECT windowRect = { 0, 0, static_cast<LONG>(clientWidth), static_cast<LONG>(clientHeight) };
+	::AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, false);
+
+	int windowWidth = windowRect.right - windowRect.left;
+	int windowHeight = windowRect.bottom - windowRect.top;
+
+	// Center the window within the screen. Clamp to 0, 0 for the top-left corner.
+	int windowX = std::max<int>(0, (screenWidth - windowWidth) / 2);
+	int windowY = std::max<int>(0, (screenHeight - windowHeight) / 2);
+
+	HWND handle = ::CreateWindowExW(
+		NULL,							// Extended Window Style
+		className,
+		Title,
+		WS_OVERLAPPEDWINDOW,
+		
+		windowX, windowY, windowWidth, windowHeight,
+
+		NULL,							// Parent window
+		NULL,							// Menu
+		handleInstance,
+		this
+	);
+
+	assert(handle && "Failed to create window");
+
+	return handle;
+}
+
 void GameWindow::EnableDebugLayer() const
 {
 	ComPtr<ID3D12Debug> debugInterface;

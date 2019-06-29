@@ -1,6 +1,9 @@
-#include "GameWindow.h"
 #include <d3d12.h>
+
 #include "..\Direct X\DXHelper.h"
+
+#include "GameWindow.h"
+#include "WindowProcedure.h"
 
 using ArtemisWindow::GameWindow;
 
@@ -12,6 +15,27 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 #endif
 
 
+}
+
+void GameWindow::CreateWindowClass() const
+{
+	WNDCLASSEXW windowClass{ };
+
+	windowClass.cbSize = sizeof(WNDCLASSEXW);
+	windowClass.style = CS_HREDRAW | CS_VREDRAW;
+	windowClass.lpfnWndProc = WindowProcedure;
+	windowClass.cbClsExtra = 0;
+	windowClass.cbWndExtra = 0;
+	windowClass.hInstance = handleInstance;
+	windowClass.hIcon = ::LoadIcon(handleInstance, nullptr);
+	windowClass.hCursor = ::LoadCursor(nullptr, IDC_ARROW);
+	windowClass.hbrBackground = Color(BackgroundColor);
+	windowClass.lpszMenuName = nullptr;
+	windowClass.lpszClassName = className;
+	windowClass.hIconSm = ::LoadIcon(handleInstance, nullptr);
+
+	static ATOM atom = ::RegisterClassExW(&windowClass);
+	assert(atom > 0);
 }
 
 void GameWindow::EnableDebugLayer() const

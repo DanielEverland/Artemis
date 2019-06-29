@@ -17,9 +17,7 @@ namespace ArtemisWindow
 
 	void Window::Show()
 	{
-		WNDCLASS windowClass = CreateWindowClass();
-		RegisterClass(&windowClass);
-
+		CreateWindowClass();
 		HWND windowHandle = CreateWindowHandle();
 		ShowWindow(windowHandle, windowState);
 
@@ -56,15 +54,15 @@ namespace ArtemisWindow
 
 		return handle;
 	}
-	WNDCLASS Window::CreateWindowClass() const
+	void Window::CreateWindowClass() const
 	{
-		WNDCLASS windowClass = { };
+		WNDCLASS windowClass{ };
 
 		windowClass.lpfnWndProc = WindowProcedure;
 		windowClass.hInstance = handleInstance;
 		windowClass.lpszClassName = className;
 
-		return windowClass;
+		RegisterClass(&windowClass);
 	}
 
 	//-------------------------------------------------------------------------------------------------------------

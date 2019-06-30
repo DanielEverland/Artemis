@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 #include "../Structs/Color.h"
 
 using ArtemisEngine::Color;
@@ -9,13 +11,18 @@ namespace ArtemisWindow
 	class Window
 	{
 	public:
-
 		const WCHAR* Title = L"Window Title";
 
 		int WindowBehaviour = 0;
 		Color BackgroundColor = Color::White;
 
 		explicit Window(HINSTANCE handleInstance, const LPCWSTR className, int windowState);
+
+		inline uint32_t GetWidth() const { return width; }
+		inline void SetWidth(uint32_t value) { width = value; }
+
+		inline uint32_t GetHeight() const { return height; }
+		inline void SetHeight(uint32_t value) { height = value; }
 
 		void Show();
 
@@ -26,6 +33,9 @@ namespace ArtemisWindow
 		const int DefaultHeight = CW_USEDEFAULT;
 		const long DefaultWindowOptions = WS_OVERLAPPEDWINDOW;
 		
+		uint32_t width = 1280;
+		uint32_t height = 720;
+
 		LPCWSTR className;
 		HINSTANCE handleInstance;
 		HWND windowHandle;

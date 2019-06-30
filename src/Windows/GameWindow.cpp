@@ -17,6 +17,60 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 
 }
 
+ComPtr<IDXGIAdapter4> GameWindow::GetAdapter()
+{
+	ComPtr<IDXGIFactory4> dxgiFactory;
+	UINT createFactoryFlags = 0;
+
+#if defined(_DEBUG)
+	createFactoryFlags = DXGI_CREATE_FACTORY_DEBUG;
+#endif
+
+	ThrowIfFailed(CreateDXGIFactory2(createFactoryFlags, IID_PPV_ARGS(&dxgiFactory)));
+
+	ComPtr<IDXGIAdapter1> dxgiAdapter1;
+	ComPtr<IDXGIAdapter4> dxgiAdapter4;
+
+	if (useWARPAdapter)
+	{
+		ThrowIfFailed(dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(&dxgiAdapter1)));
+		ThrowIfFailed(dxgiAdapter1.As(&dxgiAdapter4));
+	}
+	else
+	{
+		GetBestGraphicsAdapater(dxgiFactory, dxgiAdapter1, dxgiAdapter4);
+	}
+
+	return dxgiAdapter4;
+}
+
+void GameWindow::GetBestGraphicsAdapater(const ComPtr<IDXGIFactory4> dxgiFactory, ComPtr<IDXGIAdapter1> dxgiAdapter1, ComPtr<IDXGIAdapter4> dxgiAdapter4) const
+{
+	SIZE_T maxDedicatedVideoMemory = 0;
+	for (UINT i = 0; dxgiFactory->EnumAdapters1(i, &dxgiAdapter1) != DXGI_ERROR_NOT_FOUND; ++i)
+	{
+		DXGI_ADAPTER_DESC1 dxgiAdapterDesc1;
+		dxgiAdapter1->GetDesc1(&dxgiAdapterDesc1);
+
+		if (!IsWARPAdapater(dxgiAdapterDesc1) && IsAdapterDirectX12Compatible(dxgiAdapter1)
+			&& dxgiAdapterDesc1.DedicatedVideoMemory > maxDedicatedVideoMemory)
+		{
+			maxDedicatedVideoMemory = dxgiAdapterDesc1.DedicatedVideoMemory;
+			ThrowIfFailed(dxgiAdapter1.As(&dxgiAdapter4));
+		}
+	}
+}
+
+bool GameWindow::IsWARPAdapater(const DXGI_ADAPTER_DESC1& adapter) const
+{
+	return (adapter.Flags & DXGI_ADAPTER_FLAG_SOFTWARE) != 0;
+}
+
+bool GameWindow::IsAdapterDirectX12Compatible(const ComPtr<IDXGIAdapter1> adapter) const
+{
+	return SUCCEEDED(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, __uuidof(ID3D12Device), nullptr));
+}
+
 void GameWindow::CreateWindowClass() const
 {
 	WNDCLASSEXW windowClass{ };
@@ -27,7 +81,7 @@ void GameWindow::CreateWindowClass() const
 	windowClass.cbClsExtra = 0;
 	windowClass.cbWndExtra = 0;
 	windowClass.hInstance = handleInstance;
-	windowClass.hIcon = ::LoadIcon(handleInstance, nullptr);
+	windowClass.hIcon = ::LoadIcon(handleInstance, NULL);
 	windowClass.hCursor = ::LoadCursor(nullptr, IDC_ARROW);
 	windowClass.hbrBackground = Color(BackgroundColor);
 	windowClass.lpszMenuName = nullptr;
@@ -43,7 +97,7 @@ HWND ArtemisWindow::GameWindow::CreateWindowHandle()
 	int screenWidth = ::GetSystemMetrics(SM_CXSCREEN);
 	int screenHeight = ::GetSystemMetrics(SM_CYSCREEN);
 
-	RECT windowRect = { 0, 0, static_cast<LONG>(clientWidth), static_cast<LONG>(clientHeight) };
+	RECT windowRect = { 0, 0, static_cast<LONG>(width), static_cast<LONG>(height) };
 	::AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, false);
 
 	int windowWidth = windowRect.right - windowRect.left;

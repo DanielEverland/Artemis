@@ -29,21 +29,12 @@ namespace ArtemisWindow
 	public:
 		explicit GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState);
 
-		inline uint32_t GetClientWidth() const { return clientWidth; }
-		inline void SetClientWidth(uint32_t value) { clientWidth = value; }
-
-		inline uint32_t GetClientHeight() const { return clientHeight; }
-		inline void SetClientHeight(uint32_t value) { clientHeight = value; }
-
 		inline bool GetUseWARPAdapter() const { return useWARPAdapter; }
 		inline void SetUseWARPAdapter(bool value) { useWARPAdapter = value; }
 
 	private:
 		static const uint8_t swapChainBufferSize = 3;
 		bool useWARPAdapter = false;
-
-		uint32_t clientWidth = 1280;
-		uint32_t clientHeight = 720;
 
 		bool directXInitialized = false;
 
@@ -75,5 +66,9 @@ namespace ArtemisWindow
 		virtual HWND CreateWindowHandle();
 
 		void EnableDebugLayer() const;
+		ComPtr<IDXGIAdapter4> GetAdapter();
+		bool IsAdapterDirectX12Compatible(const ComPtr<IDXGIAdapter1> adapter) const;
+		bool IsWARPAdapater(const DXGI_ADAPTER_DESC1& adapter) const;
+		void GetBestGraphicsAdapater(const ComPtr<IDXGIFactory4> dxgiFactory, ComPtr<IDXGIAdapter1> dxgiAdapter1, ComPtr<IDXGIAdapter4> dxgiAdapter4) const;
 	};
 }

@@ -26,10 +26,10 @@ void CreateMainWindow(HINSTANCE handleInstance, int windowState)
 void ParseCommandLineArguments(GameWindow& window)
 {
 	if (ApplicationArguments::HasHeight())
-		window.SetClientHeight(ApplicationArguments::GetHeight());
+		window.SetHeight(ApplicationArguments::GetHeight());
 
 	if (ApplicationArguments::HasWidth())
-		window.SetClientWidth(ApplicationArguments::GetWidth());
+		window.SetWidth(ApplicationArguments::GetWidth());
 
 	if (ApplicationArguments::HasUseWARP())
 		window.SetUseWARPAdapter(true);

@@ -34,6 +34,12 @@ namespace ArtemisWindow
 
 	private:
 		static const uint8_t swapChainBufferSize = 3;
+
+		static const D3D12_MESSAGE_SEVERITY BreakOnSeverity[];
+		static D3D12_MESSAGE_SEVERITY IgnoreSeverity[];
+		static D3D12_MESSAGE_ID IgnoreMessages[];
+		static D3D12_MESSAGE_CATEGORY IgnoreCategories[];
+
 		bool useWARPAdapter = false;
 
 		bool directXInitialized = false;
@@ -70,5 +76,9 @@ namespace ArtemisWindow
 		bool IsAdapterDirectX12Compatible(const ComPtr<IDXGIAdapter1> adapter) const;
 		bool IsWARPAdapater(const DXGI_ADAPTER_DESC1& adapter) const;
 		void GetBestGraphicsAdapater(const ComPtr<IDXGIFactory4> dxgiFactory, ComPtr<IDXGIAdapter1> dxgiAdapter1, ComPtr<IDXGIAdapter4> dxgiAdapter4) const;
+		ComPtr<ID3D12Device2> CreateDevice(ComPtr<IDXGIAdapter4> adapter) const;
+		void EnableDebugMessages() const;
+		ComPtr<ID3D12CommandQueue> CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type) const;
+		bool CheckTearingSupport() const;
 	};
 }

@@ -7,6 +7,30 @@
 
 using ArtemisWindow::GameWindow;
 
+const D3D12_MESSAGE_SEVERITY GameWindow::BreakOnSeverity[]
+{
+	D3D12_MESSAGE_SEVERITY_CORRUPTION,
+	D3D12_MESSAGE_SEVERITY_ERROR,
+	D3D12_MESSAGE_SEVERITY_WARNING,
+};
+
+D3D12_MESSAGE_SEVERITY GameWindow::IgnoreSeverity[]
+{
+	D3D12_MESSAGE_SEVERITY_INFO,
+};
+
+D3D12_MESSAGE_ID GameWindow::IgnoreMessages[]
+{
+	D3D12_MESSAGE_ID_CLEARRENDERTARGETVIEW_MISMATCHINGCLEARVALUE,
+	D3D12_MESSAGE_ID_MAP_INVALID_NULLRANGE,
+	D3D12_MESSAGE_ID_UNMAP_INVALID_NULLRANGE,
+};
+
+D3D12_MESSAGE_CATEGORY GameWindow::IgnoreCategories[1]
+{
+};
+
+
 GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	: Window(handleInstance, className, windowState)
 {
@@ -15,6 +39,77 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 #endif
 
 
+}
+
+bool GameWindow::CheckTearingSupport() const
+{
+	bool allowTearing = false;
+
+	// Rather than create the DXGI 1.5 factory interface directly, we create the
+	// DXGI 1.4 interface and query for the 1.5 interface. This is to enable the 
+	// graphics debugging tools which will not support the 1.5 factory interface 
+	// until a future update.
+	ComPtr<IDXGIFactory4> factory4;
+	if (SUCCEEDED(CreateDXGIFactory1(IID_PPV_ARGS(&factory4))))
+	{
+		ComPtr<IDXGIFactory5> factory5;
+		if (SUCCEEDED(factory4.As(&factory5)))
+		{
+			if (FAILED(factory5->CheckFeatureSupport(DXGI_FEATURE_PRESENT_ALLOW_TEARING, &allowTearing, sizeof(allowTearing))))
+				allowTearing = false;
+		}
+	}
+
+	return allowTearing;
+}
+
+ComPtr<ID3D12CommandQueue> GameWindow::CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type) const
+{
+	ComPtr<ID3D12CommandQueue> commandQueue;
+
+	D3D12_COMMAND_QUEUE_DESC desc = {};
+	desc.Type		= type;
+	desc.Priority	= D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;
+	desc.Flags		= D3D12_COMMAND_QUEUE_FLAG_NONE;
+	desc.NodeMask	= 0;
+
+	ThrowIfFailed(device->CreateCommandQueue(&desc, IID_PPV_ARGS(&commandQueue)));
+
+	return commandQueue;
+}
+
+ComPtr<ID3D12Device2> GameWindow::CreateDevice(ComPtr<IDXGIAdapter4> adapter) const
+{
+	ComPtr<ID3D12Device2> device;
+	ThrowIfFailed(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&device)));
+
+#if defined(_DEBUG)
+	EnableDebugMessages();
+#endif
+
+	return device;
+}
+
+void GameWindow::EnableDebugMessages() const
+{
+	ComPtr<ID3D12InfoQueue> infoQueue;
+	if (SUCCEEDED(device.As(&infoQueue)))
+	{
+		for (auto severity : IgnoreSeverity)
+			infoQueue->SetBreakOnSeverity(severity, TRUE);
+
+		D3D12_INFO_QUEUE_FILTER filter = {};
+		filter.DenyList.NumCategories = _countof(IgnoreCategories);
+		filter.DenyList.pCategoryList = IgnoreCategories;
+
+		filter.DenyList.NumSeverities = _countof(IgnoreSeverity);
+		filter.DenyList.pSeverityList = IgnoreSeverity;
+
+		filter.DenyList.NumIDs = _countof(IgnoreMessages);
+		filter.DenyList.pIDList = IgnoreMessages;
+
+		ThrowIfFailed(infoQueue->PushStorageFilter(&filter));
+	}
 }
 
 ComPtr<IDXGIAdapter4> GameWindow::GetAdapter()

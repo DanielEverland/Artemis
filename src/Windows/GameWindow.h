@@ -33,6 +33,7 @@ namespace ArtemisWindow
 		inline void SetUseWARPAdapter(bool value) { useWARPAdapter = value; }
 
 	private:
+		static const bool AllowAltEnterFullscreen = false;
 		static const uint8_t swapChainBufferSize = 3;
 
 		static const D3D12_MESSAGE_SEVERITY BreakOnSeverity[];
@@ -70,6 +71,7 @@ namespace ArtemisWindow
 		virtual void RunMessageLoop() final;
 		virtual void CreateWindowClass() const;
 		virtual HWND CreateWindowHandle();
+		virtual DXGI_SWAP_CHAIN_DESC1 GetSwapChainDescription(uint32_t width, uint32_t height, uint32_t bufferCount) const;
 
 		void EnableDebugLayer() const;
 		ComPtr<IDXGIAdapter4> GetAdapter();
@@ -80,5 +82,6 @@ namespace ArtemisWindow
 		void EnableDebugMessages() const;
 		ComPtr<ID3D12CommandQueue> CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type) const;
 		bool CheckTearingSupport() const;
+		ComPtr<IDXGISwapChain4> CreateSwapChain(HWND handle, ComPtr<ID3D12CommandQueue> commandQueue, uint32_t width, uint32_t height, uint32_t bufferCount) const;
 	};
 }

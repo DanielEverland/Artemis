@@ -30,7 +30,6 @@ D3D12_MESSAGE_CATEGORY GameWindow::IgnoreCategories[1]
 {
 };
 
-
 GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	: Window(handleInstance, className, windowState)
 {
@@ -39,6 +38,57 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 #endif
 
 
+}
+
+ComPtr<IDXGISwapChain4> GameWindow::CreateSwapChain(HWND handle, ComPtr<ID3D12CommandQueue> commandQueue, uint32_t width, uint32_t height, uint32_t bufferCount) const
+{
+	ComPtr<IDXGISwapChain4> swapChain4;
+	ComPtr<IDXGIFactory4> factory;
+
+	UINT createFactoryFlags = 0;
+
+#if defined(_DEBUG)
+	createFactoryFlags = DXGI_CREATE_FACTORY_DEBUG;
+#endif
+
+	ThrowIfFailed(CreateDXGIFactory2(createFactoryFlags, IID_PPV_ARGS(&factory)));
+
+	DXGI_SWAP_CHAIN_DESC1 swapChainDescription = GetSwapChainDescription(width, height, bufferCount);
+
+	ComPtr<IDXGISwapChain1> swapChain1;
+	ThrowIfFailed(factory->CreateSwapChainForHwnd(
+		commandQueue.Get(),
+		handle,
+		&swapChainDescription,
+		nullptr,
+		nullptr,
+		&swapChain1
+	));
+
+	if (!AllowAltEnterFullscreen)
+		ThrowIfFailed(factory->MakeWindowAssociation(handle, DXGI_MWA_NO_ALT_ENTER));
+
+	ThrowIfFailed(swapChain1.As(&swapChain4));
+
+	return swapChain4;
+}
+
+DXGI_SWAP_CHAIN_DESC1 GameWindow::GetSwapChainDescription(uint32_t width, uint32_t height, uint32_t bufferCount) const
+{
+	DXGI_SWAP_CHAIN_DESC1 description = { };
+	description.Width = width;
+	description.Height = height;
+	description.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	description.Stereo = false;
+	description.SampleDesc = { 1, 0 };
+	description.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	description.BufferCount = bufferCount;
+	description.Scaling = DXGI_SCALING_STRETCH;
+	description.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	description.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
+	description.Flags = CheckTearingSupport() ? DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : 0;
+
+	return description;
 }
 
 bool GameWindow::CheckTearingSupport() const

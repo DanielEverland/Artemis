@@ -40,6 +40,38 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 
 }
 
+void GameWindow::UpdateRenderTargetViews(ComPtr<ID3D12Device2> device, ComPtr<IDXGISwapChain4> swapChain, ComPtr<ID3D12DescriptorHeap> descriptorHeap)
+{
+	UINT rtvDescriptorSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+
+	CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(descriptorHeap->GetCPUDescriptorHandleForHeapStart());
+
+	for (int i = 0; i < swapChainBufferSize; i++)
+	{
+		ComPtr<ID3D12Resource> backBuffer;
+		ThrowIfFailed(swapChain->GetBuffer(i, IID_PPV_ARGS(&backBuffer)));
+
+		device->CreateRenderTargetView(backBuffer.Get(), nullptr, rtvHandle);
+
+		backBuffers[i] = backBuffer;
+
+		rtvHandle.Offset(rtvDescriptorSize);
+	}
+}
+
+ComPtr<ID3D12DescriptorHeap> GameWindow::CreateDescriptorHeap(ComPtr<ID3D12Device2> device, D3D12_DESCRIPTOR_HEAP_TYPE type, uint32_t numDescriptors)
+{
+	ComPtr<ID3D12DescriptorHeap> descriptorHeap;
+
+	D3D12_DESCRIPTOR_HEAP_DESC desc = {};
+	desc.NumDescriptors = numDescriptors;
+	desc.Type = type;
+
+	ThrowIfFailed(device->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descriptorHeap)));
+
+	return descriptorHeap;
+}
+
 ComPtr<IDXGISwapChain4> GameWindow::CreateSwapChain(HWND handle, ComPtr<ID3D12CommandQueue> commandQueue, uint32_t width, uint32_t height, uint32_t bufferCount) const
 {
 	ComPtr<IDXGISwapChain4> swapChain4;

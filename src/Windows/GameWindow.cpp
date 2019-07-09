@@ -40,6 +40,48 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 
 }
 
+void GameWindow::Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const
+{
+	uint64_t fenceValueSignal = Signal(commandQueue, fence, fenceValue);
+	WaitForFenceValue(fence, fenceValueSignal, fenceEvent);
+}
+
+void GameWindow::WaitForFenceValue(ComPtr<ID3D12Fence> fence, uint64_t fenceValue, HANDLE fenceEvent, std::chrono::milliseconds duration) const
+{
+	if (fence->GetCompletedValue() < fenceValue)
+	{
+		ThrowIfFailed(fence->SetEventOnCompletion(fenceValue, fenceEvent));
+		WaitForSingleObject(fenceEvent, static_cast<DWORD>(duration.count()));
+	}
+}
+
+uint64_t GameWindow::Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue) const
+{
+	uint64_t fenceValueForSignal = ++fenceValue;
+	ThrowIfFailed(commandQueue->Signal(fence.Get(), fenceValueForSignal));
+
+	return fenceValueForSignal;
+}
+
+HANDLE GameWindow::CreateEventHandle() const
+{
+	HANDLE fenceEvent;
+
+	fenceEvent = CreateEvent(nullptr, false, false, nullptr);
+	assert(fenceEvent && "Failed to create fence event.");
+
+	return fenceEvent;
+}
+
+ComPtr<ID3D12Fence> GameWindow::CreateFence(ComPtr<ID3D12Device2> device) const
+{
+	ComPtr<ID3D12Fence> fence;
+
+	ThrowIfFailed(device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence)));
+
+	return fence;
+}
+
 ComPtr<ID3D12GraphicsCommandList> GameWindow::CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type) const
 {
 	ComPtr<ID3D12GraphicsCommandList> commandList;

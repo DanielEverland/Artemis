@@ -22,6 +22,8 @@
 
 using namespace Microsoft::WRL;
 
+using std::chrono::milliseconds;
+
 namespace ArtemisWindow
 {
 	class GameWindow : public Window
@@ -87,5 +89,12 @@ namespace ArtemisWindow
 		void UpdateRenderTargetViews(ComPtr<ID3D12Device2> device, ComPtr<IDXGISwapChain4> swapChain, ComPtr<ID3D12DescriptorHeap> descriptorHeap);
 		ComPtr<ID3D12CommandAllocator> CreateCommandAllocator(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type) const;
 		ComPtr<ID3D12GraphicsCommandList> CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type) const;
+		ComPtr<ID3D12Fence> CreateFence(ComPtr<ID3D12Device2> device) const;
+		HANDLE CreateEventHandle() const;
+		uint64_t Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue) const;
+		void Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const;
+
+#undef max() // This conflicts with std::chrono::milliseconds::max() for some reason (:
+		void WaitForFenceValue(ComPtr<ID3D12Fence> fence, uint64_t fenceValue, HANDLE fenceEvent, milliseconds duration = milliseconds::max()) const;
 	};
 }

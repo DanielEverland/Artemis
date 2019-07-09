@@ -40,6 +40,84 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 
 }
 
+
+void GameWindow::Update()
+{
+	static uint64_t frameCounter = 0;
+	static double elapsedSeconds = 0.0;
+	static std::chrono::high_resolution_clock clock;
+	static auto t0 = clock.now();
+
+	frameCounter++;
+	auto t1 = clock.now();
+	auto deltaTime = t1 - t0;
+	t0 = t1;
+
+	elapsedSeconds += deltaTime.count() * 1e-9;
+	if (elapsedSeconds > 1.0)
+	{
+		char buffer[500];
+		auto fps = frameCounter / elapsedSeconds;
+		sprintf_s(buffer, 500, "FPS: %f\n", fps);
+		OutputDebugString(buffer);
+
+		frameCounter = 0;
+		elapsedSeconds = 0.0;
+	}
+}
+
+void GameWindow::Render()
+{
+	auto commandAllocator = commandAllocators[currentBackBufferIndex];
+	auto backBuffer = backBuffers[currentBackBufferIndex];
+
+	commandAllocator->Reset();
+	commandList->Reset(commandAllocator.Get(), nullptr);
+
+	// Clear the render target
+	{
+		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
+			backBuffer.Get(),
+			D3D12_RESOURCE_STATE_PRESENT,
+			D3D12_RESOURCE_STATE_RENDER_TARGET);
+
+		commandList->ResourceBarrier(1, &barrier);
+
+		float clearColor[] = { 0.4f, 0.6f, 0.9f, 1.0f };
+		CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(RTVDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), currentBackBufferIndex, RTVDescriptorSize);
+
+		commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);
+	}
+
+	// Present
+	{
+		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
+			backBuffer.Get(),
+			D3D12_RESOURCE_STATE_RENDER_TARGET,
+			D3D12_RESOURCE_STATE_PRESENT);
+
+		commandList->ResourceBarrier(1, &barrier);
+
+		ThrowIfFailed(commandList->Close());
+
+		ID3D12CommandList* const commandLists[] = { commandList.Get() };
+		commandQueue->ExecuteCommandLists(_countof(commandLists), commandLists);
+
+		UINT syncInterval = vSync ? 1 : 0;
+		UINT presentFlags = (tearingSupported && !vSync) ? DXGI_PRESENT_ALLOW_TEARING : 0;
+
+		ThrowIfFailed(swapChain->Present(syncInterval, presentFlags));
+
+		frameFenceValues[currentBackBufferIndex] = Signal(commandQueue, fence, fenceValue);
+
+		currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
+		WaitForFenceValue(fence, frameFenceValues[currentBackBufferIndex], fenceEvent);
+	}
+}
+
+//-------------------------------------------------------------------------------------------------------------
+//----------------------------------------LOW LEVEL FUNCTIONS--------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 void GameWindow::Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const
 {
 	uint64_t fenceValueSignal = Signal(commandQueue, fence, fenceValue);

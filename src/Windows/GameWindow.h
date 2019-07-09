@@ -20,6 +20,16 @@
 
 #include "Window.h"
 
+// The min/max macros conflict with like-named member functions.
+// Only use std::min and std::max defined in <algorithm>.
+#if defined(min)
+#undef min
+#endif
+
+#if defined(max)
+#undef max
+#endif
+
 using namespace Microsoft::WRL;
 
 using std::chrono::milliseconds;
@@ -75,6 +85,10 @@ namespace ArtemisWindow
 		virtual HWND CreateWindowHandle();
 		virtual DXGI_SWAP_CHAIN_DESC1 GetSwapChainDescription(uint32_t width, uint32_t height, uint32_t bufferCount) const;
 
+		
+		void Update();
+		void Render();
+
 		void EnableDebugLayer() const;
 		ComPtr<IDXGIAdapter4> GetAdapter();
 		bool IsAdapterDirectX12Compatible(const ComPtr<IDXGIAdapter1> adapter) const;
@@ -93,8 +107,6 @@ namespace ArtemisWindow
 		HANDLE CreateEventHandle() const;
 		uint64_t Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue) const;
 		void Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const;
-
-#undef max() // This conflicts with std::chrono::milliseconds::max() for some reason (:
 		void WaitForFenceValue(ComPtr<ID3D12Fence> fence, uint64_t fenceValue, HANDLE fenceEvent, milliseconds duration = milliseconds::max()) const;
 	};
 }

@@ -115,6 +115,51 @@ void GameWindow::Render()
 	}
 }
 
+void GameWindow::SetFullscreen(bool newFullscreenState)
+{
+	if (fullscreen != newFullscreenState)
+	{
+		fullscreen = newFullscreenState;
+
+		if (fullscreen) // Switching to fullscreen
+		{
+			// Store the current window dimensions so they can be restored 
+			// when switching out of fullscreen state.
+			GetWindowRect(windowHandle, &previousWindowRect);
+
+			UINT windowStyle = WS_OVERLAPPEDWINDOW & ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
+			SetWindowLong(windowHandle, GWL_STYLE, windowStyle);
+
+			HMONITOR monitor = MonitorFromWindow(windowHandle, MONITOR_DEFAULTTONEAREST);
+			MONITORINFOEX monitorInfo = { };
+			monitorInfo.cbSize = sizeof(MONITORINFOEX);
+			GetMonitorInfo(monitor, &monitorInfo);
+
+			SetWindowPos(windowHandle, HWND_TOP,
+				monitorInfo.rcMonitor.left,
+				monitorInfo.rcMonitor.top,
+				monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
+				monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
+				SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+			ShowWindow(windowHandle, SW_MAXIMIZE);
+		}
+		else
+		{
+			SetWindowLong(windowHandle, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+
+			SetWindowPos(windowHandle, HWND_NOTOPMOST,
+				previousWindowRect.left,
+				previousWindowRect.top,
+				previousWindowRect.right - previousWindowRect.left,
+				previousWindowRect.bottom - previousWindowRect.top,
+				SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+			ShowWindow(windowHandle, SW_NORMAL);
+		}
+	}
+}
+
 void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 {
 	if (width != newWidth || height != newHeight)

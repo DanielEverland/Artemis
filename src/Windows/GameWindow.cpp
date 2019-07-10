@@ -115,9 +115,38 @@ void GameWindow::Render()
 	}
 }
 
+void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
+{
+	if (width != newWidth || height != newHeight)
+	{
+		width = std::max(1u, newWidth);
+		height = std::max(1u, newHeight);
+
+		// Flush the GPU queue to make sure the swap chain's back buffers
+		// are not being referenced by an in-flight command list.
+		Flush(commandQueue, fence, fenceValue, fenceEvent);
+
+		for (int i = 0; i < swapChainBufferSize; i++)
+		{
+			// Any references to the back buffers must be released
+			// before the swap chain can be resized.
+			backBuffers[i].Reset();
+			frameFenceValues[i] = frameFenceValues[currentBackBufferIndex];
+
+			DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
+			ThrowIfFailed(swapChain->GetDesc(&swapChainDesc));
+			ThrowIfFailed(swapChain->ResizeBuffers(swapChainBufferSize, width, height, swapChainDesc.BufferDesc.Format, swapChainDesc.Flags));
+			
+			currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
+			UpdateRenderTargetViews(device, swapChain, RTVDescriptorHeap);
+		}
+	}
+}
+
 //-------------------------------------------------------------------------------------------------------------
 //----------------------------------------LOW LEVEL FUNCTIONS--------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
+
 void GameWindow::Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const
 {
 	uint64_t fenceValueSignal = Signal(commandQueue, fence, fenceValue);

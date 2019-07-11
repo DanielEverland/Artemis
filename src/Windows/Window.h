@@ -44,11 +44,14 @@ namespace ArtemisWindow
 		virtual void RunMessageLoop() const;
 		virtual HWND CreateWindowHandle();
 		virtual void CreateWindowClass() const;
-		LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
 
 		// Messages
-		LONG_PTR OnClose();
-		LONG_PTR OnPaint();
+		virtual void OnClose();
+		virtual void OnPaint();
+		virtual void OnSystemKeyDown(UINT_PTR wParam) { }
+		virtual void OnKeyDown(UINT_PTR wParam) { }
+		virtual void OnResize() { }
 
 		friend LONG_PTR CALLBACK WindowProcedure(HWND handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
 		friend Window* CreateStateInformation(HWND handle, LONG_PTR lParam);

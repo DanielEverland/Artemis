@@ -189,6 +189,67 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 }
 
 //-------------------------------------------------------------------------------------------------------------
+//---------------------------------------------MESSAGES-------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
+
+LONG_PTR GameWindow::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam)
+{
+	if (directXInitialized)
+		return Window::HandleMessage(messageCode, wParam, lParam);
+
+	return DefWindowProc(windowHandle, messageCode, wParam, lParam);
+}
+
+void GameWindow::OnPaint()
+{
+	Update();
+	Render();
+}
+
+void GameWindow::OnSystemKeyDown(UINT_PTR wParam)
+{
+	HandleKeyDown(wParam);
+}
+
+void GameWindow::OnKeyDown(UINT_PTR wParam)
+{
+	HandleKeyDown(wParam);
+}
+
+void GameWindow::HandleKeyDown(UINT_PTR wParam)
+{
+	bool alt = (GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
+	
+	switch (wParam)
+	{
+	case 'V':
+		vSync = !vSync;
+		break;
+	case VK_ESCAPE:
+		::PostQuitMessage(0);
+		break;
+	case VK_RETURN:
+		if (alt)
+		{
+	case VK_F11:
+		SetFullscreen(!fullscreen);
+		}
+		break;
+	}
+}
+
+void GameWindow::OnResize()
+{
+	RECT clientRect = { };
+	GetClientRect(windowHandle, &clientRect);
+
+	int width = clientRect.right - clientRect.left;
+	int height = clientRect.bottom - clientRect.top;
+
+	Resize(width, height);
+}
+
+//-------------------------------------------------------------------------------------------------------------
 //----------------------------------------LOW LEVEL FUNCTIONS--------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
 

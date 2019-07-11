@@ -85,11 +85,20 @@ namespace ArtemisWindow
 		virtual HWND CreateWindowHandle();
 		virtual DXGI_SWAP_CHAIN_DESC1 GetSwapChainDescription(uint32_t width, uint32_t height, uint32_t bufferCount) const;
 
-		
 		void Update();
 		void Render();
 		void Resize(uint32_t width, uint32_t height);
 		void SetFullscreen(bool fullscreen);
+
+		// Messages
+		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
+		virtual void OnPaint();
+		virtual void OnSystemKeyDown(UINT_PTR wParam);
+		virtual void OnKeyDown(UINT_PTR wParam);
+		virtual void OnResize();
+
+		void HandleKeyDown(UINT_PTR wParam);
+
 
 		void EnableDebugLayer() const;
 		ComPtr<IDXGIAdapter4> GetAdapter();

@@ -73,25 +73,47 @@ namespace ArtemisWindow
 		switch (messageCode)
 		{
 		case WM_DESTROY:
-			return OnClose();
+			OnClose();
+			return S_OK;
 
 		case WM_PAINT:
-			return OnPaint();
+			OnPaint();
+			return S_OK;
+
+		case WM_SYSKEYDOWN:
+			OnSystemKeyDown(wParam);
+			return S_OK;
+
+		case WM_KEYDOWN:
+			OnKeyDown(wParam);
+			return S_OK;
+
+		case WM_SIZE:
+			OnResize();
+			return S_OK;
+
+			// The default window procedure will play a system notification sound 
+			// when pressing the Alt+Enter keyboard combination if this message is 
+			// not handled.
+		case WM_SYSCHAR:
+			return S_OK;
+
+		default:
+			return DefWindowProc(windowHandle, messageCode, wParam, lParam);
 		}
 
-		return DefWindowProc(windowHandle, messageCode, wParam, lParam);
+		return S_FALSE;
 	}
 
 
 	//-------------------------------------------------------------------------------------------------------------
 	//---------------------------------------MESSAGE IMPLEMENTATIONS-----------------------------------------------
 	//-------------------------------------------------------------------------------------------------------------
-	LONG_PTR Window::OnClose()
+	void Window::OnClose()
 	{
 		PostQuitMessage(0);
-		return 0;
 	}
-	LONG_PTR Window::OnPaint()
+	void Window::OnPaint()
 	{
 		PAINTSTRUCT paintData;
 		HDC handleDisplayDevice = BeginPaint(windowHandle, &paintData);
@@ -99,7 +121,5 @@ namespace ArtemisWindow
 			FillRect(handleDisplayDevice, &paintData.rcPaint, BackgroundColor);
 		}
 		EndPaint(windowHandle, &paintData);
-
-		return 0;
 	}
 }

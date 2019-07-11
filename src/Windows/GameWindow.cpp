@@ -58,9 +58,14 @@ void GameWindow::Show()
 	RunMessageLoop();
 }
 
-void GameWindow::Update()
+void TimeTick()
 {
 	Time::frameCount++;
+}
+
+void GameWindow::Update()
+{
+	TimeTick();
 
 	static uint64_t frameCounter = 0;
 	static double elapsedSeconds = 0.0;
@@ -77,7 +82,7 @@ void GameWindow::Update()
 	{
 		char buffer[500];
 		auto fps = frameCounter / elapsedSeconds;
-		sprintf_s(buffer, 500, "FPS: %f ", fps);
+		sprintf_s(buffer, 500, "FPS: %f\n", fps);
 		OutputDebugString(buffer);
 
 		frameCounter = 0;

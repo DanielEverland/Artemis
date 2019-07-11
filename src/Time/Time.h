@@ -2,11 +2,6 @@
 
 #include "..\Windows\Window.h"
 
-namespace ArtemisWindow
-{
-	class GameWindow;
-}
-
 class Time
 {
 public:
@@ -14,6 +9,6 @@ public:
 	
 private:
 	static unsigned int frameCount;
-		
-	friend class ArtemisWindow::GameWindow;
+	
+	friend void TimeTick();
 };

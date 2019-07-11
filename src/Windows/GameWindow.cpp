@@ -37,9 +37,22 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 	EnableDebugLayer();
 #endif
 
+	tearingSupported = CheckTearingSupport();
 
+	// Initialize the global window rect variable.
+	::GetWindowRect(windowHandle, &previousWindowRect);
 }
 
+void GameWindow::Show()
+{
+	CreateWindowClass();
+	HWND windowHandle = CreateWindowHandle();
+
+	InitializeDirectX();
+
+	ShowWindow(windowHandle, SW_SHOW);
+	RunMessageLoop();
+}
 
 void GameWindow::Update()
 {
@@ -192,6 +205,33 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 //---------------------------------------------MESSAGES-------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
 
+void GameWindow::InitializeDirectX()
+{
+	// Initialize the global window rect variable.
+	GetWindowRect(windowHandle, &previousWindowRect);
+
+	ComPtr<IDXGIAdapter4> adapter4 = GetAdapter();
+	device = CreateDevice(adapter4);
+	commandQueue = CreateCommandQueue(device, D3D12_COMMAND_LIST_TYPE_DIRECT);
+	swapChain = CreateSwapChain(windowHandle, commandQueue, width, height, swapChainBufferSize);
+	currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
+
+	RTVDescriptorHeap = CreateDescriptorHeap(device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, swapChainBufferSize);
+	RTVDescriptorSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+
+	UpdateRenderTargetViews(device, swapChain, RTVDescriptorHeap);
+
+	for (int i = 0; i < swapChainBufferSize; i++)
+		commandAllocators[i] = CreateCommandAllocator(device, D3D12_COMMAND_LIST_TYPE_DIRECT);
+
+	commandList = CreateCommandList(device, commandAllocators[currentBackBufferIndex], D3D12_COMMAND_LIST_TYPE_DIRECT);
+
+	fence = CreateFence(device);
+	fenceEvent = CreateEventHandle();
+
+	directXInitialized = true;
+}
+
 LONG_PTR GameWindow::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam)
 {
 	if (directXInitialized)
@@ -247,6 +287,16 @@ void GameWindow::OnResize()
 	int height = clientRect.bottom - clientRect.top;
 
 	Resize(width, height);
+}
+
+void GameWindow::OnClose()
+{
+	Window::OnClose();
+
+	//Make sure the command queue has finished all commands before closing.
+	Flush(commandQueue, fence, fenceValue, fenceEvent);
+
+	CloseHandle(fenceEvent);
 }
 
 //-------------------------------------------------------------------------------------------------------------
@@ -585,33 +635,13 @@ void GameWindow::EnableDebugLayer() const
 
 void GameWindow::RunMessageLoop()
 {
-	bool currentMessage;
-	MSG message;
-	message.message = WM_NULL;
-
-	PeekMessage(&message, NULL, 0U, 0U, PM_NOREMOVE);
-	while (message.message != WM_QUIT)
+	MSG msg = { };
+	while (msg.message != WM_QUIT)
 	{
-		// Process window events.
-		// Use PeekMessage() so we can use idle time to render the scene.
-		currentMessage = PeekMessage(&message, NULL, 0U, 0U, PM_REMOVE) != 0;
-
-		if (currentMessage)
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
-			// Translate and dispatch the message
-			TranslateMessage(&message);
-			DispatchMessage(&message);
-		}
-		else
-		{
-			// Update the scene.
-			//renderer->Update();
-
-			// Render frames during idle time (when no messages are waiting).
-			//renderer->Render();
-
-			// Present the frame to the screen.
-			//deviceResources->Present();
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 		}
 	}
 }

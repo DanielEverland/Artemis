@@ -44,6 +44,8 @@ namespace ArtemisWindow
 		inline bool GetUseWARPAdapter() const { return useWARPAdapter; }
 		inline void SetUseWARPAdapter(bool value) { useWARPAdapter = value; }
 
+		virtual void Show();
+
 	private:
 		static const bool AllowAltEnterFullscreen = false;
 		static const uint8_t swapChainBufferSize = 3;
@@ -96,10 +98,11 @@ namespace ArtemisWindow
 		virtual void OnSystemKeyDown(UINT_PTR wParam);
 		virtual void OnKeyDown(UINT_PTR wParam);
 		virtual void OnResize();
+		virtual void OnClose();
 
 		void HandleKeyDown(UINT_PTR wParam);
 
-
+		void InitializeDirectX();
 		void EnableDebugLayer() const;
 		ComPtr<IDXGIAdapter4> GetAdapter();
 		bool IsAdapterDirectX12Compatible(const ComPtr<IDXGIAdapter1> adapter) const;

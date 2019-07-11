@@ -24,7 +24,7 @@ namespace ArtemisWindow
 		inline uint32_t GetHeight() const { return height; }
 		inline void SetHeight(uint32_t value) { height = value; }
 
-		void Show();
+		virtual void Show();
 
 	protected:
 		const int DefaultXPosition = CW_USEDEFAULT;

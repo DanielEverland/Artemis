@@ -83,5 +83,8 @@
     <ClInclude Include="src\Main\ApplicationArguments.h">
       <Filter>Header Files\src\Main</Filter>
     </ClInclude>
+    <ClInclude Include="src\Time\Time.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

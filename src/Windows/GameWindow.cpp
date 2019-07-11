@@ -5,7 +5,11 @@
 #include "GameWindow.h"
 #include "WindowProcedure.h"
 
+#include "..\Time\Time.h"
+
 using ArtemisWindow::GameWindow;
+
+unsigned int Time::frameCount = 0;
 
 const D3D12_MESSAGE_SEVERITY GameWindow::BreakOnSeverity[]
 {
@@ -56,6 +60,8 @@ void GameWindow::Show()
 
 void GameWindow::Update()
 {
+	Time::frameCount++;
+
 	static uint64_t frameCounter = 0;
 	static double elapsedSeconds = 0.0;
 	static std::chrono::high_resolution_clock clock;
@@ -71,7 +77,7 @@ void GameWindow::Update()
 	{
 		char buffer[500];
 		auto fps = frameCounter / elapsedSeconds;
-		sprintf_s(buffer, 500, "FPS: %f\n", fps);
+		sprintf_s(buffer, 500, "FPS: %f ", fps);
 		OutputDebugString(buffer);
 
 		frameCounter = 0;

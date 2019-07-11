@@ -28,6 +28,7 @@
     <ClInclude Include="src\Direct X\DXHelper.h" />
     <ClInclude Include="src\Main\ApplicationArguments.h" />
     <ClInclude Include="src\Structs\Color.h" />
+    <ClInclude Include="src\Time\Time.h" />
     <ClInclude Include="src\Windows\GameWindow.h" />
     <ClInclude Include="src\Windows\Window.h" />
     <ClInclude Include="src\Windows\WindowProcedure.h" />

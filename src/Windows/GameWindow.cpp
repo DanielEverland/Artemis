@@ -489,13 +489,13 @@ ComPtr<ID3D12Device2> GameWindow::CreateDevice(ComPtr<IDXGIAdapter4> adapter) co
 	ThrowIfFailed(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&device)));
 
 #if defined(_DEBUG)
-	EnableDebugMessages();
+	EnableDebugMessages(device);
 #endif
 
 	return device;
 }
 
-void GameWindow::EnableDebugMessages() const
+void GameWindow::EnableDebugMessages(ComPtr<ID3D12Device2> device) const
 {
 	ComPtr<ID3D12InfoQueue> infoQueue;
 	if (SUCCEEDED(device.As(&infoQueue)))

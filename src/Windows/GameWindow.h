@@ -109,7 +109,7 @@ namespace ArtemisWindow
 		bool IsWARPAdapater(const DXGI_ADAPTER_DESC1& adapter) const;
 		void GetBestGraphicsAdapater(const ComPtr<IDXGIFactory4> dxgiFactory, ComPtr<IDXGIAdapter1> dxgiAdapter1, ComPtr<IDXGIAdapter4> dxgiAdapter4) const;
 		ComPtr<ID3D12Device2> CreateDevice(ComPtr<IDXGIAdapter4> adapter) const;
-		void EnableDebugMessages() const;
+		void EnableDebugMessages(ComPtr<ID3D12Device2> device) const;
 		ComPtr<ID3D12CommandQueue> CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type) const;
 		bool CheckTearingSupport() const;
 		ComPtr<IDXGISwapChain4> CreateSwapChain(HWND handle, ComPtr<ID3D12CommandQueue> commandQueue, uint32_t width, uint32_t height, uint32_t bufferCount) const;

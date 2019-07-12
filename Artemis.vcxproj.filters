@@ -37,6 +37,12 @@
     <Filter Include="Header Files\src\Main">
       <UniqueIdentifier>{8d2395a6-8bb2-4485-8119-4c34eb409d7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Time">
+      <UniqueIdentifier>{5c040279-a11b-41d2-917b-c7d8ccddf2d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\Time">
+      <UniqueIdentifier>{e4519f01-f823-4219-a653-8db5b42fe614}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main\main.cpp">
@@ -58,15 +64,12 @@
       <Filter>Source Files\Main</Filter>
     </ClCompile>
     <ClCompile Include="src\Time\Time.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Structs\Color.h">
       <Filter>Header Files\src\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ArtemisEngine.h">
-      <Filter>Header Files\src</Filter>
     </ClInclude>
     <ClInclude Include="src\Windows\Window.h">
       <Filter>Header Files\src\Windows</Filter>
@@ -87,7 +90,7 @@
       <Filter>Header Files\src\Main</Filter>
     </ClInclude>
     <ClInclude Include="src\Time\Time.h">
-      <Filter>Header Files\src</Filter>
+      <Filter>Header Files\src\Time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

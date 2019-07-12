@@ -24,7 +24,6 @@
     <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ArtemisEngine.h" />
     <ClInclude Include="src\Direct X\d3dx12.h" />
     <ClInclude Include="src\Direct X\DXHelper.h" />
     <ClInclude Include="src\Main\ApplicationArguments.h" />

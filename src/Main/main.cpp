@@ -1,15 +1,20 @@
+#include <iostream>
 #include "ApplicationArguments.h"
 #include "..\Windows\GameWindow.h"
-#include <iostream>
+
+#include "..\Time\Time.h"
 
 using namespace ArtemisWindow;
 
 void CreateMainWindow(HINSTANCE handleInstance, int windowState);
 void ParseCommandLineArguments(GameWindow& window);
+void InitializeTime();
 
 int WINAPI wWinMain(_In_ HINSTANCE handleInstance, _In_opt_ HINSTANCE, _In_ PWSTR arguments, _In_ int windowState)
 {
 	ApplicationArguments::Initialize();
+	InitializeTime();
+
 	CreateMainWindow(handleInstance, windowState);
 }
 
@@ -27,6 +32,11 @@ void CreateMainWindow(HINSTANCE handleInstance, int windowState)
 	ParseCommandLineArguments(mainWindow);
 
 	mainWindow.Show();
+}
+
+void InitializeTime()
+{
+	Time::initTime = Time::clock.now().time_since_epoch();
 }
 
 void ParseCommandLineArguments(GameWindow& window)

@@ -18,6 +18,7 @@
     <ClCompile Include="src\Main\ApplicationArguments.cpp" />
     <ClCompile Include="src\Structs\Color.cpp" />
     <ClCompile Include="src\Main\main.cpp" />
+    <ClCompile Include="src\Time\Time.cpp" />
     <ClCompile Include="src\Windows\GameWindow.cpp" />
     <ClCompile Include="src\Windows\Window.cpp" />
     <ClCompile Include="src\Windows\WindowProcedure.cpp" />

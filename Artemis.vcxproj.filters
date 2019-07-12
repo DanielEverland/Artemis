@@ -57,6 +57,9 @@
     <ClCompile Include="src\Main\ApplicationArguments.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
+    <ClCompile Include="src\Time\Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Structs\Color.h">

@@ -9,8 +9,6 @@
 
 using ArtemisWindow::GameWindow;
 
-unsigned int Time::frameCount = 0;
-
 const D3D12_MESSAGE_SEVERITY GameWindow::BreakOnSeverity[]
 {
 	D3D12_MESSAGE_SEVERITY_CORRUPTION,
@@ -58,26 +56,28 @@ void GameWindow::Show()
 	RunMessageLoop();
 }
 
-void TimeTick()
+void TickTime()
 {
+	static double lastTime = 0;
+
+	double currentTime = Time::GetTimeSinceStart();
+		
 	Time::frameCount++;
+	Time::deltaTime = currentTime - lastTime;
+
+	lastTime = currentTime;
 }
 
 void GameWindow::Update()
 {
-	TimeTick();
+	TickTime();
 
 	static uint64_t frameCounter = 0;
 	static double elapsedSeconds = 0.0;
-	static std::chrono::high_resolution_clock clock;
-	static auto t0 = clock.now();
 
 	frameCounter++;
-	auto t1 = clock.now();
-	auto deltaTime = t1 - t0;
-	t0 = t1;
 
-	elapsedSeconds += deltaTime.count() * 1e-9;
+	elapsedSeconds += Time::GetDeltaTime();
 	if (elapsedSeconds > 1.0)
 	{
 		char buffer[500];
@@ -213,7 +213,7 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 }
 
 //-------------------------------------------------------------------------------------------------------------
-//---------------------------------------------MESSAGES-------------------------------------------------------
+//---------------------------------------------MESSAGES--------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
 
 void GameWindow::InitializeDirectX()

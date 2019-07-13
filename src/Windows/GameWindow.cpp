@@ -1,4 +1,5 @@
 #include <d3d12.h>
+#include <string>
 
 #include "..\Direct X\DXHelper.h"
 
@@ -9,6 +10,7 @@
 #include "..\Debug\Output.h"
 
 using ArtemisWindow::GameWindow;
+using std::string;
 
 const D3D12_MESSAGE_SEVERITY GameWindow::BreakOnSeverity[]
 {
@@ -81,10 +83,8 @@ void GameWindow::Update()
 	elapsedSeconds += Time::GetDeltaTime();
 	if (elapsedSeconds > 1.0)
 	{
-		char buffer[500];
 		auto fps = frameCounter / elapsedSeconds;
-		sprintf_s(buffer, 500, "FPS: %f\n", fps);
-		Output::Log(buffer);
+		Output::Log("FPS: " + std::to_string(fps) + "\n");
 
 		frameCounter = 0;
 		elapsedSeconds = 0.0;

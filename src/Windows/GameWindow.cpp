@@ -12,6 +12,8 @@
 using ArtemisWindow::GameWindow;
 using std::string;
 
+Color GameWindow::BackbufferColor = Color::CornflowerBlue;
+
 const D3D12_MESSAGE_SEVERITY GameWindow::BreakOnSeverity[]
 {
 	D3D12_MESSAGE_SEVERITY_CORRUPTION,
@@ -108,7 +110,9 @@ void GameWindow::Render()
 
 		commandList->ResourceBarrier(1, &barrier);
 
-		float clearColor[] = { 0.4f, 0.6f, 0.9f, 1.0f };
+		float clearColor[4];
+		GameWindow::BackbufferColor.ToFloat(clearColor);
+
 		CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(RTVDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), currentBackBufferIndex, RTVDescriptorSize);
 
 		commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);

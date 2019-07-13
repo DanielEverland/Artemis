@@ -57,6 +57,8 @@ namespace ArtemisWindow
 		static D3D12_MESSAGE_ID IgnoreMessages[];
 		static D3D12_MESSAGE_CATEGORY IgnoreCategories[];
 
+		static Color BackbufferColor;
+
 		bool useWARPAdapter = false;
 
 		bool directXInitialized = false;

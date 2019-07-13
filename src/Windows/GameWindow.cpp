@@ -248,7 +248,7 @@ LONG_PTR GameWindow::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR l
 	if (directXInitialized)
 		return Window::HandleMessage(messageCode, wParam, lParam);
 
-	return DefWindowProc(windowHandle, messageCode, wParam, lParam);
+	return DefWindowProcW(windowHandle, messageCode, wParam, lParam);
 }
 
 void GameWindow::OnPaint()

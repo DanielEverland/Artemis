@@ -99,7 +99,7 @@ namespace ArtemisWindow
 			return S_OK;
 
 		default:
-			return DefWindowProc(windowHandle, messageCode, wParam, lParam);
+			return DefWindowProcW(windowHandle, messageCode, wParam, lParam);
 		}
 
 		return S_FALSE;

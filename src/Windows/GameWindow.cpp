@@ -201,14 +201,14 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 			// before the swap chain can be resized.
 			backBuffers[i].Reset();
 			frameFenceValues[i] = frameFenceValues[currentBackBufferIndex];
-
-			DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
-			ThrowIfFailed(swapChain->GetDesc(&swapChainDesc));
-			ThrowIfFailed(swapChain->ResizeBuffers(swapChainBufferSize, width, height, swapChainDesc.BufferDesc.Format, swapChainDesc.Flags));
-			
-			currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
-			UpdateRenderTargetViews(device, swapChain, RTVDescriptorHeap);
 		}
+
+		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
+		ThrowIfFailed(swapChain->GetDesc(&swapChainDesc));
+		ThrowIfFailed(swapChain->ResizeBuffers(swapChainBufferSize, width, height, swapChainDesc.BufferDesc.Format, swapChainDesc.Flags));
+
+		currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
+		UpdateRenderTargetViews(device, swapChain, RTVDescriptorHeap);
 	}
 }
 

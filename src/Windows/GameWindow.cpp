@@ -6,6 +6,7 @@
 #include "WindowProcedure.h"
 
 #include "..\Time\Time.h"
+#include "..\Debug\Output.h"
 
 using ArtemisWindow::GameWindow;
 
@@ -83,7 +84,7 @@ void GameWindow::Update()
 		char buffer[500];
 		auto fps = frameCounter / elapsedSeconds;
 		sprintf_s(buffer, 500, "FPS: %f\n", fps);
-		OutputDebugString(buffer);
+		Output::Log(buffer);
 
 		frameCounter = 0;
 		elapsedSeconds = 0.0;

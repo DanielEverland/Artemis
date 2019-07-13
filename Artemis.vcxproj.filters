@@ -43,6 +43,12 @@
     <Filter Include="Header Files\src\Time">
       <UniqueIdentifier>{e4519f01-f823-4219-a653-8db5b42fe614}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\src\Debug">
+      <UniqueIdentifier>{b4a79ae2-97b5-43bd-a594-c05387e7aeb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Debug">
+      <UniqueIdentifier>{5f7107ea-da8f-4f51-82f3-7fad79521a57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main\main.cpp">
@@ -65,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="src\Time\Time.cpp">
       <Filter>Source Files\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debug\Output.cpp">
+      <Filter>Source Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="src\Time\Time.h">
       <Filter>Header Files\src\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug\Output.h">
+      <Filter>Header Files\src\Debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

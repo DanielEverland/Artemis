@@ -15,6 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Debug\Output.cpp" />
     <ClCompile Include="src\Main\ApplicationArguments.cpp" />
     <ClCompile Include="src\Structs\Color.cpp" />
     <ClCompile Include="src\Main\main.cpp" />
@@ -24,6 +25,7 @@
     <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Debug\Output.h" />
     <ClInclude Include="src\Direct X\d3dx12.h" />
     <ClInclude Include="src\Direct X\DXHelper.h" />
     <ClInclude Include="src\Main\ApplicationArguments.h" />

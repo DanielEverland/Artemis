@@ -15,7 +15,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Exceptions\Exception.cpp" />
     <ClCompile Include="src\Debug\Output.cpp" />
+    <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Main\ApplicationArguments.cpp" />
     <ClCompile Include="src\Structs\Color.cpp" />
     <ClCompile Include="src\Main\main.cpp" />
@@ -25,9 +27,12 @@
     <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Exceptions\Exceptions.h" />
     <ClInclude Include="src\Debug\Output.h" />
     <ClInclude Include="src\Direct X\d3dx12.h" />
     <ClInclude Include="src\Direct X\DXHelper.h" />
+    <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\Input\Key.h" />
     <ClInclude Include="src\Main\ApplicationArguments.h" />
     <ClInclude Include="src\Structs\Color.h" />
     <ClInclude Include="src\Time\Time.h" />
@@ -85,7 +90,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>D3D12.lib;DXGI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>D3D12.lib;DXGI.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Temp|x64'">

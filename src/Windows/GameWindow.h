@@ -100,7 +100,9 @@ namespace ArtemisWindow
 		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
 		virtual void OnPaint();
 		virtual void OnSystemKeyDown(UINT_PTR wParam);
+		virtual void OnSystemKeyUp(UINT_PTR wParam);
 		virtual void OnKeyDown(UINT_PTR wParam);
+		virtual void OnKeyUp(UINT_PTR wParam);
 		virtual void OnResize();
 		virtual void OnClose();
 

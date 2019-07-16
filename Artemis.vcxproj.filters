@@ -49,6 +49,18 @@
     <Filter Include="Source Files\Debug">
       <UniqueIdentifier>{5f7107ea-da8f-4f51-82f3-7fad79521a57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\src\Input">
+      <UniqueIdentifier>{8887c819-097a-4991-8836-ab9e694e1b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{453286df-f9bf-4d07-a1da-3e7d5994c7ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exceptions">
+      <UniqueIdentifier>{bb5e5eef-bf52-4bc2-bcf0-af5d17c82bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\src\Exceptions">
+      <UniqueIdentifier>{96b84590-a0ba-448c-b4af-0526eca9a8d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main\main.cpp">
@@ -74,6 +86,12 @@
     </ClCompile>
     <ClCompile Include="src\Debug\Output.cpp">
       <Filter>Source Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input\Input.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Exceptions\Exception.cpp">
+      <Filter>Source Files\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="src\Debug\Output.h">
       <Filter>Header Files\src\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Input\Input.h">
+      <Filter>Header Files\src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Input\Key.h">
+      <Filter>Header Files\src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\Exceptions.h">
+      <Filter>Header Files\src\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

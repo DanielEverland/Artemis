@@ -6,8 +6,11 @@
 #include "GameWindow.h"
 #include "WindowProcedure.h"
 
-#include "..\Time\Time.h"
-#include "..\Debug\Output.h"
+#include "..\\Time\Time.h"
+#include "..\\Debug\Output.h"
+#include "..\\Input\Key.h"
+#include "..\\Input\Input.h"
+#include "..\\Exceptions\Exceptions.h"
 
 using ArtemisWindow::GameWindow;
 using std::string;
@@ -86,11 +89,31 @@ void GameWindow::Update()
 	if (elapsedSeconds > 1.0)
 	{
 		auto fps = frameCounter / elapsedSeconds;
-		Output::Log("FPS: " + std::to_string(fps) + "\n");
+		//Output::Log("FPS: " + std::to_string(fps) + "\n");
 
 		frameCounter = 0;
 		elapsedSeconds = 0.0;
 	}
+	
+	if (Input::IsDown(Key::LeftShift))
+	{
+		Output::LogLine("Left Shift Down");
+	}
+	if (Input::IsUp(Key::LeftShift))
+	{
+		Output::LogLine("Left Shift Up");
+	}
+
+	if (Input::IsDown(Key::RightShift))
+	{
+		Output::LogLine("Right Shift Down");
+	}
+	if (Input::IsUp(Key::RightShift))
+	{
+		Output::LogLine("Right Shift Up");
+	}
+
+	Input::EndOfFrame();
 }
 
 void GameWindow::Render()
@@ -265,16 +288,46 @@ void GameWindow::OnPaint()
 void GameWindow::OnSystemKeyDown(UINT_PTR wParam)
 {
 	HandleKeyDown(wParam);
+
+	if (wParam != VK_F10)
+	{
+		Input::OnKeyDown(Input::GetDownAltKey());
+		Input::OnKeyDown(Key(wParam));
+	}
+	else
+	{
+		Input::OnKeyDown(Key::F10);
+	}
+}
+
+void GameWindow::OnSystemKeyUp(UINT_PTR wParam)
+{
+	if (wParam != VK_F10)
+	{
+		Input::OnKeyUp(Key(wParam));
+		Input::OnKeyUp(Input::GetDownAltKey());
+	}
+	else
+	{
+		Input::OnKeyUp(Key::F10);
+	}
 }
 
 void GameWindow::OnKeyDown(UINT_PTR wParam)
 {
-	HandleKeyDown(wParam);
+	Key keyCode = Input::DownWParamToKey(wParam);
+	Input::OnKeyDown(keyCode);
+}
+
+void GameWindow::OnKeyUp(UINT_PTR wParam)
+{
+	Key keyCode = Input::UpWParamToKey(wParam);
+	Input::OnKeyUp(keyCode);
 }
 
 void GameWindow::HandleKeyDown(UINT_PTR wParam)
 {
-	bool alt = (GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
+	/*bool alt = (GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
 	
 	switch (wParam)
 	{
@@ -291,7 +344,7 @@ void GameWindow::HandleKeyDown(UINT_PTR wParam)
 		SetFullscreen(!fullscreen);
 		}
 		break;
-	}
+	}*/
 }
 
 void GameWindow::OnResize()

@@ -5,6 +5,8 @@
 #include "WindowProcedure.h"
 #include "Window.h"
 
+#include "..\\Debug\Output.h"
+
 namespace ArtemisWindow
 {
 	Window::Window(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
@@ -80,12 +82,20 @@ namespace ArtemisWindow
 			OnPaint();
 			return S_OK;
 
+		case WM_KEYDOWN:
+			OnKeyDown(wParam);
+			return S_OK;
+
 		case WM_SYSKEYDOWN:
 			OnSystemKeyDown(wParam);
 			return S_OK;
 
-		case WM_KEYDOWN:
-			OnKeyDown(wParam);
+		case WM_SYSKEYUP:
+			OnSystemKeyUp(wParam);
+			return S_OK;
+
+		case WM_KEYUP:
+			OnKeyUp(wParam);
 			return S_OK;
 
 		case WM_SIZE:

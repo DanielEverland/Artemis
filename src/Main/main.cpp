@@ -3,6 +3,8 @@
 #include "..\Windows\GameWindow.h"
 
 #include "..\Time\Time.h"
+#include "..\\Exceptions\Exceptions.h"
+#include "..\\Debug\Output.h"
 
 using namespace ArtemisWindow;
 
@@ -12,10 +14,23 @@ void InitializeTime();
 
 int WINAPI wWinMain(_In_ HINSTANCE handleInstance, _In_opt_ HINSTANCE, _In_ PWSTR arguments, _In_ int windowState)
 {
-	ApplicationArguments::Initialize();
-	InitializeTime();
+	if (!Exception::InitializeSymbols())
+		Output::LogError("Couldn't initialize exception symbols!\nExceptions won't output stacktraces!");
+	try
+	{
+		ApplicationArguments::Initialize();
+		InitializeTime();
 
-	CreateMainWindow(handleInstance, windowState);
+		CreateMainWindow(handleInstance, windowState);
+	}
+	catch (const Exception& e)
+	{
+		Output::LogException(e);
+	}
+	catch (const std::exception& e)
+	{
+		Output::LogLine("Base Exception Caught: " + string(e.what()));
+	}
 }
 
 void CreateMainWindow(HINSTANCE handleInstance, int windowState)

@@ -74,6 +74,14 @@ namespace ArtemisWindow
 	{
 		switch (messageCode)
 		{
+		case WM_KILLFOCUS:
+			OnLostFocus();
+			return S_OK;
+
+		case WM_SETFOCUS:
+			OnGainedFocus();
+			return S_OK;
+
 		case WM_DESTROY:
 			OnClose();
 			return S_OK;

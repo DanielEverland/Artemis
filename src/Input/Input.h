@@ -59,6 +59,7 @@ private:
 	static void ClearDowns();
 	static void ClearUps();
 	static void EndOfFrame();
+	static void SanitizeDownKeys();
 
 	static bool CompareKeyState(Key key, KeyState state);
 

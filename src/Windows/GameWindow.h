@@ -105,6 +105,7 @@ namespace ArtemisWindow
 		virtual void OnKeyUp(UINT_PTR wParam);
 		virtual void OnResize();
 		virtual void OnClose();
+		virtual void OnGainedFocus();
 
 		void HandleKeyDown(UINT_PTR wParam);
 

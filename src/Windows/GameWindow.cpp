@@ -94,7 +94,8 @@ void GameWindow::Update()
 		frameCounter = 0;
 		elapsedSeconds = 0.0;
 	}
-	
+
+
 	if (Input::IsDown(Key::LeftShift))
 	{
 		Output::LogLine("Left Shift Down");
@@ -243,6 +244,11 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 //-------------------------------------------------------------------------------------------------------------
 //---------------------------------------------MESSAGES--------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
+
+void GameWindow::OnGainedFocus()
+{
+	Input::SanitizeDownKeys();
+}
 
 void GameWindow::InitializeDirectX()
 {

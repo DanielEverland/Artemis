@@ -54,6 +54,8 @@ namespace ArtemisWindow
 		virtual void OnKeyDown(UINT_PTR wParam) { }
 		virtual void OnKeyUp(UINT_PTR wParam) { }
 		virtual void OnResize() { }
+		virtual void OnLostFocus() { }
+		virtual void OnGainedFocus() { }
 
 		friend LONG_PTR CALLBACK WindowProcedure(HWND handle, UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
 		friend Window* CreateStateInformation(HWND handle, LONG_PTR lParam);

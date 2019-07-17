@@ -147,6 +147,20 @@ bool Input::IsKeyInBuffer(Key key)
 	return keyBuffer.find(key) != keyBuffer.end();
 }
 
+void Input::SanitizeDownKeys()
+{
+	for (auto i = keyBuffer.begin(); i != keyBuffer.end(); i++)
+	{
+		if (i->second.State != KeyState::Up)
+		{
+			if (!IsKeyPressed(i->first))
+			{
+				OnKeyUp(i->first);
+			}
+		}
+	}
+}
+
 Key Input::GetUpShiftKey()
 {
 	if (!IsKeyPressed(VK_LSHIFT))

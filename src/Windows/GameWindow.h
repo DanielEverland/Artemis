@@ -130,5 +130,7 @@ namespace ArtemisWindow
 		void ClearRenderTarget(ComPtr<ID3D12Resource> backBuffer);
 		void PresentFrame(ComPtr<ID3D12Resource> backBuffer);
 		void ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator);
+		void SwitchToFullscreen();
+		void SwitchToWindowed();
 	};
 }

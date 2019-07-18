@@ -127,41 +127,13 @@ void GameWindow::SetFullscreen(bool newFullscreenState)
 	{
 		fullscreen = newFullscreenState;
 
-		if (fullscreen) // Switching to fullscreen
+		if (fullscreen)
 		{
-			// Store the current window dimensions so they can be restored 
-			// when switching out of fullscreen state.
-			GetWindowRect(windowHandle, &previousWindowRect);
-
-			UINT windowStyle = WS_OVERLAPPEDWINDOW & ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
-			SetWindowLong(windowHandle, GWL_STYLE, windowStyle);
-
-			HMONITOR monitor = MonitorFromWindow(windowHandle, MONITOR_DEFAULTTONEAREST);
-			MONITORINFOEX monitorInfo = { };
-			monitorInfo.cbSize = sizeof(MONITORINFOEX);
-			GetMonitorInfo(monitor, &monitorInfo);
-
-			SetWindowPos(windowHandle, HWND_TOP,
-				monitorInfo.rcMonitor.left,
-				monitorInfo.rcMonitor.top,
-				monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
-				monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
-				SWP_FRAMECHANGED | SWP_NOACTIVATE);
-
-			ShowWindow(windowHandle, SW_MAXIMIZE);
+			SwitchToFullscreen();
 		}
 		else
 		{
-			SetWindowLong(windowHandle, GWL_STYLE, WS_OVERLAPPEDWINDOW);
-
-			SetWindowPos(windowHandle, HWND_NOTOPMOST,
-				previousWindowRect.left,
-				previousWindowRect.top,
-				previousWindowRect.right - previousWindowRect.left,
-				previousWindowRect.bottom - previousWindowRect.top,
-				SWP_FRAMECHANGED | SWP_NOACTIVATE);
-
-			ShowWindow(windowHandle, SW_NORMAL);
+			SwitchToWindowed();
 		}
 	}
 }
@@ -311,13 +283,51 @@ void GameWindow::OnClose()
 //----------------------------------------LOW LEVEL FUNCTIONS--------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
 
-void ArtemisWindow::GameWindow::ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator)
+void GameWindow::SwitchToFullscreen()
+{
+	// Store the current window dimensions so they can be restored 
+	// when switching out of fullscreen state.
+	GetWindowRect(windowHandle, &previousWindowRect);
+
+	UINT windowStyle = WS_OVERLAPPEDWINDOW & ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
+	SetWindowLong(windowHandle, GWL_STYLE, windowStyle);
+
+	HMONITOR monitor = MonitorFromWindow(windowHandle, MONITOR_DEFAULTTONEAREST);
+	MONITORINFOEX monitorInfo = { };
+	monitorInfo.cbSize = sizeof(MONITORINFOEX);
+	GetMonitorInfo(monitor, &monitorInfo);
+
+	SetWindowPos(windowHandle, HWND_TOP,
+		monitorInfo.rcMonitor.left,
+		monitorInfo.rcMonitor.top,
+		monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
+		monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
+		SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+	ShowWindow(windowHandle, SW_MAXIMIZE);
+}
+
+void ArtemisWindow::GameWindow::SwitchToWindowed()
+{
+	SetWindowLong(windowHandle, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+
+	SetWindowPos(windowHandle, HWND_NOTOPMOST,
+		previousWindowRect.left,
+		previousWindowRect.top,
+		previousWindowRect.right - previousWindowRect.left,
+		previousWindowRect.bottom - previousWindowRect.top,
+		SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+	ShowWindow(windowHandle, SW_NORMAL);
+}
+
+void GameWindow::ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator)
 {
 	commandAllocator->Reset();
 	commandList->Reset(commandAllocator.Get(), nullptr);
 }
 
-void ArtemisWindow::GameWindow::PresentFrame(ComPtr<ID3D12Resource> backBuffer)
+void GameWindow::PresentFrame(ComPtr<ID3D12Resource> backBuffer)
 {
 	CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
 		backBuffer.Get(),

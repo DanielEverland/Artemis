@@ -11,10 +11,12 @@ const unsigned long Exception::FramesToSkip = 2;
 const unsigned long Exception::FramesToCapture = 25;
 const unsigned long Exception::MaximumNameLength = 1024;
 const unsigned long long Exception::SymbolBufferSize = (sizeof(SYMBOL_INFO) + MaximumNameLength + sizeof(ULONG64) - 1) / sizeof(ULONG64);
+HANDLE Exception::processHandle = {};
 
 bool Exception::InitializeSymbols()
 {
-	return SymInitialize(GetCurrentProcess(), NULL, TRUE);
+	processHandle = GetCurrentProcess();
+	return SymInitialize(processHandle, NULL, TRUE);
 }
 
 void Exception::CreateStacktrace()
@@ -43,19 +45,21 @@ void Exception::CreateStacktrace()
 				AppendFrame(info);
 			}
 		}
+		else
+		{
+			DWORD errorCode = GetLastError();
+		}
 	}
-
-	SymCleanup(GetCurrentProcess());
 }
 
 bool Exception::TryGetSymbolInfo(const void* const address, DWORD64* displacement, SYMBOL_INFO* info) const
 {
-	return SymFromAddr(GetCurrentProcess(), (DWORD64)address, displacement, info);
+	return SymFromAddr(processHandle, (DWORD64)address, displacement, info);
 }
 
 bool Exception::TryGetFileInfo(const void* const address, const DWORD64* displacement, IMAGEHLP_LINE* const linePointer) const
 {
-	return SymGetLineFromAddr(GetCurrentProcess(), DWORD64(address), PDWORD(&displacement), linePointer);
+	return SymGetLineFromAddr(processHandle, DWORD64(address), PDWORD(&displacement), linePointer);
 }
 
 IMAGEHLP_LINE Exception::CreateFileLineStruct() const

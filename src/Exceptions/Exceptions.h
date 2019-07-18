@@ -29,6 +29,8 @@ private:
 	static const unsigned long MaximumNameLength;
 	static const unsigned long long SymbolBufferSize;
 
+	static HANDLE processHandle;
+
 	string stackTrace;
 
 	void CreateStacktrace();

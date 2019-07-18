@@ -78,37 +78,48 @@ void TickTime()
 
 void GameWindow::Update()
 {
-	TickTime();
-
-	static uint64_t frameCounter = 0;
-	static double elapsedSeconds = 0.0;
-
-	frameCounter++;
-
-	elapsedSeconds += Time::GetDeltaTime();
-	if (elapsedSeconds > 1.0)
+	try
 	{
-		auto fps = frameCounter / elapsedSeconds;
-		Output::Log("FPS: " + std::to_string(fps) + "\n");
+		TickTime();
 
-		frameCounter = 0;
-		elapsedSeconds = 0.0;
-	}
+		static uint64_t frameCounter = 0;
+		static double elapsedSeconds = 0.0;
 
-	if (Input::IsDown(Key::V))
-	{
-		vSync = !vSync;
+		frameCounter++;
+
+		elapsedSeconds += Time::GetDeltaTime();
+		if (elapsedSeconds > 1.0)
+		{
+			auto fps = frameCounter / elapsedSeconds;
+			Output::Log("FPS: " + std::to_string(fps) + "\n");
+
+			frameCounter = 0;
+			elapsedSeconds = 0.0;
+		}
+
+		if (Input::IsDown(Key::V))
+		{
+			vSync = !vSync;
+		}
+		if (Input::IsDown(Key::Esc))
+		{
+			PostQuitMessage(0);
+		}
+		if (Input::IsDown(Key::F11) || (Input::IsStay(Key::LeftAlt) && Input::IsDown(Key::Enter)))
+		{
+			SetFullscreen(!fullscreen);
+		}
+
+		Input::EndOfFrame();
 	}
-	if (Input::IsDown(Key::Esc))
+	catch (const Exception& e)
 	{
-		PostQuitMessage(0);
+		Output::LogException(e);
 	}
-	if (Input::IsDown(Key::F11) || (Input::IsStay(Key::LeftAlt) && Input::IsDown(Key::Enter)))
+	catch (const std::exception& e)
 	{
-		SetFullscreen(!fullscreen);
-	}
-	
-	Input::EndOfFrame();
+		Output::LogError(string("Caught Base Exception: ") + e.what());
+	}	
 }
 
 void GameWindow::Render()

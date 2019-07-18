@@ -82,33 +82,8 @@ void GameWindow::Update()
 	{
 		TickTime();
 
-		static uint64_t frameCounter = 0;
-		static double elapsedSeconds = 0.0;
-
-		frameCounter++;
-
-		elapsedSeconds += Time::GetDeltaTime();
-		if (elapsedSeconds > 1.0)
-		{
-			auto fps = frameCounter / elapsedSeconds;
-			Output::Log("FPS: " + std::to_string(fps) + "\n");
-
-			frameCounter = 0;
-			elapsedSeconds = 0.0;
-		}
-
-		if (Input::IsDown(Key::V))
-		{
-			vSync = !vSync;
-		}
-		if (Input::IsDown(Key::Esc))
-		{
-			PostQuitMessage(0);
-		}
-		if (Input::IsDown(Key::F11) || (Input::IsStay(Key::LeftAlt) && Input::IsDown(Key::Enter)))
-		{
-			SetFullscreen(!fullscreen);
-		}
+		OutputFramerate();
+		HandleKeyBindings();
 
 		Input::EndOfFrame();
 	}
@@ -174,6 +149,88 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 
 		currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
 		UpdateRenderTargetViews(device, swapChain, RTVDescriptorHeap);
+	}
+}
+
+void GameWindow::ToggleFullscreen()
+{
+	SetFullscreen(!fullscreen);
+}
+
+void GameWindow::ToggleVSync()
+{
+	vSync = !vSync;
+}
+
+void GameWindow::SwitchToFullscreen()
+{
+	// Store the current window dimensions so they can be restored 
+	// when switching out of fullscreen state.
+	GetWindowRect(windowHandle, &previousWindowRect);
+
+	UINT windowStyle = WS_OVERLAPPEDWINDOW & ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
+	SetWindowLong(windowHandle, GWL_STYLE, windowStyle);
+
+	HMONITOR monitor = MonitorFromWindow(windowHandle, MONITOR_DEFAULTTONEAREST);
+	MONITORINFOEX monitorInfo = { };
+	monitorInfo.cbSize = sizeof(MONITORINFOEX);
+	GetMonitorInfo(monitor, &monitorInfo);
+
+	SetWindowPos(windowHandle, HWND_TOP,
+		monitorInfo.rcMonitor.left,
+		monitorInfo.rcMonitor.top,
+		monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
+		monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
+		SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+	ShowWindow(windowHandle, SW_MAXIMIZE);
+}
+
+void GameWindow::SwitchToWindowed()
+{
+	SetWindowLong(windowHandle, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+
+	SetWindowPos(windowHandle, HWND_NOTOPMOST,
+		previousWindowRect.left,
+		previousWindowRect.top,
+		previousWindowRect.right - previousWindowRect.left,
+		previousWindowRect.bottom - previousWindowRect.top,
+		SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+	ShowWindow(windowHandle, SW_NORMAL);
+}
+
+void GameWindow::HandleKeyBindings()
+{
+	if (Input::IsDown(Key::V))
+	{
+		ToggleVSync();
+	}
+	if (Input::IsDown(Key::Esc))
+	{
+		PostQuitMessage(0);
+	}
+	if (Input::IsDown(Key::F11) || (Input::IsStay(Key::LeftAlt) && Input::IsDown(Key::Enter)))
+	{
+		ToggleFullscreen();
+	}
+}
+
+void GameWindow::OutputFramerate() const
+{
+	static uint64_t frameCounter = 0;
+	static double elapsedSeconds = 0.0;
+
+	frameCounter++;
+
+	elapsedSeconds += Time::GetDeltaTime();
+	if (elapsedSeconds > 1.0)
+	{
+		auto fps = frameCounter / elapsedSeconds;
+		Output::Log("FPS: " + std::to_string(fps) + "\n");
+
+		frameCounter = 0;
+		elapsedSeconds = 0.0;
 	}
 }
 
@@ -293,44 +350,6 @@ void GameWindow::OnClose()
 //-------------------------------------------------------------------------------------------------------------
 //----------------------------------------LOW LEVEL FUNCTIONS--------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
-
-void GameWindow::SwitchToFullscreen()
-{
-	// Store the current window dimensions so they can be restored 
-	// when switching out of fullscreen state.
-	GetWindowRect(windowHandle, &previousWindowRect);
-
-	UINT windowStyle = WS_OVERLAPPEDWINDOW & ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
-	SetWindowLong(windowHandle, GWL_STYLE, windowStyle);
-
-	HMONITOR monitor = MonitorFromWindow(windowHandle, MONITOR_DEFAULTTONEAREST);
-	MONITORINFOEX monitorInfo = { };
-	monitorInfo.cbSize = sizeof(MONITORINFOEX);
-	GetMonitorInfo(monitor, &monitorInfo);
-
-	SetWindowPos(windowHandle, HWND_TOP,
-		monitorInfo.rcMonitor.left,
-		monitorInfo.rcMonitor.top,
-		monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
-		monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
-		SWP_FRAMECHANGED | SWP_NOACTIVATE);
-
-	ShowWindow(windowHandle, SW_MAXIMIZE);
-}
-
-void ArtemisWindow::GameWindow::SwitchToWindowed()
-{
-	SetWindowLong(windowHandle, GWL_STYLE, WS_OVERLAPPEDWINDOW);
-
-	SetWindowPos(windowHandle, HWND_NOTOPMOST,
-		previousWindowRect.left,
-		previousWindowRect.top,
-		previousWindowRect.right - previousWindowRect.left,
-		previousWindowRect.bottom - previousWindowRect.top,
-		SWP_FRAMECHANGED | SWP_NOACTIVATE);
-
-	ShowWindow(windowHandle, SW_NORMAL);
-}
 
 void GameWindow::ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator)
 {

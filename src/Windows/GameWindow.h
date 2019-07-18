@@ -95,6 +95,12 @@ namespace ArtemisWindow
 		void Render();
 		void Resize(uint32_t width, uint32_t height);
 		void SetFullscreen(bool fullscreen);
+		void SwitchToFullscreen();
+		void SwitchToWindowed();
+		void ToggleVSync();
+		void ToggleFullscreen();
+		void HandleKeyBindings();
+		void OutputFramerate() const;
 
 		// Messages
 		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
@@ -105,7 +111,7 @@ namespace ArtemisWindow
 		virtual void OnKeyUp(UINT_PTR wParam);
 		virtual void OnResize();
 		virtual void OnClose();
-		virtual void OnGainedFocus();
+		virtual void OnGainedFocus();	
 		
 		void InitializeDirectX();
 		void EnableDebugLayer() const;
@@ -130,7 +136,5 @@ namespace ArtemisWindow
 		void ClearRenderTarget(ComPtr<ID3D12Resource> backBuffer);
 		void PresentFrame(ComPtr<ID3D12Resource> backBuffer);
 		void ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator);
-		void SwitchToFullscreen();
-		void SwitchToWindowed();
 	};
 }

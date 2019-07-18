@@ -89,31 +89,25 @@ void GameWindow::Update()
 	if (elapsedSeconds > 1.0)
 	{
 		auto fps = frameCounter / elapsedSeconds;
-		//Output::Log("FPS: " + std::to_string(fps) + "\n");
+		Output::Log("FPS: " + std::to_string(fps) + "\n");
 
 		frameCounter = 0;
 		elapsedSeconds = 0.0;
 	}
 
-
-	if (Input::IsDown(Key::LeftShift))
+	if (Input::IsDown(Key::V))
 	{
-		Output::LogLine("Left Shift Down");
+		vSync = !vSync;
 	}
-	if (Input::IsUp(Key::LeftShift))
+	if (Input::IsDown(Key::Esc))
 	{
-		Output::LogLine("Left Shift Up");
+		PostQuitMessage(0);
 	}
-
-	if (Input::IsDown(Key::RightShift))
+	if (Input::IsDown(Key::F11) || (Input::IsStay(Key::LeftAlt) && Input::IsDown(Key::Enter)))
 	{
-		Output::LogLine("Right Shift Down");
+		SetFullscreen(!fullscreen);
 	}
-	if (Input::IsUp(Key::RightShift))
-	{
-		Output::LogLine("Right Shift Up");
-	}
-
+	
 	Input::EndOfFrame();
 }
 
@@ -293,11 +287,11 @@ void GameWindow::OnPaint()
 
 void GameWindow::OnSystemKeyDown(UINT_PTR wParam)
 {
-	HandleKeyDown(wParam);
-
 	if (wParam != VK_F10)
 	{
-		Input::OnKeyDown(Input::GetDownAltKey());
+		if (wParam == VK_MENU)
+			Input::OnKeyDown(Input::GetDownAltKey());
+
 		Input::OnKeyDown(Key(wParam));
 	}
 	else
@@ -311,7 +305,9 @@ void GameWindow::OnSystemKeyUp(UINT_PTR wParam)
 	if (wParam != VK_F10)
 	{
 		Input::OnKeyUp(Key(wParam));
-		Input::OnKeyUp(Input::GetDownAltKey());
+
+		if(wParam == VK_MENU)
+			Input::OnKeyUp(Input::GetUpAltKey());
 	}
 	else
 	{
@@ -329,28 +325,6 @@ void GameWindow::OnKeyUp(UINT_PTR wParam)
 {
 	Key keyCode = Input::UpWParamToKey(wParam);
 	Input::OnKeyUp(keyCode);
-}
-
-void GameWindow::HandleKeyDown(UINT_PTR wParam)
-{
-	/*bool alt = (GetAsyncKeyState(VK_MENU) & 0x8000) != 0;
-	
-	switch (wParam)
-	{
-	case 'V':
-		vSync = !vSync;
-		break;
-	case VK_ESCAPE:
-		::PostQuitMessage(0);
-		break;
-	case VK_RETURN:
-		if (alt)
-		{
-	case VK_F11:
-		SetFullscreen(!fullscreen);
-		}
-		break;
-	}*/
 }
 
 void GameWindow::OnResize()

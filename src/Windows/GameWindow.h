@@ -106,9 +106,7 @@ namespace ArtemisWindow
 		virtual void OnResize();
 		virtual void OnClose();
 		virtual void OnGainedFocus();
-
-		void HandleKeyDown(UINT_PTR wParam);
-
+		
 		void InitializeDirectX();
 		void EnableDebugLayer() const;
 		ComPtr<IDXGIAdapter4> GetAdapter();

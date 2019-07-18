@@ -163,9 +163,9 @@ void Input::SanitizeDownKeys()
 
 Key Input::GetUpShiftKey()
 {
-	if (!IsKeyPressed(VK_LSHIFT))
+	if (!IsKeyPressed(VK_LSHIFT) && IsKeyInBuffer(Key::LeftShift))
 		return Key::LeftShift;
-	else if (!IsKeyPressed(VK_RSHIFT))
+	else if (!IsKeyPressed(VK_RSHIFT) && IsKeyInBuffer(Key::RightShift))
 		return Key::RightShift;
 	else
 		throw InvalidArgumentException("No shift key pressed");
@@ -173,9 +173,9 @@ Key Input::GetUpShiftKey()
 
 Key Input::GetUpControlKey()
 {
-	if (!IsKeyPressed(VK_LCONTROL))
+	if (!IsKeyPressed(VK_LCONTROL) && IsKeyInBuffer(Key::LeftControl))
 		return Key::LeftControl;
-	else if (!IsKeyPressed(VK_RCONTROL))
+	else if (!IsKeyPressed(VK_RCONTROL) && IsKeyInBuffer(Key::RightControl))
 		return Key::RightControl;
 	else
 		throw InvalidArgumentException("No control key pressed");
@@ -183,9 +183,9 @@ Key Input::GetUpControlKey()
 
 Key Input::GetUpAltKey()
 {
-	if (!IsKeyPressed(VK_LMENU))
+	if (!IsKeyPressed(VK_LMENU) && IsKeyInBuffer(Key::LeftAlt))
 		return Key::LeftAlt;
-	else if (!IsKeyPressed(VK_RMENU))
+	else if (!IsKeyPressed(VK_RMENU) && IsKeyInBuffer(Key::RightAlt))
 		return Key::RightAlt;
 	else
 		throw InvalidArgumentException("No alt key pressed");

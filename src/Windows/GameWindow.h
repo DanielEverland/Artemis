@@ -127,5 +127,8 @@ namespace ArtemisWindow
 		uint64_t Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue) const;
 		void Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const;
 		void WaitForFenceValue(ComPtr<ID3D12Fence> fence, uint64_t fenceValue, HANDLE fenceEvent, milliseconds duration = milliseconds::max()) const;
+		void ClearRenderTarget(ComPtr<ID3D12Resource> backBuffer);
+		void PresentFrame(ComPtr<ID3D12Resource> backBuffer);
+		void ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator);
 	};
 }

@@ -113,53 +113,12 @@ void GameWindow::Update()
 
 void GameWindow::Render()
 {
-	auto commandAllocator = commandAllocators[currentBackBufferIndex];
-	auto backBuffer = backBuffers[currentBackBufferIndex];
+	ComPtr<ID3D12CommandAllocator> commandAllocator = commandAllocators[currentBackBufferIndex];
+	ComPtr<ID3D12Resource> backBuffer = backBuffers[currentBackBufferIndex];
 
-	commandAllocator->Reset();
-	commandList->Reset(commandAllocator.Get(), nullptr);
-
-	// Clear the render target
-	{
-		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
-			backBuffer.Get(),
-			D3D12_RESOURCE_STATE_PRESENT,
-			D3D12_RESOURCE_STATE_RENDER_TARGET);
-
-		commandList->ResourceBarrier(1, &barrier);
-
-		float clearColor[4];
-		GameWindow::BackbufferColor.ToFloat(clearColor);
-
-		CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(RTVDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), currentBackBufferIndex, RTVDescriptorSize);
-
-		commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);
-	}
-
-	// Present
-	{
-		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
-			backBuffer.Get(),
-			D3D12_RESOURCE_STATE_RENDER_TARGET,
-			D3D12_RESOURCE_STATE_PRESENT);
-
-		commandList->ResourceBarrier(1, &barrier);
-
-		ThrowIfFailed(commandList->Close());
-
-		ID3D12CommandList* const commandLists[] = { commandList.Get() };
-		commandQueue->ExecuteCommandLists(_countof(commandLists), commandLists);
-
-		UINT syncInterval = vSync ? 1 : 0;
-		UINT presentFlags = (tearingSupported && !vSync) ? DXGI_PRESENT_ALLOW_TEARING : 0;
-
-		ThrowIfFailed(swapChain->Present(syncInterval, presentFlags));
-
-		frameFenceValues[currentBackBufferIndex] = Signal(commandQueue, fence, fenceValue);
-
-		currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
-		WaitForFenceValue(fence, frameFenceValues[currentBackBufferIndex], fenceEvent);
-	}
+	ResetCommandAllocator(commandAllocator);
+	ClearRenderTarget(backBuffer);
+	PresentFrame(backBuffer);
 }
 
 void GameWindow::SetFullscreen(bool newFullscreenState)
@@ -351,6 +310,54 @@ void GameWindow::OnClose()
 //-------------------------------------------------------------------------------------------------------------
 //----------------------------------------LOW LEVEL FUNCTIONS--------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
+
+void ArtemisWindow::GameWindow::ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator)
+{
+	commandAllocator->Reset();
+	commandList->Reset(commandAllocator.Get(), nullptr);
+}
+
+void ArtemisWindow::GameWindow::PresentFrame(ComPtr<ID3D12Resource> backBuffer)
+{
+	CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
+		backBuffer.Get(),
+		D3D12_RESOURCE_STATE_RENDER_TARGET,
+		D3D12_RESOURCE_STATE_PRESENT);
+
+	commandList->ResourceBarrier(1, &barrier);
+
+	ThrowIfFailed(commandList->Close());
+
+	ID3D12CommandList* const commandLists[] = { commandList.Get() };
+	commandQueue->ExecuteCommandLists(_countof(commandLists), commandLists);
+
+	UINT syncInterval = vSync ? 1 : 0;
+	UINT presentFlags = (tearingSupported && !vSync) ? DXGI_PRESENT_ALLOW_TEARING : 0;
+
+	ThrowIfFailed(swapChain->Present(syncInterval, presentFlags));
+
+	frameFenceValues[currentBackBufferIndex] = Signal(commandQueue, fence, fenceValue);
+
+	currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
+	WaitForFenceValue(fence, frameFenceValues[currentBackBufferIndex], fenceEvent);
+}
+
+void ArtemisWindow::GameWindow::ClearRenderTarget(ComPtr<ID3D12Resource> backBuffer)
+{
+	CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
+		backBuffer.Get(),
+		D3D12_RESOURCE_STATE_PRESENT,
+		D3D12_RESOURCE_STATE_RENDER_TARGET);
+
+	commandList->ResourceBarrier(1, &barrier);
+
+	float clearColor[4];
+	GameWindow::BackbufferColor.ToFloat(clearColor);
+
+	CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(RTVDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), currentBackBufferIndex, RTVDescriptorSize);
+
+	commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);
+}
 
 void GameWindow::Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const
 {

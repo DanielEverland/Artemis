@@ -66,9 +66,9 @@ void GameWindow::Show()
 
 void TickTime()
 {
-	static double lastTime = 0;
+	static float lastTime = 0;
 
-	double currentTime = Time::GetTimeSinceStart();
+	float currentTime = Time::GetTimeSinceStart();
 		
 	Time::frameCount++;
 	Time::deltaTime = currentTime - lastTime;

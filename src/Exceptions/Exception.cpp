@@ -48,6 +48,16 @@ void Exception::CreateStacktrace()
 	}
 }
 
+bool Exception::operator==(const Exception& other) const
+{
+	string otherWhat = other.what();
+	string thisWhat = this->what();
+	bool whatCompare = otherWhat == thisWhat;
+	bool typeNameCompare = other.GetTypeName() == this->GetTypeName();
+
+	return whatCompare && typeNameCompare;
+}
+
 bool Exception::TryGetSymbolInfo(const void* const address, DWORD64* displacement, SYMBOL_INFO* info) const
 {
 	return SymFromAddr(processHandle, (DWORD64)address, displacement, info);

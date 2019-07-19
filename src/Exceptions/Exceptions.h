@@ -22,6 +22,8 @@ public:
 	inline const string GetStackTrace() const { return stackTrace; }
 	inline const string GetMessage() const { return what(); }
 	const string GetTypeName() const;
+
+	bool operator==(const Exception& other) const;
 	
 private:
 	static const unsigned long FramesToSkip;

@@ -139,7 +139,7 @@ Key Input::DownWParamToKey(UINT_PTR wParam)
 
 bool Input::IsKeyPressed(UINT_PTR virtualKey)
 {
-	return GetKeyState(virtualKey) & KeyboardStateCurrentFlag;
+	return GetKeyState(int(virtualKey)) & KeyboardStateCurrentFlag;
 }
 
 bool Input::IsKeyInBuffer(Key key)

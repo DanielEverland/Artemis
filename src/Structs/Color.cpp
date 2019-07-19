@@ -28,17 +28,17 @@ namespace ArtemisEngine
 
 	void Color::ToFloat(float* const arr) const
 	{
-		arr[0] = r / 255.0;
-		arr[1] = g / 255.0;
-		arr[2] = b / 255.0;
-		arr[3] = a / 255.0;
+		arr[0] = r / 255.0f;
+		arr[1] = g / 255.0f;
+		arr[2] = b / 255.0f;
+		arr[3] = a / 255.0f;
 	}
 
 	void Color::ToFloatNoAlpha(float* const arr) const
 	{
-		arr[0] = r / 255.0;
-		arr[1] = g / 255.0;
-		arr[2] = b / 255.0;
+		arr[0] = r / 255.0f;
+		arr[1] = g / 255.0f;
+		arr[2] = b / 255.0f;
 	}
 
 	const Color Color::AliceBlue			(0xF0, 0xF8, 0xFF, 0xFF);

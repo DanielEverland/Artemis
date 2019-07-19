@@ -556,6 +556,8 @@ struct CD3DX12_CLEAR_VALUE : public D3D12_CLEAR_VALUE
 		Format = format;
 		memcpy(Color, color, sizeof(Color));
 	}
+#pragma warning(push)
+#pragma warning(disable: 26495)
 	CD3DX12_CLEAR_VALUE(
 		DXGI_FORMAT format,
 		FLOAT depth,
@@ -566,6 +568,7 @@ struct CD3DX12_CLEAR_VALUE : public D3D12_CLEAR_VALUE
 		memcpy(&DepthStencil.Depth, &depth, sizeof(depth));
 		DepthStencil.Stencil = stencil;
 	}
+#pragma warning(pop)
 };
 
 //------------------------------------------------------------------------------------------------

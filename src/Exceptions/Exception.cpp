@@ -45,10 +45,6 @@ void Exception::CreateStacktrace()
 				AppendFrame(info);
 			}
 		}
-		else
-		{
-			DWORD errorCode = GetLastError();
-		}
 	}
 }
 

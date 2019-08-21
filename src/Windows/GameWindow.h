@@ -21,6 +21,7 @@
 #include <chrono>
 
 #include "Window.h"
+#include "..\\Direct X\CommandQueue.h"
 
 // The min/max macros conflict with like-named member functions.
 // Only use std::min and std::max defined in <algorithm>.
@@ -67,10 +68,10 @@ namespace ArtemisWindow
 
 		// DirectX 12 Objects
 		ComPtr<ID3D12Device2> device;
-		ComPtr<ID3D12CommandQueue> commandQueue;
+		std::shared_ptr<CommandQueue> commandQueue;
 		ComPtr<IDXGISwapChain4> swapChain;
 		ComPtr<ID3D12Resource> backBuffers[swapChainBufferSize];
-		ComPtr<ID3D12GraphicsCommandList> commandList;
+		ComPtr<ID3D12GraphicsCommandList2> commandList;
 		ComPtr<ID3D12CommandAllocator> commandAllocators[swapChainBufferSize];
 		ComPtr<ID3D12DescriptorHeap> RTVDescriptorHeap;
 		UINT RTVDescriptorSize;
@@ -130,9 +131,6 @@ namespace ArtemisWindow
 		ComPtr<ID3D12GraphicsCommandList> CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type) const;
 		ComPtr<ID3D12Fence> CreateFence(ComPtr<ID3D12Device2> device) const;
 		HANDLE CreateEventHandle() const;
-		uint64_t Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue) const;
-		void Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const;
-		void WaitForFenceValue(ComPtr<ID3D12Fence> fence, uint64_t fenceValue, HANDLE fenceEvent, milliseconds duration = milliseconds::max()) const;
 		void ClearRenderTarget(ComPtr<ID3D12Resource> backBuffer);
 		void PresentFrame(ComPtr<ID3D12Resource> backBuffer);
 		void ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator);

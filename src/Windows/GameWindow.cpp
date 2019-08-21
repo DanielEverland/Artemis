@@ -48,7 +48,7 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 #endif
 
 	tearingSupported = CheckTearingSupport();
-
+	
 	// Initialize the global window rect variable.
 	::GetWindowRect(windowHandle, &previousWindowRect);
 }
@@ -133,7 +133,7 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 
 		// Flush the GPU queue to make sure the swap chain's back buffers
 		// are not being referenced by an in-flight command list.
-		Flush(commandQueue, fence, fenceValue, fenceEvent);
+		commandQueue->Flush();
 
 		for (int i = 0; i < swapChainBufferSize; i++)
 		{
@@ -250,8 +250,8 @@ void GameWindow::InitializeDirectX()
 
 	ComPtr<IDXGIAdapter4> adapter4 = GetAdapter();
 	device = CreateDevice(adapter4);
-	commandQueue = CreateCommandQueue(device, D3D12_COMMAND_LIST_TYPE_DIRECT);
-	swapChain = CreateSwapChain(windowHandle, commandQueue, width, height, swapChainBufferSize);
+	commandQueue = std::make_shared<CommandQueue>(device, D3D12_COMMAND_LIST_TYPE_DIRECT);
+	swapChain = CreateSwapChain(windowHandle, commandQueue->GetD3D12CommandQueue(), width, height, swapChainBufferSize);
 	currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
 
 	RTVDescriptorHeap = CreateDescriptorHeap(device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, swapChainBufferSize);
@@ -342,7 +342,7 @@ void GameWindow::OnClose()
 	Window::OnClose();
 
 	//Make sure the command queue has finished all commands before closing.
-	Flush(commandQueue, fence, fenceValue, fenceEvent);
+	commandQueue->Flush();
 
 	CloseHandle(fenceEvent);
 }
@@ -368,18 +368,17 @@ void GameWindow::PresentFrame(ComPtr<ID3D12Resource> backBuffer)
 
 	ThrowIfFailed(commandList->Close());
 
-	ID3D12CommandList* const commandLists[] = { commandList.Get() };
-	commandQueue->ExecuteCommandLists(_countof(commandLists), commandLists);
+	commandQueue->ExecuteCommandList(commandList);
 
 	UINT syncInterval = vSync ? 1 : 0;
 	UINT presentFlags = (tearingSupported && !vSync) ? DXGI_PRESENT_ALLOW_TEARING : 0;
 
 	ThrowIfFailed(swapChain->Present(syncInterval, presentFlags));
 
-	frameFenceValues[currentBackBufferIndex] = Signal(commandQueue, fence, fenceValue);
+	frameFenceValues[currentBackBufferIndex] = commandQueue->Signal();
 
 	currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
-	WaitForFenceValue(fence, frameFenceValues[currentBackBufferIndex], fenceEvent);
+	commandQueue->WaitForFenceValue(frameFenceValues[currentBackBufferIndex]);
 }
 
 void ArtemisWindow::GameWindow::ClearRenderTarget(ComPtr<ID3D12Resource> backBuffer)
@@ -397,29 +396,6 @@ void ArtemisWindow::GameWindow::ClearRenderTarget(ComPtr<ID3D12Resource> backBuf
 	CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(RTVDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), currentBackBufferIndex, RTVDescriptorSize);
 
 	commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);
-}
-
-void GameWindow::Flush(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue, HANDLE fenceEvent) const
-{
-	uint64_t fenceValueSignal = Signal(commandQueue, fence, fenceValue);
-	WaitForFenceValue(fence, fenceValueSignal, fenceEvent);
-}
-
-void GameWindow::WaitForFenceValue(ComPtr<ID3D12Fence> fence, uint64_t fenceValue, HANDLE fenceEvent, std::chrono::milliseconds duration) const
-{
-	if (fence->GetCompletedValue() < fenceValue)
-	{
-		ThrowIfFailed(fence->SetEventOnCompletion(fenceValue, fenceEvent));
-		WaitForSingleObject(fenceEvent, static_cast<DWORD>(duration.count()));
-	}
-}
-
-uint64_t GameWindow::Signal(ComPtr<ID3D12CommandQueue> commandQueue, ComPtr<ID3D12Fence> fence, uint64_t& fenceValue) const
-{
-	uint64_t fenceValueForSignal = ++fenceValue;
-	ThrowIfFailed(commandQueue->Signal(fence.Get(), fenceValueForSignal));
-
-	return fenceValueForSignal;
 }
 
 HANDLE GameWindow::CreateEventHandle() const

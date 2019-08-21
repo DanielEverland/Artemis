@@ -15,7 +15,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CommandQueue.cpp" />
+    <ClCompile Include="src\Direct X\CommandQueue.cpp" />
     <ClCompile Include="src\Exceptions\Exception.cpp" />
     <ClCompile Include="src\Debug\Output.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
@@ -28,7 +28,7 @@
     <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CommandQueue.h" />
+    <ClInclude Include="src\Direct X\CommandQueue.h" />
     <ClInclude Include="src\Exceptions\Exceptions.h" />
     <ClInclude Include="src\Debug\Output.h" />
     <ClInclude Include="src\Direct X\d3dx12.h" />

@@ -13,44 +13,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\src">
-      <UniqueIdentifier>{e8f7ef1f-0adb-42fb-aacf-ea710ee1f205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\src\Structs">
-      <UniqueIdentifier>{3f1dd9c7-b334-4cc7-8022-a0bb80e69b03}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Main">
       <UniqueIdentifier>{ed832a20-69f4-4acd-9ed7-a503e195276c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Structs">
       <UniqueIdentifier>{cc3e728b-6a65-4518-bbcc-3aeb2f93843e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\Windows">
-      <UniqueIdentifier>{cdb7640c-c433-463b-96c8-4f069b1325e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Windows">
       <UniqueIdentifier>{28579a2c-078c-456a-a75f-b3f99c4e4a35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\src\Direct X">
-      <UniqueIdentifier>{657826ab-3777-4e81-96c5-0caa1489112e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\src\Main">
-      <UniqueIdentifier>{8d2395a6-8bb2-4485-8119-4c34eb409d7e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Time">
       <UniqueIdentifier>{5c040279-a11b-41d2-917b-c7d8ccddf2d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\Time">
-      <UniqueIdentifier>{e4519f01-f823-4219-a653-8db5b42fe614}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\src\Debug">
-      <UniqueIdentifier>{b4a79ae2-97b5-43bd-a594-c05387e7aeb1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Debug">
       <UniqueIdentifier>{5f7107ea-da8f-4f51-82f3-7fad79521a57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\src\Input">
-      <UniqueIdentifier>{8887c819-097a-4991-8836-ab9e694e1b7a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{453286df-f9bf-4d07-a1da-3e7d5994c7ad}</UniqueIdentifier>
@@ -58,8 +34,32 @@
     <Filter Include="Source Files\Exceptions">
       <UniqueIdentifier>{bb5e5eef-bf52-4bc2-bcf0-af5d17c82bf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\src\Exceptions">
+    <Filter Include="Header Files\Debug">
+      <UniqueIdentifier>{b4a79ae2-97b5-43bd-a594-c05387e7aeb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Direct X">
+      <UniqueIdentifier>{657826ab-3777-4e81-96c5-0caa1489112e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exceptions">
       <UniqueIdentifier>{96b84590-a0ba-448c-b4af-0526eca9a8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{8887c819-097a-4991-8836-ab9e694e1b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Main">
+      <UniqueIdentifier>{8d2395a6-8bb2-4485-8119-4c34eb409d7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Structs">
+      <UniqueIdentifier>{3f1dd9c7-b334-4cc7-8022-a0bb80e69b03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Time">
+      <UniqueIdentifier>{e4519f01-f823-4219-a653-8db5b42fe614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Windows">
+      <UniqueIdentifier>{cdb7640c-c433-463b-96c8-4f069b1325e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Direct X">
+      <UniqueIdentifier>{74e1c7d7-6ea1-4733-8c03-49b0175a0d03}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,43 +93,49 @@
     <ClCompile Include="src\Exceptions\Exception.cpp">
       <Filter>Source Files\Exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="CommandQueue.cpp">
+      <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Structs\Color.h">
-      <Filter>Header Files\src\Structs</Filter>
+      <Filter>Header Files\Structs</Filter>
     </ClInclude>
     <ClInclude Include="src\Windows\Window.h">
-      <Filter>Header Files\src\Windows</Filter>
+      <Filter>Header Files\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Windows\GameWindow.h">
-      <Filter>Header Files\src\Windows</Filter>
+      <Filter>Header Files\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Windows\WindowProcedure.h">
-      <Filter>Header Files\src\Windows</Filter>
+      <Filter>Header Files\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Direct X\d3dx12.h">
-      <Filter>Header Files\src\Direct X</Filter>
+      <Filter>Header Files\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="src\Direct X\DXHelper.h">
-      <Filter>Header Files\src\Direct X</Filter>
+      <Filter>Header Files\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="src\Main\ApplicationArguments.h">
-      <Filter>Header Files\src\Main</Filter>
+      <Filter>Header Files\Main</Filter>
     </ClInclude>
     <ClInclude Include="src\Time\Time.h">
-      <Filter>Header Files\src\Time</Filter>
+      <Filter>Header Files\Time</Filter>
     </ClInclude>
     <ClInclude Include="src\Debug\Output.h">
-      <Filter>Header Files\src\Debug</Filter>
+      <Filter>Header Files\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\Input\Input.h">
-      <Filter>Header Files\src\Input</Filter>
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="src\Input\Key.h">
-      <Filter>Header Files\src\Input</Filter>
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="src\Exceptions\Exceptions.h">
-      <Filter>Header Files\src\Exceptions</Filter>
+      <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandQueue.h">
+      <Filter>Header Files\Direct X</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

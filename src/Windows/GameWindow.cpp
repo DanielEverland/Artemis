@@ -417,9 +417,9 @@ ComPtr<ID3D12Fence> GameWindow::CreateFence(ComPtr<ID3D12Device2> device) const
 	return fence;
 }
 
-ComPtr<ID3D12GraphicsCommandList> GameWindow::CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type) const
+ComPtr<ID3D12GraphicsCommandList2> GameWindow::CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type) const
 {
-	ComPtr<ID3D12GraphicsCommandList> commandList;
+	ComPtr<ID3D12GraphicsCommandList2> commandList;
 	ThrowIfFailed(device->CreateCommandList(0, type, commandAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
 
 	ThrowIfFailed(commandList->Close());

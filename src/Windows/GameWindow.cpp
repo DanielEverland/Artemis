@@ -1,7 +1,4 @@
-#include <d3d12.h>
 #include <string>
-
-#include "..\Direct X\DXHelper.h"
 
 #include "GameWindow.h"
 #include "WindowProcedure.h"
@@ -43,11 +40,8 @@ D3D12_MESSAGE_CATEGORY GameWindow::IgnoreCategories[1]
 GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	: Window(handleInstance, className, windowState)
 {
-#if defined(_DEBUG)
-	EnableDebugLayer();
-#endif
 
-	tearingSupported = CheckTearingSupport();
+	// DX12 Snip
 	
 	// Initialize the global window rect variable.
 	::GetWindowRect(windowHandle, &previousWindowRect);
@@ -99,12 +93,7 @@ void GameWindow::Update()
 
 void GameWindow::Render()
 {
-	ComPtr<ID3D12CommandAllocator> commandAllocator = commandAllocators[currentBackBufferIndex];
-	ComPtr<ID3D12Resource> backBuffer = backBuffers[currentBackBufferIndex];
-
-	ResetCommandAllocator(commandAllocator);
-	ClearRenderTarget(backBuffer);
-	PresentFrame(backBuffer);
+	// DX12 Snip
 }
 
 void GameWindow::SetFullscreen(bool newFullscreenState)
@@ -131,24 +120,7 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 		width = std::max(1u, newWidth);
 		height = std::max(1u, newHeight);
 
-		// Flush the GPU queue to make sure the swap chain's back buffers
-		// are not being referenced by an in-flight command list.
-		commandQueue->Flush();
-
-		for (int i = 0; i < swapChainBufferSize; i++)
-		{
-			// Any references to the back buffers must be released
-			// before the swap chain can be resized.
-			backBuffers[i].Reset();
-			frameFenceValues[i] = frameFenceValues[currentBackBufferIndex];
-		}
-
-		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
-		ThrowIfFailed(swapChain->GetDesc(&swapChainDesc));
-		ThrowIfFailed(swapChain->ResizeBuffers(swapChainBufferSize, width, height, swapChainDesc.BufferDesc.Format, swapChainDesc.Flags));
-
-		currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
-		UpdateRenderTargetViews(device, swapChain, RTVDescriptorHeap);
+		// DX12 Snip
 	}
 }
 
@@ -248,24 +220,7 @@ void GameWindow::InitializeDirectX()
 	// Initialize the global window rect variable.
 	GetWindowRect(windowHandle, &previousWindowRect);
 
-	ComPtr<IDXGIAdapter4> adapter4 = GetAdapter();
-	device = CreateDevice(adapter4);
-	commandQueue = std::make_shared<CommandQueue>(device, D3D12_COMMAND_LIST_TYPE_DIRECT);
-	swapChain = CreateSwapChain(windowHandle, commandQueue->GetD3D12CommandQueue(), width, height, swapChainBufferSize);
-	currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
-
-	RTVDescriptorHeap = CreateDescriptorHeap(device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, swapChainBufferSize);
-	RTVDescriptorSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
-
-	UpdateRenderTargetViews(device, swapChain, RTVDescriptorHeap);
-
-	for (int i = 0; i < swapChainBufferSize; i++)
-		commandAllocators[i] = CreateCommandAllocator(device, D3D12_COMMAND_LIST_TYPE_DIRECT);
-
-	commandList = CreateCommandList(device, commandAllocators[currentBackBufferIndex], D3D12_COMMAND_LIST_TYPE_DIRECT);
-
-	fence = CreateFence(device);
-	fenceEvent = CreateEventHandle();
+	// DX12 Snip
 
 	directXInitialized = true;
 }
@@ -341,306 +296,7 @@ void GameWindow::OnClose()
 {
 	Window::OnClose();
 
-	//Make sure the command queue has finished all commands before closing.
-	commandQueue->Flush();
-
-	CloseHandle(fenceEvent);
-}
-
-//-------------------------------------------------------------------------------------------------------------
-//----------------------------------------LOW LEVEL FUNCTIONS--------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------
-
-void GameWindow::ResetCommandAllocator(ComPtr<ID3D12CommandAllocator> commandAllocator)
-{
-	commandAllocator->Reset();
-	commandList->Reset(commandAllocator.Get(), nullptr);
-}
-
-void GameWindow::PresentFrame(ComPtr<ID3D12Resource> backBuffer)
-{
-	CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
-		backBuffer.Get(),
-		D3D12_RESOURCE_STATE_RENDER_TARGET,
-		D3D12_RESOURCE_STATE_PRESENT);
-
-	commandList->ResourceBarrier(1, &barrier);
-
-	ThrowIfFailed(commandList->Close());
-
-	commandQueue->ExecuteCommandList(commandList);
-
-	UINT syncInterval = vSync ? 1 : 0;
-	UINT presentFlags = (tearingSupported && !vSync) ? DXGI_PRESENT_ALLOW_TEARING : 0;
-
-	ThrowIfFailed(swapChain->Present(syncInterval, presentFlags));
-
-	frameFenceValues[currentBackBufferIndex] = commandQueue->Signal();
-
-	currentBackBufferIndex = swapChain->GetCurrentBackBufferIndex();
-	commandQueue->WaitForFenceValue(frameFenceValues[currentBackBufferIndex]);
-}
-
-void ArtemisWindow::GameWindow::ClearRenderTarget(ComPtr<ID3D12Resource> backBuffer)
-{
-	CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
-		backBuffer.Get(),
-		D3D12_RESOURCE_STATE_PRESENT,
-		D3D12_RESOURCE_STATE_RENDER_TARGET);
-
-	commandList->ResourceBarrier(1, &barrier);
-
-	float clearColor[4];
-	GameWindow::BackbufferColor.ToFloat(clearColor);
-
-	CD3DX12_CPU_DESCRIPTOR_HANDLE rtv(RTVDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), currentBackBufferIndex, RTVDescriptorSize);
-
-	commandList->ClearRenderTargetView(rtv, clearColor, 0, nullptr);
-}
-
-HANDLE GameWindow::CreateEventHandle() const
-{
-	HANDLE fenceEvent;
-
-	fenceEvent = CreateEvent(nullptr, false, false, nullptr);
-	assert(fenceEvent && "Failed to create fence event.");
-
-	return fenceEvent;
-}
-
-ComPtr<ID3D12Fence> GameWindow::CreateFence(ComPtr<ID3D12Device2> device) const
-{
-	ComPtr<ID3D12Fence> fence;
-
-	ThrowIfFailed(device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&fence)));
-
-	return fence;
-}
-
-ComPtr<ID3D12GraphicsCommandList2> GameWindow::CreateCommandList(ComPtr<ID3D12Device2> device, ComPtr<ID3D12CommandAllocator> commandAllocator, D3D12_COMMAND_LIST_TYPE type) const
-{
-	ComPtr<ID3D12GraphicsCommandList2> commandList;
-	ThrowIfFailed(device->CreateCommandList(0, type, commandAllocator.Get(), nullptr, IID_PPV_ARGS(&commandList)));
-
-	ThrowIfFailed(commandList->Close());
-
-	return commandList;
-}
-
-ComPtr<ID3D12CommandAllocator> GameWindow::CreateCommandAllocator(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type) const
-{
-	ComPtr<ID3D12CommandAllocator> commandAllocator;
-	ThrowIfFailed(device->CreateCommandAllocator(type, IID_PPV_ARGS(&commandAllocator)));
-
-	return commandAllocator;
-}
-
-void GameWindow::UpdateRenderTargetViews(ComPtr<ID3D12Device2> device, ComPtr<IDXGISwapChain4> swapChain, ComPtr<ID3D12DescriptorHeap> descriptorHeap)
-{
-	UINT rtvDescriptorSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
-
-	CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(descriptorHeap->GetCPUDescriptorHandleForHeapStart());
-
-	for (int i = 0; i < swapChainBufferSize; i++)
-	{
-		ComPtr<ID3D12Resource> backBuffer;
-		ThrowIfFailed(swapChain->GetBuffer(i, IID_PPV_ARGS(&backBuffer)));
-
-		device->CreateRenderTargetView(backBuffer.Get(), nullptr, rtvHandle);
-
-		backBuffers[i] = backBuffer;
-
-		rtvHandle.Offset(rtvDescriptorSize);
-	}
-}
-
-ComPtr<ID3D12DescriptorHeap> GameWindow::CreateDescriptorHeap(ComPtr<ID3D12Device2> device, D3D12_DESCRIPTOR_HEAP_TYPE type, uint32_t numDescriptors) const
-{
-	ComPtr<ID3D12DescriptorHeap> descriptorHeap;
-
-	D3D12_DESCRIPTOR_HEAP_DESC desc = {};
-	desc.NumDescriptors = numDescriptors;
-	desc.Type = type;
-
-	ThrowIfFailed(device->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&descriptorHeap)));
-
-	return descriptorHeap;
-}
-
-ComPtr<IDXGISwapChain4> GameWindow::CreateSwapChain(HWND handle, ComPtr<ID3D12CommandQueue> commandQueue, uint32_t width, uint32_t height, uint32_t bufferCount) const
-{
-	ComPtr<IDXGISwapChain4> swapChain4;
-	ComPtr<IDXGIFactory4> factory;
-
-	UINT createFactoryFlags = 0;
-
-#if defined(_DEBUG)
-	createFactoryFlags = DXGI_CREATE_FACTORY_DEBUG;
-#endif
-
-	ThrowIfFailed(CreateDXGIFactory2(createFactoryFlags, IID_PPV_ARGS(&factory)));
-
-	DXGI_SWAP_CHAIN_DESC1 swapChainDescription = GetSwapChainDescription(width, height, bufferCount);
-
-	ComPtr<IDXGISwapChain1> swapChain1;
-	ThrowIfFailed(factory->CreateSwapChainForHwnd(
-		commandQueue.Get(),
-		handle,
-		&swapChainDescription,
-		nullptr,
-		nullptr,
-		&swapChain1
-	));
-
-	if (!AllowAltEnterFullscreen)
-		ThrowIfFailed(factory->MakeWindowAssociation(handle, DXGI_MWA_NO_ALT_ENTER));
-
-	ThrowIfFailed(swapChain1.As(&swapChain4));
-
-	return swapChain4;
-}
-
-DXGI_SWAP_CHAIN_DESC1 GameWindow::GetSwapChainDescription(uint32_t width, uint32_t height, uint32_t bufferCount) const
-{
-	DXGI_SWAP_CHAIN_DESC1 description = { };
-	description.Width = width;
-	description.Height = height;
-	description.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	description.Stereo = false;
-	description.SampleDesc = { 1, 0 };
-	description.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	description.BufferCount = bufferCount;
-	description.Scaling = DXGI_SCALING_STRETCH;
-	description.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
-	description.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
-	description.Flags = CheckTearingSupport() ? DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : 0;
-
-	return description;
-}
-
-bool GameWindow::CheckTearingSupport() const
-{
-	bool allowTearing = false;
-
-	// Rather than create the DXGI 1.5 factory interface directly, we create the
-	// DXGI 1.4 interface and query for the 1.5 interface. This is to enable the 
-	// graphics debugging tools which will not support the 1.5 factory interface 
-	// until a future update.
-	ComPtr<IDXGIFactory4> factory4;
-	if (SUCCEEDED(CreateDXGIFactory1(IID_PPV_ARGS(&factory4))))
-	{
-		ComPtr<IDXGIFactory5> factory5;
-		if (SUCCEEDED(factory4.As(&factory5)))
-		{
-			if (FAILED(factory5->CheckFeatureSupport(DXGI_FEATURE_PRESENT_ALLOW_TEARING, &allowTearing, sizeof(allowTearing))))
-				allowTearing = false;
-		}
-	}
-
-	return allowTearing;
-}
-
-ComPtr<ID3D12CommandQueue> GameWindow::CreateCommandQueue(ComPtr<ID3D12Device2> device, D3D12_COMMAND_LIST_TYPE type) const
-{
-	ComPtr<ID3D12CommandQueue> commandQueue;
-
-	D3D12_COMMAND_QUEUE_DESC desc = {};
-	desc.Type		= type;
-	desc.Priority	= D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;
-	desc.Flags		= D3D12_COMMAND_QUEUE_FLAG_NONE;
-	desc.NodeMask	= 0;
-
-	ThrowIfFailed(device->CreateCommandQueue(&desc, IID_PPV_ARGS(&commandQueue)));
-
-	return commandQueue;
-}
-
-ComPtr<ID3D12Device2> GameWindow::CreateDevice(ComPtr<IDXGIAdapter4> adapter) const
-{
-	ComPtr<ID3D12Device2> device;
-	ThrowIfFailed(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&device)));
-
-#if defined(_DEBUG)
-	EnableDebugMessages(device);
-#endif
-
-	return device;
-}
-
-void GameWindow::EnableDebugMessages(ComPtr<ID3D12Device2> device) const
-{
-	ComPtr<ID3D12InfoQueue> infoQueue;
-	if (SUCCEEDED(device.As(&infoQueue)))
-	{
-		for (auto severity : IgnoreSeverity)
-			infoQueue->SetBreakOnSeverity(severity, TRUE);
-
-		D3D12_INFO_QUEUE_FILTER filter = {};
-		filter.DenyList.NumCategories = _countof(IgnoreCategories);
-		filter.DenyList.pCategoryList = IgnoreCategories;
-
-		filter.DenyList.NumSeverities = _countof(IgnoreSeverity);
-		filter.DenyList.pSeverityList = IgnoreSeverity;
-
-		filter.DenyList.NumIDs = _countof(IgnoreMessages);
-		filter.DenyList.pIDList = IgnoreMessages;
-
-		ThrowIfFailed(infoQueue->PushStorageFilter(&filter));
-	}
-}
-
-ComPtr<IDXGIAdapter4> GameWindow::GetAdapter()
-{
-	ComPtr<IDXGIFactory4> dxgiFactory;
-	UINT createFactoryFlags = 0;
-
-#if defined(_DEBUG)
-	createFactoryFlags = DXGI_CREATE_FACTORY_DEBUG;
-#endif
-
-	ThrowIfFailed(CreateDXGIFactory2(createFactoryFlags, IID_PPV_ARGS(&dxgiFactory)));
-
-	ComPtr<IDXGIAdapter1> dxgiAdapter1;
-	ComPtr<IDXGIAdapter4> dxgiAdapter4;
-
-	if (useWARPAdapter)
-	{
-		ThrowIfFailed(dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(&dxgiAdapter1)));
-		ThrowIfFailed(dxgiAdapter1.As(&dxgiAdapter4));
-	}
-	else
-	{
-		GetBestGraphicsAdapater(dxgiFactory, dxgiAdapter1, dxgiAdapter4);
-	}
-
-	return dxgiAdapter4;
-}
-
-void GameWindow::GetBestGraphicsAdapater(const ComPtr<IDXGIFactory4> dxgiFactory, ComPtr<IDXGIAdapter1> dxgiAdapter1, ComPtr<IDXGIAdapter4> dxgiAdapter4) const
-{
-	SIZE_T maxDedicatedVideoMemory = 0;
-	for (UINT i = 0; dxgiFactory->EnumAdapters1(i, &dxgiAdapter1) != DXGI_ERROR_NOT_FOUND; ++i)
-	{
-		DXGI_ADAPTER_DESC1 dxgiAdapterDesc1;
-		dxgiAdapter1->GetDesc1(&dxgiAdapterDesc1);
-
-		if (!IsWARPAdapater(dxgiAdapterDesc1) && IsAdapterDirectX12Compatible(dxgiAdapter1)
-			&& dxgiAdapterDesc1.DedicatedVideoMemory > maxDedicatedVideoMemory)
-		{
-			maxDedicatedVideoMemory = dxgiAdapterDesc1.DedicatedVideoMemory;
-			ThrowIfFailed(dxgiAdapter1.As(&dxgiAdapter4));
-		}
-	}
-}
-
-bool GameWindow::IsWARPAdapater(const DXGI_ADAPTER_DESC1& adapter) const
-{
-	return (adapter.Flags & DXGI_ADAPTER_FLAG_SOFTWARE) != 0;
-}
-
-bool GameWindow::IsAdapterDirectX12Compatible(const ComPtr<IDXGIAdapter1> adapter) const
-{
-	return SUCCEEDED(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, __uuidof(ID3D12Device), nullptr));
+	// DX12 Snip
 }
 
 void GameWindow::CreateWindowClass() const
@@ -696,13 +352,6 @@ HWND ArtemisWindow::GameWindow::CreateWindowHandle()
 	assert(handle && "Failed to create window");
 
 	return handle;
-}
-
-void GameWindow::EnableDebugLayer() const
-{
-	ComPtr<ID3D12Debug> debugInterface;
-	ThrowIfFailed(D3D12GetDebugInterface(IID_PPV_ARGS(&debugInterface)));
-	debugInterface->EnableDebugLayer();
 }
 
 void GameWindow::RunMessageLoop()

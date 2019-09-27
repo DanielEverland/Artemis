@@ -16,6 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Direct X\CommandQueue.cpp" />
+    <ClCompile Include="src\Direct X\GraphicsDevice.cpp" />
+    <ClCompile Include="src\Direct X\SwapChain.cpp" />
     <ClCompile Include="src\Exceptions\Exception.cpp" />
     <ClCompile Include="src\Debug\Output.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
@@ -29,10 +31,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Direct X\CommandQueue.h" />
+    <ClInclude Include="src\Direct X\DirectXHelper.h" />
+    <ClInclude Include="src\Direct X\GraphicsDevice.h" />
+    <ClInclude Include="src\Direct X\SwapChain.h" />
     <ClInclude Include="src\Exceptions\Exceptions.h" />
     <ClInclude Include="src\Debug\Output.h" />
-    <ClInclude Include="src\Direct X\d3dx12.h" />
-    <ClInclude Include="src\Direct X\DXHelper.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Input\Key.h" />
     <ClInclude Include="src\Main\ApplicationArguments.h" />
@@ -92,7 +95,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>D3D12.lib;DXGI.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dx11d.lib;D3DCompiler.lib;Effects11d.lib;dxerr.lib;dxgi.lib;dxguid.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Temp|x64'">

@@ -96,6 +96,12 @@
     <ClCompile Include="src\Direct X\CommandQueue.cpp">
       <Filter>Source Files\Direct X</Filter>
     </ClCompile>
+    <ClCompile Include="src\Direct X\GraphicsDevice.cpp">
+      <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Direct X\SwapChain.cpp">
+      <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Structs\Color.h">
@@ -109,12 +115,6 @@
     </ClInclude>
     <ClInclude Include="src\Windows\WindowProcedure.h">
       <Filter>Header Files\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Direct X\d3dx12.h">
-      <Filter>Header Files\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Direct X\DXHelper.h">
-      <Filter>Header Files\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="src\Main\ApplicationArguments.h">
       <Filter>Header Files\Main</Filter>
@@ -135,6 +135,15 @@
       <Filter>Header Files\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="src\Direct X\CommandQueue.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\GraphicsDevice.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\DirectXHelper.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\SwapChain.h">
       <Filter>Header Files\Direct X</Filter>
     </ClInclude>
   </ItemGroup>

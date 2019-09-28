@@ -2,15 +2,18 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <wrl.h>
 
 #include <d3d11.h>
 
 #include "GraphicsDevice.h"
 
+using namespace Microsoft::WRL;
+
 class SwapChain
 {
 public:
-	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const GraphicsDevice* const graphicsDevice);
+	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const ComPtr<GraphicsDevice> const graphicsDevice);
 
 private:
 	const static UINT RefreshRate = 60;
@@ -22,9 +25,10 @@ private:
 	const static UINT BufferCount = 1;
 	const static UINT Flags = 0;
 	
+	ComPtr<IDXGISwapChain> swapChain;
 
-	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const GraphicsDevice* const graphicsDevice);
-
-	DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const GraphicsDevice* const graphicsDevice);
-	DXGI_RATIONAL GetRefreshRate();	
+	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const ComPtr<GraphicsDevice> const graphicsDevice);
+	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const ComPtr<GraphicsDevice> const graphicsDevice);
+	static ComPtr<IDXGIFactory> GetFactory();
+	static DXGI_RATIONAL GetRefreshRate();	
 };

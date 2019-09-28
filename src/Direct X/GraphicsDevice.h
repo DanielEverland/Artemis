@@ -2,14 +2,18 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <wrl.h>
 
 #include <d3d11.h>
+
+using namespace Microsoft::WRL;
 
 class GraphicsDevice
 {
 public:
 	explicit GraphicsDevice();
 
+	ComPtr<ID3D11Device> GetRawDevice() const;
 	bool SupportsMSAA() const;
 	UINT GetMSAASampleCount() const;
 	UINT GetMSAAQuality() const;
@@ -29,8 +33,8 @@ private:
 
 
 	D3D_FEATURE_LEVEL usedFeatureLevel;
-	ID3D11Device* device;
-	ID3D11DeviceContext* context;
+	ComPtr<ID3D11Device> device;
+	ComPtr<ID3D11DeviceContext> context;
 	UINT MSAAQuality;
 
 	void CreateDeviceObject();

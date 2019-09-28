@@ -4,6 +4,7 @@
 
 #include "DirectXHelper.h"
 
+
 IDXGIAdapter* GraphicsDevice::DefaultAdapter = 0;
 HMODULE GraphicsDevice::DefaultSoftwareDevice = 0;
 
@@ -13,6 +14,10 @@ GraphicsDevice::GraphicsDevice()
 	AssertMSAASupport();
 }
 
+ComPtr<ID3D11Device> GraphicsDevice::GetRawDevice() const
+{
+	return device;
+}
 bool GraphicsDevice::SupportsMSAA() const
 {
 	return MSAAQuality > 0;

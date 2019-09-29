@@ -102,6 +102,18 @@
     <ClCompile Include="src\Direct X\SwapChain.cpp">
       <Filter>Source Files\Direct X</Filter>
     </ClCompile>
+    <ClCompile Include="src\Direct X\RenderTargetView.cpp">
+      <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Direct X\Texture2D.cpp">
+      <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Direct X\GraphicsResource.cpp">
+      <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Direct X\DepthBuffer.cpp">
+      <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Structs\Color.h">
@@ -144,6 +156,21 @@
       <Filter>Header Files\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="src\Direct X\SwapChain.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\RenderTargetView.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\Texture2D.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\GraphicsResource.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\NullReferenceException.h">
+      <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Direct X\DepthBuffer.h">
       <Filter>Header Files\Direct X</Filter>
     </ClInclude>
   </ItemGroup>

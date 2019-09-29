@@ -3,17 +3,21 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <wrl.h>
-
+#include <memory>
 #include <d3d11.h>
 
 #include "GraphicsDevice.h"
 
 using namespace Microsoft::WRL;
 
+using std::shared_ptr;
+
 class SwapChain
 {
 public:
-	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const ComPtr<GraphicsDevice> const graphicsDevice);
+	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice);
+
+	ComPtr<IDXGISwapChain> GetRawSwapChain() const;
 
 private:
 	const static UINT RefreshRate = 60;
@@ -27,8 +31,8 @@ private:
 	
 	ComPtr<IDXGISwapChain> swapChain;
 
-	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const ComPtr<GraphicsDevice> const graphicsDevice);
-	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const ComPtr<GraphicsDevice> const graphicsDevice);
-	static ComPtr<IDXGIFactory> GetFactory();
+	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<GraphicsDevice> const graphicsDevice);
+	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice);
+	static ComPtr<IDXGIFactory> GetFactory(const shared_ptr<GraphicsDevice> const graphicsDevice);
 	static DXGI_RATIONAL GetRefreshRate();	
 };

@@ -1,18 +1,22 @@
 #include "SwapChain.h"
 #include "DirectXHelper.h"
 
-SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const ComPtr<GraphicsDevice> const graphicsDevice)
+SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice)
 {
 	DXGI_SWAP_CHAIN_DESC description = GetDescription(width, height, windowed, windowHandle, graphicsDevice);
 
-	ComPtr<IDXGIFactory> factory = GetFactory();
+	ComPtr<IDXGIFactory> factory = GetFactory(graphicsDevice);
 
 	HRESULT result = factory->CreateSwapChain(
-		graphicsDevice.Get()->GetRawDevice().Get(),
+		graphicsDevice->GetRawDevice().Get(),
 		&description,
 		&swapChain);
 }
-DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const ComPtr<GraphicsDevice> const graphicsDevice)
+ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const
+{
+	return swapChain;
+}
+DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice)
 {
 	DXGI_MODE_DESC bufferDescription
 	{
@@ -44,7 +48,7 @@ DXGI_RATIONAL SwapChain::GetRefreshRate()
 
 	return refreshRate;
 }
-void SwapChain::SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const ComPtr<GraphicsDevice> const graphicsDevice)
+void SwapChain::SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<GraphicsDevice> const graphicsDevice)
 {
 	if (graphicsDevice->SupportsMSAA())
 	{
@@ -57,9 +61,9 @@ void SwapChain::SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const C
 		description->SampleDesc.Quality = 0;
 	}
 }
-ComPtr<IDXGIFactory> SwapChain::GetFactory()
+ComPtr<IDXGIFactory> SwapChain::GetFactory(const shared_ptr<GraphicsDevice> const graphicsDevice)
 {
-	ComPtr<IDXGIDevice> device = 0;	
+	ComPtr<IDXGIDevice> device = graphicsDevice->GetRawDevice().Get();
 	ThrowIfFailed(device->QueryInterface(__uuidof(IDXGIDevice), (void**)& device));
 
 	ComPtr<IDXGIAdapter> adapter = 0;

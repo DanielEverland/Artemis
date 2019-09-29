@@ -42,8 +42,10 @@
     <ClInclude Include="src\Direct X\RenderTargetView.h" />
     <ClInclude Include="src\Direct X\SwapChain.h" />
     <ClInclude Include="src\Direct X\Texture2D.h" />
+    <ClInclude Include="src\Exceptions\DirectXException.h" />
     <ClInclude Include="src\Exceptions\Exceptions.h" />
     <ClInclude Include="src\Debug\Output.h" />
+    <ClInclude Include="src\Exceptions\InvalidArgumentException.h" />
     <ClInclude Include="src\Exceptions\NullReferenceException.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Input\Key.h" />

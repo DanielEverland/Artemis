@@ -173,5 +173,11 @@
     <ClInclude Include="src\Direct X\DepthBuffer.h">
       <Filter>Header Files\Direct X</Filter>
     </ClInclude>
+    <ClInclude Include="src\Exceptions\DirectXException.h">
+      <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\InvalidArgumentException.h">
+      <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

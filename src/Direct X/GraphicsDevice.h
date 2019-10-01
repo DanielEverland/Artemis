@@ -14,6 +14,8 @@ public:
 	explicit GraphicsDevice();
 
 	ComPtr<ID3D11Device> GetRawDevice() const;
+	ComPtr<ID3D11DeviceContext> GetRawContext() const;
+
 	bool SupportsMSAA() const;
 	UINT GetMSAASampleCount() const;
 	UINT GetMSAAQuality() const;

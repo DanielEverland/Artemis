@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "..\\Time\Time.h"
-#include "..\\Exceptions\Exceptions.h"
+#include "..\\Exceptions\InvalidArgumentException.h"
 #include "..\\Debug\Output.h"
 
 const float Input::ClickInterval = 0.2f;

@@ -17,6 +17,8 @@ class RenderTargetView
 public:
 	explicit RenderTargetView(const shared_ptr<SwapChain> const swapChain, const shared_ptr<GraphicsDevice> const graphicsDevice);
 
+	ComPtr<ID3D11RenderTargetView> GetRawRenderTargetView() const;
+
 private:
 	ComPtr<ID3D11RenderTargetView> renderTargetView;
 	ComPtr<ID3D11Texture2D> backBuffer;

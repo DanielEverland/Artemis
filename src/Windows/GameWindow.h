@@ -13,6 +13,10 @@
 
 #include "Window.h"
 #include "..\\Direct X\CommandQueue.h"
+#include "..\\Direct X\GraphicsDevice.h"
+#include "..\\Direct X\SwapChain.h"
+#include "..\\Direct X\DepthBuffer.h"
+#include "..\\Direct X\RenderTargetView.h"
 
 // The min/max macros conflict with like-named member functions.
 // Only use std::min and std::max defined in <algorithm>.
@@ -56,6 +60,11 @@ namespace ArtemisWindow
 		bool tearingSupported = false;
 		bool fullscreen = false;
 
+		shared_ptr<GraphicsDevice> graphicsDevice;
+		shared_ptr<SwapChain> swapChain;
+		shared_ptr<RenderTargetView> renderTargetView;
+		shared_ptr<DepthBuffer> depthBuffer;
+
 		virtual void RunMessageLoop() final;
 		virtual void CreateWindowClass() const;
 		virtual HWND CreateWindowHandle();
@@ -82,6 +91,9 @@ namespace ArtemisWindow
 		virtual void OnClose();
 		virtual void OnGainedFocus();	
 		
+		// DirectX
 		void InitializeDirectX();
+		void CreateDirectXObjects();
+		void CreateViewport();
 	};
 }

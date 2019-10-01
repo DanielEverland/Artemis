@@ -1,8 +1,8 @@
 #include <assert.h>
 
 #include "GraphicsDevice.h"
-
 #include "DirectXHelper.h"
+#include "..\\Exceptions\DirectXException.h"
 
 
 IDXGIAdapter* GraphicsDevice::DefaultAdapter = 0;
@@ -18,6 +18,11 @@ ComPtr<ID3D11Device> GraphicsDevice::GetRawDevice() const
 {
 	return device;
 }
+ComPtr<ID3D11DeviceContext> GraphicsDevice::GetRawContext() const
+{
+	return context;
+}
+
 bool GraphicsDevice::SupportsMSAA() const
 {
 	return MSAAQuality > 0;

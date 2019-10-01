@@ -3,6 +3,8 @@
 #include "GameWindow.h"
 #include "WindowProcedure.h"
 
+#include "..\\Exceptions\DirectXException.h"
+
 #include "..\\Time\Time.h"
 #include "..\\Debug\Output.h"
 #include "..\\Input\Key.h"
@@ -14,37 +16,13 @@ using std::string;
 
 Color GameWindow::BackbufferColor = Color::CornflowerBlue;
 
-const D3D12_MESSAGE_SEVERITY GameWindow::BreakOnSeverity[]
-{
-	D3D12_MESSAGE_SEVERITY_CORRUPTION,
-	D3D12_MESSAGE_SEVERITY_ERROR,
-	D3D12_MESSAGE_SEVERITY_WARNING,
-};
-
-D3D12_MESSAGE_SEVERITY GameWindow::IgnoreSeverity[]
-{
-	D3D12_MESSAGE_SEVERITY_INFO,
-};
-
-D3D12_MESSAGE_ID GameWindow::IgnoreMessages[]
-{
-	D3D12_MESSAGE_ID_CLEARRENDERTARGETVIEW_MISMATCHINGCLEARVALUE,
-	D3D12_MESSAGE_ID_MAP_INVALID_NULLRANGE,
-	D3D12_MESSAGE_ID_UNMAP_INVALID_NULLRANGE,
-};
-
-D3D12_MESSAGE_CATEGORY GameWindow::IgnoreCategories[1]
-{
-};
-
 GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	: Window(handleInstance, className, windowState)
 {
-
-	// DX12 Snip
+	InitializeDirectX();
 	
 	// Initialize the global window rect variable.
-	::GetWindowRect(windowHandle, &previousWindowRect);
+	//::GetWindowRect(windowHandle, &previousWindowRect);
 }
 
 void GameWindow::Show()
@@ -220,9 +198,40 @@ void GameWindow::InitializeDirectX()
 	// Initialize the global window rect variable.
 	GetWindowRect(windowHandle, &previousWindowRect);
 
-	// DX12 Snip
+	if (directXInitialized)
+		throw DirectXException("DirectX has already been initialized!");
+	
+	CreateDirectXObjects();
+	CreateViewport();
 
 	directXInitialized = true;
+}
+
+void GameWindow::CreateDirectXObjects()
+{
+	graphicsDevice = shared_ptr<GraphicsDevice>(new GraphicsDevice());
+	swapChain = shared_ptr<SwapChain>(new SwapChain(width, height, !fullscreen, windowHandle, graphicsDevice));
+	renderTargetView = shared_ptr<RenderTargetView>(new RenderTargetView(swapChain, graphicsDevice));
+	depthBuffer = shared_ptr<DepthBuffer>(new DepthBuffer(width, height, graphicsDevice));
+}
+
+void GameWindow::CreateViewport()
+{
+	ComPtr<ID3D11DeviceContext> rawContext = graphicsDevice->GetRawContext();
+	ComPtr<ID3D11RenderTargetView> rawRenderTargetView = renderTargetView->GetRawRenderTargetView();
+	ComPtr<ID3D11DepthStencilView> rawDepthStencilView = depthBuffer->GetRawStencilView();
+
+	rawContext->OMSetRenderTargets(1, &rawRenderTargetView, rawDepthStencilView.Get());
+
+	D3D11_VIEWPORT viewPortDescription
+	{
+		0, 0, // Top left (x, y)
+		static_cast<float>(width),
+		static_cast<float>(height),
+		0, 1, // Min, Max depth
+	};
+
+	rawContext->RSSetViewports(1, &viewPortDescription);
 }
 
 LONG_PTR GameWindow::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam)

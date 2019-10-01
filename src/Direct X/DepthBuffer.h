@@ -7,6 +7,8 @@ class DepthBuffer : protected Texture2D
 public:
 	explicit DepthBuffer(UINT width, UINT height, shared_ptr<GraphicsDevice> graphicsDevice);
 
+	ComPtr<ID3D11DepthStencilView> GetRawStencilView() const;
+
 protected:
 	virtual D3D11_TEXTURE2D_DESC GetDescription();
 

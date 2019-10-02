@@ -4,10 +4,6 @@
 
 #include "..\Windows\Window.h"
 
-using std::chrono::high_resolution_clock;
-using time_point = std::chrono::time_point<std::chrono::steady_clock>;
-using std::chrono::nanoseconds;
-
 class Time
 {
 public:
@@ -18,12 +14,11 @@ public:
 	
 private:
 	static unsigned int frameCount;
-	static high_resolution_clock clock;
-	static nanoseconds initTime;
+	static __int64 startTime;
+	static __int64 currentTimeBuffer;
 	static float deltaTime;
-
-	static const double MillisecondToSeconds;
-	
+	static float secondsPerCount;
+		
 	friend void TickTime();
 	friend void InitializeTime();
 };

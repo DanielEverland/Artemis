@@ -51,7 +51,12 @@ void CreateMainWindow(HINSTANCE handleInstance, int windowState)
 
 void InitializeTime()
 {
-	Time::initTime = Time::clock.now().time_since_epoch();
+	QueryPerformanceCounter((LARGE_INTEGER*)&Time::startTime);
+
+	__int64 countsPerSec;
+	QueryPerformanceFrequency((LARGE_INTEGER*)& countsPerSec);
+	
+	Time::secondsPerCount = 1.0 / double(countsPerSec);
 }
 
 void ParseCommandLineArguments(GameWindow& window)

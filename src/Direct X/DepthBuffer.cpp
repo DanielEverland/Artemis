@@ -1,13 +1,13 @@
 #include "DepthBuffer.h"
 
-DepthBuffer::DepthBuffer(UINT width, UINT height, const shared_ptr<GraphicsDevice> const graphicsDevice) : Texture2D(width, height, 1, graphicsDevice)
+DepthBuffer::DepthBuffer(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice) : Texture2D(width, height, 1, graphicsDevice)
 {
 	CreateStencilView();
 }
 
 void DepthBuffer::CreateStencilView()
 {
-	shared_ptr<GraphicsDevice> graphicsDevice = GetGraphicsDevice();
+	const shared_ptr<const GraphicsDevice> graphicsDevice = GetGraphicsDevice();
 
 	ThrowIfFailed(graphicsDevice->GetRawDevice()->CreateDepthStencilView(textureResource.Get(), 0, &stencilView));
 }

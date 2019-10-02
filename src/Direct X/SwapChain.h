@@ -15,7 +15,7 @@ using std::shared_ptr;
 class SwapChain
 {
 public:
-	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice);
+	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice);
 
 	ComPtr<IDXGISwapChain> GetRawSwapChain() const;
 
@@ -31,8 +31,8 @@ private:
 	
 	ComPtr<IDXGISwapChain> swapChain;
 
-	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<GraphicsDevice> const graphicsDevice);
-	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice);
-	static ComPtr<IDXGIFactory> GetFactory(const shared_ptr<GraphicsDevice> const graphicsDevice);
+	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<const GraphicsDevice> graphicsDevice);
+	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice);
+	static ComPtr<IDXGIFactory> GetFactory(const shared_ptr<const GraphicsDevice> graphicsDevice);
 	static DXGI_RATIONAL GetRefreshRate();	
 };

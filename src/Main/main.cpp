@@ -56,7 +56,7 @@ void InitializeTime()
 	__int64 countsPerSec;
 	QueryPerformanceFrequency((LARGE_INTEGER*)& countsPerSec);
 	
-	Time::secondsPerCount = 1.0 / double(countsPerSec);
+	Time::secondsPerCount = float(1.0 / double(countsPerSec));
 }
 
 void ParseCommandLineArguments(GameWindow& window)

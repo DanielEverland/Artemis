@@ -15,8 +15,8 @@ using std::shared_ptr;
 class Texture2D : protected GraphicsResource
 {
 public:
-	explicit Texture2D(UINT width, UINT height, shared_ptr<GraphicsDevice> graphicsDevice);
-	explicit Texture2D(UINT width, UINT height, UINT mipmap, shared_ptr<GraphicsDevice> graphicsDevice);
+	explicit Texture2D(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice);
+	explicit Texture2D(UINT width, UINT height, UINT mipmap, const shared_ptr<const GraphicsDevice> graphicsDevice);
 
 protected:	
 	virtual D3D11_TEXTURE2D_DESC GetDescription();

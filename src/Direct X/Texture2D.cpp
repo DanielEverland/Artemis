@@ -1,7 +1,7 @@
 #include "Texture2D.h"
 #include "GraphicsResource.h"
 
-Texture2D::Texture2D(UINT width, UINT height, shared_ptr<GraphicsDevice> graphicsDevice) : GraphicsResource(graphicsDevice)
+Texture2D::Texture2D(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice) : GraphicsResource(graphicsDevice)
 {
 	this->width = width;
 	this->height = height;
@@ -9,7 +9,7 @@ Texture2D::Texture2D(UINT width, UINT height, shared_ptr<GraphicsDevice> graphic
 
 	CreateTextureResource();
 }
-Texture2D::Texture2D(UINT width, UINT height, UINT mipmap, shared_ptr<GraphicsDevice> graphicsDevice) : GraphicsResource(graphicsDevice)
+Texture2D::Texture2D(UINT width, UINT height, UINT mipmap, const shared_ptr<const GraphicsDevice> graphicsDevice) : GraphicsResource(graphicsDevice)
 {
 	this->width = width;
 	this->height = height;
@@ -27,7 +27,7 @@ void Texture2D::CreateTextureResource()
 
 void Texture2D::CreateTextureResource(D3D11_TEXTURE2D_DESC description)
 {
-	shared_ptr<GraphicsDevice> graphicsDevice = GetGraphicsDevice();
+	const shared_ptr<const GraphicsDevice> graphicsDevice = GetGraphicsDevice();
 
 	ThrowIfFailed(graphicsDevice->GetRawDevice().Get()->CreateTexture2D(&description, 0, &textureResource));
 }
@@ -35,7 +35,7 @@ void Texture2D::CreateTextureResource(D3D11_TEXTURE2D_DESC description)
 D3D11_TEXTURE2D_DESC Texture2D::GetDescription()
 {
 	D3D11_TEXTURE2D_DESC description;
-	shared_ptr<GraphicsDevice> graphicsDevice = GetGraphicsDevice();
+	const shared_ptr<const GraphicsDevice> graphicsDevice = GetGraphicsDevice();
 
 	description.Width = this->width;
 	description.Height = this->height;

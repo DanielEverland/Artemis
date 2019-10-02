@@ -8,11 +8,10 @@ using std::weak_ptr;
 class GraphicsResource
 {
 protected:
-	GraphicsResource(shared_ptr<GraphicsDevice> graphicsDevice);
+	explicit GraphicsResource(const shared_ptr<const GraphicsDevice> graphicsDevice);
 
-	shared_ptr<GraphicsDevice> GetGraphicsDevice() const;
+	const shared_ptr<const GraphicsDevice> GetGraphicsDevice() const;
 
 private:
-
-	weak_ptr<GraphicsDevice> graphicsDevice;
+	weak_ptr<const GraphicsDevice> graphicsDevice;
 };

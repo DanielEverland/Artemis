@@ -15,7 +15,7 @@ using std::shared_ptr;
 class RenderTargetView
 {
 public:
-	explicit RenderTargetView(const shared_ptr<SwapChain> const swapChain, const shared_ptr<GraphicsDevice> const graphicsDevice);
+	explicit RenderTargetView(const shared_ptr<const SwapChain> swapChain, const shared_ptr<const GraphicsDevice> graphicsDevice);
 
 	ComPtr<ID3D11RenderTargetView> GetRawRenderTargetView() const;
 

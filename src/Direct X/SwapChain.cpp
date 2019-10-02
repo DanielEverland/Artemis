@@ -1,7 +1,7 @@
 #include "SwapChain.h"
 #include "DirectXHelper.h"
 
-SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice)
+SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
 	DXGI_SWAP_CHAIN_DESC description = GetDescription(width, height, windowed, windowHandle, graphicsDevice);
 
@@ -16,7 +16,7 @@ ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const
 {
 	return swapChain;
 }
-DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<GraphicsDevice> const graphicsDevice)
+DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
 	DXGI_MODE_DESC bufferDescription
 	{
@@ -48,7 +48,7 @@ DXGI_RATIONAL SwapChain::GetRefreshRate()
 
 	return refreshRate;
 }
-void SwapChain::SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<GraphicsDevice> const graphicsDevice)
+void SwapChain::SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
 	if (graphicsDevice->SupportsMSAA())
 	{
@@ -61,13 +61,15 @@ void SwapChain::SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const s
 		description->SampleDesc.Quality = 0;
 	}
 }
-ComPtr<IDXGIFactory> SwapChain::GetFactory(const shared_ptr<GraphicsDevice> const graphicsDevice)
+ComPtr<IDXGIFactory> SwapChain::GetFactory(const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
-	ComPtr<IDXGIDevice> device = graphicsDevice->GetRawDevice().Get();
-	ThrowIfFailed(device->QueryInterface(__uuidof(IDXGIDevice), (void**)& device));
+	ComPtr<ID3D11Device> device = graphicsDevice->GetRawDevice();
+
+	ComPtr<IDXGIDevice> dxgiDevice;
+	ThrowIfFailed(device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice));
 
 	ComPtr<IDXGIAdapter> adapter = 0;
-	ThrowIfFailed(device->GetParent(__uuidof(IDXGIAdapter), (void**)&device));
+	ThrowIfFailed(dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&device));
 
 	ComPtr<IDXGIFactory> factory = 0;
 	ThrowIfFailed(adapter->GetParent(__uuidof(IDXGIFactory), (void**)&device));

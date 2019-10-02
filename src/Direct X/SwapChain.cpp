@@ -38,6 +38,8 @@ DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool win
 	description.Flags = Flags;
 	
 	SetMSAASettings(&description, graphicsDevice);
+
+	return description;
 }
 DXGI_RATIONAL SwapChain::GetRefreshRate()
 {

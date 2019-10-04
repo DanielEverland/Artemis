@@ -1,5 +1,6 @@
 #include "Texture2D.h"
 #include "GraphicsResource.h"
+#include "DirectXHelper.h"
 
 Texture2D::Texture2D(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice) : GraphicsResource(graphicsDevice)
 {

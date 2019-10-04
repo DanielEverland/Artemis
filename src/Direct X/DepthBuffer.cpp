@@ -1,4 +1,5 @@
 #include "DepthBuffer.h"
+#include "DirectXHelper.h"
 
 DepthBuffer::DepthBuffer(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice) : Texture2D(width, height, 1, graphicsDevice)
 {

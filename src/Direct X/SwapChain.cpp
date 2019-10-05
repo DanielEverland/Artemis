@@ -71,7 +71,7 @@ ComPtr<IDXGIFactory> SwapChain::GetFactory(const shared_ptr<const GraphicsDevice
 	ThrowIfFailed(device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice));
 
 	ComPtr<IDXGIAdapter> adapter = 0;
-	ThrowIfFailed(dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&device));
+	ThrowIfFailed(dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&adapter));
 
 	ComPtr<IDXGIFactory> factory = 0;
 	ThrowIfFailed(adapter->GetParent(__uuidof(IDXGIFactory), (void**)&device));

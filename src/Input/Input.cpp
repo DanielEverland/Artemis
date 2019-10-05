@@ -153,7 +153,7 @@ void Input::SanitizeDownKeys()
 	{
 		if (i->second.State != KeyState::Up)
 		{
-			if (!IsKeyPressed(i->first))
+			if (!IsKeyPressed(UINT_PTR(i->first)))
 			{
 				OnKeyUp(i->first);
 			}

@@ -114,7 +114,7 @@ const string Exception::GetTypeName() const
 {
 	string name = typeid(*this).name();
 
-	int index = 0;
+	size_t index = 0;
 	while (name[index] != ' ')
 		index++;
 

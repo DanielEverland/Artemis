@@ -2,7 +2,7 @@
 
 #include <Windows.h>
 
-enum Key
+enum class Key
 {
 	None				= 0,
 

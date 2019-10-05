@@ -20,6 +20,7 @@ public:
 	ComPtr<IDXGISwapChain> GetRawSwapChain() const;
 
 private:
+#pragma warning(disable : 26812)
 	const static UINT RefreshRate = 60;
 	const static DXGI_FORMAT PixelFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
 	const static DXGI_MODE_SCANLINE_ORDER ScanlineOrder = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
@@ -30,6 +31,7 @@ private:
 	const static UINT Flags = 0;
 	
 	ComPtr<IDXGISwapChain> swapChain;
+#pragma warning(default : 26812)
 
 	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<const GraphicsDevice> graphicsDevice);
 	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice);

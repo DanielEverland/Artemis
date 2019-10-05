@@ -21,6 +21,7 @@ public:
 	UINT GetMSAAQuality() const;
 
 private:
+#pragma warning(disable : 26812)
 	static const DXGI_FORMAT MSAAFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
 	static const UINT MSAASampleCount = 4;
 
@@ -32,6 +33,7 @@ private:
 
 	static IDXGIAdapter* DefaultAdapter;
 	static HMODULE DefaultSoftwareDevice;
+#pragma warning(default : 26812)
 
 
 	D3D_FEATURE_LEVEL usedFeatureLevel;

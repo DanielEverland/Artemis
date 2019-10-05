@@ -39,8 +39,10 @@ private:
 		ComPtr<ID3D12CommandAllocator> commandAllocator;
 	};
 
+#pragma warning(disable : 26812)
 	static const D3D12_COMMAND_QUEUE_PRIORITY DefaultCommandQueuePriority = D3D12_COMMAND_QUEUE_PRIORITY_NORMAL;
 	static const D3D12_COMMAND_QUEUE_FLAGS DefaultCommandQueueFlags = D3D12_COMMAND_QUEUE_FLAG_NONE;
+#pragma warning(default : 26812)
 
 	D3D12_COMMAND_LIST_TYPE	commandListType;
 	ComPtr<ID3D12Device2> device;

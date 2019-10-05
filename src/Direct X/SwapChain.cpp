@@ -7,10 +7,10 @@ SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, 
 
 	ComPtr<IDXGIFactory> factory = GetFactory(graphicsDevice);
 
-	HRESULT result = factory->CreateSwapChain(
+	ThrowIfFailed(factory->CreateSwapChain(
 		graphicsDevice->GetRawDevice().Get(),
 		&description,
-		&swapChain);
+		&swapChain));
 }
 ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const
 {
@@ -74,7 +74,7 @@ ComPtr<IDXGIFactory> SwapChain::GetFactory(const shared_ptr<const GraphicsDevice
 	ThrowIfFailed(dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&adapter));
 
 	ComPtr<IDXGIFactory> factory = 0;
-	ThrowIfFailed(adapter->GetParent(__uuidof(IDXGIFactory), (void**)&device));
+	ThrowIfFailed(adapter->GetParent(__uuidof(IDXGIFactory), (void**)&factory));
 	
 	return factory;
 }

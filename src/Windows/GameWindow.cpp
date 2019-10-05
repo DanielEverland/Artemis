@@ -18,11 +18,9 @@ Color GameWindow::BackbufferColor = Color::CornflowerBlue;
 
 GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	: Window(handleInstance, className, windowState)
-{
-	InitializeDirectX();
-	
+{	
 	// Initialize the global window rect variable.
-	//::GetWindowRect(windowHandle, &previousWindowRect);
+	::GetWindowRect(windowHandle, &previousWindowRect);
 }
 
 void GameWindow::Show()

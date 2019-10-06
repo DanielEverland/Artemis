@@ -5,6 +5,11 @@
 #include "Output.h"
 #include "..\\Exceptions\Exceptions.h"
 
+void Output::Space()
+{
+	Output::LogLine(" ");
+}
+
 void Output::LogException(const Exception& e)
 {
 	string str;

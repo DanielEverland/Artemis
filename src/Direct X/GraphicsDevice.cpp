@@ -8,10 +8,23 @@
 IDXGIAdapter* GraphicsDevice::DefaultAdapter = 0;
 HMODULE GraphicsDevice::DefaultSoftwareDevice = 0;
 
+const std::map<D3D_FEATURE_LEVEL, string> GraphicsDevice::featureLevelNames
+{
+	{ D3D_FEATURE_LEVEL_1_0_CORE, "MCDM Core 1.0" },
+	{ D3D_FEATURE_LEVEL_9_1, "9.3" },
+	{ D3D_FEATURE_LEVEL_9_2, "9.2" },
+	{ D3D_FEATURE_LEVEL_9_3, "9.3" },
+	{ D3D_FEATURE_LEVEL_10_0, "10.0" },
+	{ D3D_FEATURE_LEVEL_10_1, "10.1" },
+	{ D3D_FEATURE_LEVEL_11_0, "11.0" },
+	{ D3D_FEATURE_LEVEL_11_1, "11.1" },
+	{ D3D_FEATURE_LEVEL_12_0, "12.0" },
+	{ D3D_FEATURE_LEVEL_12_1, "12.1" },
+};
+
 GraphicsDevice::GraphicsDevice()
 {
 	CreateDeviceObject();
-	AssertMSAASupport();
 }
 
 ComPtr<ID3D11Device> GraphicsDevice::GetRawDevice() const
@@ -23,24 +36,11 @@ ComPtr<ID3D11DeviceContext> GraphicsDevice::GetRawContext() const
 	return context;
 }
 
-bool GraphicsDevice::SupportsMSAA() const
-{
-	return MSAAQuality > 0;
-}
-UINT GraphicsDevice::GetMSAAQuality() const
-{
-	return MSAAQuality;
-}
-UINT GraphicsDevice::GetMSAASampleCount() const
-{
-	return MSAASampleCount;
-}
-
 void GraphicsDevice::CreateDeviceObject()
 {
 	UINT deviceFlags = GetDeviceFlags();
 
-	HRESULT result = D3D11CreateDevice(
+	ThrowIfFailed(D3D11CreateDevice(
 		DefaultAdapter,
 		D3D_DRIVER_TYPE_HARDWARE,
 		DefaultSoftwareDevice,
@@ -50,14 +50,18 @@ void GraphicsDevice::CreateDeviceObject()
 		&device,
 		&usedFeatureLevel,
 		&context
-	);
-
-	ThrowIfFailed(result);
-
+	));
+	
 	if (usedFeatureLevel != D3D_FEATURE_LEVEL_11_0)
 	{
 		MessageBox(0, "Direct3D Feature Level 11 unsupported", 0, 0);
 		throw DirectXException("Direct3D Feature Level 11 unsupported");
+	}
+	else
+	{
+		Output::Space();
+		OutputDebugInfo();
+		Output::Space();
 	}
 }
 UINT GraphicsDevice::GetDeviceFlags()
@@ -70,13 +74,74 @@ UINT GraphicsDevice::GetDeviceFlags()
 
 	return deviceFlags;
 }
-void GraphicsDevice::AssertMSAASupport()
+#pragma warning (suppress : 26812)
+void GraphicsDevice::GetMSAASupport(DXGI_FORMAT format, UINT* sampleCount, UINT* quality) const
 {
-	MSAAQuality = 0;
+	*sampleCount = 1;
+	*quality = 0;
 
-	HRESULT result = device->CheckMultisampleQualityLevels(MSAAFormat, MSAASampleCount, &MSAAQuality);
+	if (GraphicsDevice::MSAASampleCount > D3D11_MAX_MULTISAMPLE_SAMPLE_COUNT)
+	{
+		throw DirectXException("Requested MSAA sample size is " + std::to_string(GraphicsDevice::MSAASampleCount) + ", but maximum sample count is " + std::to_string(D3D10_MAX_MULTISAMPLE_SAMPLE_COUNT));
+	}
 
-	ThrowIfFailed(result);
+	UINT qualityBuffer = 0;
 
-	assert(MSAAQuality > 0);
+	ThrowIfFailed(device->CheckMultisampleQualityLevels(format, GraphicsDevice::MSAASampleCount, &qualityBuffer));
+
+	// Quality buffer starts at 0, so we have to subtract one value
+	qualityBuffer--;
+	
+	if (qualityBuffer == 0)
+	{
+		*sampleCount = 1;
+		*quality = 0;
+	}
+	else
+	{
+		*sampleCount = GraphicsDevice::MSAASampleCount;
+		*quality = qualityBuffer;
+	}
+}
+
+string GraphicsDevice::GetFeatureLevelString() const
+{
+	auto iter = featureLevelNames.find(usedFeatureLevel);
+	if (iter != featureLevelNames.end())
+	{
+		return iter->second;
+	}
+	else
+	{
+		DirectXLogError("Couldn't find feature name for feature level " + std::to_string(usedFeatureLevel));
+		return "N/A (" + std::to_string(usedFeatureLevel) + ")";
+	}
+}
+
+void GraphicsDevice::OutputDebugInfo() const
+{
+	DirectXLogLine("Initialized DirectX");
+
+	OutputFeatureLevel();
+	OutputGraphicsAdapter();
+}
+void GraphicsDevice::OutputFeatureLevel() const
+{
+	DirectXLogLine("Feature Level: " + GetFeatureLevelString());
+}
+void GraphicsDevice::OutputGraphicsAdapter() const
+{
+	ComPtr<IDXGIDevice> dxgiDevice;
+	ThrowIfFailed(device->QueryInterface(__uuidof(IDXGIDevice), (void**)&dxgiDevice));
+
+	ComPtr<IDXGIAdapter> adapter = 0;
+	ThrowIfFailed(dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&adapter));
+
+	DXGI_ADAPTER_DESC description;
+	ThrowIfFailed(adapter->GetDesc(&description));
+
+	std::wstring wDescription(description.Description);
+	std::string normalDescriptionString(wDescription.begin(), wDescription.end());
+
+	DirectXLogLine(normalDescriptionString);
 }

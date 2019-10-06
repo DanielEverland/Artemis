@@ -9,6 +9,8 @@ using std::string;
 class Output
 {
 public:
+	static void Space();
+
 	static void LogException(const Exception& e);
 	static void LogError(const string& text);
 	static void LogWarning(const string& text);

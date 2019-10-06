@@ -23,6 +23,8 @@ D3D11_TEXTURE2D_DESC DepthBuffer::GetDescription()
 	description.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	description.CPUAccessFlags = 0;
 
+	GetGraphicsDevice()->GetMSAASupport(description.Format, &description.SampleDesc.Count, &description.SampleDesc.Quality);
+
 	return description;
 }
 

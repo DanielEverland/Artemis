@@ -43,16 +43,5 @@ D3D11_TEXTURE2D_DESC Texture2D::GetDescription()
 	description.MipLevels = this->mipmapLevel;
 	description.MiscFlags = 0;
 
-	if (graphicsDevice->SupportsMSAA())
-	{
-		description.SampleDesc.Count = graphicsDevice->GetMSAASampleCount();
-		description.SampleDesc.Quality = graphicsDevice->GetMSAAQuality();
-	}
-	else
-	{
-		description.SampleDesc.Count = 1;
-		description.SampleDesc.Quality = 0;
-	}
-
 	return description;
 }

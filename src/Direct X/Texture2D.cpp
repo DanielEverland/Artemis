@@ -41,7 +41,14 @@ D3D11_TEXTURE2D_DESC Texture2D::GetDescription()
 	description.Width = this->width;
 	description.Height = this->height;
 	description.MipLevels = this->mipmapLevel;
-	description.MiscFlags = 0;
+	description.MiscFlags = DefaultMiscFlags;
+	description.BindFlags = DefaultBindFlags;
+	description.CPUAccessFlags = DefaultCPUAccessFlag;
+	description.ArraySize = 1;
+	description.Format = DefaultFormat;
+	description.Usage = DefaultUsage;
+	
+	graphicsDevice->GetMSAASupport(description.Format, &description.SampleDesc.Count, &description.SampleDesc.Quality);
 
 	return description;
 }

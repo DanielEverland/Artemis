@@ -10,7 +10,7 @@ public:
 	ComPtr<ID3D11DepthStencilView> GetRawStencilView() const;
 
 protected:
-	virtual D3D11_TEXTURE2D_DESC GetDescription();
+	D3D11_TEXTURE2D_DESC GetDescription() override;
 
 private:
 	void CreateStencilView();

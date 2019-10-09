@@ -31,15 +31,35 @@ inline void DirectXLogError(const string& text)
 {
 	Output::LogError("DirectX: " + text);
 }
+inline void DirectXLogError(const wchar_t* text)
+{
+	Output::LogError("DirectX: ");
+	Output::Log(text);
+}
 inline void DirectXLogWarning(const string& text)
 {
 	Output::LogWarning("DirectX: " + text);
+}
+inline void DirectXLogWarning(const wchar_t* text)
+{
+	Output::LogWarning("DirectX: ");
+	Output::Log(text);
 }
 inline void DirectXLogLine(const string& text)
 {
 	Output::LogLine("DirectX: " + text);
 }
+inline void DirectXLogLine(const wchar_t* text)
+{
+	Output::Log("DirectX: ");
+	Output::LogLine(text);
+}
 inline void DirectXLog(const string& text)
 {
 	Output::Log("DirectX: " + text);
+}
+inline void DirectXLog(const wchar_t* text)
+{
+	Output::Log("DirectX: ");
+	Output::Log(text);
 }

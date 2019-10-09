@@ -140,8 +140,5 @@ void GraphicsDevice::OutputGraphicsAdapter() const
 	DXGI_ADAPTER_DESC description;
 	ThrowIfFailed(adapter->GetDesc(&description));
 
-	std::wstring wDescription(description.Description);
-	std::string normalDescriptionString(wDescription.begin(), wDescription.end());
-
-	DirectXLogLine(normalDescriptionString);
+	Output::LogLine(description.Description);
 }

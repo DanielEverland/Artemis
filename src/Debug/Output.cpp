@@ -33,10 +33,22 @@ void Output::LogError(const string& text)
 	LogLineToVS(errorText);
 }
 
+void Output::LogError(const wchar_t* text)
+{
+	LogToVS("Error: ");
+	LogLineToVS(text);
+}
+
 void Output::LogWarning(const string& text)
 {
 	string warningText = "Warning: " + string(text);
 	LogLineToVS(warningText);
+}
+
+void Output::LogWarning(const wchar_t* text)
+{
+	LogToVS("Warning: ");
+	LogLineToVS(text);
 }
 
 //-------------------------------------------------------------------------------------------------------------
@@ -69,6 +81,11 @@ void Output::LogLine(double value)
 }
 
 void Output::LogLine(const string& text)
+{
+	LogLineToVS(text);
+}
+
+void Output::LogLine(const wchar_t* text)
 {
 	LogLineToVS(text);
 }
@@ -107,6 +124,11 @@ void Output::Log(const string& text)
 	LogToVS(text);
 }
 
+void Output::Log(const wchar_t* text)
+{
+	LogToVS(text);
+}
+
 //-------------------------------------------------------------------------------------------------------------
 //------------------------------------------------ROOT---------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
@@ -115,9 +137,18 @@ void Output::LogToVS(const string& text)
 {
 	OutputDebugString(text.c_str());
 }
+void Output::LogToVS(const wchar_t* text)
+{
+	OutputDebugStringW(text);
+}
 
 void Output::LogLineToVS(const string& text)
 {
 	string newLineString = string(text) + "\n";
 	OutputDebugString(newLineString.c_str());
+}
+void Output::LogLineToVS(const wchar_t* text)
+{
+	OutputDebugStringW(text);
+	OutputDebugString("\n");
 }

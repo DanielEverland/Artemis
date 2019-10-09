@@ -33,7 +33,6 @@ private:
 	ComPtr<IDXGISwapChain> swapChain;
 #pragma warning(default : 26812)
 
-	static void SetMSAASettings(DXGI_SWAP_CHAIN_DESC* const description, const shared_ptr<const GraphicsDevice> graphicsDevice);
 	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice);
 	static ComPtr<IDXGIFactory> GetFactory(const shared_ptr<const GraphicsDevice> graphicsDevice);
 	static DXGI_RATIONAL GetRefreshRate();	

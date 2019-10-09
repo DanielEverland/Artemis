@@ -31,10 +31,12 @@ private:
 	UINT height;
 	UINT mipmapLevel;
 	
+#pragma warning(disable : 26812)
 	static const UINT DefaultMiscFlags = 0;
 	static const UINT DefaultBindFlags = D3D11_BIND_DEPTH_STENCIL;
 	static const UINT DefaultCPUAccessFlag = 0;
 	static const UINT DefaultArraySize = 1;
 	static const DXGI_FORMAT DefaultFormat = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	static const D3D11_USAGE DefaultUsage = D3D11_USAGE_DEFAULT;
+#pragma warning(default : 26812)
 };

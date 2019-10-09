@@ -316,12 +316,12 @@ void GameWindow::CreateWindowClass() const
 	windowClass.cbClsExtra = 0;
 	windowClass.cbWndExtra = 0;
 	windowClass.hInstance = handleInstance;
-	windowClass.hIcon = ::LoadIcon(handleInstance, NULL);
+	windowClass.hIcon = ::LoadIcon(handleInstance, IDI_APPLICATION);
+	windowClass.hIconSm = ::LoadIcon(handleInstance, IDI_APPLICATION);
 	windowClass.hCursor = ::LoadCursor(nullptr, IDC_ARROW);
 	windowClass.hbrBackground = Color(BackgroundColor);
 	windowClass.lpszMenuName = nullptr;
 	windowClass.lpszClassName = className;
-	windowClass.hIconSm = ::LoadIcon(handleInstance, nullptr);
 
 	static ATOM atom = ::RegisterClassExW(&windowClass);
 	assert(atom > 0);

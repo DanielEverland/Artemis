@@ -140,5 +140,5 @@ void GraphicsDevice::OutputGraphicsAdapter() const
 	DXGI_ADAPTER_DESC description;
 	ThrowIfFailed(adapter->GetDesc(&description));
 
-	Output::LogLine(description.Description);
+	DirectXLogLine(description.Description);
 }

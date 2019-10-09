@@ -93,9 +93,6 @@
     <ClCompile Include="src\Exceptions\Exception.cpp">
       <Filter>Source Files\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="src\Direct X\CommandQueue.cpp">
-      <Filter>Source Files\Direct X</Filter>
-    </ClCompile>
     <ClCompile Include="src\Direct X\GraphicsDevice.cpp">
       <Filter>Source Files\Direct X</Filter>
     </ClCompile>
@@ -145,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="src\Exceptions\Exceptions.h">
       <Filter>Header Files\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Direct X\CommandQueue.h">
-      <Filter>Header Files\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="src\Direct X\GraphicsDevice.h">
       <Filter>Header Files\Direct X</Filter>

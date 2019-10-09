@@ -15,7 +15,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Direct X\CommandQueue.cpp" />
     <ClCompile Include="src\Direct X\DepthBuffer.cpp" />
     <ClCompile Include="src\Direct X\GraphicsDevice.cpp" />
     <ClCompile Include="src\Direct X\GraphicsResource.cpp" />
@@ -34,7 +33,6 @@
     <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Direct X\CommandQueue.h" />
     <ClInclude Include="src\Direct X\DepthBuffer.h" />
     <ClInclude Include="src\Direct X\DirectXHelper.h" />
     <ClInclude Include="src\Direct X\GraphicsDevice.h" />

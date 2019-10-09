@@ -12,7 +12,6 @@
 #include <chrono>
 
 #include "Window.h"
-#include "..\\Direct X\CommandQueue.h"
 #include "..\\Direct X\GraphicsDevice.h"
 #include "..\\Direct X\SwapChain.h"
 #include "..\\Direct X\DepthBuffer.h"

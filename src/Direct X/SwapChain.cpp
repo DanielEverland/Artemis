@@ -14,10 +14,17 @@ SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, 
 		&description,
 		&swapChain));
 }
+
+void SwapChain::Present() const
+{
+	ThrowIfFailed(swapChain->Present(0, 0));
+}
+
 ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const
 {
 	return swapChain;
 }
+
 DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
 	DXGI_MODE_DESC bufferDescription

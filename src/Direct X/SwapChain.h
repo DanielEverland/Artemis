@@ -18,6 +18,7 @@ public:
 	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice);
 
 	ComPtr<IDXGISwapChain> GetRawSwapChain() const;
+	void Present() const;
 
 private:
 #pragma warning(disable : 26812)

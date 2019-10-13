@@ -8,6 +8,7 @@ public:
 	explicit DepthBuffer(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice);
 
 	ComPtr<ID3D11DepthStencilView> GetRawStencilView() const;
+	void Clear() const;
 
 protected:
 	D3D11_TEXTURE2D_DESC GetDescription() override;

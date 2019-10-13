@@ -31,3 +31,8 @@ ComPtr<ID3D11DepthStencilView> DepthBuffer::GetRawStencilView() const
 {
 	return stencilView;
 }
+
+void DepthBuffer::Clear() const
+{
+	GetGraphicsDevice()->GetRawContext()->ClearDepthStencilView(stencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+}

@@ -58,6 +58,7 @@ namespace ArtemisWindow
 		bool vSync = true;
 		bool tearingSupported = false;
 		bool fullscreen = false;
+		float rawBackBufferColor[4] = {};
 
 		shared_ptr<GraphicsDevice> graphicsDevice;
 		shared_ptr<SwapChain> swapChain;
@@ -94,5 +95,6 @@ namespace ArtemisWindow
 		void InitializeDirectX();
 		void CreateDirectXObjects();
 		void CreateViewport();
+		void CreateRawBackBufferColor();
 	};
 }

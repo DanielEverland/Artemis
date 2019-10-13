@@ -69,7 +69,12 @@ void GameWindow::Update()
 
 void GameWindow::Render()
 {
-	// DX12 Snip
+	ComPtr<ID3D11DeviceContext> rawContext = graphicsDevice->GetRawContext();
+
+	rawContext->ClearRenderTargetView(renderTargetView->GetRawRenderTargetView().Get(), reinterpret_cast<const float*>(&rawBackBufferColor));
+	rawContext->ClearDepthStencilView(depthBuffer->GetRawStencilView().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+	ThrowIfFailed(swapChain->GetRawSwapChain()->Present(0, 0));
 }
 
 void GameWindow::SetFullscreen(bool newFullscreenState)
@@ -201,8 +206,14 @@ void GameWindow::InitializeDirectX()
 	
 	CreateDirectXObjects();
 	CreateViewport();
+	CreateRawBackBufferColor();
 
 	directXInitialized = true;
+}
+
+void GameWindow::CreateRawBackBufferColor()
+{
+	BackbufferColor.ToFloat(rawBackBufferColor);
 }
 
 void GameWindow::CreateDirectXObjects()

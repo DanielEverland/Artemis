@@ -26,6 +26,14 @@ void Texture2D::CreateTextureResource()
 	CreateTextureResource(description);
 }
 
+void Texture2D::Resize(UINT width, UINT height)
+{
+	this->width = width;
+	this->height = height;
+
+	CreateTextureResource();
+}
+
 void Texture2D::CreateTextureResource(D3D11_TEXTURE2D_DESC description)
 {
 	const shared_ptr<const GraphicsDevice> graphicsDevice = GetGraphicsDevice();

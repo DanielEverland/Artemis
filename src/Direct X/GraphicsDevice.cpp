@@ -27,6 +27,11 @@ GraphicsDevice::GraphicsDevice()
 	CreateDeviceObject();
 }
 
+void GraphicsDevice::CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backBuffer, ComPtr<ID3D11RenderTargetView>& renderTargetView) const
+{
+	ThrowIfFailed(device->CreateRenderTargetView(backBuffer.Get(), 0, &renderTargetView));
+}
+
 ComPtr<ID3D11Device> GraphicsDevice::GetRawDevice() const
 {
 	return device;

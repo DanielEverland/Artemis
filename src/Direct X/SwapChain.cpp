@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "SwapChain.h"
 #include "DirectXHelper.h"
 
@@ -15,9 +17,24 @@ SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, 
 		&swapChain));
 }
 
+void SwapChain::GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const
+{
+	ThrowIfFailed(swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(backBuffer.GetAddressOf())));
+}
+
 void SwapChain::Present() const
 {
 	ThrowIfFailed(swapChain->Present(0, 0));
+}
+
+void SwapChain::Resize(UINT width, UINT height) const
+{
+	ThrowIfFailed(swapChain->ResizeBuffers(BufferCount, width, height, PixelFormat, Flags));
+}
+
+void SwapChain::Release() const
+{
+	swapChain->Release();
 }
 
 ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const

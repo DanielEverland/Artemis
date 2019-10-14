@@ -19,6 +19,7 @@ public:
 	ComPtr<ID3D11DeviceContext> GetRawContext() const;
 
 	void GetMSAASupport(DXGI_FORMAT format, UINT* sampleCount, UINT* quality) const;
+	void CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backBuffer, ComPtr<ID3D11RenderTargetView>& renderTargetView) const;
 
 private:
 #pragma warning(disable : 26812)

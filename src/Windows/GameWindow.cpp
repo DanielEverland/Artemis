@@ -97,8 +97,14 @@ void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
 	{
 		width = std::max(1u, newWidth);
 		height = std::max(1u, newHeight);
+		
+		renderTargetView->Reset();
 
-		// DX12 Snip
+		swapChain->Resize(width, height);
+		renderTargetView->CreateBackBuffer();
+		depthBuffer->Resize(width, height);
+		
+		CreateViewport();
 	}
 }
 

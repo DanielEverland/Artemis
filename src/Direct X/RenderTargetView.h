@@ -20,8 +20,14 @@ public:
 
 	ComPtr<ID3D11RenderTargetView> GetRawRenderTargetView() const;
 	void Clear(const float* clearColor) const;
+	void Reset();
+	void CreateBackBuffer();
 
 private:
+	const shared_ptr<const SwapChain> GetSwapChain() const;
+
+	weak_ptr<const SwapChain> swapChain;
+
 	ComPtr<ID3D11RenderTargetView> renderTargetView;
 	ComPtr<ID3D11Texture2D> backBuffer;
 };

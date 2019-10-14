@@ -19,6 +19,9 @@ public:
 
 	ComPtr<IDXGISwapChain> GetRawSwapChain() const;
 	void Present() const;
+	void Resize(UINT width, UINT height) const;
+	void GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const;
+	void Release() const;
 
 private:
 #pragma warning(disable : 26812)

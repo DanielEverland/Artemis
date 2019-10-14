@@ -9,6 +9,7 @@ public:
 
 	ComPtr<ID3D11DepthStencilView> GetRawStencilView() const;
 	void Clear() const;
+	void Resize(UINT width, UINT height);
 
 protected:
 	D3D11_TEXTURE2D_DESC GetDescription() override;

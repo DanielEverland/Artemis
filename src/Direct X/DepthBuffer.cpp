@@ -14,6 +14,13 @@ void DepthBuffer::CreateStencilView()
 	ThrowIfFailed(graphicsDevice->GetRawDevice()->CreateDepthStencilView(textureResource.Get(), 0, &stencilView));
 }
 
+void DepthBuffer::Resize(UINT width, UINT height)
+{
+	Texture2D::Resize(width, height);
+
+	CreateStencilView();
+}
+
 D3D11_TEXTURE2D_DESC DepthBuffer::GetDescription()
 {
 	D3D11_TEXTURE2D_DESC description = Texture2D::GetDescription();

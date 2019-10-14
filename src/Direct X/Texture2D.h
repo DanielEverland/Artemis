@@ -23,6 +23,7 @@ protected:
 
 	void CreateTextureResource();
 	void CreateTextureResource(D3D11_TEXTURE2D_DESC description);
+	void Resize(UINT width, UINT height);
 
 	ComPtr<ID3D11Texture2D> textureResource;
 

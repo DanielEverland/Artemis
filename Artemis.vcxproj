@@ -21,6 +21,7 @@
     <ClCompile Include="src\Direct X\RenderTargetView.cpp" />
     <ClCompile Include="src\Direct X\SwapChain.cpp" />
     <ClCompile Include="src\Direct X\Texture2D.cpp" />
+    <ClCompile Include="src\Engine\Application.cpp" />
     <ClCompile Include="src\Exceptions\Exception.cpp" />
     <ClCompile Include="src\Debug\Output.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="src\Direct X\RenderTargetView.h" />
     <ClInclude Include="src\Direct X\SwapChain.h" />
     <ClInclude Include="src\Direct X\Texture2D.h" />
+    <ClInclude Include="src\Engine\Application.h" />
     <ClInclude Include="src\Exceptions\DirectXException.h" />
     <ClInclude Include="src\Exceptions\Exceptions.h" />
     <ClInclude Include="src\Debug\Output.h" />

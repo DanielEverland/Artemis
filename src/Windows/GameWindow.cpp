@@ -10,6 +10,7 @@
 #include "..\\Input\Key.h"
 #include "..\\Input\Input.h"
 #include "..\\Exceptions\Exceptions.h"
+#include "..\\Engine\Application.h"
 
 using ArtemisWindow::GameWindow;
 using std::string;
@@ -115,7 +116,7 @@ void GameWindow::ToggleFullscreen()
 
 void GameWindow::ToggleVSync()
 {
-	vSync = !vSync;
+	Application::SetVSync(!Application::GetVSync());
 }
 
 void GameWindow::SwitchToFullscreen()

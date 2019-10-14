@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Direct X">
       <UniqueIdentifier>{74e1c7d7-6ea1-4733-8c03-49b0175a0d03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{ed6fcd54-13f0-4612-b8ef-64df588db309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{805af0f7-1e85-43e7-9cc5-354c33c6d37f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main\main.cpp">
@@ -110,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="src\Direct X\DepthBuffer.cpp">
       <Filter>Source Files\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Application.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="src\Exceptions\InvalidArgumentException.h">
       <Filter>Header Files\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Application.h">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

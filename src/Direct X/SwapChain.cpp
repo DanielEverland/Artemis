@@ -4,6 +4,7 @@
 #include "DirectXHelper.h"
 
 #include "..\Exceptions\DirectXException.h"
+#include "..\Engine\Application.h"
 
 SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
@@ -24,7 +25,7 @@ void SwapChain::GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const
 
 void SwapChain::Present() const
 {
-	ThrowIfFailed(swapChain->Present(0, 0));
+	ThrowIfFailed(swapChain->Present(Application::GetVSync(), 0));
 }
 
 void SwapChain::Resize(UINT width, UINT height) const

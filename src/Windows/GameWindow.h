@@ -55,7 +55,6 @@ namespace ArtemisWindow
 
 		RECT previousWindowRect;
 
-		bool tearingSupported = false;
 		bool fullscreen = false;
 		float rawBackBufferColor[4] = {};
 

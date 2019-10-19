@@ -67,6 +67,12 @@
     <Filter Include="Source Files\Engine">
       <UniqueIdentifier>{805af0f7-1e85-43e7-9cc5-354c33c6d37f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Math">
+      <UniqueIdentifier>{3b9dd28f-0960-441f-9e02-079e24d37a52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Math">
+      <UniqueIdentifier>{dcbd9b87-8262-4353-84b2-701971f96e49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main\main.cpp">
@@ -119,6 +125,21 @@
     </ClCompile>
     <ClCompile Include="src\Engine\Application.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\MatrixBase.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\VectorBase.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\DoubleVector3.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\Vector3Base.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\FloatVector3.cpp">
+      <Filter>Header Files\Engine\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +205,27 @@
     </ClInclude>
     <ClInclude Include="src\Engine\Application.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\MatrixBase.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\VectorBase.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\DoubleVector3.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\FloatVector3.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Vector3.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vector3Base.h">
+      <Filter>Header Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\DivideByZeroException.h">
+      <Filter>Header Files\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

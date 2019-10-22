@@ -8,19 +8,19 @@
 using ArtemisEngine::Math::VectorBase;
 
 template<class T, unsigned int dimensions>
-T& VectorBase<T, dimensions>::SqrMagnitude() const
+T& VectorBase<T, dimensions>::GetSqrMagnitude() const
 {
-	return DotProduct(this, this);
+	return GetDotProduct(this, this);
 }
 
 template<class T, unsigned int dimensions>
-T& VectorBase<T, dimensions>::Magnitude() const
+T& VectorBase<T, dimensions>::GetMagnitude() const
 {
-	return std::sqrt(SqrMagnitude());
+	return std::sqrt(GetSqrMagnitude());
 }
 
 template<class T, unsigned int dimensions>
-T& VectorBase<T, dimensions>::DotProduct(VectorBase& a, VectorBase& b)
+T& VectorBase<T, dimensions>::GetDotProduct(VectorBase& a, VectorBase& b)
 {
 	T value;
 
@@ -33,7 +33,7 @@ T& VectorBase<T, dimensions>::DotProduct(VectorBase& a, VectorBase& b)
 template<class T, unsigned int dimensions>
 VectorBase<T, dimensions>& VectorBase<T, dimensions>::Normalized() const
 {
-	T length = Magnitude();
+	T length = GetMagnitude();
 
 	if (length == 0)
 		throw DivideByZeroException("Unable to get unit vector of vector with length 0");

@@ -21,7 +21,7 @@ namespace ArtemisEngine
 			T z;
 
 			// Returns cross product of two vectors
-			static Vector3Base& CrossProduct(Vector3Base& a, Vector3Base& b);
+			static Vector3Base& GetCrossProduct(Vector3Base& a, Vector3Base& b);
 		};
 	}
 }

@@ -12,13 +12,13 @@ namespace ArtemisEngine
 
 			// Returns the dot product of two vectors.
 			// Value can be between -1 and 1
-			static T& DotProduct(VectorBase& a, VectorBase& b);
+			static T& GetDotProduct(VectorBase& a, VectorBase& b);
 
 			// Returns squared length of vector.
-			T& SqrMagnitude() const;
+			T& GetSqrMagnitude() const;
 
 			// Returns length of vector.
-			T& Magnitude() const;
+			T& GetMagnitude() const;
 
 			// Returns a unit vector
 			VectorBase& Normalized() const;

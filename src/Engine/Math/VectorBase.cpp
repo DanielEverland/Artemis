@@ -45,3 +45,78 @@ VectorBase<T, dimensions>& VectorBase<T, dimensions>::Normalized() const
 
 	return newVector;
 }
+
+// --------------------------------------------------- //
+// ----------------- SCALAR ADDITION ----------------- //
+// --------------------------------------------------- //
+template<class T, unsigned int dimensions>
+template<class TValue>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator+(TValue value)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] + value;
+
+	return this;
+}
+template<class T, unsigned int dimensions>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator+(VectorBase<T, dimensions>& vector)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] + vector[i];
+
+	return this;
+}
+
+template<class T, unsigned int dimensions>
+template<class TValue>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator-(TValue value)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] - value;
+
+	return this;
+}
+template<class T, unsigned int dimensions>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator-(VectorBase<T, dimensions>& vector)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] - vector[i];
+
+	return this;
+}
+
+template<class T, unsigned int dimensions>
+template<class TValue>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator*(TValue value)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] * value;
+
+	return this;
+}
+template<class T, unsigned int dimensions>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator*(VectorBase<T, dimensions>& vector)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] * vector[i];
+
+	return this;
+}
+
+template<class T, unsigned int dimensions>
+template<class TValue>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator/(TValue value)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] / value;
+
+	return this;
+}
+template<class T, unsigned int dimensions>
+VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator/(VectorBase<T, dimensions>& vector)
+{
+	for (int i = 0; i < dimensions; i++)
+		this[i] / vector[i];
+
+	return this;
+}

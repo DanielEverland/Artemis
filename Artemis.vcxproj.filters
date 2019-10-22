@@ -139,7 +139,7 @@
       <Filter>Source Files\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Math\FloatVector3.cpp">
-      <Filter>Header Files\Engine\Math</Filter>
+      <Filter>Source Files\Engine\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

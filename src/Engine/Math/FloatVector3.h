@@ -8,9 +8,6 @@ namespace ArtemisEngine
 	{
 		struct FloatVector3 : public Vector3Base<float>
 		{
-		public:
-			FloatVector3(int x, int y);
-			FloatVector3(int x, int y, int z);
 		};
 	}
 }

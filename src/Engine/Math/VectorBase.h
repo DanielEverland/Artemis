@@ -10,6 +10,10 @@ namespace ArtemisEngine
 		public:
 			virtual T& operator[](int index) const = 0;
 
+			// Returns the dot product of two vectors.
+			// Value can be between -1 and 1
+			static T& DotProduct(VectorBase& a, VectorBase& b);
+
 			// Returns squared length of vector.
 			T& SqrMagnitude() const;
 
@@ -19,9 +23,21 @@ namespace ArtemisEngine
 			// Returns a unit vector
 			VectorBase& Normalized() const;
 
-			// Returns the dot product of two vectors.
-			// Value can be between -1 and 1
-			static T& DotProduct(VectorBase& a, VectorBase& b);
+			template<class TValue>
+			VectorBase& operator+(TValue value);
+			VectorBase& operator+(VectorBase& vector);
+
+			template<class TValue>
+			VectorBase& operator-(TValue value);
+			VectorBase& operator-(VectorBase& vector);
+
+			template<class TValue>
+			VectorBase& operator*(TValue value);
+			VectorBase& operator*(VectorBase& vector);
+
+			template<class TValue>
+			VectorBase& operator/(TValue value);
+			VectorBase& operator/(VectorBase& vector);
 		};
 	}	
 }

@@ -50,7 +50,7 @@ T& Vector3Base<T>::operator[](int index) const
 }
 
 template<class T>
-Vector3Base<T>& Vector3Base<T>::CrossProduct(Vector3Base& a, Vector3Base& b)
+Vector3Base<T>& Vector3Base<T>::GetCrossProduct(Vector3Base& a, Vector3Base& b)
 {
 	return Vector3Base<T>(
 		a.y * b.z - a.z * b.y,

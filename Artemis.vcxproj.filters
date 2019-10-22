@@ -70,12 +70,6 @@
     <ClCompile Include="src\Engine\Math\VectorBase.cpp">
       <Filter>Source\Engine\Math</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Math\DoubleVector3.cpp">
-      <Filter>Source\Engine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Math\FloatVector3.cpp">
-      <Filter>Source\Engine\Math</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Math\MatrixBase.cpp">
       <Filter>Source\Engine\Math</Filter>
     </ClCompile>

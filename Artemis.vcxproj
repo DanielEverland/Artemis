@@ -22,8 +22,6 @@
     <ClCompile Include="src\Direct X\SwapChain.cpp" />
     <ClCompile Include="src\Direct X\Texture2D.cpp" />
     <ClCompile Include="src\Engine\Application.cpp" />
-    <ClCompile Include="src\Engine\Math\DoubleVector3.cpp" />
-    <ClCompile Include="src\Engine\Math\FloatVector3.cpp" />
     <ClCompile Include="src\Engine\Math\MatrixBase.cpp" />
     <ClCompile Include="src\Engine\Math\Vector3Base.cpp" />
     <ClCompile Include="src\Engine\Math\VectorBase.cpp" />

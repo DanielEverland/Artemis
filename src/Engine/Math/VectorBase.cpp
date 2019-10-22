@@ -46,9 +46,6 @@ VectorBase<T, dimensions>& VectorBase<T, dimensions>::Normalized() const
 	return newVector;
 }
 
-// --------------------------------------------------- //
-// ----------------- SCALAR ADDITION ----------------- //
-// --------------------------------------------------- //
 template<class T, unsigned int dimensions>
 template<class TValue>
 VectorBase<T, dimensions>& VectorBase<T, dimensions>::operator+(TValue value)

@@ -207,5 +207,17 @@
     <ClInclude Include="src\Engine\Vector4.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\IntVector2.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\IntVector3.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\FloatVector2.h">
+      <Filter>Source\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\FloatVector4.h">
+      <Filter>Source\Engine\Math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 using namespace ArtemisEngine::Math;
 
 template<class T>
-T& Vector4<T>::operator[](int index) const
+T& Vector4Base<T>::operator[](int index) const
 {
 	if (index == 0)
 	{
@@ -30,7 +30,7 @@ T& Vector4<T>::operator[](int index) const
 }
 
 template<class T>
-Vector4<T>::Vector4()
+Vector4Base<T>::Vector4Base()
 {
 	this->x = 0;
 	this->y = 0;
@@ -39,7 +39,7 @@ Vector4<T>::Vector4()
 }
 
 template<class T>
-Vector4<T>::Vector4(T x, T y)
+Vector4Base<T>::Vector4Base(T x, T y)
 {
 	this->x = x;
 	this->y = y;
@@ -48,7 +48,7 @@ Vector4<T>::Vector4(T x, T y)
 }
 
 template<class T>
-Vector4<T>::Vector4(T x, T y, T z)
+Vector4Base<T>::Vector4Base(T x, T y, T z)
 {
 	this->x = x;
 	this->y = y;
@@ -57,7 +57,7 @@ Vector4<T>::Vector4(T x, T y, T z)
 }
 
 template<class T>
-Vector4<T>::Vector4(T x, T y, T z, T w)
+Vector4Base<T>::Vector4Base(T x, T y, T z, T w)
 {
 	this->x = x;
 	this->y = y;

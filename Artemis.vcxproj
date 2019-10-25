@@ -47,10 +47,14 @@
     <ClInclude Include="src\Direct X\SwapChain.h" />
     <ClInclude Include="src\Direct X\Texture2D.h" />
     <ClInclude Include="src\Engine\Application.h" />
+    <ClInclude Include="src\Engine\IntVector2.h" />
+    <ClInclude Include="src\Engine\IntVector3.h" />
     <ClInclude Include="src\Engine\Math\DoubleVector2.h" />
     <ClInclude Include="src\Engine\Math\DoubleVector3.h" />
     <ClInclude Include="src\Engine\Math\DoubleVector4.h" />
+    <ClInclude Include="src\Engine\Math\FloatVector2.h" />
     <ClInclude Include="src\Engine\Math\FloatVector3.h" />
+    <ClInclude Include="src\Engine\Math\FloatVector4.h" />
     <ClInclude Include="src\Engine\Math\MatrixBase.h" />
     <ClInclude Include="src\Engine\Math\Vector2Base.h" />
     <ClInclude Include="src\Engine\Math\Vector3Base.h" />

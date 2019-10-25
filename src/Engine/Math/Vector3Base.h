@@ -7,7 +7,7 @@ namespace ArtemisEngine
 	namespace Math
 	{
 		template<class T>
-		struct Vector3Base : VectorBase<T, 3>
+		struct Vector3Base : protected VectorBase<T, 3>
 		{
 		public:
 			Vector3Base();

@@ -1,7 +1,7 @@
 #include <Exceptions/InvalidArgumentException.h>
 #include "Vector2Base.h"
 
-using namespace ArtemisEngine::Math;
+using namespace ArtemisEngine::Math::Vectors;
 
 template<class T>
 Vector2Base<T>::Vector2Base()

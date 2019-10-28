@@ -35,6 +35,9 @@
     <Filter Include="Source\Engine\Math">
       <UniqueIdentifier>{3b9dd28f-0960-441f-9e02-079e24d37a52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Math\Vectors">
+      <UniqueIdentifier>{d68d907a-ff57-4351-9bd9-3ae2fc750394}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Windows\GameWindow.cpp">
@@ -67,13 +70,7 @@
     <ClCompile Include="src\Engine\Application.cpp">
       <Filter>Source\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Math\VectorBase.cpp">
-      <Filter>Source\Engine\Math</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Math\MatrixBase.cpp">
-      <Filter>Source\Engine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Math\Vector3Base.cpp">
       <Filter>Source\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\Direct X\Texture2D.cpp">
@@ -97,11 +94,17 @@
     <ClCompile Include="src\Debug\Output.cpp">
       <Filter>Source\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Math\Vector2Base.cpp">
-      <Filter>Source\Engine\Math</Filter>
+    <ClCompile Include="src\Engine\Math\Vectors\Vector2Base.cpp">
+      <Filter>Source\Engine\Math\Vectors</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Math\Vector4Base.cpp">
-      <Filter>Source\Engine\Math</Filter>
+    <ClCompile Include="src\Engine\Math\Vectors\Vector3Base.cpp">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\Vectors\Vector4Base.cpp">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\Vectors\VectorBase.cpp">
+      <Filter>Source\Engine\Math\Vectors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,20 +165,8 @@
     <ClInclude Include="src\Engine\Math\MatrixBase.h">
       <Filter>Source\Engine\Math</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Math\VectorBase.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Math\DoubleVector3.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Math\FloatVector3.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Vector3.h">
       <Filter>Source\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Math\Vector3Base.h">
-      <Filter>Source\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="src\Exceptions\DivideByZeroException.h">
       <Filter>Source\Exceptions</Filter>
@@ -189,20 +180,8 @@
     <ClInclude Include="src\Windows\WindowProcedure.h">
       <Filter>Source\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Math\Vector2Base.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Math\Vector4Base.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Vector2.h">
       <Filter>Source\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Math\DoubleVector2.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Math\DoubleVector4.h">
-      <Filter>Source\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Vector4.h">
       <Filter>Source\Engine</Filter>
@@ -213,11 +192,35 @@
     <ClInclude Include="src\Engine\IntVector3.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Math\FloatVector2.h">
-      <Filter>Source\Engine\Math</Filter>
+    <ClInclude Include="src\Engine\Math\Vectors\DoubleVector2.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Math\FloatVector4.h">
-      <Filter>Source\Engine\Math</Filter>
+    <ClInclude Include="src\Engine\Math\Vectors\DoubleVector3.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\DoubleVector4.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\FloatVector2.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\FloatVector3.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\FloatVector4.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\Vector2Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\Vector3Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\Vector4Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Vectors\VectorBase.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Math/Vector3Base.h"
+#include "Math/Vectors/Vector3Base.h"
 
-using namespace ArtemisEngine::Math;
+using namespace ArtemisEngine::Math::Vectors;
 
 struct IntVector3 : public Vector3Base<int>
 {

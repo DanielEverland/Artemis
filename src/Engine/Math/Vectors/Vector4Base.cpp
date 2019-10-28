@@ -1,7 +1,7 @@
 #include <Exceptions/InvalidArgumentException.h>
 #include "Vector4Base.h"
 
-using namespace ArtemisEngine::Math;
+using namespace ArtemisEngine::Math::Vectors;
 
 template<class T>
 T& Vector4Base<T>::operator[](int index) const

@@ -22,7 +22,7 @@
     <ClCompile Include="src\Direct X\SwapChain.cpp" />
     <ClCompile Include="src\Direct X\Texture2D.cpp" />
     <ClCompile Include="src\Engine\Application.cpp" />
-    <ClCompile Include="src\Engine\Math\MatrixBase.cpp" />
+    <ClCompile Include="src\Engine\Math\Matrices\MatrixBase.cpp" />
     <ClCompile Include="src\Engine\Math\Vectors\Vector2Base.cpp" />
     <ClCompile Include="src\Engine\Math\Vectors\Vector3Base.cpp" />
     <ClCompile Include="src\Engine\Math\Vectors\Vector4Base.cpp" />
@@ -49,7 +49,7 @@
     <ClInclude Include="src\Engine\Application.h" />
     <ClInclude Include="src\Engine\IntVector2.h" />
     <ClInclude Include="src\Engine\IntVector3.h" />
-    <ClInclude Include="src\Engine\Math\MatrixBase.h" />
+    <ClInclude Include="src\Engine\Math\Matrices\MatrixBase.h" />
     <ClInclude Include="src\Engine\Math\Vectors\DoubleVector2.h" />
     <ClInclude Include="src\Engine\Math\Vectors\DoubleVector3.h" />
     <ClInclude Include="src\Engine\Math\Vectors\DoubleVector4.h" />

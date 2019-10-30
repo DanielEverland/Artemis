@@ -38,6 +38,9 @@
     <Filter Include="Source\Engine\Math\Vectors">
       <UniqueIdentifier>{d68d907a-ff57-4351-9bd9-3ae2fc750394}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Math\Matrices">
+      <UniqueIdentifier>{d163c393-4dcb-4561-a062-211f7a4dae5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Windows\GameWindow.cpp">
@@ -69,9 +72,6 @@
     </ClCompile>
     <ClCompile Include="src\Engine\Application.cpp">
       <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Math\MatrixBase.cpp">
-      <Filter>Source\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\Direct X\Texture2D.cpp">
       <Filter>Source\Direct X</Filter>
@@ -105,6 +105,9 @@
     </ClCompile>
     <ClCompile Include="src\Engine\Math\Vectors\VectorBase.cpp">
       <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Math\Matrices\MatrixBase.cpp">
+      <Filter>Source\Engine\Math\Matrices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,9 +165,6 @@
     <ClInclude Include="src\Engine\Application.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Math\MatrixBase.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\Vector3.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
@@ -221,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="src\Engine\Math\Vectors\VectorBase.h">
       <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Matrices\MatrixBase.h">
+      <Filter>Source\Engine\Math\Matrices</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

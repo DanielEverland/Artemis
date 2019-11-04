@@ -2,21 +2,19 @@
 
 namespace ArtemisEngine::Math::Matrices
 {
-	template<class T, unsigned int rows, unsigned int columns>
 	class MatrixBase
 	{
 	public:
+		// Returns the dot product of two matrices
+		template<class T>
+		static T DotProduct(MatrixBase& a, MatrixBase& b, unsigned int aRow, unsigned int bColumn);
 
-		// Returns the transpose of this matrix.
-		// The transpose turns the columns and rows.
-		MatrixBase GetTranspose() const;
+	protected:
 
-		MatrixBase& operator+(MatrixBase& other);
+		template<class T>
+		T virtual GetValue(unsigned int i, unsigned int j) const = 0;
 
-		template<class TScalar>
-		MatrixBase& operator*(TScalar scalar);
-
-	private:
-		T values[rows, columns];
+		unsigned int virtual GetRows() const = 0;
+		unsigned int virtual GetColumns() const = 0;
 	};
 }

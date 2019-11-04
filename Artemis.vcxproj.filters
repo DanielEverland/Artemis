@@ -109,6 +109,9 @@
     <ClCompile Include="src\Engine\Math\Matrices\MatrixBase.cpp">
       <Filter>Source\Engine\Math\Matrices</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Math\Matrices\GenericMatrix.cpp">
+      <Filter>Source\Engine\Math\Matrices</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Structs\Color.h">
@@ -223,6 +226,9 @@
       <Filter>Source\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Math\Matrices\MatrixBase.h">
+      <Filter>Source\Engine\Math\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Math\Matrices\GenericMatrix.h">
       <Filter>Source\Engine\Math\Matrices</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,48 +1,21 @@
+#include <Exceptions/InvalidArgumentException.h>
 #include "MatrixBase.h"
 
 using namespace ArtemisEngine::Math::Matrices;
 
-template<class T, unsigned int rows, unsigned int columns>
-MatrixBase<T, rows, columns>& MatrixBase<T, rows, columns>::operator+(MatrixBase& other)
+template<class T>
+T MatrixBase::DotProduct(MatrixBase& a, MatrixBase& b, unsigned int aRow, unsigned int bColumn)
 {
-	for (unsigned int i = 0; i < rows; i++)
+	if (a.GetColumns() != b.GetRows())
+		throw InvalidArgumentException("Can't get dot product of two matrices. Matrix A column count should be equal to matrix B row count");
+
+	T value;
+	unsigned int length = a.GetColumns();
+
+	for (unsigned int i = 0; i < length; i++)
 	{
-		for (unsigned int j = 0; j < columns; j++)
-		{
-			this->values[i, j] += other.values[i, j];
-		}
+		value += a(aRow, i) * b(i, bColumn);
 	}
 
-	return this;
-}
-
-template<class T, unsigned int rows, unsigned int columns>
-template<class TScalar>
-MatrixBase<T, rows, columns>& MatrixBase<T, rows, columns>::operator*(TScalar scalar)
-{
-	for (unsigned int i = 0; i < rows; i++)
-	{
-		for (unsigned int j = 0; j < columns; j++)
-		{
-			this->values[i, j] *= scalar;
-		}
-	}
-
-	return this;
-}
-
-template<class T, unsigned int rows, unsigned int columns>
-MatrixBase<T, rows, columns> MatrixBase<T, rows, columns>::GetTranspose() const
-{
-	MatrixBase<T, columns, rows> transpose;
-
-	for (unsigned int i = 0; i < rows; i++)
-	{
-		for (unsigned int j = 0; j < columns; j++)
-		{
-			transpose->values[j, i] = this->values[i, j];
-		}
-	}
-
-	return transpose;
+	return value;
 }

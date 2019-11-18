@@ -1,31 +1,29 @@
 #pragma once
 
-#include "MatrixBase.h"
-
 namespace ArtemisEngine::Math::Matrices
 {
 	template<class T, unsigned int rows, unsigned int columns>
 	class GenericMatrix : public MatrixBase
 	{
 	public:
+		// Returns the dot product of two matrices
+		template<unsigned int otherRows, unsigned int otherColumns>
+		static T DotProduct(GenericMatrix& a, GenericMatrix<T, otherRows, otherColumns>& b, unsigned int aRow, unsigned int bColumn);
 
 		// Returns the transpose of this matrix.
 		// The transpose turns the columns and rows.
 		GenericMatrix GetTranspose() const;
 
-		GenericMatrix& operator+(MatrixBase& other);
+		template<unsigned int otherRows, unsigned int otherColumns>
+		GenericMatrix<T, columns, otherRows>& operator*(GenericMatrix<T, otherRows, otherColumns>& other);
 
-		MatrixBase& operator*(MatrixBase& other);
+		GenericMatrix& operator+(GenericMatrix& other);
+		GenericMatrix& operator-(GenericMatrix& other);
 
 		template<class TScalar>
 		GenericMatrix& operator*(TScalar scalar);
 
 	protected:
 		T values[rows, columns];
-
-		T operator()(unsigned int i, unsigned int j) const;
-
-		unsigned int GetRows() const override;
-		unsigned int GetColumns() const override;
 	};
 }

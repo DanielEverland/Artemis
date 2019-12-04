@@ -39,6 +39,7 @@
     <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Debug\IDebugStringReturner.h" />
     <ClInclude Include="src\Direct X\DepthBuffer.h" />
     <ClInclude Include="src\Direct X\DirectXHelper.h" />
     <ClInclude Include="src\Direct X\GraphicsDevice.h" />

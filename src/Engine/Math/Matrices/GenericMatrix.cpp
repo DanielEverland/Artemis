@@ -1,5 +1,5 @@
 #include <Exceptions/InvalidArgumentException.h>
-#include "GenericMatrix.h";
+#include "GenericMatrix.h"
 
 using namespace ArtemisEngine::Math::Matrices;
 
@@ -36,7 +36,7 @@ GenericMatrix<T, rows, columns>& GenericMatrix<T, rows, columns>::operator*(TSca
 template<class T, unsigned int rows, unsigned int columns>
 GenericMatrix<T, rows, columns> GenericMatrix<T, rows, columns>::GetTranspose() const
 {
-	MatrixBase<T, columns, rows> transpose;
+	GenericMatrix<T, columns, rows> transpose;
 
 	for (unsigned int i = 0; i < rows; i++)
 	{
@@ -65,7 +65,7 @@ GenericMatrix<T, columns, otherRows>& GenericMatrix<T, rows, columns>::operator*
 	{
 		for (unsigned int j = 0; j < newColumnCount; j++)
 		{
-			newMatrix[i, j] = MatrixBase::DotProduct(this, other, i, j);
+			newMatrix[i, j] = GenericMatrix::DotProduct(this, other, i, j);
 		}
 	}
 
@@ -94,10 +94,4 @@ GenericMatrix<T, rows, columns>& GenericMatrix<T, rows, columns>::operator-(Gene
 			this->values[i, j] -= other[i, j];
 		}
 	}
-}
-
-template<class T, unsigned int rows, unsigned int columns>
-T GenericMatrix<T, rows, columns>::GetValue(int i, int j) const
-{
-	return this->values[i, j];
 }

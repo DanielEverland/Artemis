@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <Debug/IDebugStringReturner.h>
 
 #include "..\\Exceptions\Exceptions.h"
 
@@ -12,11 +13,14 @@ public:
 	static void Space();
 
 	static void LogException(const Exception& e);
+	static void LogError(const IDebugStringReturner& stringReturner);
 	static void LogError(const string& text);
 	static void LogError(const wchar_t* text);
+	static void LogWarning(const IDebugStringReturner& stringReturner);
 	static void LogWarning(const string& text);
 	static void LogWarning(const wchar_t* text);
 
+	static void LogLine(const IDebugStringReturner& stringReturner);
 	static void LogLine(unsigned int value);
 	static void LogLine(unsigned short value);
 	static void LogLine(long long value);

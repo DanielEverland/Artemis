@@ -1,9 +1,11 @@
 #pragma once
 
+#include <Debug/IDebugStringReturner.h>
+
 namespace ArtemisEngine::Math::Matrices
 {
 	template<class T, unsigned int rows, unsigned int columns>
-	class GenericMatrix : public MatrixBase
+	class GenericMatrix
 	{
 	public:
 		// Returns the dot product of two matrices
@@ -22,8 +24,8 @@ namespace ArtemisEngine::Math::Matrices
 
 		template<class TScalar>
 		GenericMatrix& operator*(TScalar scalar);
-
-	protected:
-		T values[rows, columns];
+		
+	private:
+		T values[rows][columns] = { };
 	};
 }

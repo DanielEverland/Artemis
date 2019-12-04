@@ -27,6 +27,11 @@ void Output::LogException(const Exception& e)
 	Output::LogLine(str);
 }
 
+void Output::LogError(const IDebugStringReturner& stringReturner)
+{
+	LogError(stringReturner.ToString());
+}
+
 void Output::LogError(const string& text)
 {
 	string errorText = "Error: " + string(text);
@@ -37,6 +42,11 @@ void Output::LogError(const wchar_t* text)
 {
 	LogToVS("Error: ");
 	LogLineToVS(text);
+}
+
+void Output::LogWarning(const IDebugStringReturner& stringReturner)
+{
+	LogWarning(stringReturner.ToString());
 }
 
 void Output::LogWarning(const string& text)
@@ -54,6 +64,11 @@ void Output::LogWarning(const wchar_t* text)
 //-------------------------------------------------------------------------------------------------------------
 //----------------------------------------------LOG LINE-------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
+
+void Output::LogLine(const IDebugStringReturner& stringReturner)
+{
+	LogLine(stringReturner.ToString());
+}
 
 void Output::LogLine(unsigned int value)
 {

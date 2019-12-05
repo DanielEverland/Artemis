@@ -6,6 +6,7 @@
 #include "..\\Exceptions\Exception.h"
 
 using std::string;
+using ArtemisEngine::Debug::IDebugStringReturner;
 
 class Output
 {

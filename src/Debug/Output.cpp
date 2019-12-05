@@ -3,7 +3,8 @@
 #include <typeinfo>
 
 #include "Output.h"
-#include "..\\Exceptions\Exception.h"
+
+#include <Exceptions/Exception.h>
 
 void Output::Space()
 {

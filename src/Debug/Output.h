@@ -3,7 +3,7 @@
 #include <string>
 #include <Debug/IDebugStringReturner.h>
 
-#include "..\\Exceptions\Exceptions.h"
+#include "..\\Exceptions\Exception.h"
 
 using std::string;
 

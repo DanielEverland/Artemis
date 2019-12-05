@@ -3,7 +3,7 @@
 #include "..\Windows\GameWindow.h"
 
 #include "..\Time\Time.h"
-#include "..\\Exceptions\Exceptions.h"
+#include "..\\Exceptions\Exception.h"
 #include "..\\Debug\Output.h"
 
 using namespace ArtemisWindow;

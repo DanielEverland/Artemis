@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Exceptions.h"
+#include "Exception.h"
 
 class DivideByZeroException : public Exception
 {

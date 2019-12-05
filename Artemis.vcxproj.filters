@@ -94,16 +94,10 @@
     <ClCompile Include="src\Debug\Output.cpp">
       <Filter>Source\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Math\Vectors\Vector2Base.cpp">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Math\Vectors\Vector3Base.cpp">
       <Filter>Source\Engine\Math\Vectors</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Math\Vectors\Vector4Base.cpp">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Math\Vectors\VectorBase.cpp">
       <Filter>Source\Engine\Math\Vectors</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Math\Matrices\GenericMatrix.cpp">
@@ -128,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="src\Input\Key.h">
       <Filter>Source\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Exceptions\Exceptions.h">
-      <Filter>Source\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="src\Direct X\GraphicsDevice.h">
       <Filter>Source\Direct X</Filter>
@@ -227,6 +218,12 @@
     </ClInclude>
     <ClInclude Include="src\Debug\IDebugStringReturner.h">
       <Filter>Source\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\OutOfRangeException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\Exception.h">
+      <Filter>Source\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

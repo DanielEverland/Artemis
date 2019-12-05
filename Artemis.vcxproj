@@ -23,10 +23,8 @@
     <ClCompile Include="src\Direct X\Texture2D.cpp" />
     <ClCompile Include="src\Engine\Application.cpp" />
     <ClCompile Include="src\Engine\Math\Matrices\GenericMatrix.cpp" />
-    <ClCompile Include="src\Engine\Math\Vectors\Vector2Base.cpp" />
     <ClCompile Include="src\Engine\Math\Vectors\Vector3Base.cpp" />
     <ClCompile Include="src\Engine\Math\Vectors\Vector4Base.cpp" />
-    <ClCompile Include="src\Engine\Math\Vectors\VectorBase.cpp" />
     <ClCompile Include="src\Exceptions\Exception.cpp" />
     <ClCompile Include="src\Debug\Output.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
@@ -66,10 +64,11 @@
     <ClInclude Include="src\Engine\Vector4.h" />
     <ClInclude Include="src\Exceptions\DirectXException.h" />
     <ClInclude Include="src\Exceptions\DivideByZeroException.h" />
-    <ClInclude Include="src\Exceptions\Exceptions.h" />
+    <ClInclude Include="src\Exceptions\Exception.h" />
     <ClInclude Include="src\Debug\Output.h" />
     <ClInclude Include="src\Exceptions\InvalidArgumentException.h" />
     <ClInclude Include="src\Exceptions\NullReferenceException.h" />
+    <ClInclude Include="src\Exceptions\OutOfRangeException.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Input\Key.h" />
     <ClInclude Include="src\Main\ApplicationArguments.h" />

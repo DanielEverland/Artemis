@@ -9,7 +9,7 @@
 #include "..\\Debug\Output.h"
 #include "..\\Input\Key.h"
 #include "..\\Input\Input.h"
-#include "..\\Exceptions\Exceptions.h"
+#include "..\\Exceptions\Exception.h"
 #include "..\\Engine\Application.h"
 
 using ArtemisWindow::GameWindow;

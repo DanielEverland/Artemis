@@ -23,8 +23,6 @@
     <ClCompile Include="src\Direct X\Texture2D.cpp" />
     <ClCompile Include="src\Engine\Application.cpp" />
     <ClCompile Include="src\Engine\Math\Matrices\GenericMatrix.cpp" />
-    <ClCompile Include="src\Engine\Math\Vectors\Vector3Base.cpp" />
-    <ClCompile Include="src\Engine\Math\Vectors\Vector4Base.cpp" />
     <ClCompile Include="src\Exceptions\Exception.cpp" />
     <ClCompile Include="src\Debug\Output.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />

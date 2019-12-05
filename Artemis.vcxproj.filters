@@ -94,12 +94,6 @@
     <ClCompile Include="src\Debug\Output.cpp">
       <Filter>Source\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Math\Vectors\Vector3Base.cpp">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Math\Vectors\Vector4Base.cpp">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Math\Matrices\GenericMatrix.cpp">
       <Filter>Source\Engine\Math\Matrices</Filter>
     </ClCompile>

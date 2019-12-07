@@ -219,5 +219,8 @@
     <ClInclude Include="src\Exceptions\Exception.h">
       <Filter>Source\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Math\MathUtility.h">
+      <Filter>Source\Engine\Math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

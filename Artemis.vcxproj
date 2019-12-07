@@ -46,6 +46,7 @@
     <ClInclude Include="src\Engine\Application.h" />
     <ClInclude Include="src\Engine\IntVector2.h" />
     <ClInclude Include="src\Engine\IntVector3.h" />
+    <ClInclude Include="src\Engine\Math\MathUtility.h" />
     <ClInclude Include="src\Engine\Math\Matrices\GenericMatrix.h" />
     <ClInclude Include="src\Engine\Math\Vectors\DoubleVector2.h" />
     <ClInclude Include="src\Engine\Math\Vectors\DoubleVector3.h" />

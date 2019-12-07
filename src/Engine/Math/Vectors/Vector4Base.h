@@ -13,21 +13,21 @@ namespace ArtemisEngine::Math::Vectors
 		}
 		Vector4Base(T x, T y)
 		{
-			this[0] = x;
-			this[1] = y;
+			(*this)[0] = x;
+			(*this)[1] = y;
 		}
 		Vector4Base(T x, T y, T z)
 		{
-			this[0] = x;
-			this[1] = y;
-			this[2] = z;
+			(*this)[0] = x;
+			(*this)[1] = y;
+			(*this)[2] = z;
 		}
 		Vector4Base(T x, T y, T z, T w)
 		{
-			this[0] = x;
-			this[1] = y;
-			this[2] = z;
-			this[3] = w;
+			(*this)[0] = x;
+			(*this)[1] = y;
+			(*this)[2] = z;
+			(*this)[3] = w;
 		}
 	};
 }

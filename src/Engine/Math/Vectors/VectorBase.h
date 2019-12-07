@@ -3,10 +3,12 @@
 #include <algorithm>
 #include <cmath>
 #include <sstream>
+#include <utility>
 
 #include <Exceptions/OutOfRangeException.h>
 #include <Exceptions/DivideByZeroException.h>
 #include <Debug/IDebugStringReturner.h>
+#include <Engine/Math/MathUtility.h>
 
 using ArtemisEngine::Debug::IDebugStringReturner;
 
@@ -16,13 +18,49 @@ namespace ArtemisEngine::Math::Vectors
 	struct VectorBase : public IDebugStringReturner
 	{
 	public:
+
 		T operator[](int index) const;
 		T& operator[](int index);
 
-		// Returns the dot product of two vectors.
-		// Value can be between -1 and 1
-		static T GetDotProduct(VectorBase& a, VectorBase& b);
+		// Returns the algebraic dot product
+		static double GetAlgebraicDotProduct(const VectorBase& a, const VectorBase& b)
+		{
+			T value = 0;
 
+			for (int i = 0; i < dimensions; i++)
+				value += a[i] * b[i];
+
+			return value;
+		}
+
+		// Returns the angle between two vectors.
+		// This is the unsigned angle, and will always be less than 180.
+		static double GetAngle(const VectorBase& a, const VectorBase& b)
+		{
+			double dotProduct = GetAlgebraicDotProduct(a, b);
+			double aMagnitude = a.GetMagnitude();
+			double bMagnitude = b.GetMagnitude();
+
+			double magnitudeProduct = aMagnitude * bMagnitude;
+
+			double quotient = dotProduct / magnitudeProduct;
+
+			double radians = acos(quotient);
+
+			return radians * MathUtility::RadToDeg;
+		}
+
+		// Returns the dot product of two vectors.
+		// Value returned for normalized vector is in the interval [-1; 1]
+		static double GetDotProduct(const VectorBase& a, const VectorBase& b)
+		{
+			double magnitudeProduct = a.GetMagnitude() * b.GetMagnitude();
+			
+			double angleCosine = cos(GetAngle(a, b) * MathUtility::DegToRad);
+
+			return magnitudeProduct * angleCosine;
+		}
+		
 		// Returns squared length of vector.
 		T GetSqrMagnitude() const;
 
@@ -32,24 +70,24 @@ namespace ArtemisEngine::Math::Vectors
 		// Returns a unit vector
 		VectorBase Normalized() const;
 
-		template<class TValue>
-		VectorBase operator+(TValue value);
-		VectorBase operator+(VectorBase& vector);
+		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+		VectorBase operator+(const TValue value) const;
+		VectorBase operator+(const VectorBase& vector) const;
 
-		template<class TValue>
-		VectorBase operator-(TValue value);
-		VectorBase operator-(VectorBase& vector);
+		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+		VectorBase operator-(const TValue value) const;
+		VectorBase operator-(const VectorBase& vector) const;
 
-		template<class TValue>
-		VectorBase operator*(TValue value);
-		VectorBase operator*(VectorBase& vector);
+		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+		VectorBase operator*(const TValue value) const;
+		VectorBase operator*(const VectorBase& vector) const;
 
-		template<class TValue>
-		VectorBase operator/(TValue value);
-		VectorBase operator/(VectorBase& vector);
+		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+		VectorBase operator/(const TValue value) const;
+		VectorBase operator/(const VectorBase& vector) const;
 
 		virtual string ToString() const override;
-		
+
 	private:
 		bool IsIndexValid(int index) const;
 		string GetOutOfRangeExceptionText(int index) const;
@@ -60,7 +98,7 @@ namespace ArtemisEngine::Math::Vectors
 
 
 	template<class T, unsigned int dimensions>
-	inline T VectorBase<T, dimensions>::operator[](int index) const
+	T VectorBase<T, dimensions>::operator[](int index) const
 	{
 		if (IsIndexValid(index))
 		{
@@ -73,7 +111,7 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	inline T& VectorBase<T, dimensions>::operator[](int index)
+	T& VectorBase<T, dimensions>::operator[](int index)
 	{
 		if (IsIndexValid(index))
 		{
@@ -86,20 +124,14 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	inline static T VectorBase<T, dimensions>::GetDotProduct(VectorBase& a, VectorBase& b)
+	T VectorBase<T, dimensions>::GetSqrMagnitude() const
 	{
-		T value;
+		T value = 0;
 
-		for (int i = 0; i < dimensions; i++)
-			value = a[i] * b[i];
+		for (unsigned int i = 0; i < dimensions; i++)
+			value += values[i] * values[i];
 
-		return std::clamp(value, -1, 1);
-	}
-
-	template<class T, unsigned int dimensions>
-	inline T VectorBase<T, dimensions>::GetSqrMagnitude() const
-	{
-		return GetDotProduct(this, this);
+		return value;
 	}
 
 	template<class T, unsigned int dimensions>
@@ -109,91 +141,104 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	inline VectorBase<T, dimensions> VectorBase<T, dimensions>::Normalized() const
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::Normalized() const
 	{
 		T length = GetMagnitude();
 
 		if (length == 0)
 			throw DivideByZeroException("Unable to get unit vector of vector with length 0");
 
-		VectorBase newVector();
+		VectorBase<T, dimensions> newVector;
 
 		for (int i = 0; i < dimensions; i++)
-			newVector[i] = this[i] / length;
+			newVector[i] = values[i] / length;
 
 		return newVector;
 	}
 
 	template<class T, unsigned int dimensions>
-	template<class TValue>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator+(TValue value)
+	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator+(const TValue value) const
 	{
-		for (int i = 0; i < dimensions; i++)
-			this[i] + value;
+		VectorBase<T, dimensions> toReturn(*this);
 
-		return this;
+		for (int i = 0; i < dimensions; i++)
+			toReturn[i] += value;
+
+		return toReturn;
 	}
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator+(VectorBase<T, dimensions>& vector)
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator+(const VectorBase<T, dimensions>& vector) const
 	{
+		VectorBase<T, dimensions> toReturn(*this);
+
 		for (int i = 0; i < dimensions; i++)
-			this[i] + vector[i];
+			toReturn[i] += vector[i];
 
-		return this;
-	}
-
-	template<class T, unsigned int dimensions>
-	template<class TValue>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator-(TValue value)
-	{
-		for (int i = 0; i < dimensions; i++)
-			this[i] - value;
-
-		return this;
+		return toReturn;
 	}
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator-(VectorBase<T, dimensions>& vector)
+	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator-(const TValue value) const
 	{
+		VectorBase<T, dimensions> toReturn(*this);
+
 		for (int i = 0; i < dimensions; i++)
-			this[i] - vector[i];
+			toReturn[i] -= value;
 
-		return this;
-	}
-
-	template<class T, unsigned int dimensions>
-	template<class TValue>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator*(TValue value)
-	{
-		for (int i = 0; i < dimensions; i++)
-			this[i] * value;
-
-		return this;
+		return toReturn;
 	}
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator*(VectorBase<T, dimensions>& vector)
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator-(const VectorBase<T, dimensions>& vector) const
 	{
+		VectorBase<T, dimensions> toReturn(*this);
+
 		for (int i = 0; i < dimensions; i++)
-			this[i] * vector[i];
+			toReturn[i] -= vector[i];
 
-		return this;
-	}
-
-	template<class T, unsigned int dimensions>
-	template<class TValue>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator/(TValue value)
-	{
-		for (int i = 0; i < dimensions; i++)
-			this[i] / value;
-
-		return this;
+		return toReturn;
 	}
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator/(VectorBase<T, dimensions>& vector)
+	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator*(const TValue value) const
 	{
-		for (int i = 0; i < dimensions; i++)
-			this[i] / vector[i];
+		VectorBase<T, dimensions> toReturn(*this);
 
-		return this;
+		for (int i = 0; i < dimensions; i++)
+			toReturn[i] *= value;
+
+		return toReturn;
+	}
+	template<class T, unsigned int dimensions>
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator*(const VectorBase<T, dimensions>& vector) const
+	{
+		VectorBase<T, dimensions> toReturn(*this);
+
+		for (int i = 0; i < dimensions; i++)
+			toReturn[i] *= vector[i];
+
+		return toReturn;
+	}
+	template<class T, unsigned int dimensions>
+	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator/(const TValue value) const
+	{
+		VectorBase<T, dimensions> toReturn(*this);
+
+		for (int i = 0; i < dimensions; i++)
+			toReturn[i] /= value;
+
+		return toReturn;
+	}
+	template<class T, unsigned int dimensions>
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator/(const VectorBase<T, dimensions>& vector) const
+	{
+		VectorBase<T, dimensions> toReturn(*this);
+
+		for (int i = 0; i < dimensions; i++)
+			toReturn[i] /= vector[i];
+
+		return toReturn;
 	}
 
 	template<class T, unsigned int dimensions>
@@ -203,14 +248,14 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	inline string VectorBase<T, dimensions>::GetOutOfRangeExceptionText(int index) const
+	string VectorBase<T, dimensions>::GetOutOfRangeExceptionText(int index) const
 	{
 		return "Attempted to access vector member using index [" + std::to_string(index) + "], but it is out of range." +
 			+"\nValid indexes are >= 0 and < " + std::to_string(dimensions);
 	}
 
 	template<class T, unsigned int dimensions>
-	inline string VectorBase<T, dimensions>::ToString() const
+	string VectorBase<T, dimensions>::ToString() const
 	{
 		std::stringstream stream;
 

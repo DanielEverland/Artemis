@@ -6,5 +6,6 @@ namespace ArtemisEngine::Math::Vectors
 {
 	struct FloatVector4 : public Vector4Base<float>
 	{
+		using Vector4Base::Vector4Base;
 	};
 }

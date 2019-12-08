@@ -10,7 +10,7 @@
 #include <Debug/IDebugStringReturner.h>
 #include <Engine/Math/MathUtility.h>
 
-using ArtemisEngine::Debug::IDebugStringReturner;
+using ArtemisEngine::Debugging::IDebugStringReturner;
 
 namespace ArtemisEngine::Math::Vectors
 {

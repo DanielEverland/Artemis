@@ -6,7 +6,7 @@
 #include <atlstr.h>
 
 #include "..\\Exceptions\DirectXException.h"
-#include "..\\Debug\Output.h"
+#include "..\\Debugging\Output.h"
 
 inline void ThrowIfFailed(HRESULT result)
 {

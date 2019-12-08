@@ -4,7 +4,7 @@
 
 #include "..\Time\Time.h"
 #include "..\\Exceptions\Exception.h"
-#include "..\\Debug\Output.h"
+#include "..\\Debugging\Output.h"
 
 using namespace ArtemisWindow;
 

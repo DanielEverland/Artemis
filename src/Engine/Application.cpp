@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include <Debug/Output.h>
+#include <Debugging/Output.h>
 
 bool Application::useVSync = false;
 

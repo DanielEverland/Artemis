@@ -6,7 +6,7 @@
 #include "..\\Exceptions\DirectXException.h"
 
 #include "..\\Time\Time.h"
-#include "..\\Debug\Output.h"
+#include "..\\Debugging\Output.h"
 #include "..\\Input\Key.h"
 #include "..\\Input\Input.h"
 #include "..\\Exceptions\Exception.h"

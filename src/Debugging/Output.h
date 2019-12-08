@@ -1,12 +1,12 @@
 #pragma once
 
 #include <string>
-#include <Debug/IDebugStringReturner.h>
+#include <Debugging/IDebugStringReturner.h>
 
 #include "..\\Exceptions\Exception.h"
 
 using std::string;
-using ArtemisEngine::Debug::IDebugStringReturner;
+using ArtemisEngine::Debugging::IDebugStringReturner;
 
 class Output
 {

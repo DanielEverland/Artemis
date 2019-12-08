@@ -5,9 +5,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Source\Debug">
-      <UniqueIdentifier>{b4a79ae2-97b5-43bd-a594-c05387e7aeb1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Direct X">
       <UniqueIdentifier>{657826ab-3777-4e81-96c5-0caa1489112e}</UniqueIdentifier>
     </Filter>
@@ -40,6 +37,9 @@
     </Filter>
     <Filter Include="Source\Engine\Math\Matrices">
       <UniqueIdentifier>{d163c393-4dcb-4561-a062-211f7a4dae5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Debugging">
+      <UniqueIdentifier>{b4a79ae2-97b5-43bd-a594-c05387e7aeb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,11 +91,11 @@
     <ClCompile Include="src\Direct X\SwapChain.cpp">
       <Filter>Source\Direct X</Filter>
     </ClCompile>
-    <ClCompile Include="src\Debug\Output.cpp">
-      <Filter>Source\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\Math\Matrices\GenericMatrix.cpp">
       <Filter>Source\Engine\Math\Matrices</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debugging\Output.cpp">
+      <Filter>Source\Debugging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +107,6 @@
     </ClInclude>
     <ClInclude Include="src\Time\Time.h">
       <Filter>Source\Time</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Debug\Output.h">
-      <Filter>Source\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\Input\Input.h">
       <Filter>Source\Input</Filter>
@@ -210,9 +207,6 @@
     <ClInclude Include="src\Engine\Math\Matrices\GenericMatrix.h">
       <Filter>Source\Engine\Math\Matrices</Filter>
     </ClInclude>
-    <ClInclude Include="src\Debug\IDebugStringReturner.h">
-      <Filter>Source\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="src\Exceptions\OutOfRangeException.h">
       <Filter>Source\Exceptions</Filter>
     </ClInclude>
@@ -221,6 +215,12 @@
     </ClInclude>
     <ClInclude Include="src\Engine\Math\MathUtility.h">
       <Filter>Source\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug\IDebugStringReturner.h">
+      <Filter>Source\Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debugging\Output.h">
+      <Filter>Source\Debugging</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

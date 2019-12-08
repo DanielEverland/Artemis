@@ -1,5 +1,4 @@
-#include "..\\Exceptions\NullReferenceException.h"
-
+#include "Exceptions/NullReferenceException.h"
 #include "GraphicsResource.h"
 
 GraphicsResource::GraphicsResource(const shared_ptr<const GraphicsDevice> graphicsDevice)

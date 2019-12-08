@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-#include "..\Windows\Window.h"
+#include "Windows/Window.h"
 
 class Time
 {

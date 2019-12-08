@@ -5,8 +5,8 @@
 #include <string>
 #include <atlstr.h>
 
-#include "..\\Exceptions\DirectXException.h"
-#include "..\\Debugging\Output.h"
+#include "Exceptions/DirectXException.h"
+#include "Debugging/Output.h"
 
 inline void ThrowIfFailed(HRESULT result)
 {

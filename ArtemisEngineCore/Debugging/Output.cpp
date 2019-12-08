@@ -4,8 +4,6 @@
 
 #include "Output.h"
 
-#include <Exceptions/Exception.h>
-
 void Output::Space()
 {
 	Output::LogLine(" ");

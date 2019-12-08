@@ -12,10 +12,10 @@
 #include <chrono>
 
 #include "Window.h"
-#include "..\\Direct X\GraphicsDevice.h"
-#include "..\\Direct X\SwapChain.h"
-#include "..\\Direct X\DepthBuffer.h"
-#include "..\\Direct X\RenderTargetView.h"
+#include "Direct X/GraphicsDevice.h"
+#include "Direct X/SwapChain.h"
+#include "Direct X/DepthBuffer.h"
+#include "Direct X/RenderTargetView.h"
 
 // The min/max macros conflict with like-named member functions.
 // Only use std::min and std::max defined in <algorithm>.

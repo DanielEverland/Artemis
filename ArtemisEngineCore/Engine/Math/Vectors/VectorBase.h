@@ -5,10 +5,10 @@
 #include <sstream>
 #include <utility>
 
-#include <Exceptions/OutOfRangeException.h>
-#include <Exceptions/DivideByZeroException.h>
-#include <Debug/IDebugStringReturner.h>
-#include <Engine/Math/MathUtility.h>
+#include "Exceptions/OutOfRangeException.h"
+#include "Exceptions/DivideByZeroException.h"
+#include "Debugging/IDebugStringReturner.h"
+#include "Engine/Math/MathUtility.h"
 
 using ArtemisEngine::Debugging::IDebugStringReturner;
 

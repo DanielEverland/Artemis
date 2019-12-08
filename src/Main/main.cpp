@@ -1,10 +1,10 @@
 #include <iostream>
 #include "ApplicationArguments.h"
-#include "..\Windows\GameWindow.h"
 
-#include "..\Time\Time.h"
-#include "..\\Exceptions\Exception.h"
-#include "..\\Debugging\Output.h"
+#include "Windows\GameWindow.h"
+#include "Time\Time.h"
+#include "Exceptions\Exception.h"
+#include "Debugging\Output.h"
 
 using namespace ArtemisWindow;
 

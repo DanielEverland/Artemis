@@ -3,14 +3,13 @@
 #include "GameWindow.h"
 #include "WindowProcedure.h"
 
-#include "..\\Exceptions\DirectXException.h"
-
-#include "..\\Time\Time.h"
-#include "..\\Debugging\Output.h"
-#include "..\\Input\Key.h"
-#include "..\\Input\Input.h"
-#include "..\\Exceptions\Exception.h"
-#include "..\\Engine\Application.h"
+#include "Exceptions/DirectXException.h"
+#include "Time/Time.h"
+#include "Debugging/Output.h"
+#include "Input/Key.h"
+#include "Input/Input.h"
+#include "Exceptions/Exception.h"
+#include "Engine/Application.h"
 
 using ArtemisWindow::GameWindow;
 using std::string;

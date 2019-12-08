@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include <Debugging/IDebugStringReturner.h>
 
-#include "..\\Exceptions\Exception.h"
+#include "Debugging/IDebugStringReturner.h"
+#include "Exceptions/Exception.h"
 
 using std::string;
 using ArtemisEngine::Debugging::IDebugStringReturner;

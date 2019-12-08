@@ -1,4 +1,4 @@
-#include <Exceptions/InvalidArgumentException.h>
+#include "Exceptions/InvalidArgumentException.h"
 #include "GenericMatrix.h"
 
 using namespace ArtemisEngine::Math::Matrices;

@@ -15,67 +15,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Debugging\Output.cpp" />
-    <ClCompile Include="src\Direct X\DepthBuffer.cpp" />
-    <ClCompile Include="src\Direct X\GraphicsDevice.cpp" />
-    <ClCompile Include="src\Direct X\GraphicsResource.cpp" />
-    <ClCompile Include="src\Direct X\RenderTargetView.cpp" />
-    <ClCompile Include="src\Direct X\SwapChain.cpp" />
-    <ClCompile Include="src\Direct X\Texture2D.cpp" />
-    <ClCompile Include="src\Engine\Application.cpp" />
-    <ClCompile Include="src\Engine\Math\Matrices\GenericMatrix.cpp" />
-    <ClCompile Include="src\Exceptions\Exception.cpp" />
-    <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Main\ApplicationArguments.cpp" />
-    <ClCompile Include="src\Structs\Color.cpp" />
     <ClCompile Include="src\Main\main.cpp" />
-    <ClCompile Include="src\Time\Time.cpp" />
-    <ClCompile Include="src\Windows\GameWindow.cpp" />
-    <ClCompile Include="src\Windows\Window.cpp" />
-    <ClCompile Include="src\Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Debugging\Output.h" />
-    <ClInclude Include="src\Debug\IDebugStringReturner.h" />
-    <ClInclude Include="src\Direct X\DepthBuffer.h" />
-    <ClInclude Include="src\Direct X\DirectXHelper.h" />
-    <ClInclude Include="src\Direct X\GraphicsDevice.h" />
-    <ClInclude Include="src\Direct X\GraphicsResource.h" />
-    <ClInclude Include="src\Direct X\RenderTargetView.h" />
-    <ClInclude Include="src\Direct X\SwapChain.h" />
-    <ClInclude Include="src\Direct X\Texture2D.h" />
-    <ClInclude Include="src\Engine\Application.h" />
-    <ClInclude Include="src\Engine\IntVector2.h" />
-    <ClInclude Include="src\Engine\IntVector3.h" />
-    <ClInclude Include="src\Engine\Math\MathUtility.h" />
-    <ClInclude Include="src\Engine\Math\Matrices\GenericMatrix.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\DoubleVector2.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\DoubleVector3.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\DoubleVector4.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\FloatVector2.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\FloatVector3.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\FloatVector4.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\Vector2Base.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\Vector3Base.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\Vector4Base.h" />
-    <ClInclude Include="src\Engine\Math\Vectors\VectorBase.h" />
-    <ClInclude Include="src\Engine\Vector2.h" />
-    <ClInclude Include="src\Engine\Vector3.h" />
-    <ClInclude Include="src\Engine\Vector4.h" />
-    <ClInclude Include="src\Exceptions\DirectXException.h" />
-    <ClInclude Include="src\Exceptions\DivideByZeroException.h" />
-    <ClInclude Include="src\Exceptions\Exception.h" />
-    <ClInclude Include="src\Exceptions\InvalidArgumentException.h" />
-    <ClInclude Include="src\Exceptions\NullReferenceException.h" />
-    <ClInclude Include="src\Exceptions\OutOfRangeException.h" />
-    <ClInclude Include="src\Input\Input.h" />
-    <ClInclude Include="src\Input\Key.h" />
     <ClInclude Include="src\Main\ApplicationArguments.h" />
-    <ClInclude Include="src\Structs\Color.h" />
-    <ClInclude Include="src\Time\Time.h" />
-    <ClInclude Include="src\Windows\GameWindow.h" />
-    <ClInclude Include="src\Windows\Window.h" />
-    <ClInclude Include="src\Windows\WindowProcedure.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ArtemisEngineCore\ArtemisEngineCore.vcxproj">
+      <Project>{d6f75e89-595f-4bab-939a-3cf95376482d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -127,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>ArtemisEngineCore/</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>

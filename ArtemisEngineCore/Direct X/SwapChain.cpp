@@ -3,8 +3,8 @@
 #include "SwapChain.h"
 #include "DirectXHelper.h"
 
-#include "..\Exceptions\DirectXException.h"
-#include "..\Engine\Application.h"
+#include "Exceptions/DirectXException.h"
+#include "Engine/Application.h"
 
 SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {

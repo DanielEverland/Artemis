@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Exceptions/InvalidArgumentException.h>
 #include <cmath>
 
+#include "Exceptions/InvalidArgumentException.h"
 #include "VectorBase.h"
 
 namespace ArtemisEngine::Math::Vectors

@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{fe3e6bee-cf61-4b1f-abd4-318da4f39cd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Structs">
+      <UniqueIdentifier>{260edd3e-c4f9-4ba6-80ca-6c6a6b43ee9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Windows">
+      <UniqueIdentifier>{83baf69d-7c78-4fea-ab9e-b8fbc1492b86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Time">
+      <UniqueIdentifier>{d47c05b0-b30a-46da-8467-6f96d15647d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Input">
+      <UniqueIdentifier>{10b6eb54-0cff-4c9e-a81d-537cf183a78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Exceptions">
+      <UniqueIdentifier>{1bfa3945-9cab-4549-89d4-70c6dfaa8258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine">
+      <UniqueIdentifier>{f682211d-fbff-4480-8525-4be35f72752f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine\Math">
+      <UniqueIdentifier>{aff58505-c6d6-49d1-a422-171addf22e76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine\Math\Vectors">
+      <UniqueIdentifier>{8588896f-c3c9-479e-b50d-d953d50a3993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Engine\Math\Matrices">
+      <UniqueIdentifier>{91bbd413-5b5a-4dbe-b334-564fc4997edb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Direct X">
+      <UniqueIdentifier>{cd37791d-0a09-49af-905c-5308bede00ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Debugging">
+      <UniqueIdentifier>{a9c6e40e-c24c-4a1e-9168-ab37d27532c8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Structs\Color.h">
+      <Filter>Source\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\GameWindow.h">
+      <Filter>Source\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Window.h">
+      <Filter>Source\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\WindowProcedure.h">
+      <Filter>Source\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\Time.h">
+      <Filter>Source\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Input.h">
+      <Filter>Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Key.h">
+      <Filter>Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\DirectXException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\DivideByZeroException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\Exception.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\InvalidArgumentException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\NullReferenceException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\OutOfRangeException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Application.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\IntVector2.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\IntVector3.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vector2.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vector3.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vector4.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\MathUtility.h">
+      <Filter>Source\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\DoubleVector2.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\DoubleVector3.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\DoubleVector4.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\FloatVector2.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\FloatVector3.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\FloatVector4.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\MatrixBase.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\Vector2Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\Vector3Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\Vector4Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vectors\VectorBase.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Matrices\GenericMatrix.h">
+      <Filter>Source\Engine\Math\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\DepthBuffer.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\DirectXHelper.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\GraphicsDevice.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\GraphicsResource.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\RenderTargetView.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\SwapChain.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\Texture2D.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\IDebugStringReturner.h">
+      <Filter>Source\Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\Output.h">
+      <Filter>Source\Debugging</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Structs\Color.cpp">
+      <Filter>Source\Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\GameWindow.cpp">
+      <Filter>Source\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Window.cpp">
+      <Filter>Source\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\WindowProcedure.cpp">
+      <Filter>Source\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\Time.cpp">
+      <Filter>Source\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Input.cpp">
+      <Filter>Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\Exception.cpp">
+      <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Application.cpp">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Math\Vectors\MatrixBase.cpp">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Math\Matrices\GenericMatrix.cpp">
+      <Filter>Source\Engine\Math\Matrices</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\DepthBuffer.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\GraphicsDevice.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\GraphicsResource.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\RenderTargetView.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\SwapChain.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\Texture2D.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugging\Output.cpp">
+      <Filter>Source\Debugging</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

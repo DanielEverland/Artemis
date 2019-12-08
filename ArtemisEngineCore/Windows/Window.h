@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-#include "../Structs/Color.h"
+#include "Structs/Color.h"
 
 using ArtemisEngine::Color;
 

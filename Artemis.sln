@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Artemis", "Artemis.vcxproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArtemisEngineCore", "ArtemisEngineCore\ArtemisEngineCore.vcxproj", "{D6F75E89-595F-4BAB-939A-3CF95376482D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,18 @@ Global
 		{D6F75E89-595F-4BAB-939A-3CF95376482D}.Temp|x64.Build.0 = Release|x64
 		{D6F75E89-595F-4BAB-939A-3CF95376482D}.Temp|x86.ActiveCfg = Release|Win32
 		{D6F75E89-595F-4BAB-939A-3CF95376482D}.Temp|x86.Build.0 = Release|Win32
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Debug|x64.ActiveCfg = Debug|x64
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Debug|x64.Build.0 = Debug|x64
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Debug|x86.ActiveCfg = Debug|Win32
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Debug|x86.Build.0 = Debug|Win32
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Release|x64.ActiveCfg = Release|x64
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Release|x64.Build.0 = Release|x64
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Release|x86.ActiveCfg = Release|Win32
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Release|x86.Build.0 = Release|Win32
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Temp|x64.ActiveCfg = Release|x64
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Temp|x64.Build.0 = Release|x64
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Temp|x86.ActiveCfg = Release|Win32
+		{F7FD9A6C-130E-43D2-BC41-81C546BD6FD8}.Temp|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

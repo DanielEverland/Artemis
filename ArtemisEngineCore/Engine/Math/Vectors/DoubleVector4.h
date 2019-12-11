@@ -4,7 +4,7 @@
 
 namespace ArtemisEngine::Math::Vectors
 {
-	struct DoubleVector4 : public Vector4Base<double>
+	class DoubleVector4 : public Vector4Base<double>
 	{
 		using Vector4Base::Vector4Base;
 	};

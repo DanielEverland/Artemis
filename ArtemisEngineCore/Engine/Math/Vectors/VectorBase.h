@@ -15,10 +15,10 @@ using ArtemisEngine::Debugging::IDebugStringReturner;
 namespace ArtemisEngine::Math::Vectors
 {
 	template<class T, unsigned int dimensions>
-	struct VectorBase : public IDebugStringReturner
+	class VectorBase : public IDebugStringReturner
 	{
 	public:
-
+		
 		T operator[](int index) const;
 		T& operator[](int index);
 
@@ -69,6 +69,8 @@ namespace ArtemisEngine::Math::Vectors
 
 		// Returns a unit vector
 		VectorBase Normalized() const;
+
+		unsigned int GetDimensions() const;
 
 		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
 		VectorBase operator+(const TValue value) const;
@@ -154,6 +156,12 @@ namespace ArtemisEngine::Math::Vectors
 			newVector[i] = values[i] / length;
 
 		return newVector;
+	}
+
+	template<class T, unsigned int dimensions>
+	unsigned int VectorBase<T, dimensions>::GetDimensions() const
+	{
+		return dimensions;
 	}
 
 	template<class T, unsigned int dimensions>

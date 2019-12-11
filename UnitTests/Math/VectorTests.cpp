@@ -11,7 +11,7 @@ using ArtemisEngine::Vector3;
 using ArtemisEngine::Vector4;
 
 template <typename T>
-class VectorTests : public ::testing::Test, public ::testing::Environment
+class VectorTests : public ::testing::Test
 {
 public:
 

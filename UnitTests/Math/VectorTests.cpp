@@ -14,29 +14,13 @@ template <typename T>
 class VectorTests : public ::testing::Test
 {
 public:
-
+    const static int VectorsToInstantiate = 4;
     const static int ValuesPerSet = 4;
     const static int SetCount = 5;
 
     const static double VectorElementValues[SetCount][ValuesPerSet];
-
-    T firstVector;
-    T secondVector;
-
-    VectorTests()
-    {
-        for (unsigned int i = 0; i < firstVector.GetDimensions(); i++)
-        {
-            firstVector[i] = VectorElementValues[0][i];
-        }
-
-        for (unsigned int i = 0; i < secondVector.GetDimensions(); i++)
-        {
-            secondVector[i] = VectorElementValues[1][i];
-        }
-    }
-
-    T CreateInstance() const;
+    
+    T vectors[VectorsToInstantiate];
 };
 
 template <typename T>
@@ -49,12 +33,6 @@ const double VectorTests<T>::VectorElementValues[SetCount][ValuesPerSet]
     { -1.25, -0.75, 2.75, 3.0 },
 };
 
-template<typename T>
-T VectorTests<T>::CreateInstance() const
-{
-    return T();
-}
-
 
 using MyTypes = ::testing::Types<Vector2, Vector3, Vector4>;
 TYPED_TEST_CASE(VectorTests, MyTypes);
@@ -62,9 +40,9 @@ TYPED_TEST_CASE(VectorTests, MyTypes);
 
 TYPED_TEST(VectorTests, Indexing)
 {
-    for (unsigned int i = 0; i < this->firstVector.GetDimensions(); i++)
+    for (unsigned int i = 0; i < this->vectors[0].GetDimensions(); i++)
     {
-        this->firstVector[i] = VectorTests::VectorElementValues[0][i];
-        EXPECT_EQ(this->firstVector[i], VectorTests::VectorElementValues[0][i]);
+        this->vectors[0][i] = VectorTests::VectorElementValues[0][i];
+        EXPECT_EQ(this->vectors[0][i], VectorTests::VectorElementValues[0][i]);
     }
 }

@@ -21,6 +21,12 @@ public:
     const static double VectorElementValues[SetCount][ValuesPerSet];
     
     T vectors[VectorsToInstantiate];
+
+    void InitializeToDefaultValues(T vector, const double* const elements) const
+    {
+        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+            vector[i] = elements[i];
+    }
 };
 
 template <typename T>
@@ -40,9 +46,88 @@ TYPED_TEST_CASE(VectorTests, MyTypes);
 
 TYPED_TEST(VectorTests, Indexing)
 {
-    for (unsigned int i = 0; i < this->vectors[0].GetDimensions(); i++)
+    auto vector = this->vectors[0];
+    const double* elementValues = VectorTests::VectorElementValues[0];
+
+
+    this->InitializeVectorToDefaultValues(vector, elementValues);
+
+
+    for (unsigned int i = 0; i < vector.GetDimensions(); i++)
     {
-        this->vectors[0][i] = VectorTests::VectorElementValues[0][i];
-        EXPECT_EQ(this->vectors[0][i], VectorTests::VectorElementValues[0][i]);
+        EXPECT_EQ(vector[i], elementValues[i]);
+    }
+}
+
+
+TYPED_TEST(VectorTests, Addition)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto cVector = this->vectors[2];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeVectorToDefaultValues(aVector, aElementValues);
+    this->InitializeVectorToDefaultValues(bVector, bElementValues);
+
+
+    cVector = aVector + bVector;
+
+
+    for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(cVector[i], aElementValues[i] + bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, AdditionAssignment)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeVectorToDefaultValues(aVector, aElementValues);
+    this->InitializeVectorToDefaultValues(bVector, bElementValues);
+
+
+    aVector += bVector;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], aElementValues[i] + bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, ScalarAddition)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto scalar = this->VectorElementValues[2][0];
+
+    const double* vectorElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(bVector, vectorElementValues);
+
+
+    aVector = bVector + scalar;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], bVector[i] + scalar);
+    }
+}
+TYPED_TEST(VectorTests, ScalarAdditionAssignment)
+{
+    this->InitializeVectorToDefaultValues(this->vectors[0], 0);
+
+    this->vectors[0] += VectorTests::VectorElementValues[1][0];
+
+    for (unsigned int i = 0; i < this->vectors[1].GetDimensions(); i++)
+    {
+        EXPECT_EQ(this->vectors[0][i], VectorTests::VectorElementValues[0][i] + VectorTests::VectorElementValues[1][0]);
     }
 }

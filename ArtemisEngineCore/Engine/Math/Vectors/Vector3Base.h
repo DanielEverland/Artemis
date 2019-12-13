@@ -22,6 +22,12 @@ namespace ArtemisEngine::Math::Vectors
 			(*this)[1] = y;
 			(*this)[2] = z;
 		}
+		Vector3Base(const VectorBase<T, 3> other)
+		{
+			(*this)[0] = other[0];
+			(*this)[1] = other[1];
+			(*this)[2] = other[2];
+		}
 
 		// Returns cross product of two vectors
 		static Vector3Base GetCrossProduct(const Vector3Base& a, const Vector3Base& b)

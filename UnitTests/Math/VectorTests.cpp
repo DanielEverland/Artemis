@@ -50,7 +50,7 @@ TYPED_TEST(VectorTests, Indexing)
     const double* elementValues = VectorTests::VectorElementValues[0];
 
 
-    this->InitializeVectorToDefaultValues(vector, elementValues);
+    this->InitializeToDefaultValues(vector, elementValues);
 
 
     for (unsigned int i = 0; i < vector.GetDimensions(); i++)
@@ -69,8 +69,8 @@ TYPED_TEST(VectorTests, Addition)
     const double* aElementValues = VectorTests::VectorElementValues[0];
     const double* bElementValues = VectorTests::VectorElementValues[1];
 
-    this->InitializeVectorToDefaultValues(aVector, aElementValues);
-    this->InitializeVectorToDefaultValues(bVector, bElementValues);
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
 
 
     cVector = aVector + bVector;
@@ -89,8 +89,8 @@ TYPED_TEST(VectorTests, AdditionAssignment)
     const double* aElementValues = VectorTests::VectorElementValues[0];
     const double* bElementValues = VectorTests::VectorElementValues[1];
 
-    this->InitializeVectorToDefaultValues(aVector, aElementValues);
-    this->InitializeVectorToDefaultValues(bVector, bElementValues);
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
 
 
     aVector += bVector;
@@ -122,12 +122,19 @@ TYPED_TEST(VectorTests, ScalarAddition)
 }
 TYPED_TEST(VectorTests, ScalarAdditionAssignment)
 {
-    this->InitializeVectorToDefaultValues(this->vectors[0], 0);
+    auto vector = this->vectors[0];
+    auto scalar = this->VectorElementValues[1][0];
 
-    this->vectors[0] += VectorTests::VectorElementValues[1][0];
+    const double* vectorElementValues = VectorTests::VectorElementValues[0];
 
-    for (unsigned int i = 0; i < this->vectors[1].GetDimensions(); i++)
+    this->InitializeToDefaultValues(vector, vectorElementValues);
+
+
+    vector += scalar;
+
+    
+    for (unsigned int i = 0; i < vector.GetDimensions(); i++)
     {
-        EXPECT_EQ(this->vectors[0][i], VectorTests::VectorElementValues[0][i] + VectorTests::VectorElementValues[1][0]);
+        EXPECT_EQ(vector[i], vectorElementValues[i] + scalar);
     }
 }

@@ -10,9 +10,6 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Math">
       <UniqueIdentifier>{795fb21f-bec7-47b8-a71d-97759cc97174}</UniqueIdentifier>
     </Filter>

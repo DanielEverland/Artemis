@@ -72,22 +72,6 @@ namespace ArtemisEngine::Math::Vectors
 
 		unsigned int GetDimensions() const;
 
-		/*template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-		VectorBase operator+(const TValue value) const;
-		VectorBase operator+(const VectorBase& vector) const;
-
-		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-		VectorBase operator-(const TValue value) const;
-		VectorBase operator-(const VectorBase& vector) const;
-
-		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-		VectorBase operator*(const TValue value) const;
-		VectorBase operator*(const VectorBase& vector) const;
-
-		template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-		VectorBase operator/(const TValue value) const;
-		VectorBase operator/(const VectorBase& vector) const;*/
-
 		virtual string ToString() const override;
 
 	private:
@@ -164,91 +148,6 @@ namespace ArtemisEngine::Math::Vectors
 		return dimensions;
 	}
 
-	/*template<class T, unsigned int dimensions>
-	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator+(const TValue value) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] += value;
-
-		return toReturn;
-	}
-	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator+(const VectorBase<T, dimensions>& vector) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] += vector[i];
-
-		return toReturn;
-	}
-	template<class T, unsigned int dimensions>
-	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator-(const TValue value) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] -= value;
-
-		return toReturn;
-	}
-	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator-(const VectorBase<T, dimensions>& vector) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] -= vector[i];
-
-		return toReturn;
-	}
-	template<class T, unsigned int dimensions>
-	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator*(const TValue value) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] *= value;
-
-		return toReturn;
-	}
-	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator*(const VectorBase<T, dimensions>& vector) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] *= vector[i];
-
-		return toReturn;
-	}
-	template<class T, unsigned int dimensions>
-	template<class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type*>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator/(const TValue value) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] /= value;
-
-		return toReturn;
-	}
-	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::operator/(const VectorBase<T, dimensions>& vector) const
-	{
-		VectorBase<T, dimensions> toReturn(*this);
-
-		for (int i = 0; i < dimensions; i++)
-			toReturn[i] /= vector[i];
-
-		return toReturn;
-	}*/
-
 	template<class T, unsigned int dimensions>
 	bool VectorBase<T, dimensions>::IsIndexValid(int index) const
 	{
@@ -297,14 +196,12 @@ namespace ArtemisEngine::Math::Vectors
 		return c;
 	}
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> operator+=(VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	void operator+=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
 			a[i] += b[i];
 		}
-
-		return a;
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
 	VectorBase<T, dimensions> operator+(const VectorBase<T, dimensions> vector, const TValue value)
@@ -319,13 +216,134 @@ namespace ArtemisEngine::Math::Vectors
 		return toReturn;
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	VectorBase<T, dimensions> operator+=(VectorBase<T, dimensions> vector, const TValue value)
+	void operator+=(VectorBase<T, dimensions>& vector, const TValue value)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
 			vector[i] += value;
 		}
+	}
 
-		return vector;
+	template<class T, unsigned int dimensions>
+	VectorBase<T, dimensions> operator-(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	{
+		VectorBase<T, dimensions> c;
+
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			c[i] = a[i] - b[i];
+		}
+
+		return c;
+	}
+	template<class T, unsigned int dimensions>
+	void operator-=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			a[i] -= b[i];
+		}
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	VectorBase<T, dimensions> operator-(const VectorBase<T, dimensions> vector, const TValue value)
+	{
+		VectorBase<T, dimensions> toReturn;
+
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			toReturn[i] = vector[i] - value;
+		}
+
+		return toReturn;
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	void operator-=(VectorBase<T, dimensions>& vector, const TValue value)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			vector[i] -= value;
+		}
+	}
+
+	template<class T, unsigned int dimensions>
+	VectorBase<T, dimensions> operator*(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	{
+		VectorBase<T, dimensions> c;
+
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			c[i] = a[i] * b[i];
+		}
+
+		return c;
+	}
+	template<class T, unsigned int dimensions>
+	void operator*=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			a[i] *= b[i];
+		}
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	VectorBase<T, dimensions> operator*(const VectorBase<T, dimensions> vector, const TValue value)
+	{
+		VectorBase<T, dimensions> toReturn;
+
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			toReturn[i] = vector[i] * value;
+		}
+
+		return toReturn;
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	void operator*=(VectorBase<T, dimensions>& vector, const TValue value)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			vector[i] *= value;
+		}
+	}
+
+	template<class T, unsigned int dimensions>
+	VectorBase<T, dimensions> operator/(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	{
+		VectorBase<T, dimensions> c;
+
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			c[i] = a[i] / b[i];
+		}
+
+		return c;
+	}
+	template<class T, unsigned int dimensions>
+	void operator/=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			a[i] /= b[i];
+		}
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	VectorBase<T, dimensions> operator/(const VectorBase<T, dimensions> vector, const TValue value)
+	{
+		VectorBase<T, dimensions> toReturn;
+
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			toReturn[i] = vector[i] / value;
+		}
+
+		return toReturn;
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	void operator/=(VectorBase<T, dimensions>& vector, const TValue value)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			vector[i] /= value;
+		}
 	}
 }

@@ -22,7 +22,7 @@ public:
     
     T vectors[VectorsToInstantiate];
 
-    void InitializeToDefaultValues(T vector, const double* const elements) const
+    void InitializeToDefaultValues(T& vector, const double* const elements) const
     {
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
             vector[i] = elements[i];
@@ -60,7 +60,7 @@ TYPED_TEST(VectorTests, Indexing)
 }
 
 
-TYPED_TEST(VectorTests, Addition)
+TYPED_TEST(VectorTests, AdditionOfTwoVectors)
 {
     auto aVector = this->vectors[0];
     auto bVector = this->vectors[1];
@@ -136,5 +136,242 @@ TYPED_TEST(VectorTests, ScalarAdditionAssignment)
     for (unsigned int i = 0; i < vector.GetDimensions(); i++)
     {
         EXPECT_EQ(vector[i], vectorElementValues[i] + scalar);
+    }
+}
+
+TYPED_TEST(VectorTests, SubtractionOfTwoVectors)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto cVector = this->vectors[2];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
+
+
+    cVector = aVector - bVector;
+
+
+    for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(cVector[i], aElementValues[i] - bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, SubtractionAssignment)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
+
+
+    aVector -= bVector;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], aElementValues[i] - bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, ScalarSubtraction)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto scalar = this->VectorElementValues[2][0];
+
+    const double* vectorElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(bVector, vectorElementValues);
+
+
+    aVector = bVector - scalar;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], bVector[i] - scalar);
+    }
+}
+TYPED_TEST(VectorTests, ScalarSubtractionAssignment)
+{
+    auto vector = this->vectors[0];
+    auto scalar = this->VectorElementValues[1][0];
+
+    const double* vectorElementValues = VectorTests::VectorElementValues[0];
+
+    this->InitializeToDefaultValues(vector, vectorElementValues);
+
+
+    vector -= scalar;
+
+
+    for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(vector[i], vectorElementValues[i] - scalar);
+    }
+}
+
+TYPED_TEST(VectorTests, MultiplicationOfTwoVectors)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto cVector = this->vectors[2];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
+
+
+    cVector = aVector * bVector;
+
+
+    for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(cVector[i], aElementValues[i] * bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, MultiplicationAssignment)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
+
+
+    aVector *= bVector;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], aElementValues[i] * bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, ScalarMultiplication)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto scalar = this->VectorElementValues[2][0];
+
+    const double* vectorElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(bVector, vectorElementValues);
+
+
+    aVector = bVector * scalar;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], bVector[i] * scalar);
+    }
+}
+TYPED_TEST(VectorTests, ScalarMultiplicationAssignment)
+{
+    auto vector = this->vectors[0];
+    auto scalar = this->VectorElementValues[1][0];
+
+    const double* vectorElementValues = VectorTests::VectorElementValues[0];
+
+    this->InitializeToDefaultValues(vector, vectorElementValues);
+
+
+    vector *= scalar;
+
+
+    for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(vector[i], vectorElementValues[i] * scalar);
+    }
+}
+
+TYPED_TEST(VectorTests, DivisionOfTwoVectors)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto cVector = this->vectors[2];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
+
+
+    cVector = aVector / bVector;
+
+
+    for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(cVector[i], aElementValues[i] / bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, DivisionAssignment)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+
+    const double* aElementValues = VectorTests::VectorElementValues[0];
+    const double* bElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(aVector, aElementValues);
+    this->InitializeToDefaultValues(bVector, bElementValues);
+
+
+    aVector /= bVector;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], aElementValues[i] / bElementValues[i]);
+    }
+}
+TYPED_TEST(VectorTests, ScalarDivision)
+{
+    auto aVector = this->vectors[0];
+    auto bVector = this->vectors[1];
+    auto scalar = this->VectorElementValues[2][0];
+
+    const double* vectorElementValues = VectorTests::VectorElementValues[1];
+
+    this->InitializeToDefaultValues(bVector, vectorElementValues);
+
+
+    aVector = bVector / scalar;
+
+
+    for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(aVector[i], bVector[i] / scalar);
+    }
+}
+TYPED_TEST(VectorTests, ScalarDivisionAssignment)
+{
+    auto vector = this->vectors[0];
+    auto scalar = this->VectorElementValues[1][0];
+
+    const double* vectorElementValues = VectorTests::VectorElementValues[0];
+
+    this->InitializeToDefaultValues(vector, vectorElementValues);
+
+
+    vector /= scalar;
+
+
+    for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+    {
+        EXPECT_EQ(vector[i], vectorElementValues[i] / scalar);
     }
 }

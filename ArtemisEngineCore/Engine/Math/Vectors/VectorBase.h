@@ -165,12 +165,34 @@ namespace ArtemisEngine::Math::Vectors
 	string VectorBase<T, dimensions>::ToString() const
 	{
 		std::stringstream stream;
+		std::streamsize defaultPrecision = stream.precision();
 
 		stream << "(";
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
-			stream << values[i];
+			auto value = values[i];
+
+			if (MathUtility::IsPositiveInfinity(value))
+			{
+				stream << "PositiveInfinity";
+			}
+			else if (MathUtility::IsNegativeInfinity(value))
+			{
+				stream << "NegativeInfinity";
+			}
+			else if (MathUtility::IsNaN(value))
+			{
+				stream << "NaN";
+			}
+			else if (MathUtility::IsFloatingPointIntegral(value))
+			{
+				stream << std::fixed << std::setprecision(1) << value;
+			}
+			else
+			{
+				stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
+			}
 
 			if (i < dimensions - 1)
 				stream << ", ";

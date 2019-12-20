@@ -75,13 +75,15 @@ namespace ArtemisEngine::Math::Vectors
 		virtual string ToString() const override;
 
 	private:
+		T values[dimensions] = {};
+
+		inline static const string PositiveInfinityText = "PositiveInfinity";
+		inline static const string NegativeInfinityText = "NegativeInfinity";
+		inline static const string NaNText = "NaN";
+
 		bool IsIndexValid(int index) const;
 		string GetOutOfRangeExceptionText(int index) const;
-
-		T values[dimensions] = {};
 	};
-
-
 
 	template<class T, unsigned int dimensions>
 	T VectorBase<T, dimensions>::operator[](int index) const
@@ -175,15 +177,15 @@ namespace ArtemisEngine::Math::Vectors
 
 			if (MathUtility::IsPositiveInfinity(value))
 			{
-				stream << "PositiveInfinity";
+				stream << PositiveInfinityText;
 			}
 			else if (MathUtility::IsNegativeInfinity(value))
 			{
-				stream << "NegativeInfinity";
+				stream << NegativeInfinityText;
 			}
 			else if (MathUtility::IsNaN(value))
 			{
-				stream << "NaN";
+				stream << NaNText;
 			}
 			else if (MathUtility::IsFloatingPointIntegral(value))
 			{

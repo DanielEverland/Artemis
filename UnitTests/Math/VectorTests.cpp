@@ -1,13 +1,16 @@
 #include "pch.h"
 
+#include <iterator>
 #include <list>
 #include <map>
 
+#include "Exceptions/OutOfRangeException.h"
 #include "Engine/Vector2.h"
 #include "Engine/Vector3.h"
 #include "Engine/Vector4.h"
 
 using std::map;
+using std::list;
 
 using ArtemisEngine::Vector2;
 using ArtemisEngine::Vector3;
@@ -25,9 +28,11 @@ public:
 
     const static double ElementValues[SetCount][MaximumDimensions];
     const static double InfinityValues[MaximumDimensions];
+    static map<unsigned int, list<double>> ExpectedNormalizedValues;
     static map<unsigned int, string> ExpectedStrings;
     static map<unsigned int, string> ExpectedNaNStrings;
     static map<unsigned int, string> ExpectedInfinityStrings;
+    static map<unsigned int, double> ExpectedMagnitude;
     
     T vectors[VectorsToInstantiate];
 
@@ -46,6 +51,14 @@ const double VectorTests<T>::ElementValues[SetCount][MaximumDimensions]
     { -0.75, 0.5, -3.75, -1.75 },
     { 3.0, 2.25, -4.75, 3.25 },
     { -1.25, -0.75, 2.75, 3.0 },
+};
+
+template <typename T>
+map<unsigned int, list<double>> VectorTests<T>::ExpectedNormalizedValues
+{
+    { 2, list<double> { 0.92998, 0.36758 } },
+    { 3, list<double> { 0.92587, 0.36595, 0.09394 } },
+    { 4, list<double> { 0.81163, 0.32080, 0.08235, -0.48120 } },
 };
 
 template <typename T>
@@ -78,6 +91,14 @@ map<unsigned int, string> VectorTests<T>::ExpectedInfinityStrings
     { 4, "(PositiveInfinity, NegativeInfinity, PositiveInfinity, NegativeInfinity)" },
 };
 
+template<typename T>
+map<unsigned int, double> VectorTests<T>::ExpectedMagnitude
+{
+    { 2, 2.72045 },
+    { 3, 2.73254 },
+    { 4, 3.11717 },
+};
+
 using MyTypes = ::testing::Types<Vector2, Vector3, Vector4>;
 TYPED_TEST_CASE(VectorTests, MyTypes);
 
@@ -94,6 +115,60 @@ TYPED_TEST(VectorTests, Indexing)
     for (unsigned int i = 0; i < vector.GetDimensions(); i++)
     {
         EXPECT_EQ(vector[i], elementValues[i]);
+    }
+}
+
+TYPED_TEST(VectorTests, SetIndexingOutOfRange)
+{
+    auto vector = this->vectors[0];
+
+    ASSERT_THROW(vector[-1] = 0, OutOfRangeException);
+    ASSERT_THROW(vector[100] = 0, OutOfRangeException);
+}
+
+TYPED_TEST(VectorTests, GetIndexingOutOfRange)
+{
+    auto const vector = this->vectors[0];
+
+    ASSERT_THROW(0 == vector[-1], OutOfRangeException);
+    ASSERT_THROW(0 == vector[100], OutOfRangeException);
+}
+
+TYPED_TEST(VectorTests, Magnitude)
+{
+    auto vector = this->vectors[0];
+    auto expectedValue = VectorTests::ExpectedMagnitude[vector.GetDimensions()];
+    const double precision = 0.00001;
+    const double* elementValues = VectorTests::ElementValues[0];
+
+    VectorTests::InitializeToDefaultValues(vector, elementValues);
+
+
+    auto magnitude = vector.GetMagnitude();
+
+
+    EXPECT_NEAR(expectedValue, magnitude, precision);
+}
+
+TYPED_TEST(VectorTests, Normalized)
+{
+    auto vector = this->vectors[0];
+    const double precision = 0.00001;
+    list<double> expectedValues = VectorTests::ExpectedNormalizedValues[vector.GetDimensions()];
+    const double* elementValues = VectorTests::ElementValues[0];
+
+    VectorTests::InitializeToDefaultValues(vector, elementValues);
+
+
+    auto normalized = vector.GetNormalized();
+
+    
+    for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+    {
+        auto iter = expectedValues.begin();
+        std::advance(iter, i);
+
+        EXPECT_NEAR(*iter, normalized[i], precision);
     }
 }
 

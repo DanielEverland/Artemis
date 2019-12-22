@@ -68,7 +68,7 @@ namespace ArtemisEngine::Math::Vectors
 		T GetMagnitude() const;
 
 		// Returns a unit vector
-		VectorBase Normalized() const;
+		VectorBase GetNormalized() const;
 
 		unsigned int GetDimensions() const;
 
@@ -129,7 +129,7 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::Normalized() const
+	VectorBase<T, dimensions> VectorBase<T, dimensions>::GetNormalized() const
 	{
 		T length = GetMagnitude();
 

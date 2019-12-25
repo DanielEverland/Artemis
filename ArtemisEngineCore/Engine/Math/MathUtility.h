@@ -27,10 +27,10 @@ public:
 	static bool IsNaN(const T& value);
 };
 
-const double MathUtility::Pi = M_PI;
-const double MathUtility::RadToDeg = 180.0 / MathUtility::Pi;
-const double MathUtility::DegToRad = MathUtility::Pi / 180.0;
-const double MathUtility::Infinity = std::numeric_limits<double>::infinity();
+inline const double MathUtility::Pi = M_PI;
+inline const double MathUtility::RadToDeg = 180.0 / MathUtility::Pi;
+inline const double MathUtility::DegToRad = MathUtility::Pi / 180.0;
+inline const double MathUtility::Infinity = std::numeric_limits<double>::infinity();
 
 template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type *>
 bool MathUtility::IsFloatingPointIntegral(const T& value)

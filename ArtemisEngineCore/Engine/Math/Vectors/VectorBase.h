@@ -18,12 +18,16 @@ namespace ArtemisEngine::Math::Vectors
 	class VectorBase : public IDebugStringReturner
 	{
 	public:
+
+		VectorBase();
+		VectorBase(const VectorBase& copy);
 		
 		T operator[](int index) const;
 		T& operator[](int index);
 
-		// Returns the algebraic dot product
-		static double GetAlgebraicDotProduct(const VectorBase& a, const VectorBase& b)
+		// Returns the dot product of two vectors.
+		// Value returned for normalized vector is in the interval [-1; 1]
+		static double GetDotProduct(const VectorBase& a, const VectorBase& b)
 		{
 			T value = 0;
 
@@ -37,7 +41,7 @@ namespace ArtemisEngine::Math::Vectors
 		// This is the unsigned angle, and will always be less than 180.
 		static double GetAngle(const VectorBase& a, const VectorBase& b)
 		{
-			double dotProduct = GetAlgebraicDotProduct(a, b);
+			double dotProduct = GetDotProduct(a, b);
 			double aMagnitude = a.GetMagnitude();
 			double bMagnitude = b.GetMagnitude();
 
@@ -50,17 +54,6 @@ namespace ArtemisEngine::Math::Vectors
 			return radians * MathUtility::RadToDeg;
 		}
 
-		// Returns the dot product of two vectors.
-		// Value returned for normalized vector is in the interval [-1; 1]
-		static double GetDotProduct(const VectorBase& a, const VectorBase& b)
-		{
-			double magnitudeProduct = a.GetMagnitude() * b.GetMagnitude();
-			
-			double angleCosine = cos(GetAngle(a, b) * MathUtility::DegToRad);
-
-			return magnitudeProduct * angleCosine;
-		}
-		
 		// Returns squared length of vector.
 		T GetSqrMagnitude() const;
 
@@ -84,6 +77,20 @@ namespace ArtemisEngine::Math::Vectors
 		bool IsIndexValid(int index) const;
 		string GetOutOfRangeExceptionText(int index) const;
 	};
+
+	template<class T, unsigned int dimensions>
+	VectorBase<T, dimensions>::VectorBase()
+	{
+	}
+
+	template<class T, unsigned int dimensions>
+	VectorBase<T, dimensions>::VectorBase(const VectorBase<T, dimensions>& copy)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			values[i] = copy[i];
+		}
+	}
 
 	template<class T, unsigned int dimensions>
 	T VectorBase<T, dimensions>::operator[](int index) const

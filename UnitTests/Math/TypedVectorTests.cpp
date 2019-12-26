@@ -145,7 +145,7 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, EmptyConstructor)
     {
-        auto vector = this->CallConstructorNoArguments();
+        TypeParam vector = this->CallConstructorNoArguments();
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
@@ -155,10 +155,10 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, CopyConstructor)
     {
-        auto copy = this->vectors[0];
+        TypeParam copy = this->vectors[0];
         const double* elementValues = TypedVectorTests::ElementValues[0];
 
-        auto vector = this->CallCopyConstructor(copy);
+        TypeParam vector = this->CallCopyConstructor(copy);
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
@@ -168,7 +168,7 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, Indexing)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
         const double* elementValues = TypedVectorTests::ElementValues[0];
 
 
@@ -187,7 +187,7 @@ namespace Math::Vectors
         this->InitializeToDefaultValues(this->vectors[0], elementValues);
 
 
-        const auto vector = this->vectors[0];
+        const TypeParam vector = this->vectors[0];
 
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
@@ -198,14 +198,14 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, DimensionIsPositive)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
 
         EXPECT_LT(0, vector.GetDimensions());
     }
 
     TYPED_TEST(TypedVectorTests, IndexingOutOfRange)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
 
         EXPECT_THROW(vector[-1] = 0, OutOfRangeException);
         EXPECT_THROW(vector[100] = 0, OutOfRangeException);
@@ -213,7 +213,7 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, ConstIndexingOutOfRange)
     {
-        auto const vector = this->vectors[0];
+        TypeParam const vector = this->vectors[0];
 
         EXPECT_THROW(vector[-1], OutOfRangeException);
         EXPECT_THROW(vector[100], OutOfRangeException);
@@ -221,8 +221,8 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, GetDotProduct)
     {
-        auto vectorA = this->vectors[0];
-        auto vectorB = this->vectors[1];
+        TypeParam vectorA = this->vectors[0];
+        TypeParam vectorB = this->vectors[1];
 
         const double* elementValuesA = TypedVectorTests::ElementValues[0];
         const double* elementValuesB = TypedVectorTests::ElementValues[1];
@@ -242,8 +242,8 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, GetAngle)
     {
-        auto vectorA = this->vectors[0];
-        auto vectorB = this->vectors[1];
+        TypeParam vectorA = this->vectors[0];
+        TypeParam vectorB = this->vectors[1];
 
         const double* elementValuesA = TypedVectorTests::ElementValues[0];
         const double* elementValuesB = TypedVectorTests::ElementValues[1];
@@ -263,7 +263,7 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, SqrMagnitude)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
         const double* elementValues = TypedVectorTests::ElementValues[0];
 
         TypedVectorTests::InitializeToDefaultValues(vector, elementValues);
@@ -282,14 +282,14 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, Magnitude)
     {
-        auto vector = this->vectors[0];
-        auto expectedValue = TypedVectorTests::ExpectedMagnitude[vector.GetDimensions()];
+        TypeParam vector = this->vectors[0];
+        double expectedValue = TypedVectorTests::ExpectedMagnitude[vector.GetDimensions()];
         const double* elementValues = TypedVectorTests::ElementValues[0];
 
         TypedVectorTests::InitializeToDefaultValues(vector, elementValues);
 
 
-        auto magnitude = vector.GetMagnitude();
+        double magnitude = vector.GetMagnitude();
 
 
         EXPECT_NEAR(expectedValue, magnitude, FloatingPointComparisonPrecision);
@@ -297,21 +297,21 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, NormalizedDivideByZero)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
 
         EXPECT_THROW(vector.GetNormalized(), DivideByZeroException);
     }
 
     TYPED_TEST(TypedVectorTests, Normalized)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
         list<double> expectedValues = TypedVectorTests::ExpectedNormalizedValues[vector.GetDimensions()];
         const double* elementValues = TypedVectorTests::ElementValues[0];
 
         TypedVectorTests::InitializeToDefaultValues(vector, elementValues);
 
 
-        auto normalized = vector.GetNormalized();
+        TypeParam normalized = vector.GetNormalized();
 
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
@@ -325,14 +325,14 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, ToString)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
         string expectedString = TypedVectorTests::ExpectedStrings[vector.GetDimensions()];
         const double* elementValues = TypedVectorTests::ElementValues[0];
 
         this->InitializeToDefaultValues(vector, elementValues);
 
 
-        auto vectorString = vector.ToString();
+        TypeParam vectorString = vector.ToString();
 
 
         EXPECT_EQ(expectedString, vectorString);
@@ -340,7 +340,7 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, ToStringNaN)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
         string expectedString = TypedVectorTests::ExpectedNaNStrings[vector.GetDimensions()];
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
@@ -355,7 +355,7 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, ToStringInfinity)
     {
-        auto vector = this->vectors[0];
+        TypeParam vector = this->vectors[0];
         string expectedString = TypedVectorTests::ExpectedInfinityStrings[vector.GetDimensions()];
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
@@ -371,9 +371,9 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, AdditionOfTwoVectors)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto cVector = this->vectors[2];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        TypeParam cVector = this->vectors[2];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -392,8 +392,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, AdditionAssignment)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -412,9 +412,9 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarAddition)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto scalar = this->ElementValues[2][0];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        double scalar = this->ElementValues[2][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[1];
 
@@ -431,8 +431,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarAdditionAssignment)
     {
-        auto vector = this->vectors[0];
-        auto scalar = this->ElementValues[1][0];
+        TypeParam vector = this->vectors[0];
+        double scalar = this->ElementValues[1][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[0];
 
@@ -450,9 +450,9 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, SubtractionOfTwoVectors)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto cVector = this->vectors[2];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        TypeParam cVector = this->vectors[2];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -471,8 +471,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, SubtractionAssignment)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -491,9 +491,9 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarSubtraction)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto scalar = this->ElementValues[2][0];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        double scalar = this->ElementValues[2][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[1];
 
@@ -510,8 +510,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarSubtractionAssignment)
     {
-        auto vector = this->vectors[0];
-        auto scalar = this->ElementValues[1][0];
+        TypeParam vector = this->vectors[0];
+        double scalar = this->ElementValues[1][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[0];
 
@@ -529,9 +529,9 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, MultiplicationOfTwoVectors)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto cVector = this->vectors[2];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        TypeParam cVector = this->vectors[2];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -550,8 +550,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, MultiplicationAssignment)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -570,9 +570,9 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarMultiplication)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto scalar = this->ElementValues[2][0];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        double scalar = this->ElementValues[2][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[1];
 
@@ -589,8 +589,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarMultiplicationAssignment)
     {
-        auto vector = this->vectors[0];
-        auto scalar = this->ElementValues[1][0];
+        TypeParam vector = this->vectors[0];
+        double scalar = this->ElementValues[1][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[0];
 
@@ -608,9 +608,9 @@ namespace Math::Vectors
 
     TYPED_TEST(TypedVectorTests, DivisionOfTwoVectors)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto cVector = this->vectors[2];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        TypeParam cVector = this->vectors[2];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -629,8 +629,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, DivisionAssignment)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
 
         const double* aElementValues = TypedVectorTests::ElementValues[0];
         const double* bElementValues = TypedVectorTests::ElementValues[1];
@@ -649,9 +649,9 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarDivision)
     {
-        auto aVector = this->vectors[0];
-        auto bVector = this->vectors[1];
-        auto scalar = this->ElementValues[2][0];
+        TypeParam aVector = this->vectors[0];
+        TypeParam bVector = this->vectors[1];
+        double scalar = this->ElementValues[2][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[1];
 
@@ -668,8 +668,8 @@ namespace Math::Vectors
     }
     TYPED_TEST(TypedVectorTests, ScalarDivisionAssignment)
     {
-        auto vector = this->vectors[0];
-        auto scalar = this->ElementValues[1][0];
+        TypeParam vector = this->vectors[0];
+        double scalar = this->ElementValues[1][0];
 
         const double* ElementValues = TypedVectorTests::ElementValues[0];
 

@@ -16,13 +16,31 @@ namespace ArtemisEngine::Math::Vectors
 		}
 		Vector2Base(T x, T y)
 		{
-			(*this)[0] = x;
-			(*this)[1] = y;
+			SetX(x);
+			SetY(y);
 		}
-		Vector2Base(const VectorBase<T, 2> other)
+		Vector2Base(const VectorBase<T, 2>& copy)
 		{
-			(*this)[0] = other[0];
-			(*this)[1] = other[1];
+			SetX(copy[0]);
+			SetY(copy[1]);
+		}
+
+		T GetX() const
+		{
+			return (*this)[0];
+		}
+		T GetY() const
+		{
+			return (*this)[1];
+		}
+
+		void SetX(const T value)
+		{
+			(*this)[0] = value;
+		}
+		void SetY(const T value)
+		{
+			(*this)[1] = value;
 		}
 	};
 }

@@ -5,29 +5,17 @@
 namespace ArtemisEngine::Math::Vectors
 {
 	template<class T>
-	class Vector3Base : public VectorBase<T, 3>
+	class Vector3Base : public VectorWrapper<T, 3>
 	{
+		using VectorWrapper::VectorWrapper;
+
 	public:
-		Vector3Base()
+		Vector3Base(const VectorWrapper<T, 3> copy)
 		{
-		}
-		Vector3Base(T x, T y)
-		{
-			SetX(x);
-			SetY(y);
-			SetZ(0);
-		}
-		Vector3Base(T x, T y, T z)
-		{
-			SetX(x);
-			SetY(y);
-			SetZ(z);
-		}
-		Vector3Base(const VectorBase<T, 3> other)
-		{
-			SetX(other[0]);
-			SetY(other[1]);
-			SetZ(other[2]);
+			for (unsigned int i = 0; i < 3; i++)
+			{
+				this->values[i] = copy[i];
+			}
 		}
 
 		// Returns cross product of two vectors
@@ -37,32 +25,6 @@ namespace ArtemisEngine::Math::Vectors
 				a.GetY() * b.GetZ() - a.GetZ() * b.GetY(),
 				a.GetZ() * b.GetX() - a.GetX() * b.GetZ(),
 				a.GetX() * b.GetY() - a.GetY() * b.GetX());
-		}
-
-		T GetX() const
-		{
-			return (*this)[0];
-		}
-		T GetY() const
-		{
-			return (*this)[1];
-		}
-		T GetZ() const
-		{
-			return (*this)[2];
-		}
-
-		void SetX(const T value)
-		{
-			(*this)[0] = value;
-		}
-		void SetY(const T value)
-		{
-			(*this)[1] = value;
-		}
-		void SetZ(const T value)
-		{
-			(*this)[2] = value;
 		}
 	};
 }

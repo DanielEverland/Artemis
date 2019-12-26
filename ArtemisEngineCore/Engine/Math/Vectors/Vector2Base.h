@@ -8,39 +8,15 @@
 namespace ArtemisEngine::Math::Vectors
 {
 	template<class T>
-	class Vector2Base : public VectorBase<T, 2>
+	class Vector2Base : public VectorWrapper<T, 2>
 	{
+		using VectorWrapper::VectorWrapper;
+
 	public:
-		Vector2Base()
+		Vector2Base(const VectorWrapper<T, 2> copy)
 		{
-		}
-		Vector2Base(T x, T y)
-		{
-			SetX(x);
-			SetY(y);
-		}
-		Vector2Base(const VectorBase<T, 2>& copy)
-		{
-			SetX(copy[0]);
-			SetY(copy[1]);
-		}
-
-		T GetX() const
-		{
-			return (*this)[0];
-		}
-		T GetY() const
-		{
-			return (*this)[1];
-		}
-
-		void SetX(const T value)
-		{
-			(*this)[0] = value;
-		}
-		void SetY(const T value)
-		{
-			(*this)[1] = value;
+			this->x = copy.x;
+			this->y = copy.y;
 		}
 	};
 }

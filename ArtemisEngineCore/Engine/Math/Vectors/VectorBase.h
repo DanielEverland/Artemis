@@ -15,35 +15,83 @@ using ArtemisEngine::Debugging::IDebugStringReturner;
 namespace ArtemisEngine::Math::Vectors
 {
 	template<class T, unsigned int dimensions>
-	class VectorBase : public IDebugStringReturner
+	class VectorWrapper;
+
+	template<class T, unsigned int dimensions>
+	class VectorBase
 	{
 	public:
+		unsigned int GetDimensions() const
+		{
+			return dimensions;
+		}
 
-		VectorBase();
-		VectorBase(const VectorBase& copy);
-		
-		T operator[](int index) const;
-		T& operator[](int index);
+	protected:
+		template<typename F>
+		static string BuildString(int dimensions, F &indexer)
+		{
+			std::stringstream stream;
+			std::streamsize defaultPrecision = stream.precision();
 
-		// Returns the dot product of two vectors.
-		// Value returned for normalized vector is in the interval [-1; 1]
-		static double GetDotProduct(const VectorBase& a, const VectorBase& b)
+			stream << "(";
+
+			for (int i = 0; i < dimensions; i++)
+			{
+				T value = indexer(i);
+
+				if (MathUtility::IsPositiveInfinity(value))
+				{
+					stream << PositiveInfinityText;
+				}
+				else if (MathUtility::IsNegativeInfinity(value))
+				{
+					stream << NegativeInfinityText;
+				}
+				else if (MathUtility::IsNaN(value))
+				{
+					stream << NaNText;
+				}
+				else if (MathUtility::IsFloatingPointIntegral(value))
+				{
+					stream << std::fixed << std::setprecision(1) << value;
+				}
+				else
+				{
+					stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
+				}
+
+				if (i < dimensions - 1)
+					stream << ", ";
+			}
+
+			stream << ")";
+
+			return stream.str();
+		}
+
+		static string GetOutOfRangeExceptionText(int index)
+		{
+			return "Attempted to access vector member using index [" + std::to_string(index) + "], but it is out of range." +
+				+"\nValid indexes are >= 0 and < " + std::to_string(dimensions);
+		}
+
+		template<typename F1, typename F2>
+		static double CalculateDotProduct(F1 a, F2 b)
 		{
 			T value = 0;
 
 			for (int i = 0; i < dimensions; i++)
-				value += a[i] * b[i];
+				value += a(i) * b(i);
 
 			return value;
 		}
 
-		// Returns the angle between two vectors.
-		// This is the unsigned angle, and will always be less than 180.
-		static double GetAngle(const VectorBase& a, const VectorBase& b)
+		template<typename F1, typename F2>
+		static double CalculateAngle(F1 a, F2 b)
 		{
-			double dotProduct = GetDotProduct(a, b);
-			double aMagnitude = a.GetMagnitude();
-			double bMagnitude = b.GetMagnitude();
+			double dotProduct = CalculateDotProduct(a, b);
+			double aMagnitude = CalculateMagnitude(a);
+			double bMagnitude = CalculateMagnitude(b);
 
 			double magnitudeProduct = aMagnitude * bMagnitude;
 
@@ -54,170 +102,255 @@ namespace ArtemisEngine::Math::Vectors
 			return radians * MathUtility::RadToDeg;
 		}
 
-		// Returns squared length of vector.
-		T GetSqrMagnitude() const;
+		template<typename F>
+		static T CalculateSqrMagnitude(F indexer)
+		{
+			T value = 0;
 
-		// Returns length of vector.
-		T GetMagnitude() const;
+			for (unsigned int i = 0; i < dimensions; i++)
+				value += indexer(i) * indexer(i);
 
-		// Returns a unit vector
-		VectorBase GetNormalized() const;
+			return value;
+		}
 
-		unsigned int GetDimensions() const;
+		template<typename F>
+		static T CalculateMagnitude(F indexer)
+		{
+			return std::sqrt(CalculateSqrMagnitude(indexer));
+		}
 
-		virtual string ToString() const override;
+		template<typename F>
+		static void CalculateUnitVector(F indexer, VectorWrapper<T, dimensions>& to)
+		{
+			T length = CalculateMagnitude(indexer);
+
+			if (length == 0)
+				throw DivideByZeroException("Unable to get unit vector of vector with length 0");
+
+			for (int i = 0; i < dimensions; i++)
+				to[i] = indexer(i) / length;
+		}
 
 	private:
-		T values[dimensions] = {};
-
 		inline static const string PositiveInfinityText = "PositiveInfinity";
 		inline static const string NegativeInfinityText = "NegativeInfinity";
 		inline static const string NaNText = "NaN";
-
-		bool IsIndexValid(int index) const;
-		string GetOutOfRangeExceptionText(int index) const;
 	};
 
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions>::VectorBase()
+	class VectorWrapper : public VectorBase<T, dimensions>, public IDebugStringReturner
 	{
-	}
+	public:
+		T values[dimensions] = {};
 
-	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions>::VectorBase(const VectorBase<T, dimensions>& copy)
-	{
-		for (unsigned int i = 0; i < dimensions; i++)
+		VectorWrapper<T, dimensions>()
 		{
-			values[i] = copy[i];
-		}
-	}
-
-	template<class T, unsigned int dimensions>
-	T VectorBase<T, dimensions>::operator[](int index) const
-	{
-		if (IsIndexValid(index))
-		{
-			return values[index];
-		}
-		else
-		{
-			throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-		}
-	}
-
-	template<class T, unsigned int dimensions>
-	T& VectorBase<T, dimensions>::operator[](int index)
-	{
-		if (IsIndexValid(index))
-		{
-			return values[index];
-		}
-		else
-		{
-			throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-		}
-	}
-
-	template<class T, unsigned int dimensions>
-	T VectorBase<T, dimensions>::GetSqrMagnitude() const
-	{
-		T value = 0;
-
-		for (unsigned int i = 0; i < dimensions; i++)
-			value += values[i] * values[i];
-
-		return value;
-	}
-
-	template<class T, unsigned int dimensions>
-	T VectorBase<T, dimensions>::GetMagnitude() const
-	{
-		return std::sqrt(GetSqrMagnitude());
-	}
-
-	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> VectorBase<T, dimensions>::GetNormalized() const
-	{
-		T length = GetMagnitude();
-
-		if (length == 0)
-			throw DivideByZeroException("Unable to get unit vector of vector with length 0");
-
-		VectorBase<T, dimensions> newVector;
-
-		for (int i = 0; i < dimensions; i++)
-			newVector[i] = values[i] / length;
-
-		return newVector;
-	}
-
-	template<class T, unsigned int dimensions>
-	unsigned int VectorBase<T, dimensions>::GetDimensions() const
-	{
-		return dimensions;
-	}
-
-	template<class T, unsigned int dimensions>
-	bool VectorBase<T, dimensions>::IsIndexValid(int index) const
-	{
-		return index >= 0 && index < dimensions;
-	}
-
-	template<class T, unsigned int dimensions>
-	string VectorBase<T, dimensions>::GetOutOfRangeExceptionText(int index) const
-	{
-		return "Attempted to access vector member using index [" + std::to_string(index) + "], but it is out of range." +
-			+"\nValid indexes are >= 0 and < " + std::to_string(dimensions);
-	}
-
-	template<class T, unsigned int dimensions>
-	string VectorBase<T, dimensions>::ToString() const
-	{
-		std::stringstream stream;
-		std::streamsize defaultPrecision = stream.precision();
-
-		stream << "(";
-
-		for (unsigned int i = 0; i < dimensions; i++)
-		{
-			auto value = values[i];
-
-			if (MathUtility::IsPositiveInfinity(value))
+			for (unsigned int i = 0; i < dimensions; i++)
 			{
-				stream << PositiveInfinityText;
+				values[i] = 0;
 			}
-			else if (MathUtility::IsNegativeInfinity(value))
+		}
+
+		T operator[](int index) const
+		{
+			if (index >= 0 && index < dimensions)
 			{
-				stream << NegativeInfinityText;
-			}
-			else if (MathUtility::IsNaN(value))
-			{
-				stream << NaNText;
-			}
-			else if (MathUtility::IsFloatingPointIntegral(value))
-			{
-				stream << std::fixed << std::setprecision(1) << value;
+				return values[index];
 			}
 			else
 			{
-				stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
 			}
-
-			if (i < dimensions - 1)
-				stream << ", ";
+		}
+		T& operator[](int index)
+		{
+			if (index >= 0 && index < dimensions)
+			{
+				return values[index];
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
 		}
 
-		stream << ")";
+		virtual string ToString() const
+		{
+			return BuildString(dimensions, [this](int i) -> T { return values[i]; });
+		}
 
-		return stream.str();
-	}
+		// Returns the dot product of two vectors.
+		// Value returned for normalized vector is in the interval [-1; 1]
+		static double GetDotProduct(const VectorWrapper& a, const VectorWrapper& b)
+		{
+			return VectorBase::CalculateDotProduct([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
+		}
+
+		// Returns the angle between two vectors.
+		// This is the unsigned angle, and will always be less than 180.
+		static double GetAngle(const VectorWrapper& a, const VectorWrapper& b)
+		{
+			return VectorBase::CalculateAngle([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
+		}
+
+		// Returns squared length of vector.
+		T GetSqrMagnitude() const
+		{
+			return CalculateSqrMagnitude([this](int i) -> T { return (*this)[i]; });
+		}
+
+		// Returns length of vector.
+		T GetMagnitude() const
+		{
+			return CalculateMagnitude([this](int i) -> T { return (*this)[i]; });
+		}
+
+		// Returns a unit vector
+		VectorWrapper GetNormalized() const
+		{
+			VectorWrapper toReturn;
+
+			CalculateUnitVector([this](int i) -> T { return (*this)[i]; }, toReturn);
+
+			return toReturn;
+		}
+	};
+
+
+	template<class T>
+	class VectorWrapper<T, 2> : public VectorBase<T, 2>, public IDebugStringReturner
+	{
+	public:
+		T x;
+		T y;
+
+		VectorWrapper<T, 2>()
+		{
+			x = 0;
+			y = 0;
+		}
+		VectorWrapper<T, 2>(T x, T y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
+		T operator[](int index) const
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+		T& operator[](int index)
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+
+
+
+		T& GetValue(int index)
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+		T GetValue(int index) const
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+
+
+
+
+		virtual string ToString() const
+		{
+			return BuildString(2, [this](int i) -> T { return (*this)[i]; });
+		}
+
+		// Returns the dot product of two vectors.
+		// Value returned for normalized vector is in the interval [-1; 1]
+		static double GetDotProduct(const VectorWrapper& a, const VectorWrapper& b)
+		{
+			return CalculateDotProduct([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
+		}
+
+		// Returns the angle between two vectors.
+		// This is the unsigned angle, and will always be less than 180.
+		static double GetAngle(const VectorWrapper& a, const VectorWrapper& b)
+		{
+			return CalculateAngle([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
+		}
+
+		// Returns squared length of vector.
+		T GetSqrMagnitude() const
+		{
+			return CalculateSqrMagnitude([this](int i) -> T { return (*this)[i]; });
+		}
+
+		// Returns length of vector.
+		T GetMagnitude() const
+		{
+			return CalculateMagnitude([this](int i) -> T { return (*this)[i]; });
+		}
+
+		// Returns a unit vector
+		VectorWrapper<T, 2> GetNormalized() const
+		{
+			VectorWrapper<T, 2> toReturn;
+
+			CalculateUnitVector([this](int i) -> T { return (*this)[i]; }, toReturn);
+
+			return toReturn;
+		}
+	};
+
 
 
 
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> operator+(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	VectorWrapper<T, dimensions> operator+(const VectorWrapper<T, dimensions> a, const VectorWrapper<T, dimensions> b)
 	{
-		VectorBase<T, dimensions> c;
+		VectorWrapper<T, dimensions> c;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -227,7 +360,7 @@ namespace ArtemisEngine::Math::Vectors
 		return c;
 	}
 	template<class T, unsigned int dimensions>
-	void operator+=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
+	void operator+=(VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions> b)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -235,9 +368,9 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	VectorBase<T, dimensions> operator+(const VectorBase<T, dimensions> vector, const TValue value)
+	VectorWrapper<T, dimensions> operator+(const VectorWrapper<T, dimensions> vector, const TValue value)
 	{
-		VectorBase<T, dimensions> toReturn;
+		VectorWrapper<T, dimensions> toReturn;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -247,7 +380,7 @@ namespace ArtemisEngine::Math::Vectors
 		return toReturn;
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	void operator+=(VectorBase<T, dimensions>& vector, const TValue value)
+	void operator+=(VectorWrapper<T, dimensions>& vector, const TValue value)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -256,9 +389,9 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> operator-(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	VectorWrapper<T, dimensions> operator-(const VectorWrapper<T, dimensions> a, const VectorWrapper<T, dimensions> b)
 	{
-		VectorBase<T, dimensions> c;
+		VectorWrapper<T, dimensions> c;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -268,7 +401,7 @@ namespace ArtemisEngine::Math::Vectors
 		return c;
 	}
 	template<class T, unsigned int dimensions>
-	void operator-=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
+	void operator-=(VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions> b)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -276,9 +409,9 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	VectorBase<T, dimensions> operator-(const VectorBase<T, dimensions> vector, const TValue value)
+	VectorWrapper<T, dimensions> operator-(const VectorWrapper<T, dimensions> vector, const TValue value)
 	{
-		VectorBase<T, dimensions> toReturn;
+		VectorWrapper<T, dimensions> toReturn;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -288,7 +421,7 @@ namespace ArtemisEngine::Math::Vectors
 		return toReturn;
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	void operator-=(VectorBase<T, dimensions>& vector, const TValue value)
+	void operator-=(VectorWrapper<T, dimensions>& vector, const TValue value)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -297,9 +430,9 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> operator*(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	VectorWrapper<T, dimensions> operator*(const VectorWrapper<T, dimensions> a, const VectorWrapper<T, dimensions> b)
 	{
-		VectorBase<T, dimensions> c;
+		VectorWrapper<T, dimensions> c;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -309,7 +442,7 @@ namespace ArtemisEngine::Math::Vectors
 		return c;
 	}
 	template<class T, unsigned int dimensions>
-	void operator*=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
+	void operator*=(VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions> b)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -317,9 +450,9 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	VectorBase<T, dimensions> operator*(const VectorBase<T, dimensions> vector, const TValue value)
+	VectorWrapper<T, dimensions> operator*(const VectorWrapper<T, dimensions> vector, const TValue value)
 	{
-		VectorBase<T, dimensions> toReturn;
+		VectorWrapper<T, dimensions> toReturn;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -329,7 +462,7 @@ namespace ArtemisEngine::Math::Vectors
 		return toReturn;
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	void operator*=(VectorBase<T, dimensions>& vector, const TValue value)
+	void operator*=(VectorWrapper<T, dimensions>& vector, const TValue value)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -338,9 +471,9 @@ namespace ArtemisEngine::Math::Vectors
 	}
 
 	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> operator/(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
+	VectorWrapper<T, dimensions> operator/(const VectorWrapper<T, dimensions> a, const VectorWrapper<T, dimensions> b)
 	{
-		VectorBase<T, dimensions> c;
+		VectorWrapper<T, dimensions> c;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -350,7 +483,7 @@ namespace ArtemisEngine::Math::Vectors
 		return c;
 	}
 	template<class T, unsigned int dimensions>
-	void operator/=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
+	void operator/=(VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions> b)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -358,9 +491,9 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	VectorBase<T, dimensions> operator/(const VectorBase<T, dimensions> vector, const TValue value)
+	VectorWrapper<T, dimensions> operator/(const VectorWrapper<T, dimensions> vector, const TValue value)
 	{
-		VectorBase<T, dimensions> toReturn;
+		VectorWrapper<T, dimensions> toReturn;
 
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
@@ -370,7 +503,7 @@ namespace ArtemisEngine::Math::Vectors
 		return toReturn;
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
-	void operator/=(VectorBase<T, dimensions>& vector, const TValue value)
+	void operator/=(VectorWrapper<T, dimensions>& vector, const TValue value)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{

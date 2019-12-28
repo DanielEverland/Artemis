@@ -12,6 +12,7 @@ namespace ArtemisEngine
 		~IntVector3() = default;
 		IntVector3() : Vector3Base<int>() { }
 		IntVector3(int x, int y) : Vector3Base<int>(x, y) { }
+		IntVector3(int x, int y, int z) : Vector3Base<int>(x, y, z) { }
 		IntVector3(const VectorBase& copy) : Vector3Base<int>(copy) { }
 		IntVector3(VectorBase&& move) : Vector3Base<int>(move) { }
 

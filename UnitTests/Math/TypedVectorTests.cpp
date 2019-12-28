@@ -332,7 +332,7 @@ namespace Math::Vectors
         this->InitializeToDefaultValues(vector, elementValues);
 
 
-        TypeParam vectorString = vector.ToString();
+        string vectorString = vector.ToString();
 
 
         EXPECT_EQ(expectedString, vectorString);

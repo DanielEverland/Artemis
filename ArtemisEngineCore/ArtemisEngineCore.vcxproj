@@ -190,6 +190,7 @@
     <ClInclude Include="Exceptions\OutOfRangeException.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\Key.h" />
+    <ClInclude Include="IntVector4.h" />
     <ClInclude Include="Structs\Color.h" />
     <ClInclude Include="Time\Time.h" />
     <ClInclude Include="Windows\GameWindow.h" />

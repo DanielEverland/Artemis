@@ -166,6 +166,9 @@
     <ClInclude Include="Debugging\Output.h">
       <Filter>Source\Debugging</Filter>
     </ClInclude>
+    <ClInclude Include="IntVector4.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">

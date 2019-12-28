@@ -25,7 +25,7 @@ namespace Math::Vectors
     const double FloatingPointComparisonPrecision = 0.00001;
 
     template <typename T>
-    class TypedVectorTests : public ::testing::Test
+    class TypedFloatingPointVectorTests : public ::testing::Test
     {
     public:
 
@@ -69,7 +69,7 @@ namespace Math::Vectors
     };
 
     template <typename T>
-    const double TypedVectorTests<T>::ElementValues[SetCount][MaximumDimensions]
+    const double TypedFloatingPointVectorTests<T>::ElementValues[SetCount][MaximumDimensions]
     {
         { 2.53, 1.0, 0.2567, -1.5 },
         { 1.25, -2.25, 1.0, 5.25 },
@@ -79,7 +79,7 @@ namespace Math::Vectors
     };
 
     template <typename T>
-    map<unsigned int, list<double>> TypedVectorTests<T>::ExpectedNormalizedValues
+    map<unsigned int, list<double>> TypedFloatingPointVectorTests<T>::ExpectedNormalizedValues
     {
         { 2, list<double> { 0.92998, 0.36758 } },
         { 3, list<double> { 0.92587, 0.36595, 0.09394 } },
@@ -87,13 +87,13 @@ namespace Math::Vectors
     };
 
     template <typename T>
-    const double TypedVectorTests<T>::InfinityValues[MaximumDimensions]
+    const double TypedFloatingPointVectorTests<T>::InfinityValues[MaximumDimensions]
     {
         Infinity, -Infinity, Infinity, -Infinity
     };
 
     template<typename T>
-    map<unsigned int, string> TypedVectorTests<T>::ExpectedStrings
+    map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedStrings
     {
         { 2, "(2.53, 1.0)" },
         { 3, "(2.53, 1.0, 0.2567)" },
@@ -101,7 +101,7 @@ namespace Math::Vectors
     };
 
     template<typename T>
-    map<unsigned int, string> TypedVectorTests<T>::ExpectedNaNStrings
+    map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedNaNStrings
     {
         { 2, "(NaN, NaN)" },
         { 3, "(NaN, NaN, NaN)" },
@@ -109,7 +109,7 @@ namespace Math::Vectors
     };
 
     template<typename T>
-    map<unsigned int, string> TypedVectorTests<T>::ExpectedInfinityStrings
+    map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedInfinityStrings
     {
         { 2, "(PositiveInfinity, NegativeInfinity)" },
         { 3, "(PositiveInfinity, NegativeInfinity, PositiveInfinity)" },
@@ -117,7 +117,7 @@ namespace Math::Vectors
     };
 
     template <typename T>
-    map<unsigned int, double> TypedVectorTests<T>::ExpectedDotProduct
+    map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedDotProduct
     {
         { 2, 0.9125 },
         { 3, 1.1692 },
@@ -125,7 +125,7 @@ namespace Math::Vectors
     };
 
     template<typename T>
-    map<unsigned int, double> TypedVectorTests<T>::ExpectedMagnitude
+    map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedMagnitude
     {
         { 2, 2.72045 },
         { 3, 2.73254 },
@@ -133,7 +133,7 @@ namespace Math::Vectors
     };
 
     template <typename T>
-    map<unsigned int, double> TypedVectorTests<T>::ExpectedAngle
+    map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedAngle
     {
         { 2, 82.51214 },
         { 3, 81.08589 },
@@ -141,9 +141,9 @@ namespace Math::Vectors
     };
 
     using MyTypes = ::testing::Types<Vector2, Vector3, Vector4>;
-    TYPED_TEST_CASE(TypedVectorTests, MyTypes);
+    TYPED_TEST_CASE(TypedFloatingPointVectorTests, MyTypes);
 
-    TYPED_TEST(TypedVectorTests, EmptyConstructor)
+    TYPED_TEST(TypedFloatingPointVectorTests, EmptyConstructor)
     {
         TypeParam vector = this->CallConstructorNoArguments();
 
@@ -153,10 +153,10 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, CopyConstructor)
+    TYPED_TEST(TypedFloatingPointVectorTests, CopyConstructor)
     {
         TypeParam copy = this->vectors[0];
-        const double* elementValues = TypedVectorTests::ElementValues[0];
+        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
         TypeParam vector = this->CallCopyConstructor(copy);
 
@@ -166,10 +166,10 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, Indexing)
+    TYPED_TEST(TypedFloatingPointVectorTests, Indexing)
     {
         TypeParam vector = this->vectors[0];
-        const double* elementValues = TypedVectorTests::ElementValues[0];
+        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
 
         this->InitializeToDefaultValues(vector, elementValues);
@@ -181,9 +181,9 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, ConstIndexing)
+    TYPED_TEST(TypedFloatingPointVectorTests, ConstIndexing)
     {
-        const double* elementValues = TypedVectorTests::ElementValues[0];
+        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
         this->InitializeToDefaultValues(this->vectors[0], elementValues);
 
 
@@ -196,14 +196,14 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, DimensionIsPositive)
+    TYPED_TEST(TypedFloatingPointVectorTests, DimensionIsPositive)
     {
         TypeParam vector = this->vectors[0];
 
         EXPECT_LT(0, vector.GetDimensions());
     }
 
-    TYPED_TEST(TypedVectorTests, IndexingOutOfRange)
+    TYPED_TEST(TypedFloatingPointVectorTests, IndexingOutOfRange)
     {
         TypeParam vector = this->vectors[0];
 
@@ -211,7 +211,7 @@ namespace Math::Vectors
         EXPECT_THROW(vector[100] = 0, OutOfRangeException);
     }
 
-    TYPED_TEST(TypedVectorTests, ConstIndexingOutOfRange)
+    TYPED_TEST(TypedFloatingPointVectorTests, ConstIndexingOutOfRange)
     {
         TypeParam const vector = this->vectors[0];
 
@@ -219,20 +219,20 @@ namespace Math::Vectors
         EXPECT_THROW(vector[100], OutOfRangeException);
     }
 
-    TYPED_TEST(TypedVectorTests, GetDotProduct)
+    TYPED_TEST(TypedFloatingPointVectorTests, GetDotProduct)
     {
         TypeParam vectorA = this->vectors[0];
         TypeParam vectorB = this->vectors[1];
 
-        const double* elementValuesA = TypedVectorTests::ElementValues[0];
-        const double* elementValuesB = TypedVectorTests::ElementValues[1];
+        const double* elementValuesA = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* elementValuesB = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(vectorA, elementValuesA);
         this->InitializeToDefaultValues(vectorB, elementValuesB);
 
 
 
-        double expectedValue = TypedVectorTests::ExpectedDotProduct[vectorA.GetDimensions()];
+        double expectedValue = TypedFloatingPointVectorTests::ExpectedDotProduct[vectorA.GetDimensions()];
         double dotProduct = this->GetDotProduct(vectorA, vectorB);
 
 
@@ -240,20 +240,20 @@ namespace Math::Vectors
         EXPECT_NEAR(expectedValue, dotProduct, FloatingPointComparisonPrecision);
     }
 
-    TYPED_TEST(TypedVectorTests, GetAngle)
+    TYPED_TEST(TypedFloatingPointVectorTests, GetAngle)
     {
         TypeParam vectorA = this->vectors[0];
         TypeParam vectorB = this->vectors[1];
 
-        const double* elementValuesA = TypedVectorTests::ElementValues[0];
-        const double* elementValuesB = TypedVectorTests::ElementValues[1];
+        const double* elementValuesA = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* elementValuesB = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(vectorA, elementValuesA);
         this->InitializeToDefaultValues(vectorB, elementValuesB);
 
 
 
-        double expectedAngle = TypedVectorTests::ExpectedAngle[vectorA.GetDimensions()];
+        double expectedAngle = TypedFloatingPointVectorTests::ExpectedAngle[vectorA.GetDimensions()];
         double actualAngle = this->GetAngle(vectorA, vectorB);
 
 
@@ -261,12 +261,12 @@ namespace Math::Vectors
         EXPECT_NEAR(expectedAngle, actualAngle, FloatingPointComparisonPrecision);
     }
 
-    TYPED_TEST(TypedVectorTests, SqrMagnitude)
+    TYPED_TEST(TypedFloatingPointVectorTests, SqrMagnitude)
     {
         TypeParam vector = this->vectors[0];
-        const double* elementValues = TypedVectorTests::ElementValues[0];
+        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
-        TypedVectorTests::InitializeToDefaultValues(vector, elementValues);
+        TypedFloatingPointVectorTests::InitializeToDefaultValues(vector, elementValues);
 
         double vectorSqrMagnitude = vector.GetSqrMagnitude();
 
@@ -280,13 +280,13 @@ namespace Math::Vectors
         EXPECT_NEAR(expectedValue, vectorSqrMagnitude, FloatingPointComparisonPrecision);
     }
 
-    TYPED_TEST(TypedVectorTests, Magnitude)
+    TYPED_TEST(TypedFloatingPointVectorTests, Magnitude)
     {
         TypeParam vector = this->vectors[0];
-        double expectedValue = TypedVectorTests::ExpectedMagnitude[vector.GetDimensions()];
-        const double* elementValues = TypedVectorTests::ElementValues[0];
+        double expectedValue = TypedFloatingPointVectorTests::ExpectedMagnitude[vector.GetDimensions()];
+        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
-        TypedVectorTests::InitializeToDefaultValues(vector, elementValues);
+        TypedFloatingPointVectorTests::InitializeToDefaultValues(vector, elementValues);
 
 
         double magnitude = vector.GetMagnitude();
@@ -295,20 +295,20 @@ namespace Math::Vectors
         EXPECT_NEAR(expectedValue, magnitude, FloatingPointComparisonPrecision);
     }
 
-    TYPED_TEST(TypedVectorTests, NormalizedDivideByZero)
+    TYPED_TEST(TypedFloatingPointVectorTests, NormalizedDivideByZero)
     {
         TypeParam vector = this->vectors[0];
 
         EXPECT_THROW(vector.GetNormalized(), DivideByZeroException);
     }
 
-    TYPED_TEST(TypedVectorTests, Normalized)
+    TYPED_TEST(TypedFloatingPointVectorTests, Normalized)
     {
         TypeParam vector = this->vectors[0];
-        list<double> expectedValues = TypedVectorTests::ExpectedNormalizedValues[vector.GetDimensions()];
-        const double* elementValues = TypedVectorTests::ElementValues[0];
+        list<double> expectedValues = TypedFloatingPointVectorTests::ExpectedNormalizedValues[vector.GetDimensions()];
+        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
-        TypedVectorTests::InitializeToDefaultValues(vector, elementValues);
+        TypedFloatingPointVectorTests::InitializeToDefaultValues(vector, elementValues);
 
 
         TypeParam normalized = vector.GetNormalized();
@@ -323,11 +323,11 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, ToString)
+    TYPED_TEST(TypedFloatingPointVectorTests, ToString)
     {
         TypeParam vector = this->vectors[0];
-        string expectedString = TypedVectorTests::ExpectedStrings[vector.GetDimensions()];
-        const double* elementValues = TypedVectorTests::ElementValues[0];
+        string expectedString = TypedFloatingPointVectorTests::ExpectedStrings[vector.GetDimensions()];
+        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
         this->InitializeToDefaultValues(vector, elementValues);
 
@@ -338,10 +338,10 @@ namespace Math::Vectors
         EXPECT_EQ(expectedString, vectorString);
     }
 
-    TYPED_TEST(TypedVectorTests, ToStringNaN)
+    TYPED_TEST(TypedFloatingPointVectorTests, ToStringNaN)
     {
         TypeParam vector = this->vectors[0];
-        string expectedString = TypedVectorTests::ExpectedNaNStrings[vector.GetDimensions()];
+        string expectedString = TypedFloatingPointVectorTests::ExpectedNaNStrings[vector.GetDimensions()];
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
             vector[i] = nan("");
@@ -353,13 +353,13 @@ namespace Math::Vectors
         EXPECT_EQ(expectedString, vectorString);
     }
 
-    TYPED_TEST(TypedVectorTests, ToStringInfinity)
+    TYPED_TEST(TypedFloatingPointVectorTests, ToStringInfinity)
     {
         TypeParam vector = this->vectors[0];
-        string expectedString = TypedVectorTests::ExpectedInfinityStrings[vector.GetDimensions()];
+        string expectedString = TypedFloatingPointVectorTests::ExpectedInfinityStrings[vector.GetDimensions()];
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-            vector[i] = TypedVectorTests::InfinityValues[i];
+            vector[i] = TypedFloatingPointVectorTests::InfinityValues[i];
 
 
         string vectorString = vector.ToString();
@@ -369,14 +369,14 @@ namespace Math::Vectors
     }
 
 
-    TYPED_TEST(TypedVectorTests, AdditionOfTwoVectors)
+    TYPED_TEST(TypedFloatingPointVectorTests, AdditionOfTwoVectors)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         TypeParam cVector = this->vectors[2];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -390,13 +390,13 @@ namespace Math::Vectors
             EXPECT_EQ(cVector[i], aElementValues[i] + bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, AdditionAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, AdditionAssignment)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -410,13 +410,13 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], aElementValues[i] + bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarAddition)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarAddition)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         double scalar = this->ElementValues[2][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[1];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(bVector, ElementValues);
 
@@ -429,12 +429,12 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], bVector[i] + scalar);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarAdditionAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarAdditionAssignment)
     {
         TypeParam vector = this->vectors[0];
         double scalar = this->ElementValues[1][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[0];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
         this->InitializeToDefaultValues(vector, ElementValues);
 
@@ -448,14 +448,14 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, SubtractionOfTwoVectors)
+    TYPED_TEST(TypedFloatingPointVectorTests, SubtractionOfTwoVectors)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         TypeParam cVector = this->vectors[2];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -469,13 +469,13 @@ namespace Math::Vectors
             EXPECT_EQ(cVector[i], aElementValues[i] - bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, SubtractionAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, SubtractionAssignment)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -489,13 +489,13 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], aElementValues[i] - bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarSubtraction)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarSubtraction)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         double scalar = this->ElementValues[2][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[1];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(bVector, ElementValues);
 
@@ -508,12 +508,12 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], bVector[i] - scalar);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarSubtractionAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarSubtractionAssignment)
     {
         TypeParam vector = this->vectors[0];
         double scalar = this->ElementValues[1][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[0];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
         this->InitializeToDefaultValues(vector, ElementValues);
 
@@ -527,14 +527,14 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, MultiplicationOfTwoVectors)
+    TYPED_TEST(TypedFloatingPointVectorTests, MultiplicationOfTwoVectors)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         TypeParam cVector = this->vectors[2];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -548,13 +548,13 @@ namespace Math::Vectors
             EXPECT_EQ(cVector[i], aElementValues[i] * bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, MultiplicationAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, MultiplicationAssignment)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -568,13 +568,13 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], aElementValues[i] * bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarMultiplication)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplication)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         double scalar = this->ElementValues[2][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[1];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(bVector, ElementValues);
 
@@ -587,12 +587,12 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], bVector[i] * scalar);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarMultiplicationAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplicationAssignment)
     {
         TypeParam vector = this->vectors[0];
         double scalar = this->ElementValues[1][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[0];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
         this->InitializeToDefaultValues(vector, ElementValues);
 
@@ -606,14 +606,14 @@ namespace Math::Vectors
         }
     }
 
-    TYPED_TEST(TypedVectorTests, DivisionOfTwoVectors)
+    TYPED_TEST(TypedFloatingPointVectorTests, DivisionOfTwoVectors)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         TypeParam cVector = this->vectors[2];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -627,13 +627,13 @@ namespace Math::Vectors
             EXPECT_EQ(cVector[i], aElementValues[i] / bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, DivisionAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, DivisionAssignment)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
 
-        const double* aElementValues = TypedVectorTests::ElementValues[0];
-        const double* bElementValues = TypedVectorTests::ElementValues[1];
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(aVector, aElementValues);
         this->InitializeToDefaultValues(bVector, bElementValues);
@@ -647,13 +647,13 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], aElementValues[i] / bElementValues[i]);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarDivision)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarDivision)
     {
         TypeParam aVector = this->vectors[0];
         TypeParam bVector = this->vectors[1];
         double scalar = this->ElementValues[2][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[1];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[1];
 
         this->InitializeToDefaultValues(bVector, ElementValues);
 
@@ -666,12 +666,12 @@ namespace Math::Vectors
             EXPECT_EQ(aVector[i], bVector[i] / scalar);
         }
     }
-    TYPED_TEST(TypedVectorTests, ScalarDivisionAssignment)
+    TYPED_TEST(TypedFloatingPointVectorTests, ScalarDivisionAssignment)
     {
         TypeParam vector = this->vectors[0];
         double scalar = this->ElementValues[1][0];
 
-        const double* ElementValues = TypedVectorTests::ElementValues[0];
+        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
         this->InitializeToDefaultValues(vector, ElementValues);
 

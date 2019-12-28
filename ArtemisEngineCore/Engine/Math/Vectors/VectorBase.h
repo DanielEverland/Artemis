@@ -138,7 +138,82 @@ namespace ArtemisEngine::Math::Vectors
 	};
 
 	template<class T, unsigned int dimensions>
-	class VectorWrapper : public VectorBase<T, dimensions>, public IDebugStringReturner
+	class IndexableVector : public VectorBase<T, dimensions>, public IDebugStringReturner
+	{
+	public:
+
+		// Returns the dot product of two vectors.
+		// Value returned for normalized vector is in the interval [-1; 1]
+		static double GetDotProduct(const VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions>& b)
+		{
+			return CalculateDotProduct([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
+		}
+
+		// Returns the angle between two vectors.
+		// This is the unsigned angle, and will always be less than 180.
+		static double GetAngle(const VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions>& b)
+		{
+			return CalculateAngle([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
+		}
+
+
+		T operator[](int index) const
+		{
+			if (index >= 0 && index < dimensions)
+			{
+				return GetValue(index);
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+		T& operator[](int index)
+		{
+			if (index >= 0 && index < dimensions)
+			{
+				return GetValue(index);
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+
+		virtual string ToString() const
+		{
+			return BuildString(dimensions, [this](int i) -> T { return GetValue(i); });
+		}
+
+		// Returns squared length of vector.
+		T GetSqrMagnitude() const
+		{
+			return CalculateSqrMagnitude([this](int i) -> T { return GetValue(i); });
+		}
+
+		// Returns length of vector.
+		T GetMagnitude() const
+		{
+			return CalculateMagnitude([this](int i) -> T { return GetValue(i); });
+		}
+
+		// Returns a unit vector
+		VectorWrapper<T, dimensions> GetNormalized() const
+		{
+			VectorWrapper<T, dimensions> toReturn;
+
+			CalculateUnitVector([this](int i) -> T { return GetValue(i); }, toReturn);
+
+			return toReturn;
+		}
+
+	private:
+		virtual T& GetValue(int index) = 0;
+		virtual T GetValue(int index) const = 0;
+	};
+
+	template<class T, unsigned int dimensions>
+	class VectorWrapper : public IndexableVector<T, dimensions>
 	{
 	public:
 		T values[dimensions] = {};
@@ -151,74 +226,20 @@ namespace ArtemisEngine::Math::Vectors
 			}
 		}
 
-		T operator[](int index) const
+	private:
+		T& GetValue(int index) override
 		{
-			if (index >= 0 && index < dimensions)
-			{
-				return values[index];
-			}
-			else
-			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-			}
+			return values[index];
 		}
-		T& operator[](int index)
+		T GetValue(int index) const override
 		{
-			if (index >= 0 && index < dimensions)
-			{
-				return values[index];
-			}
-			else
-			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-			}
-		}
-
-		virtual string ToString() const
-		{
-			return BuildString(dimensions, [this](int i) -> T { return values[i]; });
-		}
-
-		// Returns the dot product of two vectors.
-		// Value returned for normalized vector is in the interval [-1; 1]
-		static double GetDotProduct(const VectorWrapper& a, const VectorWrapper& b)
-		{
-			return VectorBase::CalculateDotProduct([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
-		}
-
-		// Returns the angle between two vectors.
-		// This is the unsigned angle, and will always be less than 180.
-		static double GetAngle(const VectorWrapper& a, const VectorWrapper& b)
-		{
-			return VectorBase::CalculateAngle([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
-		}
-
-		// Returns squared length of vector.
-		T GetSqrMagnitude() const
-		{
-			return CalculateSqrMagnitude([this](int i) -> T { return (*this)[i]; });
-		}
-
-		// Returns length of vector.
-		T GetMagnitude() const
-		{
-			return CalculateMagnitude([this](int i) -> T { return (*this)[i]; });
-		}
-
-		// Returns a unit vector
-		VectorWrapper GetNormalized() const
-		{
-			VectorWrapper toReturn;
-
-			CalculateUnitVector([this](int i) -> T { return (*this)[i]; }, toReturn);
-
-			return toReturn;
+			return values[index];
 		}
 	};
 
 
 	template<class T>
-	class VectorWrapper<T, 2> : public VectorBase<T, 2>, public IDebugStringReturner
+	class VectorWrapper<T, 2> : public IndexableVector<T, 2>
 	{
 	public:
 		T x;
@@ -235,7 +256,8 @@ namespace ArtemisEngine::Math::Vectors
 			this->y = y;
 		}
 
-		T operator[](int index) const
+	private:
+		T& GetValue(int index) override
 		{
 			if (index == 0)
 			{
@@ -250,7 +272,7 @@ namespace ArtemisEngine::Math::Vectors
 				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
 			}
 		}
-		T& operator[](int index)
+		T GetValue(int index) const override
 		{
 			if (index == 0)
 			{
@@ -264,83 +286,6 @@ namespace ArtemisEngine::Math::Vectors
 			{
 				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
 			}
-		}
-
-
-
-		T& GetValue(int index)
-		{
-			if (index == 0)
-			{
-				return x;
-			}
-			else if (index == 1)
-			{
-				return y;
-			}
-			else
-			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-			}
-		}
-		T GetValue(int index) const
-		{
-			if (index == 0)
-			{
-				return x;
-			}
-			else if (index == 1)
-			{
-				return y;
-			}
-			else
-			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-			}
-		}
-
-
-
-
-		virtual string ToString() const
-		{
-			return BuildString(2, [this](int i) -> T { return (*this)[i]; });
-		}
-
-		// Returns the dot product of two vectors.
-		// Value returned for normalized vector is in the interval [-1; 1]
-		static double GetDotProduct(const VectorWrapper& a, const VectorWrapper& b)
-		{
-			return CalculateDotProduct([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
-		}
-
-		// Returns the angle between two vectors.
-		// This is the unsigned angle, and will always be less than 180.
-		static double GetAngle(const VectorWrapper& a, const VectorWrapper& b)
-		{
-			return CalculateAngle([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
-		}
-
-		// Returns squared length of vector.
-		T GetSqrMagnitude() const
-		{
-			return CalculateSqrMagnitude([this](int i) -> T { return (*this)[i]; });
-		}
-
-		// Returns length of vector.
-		T GetMagnitude() const
-		{
-			return CalculateMagnitude([this](int i) -> T { return (*this)[i]; });
-		}
-
-		// Returns a unit vector
-		VectorWrapper<T, 2> GetNormalized() const
-		{
-			VectorWrapper<T, 2> toReturn;
-
-			CalculateUnitVector([this](int i) -> T { return (*this)[i]; }, toReturn);
-
-			return toReturn;
 		}
 	};
 

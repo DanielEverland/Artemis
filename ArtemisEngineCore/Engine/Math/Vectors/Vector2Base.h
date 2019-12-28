@@ -8,23 +8,23 @@
 namespace ArtemisEngine::Math::Vectors
 {
 	template<class T>
-	class Vector2Base : public VectorWrapper<T, 2>
+	class Vector2Base : public VectorBase<T, 2>
 	{
 	public:
 		~Vector2Base() = default;
-		Vector2Base() : VectorWrapper<T, 2>() { }
-		Vector2Base(T x, T y) : VectorWrapper<T, 2>(x, y) { }
-		Vector2Base(const VectorWrapper& copy) : VectorWrapper<T, 2>(copy) { }
-		Vector2Base(VectorWrapper&& move) : VectorWrapper<T, 2>(move) { }
+		Vector2Base() : VectorBase<T, 2>() { }
+		Vector2Base(T x, T y) : VectorBase<T, 2>(x, y) { }
+		Vector2Base(const VectorBase& copy) : VectorBase<T, 2>(copy) { }
+		Vector2Base(VectorBase&& move) : VectorBase<T, 2>(move) { }
 
-		Vector2Base& operator=(VectorWrapper& copy)
+		Vector2Base& operator=(VectorBase& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;
 
 			return *this;
 		}
-		Vector2Base& operator=(VectorWrapper&& move)
+		Vector2Base& operator=(VectorBase&& move)
 		{
 			this->x = move.x;
 			this->y = move.y;

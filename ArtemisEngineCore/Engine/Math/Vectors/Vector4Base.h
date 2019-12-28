@@ -5,18 +5,18 @@
 namespace ArtemisEngine::Math::Vectors
 {
 	template<class T>
-	class Vector4Base : public VectorWrapper<T, 4>
+	class Vector4Base : public VectorBase<T, 4>
 	{
 	public:
 		~Vector4Base() = default;
-		Vector4Base() : VectorWrapper<T, 4>() { }
-		Vector4Base(T x, T y) : VectorWrapper<T, 4>(x, y) { }
-		Vector4Base(T x, T y, T z) : VectorWrapper<T, 4>(x, y, z) { }
-		Vector4Base(T x, T y, T z, T w) : VectorWrapper<T, 4>(x, y, z, w) { }
-		Vector4Base(const VectorWrapper& copy) : VectorWrapper<T, 4>(copy) { }
-		Vector4Base(VectorWrapper&& move) : VectorWrapper<T, 4>(move) { }
+		Vector4Base() : VectorBase<T, 4>() { }
+		Vector4Base(T x, T y) : VectorBase<T, 4>(x, y) { }
+		Vector4Base(T x, T y, T z) : VectorBase<T, 4>(x, y, z) { }
+		Vector4Base(T x, T y, T z, T w) : VectorBase<T, 4>(x, y, z, w) { }
+		Vector4Base(const VectorBase& copy) : VectorBase<T, 4>(copy) { }
+		Vector4Base(VectorBase&& move) : VectorBase<T, 4>(move) { }
 
-		Vector4Base& operator=(VectorWrapper& copy)
+		Vector4Base& operator=(VectorBase& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;
@@ -25,7 +25,7 @@ namespace ArtemisEngine::Math::Vectors
 
 			return *this;
 		}
-		Vector4Base& operator=(VectorWrapper&& move)
+		Vector4Base& operator=(VectorBase&& move)
 		{
 			this->x = move.x;
 			this->y = move.y;

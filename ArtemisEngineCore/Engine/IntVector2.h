@@ -2,32 +2,35 @@
 
 #include "Math/Vectors/Vector2Base.h"
 
-using namespace ArtemisEngine::Math::Vectors;
+using ArtemisEngine::Math::Vectors::Vector2Base;
 
-class IntVector2 : public Vector2Base<int>
+namespace ArtemisEngine
 {
-public:
-	~IntVector2() = default;
-	IntVector2() : Vector2Base<int>() { }
-	IntVector2(int x, int y) : Vector2Base<int>(x, y) { }
-	IntVector2(const VectorBase & copy) : Vector2Base<int>(copy) { }
-	IntVector2(VectorBase && move) : Vector2Base<int>(move) { }
-
-	IntVector2& operator=(VectorBase & copy)
+	class IntVector2 : public Vector2Base<int>
 	{
-		this->x = copy.x;
-		this->y = copy.y;
+	public:
+		~IntVector2() = default;
+		IntVector2() : Vector2Base<int>() { }
+		IntVector2(int x, int y) : Vector2Base<int>(x, y) { }
+		IntVector2(const VectorBase& copy) : Vector2Base<int>(copy) { }
+		IntVector2(VectorBase&& move) : Vector2Base<int>(move) { }
 
-		return *this;
-	}
-	IntVector2& operator=(VectorBase && move)
-	{
-		this->x = move.x;
-		this->y = move.y;
+		IntVector2& operator=(VectorBase& copy)
+		{
+			this->x = copy.x;
+			this->y = copy.y;
 
-		move.x = 0;
-		move.y = 0;
+			return *this;
+		}
+		IntVector2& operator=(VectorBase&& move)
+		{
+			this->x = move.x;
+			this->y = move.y;
 
-		return *this;
-	}
-};
+			move.x = 0;
+			move.y = 0;
+
+			return *this;
+		}
+	};
+}

@@ -166,7 +166,7 @@
     <ClInclude Include="Debugging\Output.h">
       <Filter>Source\Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="IntVector4.h">
+    <ClInclude Include="Engine\IntVector4.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
   </ItemGroup>

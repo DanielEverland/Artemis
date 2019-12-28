@@ -16,20 +16,23 @@ namespace ArtemisEngine
 		IntVector3(const VectorBase& copy) : Vector3Base<int>(copy) { }
 		IntVector3(VectorBase&& move) : Vector3Base<int>(move) { }
 
-		IntVector3& operator=(VectorBase& copy)
+		IntVector3& operator=(IntVector3& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;
+			this->z = copy.z;
 
 			return *this;
 		}
-		IntVector3& operator=(VectorBase&& move)
+		IntVector3& operator=(IntVector3&& move)
 		{
 			this->x = move.x;
 			this->y = move.y;
+			this->z = move.z;
 
 			move.x = 0;
 			move.y = 0;
+			move.z = 0;
 
 			return *this;
 		}

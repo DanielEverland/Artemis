@@ -203,17 +203,19 @@ namespace ArtemisEngine::Math::Vectors
 	public:
 		T x;
 		T y;
-
-		VectorWrapper()
-		{
-			x = 0;
-			y = 0;
-		}
+				
 		VectorWrapper(T x, T y)
 		{
 			this->x = x;
 			this->y = y;
 		}
+
+		VectorWrapper() = default;
+		~VectorWrapper() = default;
+		VectorWrapper(const VectorWrapper& copy) = default;
+		VectorWrapper(VectorWrapper&& move) = default;
+		VectorWrapper& operator=(VectorWrapper& copy) = default;
+		VectorWrapper& operator=(VectorWrapper&& move) = default;
 
 	private:
 		T& GetValue(int index) override
@@ -411,9 +413,6 @@ namespace ArtemisEngine::Math::Vectors
 			}
 		}
 	};
-
-
-
 
 
 	template<class T, unsigned int dimensions>

@@ -17,18 +17,70 @@ namespace ArtemisEngine::Math::Vectors
 	template<class T, unsigned int dimensions>
 	class VectorWrapper;
 
+
 	template<class T, unsigned int dimensions>
-	class VectorBase
+	class VectorBase : public IDebugStringReturner
 	{
 	public:
+		// Returns the dot product of two vectors.
+		// Value returned for normalized vector is in the interval [-1; 1]
+		static double GetDotProduct(const VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions>& b)
+		{
+			T value = 0;
+
+			for (int i = 0; i < dimensions; i++)
+				value += a[i] * b[i];
+
+			return value;
+		}
+
+		// Returns the angle between two vectors.
+		// This is the unsigned angle, and will always be less than 180.
+		static double GetAngle(const VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions>& b)
+		{
+			double dotProduct = GetDotProduct(a, b);
+			double aMagnitude = a.GetMagnitude();
+			double bMagnitude = b.GetMagnitude();
+
+			double magnitudeProduct = aMagnitude * bMagnitude;
+
+			double quotient = dotProduct / magnitudeProduct;
+
+			double radians = acos(quotient);
+
+			return radians * MathUtility::RadToDeg;
+		}
+
+
+		T operator[](int index) const
+		{
+			if (index >= 0 && index < dimensions)
+			{
+				return GetValue(index);
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+		T& operator[](int index)
+		{
+			if (index >= 0 && index < dimensions)
+			{
+				return GetValue(index);
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+
 		unsigned int GetDimensions() const
 		{
 			return dimensions;
 		}
 
-	protected:
-		template<typename F>
-		static string BuildString(int dimensions, F &indexer)
+		virtual string ToString() const
 		{
 			std::stringstream stream;
 			std::streamsize defaultPrecision = stream.precision();
@@ -37,7 +89,7 @@ namespace ArtemisEngine::Math::Vectors
 
 			for (int i = 0; i < dimensions; i++)
 			{
-				T value = indexer(i);
+				T value = GetValue(i);
 
 				if (MathUtility::IsPositiveInfinity(value))
 				{
@@ -69,132 +121,21 @@ namespace ArtemisEngine::Math::Vectors
 			return stream.str();
 		}
 
-		static string GetOutOfRangeExceptionText(int index)
-		{
-			return "Attempted to access vector member using index [" + std::to_string(index) + "], but it is out of range." +
-				+"\nValid indexes are >= 0 and < " + std::to_string(dimensions);
-		}
-
-		template<typename F1, typename F2>
-		static double CalculateDotProduct(F1 a, F2 b)
-		{
-			T value = 0;
-
-			for (int i = 0; i < dimensions; i++)
-				value += a(i) * b(i);
-
-			return value;
-		}
-
-		template<typename F1, typename F2>
-		static double CalculateAngle(F1 a, F2 b)
-		{
-			double dotProduct = CalculateDotProduct(a, b);
-			double aMagnitude = CalculateMagnitude(a);
-			double bMagnitude = CalculateMagnitude(b);
-
-			double magnitudeProduct = aMagnitude * bMagnitude;
-
-			double quotient = dotProduct / magnitudeProduct;
-
-			double radians = acos(quotient);
-
-			return radians * MathUtility::RadToDeg;
-		}
-
-		template<typename F>
-		static T CalculateSqrMagnitude(F indexer)
+		// Returns squared length of vector.
+		T GetSqrMagnitude() const
 		{
 			T value = 0;
 
 			for (unsigned int i = 0; i < dimensions; i++)
-				value += indexer(i) * indexer(i);
+				value += GetValue(i) * GetValue(i);
 
 			return value;
-		}
-
-		template<typename F>
-		static T CalculateMagnitude(F indexer)
-		{
-			return std::sqrt(CalculateSqrMagnitude(indexer));
-		}
-
-		template<typename F>
-		static void CalculateUnitVector(F indexer, VectorWrapper<T, dimensions>& to)
-		{
-			T length = CalculateMagnitude(indexer);
-
-			if (length == 0)
-				throw DivideByZeroException("Unable to get unit vector of vector with length 0");
-
-			for (int i = 0; i < dimensions; i++)
-				to[i] = indexer(i) / length;
-		}
-
-	private:
-		inline static const string PositiveInfinityText = "PositiveInfinity";
-		inline static const string NegativeInfinityText = "NegativeInfinity";
-		inline static const string NaNText = "NaN";
-	};
-
-	template<class T, unsigned int dimensions>
-	class IndexableVector : public VectorBase<T, dimensions>, public IDebugStringReturner
-	{
-	public:
-
-		// Returns the dot product of two vectors.
-		// Value returned for normalized vector is in the interval [-1; 1]
-		static double GetDotProduct(const VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions>& b)
-		{
-			return CalculateDotProduct([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
-		}
-
-		// Returns the angle between two vectors.
-		// This is the unsigned angle, and will always be less than 180.
-		static double GetAngle(const VectorWrapper<T, dimensions>& a, const VectorWrapper<T, dimensions>& b)
-		{
-			return CalculateAngle([a](int i) -> T { return a[i]; }, [b](int i) -> T { return b[i]; });
-		}
-
-
-		T operator[](int index) const
-		{
-			if (index >= 0 && index < dimensions)
-			{
-				return GetValue(index);
-			}
-			else
-			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-			}
-		}
-		T& operator[](int index)
-		{
-			if (index >= 0 && index < dimensions)
-			{
-				return GetValue(index);
-			}
-			else
-			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
-			}
-		}
-
-		virtual string ToString() const
-		{
-			return BuildString(dimensions, [this](int i) -> T { return GetValue(i); });
-		}
-
-		// Returns squared length of vector.
-		T GetSqrMagnitude() const
-		{
-			return CalculateSqrMagnitude([this](int i) -> T { return GetValue(i); });
 		}
 
 		// Returns length of vector.
 		T GetMagnitude() const
 		{
-			return CalculateMagnitude([this](int i) -> T { return GetValue(i); });
+			return std::sqrt(GetSqrMagnitude());
 		}
 
 		// Returns a unit vector
@@ -202,18 +143,36 @@ namespace ArtemisEngine::Math::Vectors
 		{
 			VectorWrapper<T, dimensions> toReturn;
 
-			CalculateUnitVector([this](int i) -> T { return GetValue(i); }, toReturn);
+			T length = GetMagnitude();
+
+			if (length == 0)
+				throw DivideByZeroException("Unable to get unit vector of vector with length 0");
+
+			for (int i = 0; i < dimensions; i++)
+				toReturn[i] = GetValue(i) / length;
 
 			return toReturn;
+		}
+
+	protected:
+		static string GetOutOfRangeExceptionText(int index)
+		{
+			return "Attempted to access vector member using index [" + std::to_string(index) + "], but it is out of range." +
+				+"\nValid indexes are >= 0 and < " + std::to_string(dimensions);
 		}
 
 	private:
 		virtual T& GetValue(int index) = 0;
 		virtual T GetValue(int index) const = 0;
+
+		inline static const string PositiveInfinityText = "PositiveInfinity";
+		inline static const string NegativeInfinityText = "NegativeInfinity";
+		inline static const string NaNText = "NaN";
 	};
 
+
 	template<class T, unsigned int dimensions>
-	class VectorWrapper : public IndexableVector<T, dimensions>
+	class VectorWrapper : public VectorBase<T, dimensions>
 	{
 	public:
 		T values[dimensions] = {};
@@ -239,7 +198,7 @@ namespace ArtemisEngine::Math::Vectors
 
 
 	template<class T>
-	class VectorWrapper<T, 2> : public IndexableVector<T, 2>
+	class VectorWrapper<T, 2> : public VectorBase<T, 2>
 	{
 	public:
 		T x;

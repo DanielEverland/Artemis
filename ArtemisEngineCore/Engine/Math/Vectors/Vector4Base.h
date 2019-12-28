@@ -12,10 +12,10 @@ namespace ArtemisEngine::Math::Vectors
 	public:
 		Vector4Base(const VectorWrapper<T, 4> copy)
 		{
-			for (unsigned int i = 0; i < 4; i++)
-			{
-				this->values[i] = copy[i];
-			}
+			this->x = copy.x;
+			this->y = copy.y;
+			this->z = copy.z;
+			this->w = copy.w;
 		}
 	};
 }

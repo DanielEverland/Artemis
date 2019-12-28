@@ -325,6 +325,93 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	};
 
+	template<class T>
+	class VectorWrapper<T, 4> : public VectorBase<T, 4>
+	{
+	public:
+		T x;
+		T y;
+		T z;
+		T w;
+
+		VectorWrapper<T, 4>()
+		{
+			x = 0;
+			y = 0;
+			z = 0;
+			w = 0;
+		}
+		VectorWrapper<T, 4>(T x, T y)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = 0;
+			this->w = 0;
+		}
+		VectorWrapper<T, 4>(T x, T y, T z)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+			this->w = 0;
+		}
+		VectorWrapper<T, 4>(T x, T y, T z, T w)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+			this->w = w;
+		}
+
+	private:
+		T& GetValue(int index) override
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else if (index == 2)
+			{
+				return z;
+			}
+			else if (index == 3)
+			{
+				return w;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+		T GetValue(int index) const override
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else if (index == 2)
+			{
+				return z;
+			}
+			else if (index == 3)
+			{
+				return w;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+	};
+
 
 
 

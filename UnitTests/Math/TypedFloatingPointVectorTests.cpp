@@ -143,15 +143,6 @@
 //    using MyTypes = ::testing::Types<Vector2, Vector3, Vector4>;
 //    TYPED_TEST_CASE(TypedFloatingPointVectorTests, MyTypes);
 //
-//    TYPED_TEST(TypedFloatingPointVectorTests, EmptyConstructor)
-//    {
-//        TypeParam vector = this->CallConstructorNoArguments();
-//
-//        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-//        {
-//            EXPECT_EQ(0, vector[i]);
-//        }
-//    }
 //
 //    TYPED_TEST(TypedFloatingPointVectorTests, CopyConstructor)
 //    {
@@ -194,29 +185,6 @@
 //        {
 //            EXPECT_EQ(vector[i], elementValues[i]);
 //        }
-//    }
-//
-//    TYPED_TEST(TypedFloatingPointVectorTests, DimensionIsPositive)
-//    {
-//        TypeParam vector = this->vectors[0];
-//
-//        EXPECT_LT(0, vector.GetDimensions());
-//    }
-//
-//    TYPED_TEST(TypedFloatingPointVectorTests, IndexingOutOfRange)
-//    {
-//        TypeParam vector = this->vectors[0];
-//
-//        EXPECT_THROW(vector[-1] = 0, OutOfRangeException);
-//        EXPECT_THROW(vector[100] = 0, OutOfRangeException);
-//    }
-//
-//    TYPED_TEST(TypedFloatingPointVectorTests, ConstIndexingOutOfRange)
-//    {
-//        TypeParam const vector = this->vectors[0];
-//
-//        EXPECT_THROW(vector[-1], OutOfRangeException);
-//        EXPECT_THROW(vector[100], OutOfRangeException);
 //    }
 //
 //    TYPED_TEST(TypedFloatingPointVectorTests, GetDotProduct)

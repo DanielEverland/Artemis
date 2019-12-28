@@ -15,14 +15,14 @@ namespace ArtemisEngine
 		IntVector2(const VectorBase& copy) : Vector2Base<int>(copy) { }
 		IntVector2(VectorBase&& move) : Vector2Base<int>(move) { }
 
-		IntVector2& operator=(IntVector2& copy)
+		IntVector2& operator=(const Vector2Base<int>& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;
 
 			return *this;
 		}
-		IntVector2& operator=(IntVector2&& move)
+		IntVector2& operator=(Vector2Base<int>&& move)
 		{
 			this->x = move.x;
 			this->y = move.y;

@@ -17,7 +17,7 @@ namespace ArtemisEngine::Math::Vectors
 		Vector2Base(const VectorBase& copy) : VectorBase<T, 2>(copy) { }
 		Vector2Base(VectorBase&& move) : VectorBase<T, 2>(move) { }
 
-		Vector2Base& operator=(VectorBase& copy)
+		Vector2Base& operator=(const VectorBase& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;

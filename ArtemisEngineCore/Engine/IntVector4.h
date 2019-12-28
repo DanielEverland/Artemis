@@ -17,7 +17,7 @@ namespace ArtemisEngine
 		IntVector4(const VectorBase& copy) : Vector4Base<int>(copy) { }
 		IntVector4(VectorBase&& move) : Vector4Base<int>(move) { }
 
-		IntVector4& operator=(IntVector4& copy)
+		IntVector4& operator=(const Vector4Base<int>& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;
@@ -26,7 +26,7 @@ namespace ArtemisEngine
 
 			return *this;
 		}
-		IntVector4& operator=(IntVector4&& move)
+		IntVector4& operator=(Vector4Base<int>&& move)
 		{
 			this->x = move.x;
 			this->y = move.y;

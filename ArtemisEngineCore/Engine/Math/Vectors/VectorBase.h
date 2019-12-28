@@ -90,25 +90,32 @@ namespace ArtemisEngine::Math::Vectors
 			{
 				T value = GetValue(i);
 
-				if (MathUtility::IsPositiveInfinity(value))
+				if constexpr (std::is_floating_point<T>())
 				{
-					stream << PositiveInfinityText;
-				}
-				else if (MathUtility::IsNegativeInfinity(value))
-				{
-					stream << NegativeInfinityText;
-				}
-				else if (MathUtility::IsNaN(value))
-				{
-					stream << NaNText;
-				}
-				else if (MathUtility::IsFloatingPointIntegral(value))
-				{
-					stream << std::fixed << std::setprecision(1) << value;
+					if (MathUtility::IsPositiveInfinity(value))
+					{
+						stream << PositiveInfinityText;
+					}
+					else if (MathUtility::IsNegativeInfinity(value))
+					{
+						stream << NegativeInfinityText;
+					}
+					else if (MathUtility::IsNaN(value))
+					{
+						stream << NaNText;
+					}
+					else if (MathUtility::IsFloatingPointIntegral(value))
+					{
+						stream << std::fixed << std::setprecision(1) << value;
+					}
+					else
+					{
+						stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
+					}
 				}
 				else
 				{
-					stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
+					stream << value;
 				}
 
 				if (i < dimensions - 1)
@@ -222,8 +229,6 @@ namespace ArtemisEngine::Math::Vectors
 		~VectorBase() = default;
 		VectorBase(const VectorBase& copy) = default;
 		VectorBase(VectorBase&& move) = default;
-		VectorBase& operator=(VectorBase& copy) = default;
-		VectorBase& operator=(VectorBase&& move) = default;
 
 	private:
 		T& GetValue(int index) override

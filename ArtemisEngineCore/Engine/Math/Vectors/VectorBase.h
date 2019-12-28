@@ -260,7 +260,7 @@ namespace ArtemisEngine::Math::Vectors
 		// Returns cross product of two vectors
 		static VectorBase GetCrossProduct(const VectorBase& a, const VectorBase& b)
 		{
-			return VectorWrapper<T>(
+			return VectorBase(
 				a.y * b.z - a.z * b.y,
 				a.z * b.x - a.x * b.z,
 				a.x * b.y - a.y * b.x);

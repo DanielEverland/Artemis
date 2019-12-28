@@ -36,6 +36,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Math\ArbitraryVector.cpp" />
     <ClCompile Include="Math\TypedVectorTests.cpp" />
     <ClCompile Include="Math\Vector2Tests.cpp" />
     <ClCompile Include="Math\Vector3Tests.cpp" />

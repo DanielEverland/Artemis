@@ -176,12 +176,21 @@ namespace ArtemisEngine::Math::Vectors
 	public:
 		T values[dimensions] = {};
 
+		VectorBase<T, dimensions>(std::initializer_list<T> arguments)
+		{
+			int amountOfArguments = arguments.size();
+			int elementsToInitialize = min(dimensions, amountOfArguments);
+			auto iter = arguments.begin();
+			
+			for (int i = 0; i < elementsToInitialize; i++)
+			{
+				values[i] = *iter;
+
+				iter++;
+			}
+		}
 		VectorBase<T, dimensions>()
 		{
-			for (unsigned int i = 0; i < dimensions; i++)
-			{
-				values[i] = 0;
-			}
 		}
 
 	private:

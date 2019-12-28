@@ -14,6 +14,9 @@
     <ClCompile Include="Math\Vector4Tests.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="Math\ArbitraryVector.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

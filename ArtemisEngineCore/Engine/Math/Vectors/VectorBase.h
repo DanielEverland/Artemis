@@ -204,12 +204,12 @@ namespace ArtemisEngine::Math::Vectors
 		T x;
 		T y;
 
-		VectorWrapper<T, 2>()
+		VectorWrapper()
 		{
 			x = 0;
 			y = 0;
 		}
-		VectorWrapper<T, 2>(T x, T y)
+		VectorWrapper(T x, T y)
 		{
 			this->x = x;
 			this->y = y;
@@ -265,19 +265,19 @@ namespace ArtemisEngine::Math::Vectors
 				a.x * b.y - a.y * b.x);
 		}
 
-		VectorWrapper<T, 3>()
+		VectorWrapper()
 		{
 			x = 0;
 			y = 0;
 			z = 0;
 		}
-		VectorWrapper<T, 3>(T x, T y)
+		VectorWrapper(T x, T y)
 		{
 			this->x = x;
 			this->y = y;
 			this->z = 0;
 		}
-		VectorWrapper<T, 3>(T x, T y, T z)
+		VectorWrapper(T x, T y, T z)
 		{
 			this->x = x;
 			this->y = y;
@@ -334,28 +334,28 @@ namespace ArtemisEngine::Math::Vectors
 		T z;
 		T w;
 
-		VectorWrapper<T, 4>()
+		VectorWrapper()
 		{
 			x = 0;
 			y = 0;
 			z = 0;
 			w = 0;
 		}
-		VectorWrapper<T, 4>(T x, T y)
+		VectorWrapper(T x, T y)
 		{
 			this->x = x;
 			this->y = y;
 			this->z = 0;
 			this->w = 0;
 		}
-		VectorWrapper<T, 4>(T x, T y, T z)
+		VectorWrapper(T x, T y, T z)
 		{
 			this->x = x;
 			this->y = y;
 			this->z = z;
 			this->w = 0;
 		}
-		VectorWrapper<T, 4>(T x, T y, T z, T w)
+		VectorWrapper(T x, T y, T z, T w)
 		{
 			this->x = x;
 			this->y = y;

@@ -248,6 +248,84 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	};
 
+	template<class T>
+	class VectorWrapper<T, 3> : public VectorBase<T, 3>
+	{
+	public:
+		T x;
+		T y;
+		T z;
+
+		// Returns cross product of two vectors
+		static VectorWrapper GetCrossProduct(const VectorWrapper& a, const VectorWrapper& b)
+		{
+			return VectorWrapper<T>(
+				a.y * b.z - a.z * b.y,
+				a.z * b.x - a.x * b.z,
+				a.x * b.y - a.y * b.x);
+		}
+
+		VectorWrapper<T, 3>()
+		{
+			x = 0;
+			y = 0;
+			z = 0;
+		}
+		VectorWrapper<T, 3>(T x, T y)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = 0;
+		}
+		VectorWrapper<T, 3>(T x, T y, T z)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+		}
+
+	private:
+		T& GetValue(int index) override
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else if (index == 2)
+			{
+				return z;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+		T GetValue(int index) const override
+		{
+			if (index == 0)
+			{
+				return x;
+			}
+			else if (index == 1)
+			{
+				return y;
+			}
+			else if (index == 2)
+			{
+				return z;
+			}
+			else
+			{
+				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+			}
+		}
+	};
+
+
 
 
 

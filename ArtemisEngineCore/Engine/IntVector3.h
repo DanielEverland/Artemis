@@ -4,6 +4,30 @@
 
 using namespace ArtemisEngine::Math::Vectors;
 
-struct IntVector3 : public Vector3Base<int>
+class IntVector3 : public Vector3Base<int>
 {
+public:
+	~IntVector3() = default;
+	IntVector3() : Vector3Base<int>() { }
+	IntVector3(int x, int y) : Vector3Base<int>(x, y) { }
+	IntVector3(const VectorBase & copy) : Vector3Base<int>(copy) { }
+	IntVector3(VectorBase && move) : Vector3Base<int>(move) { }
+
+	IntVector3& operator=(VectorBase & copy)
+	{
+		this->x = copy.x;
+		this->y = copy.y;
+
+		return *this;
+	}
+	IntVector3& operator=(VectorBase && move)
+	{
+		this->x = move.x;
+		this->y = move.y;
+
+		move.x = 0;
+		move.y = 0;
+
+		return *this;
+	}
 };

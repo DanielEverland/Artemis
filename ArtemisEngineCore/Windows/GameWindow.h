@@ -47,7 +47,7 @@ namespace ArtemisWindow
 		static const bool AllowAltEnterFullscreen = false;
 		static const uint8_t swapChainBufferSize = 3;
 				
-		static Color BackbufferColor;
+		Color BackbufferColor = Color::CornflowerBlue;
 
 		bool useWARPAdapter = false;
 

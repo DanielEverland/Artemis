@@ -14,11 +14,9 @@
 using ArtemisWindow::GameWindow;
 using std::string;
 
-Color GameWindow::BackbufferColor = Color::CornflowerBlue;
-
 GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState)
 	: Window(handleInstance, className, windowState)
-{	
+{
 	// Initialize the global window rect variable.
 	::GetWindowRect(windowHandle, &previousWindowRect);
 }

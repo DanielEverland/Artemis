@@ -149,14 +149,14 @@ namespace Math::Vectors
         TypeParam copy = this->vectors[0];
         const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
 
-		  this->InitializeToDefaultValues(copy, elementValues);
+		this->InitializeToDefaultValues(copy, elementValues);
 
         TypeParam vector = this->CallCopyConstructor(copy);
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
             EXPECT_EQ(copy[i], vector[i]);
-			  EXPECT_EQ(copy[i], elementValues[i]);
+			EXPECT_EQ(elementValues[i], vector[i]);
         }
     }
 
@@ -171,7 +171,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
-            EXPECT_EQ(vector[i], elementValues[i]);
+            EXPECT_EQ(elementValues[i], vector[i]);
         }
     }
 
@@ -186,7 +186,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
-            EXPECT_EQ(vector[i], elementValues[i]);
+            EXPECT_EQ(elementValues[i], vector[i]);
         }
     }
 
@@ -358,7 +358,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(cVector[i], aElementValues[i] + bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] + bElementValues[i], cVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, AdditionAssignment)
@@ -378,7 +378,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], aElementValues[i] + bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] + bElementValues[i], aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarAddition)
@@ -397,7 +397,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], bVector[i] + scalar);
+            EXPECT_EQ(bVector[i] + scalar, aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarAdditionAssignment)
@@ -415,7 +415,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
-            EXPECT_EQ(vector[i], ElementValues[i] + scalar);
+            EXPECT_EQ(ElementValues[i] + scalar, vector[i]);
         }
     }
 
@@ -437,7 +437,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(cVector[i], aElementValues[i] - bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] - bElementValues[i], cVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, SubtractionAssignment)
@@ -457,7 +457,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], aElementValues[i] - bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] - bElementValues[i], aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarSubtraction)
@@ -476,7 +476,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], bVector[i] - scalar);
+            EXPECT_EQ(bVector[i] - scalar, aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarSubtractionAssignment)
@@ -494,7 +494,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
-            EXPECT_EQ(vector[i], ElementValues[i] - scalar);
+            EXPECT_EQ(ElementValues[i] - scalar, vector[i]);
         }
     }
 
@@ -516,7 +516,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(cVector[i], aElementValues[i] * bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] * bElementValues[i], cVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, MultiplicationAssignment)
@@ -536,7 +536,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], aElementValues[i] * bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] * bElementValues[i], aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplication)
@@ -555,7 +555,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], bVector[i] * scalar);
+            EXPECT_EQ(bVector[i] * scalar, aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplicationAssignment)
@@ -573,7 +573,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
-            EXPECT_EQ(vector[i], ElementValues[i] * scalar);
+            EXPECT_EQ(ElementValues[i] * scalar, vector[i]);
         }
     }
 
@@ -595,7 +595,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(cVector[i], aElementValues[i] / bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] / bElementValues[i], cVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, DivisionAssignment)
@@ -615,7 +615,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], aElementValues[i] / bElementValues[i]);
+            EXPECT_EQ(aElementValues[i] / bElementValues[i], aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarDivision)
@@ -634,7 +634,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
         {
-            EXPECT_EQ(aVector[i], bVector[i] / scalar);
+            EXPECT_EQ(bVector[i] / scalar, aVector[i]);
         }
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarDivisionAssignment)
@@ -652,7 +652,7 @@ namespace Math::Vectors
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
         {
-            EXPECT_EQ(vector[i], ElementValues[i] / scalar);
+            EXPECT_EQ(ElementValues[i] / scalar, vector[i]);
         }
     }
 }

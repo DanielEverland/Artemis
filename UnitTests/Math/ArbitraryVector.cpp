@@ -20,11 +20,11 @@ TEST(ArbitraryVector, Constructor)
 {
 	Vector vector({ 1, 2, 3, 4, 5 });
 
-	EXPECT_EQ(vector[0], 1);
-	EXPECT_EQ(vector[1], 2);
-	EXPECT_EQ(vector[2], 3);
-	EXPECT_EQ(vector[3], 4);
-	EXPECT_EQ(vector[4], 5);
+	EXPECT_EQ(1, vector[0]);
+	EXPECT_EQ(2, vector[1]);
+	EXPECT_EQ(3, vector[2]);
+	EXPECT_EQ(4, vector[3]);
+	EXPECT_EQ(5, vector[4]);
 }
 TEST(ArbitraryVector, ConstIndexer)
 {
@@ -32,9 +32,9 @@ TEST(ArbitraryVector, ConstIndexer)
 
 	const Vector constVector = vector;
 
-	EXPECT_EQ(constVector[0], 1);
-	EXPECT_EQ(constVector[1], 2);
-	EXPECT_EQ(constVector[2], 3);
-	EXPECT_EQ(constVector[3], 4);
-	EXPECT_EQ(constVector[4], 5);
+	EXPECT_EQ(1, constVector[0]);
+	EXPECT_EQ(2, constVector[1]);
+	EXPECT_EQ(3, constVector[2]);
+	EXPECT_EQ(4, constVector[3]);
+	EXPECT_EQ(5, constVector[4]);
 }

@@ -10,8 +10,8 @@ namespace Math::Vectors
     {
         IntVector2 vector(1, 2);
 
-        EXPECT_EQ(vector.x, 1);
-        EXPECT_EQ(vector.y, 2);
+        EXPECT_EQ(1, vector.x);
+        EXPECT_EQ(2, vector.y);
     }
     TEST(IntVector2, MemberAssignment)
     {
@@ -20,7 +20,7 @@ namespace Math::Vectors
         vector.x = 5;
         vector.y = 10;
 
-        EXPECT_EQ(vector.x, 5);
-        EXPECT_EQ(vector.y, 10);
+        EXPECT_EQ(5, vector.x);
+        EXPECT_EQ(10, vector.y);
     }
 }

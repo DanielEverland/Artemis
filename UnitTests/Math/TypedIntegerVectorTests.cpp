@@ -122,7 +122,7 @@ namespace Math::Vectors
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
 		    EXPECT_EQ(copy[i], vector[i]);
-			EXPECT_EQ(copy[i], elementValues[i]);
+			EXPECT_EQ(elementValues[i], vector[i]);
 		}
 	}
 
@@ -137,7 +137,7 @@ namespace Math::Vectors
 		
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], elementValues[i]);
+			EXPECT_EQ(elementValues[i], vector[i]);
 		}
 	}
 	TYPED_TEST(TypedIntegerVectorTests, ConstIndexing)
@@ -151,7 +151,7 @@ namespace Math::Vectors
 		
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-		    EXPECT_EQ(vector[i], elementValues[i]);
+		    EXPECT_EQ(elementValues[i], vector[i]);
 		}
 	}
 	TYPED_TEST(TypedIntegerVectorTests, GetDotProduct)
@@ -291,7 +291,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(cVector[i], aElementValues[i] + bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] + bElementValues[i], cVector[i]);
 		}
 	}
 
@@ -312,7 +312,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], aElementValues[i] + bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] + bElementValues[i], aVector[i]);
 		}
 	}
 
@@ -332,7 +332,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], bVector[i] + scalar);
+			EXPECT_EQ(bVector[i] + scalar, aVector[i]);
 		}
 	}
 
@@ -352,7 +352,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], static_cast<long>(bVector[i] + scalar));
+			EXPECT_EQ(static_cast<long>(bVector[i] + scalar), aVector[i]);
 		}
 	}
 
@@ -371,7 +371,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], ElementValues[i] + scalar);
+			EXPECT_EQ(ElementValues[i] + scalar, vector[i]);
 		}
 	}
 
@@ -390,7 +390,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], static_cast<long>(ElementValues[i] + scalar));
+			EXPECT_EQ(static_cast<long>(ElementValues[i] + scalar), vector[i]);
 		}
 	}
 
@@ -412,7 +412,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(cVector[i], aElementValues[i] - bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] - bElementValues[i], cVector[i]);
 		}
 	}
 
@@ -433,7 +433,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], aElementValues[i] - bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] - bElementValues[i], aVector[i]);
 		}
 	}
 
@@ -453,7 +453,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], bVector[i] - scalar);
+			EXPECT_EQ(bVector[i] - scalar, aVector[i]);
 		}
 	}
 
@@ -473,7 +473,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], static_cast<long>(bVector[i] - scalar));
+			EXPECT_EQ(static_cast<long>(bVector[i] - scalar), aVector[i]);
 		}
 	}
 
@@ -492,7 +492,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], ElementValues[i] - scalar);
+			EXPECT_EQ(ElementValues[i] - scalar, vector[i]);
 		}
 	}
 
@@ -511,7 +511,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], static_cast<long>(ElementValues[i] - scalar));
+			EXPECT_EQ(static_cast<long>(ElementValues[i] - scalar), vector[i]);
 		}
 	}
 
@@ -533,7 +533,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(cVector[i], aElementValues[i] * bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] * bElementValues[i], cVector[i]);
 		}
 	}
 
@@ -554,7 +554,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], aElementValues[i] * bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] * bElementValues[i], aVector[i]);
 		}
 	}
 
@@ -574,7 +574,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], bVector[i] * scalar);
+			EXPECT_EQ(bVector[i] * scalar, aVector[i]);
 		}
 	}
 
@@ -594,7 +594,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], static_cast<long>(bVector[i] * scalar));
+			EXPECT_EQ(static_cast<long>(bVector[i] * scalar), aVector[i]);
 		}
 	}
 
@@ -613,7 +613,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], ElementValues[i] * scalar);
+			EXPECT_EQ(ElementValues[i] * scalar, vector[i]);
 		}
 	}
 
@@ -632,7 +632,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], static_cast<long>(ElementValues[i] * scalar));
+			EXPECT_EQ(static_cast<long>(ElementValues[i] * scalar), vector[i]);
 		}
 	}
 
@@ -654,7 +654,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(cVector[i], aElementValues[i] / bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] / bElementValues[i], cVector[i]);
 		}
 	}
 
@@ -675,7 +675,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], aElementValues[i] / bElementValues[i]);
+			EXPECT_EQ(aElementValues[i] / bElementValues[i], aVector[i]);
 		}
 	}
 
@@ -695,7 +695,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], bVector[i] / scalar);
+			EXPECT_EQ(bVector[i] / scalar, aVector[i]);
 		}
 	}
 
@@ -715,7 +715,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(aVector[i], static_cast<long>(bVector[i] / scalar));
+			EXPECT_EQ(static_cast<long>(bVector[i] / scalar), aVector[i]);
 		}
 	}
 
@@ -734,7 +734,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], ElementValues[i] / scalar);
+			EXPECT_EQ(ElementValues[i] / scalar, vector[i]);
 		}
 	}
 
@@ -753,7 +753,7 @@ namespace Math::Vectors
 
 		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
 		{
-			EXPECT_EQ(vector[i], static_cast<long>(ElementValues[i] / scalar));
+			EXPECT_EQ(static_cast<long>(ElementValues[i] / scalar), vector[i]);
 		}
 	}
 }

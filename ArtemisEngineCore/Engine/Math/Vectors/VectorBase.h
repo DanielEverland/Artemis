@@ -128,7 +128,7 @@ namespace ArtemisEngine::Math::Vectors
 		}
 
 		// Returns squared length of vector.
-		T GetSqrMagnitude() const
+		double GetSqrMagnitude() const
 		{
 			T value = 0;
 
@@ -139,17 +139,17 @@ namespace ArtemisEngine::Math::Vectors
 		}
 
 		// Returns length of vector.
-		T GetMagnitude() const
+		double GetMagnitude() const
 		{
 			return std::sqrt(GetSqrMagnitude());
 		}
 
 		// Returns a unit vector
-		VectorBase<T, dimensions> GetNormalized() const
+		VectorBase<double, dimensions> GetNormalized() const
 		{
-			VectorBase<T, dimensions> toReturn;
+			VectorBase<double, dimensions> toReturn;
 
-			T length = GetMagnitude();
+			double length = GetMagnitude();
 
 			if (length == 0)
 				throw DivideByZeroException("Unable to get unit vector of vector with length 0");

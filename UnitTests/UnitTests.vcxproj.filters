@@ -20,6 +20,9 @@
     <ClCompile Include="Math\TypedGenericVectorTests.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="Math\TypedIntegerVectorTests.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

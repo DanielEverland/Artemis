@@ -39,6 +39,7 @@
     <ClCompile Include="Math\ArbitraryVector.cpp" />
     <ClCompile Include="Math\TypedFloatingPointVectorTests.cpp" />
     <ClCompile Include="Math\TypedGenericVectorTests.cpp" />
+    <ClCompile Include="Math\TypedIntegerVectorTests.cpp" />
     <ClCompile Include="Math\Vector2Tests.cpp" />
     <ClCompile Include="Math\Vector3Tests.cpp" />
     <ClCompile Include="Math\Vector4Tests.cpp" />

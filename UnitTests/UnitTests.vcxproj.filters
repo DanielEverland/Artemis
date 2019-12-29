@@ -23,6 +23,15 @@
     <ClCompile Include="Math\TypedIntegerVectorTests.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="Math\IntVector2Tests.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IntVector3Tests.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IntVector4Tests.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

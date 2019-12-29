@@ -37,6 +37,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\ArbitraryVector.cpp" />
+    <ClCompile Include="Math\IntVector2Tests.cpp" />
+    <ClCompile Include="Math\IntVector3Tests.cpp" />
+    <ClCompile Include="Math\IntVector4Tests.cpp" />
     <ClCompile Include="Math\TypedFloatingPointVectorTests.cpp" />
     <ClCompile Include="Math\TypedGenericVectorTests.cpp" />
     <ClCompile Include="Math\TypedIntegerVectorTests.cpp" />

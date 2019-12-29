@@ -3,6 +3,7 @@
 #include <map>
 #include <list>
 
+#include "Exceptions/DivideByZeroException.h"
 #include "Engine/IntVector2.h"
 #include "Engine/IntVector3.h"
 #include "Engine/IntVector4.h"
@@ -248,6 +249,13 @@ namespace Math::Vectors
 
 			EXPECT_NEAR(*iter, normalized[i], FloatingPointComparisonPrecision);
 		}
+	}
+
+	TYPED_TEST(TypedIntegerVectorTests, NormalizedZeroLengthException)
+	{
+		TypeParam vector = this->vectors[0];
+
+		EXPECT_THROW(vector.GetNormalized(), DivideByZeroException);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, ToString)

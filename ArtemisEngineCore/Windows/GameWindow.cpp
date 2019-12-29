@@ -181,7 +181,7 @@ void GameWindow::OutputFramerate() const
 	if (elapsedSeconds > 1.0)
 	{
 		auto fps = frameCounter / elapsedSeconds;
-		Output::Log("FPS: " + std::to_string(fps) + "\n");
+		Output::Log("FPS: " + std::to_string(fps));
 
 		frameCounter = 0;
 		elapsedSeconds = 0.0;

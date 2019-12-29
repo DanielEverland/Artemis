@@ -29,7 +29,7 @@ int WINAPI wWinMain(_In_ HINSTANCE handleInstance, _In_opt_ HINSTANCE, _In_ PWST
 	}
 	catch (const std::exception& e)
 	{
-		Output::LogLine("Base Exception Caught: " + string(e.what()));
+		Output::Log("Base Exception Caught: " + string(e.what()));
 	}
 }
 

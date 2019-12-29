@@ -6,7 +6,7 @@
 
 void Output::Space()
 {
-	Output::LogLine(" ");
+	Output::Log(" ");
 }
 
 void Output::LogException(const Exception& e)
@@ -23,7 +23,7 @@ void Output::LogException(const Exception& e)
 
 	str += "\n";
 
-	Output::LogLine(str);
+	Output::Log(str);
 }
 
 void Output::LogError(const IDebugStringReturner& stringReturner)
@@ -64,81 +64,81 @@ void Output::LogWarning(const wchar_t* text)
 //----------------------------------------------LOG LINE-------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
 
-void Output::LogLine(const IDebugStringReturner& stringReturner)
+void Output::Log(const IDebugStringReturner& stringReturner)
 {
-	LogLine(stringReturner.ToString());
+	Log(stringReturner.ToString());
 }
-
-void Output::LogLine(unsigned int value)
-{
-	LogLineToVS(std::to_string(value));
-}
-
-void Output::LogLine(unsigned short value)
-{
-	LogLineToVS(std::to_string(value));
-}
-
-void Output::LogLine(long long value)
-{
-	LogLineToVS(std::to_string(value));
-}
-
-void Output::LogLine(unsigned long long value)
-{
-	LogLineToVS(std::to_string(value));
-}
-
-void Output::LogLine(double value)
-{
-	LogLineToVS(std::to_string(value));
-}
-
-void Output::LogLine(const string& text)
-{
-	LogLineToVS(text);
-}
-
-void Output::LogLine(const wchar_t* text)
-{
-	LogLineToVS(text);
-}
-
-//-------------------------------------------------------------------------------------------------------------
-//------------------------------------------------LOG----------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------
 
 void Output::Log(unsigned int value)
 {
-	LogToVS(std::to_string(value));
+	LogLineToVS(std::to_string(value));
 }
 
 void Output::Log(unsigned short value)
 {
-	LogToVS(std::to_string(value));
+	LogLineToVS(std::to_string(value));
 }
 
 void Output::Log(long long value)
 {
-	LogToVS(std::to_string(value));
+	LogLineToVS(std::to_string(value));
 }
 
 void Output::Log(unsigned long long value)
 {
-	LogToVS(std::to_string(value));
+	LogLineToVS(std::to_string(value));
 }
 
 void Output::Log(double value)
 {
-	LogToVS(std::to_string(value));
+	LogLineToVS(std::to_string(value));
 }
 
 void Output::Log(const string& text)
 {
-	LogToVS(text);
+	LogLineToVS(text);
 }
 
 void Output::Log(const wchar_t* text)
+{
+	LogLineToVS(text);
+}
+
+//-------------------------------------------------------------------------------------------------------------
+//--------------------------------------------LOG-SAME-LINE----------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
+
+void Output::LogSameLine(unsigned int value)
+{
+	LogToVS(std::to_string(value));
+}
+
+void Output::LogSameLine(unsigned short value)
+{
+	LogToVS(std::to_string(value));
+}
+
+void Output::LogSameLine(long long value)
+{
+	LogToVS(std::to_string(value));
+}
+
+void Output::LogSameLine(unsigned long long value)
+{
+	LogToVS(std::to_string(value));
+}
+
+void Output::LogSameLine(double value)
+{
+	LogToVS(std::to_string(value));
+}
+
+void Output::LogSameLine(const string& text)
+{
+	LogToVS(text);
+}
+
+void Output::LogSameLine(const wchar_t* text)
 {
 	LogToVS(text);
 }

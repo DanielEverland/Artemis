@@ -125,14 +125,14 @@ string GraphicsDevice::GetFeatureLevelString() const
 
 void GraphicsDevice::OutputDebugInfo() const
 {
-	DirectXLogLine("Initialized DirectX");
+	DirectXLog("Initialized DirectX");
 
 	OutputFeatureLevel();
 	OutputGraphicsAdapter();
 }
 void GraphicsDevice::OutputFeatureLevel() const
 {
-	DirectXLogLine("Feature Level: " + GetFeatureLevelString());
+	DirectXLog("Feature Level: " + GetFeatureLevelString());
 }
 void GraphicsDevice::OutputGraphicsAdapter() const
 {
@@ -145,5 +145,5 @@ void GraphicsDevice::OutputGraphicsAdapter() const
 	DXGI_ADAPTER_DESC description;
 	ThrowIfFailed(adapter->GetDesc(&description));
 
-	DirectXLogLine(description.Description);
+	DirectXLog(description.Description);
 }

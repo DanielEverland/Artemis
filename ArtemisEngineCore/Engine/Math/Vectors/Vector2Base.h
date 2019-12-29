@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cmath>
-
-#include "Exceptions/InvalidArgumentException.h"
 #include "VectorBase.h"
 
 namespace ArtemisEngine::Math::Vectors
@@ -17,7 +14,7 @@ namespace ArtemisEngine::Math::Vectors
 		Vector2Base(const VectorBase& copy) : VectorBase<T, 2>(copy) { }
 		Vector2Base(VectorBase&& move) : VectorBase<T, 2>(move) { }
 
-		Vector2Base& operator=(const VectorBase& copy)
+		Vector2Base& operator=(VectorBase& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;

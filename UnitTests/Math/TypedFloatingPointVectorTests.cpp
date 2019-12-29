@@ -144,7 +144,7 @@ namespace Math::Vectors
     TYPED_TEST_CASE(TypedFloatingPointVectorTests, MyTypes);
 
 
-    /*TYPED_TEST(TypedFloatingPointVectorTests, CopyConstructor)
+    TYPED_TEST(TypedFloatingPointVectorTests, CopyConstructor)
     {
         TypeParam copy = this->vectors[0];
         const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
@@ -654,5 +654,5 @@ namespace Math::Vectors
         {
             EXPECT_EQ(vector[i], ElementValues[i] / scalar);
         }
-    }*/
+    }
 }

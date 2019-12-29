@@ -218,17 +218,17 @@ namespace ArtemisEngine::Math::Vectors
 	public:
 		T x;
 		T y;
-				
+		
+		VectorBase()
+		{
+			this->x = 0;
+			this->y = 0;
+		}
 		VectorBase(T x, T y)
 		{
 			this->x = x;
 			this->y = y;
 		}
-
-		VectorBase() = default;
-		~VectorBase() = default;
-		VectorBase(const VectorBase& copy) = default;
-		VectorBase(VectorBase&& move) = default;
 
 	private:
 		T& GetValue(int index) override

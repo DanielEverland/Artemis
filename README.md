@@ -1,5 +1,5 @@
 # Artemis Engine
 
-Artemis is a project I'm making in order to learn DirectX
+Artemis is an engine I'm making in order to learn DirectX
 
 ![](https://i.imgur.com/j7J8ucZ.png)

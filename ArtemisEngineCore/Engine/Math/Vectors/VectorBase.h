@@ -4,6 +4,7 @@
 #include <cmath>
 #include <sstream>
 #include <utility>
+#include <iomanip>
 
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/DivideByZeroException.h"
@@ -161,7 +162,7 @@ namespace ArtemisEngine::Math::Vectors
 		}
 
 	protected:
-		static string GetOutOfRangeExceptionText(int index)
+		string GetOutOfRangeExceptionText(int index) const
 		{
 			return "Attempted to access vector member using index [" + std::to_string(index) + "], but it is out of range." +
 				+"\nValid indexes are >= 0 and < " + std::to_string(dimensions);
@@ -243,7 +244,7 @@ namespace ArtemisEngine::Math::Vectors
 			}
 			else
 			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+				throw OutOfRangeException(this->GetOutOfRangeExceptionText(index));
 			}
 		}
 		T GetValue(int index) const override
@@ -258,7 +259,7 @@ namespace ArtemisEngine::Math::Vectors
 			}
 			else
 			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+				throw OutOfRangeException(this->GetOutOfRangeExceptionText(index));
 			}
 		}
 	};
@@ -316,7 +317,7 @@ namespace ArtemisEngine::Math::Vectors
 			}
 			else
 			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+				throw OutOfRangeException(this->GetOutOfRangeExceptionText(index));
 			}
 		}
 		T GetValue(int index) const override
@@ -335,7 +336,7 @@ namespace ArtemisEngine::Math::Vectors
 			}
 			else
 			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+				throw OutOfRangeException(this->GetOutOfRangeExceptionText(index));
 			}
 		}
 	};
@@ -399,7 +400,7 @@ namespace ArtemisEngine::Math::Vectors
 			}
 			else
 			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+				throw OutOfRangeException(this->GetOutOfRangeExceptionText(index));
 			}
 		}
 		T GetValue(int index) const override
@@ -422,7 +423,7 @@ namespace ArtemisEngine::Math::Vectors
 			}
 			else
 			{
-				throw OutOfRangeException(GetOutOfRangeExceptionText(index));
+				throw OutOfRangeException(this->GetOutOfRangeExceptionText(index));
 			}
 		}
 	};

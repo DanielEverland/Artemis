@@ -198,9 +198,6 @@
     <ClCompile Include="Engine\Math\Vectors\MatrixBase.cpp">
       <Filter>Source\Engine\Math\Vectors</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Math\Matrices\GenericMatrix.cpp">
-      <Filter>Source\Engine\Math\Matrices</Filter>
-    </ClCompile>
     <ClCompile Include="Direct X\DepthBuffer.cpp">
       <Filter>Source\Direct X</Filter>
     </ClCompile>

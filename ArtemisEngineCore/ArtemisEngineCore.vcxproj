@@ -206,7 +206,6 @@
     <ClCompile Include="Direct X\SwapChain.cpp" />
     <ClCompile Include="Direct X\Texture2D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
-    <ClCompile Include="Engine\Math\Matrices\GenericMatrix.cpp" />
     <ClCompile Include="Engine\Math\Vectors\MatrixBase.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Input\Input.cpp" />

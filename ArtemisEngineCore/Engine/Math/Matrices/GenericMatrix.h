@@ -17,8 +17,6 @@ namespace ArtemisEngine::Math::Matrices
 	class GenericMatrix
 	{
 	public:
-		class ValueProxy;
-
 		~GenericMatrix() = default;
 		GenericMatrix() = default;
 		

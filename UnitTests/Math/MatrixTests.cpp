@@ -147,4 +147,39 @@ namespace Math::Matrices
 			}
 		}
 	}
+	TEST(MatrixTest, ScalarMultiplication)
+	{
+		const RowVector* aTestValues = TestValues[0];
+
+		double scalar = 2;
+		Matrix a = GetTestMatrix(aTestValues);
+
+		Matrix b = a * scalar;
+
+		for (unsigned int i = 0; i < b.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < b.GetColumns(); j++)
+			{
+				EXPECT_EQ(aTestValues[i][j] * scalar, b[i][j]);
+				EXPECT_EQ(aTestValues[i][j], a[i][j]);
+			}
+		}
+	}
+	TEST(MatrixTest, ScalarMultiplicationAssignment)
+	{
+		const RowVector* aTestValues = TestValues[0];
+
+		Matrix matrix = GetTestMatrix(aTestValues);
+		double scalar = 2;
+
+		matrix *= scalar;
+
+		for (unsigned int i = 0; i < matrix.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < matrix.GetColumns(); j++)
+			{
+				EXPECT_EQ(aTestValues[i][j] * scalar, matrix[i][j]);
+			}
+		}
+	}
 }

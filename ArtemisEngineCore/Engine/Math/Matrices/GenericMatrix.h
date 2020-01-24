@@ -226,7 +226,22 @@ namespace ArtemisEngine::Math::Matrices
 	}
 
 	template<class T, unsigned int rows, unsigned int columns, class TScalar>
-	GenericMatrix<T, rows, columns> operator*(GenericMatrix<T, rows, columns> matrix, TScalar scalar)
+	GenericMatrix<T, rows, columns> operator*(const GenericMatrix<T, rows, columns> matrix, TScalar scalar)
+	{
+		GenericMatrix<T, rows, columns> toReturn;
+
+		for (unsigned int i = 0; i < rows; i++)
+		{
+			for (unsigned int j = 0; j < columns; j++)
+			{
+				toReturn[i][j] = matrix[i][j] * scalar;
+			}
+		}
+
+		return toReturn;
+	}
+	template<class T, unsigned int rows, unsigned int columns, class TScalar>
+	GenericMatrix<T, rows, columns> operator*=(GenericMatrix<T, rows, columns>& matrix, TScalar scalar)
 	{
 		for (unsigned int i = 0; i < rows; i++)
 		{

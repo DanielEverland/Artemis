@@ -118,7 +118,7 @@ namespace ArtemisEngine::Math::Matrices
 			{
 				for (unsigned int j = 0; j < columns; j++)
 				{
-					transpose->values[j, i] = this->values[i, j];
+					transpose[j][i] = values[i][j];
 				}
 			}
 

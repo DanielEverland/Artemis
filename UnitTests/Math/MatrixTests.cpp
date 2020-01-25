@@ -53,6 +53,14 @@ namespace Math::Matrices
 		VectorBase<T, 4>(-10, 10, 6, -4),
 	});
 
+	const GenericMatrix<T, 4, 4> TransposeExpectedResult(
+	{
+		VectorBase<T, 4>(1.0, -2.75, 3.25, -3.0),
+		VectorBase<T, 4>(2.50, 1.25, -1.0, -1.25),
+		VectorBase<T, 4>(-1.25, 0.25, 2.75, 2.0),
+		VectorBase<T, 4>(0.0, 1.25, 4.25, 1.0),
+	});
+
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
@@ -217,6 +225,22 @@ namespace Math::Matrices
 			for (unsigned int j = 0; j < actualResult.GetColumns(); j++)
 			{
 				EXPECT_EQ(expectedResult[i][j], actualResult[i][j]);
+			}
+		}
+	}
+	TEST(MatrixTest, Transpose)
+	{
+		const RowVector* testValues = TestValues[0];
+
+		Matrix expectedResult = TransposeExpectedResult;
+		Matrix matrix = GetTestMatrix(testValues);
+		Matrix transpose = matrix.GetTranspose();
+
+		for (unsigned int i = 0; i < transpose.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < transpose.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedResult[i][j], transpose[i][j]);
 			}
 		}
 	}

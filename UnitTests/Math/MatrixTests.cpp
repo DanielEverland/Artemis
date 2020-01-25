@@ -325,4 +325,28 @@ namespace Math::Matrices
 			}
 		}
 	}
+
+	TEST(MatrixText, Equality)
+	{
+		Matrix a = GetTestMatrix(TestValues[0]);
+		Matrix b = GetTestMatrix(TestValues[0]);
+		Matrix c = GetTestMatrix(TestValues[1]);
+		GenericMatrix<T, 1, 1> d{};
+		
+		EXPECT_EQ(true, a == b);
+		EXPECT_EQ(false, a == c);
+		EXPECT_EQ(false, a == d);
+	}
+
+	TEST(MatrixText, Inequality)
+	{
+		Matrix a = GetTestMatrix(TestValues[0]);
+		Matrix b = GetTestMatrix(TestValues[0]);
+		Matrix c = GetTestMatrix(TestValues[1]);
+		GenericMatrix<T, 1, 1> d{};
+
+		EXPECT_EQ(false, a != b);
+		EXPECT_EQ(true, a != c);
+		EXPECT_EQ(true, a != d);
+	}
 }

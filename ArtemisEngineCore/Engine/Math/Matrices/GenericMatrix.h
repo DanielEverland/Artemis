@@ -287,4 +287,28 @@ namespace ArtemisEngine::Math::Matrices
 
 		return toReturn;
 	}
+
+	template<class T, unsigned int aRows, unsigned int aColumns, unsigned int bRows, unsigned int bColumns>
+	bool operator==(const GenericMatrix<T, aRows, aColumns>& aMatrix, const GenericMatrix<T, bRows, bColumns>& bMatrix)
+	{
+		if (aRows != bRows || aColumns != bColumns)
+			return false;
+
+		for (unsigned int i = 0; i < aMatrix.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < aMatrix.GetColumns(); j++)
+			{
+				if (aMatrix[i][j] != bMatrix[i][j])
+					return false;
+			}
+		}
+
+		return true;
+	}
+
+	template<class T, unsigned int aRows, unsigned int aColumns, unsigned int bRows, unsigned int bColumns>
+	bool operator!=(const GenericMatrix<T, aRows, aColumns>& aMatrix, const GenericMatrix<T, bRows, bColumns>& bMatrix)
+	{
+		return !(aMatrix == bMatrix);
+	}
 }

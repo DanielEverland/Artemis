@@ -592,4 +592,20 @@ namespace ArtemisEngine::Math::Vectors
 			vector[i] /= value;
 		}
 	}
+	template<class T, unsigned int dimensions>
+	bool operator==(VectorBase<T, dimensions>& a, VectorBase<T, dimensions>& b)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			if (a[i] != b[i])
+				return false;
+		}
+
+		return true;
+	}
+	template<class T, unsigned int dimensions>
+	bool operator!=(VectorBase<T, dimensions>& a, VectorBase<T, dimensions>& b)
+	{
+		return !(a == b);
+	}
 }

@@ -655,4 +655,38 @@ namespace Math::Vectors
             EXPECT_EQ(ElementValues[i] / scalar, vector[i]);
         }
     }
+    TYPED_TEST(TypedFloatingPointVectorTests, Equality)
+    {
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* cElementValues = TypedFloatingPointVectorTests::ElementValues[1];
+
+        TypeParam a = this->vectors[0];
+        TypeParam b = this->vectors[0];
+        TypeParam c = this->vectors[1];
+
+        this->InitializeToDefaultValues(a, aElementValues);
+        this->InitializeToDefaultValues(b, bElementValues);
+        this->InitializeToDefaultValues(c, cElementValues);
+
+        EXPECT_EQ(true, a == b);
+        EXPECT_EQ(false, a == c);
+    }
+    TYPED_TEST(TypedFloatingPointVectorTests, Inequality)
+    {
+        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        const double* cElementValues = TypedFloatingPointVectorTests::ElementValues[1];
+
+        TypeParam a = this->vectors[0];
+        TypeParam b = this->vectors[0];
+        TypeParam c = this->vectors[1];
+
+        this->InitializeToDefaultValues(a, aElementValues);
+        this->InitializeToDefaultValues(b, bElementValues);
+        this->InitializeToDefaultValues(c, cElementValues);
+
+        EXPECT_EQ(false, a != b);
+        EXPECT_EQ(true, a != c);
+    }
 }

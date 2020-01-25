@@ -42,9 +42,7 @@ namespace ArtemisEngine::Math::Matrices
 				}
 			}
 		}
-
 		
-
 		template<std::size_t N>
 		GenericMatrix(const VectorBase<T, columns>(&rowVectors)[N])
 		{
@@ -54,6 +52,21 @@ namespace ArtemisEngine::Math::Matrices
 			{
 				SetRow(i, rowVectors[i]);
 			}
+		}
+
+		template <unsigned int aColumnsAndbRows, unsigned int aRows, unsigned int bColumns>
+		static T CalculateDotProduct(
+			const GenericMatrix<T, aRows, aColumnsAndbRows>& aMatrix, const GenericMatrix<T, aColumnsAndbRows, bColumns>& bMatrix,
+			unsigned int rowIndex, unsigned int columnIndex, unsigned int length)
+		{
+			T dotProduct{};
+
+			for (unsigned int i = 0; i < length; i++)
+			{
+				dotProduct += aMatrix[rowIndex][i] * bMatrix[i][columnIndex];
+			}
+
+			return dotProduct;
 		}
 
 		T* operator[](int rowIndex)
@@ -203,29 +216,7 @@ namespace ArtemisEngine::Math::Matrices
 		return a;
 	}
 
-	template<class T, unsigned int aRows, unsigned int aColumns, unsigned int bRows, unsigned int bColumns>
-	GenericMatrix<T, bRows, aColumns> operator*(const GenericMatrix<T, aRows, aColumns>& a, const GenericMatrix<T, bRows, bColumns>& b)
-	{
-		if (bRows != aColumns)
-			throw InvalidArgumentException("Cannot define matrix multiplication when a's number of columns isn't equal to b's number of rows.");
-
-		unsigned int newRowCount = bRows;
-		unsigned int newColumnCount = aColumns;
-
-		GenericMatrix<T, newRowCount, newColumnCount> newMatrix;
-
-		for (unsigned int i = 0; i < newRowCount; i++)
-		{
-			for (unsigned int j = 0; j < newColumnCount; j++)
-			{
-				newMatrix[i, j] = GenericMatrix::DotProduct(a, b, i, j);
-			}
-		}
-
-		return newMatrix;
-	}
-
-	template<class T, unsigned int rows, unsigned int columns, class TScalar>
+	template<class T, unsigned int rows, unsigned int columns, class TScalar, typename std::enable_if<std::is_arithmetic<TScalar>::value>::type * = nullptr>
 	GenericMatrix<T, rows, columns> operator*(const GenericMatrix<T, rows, columns> matrix, TScalar scalar)
 	{
 		GenericMatrix<T, rows, columns> toReturn;
@@ -240,7 +231,7 @@ namespace ArtemisEngine::Math::Matrices
 
 		return toReturn;
 	}
-	template<class T, unsigned int rows, unsigned int columns, class TScalar>
+	template<class T, unsigned int rows, unsigned int columns, class TScalar, typename std::enable_if<std::is_arithmetic<TScalar>::value>::type * = nullptr>
 	GenericMatrix<T, rows, columns> operator*=(GenericMatrix<T, rows, columns>& matrix, TScalar scalar)
 	{
 		for (unsigned int i = 0; i < rows; i++)
@@ -252,5 +243,21 @@ namespace ArtemisEngine::Math::Matrices
 		}
 
 		return matrix;
+	}
+
+	template<class T, unsigned int aColumnsAndbRows, unsigned int aRows, unsigned int bColumns>
+	GenericMatrix<T, aRows, bColumns> operator*(const GenericMatrix<T, aRows, aColumnsAndbRows>& aMatrix, const GenericMatrix<T, aColumnsAndbRows, bColumns>& bMatrix)
+	{
+		GenericMatrix<T, aRows, bColumns> toReturn;
+
+		for (unsigned int i = 0; i < aRows; i++)
+		{
+			for (unsigned int j = 0; j < bColumns; j++)
+			{
+				toReturn[i][j] = GenericMatrix<T, aRows, bColumns>::CalculateDotProduct(aMatrix, bMatrix, i, j, aColumnsAndbRows);
+			}
+		}
+
+		return toReturn;
 	}
 }

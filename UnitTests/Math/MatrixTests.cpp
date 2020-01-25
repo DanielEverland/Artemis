@@ -31,6 +31,28 @@ namespace Math::Matrices
 		}
 	};
 
+	const GenericMatrix<T, 4, 2> MatrixMultiplicationInputA(
+	{
+		VectorBase<T, 2>(1, 2),
+		VectorBase<T, 2>(4, -2),
+		VectorBase<T, 2>(-5, 6),
+		VectorBase<T, 2>(0, 2),
+	});
+
+	const GenericMatrix<T, 2, 4> MatrixMultiplicationInputB(
+	{
+		VectorBase<T, 4>(1, 2, 3, 4),
+		VectorBase<T, 4>(-5, 5, 3, -2),
+	});
+
+	const GenericMatrix<T, 4, 4> MatrixMultiplicationExpectedResult(
+	{
+		VectorBase<T, 4>(-9, 12, 9, 0),
+		VectorBase<T, 4>(14, -2, 6, 20),
+		VectorBase<T, 4>(-35, 20, 3, -32),
+		VectorBase<T, 4>(-10, 10, 6, -4),
+	});
+
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
@@ -179,6 +201,22 @@ namespace Math::Matrices
 			for (unsigned int j = 0; j < matrix.GetColumns(); j++)
 			{
 				EXPECT_EQ(aTestValues[i][j] * scalar, matrix[i][j]);
+			}
+		}
+	}
+	TEST(MatrixTest, MatrixMultiplication)
+	{
+		GenericMatrix<T, 4, 2> matrixA = MatrixMultiplicationInputA;
+		GenericMatrix<T, 2, 4> matrixB = MatrixMultiplicationInputB;
+		GenericMatrix<T, 4, 4> expectedResult = MatrixMultiplicationExpectedResult;
+
+		GenericMatrix<T, 4, 4> actualResult = matrixA * matrixB;
+
+		for (unsigned int i = 0; i < actualResult.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < actualResult.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedResult[i][j], actualResult[i][j]);
 			}
 		}
 	}

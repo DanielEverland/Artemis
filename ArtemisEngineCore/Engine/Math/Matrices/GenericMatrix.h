@@ -38,6 +38,21 @@ namespace ArtemisEngine::Math::Matrices
 
 			return matrix;
 		}
+
+		template <class T, unsigned int aColumnsAndbRows, unsigned int aRows, unsigned int bColumns>
+		static T CalculateDotProduct(
+			const GenericMatrix<T, aRows, aColumnsAndbRows>& aMatrix, const GenericMatrix<T, aColumnsAndbRows, bColumns>& bMatrix,
+			unsigned int rowIndex, unsigned int columnIndex, unsigned int length)
+		{
+			T dotProduct{};
+
+			for (unsigned int i = 0; i < length; i++)
+			{
+				dotProduct += aMatrix[rowIndex][i] * bMatrix[i][columnIndex];
+			}
+
+			return dotProduct;
+		}
 	};
 
 	template<class T, unsigned int rows, unsigned int columns>
@@ -79,21 +94,6 @@ namespace ArtemisEngine::Math::Matrices
 			{
 				SetRow(i, rowVectors[i]);
 			}
-		}
-
-		template <unsigned int aColumnsAndbRows, unsigned int aRows, unsigned int bColumns>
-		static T CalculateDotProduct(
-			const GenericMatrix<T, aRows, aColumnsAndbRows>& aMatrix, const GenericMatrix<T, aColumnsAndbRows, bColumns>& bMatrix,
-			unsigned int rowIndex, unsigned int columnIndex, unsigned int length)
-		{
-			T dotProduct{};
-
-			for (unsigned int i = 0; i < length; i++)
-			{
-				dotProduct += aMatrix[rowIndex][i] * bMatrix[i][columnIndex];
-			}
-
-			return dotProduct;
 		}
 
 		T* operator[](int rowIndex)
@@ -281,7 +281,7 @@ namespace ArtemisEngine::Math::Matrices
 		{
 			for (unsigned int j = 0; j < bColumns; j++)
 			{
-				toReturn[i][j] = GenericMatrix<T, aRows, bColumns>::CalculateDotProduct(aMatrix, bMatrix, i, j, aColumnsAndbRows);
+				toReturn[i][j] = BaseMatrix::CalculateDotProduct<T, aColumnsAndbRows, aRows, bColumns>(aMatrix, bMatrix, i, j, aColumnsAndbRows);
 			}
 		}
 

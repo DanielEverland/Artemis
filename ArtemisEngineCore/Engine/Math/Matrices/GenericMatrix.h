@@ -14,7 +14,34 @@ using std::initializer_list;
 namespace ArtemisEngine::Math::Matrices
 {
 	template<class T, unsigned int rows, unsigned int columns>
-	class GenericMatrix
+	class GenericMatrix;
+
+	class BaseMatrix
+	{
+	public:
+
+		template<class T, unsigned int dimensions>
+		static GenericMatrix<T, dimensions, dimensions> GetIdentityMatrix()
+		{
+			GenericMatrix<T, dimensions, dimensions> matrix{};
+
+			for (unsigned int i = 0; i < dimensions; i++)
+			{
+				for (unsigned int j = 0; j < dimensions; j++)
+				{
+					if (j == i)
+						matrix[i][j] = 1;
+					else
+						matrix[i][j] = 0;
+				}
+			}
+
+			return matrix;
+		}
+	};
+
+	template<class T, unsigned int rows, unsigned int columns>
+	class GenericMatrix : BaseMatrix
 	{
 	public:
 		~GenericMatrix() = default;

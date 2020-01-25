@@ -5,6 +5,7 @@
 
 namespace Math::Matrices
 {
+	using ArtemisEngine::Math::Matrices::BaseMatrix;
 	using ArtemisEngine::Math::Matrices::GenericMatrix;
 	using ArtemisEngine::Math::Vectors::VectorBase;
 
@@ -241,6 +242,26 @@ namespace Math::Matrices
 			for (unsigned int j = 0; j < transpose.GetColumns(); j++)
 			{
 				EXPECT_EQ(expectedResult[i][j], transpose[i][j]);
+			}
+		}
+	}
+	TEST(MatrixTest, Identity)
+	{
+		GenericMatrix<T, 4, 4> expectedResult(
+		{
+			RowVector(1, 0, 0, 0),
+			RowVector(0, 1, 0, 0),
+			RowVector(0, 0, 1, 0),
+			RowVector(0, 0, 0, 1),
+		});
+
+		GenericMatrix<T, 4, 4> identityMatrix = BaseMatrix::GetIdentityMatrix<T, 4>();
+
+		for (unsigned int i = 0; i < identityMatrix.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < identityMatrix.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedResult[i][j], identityMatrix[i][j]);
 			}
 		}
 	}

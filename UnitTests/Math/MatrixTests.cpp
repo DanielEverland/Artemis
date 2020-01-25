@@ -265,4 +265,64 @@ namespace Math::Matrices
 			}
 		}
 	}
+
+	TEST(MatrixTest, SetRow)
+	{
+		VectorBase<T, 4> row(1, 2, 3, 4);
+
+		GenericMatrix<T, 1, 4> matrix;
+		matrix.SetRow(0, row);
+
+		for (unsigned int i = 0; i < 4; i++)
+		{
+			EXPECT_EQ(matrix[0][i], row[i]);
+		}
+	}
+
+	TEST(MatrixTest, SetColumn)
+	{
+		VectorBase<T, 4> column(1, 2, 3, 4);
+
+		GenericMatrix<T, 4, 1> matrix;
+		matrix.SetColumn(0, column);
+
+		for (unsigned int i = 0; i < 4; i++)
+		{
+			EXPECT_EQ(matrix[i][0], column[i]);
+		}
+	}
+
+	TEST(MatrixTest, AssignmentOperator)
+	{
+		const RowVector* testValues = TestValues[0];
+
+		Matrix a = GetTestMatrix(testValues);
+		Matrix b{};
+		b = a;
+
+		for (unsigned int i = 0; i < b.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < b.GetColumns(); j++)
+			{
+				EXPECT_EQ(testValues[i][j], a[i][j]);
+				EXPECT_EQ(testValues[i][j], b[i][j]);
+			}
+		}
+	}
+
+	TEST(MatrixTest, MoveAssignmentOperator)
+	{
+		const RowVector* testValues = TestValues[0];
+
+		Matrix a{};
+		a = GetTestMatrix(testValues);
+
+		for (unsigned int i = 0; i < a.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < a.GetColumns(); j++)
+			{
+				EXPECT_EQ(testValues[i][j], a[i][j]);
+			}
+		}
+	}
 }

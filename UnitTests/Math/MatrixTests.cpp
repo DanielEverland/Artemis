@@ -270,7 +270,41 @@ namespace Math::Matrices
 			}
 		}
 	}
+	TEST(MatrixTest, MultiplicativeIdentity)
+	{
+		const RowVector* testValues = TestValues[0];
 
+		Matrix a = GetTestMatrix(TestValues[0]);
+		Matrix identity = BaseMatrix::GetIdentityMatrix<T, a.GetRows()>();
+
+		Matrix b = a * identity;
+
+		for (unsigned int i = 0; i < a.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < a.GetColumns(); j++)
+			{
+				EXPECT_EQ(a[i][j], b[i][j]);
+			}
+		}
+	}
+	TEST(MatrixTest, SquareMatrixCommunitativeIdentityMultiplication)
+	{
+		const RowVector* testValues = TestValues[0];
+
+		Matrix a = GetTestMatrix(TestValues[0]);
+		Matrix identity = BaseMatrix::GetIdentityMatrix<T, a.GetRows()>();
+
+		Matrix b = a * identity;
+		Matrix c = identity * a;
+
+		for (unsigned int i = 0; i < a.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < a.GetColumns(); j++)
+			{
+				EXPECT_EQ(b[i][j], c[i][j]);
+			}
+		}
+	}
 	TEST(MatrixTest, SetRow)
 	{
 		VectorBase<T, 4> row(1, 2, 3, 4);
@@ -359,15 +393,15 @@ namespace Math::Matrices
 	{
 		GenericMatrix<T, 2, 3> matrix(
 		{
-			VectorBase<T, 3>(0, 3, 5),
-			VectorBase<T, 3>(5, 5, 2),
+			VectorBase<T, 3>(6, 4, 3),
+			VectorBase<T, 3>(0, 1, -2),
 		});
 
-		VectorBase<T, 3> vector(3, 4, 3);
+		VectorBase<T, 3> vector(3, 0, -1.5);
 
 		GenericMatrix<T, 2, 1> expectedResult{};
-		expectedResult[0][0] = 27;
-		expectedResult[1][0] = 41;
+		expectedResult[0][0] = 13.5;
+		expectedResult[1][0] = 3;
 
 		GenericMatrix<T, 2, 1> result = matrix * vector;
 

@@ -410,4 +410,35 @@ namespace Math::Matrices
 			EXPECT_EQ(expectedResult[0][i], result[0][i]);
 		}
 	}
+
+	TEST(MatrixTest, Minor)
+	{
+		GenericMatrix<T, 4, 4> matrix(
+		{
+			VectorBase<T, 4>(2, -5, 3, 6),
+			VectorBase<T, 4>(1, 0, 6, 2),
+			VectorBase<T, 4>(-1, -2, 5, 7),
+			VectorBase<T, 4>(1, 0, 3, 1),
+		});
+
+		unsigned int rowToDelete = 2;
+		unsigned int columnToDelete = 1;
+
+		GenericMatrix<T, 3, 3> expectedResult(
+		{
+			VectorBase<T, 3>(-5, 3, 6),
+			VectorBase<T, 3>(-2, 5, 7),
+			VectorBase<T, 3>(0, 3, 1),
+		});
+
+		GenericMatrix<T, 3, 3> minor = matrix.GetMinor(rowToDelete, columnToDelete);
+
+		for (unsigned int i = 0; i < minor.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < minor.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedResult[i][j], minor[i][j]);
+			}
+		}
+	}
 }

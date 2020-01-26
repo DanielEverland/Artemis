@@ -152,6 +152,40 @@ namespace ArtemisEngine::Math::Matrices
 			return transpose;
 		}
 
+		// Returns the minor of this matrix.
+		// Requires the matrix to be square.
+		// Will return a matrix[N - 1, N - 1] with a removed row and column.
+		GenericMatrix<T, rows - 1, columns - 1> GetMinor(unsigned int rowToDelete, unsigned int columnToDelete) const
+		{
+			static_assert(rows == columns, "Cannot get minor of non-square matrix");
+
+			GenericMatrix<T, rows - 1, columns - 1> minor{};
+
+			unsigned int rowIndex = 0;
+			for (unsigned int i = 0; i < minor.GetRows(); i++)
+			{
+				if (rowIndex == rowToDelete - 1)
+					rowIndex++;
+
+				unsigned int columnIndex = 0;
+				for (unsigned int j = 0; j < minor.GetColumns(); j++)
+				{
+					if (columnIndex == columnToDelete - 1)
+						columnIndex++;
+
+
+					minor[i][j] = values[rowIndex][columnIndex];
+
+
+					columnIndex++;
+				}
+
+				rowIndex++;
+			}
+
+			return minor;
+		}
+
 		GenericMatrix& operator=(GenericMatrix& copy)
 		{
 			for (unsigned int i = 0; i < rows; i++)

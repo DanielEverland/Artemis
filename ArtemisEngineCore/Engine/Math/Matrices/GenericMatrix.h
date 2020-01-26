@@ -311,4 +311,20 @@ namespace ArtemisEngine::Math::Matrices
 	{
 		return !(aMatrix == bMatrix);
 	}
+
+	template<class T, unsigned int rows, unsigned int vectorDimensions>
+	GenericMatrix<T, rows, 1> operator*(const GenericMatrix<T, rows, vectorDimensions>& aMatrix, const VectorBase<T, vectorDimensions>& vector)
+	{
+		GenericMatrix<T, rows, 1> toReturn;
+
+		for (unsigned int i = 0; i < rows; i++)
+		{
+			for (unsigned int j = 0; j < vectorDimensions; j++)
+			{
+				toReturn[i][0] += aMatrix[i][j] * vector[j];
+			}
+		}
+
+		return toReturn;
+	}
 }

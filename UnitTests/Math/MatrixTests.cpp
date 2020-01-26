@@ -62,6 +62,11 @@ namespace Math::Matrices
 		VectorBase<T, 4>(0.0, 1.25, 4.25, 1.0),
 	});
 
+	const GenericMatrix<T, 1, 4> VectorMultiplicationExpectedResult(
+	{
+		VectorBase<T, 4>(2.25, 5.5, 26.5, 4.5),
+	});
+
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
@@ -348,5 +353,27 @@ namespace Math::Matrices
 		EXPECT_EQ(false, a != b);
 		EXPECT_EQ(true, a != c);
 		EXPECT_EQ(true, a != d);
+	}
+
+	TEST(MatrixTest, VectorMultiplication)
+	{
+		GenericMatrix<T, 2, 3> matrix(
+		{
+			VectorBase<T, 3>(0, 3, 5),
+			VectorBase<T, 3>(5, 5, 2),
+		});
+
+		VectorBase<T, 3> vector(3, 4, 3);
+
+		GenericMatrix<T, 2, 1> expectedResult{};
+		expectedResult[0][0] = 27;
+		expectedResult[1][0] = 41;
+
+		GenericMatrix<T, 2, 1> result = matrix * vector;
+
+		for (unsigned int i = 0; i < 2; i++)
+		{
+			EXPECT_EQ(expectedResult[0][i], result[0][i]);
+		}
 	}
 }

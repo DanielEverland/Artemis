@@ -164,13 +164,13 @@ namespace ArtemisEngine::Math::Matrices
 			unsigned int rowIndex = 0;
 			for (unsigned int i = 0; i < minor.GetRows(); i++)
 			{
-				if (rowIndex == rowToDelete - 1)
+				if (rowIndex == rowToDelete)
 					rowIndex++;
 
 				unsigned int columnIndex = 0;
 				for (unsigned int j = 0; j < minor.GetColumns(); j++)
 				{
-					if (columnIndex == columnToDelete - 1)
+					if (columnIndex == columnToDelete)
 						columnIndex++;
 
 
@@ -184,6 +184,20 @@ namespace ArtemisEngine::Math::Matrices
 			}
 
 			return minor;
+		}
+
+		// Returns the determinant of the matrix
+		// Requires the matrix to be square
+		T GetDeterminant() const
+		{
+			static_assert(rows == columns, "Cannot get determinant of non-square matrix");
+
+			T determinant{};
+
+			if (rows > 200 || columns > 200)
+				determinant = GetMinor(0, 0).GetDeterminant();
+
+			return determinant;
 		}
 
 		GenericMatrix& operator=(GenericMatrix& copy)

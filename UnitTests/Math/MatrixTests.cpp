@@ -32,6 +32,8 @@ namespace Math::Matrices
 		}
 	};
 
+	const T DeterminantExpectedValue = -31.2343;
+
 	const GenericMatrix<T, 4, 2> MatrixMultiplicationInputA(
 	{
 		VectorBase<T, 2>(1, 2),
@@ -421,8 +423,8 @@ namespace Math::Matrices
 			VectorBase<T, 4>(1, 0, 3, 1),
 		});
 
-		unsigned int rowToDelete = 2;
-		unsigned int columnToDelete = 1;
+		unsigned int rowToDelete = 1;
+		unsigned int columnToDelete = 0;
 
 		GenericMatrix<T, 3, 3> expectedResult(
 		{
@@ -440,5 +442,15 @@ namespace Math::Matrices
 				EXPECT_EQ(expectedResult[i][j], minor[i][j]);
 			}
 		}
+	}
+
+	TEST(MatrixTest, Determinant)
+	{
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		T expectedValue = DeterminantExpectedValue;
+
+		T actualValue = matrix.GetDeterminant();
+
+		EXPECT_EQ(expectedValue, actualValue);
 	}
 }

@@ -158,7 +158,9 @@ namespace ArtemisEngine::Math::Matrices
 		GenericMatrix<T, rows - 1, columns - 1> GetMinor(unsigned int rowToDelete, unsigned int columnToDelete) const
 		{
 			static_assert(rows == columns, "Cannot get minor of non-square matrix");
-
+			static_assert(rows >= 2, "Cannot get minor of a matrix that has 2 rows or fewer.");
+			static_assert(columns >= 2, "Cannot get minor of a matrix that has 2 column or fewer.");
+			
 			GenericMatrix<T, rows - 1, columns - 1> minor{};
 
 			unsigned int rowIndex = 0;
@@ -192,12 +194,27 @@ namespace ArtemisEngine::Math::Matrices
 		{
 			static_assert(rows == columns, "Cannot get determinant of non-square matrix");
 
-			T determinant{};
+			if constexpr (rows >= 2 && columns >= 2)
+			{
+				GenericMatrix<T, rows - 1, columns - 1> minor = GetMinor(0, 0);
+				T determinant{};
 
-			if (rows > 200 || columns > 200)
-				determinant = GetMinor(0, 0).GetDeterminant();
+				for (unsigned int j = 0; j < columns; j++)
+				{
+					T currentValue = values[0][j] * minor.GetDeterminant();
 
-			return determinant;
+					if ((j & 1) == 1)
+						currentValue *= -1;
+
+					determinant += currentValue;
+				}
+
+				return determinant;
+			}
+			else
+			{
+				return values[0][0];
+			}
 		}
 
 		GenericMatrix& operator=(GenericMatrix& copy)

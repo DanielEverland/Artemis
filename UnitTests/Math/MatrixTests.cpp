@@ -451,6 +451,6 @@ namespace Math::Matrices
 
 		T actualValue = matrix.GetDeterminant();
 
-		EXPECT_EQ(expectedValue, actualValue);
+		EXPECT_NEAR(expectedValue, actualValue, 0.0001);
 	}
 }

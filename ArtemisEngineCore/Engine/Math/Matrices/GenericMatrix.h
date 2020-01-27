@@ -196,11 +196,11 @@ namespace ArtemisEngine::Math::Matrices
 
 			if constexpr (rows >= 2 && columns >= 2)
 			{
-				GenericMatrix<T, rows - 1, columns - 1> minor = GetMinor(0, 0);
 				T determinant{};
 
 				for (unsigned int j = 0; j < columns; j++)
 				{
+					GenericMatrix<T, rows - 1, columns - 1> minor = GetMinor(0, j);
 					T currentValue = values[0][j] * minor.GetDeterminant();
 
 					if ((j & 1) == 1)

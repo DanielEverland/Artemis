@@ -217,6 +217,32 @@ namespace ArtemisEngine::Math::Matrices
 			}
 		}
 
+		// Returns the adjoint of this matrix
+		// The adjoint matrix is the transpose of the cofactor matrix
+		// Requires the matrix to be square
+		GenericMatrix GetAdjointMatrix() const
+		{
+			return GetCofactorMatrix().GetTranspose();
+		}
+
+
+		// Returns the cofactor of the matrix
+		// Requires the matrix to be square
+		GenericMatrix GetCofactorMatrix() const
+		{
+			GenericMatrix cofactor{};
+
+			for (unsigned int i = 0; i < cofactor.GetRows(); i++)
+			{
+				for (unsigned int j = 0; j < cofactor.GetColumns(); j++)
+				{
+					cofactor[i][j] = CalculateCofactor(i, j);
+				}
+			}
+
+			return cofactor;
+		}
+
 		GenericMatrix& operator=(GenericMatrix& copy)
 		{
 			for (unsigned int i = 0; i < rows; i++)
@@ -245,6 +271,16 @@ namespace ArtemisEngine::Math::Matrices
 		}
 
 	private:
+		T CalculateCofactor(unsigned int i, unsigned int j) const
+		{
+			T det = GetMinor(i, j).GetDeterminant();
+
+			if ((i + j) & 1 == 1)
+				det *= -1;
+
+			return det;
+		}
+
 		T values[rows][columns] = { };
 	};
 

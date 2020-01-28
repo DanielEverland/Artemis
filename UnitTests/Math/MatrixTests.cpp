@@ -69,6 +69,22 @@ namespace Math::Matrices
 		VectorBase<T, 4>(2.25, 5.5, 26.5, 4.5),
 	});
 
+	const GenericMatrix<T, 4, 4> CofactorExpectedResult(
+	{
+		RowVector(-6.46875, -30.25, -40.6875, 24.15625),
+		RowVector(8.984375, 14.25, 35.6875, -26.609375),
+		RowVector(-2.109375, 1, 0.3125, -5.703125),
+		RowVector(-2.265625, -22.0625, -45.9375, 26.265625),
+	});
+
+	const GenericMatrix<T, 4, 4> AdjoinedExpectedResult(
+	{
+		RowVector(-6.46875, 8.984375, -2.109375, -2.265625),
+		RowVector(-30.25, 14.25, 1, -22.0625),
+		RowVector(-40.6875, 35.6875, 0.3125, -45.9375),
+		RowVector(24.15625, -26.609375, -5.703125, 26.265625),
+	});
+
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
@@ -452,5 +468,37 @@ namespace Math::Matrices
 		T actualValue = matrix.GetDeterminant();
 
 		EXPECT_NEAR(expectedValue, actualValue, 0.0001);
+	}
+
+	TEST(MatrixTest, CofactorMatrix)
+	{
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix expectedValues = CofactorExpectedResult;
+
+		Matrix actualValue = matrix.GetCofactorMatrix();
+
+		for (unsigned int i = 0; i < actualValue.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < actualValue.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedValues[i][j], actualValue[i][j]);
+			}
+		}
+	}
+
+	TEST(MatrixTest, AdjointMatrix)
+	{
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix expectedValues = AdjoinedExpectedResult;
+
+		Matrix actualValue = matrix.GetAdjointMatrix();
+
+		for (unsigned int i = 0; i < actualValue.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < actualValue.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedValues[i][j], actualValue[i][j]);
+			}
+		}
 	}
 }

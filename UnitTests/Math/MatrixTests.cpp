@@ -15,7 +15,7 @@ namespace Math::Matrices
 
 	typedef GenericMatrix<T, rows, columns> Matrix;
 	typedef VectorBase<T, columns> RowVector;
-
+	
 	const static RowVector TestValues[2][rows]
 	{
 		{
@@ -98,116 +98,154 @@ namespace Math::Matrices
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
 	}
 
+	Matrix IterateWorkOnMatrices(const Matrix& a, const Matrix& b, T (*action)(T a, T b))
+	{
+		Matrix output;
+
+		for (unsigned int i = 0; i < rows; i++)
+		{
+			for (unsigned int j = 0; j < columns; j++)
+			{
+				output[i][j] += action(a[i][j], b[i][j]);
+			}
+		}
+
+		return output;
+	}
+	Matrix AddMatrices(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+			{
+				return a + b;
+			});
+	}
+	Matrix SubtractMatrices(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+			{
+				return a - b;
+			});
+	}
+	Matrix DivideMatrices(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+			{
+				return a / b;
+			});
+	}
+	Matrix MultiplyMatrices(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+			{
+				return a * b;
+			});
+	}
+
+	void ExpectEmpty(Matrix actualValues)
+	{
+		for (unsigned int i = 0; i < actualValues.GetRows(); i++)
+		{
+			for (unsigned j = 0; j < actualValues.GetColumns(); j++)
+			{
+				EXPECT_EQ(0, actualValues[i][j]);
+			}
+		}
+	}
+	void ExpectEqual(const RowVector* expectedValues, const Matrix actualValues)
+	{
+		for (unsigned int i = 0; i < actualValues.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < actualValues.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedValues[i][j], actualValues[i][j]);
+			}
+		}
+	}
+	void ExpectEqual(const Matrix expectedValues, const Matrix actualValues)
+	{
+		for (unsigned int i = 0; i < actualValues.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < actualValues.GetColumns(); j++)
+			{
+				EXPECT_EQ(expectedValues[i][j], actualValues[i][j]);
+			}
+		}
+	}
+
 	TEST(MatrixTest, EmptyConstructor)
 	{
 		Matrix matrix;
 
-		for (unsigned int i = 0; i < matrix.GetRows(); i++)
-		{
-			for (unsigned j = 0; j < matrix.GetColumns(); j++)
-			{
-				EXPECT_EQ(0, matrix.GetValue(i, j));
-			}
-		}
+
+		ExpectEmpty(matrix);
 	}
 	TEST(MatrixTest, InitializerListConstructor)
 	{
-		const RowVector* UsedTestValues = TestValues[0];
+		const RowVector* expectedValues = TestValues[0];
 
-		Matrix matrix({ UsedTestValues[0], UsedTestValues[1], UsedTestValues[2], UsedTestValues[3] });
 
-		for (unsigned int i = 0; i < matrix.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < matrix.GetColumns(); j++)
-			{
-				EXPECT_EQ(UsedTestValues[i][j], matrix.GetValue(i, j));
-			}
-		}
+		Matrix matrix({ expectedValues[0], expectedValues[1], expectedValues[2], expectedValues[3] });
+
+
+		ExpectEqual(expectedValues, matrix);
 	}
 	TEST(MatrixTest, MultiDimensionalIndexer)
 	{
-		const RowVector* testValuesRowVector = TestValues[0];
-		Matrix matrix = GetTestMatrix(testValuesRowVector);
+		const RowVector* expectedValues = TestValues[0];
 
-		for (unsigned int i = 0; i < matrix.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < matrix.GetColumns(); j++)
-			{
-				EXPECT_EQ(testValuesRowVector[i][j], matrix[i][j]);
-			}
-		}
+
+		Matrix matrix = GetTestMatrix(expectedValues);
+
+
+		ExpectEqual(expectedValues, matrix);
 	}
 	TEST(MatrixTest, Addition)
 	{
-		const RowVector* aTestValues = TestValues[0];
-		const RowVector* bTestValues = TestValues[1];
+		Matrix a = GetTestMatrix(TestValues[0]);
+		Matrix b = GetTestMatrix(TestValues[1]);
+		Matrix expectedValues = AddMatrices(a, b);
 
-		Matrix a = GetTestMatrix(aTestValues);
-		Matrix b = GetTestMatrix(bTestValues);
 
-		Matrix c = a + b;
+		Matrix actualValues = a + b;
 
-		for (unsigned int i = 0; i < c.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < c.GetColumns(); j++)
-			{
-				EXPECT_EQ(aTestValues[i][j] + bTestValues[i][j], c[i][j]);
-			}
-		}
+
+		ExpectEqual(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, AdditionAssignment)
 	{
-		const RowVector* aTestValues = TestValues[0];
-		const RowVector* bTestValues = TestValues[1];
+		Matrix actualValues = GetTestMatrix(TestValues[0]);
+		Matrix b = GetTestMatrix(TestValues[1]);
+		Matrix expectedValues = AddMatrices(actualValues, b);
 
-		Matrix a = GetTestMatrix(aTestValues);
-		Matrix b = GetTestMatrix(bTestValues);
 
-		a += b;
+		actualValues += b;
 
-		for (unsigned int i = 0; i < a.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < a.GetColumns(); j++)
-			{
-				EXPECT_EQ(aTestValues[i][j] + bTestValues[i][j], a[i][j]);
-			}
-		}
+
+		ExpectEqual(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, Subtraction)
 	{
-		const RowVector* aTestValues = TestValues[0];
-		const RowVector* bTestValues = TestValues[1];
+		Matrix a = GetTestMatrix(TestValues[0]);
+		Matrix b = GetTestMatrix(TestValues[1]);
+		Matrix expectedValues = SubtractMatrices(a, b);
+		
 
-		Matrix a = GetTestMatrix(aTestValues);
-		Matrix b = GetTestMatrix(bTestValues);
+		Matrix actualValues = a - b;
 
-		Matrix c = a - b;
 
-		for (unsigned int i = 0; i < c.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < c.GetColumns(); j++)
-			{
-				EXPECT_EQ(aTestValues[i][j] - bTestValues[i][j], c[i][j]);
-			}
-		}
+		ExpectEqual(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, SubtractionAssignment)
 	{
-		const RowVector* aTestValues = TestValues[0];
-		const RowVector* bTestValues = TestValues[1];
+		Matrix actualValues = GetTestMatrix(TestValues[0]);
+		Matrix b = GetTestMatrix(TestValues[1]);
+		Matrix expectedValues = SubtractMatrices(actualValues, b);
 
-		Matrix a = GetTestMatrix(aTestValues);
-		Matrix b = GetTestMatrix(bTestValues);
 
-		a -= b;
+		actualValues -= b;
 
-		for (unsigned int i = 0; i < a.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < a.GetColumns(); j++)
-			{
-				EXPECT_EQ(aTestValues[i][j] - bTestValues[i][j], a[i][j]);
-			}
-		}
+
+		ExpectEqual(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, ScalarMultiplication)
 	{
@@ -553,5 +591,9 @@ namespace Math::Matrices
 				EXPECT_NEAR(a[i][j], b[i][j], 0.000001);
 			}
 		}
+	}
+	TEST(MatrixTest, ScaleTransform)
+	{
+
 	}
 }

@@ -299,15 +299,11 @@ namespace Math::Matrices
 		GenericMatrix<T, 2, 4> matrixB = MatrixMultiplicationInputB;
 		GenericMatrix<T, 4, 4> expectedResult = MatrixMultiplicationExpectedResult;
 
+
 		GenericMatrix<T, 4, 4> actualResult = matrixA * matrixB;
 
-		for (unsigned int i = 0; i < actualResult.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < actualResult.GetColumns(); j++)
-			{
-				EXPECT_EQ(expectedResult[i][j], actualResult[i][j]);
-			}
-		}
+
+		ExpectEqual(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, Transpose)
 	{

@@ -15,6 +15,8 @@ namespace Math::Matrices
 
 	typedef GenericMatrix<T, rows, columns> Matrix;
 	typedef VectorBase<T, columns> RowVector;
+	typedef	GenericMatrix<T, 1, columns> RowMatrix;
+	typedef	GenericMatrix<T, rows, 1> ColumnMatrix;
 	
 	const static RowVector TestValues[2][rows]
 	{
@@ -200,6 +202,22 @@ namespace Math::Matrices
 			}
 		}
 	}
+	template<class T, unsigned int rows, unsigned int columns>
+	void ExpectRowEqual(const GenericMatrix<T, rows, columns> expectedValues, const VectorBase<T, columns>& row, int rowIndex = 0)
+	{
+		for (unsigned int i = 0; i < row.GetDimensions(); i++)
+		{
+			EXPECT_EQ(expectedValues[0][i], row[i]);
+		}
+	}
+	template<class T, unsigned int rows, unsigned int columns>
+	void ExpecColumnEqual(const GenericMatrix<T, rows, columns> expectedValues, const VectorBase<T, columns>& column, int columnIndex = 0)
+	{
+		for (unsigned int i = 0; i < column.GetDimensions(); i++)
+		{
+			EXPECT_EQ(expectedValues[i][0], column[i]);
+		}
+	}
 
 	TEST(MatrixTest, EmptyConstructor)
 	{
@@ -360,15 +378,14 @@ namespace Math::Matrices
 	}
 	TEST(MatrixTest, SetRow)
 	{
-		VectorBase<T, 4> row(1, 2, 3, 4);
+		RowVector row(1, 2, 3, 4);
+		RowMatrix matrix;
 
-		GenericMatrix<T, 1, 4> matrix;
+
 		matrix.SetRow(0, row);
 
-		for (unsigned int i = 0; i < 4; i++)
-		{
-			EXPECT_EQ(matrix[0][i], row[i]);
-		}
+
+		ExpectRowEqual(matrix, row);
 	}
 
 	TEST(MatrixTest, SetColumn)

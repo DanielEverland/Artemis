@@ -337,7 +337,7 @@ namespace Math::Matrices
 	TEST(MatrixTest, MultiplicativeIdentity)
 	{
 		Matrix matrix = GetTestMatrix(TestValues[0]);
-		Matrix identity = BaseMatrix::GetIdentityMatrix<T, matrix.GetRows()>();
+		Matrix identity = matrix.GetIdentityMatrix();
 		Matrix expectedResult(matrix);
 
 
@@ -349,7 +349,7 @@ namespace Math::Matrices
 	TEST(MatrixTest, SquareMatrixCommunitativeIdentityMultiplication)
 	{
 		Matrix matrix = GetTestMatrix(TestValues[0]);
-		Matrix identity = BaseMatrix::GetIdentityMatrix<T, matrix.GetRows()>();
+		Matrix identity = matrix.GetIdentityMatrix();
 
 
 		Matrix a = matrix * identity;

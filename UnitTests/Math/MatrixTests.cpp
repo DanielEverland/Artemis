@@ -271,31 +271,27 @@ namespace Math::Matrices
 	TEST(MatrixTest, ScalarMultiplication)
 	{
 		double scalar = 2;
-		Matrix a = GetTestMatrix(TestValues[0]);
-		Matrix expectedValues = MultiplyScalar(a, scalar);
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix expectedValues = MultiplyScalar(matrix, scalar);
 
 
-		Matrix actualValues = a * scalar;
+		Matrix actualValues = matrix * scalar;
 
 
 		ExpectEqual(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, ScalarMultiplicationAssignment)
 	{
-		const RowVector* aTestValues = TestValues[0];
-
-		Matrix matrix = GetTestMatrix(aTestValues);
 		double scalar = 2;
+		Matrix matrixValues = GetTestMatrix(TestValues[0]);
+		Matrix expectedValues = MultiplyScalar(matrixValues, scalar);
 
-		matrix *= scalar;
 
-		for (unsigned int i = 0; i < matrix.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < matrix.GetColumns(); j++)
-			{
-				EXPECT_EQ(aTestValues[i][j] * scalar, matrix[i][j]);
-			}
-		}
+		Matrix actualValues(matrixValues);
+		actualValues *= scalar;
+
+
+		ExpectEqual(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, MatrixMultiplication)
 	{

@@ -13,8 +13,9 @@ namespace Math::Matrices
 	const unsigned int rows = 4;
 	const unsigned int columns = 4;
 
-	typedef GenericMatrix<T, rows, columns> Matrix;
 	typedef VectorBase<T, columns> RowVector;
+	typedef VectorBase<T, columns> ColumnVector;
+	typedef GenericMatrix<T, rows, columns> Matrix;
 	typedef	GenericMatrix<T, 1, columns> RowMatrix;
 	typedef	GenericMatrix<T, rows, 1> ColumnMatrix;
 	
@@ -211,7 +212,7 @@ namespace Math::Matrices
 		}
 	}
 	template<class T, unsigned int rows, unsigned int columns>
-	void ExpecColumnEqual(const GenericMatrix<T, rows, columns> expectedValues, const VectorBase<T, columns>& column, int columnIndex = 0)
+	void ExpectColumnEqual(const GenericMatrix<T, rows, columns> expectedValues, const VectorBase<T, rows>& column, int columnIndex = 0)
 	{
 		for (unsigned int i = 0; i < column.GetDimensions(); i++)
 		{
@@ -390,15 +391,14 @@ namespace Math::Matrices
 
 	TEST(MatrixTest, SetColumn)
 	{
-		VectorBase<T, 4> column(1, 2, 3, 4);
+		ColumnVector column(1, 2, 3, 4);
+		ColumnMatrix matrix;
 
-		GenericMatrix<T, 4, 1> matrix;
+
 		matrix.SetColumn(0, column);
 
-		for (unsigned int i = 0; i < 4; i++)
-		{
-			EXPECT_EQ(matrix[i][0], column[i]);
-		}
+
+		ExpectColumnEqual(matrix, column);
 	}
 
 	TEST(MatrixTest, AssignmentOperator)

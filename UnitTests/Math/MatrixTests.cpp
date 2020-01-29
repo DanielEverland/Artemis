@@ -126,28 +126,28 @@ namespace Math::Matrices
 
 		return output;
 	}
-	Matrix AddMatrices(const Matrix& a, const Matrix& b)
+	Matrix Add(const Matrix& a, const Matrix& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
 			{
 				return a + b;
 			});
 	}
-	Matrix SubtractMatrices(const Matrix& a, const Matrix& b)
+	Matrix Subtract(const Matrix& a, const Matrix& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
 			{
 				return a - b;
 			});
 	}
-	Matrix DivideMatrices(const Matrix& a, const Matrix& b)
+	Matrix Divide(const Matrix& a, const Matrix& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
 			{
 				return a / b;
 			});
 	}
-	Matrix MultiplyMatrices(const Matrix& a, const Matrix& b)
+	Matrix Multiply(const Matrix& a, const Matrix& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
 			{
@@ -224,7 +224,7 @@ namespace Math::Matrices
 	{
 		Matrix a = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = AddMatrices(a, b);
+		Matrix expectedValues = Add(a, b);
 
 
 		Matrix actualValues = a + b;
@@ -236,7 +236,7 @@ namespace Math::Matrices
 	{
 		Matrix actualValues = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = AddMatrices(actualValues, b);
+		Matrix expectedValues = Add(actualValues, b);
 
 
 		actualValues += b;
@@ -248,7 +248,7 @@ namespace Math::Matrices
 	{
 		Matrix a = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = SubtractMatrices(a, b);
+		Matrix expectedValues = Subtract(a, b);
 		
 
 		Matrix actualValues = a - b;
@@ -260,7 +260,7 @@ namespace Math::Matrices
 	{
 		Matrix actualValues = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = SubtractMatrices(actualValues, b);
+		Matrix expectedValues = Subtract(actualValues, b);
 
 
 		actualValues -= b;

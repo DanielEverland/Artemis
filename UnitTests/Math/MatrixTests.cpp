@@ -112,6 +112,20 @@ namespace Math::Matrices
 
 		return output;
 	}
+	Matrix IterateWorkOnMatrices(const Matrix& a, T b, T(*action)(T a, T b))
+	{
+		Matrix output;
+
+		for (unsigned int i = 0; i < rows; i++)
+		{
+			for (unsigned int j = 0; j < columns; j++)
+			{
+				output[i][j] += action(a[i][j], b);
+			}
+		}
+
+		return output;
+	}
 	Matrix AddMatrices(const Matrix& a, const Matrix& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
@@ -136,6 +150,13 @@ namespace Math::Matrices
 	Matrix MultiplyMatrices(const Matrix& a, const Matrix& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+			{
+				return a * b;
+			});
+	}
+	Matrix MultiplyScalar(const Matrix& a, T scalar)
+	{
+		return IterateWorkOnMatrices(a, scalar, [](T a, T b) -> T
 			{
 				return a * b;
 			});
@@ -249,21 +270,15 @@ namespace Math::Matrices
 	}
 	TEST(MatrixTest, ScalarMultiplication)
 	{
-		const RowVector* aTestValues = TestValues[0];
-
 		double scalar = 2;
-		Matrix a = GetTestMatrix(aTestValues);
+		Matrix a = GetTestMatrix(TestValues[0]);
+		Matrix expectedValues = MultiplyScalar(a, scalar);
 
-		Matrix b = a * scalar;
 
-		for (unsigned int i = 0; i < b.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < b.GetColumns(); j++)
-			{
-				EXPECT_EQ(aTestValues[i][j] * scalar, b[i][j]);
-				EXPECT_EQ(aTestValues[i][j], a[i][j]);
-			}
-		}
+		Matrix actualValues = a * scalar;
+
+
+		ExpectEqual(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, ScalarMultiplicationAssignment)
 	{

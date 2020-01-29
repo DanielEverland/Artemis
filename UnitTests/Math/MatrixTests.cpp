@@ -307,19 +307,14 @@ namespace Math::Matrices
 	}
 	TEST(MatrixTest, Transpose)
 	{
-		const RowVector* testValues = TestValues[0];
+		Matrix expectedResults = TransposeExpectedResult;
+		Matrix matrix = GetTestMatrix(TestValues[0]);
 
-		Matrix expectedResult = TransposeExpectedResult;
-		Matrix matrix = GetTestMatrix(testValues);
-		Matrix transpose = matrix.GetTranspose();
 
-		for (unsigned int i = 0; i < transpose.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < transpose.GetColumns(); j++)
-			{
-				EXPECT_EQ(expectedResult[i][j], transpose[i][j]);
-			}
-		}
+		Matrix actualResults = matrix.GetTranspose();
+
+
+		ExpectEqual(expectedResults, actualResults);
 	}
 	TEST(MatrixTest, Identity)
 	{

@@ -295,6 +295,19 @@ namespace ArtemisEngine::Math::Matrices
 			return *this;
 		}
 
+		template<typename = typename std::enable_if<(columns == 1)>::type>
+		operator VectorBase<T, rows>()
+		{
+			VectorBase<T, rows> toReturn;
+
+			for (unsigned int i = 0; i < rows; i++)
+			{
+				toReturn[i] = values[i][0];
+			}
+
+			return toReturn;
+		}
+
 	private:
 		T CalculateCofactor(unsigned int i, unsigned int j) const
 		{

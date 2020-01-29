@@ -425,15 +425,12 @@ namespace Math::Matrices
 
 		VectorBase<T, 3> vector(3, 0, -1.5);
 
-		GenericMatrix<T, 2, 1> expectedResult{};
-		expectedResult[0][0] = 13.5;
-		expectedResult[1][0] = 3;
-
-		GenericMatrix<T, 2, 1> result = matrix * vector;
+		VectorBase<T, 2> expectedResult(13.5, 3);
+		VectorBase<T, 2> actualResult = matrix * vector;
 
 		for (unsigned int i = 0; i < 2; i++)
 		{
-			EXPECT_EQ(expectedResult[0][i], result[0][i]);
+			EXPECT_EQ(expectedResult[i], actualResult[i]);
 		}
 	}
 

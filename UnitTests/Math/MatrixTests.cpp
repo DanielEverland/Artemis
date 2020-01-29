@@ -348,21 +348,15 @@ namespace Math::Matrices
 	}
 	TEST(MatrixTest, SquareMatrixCommunitativeIdentityMultiplication)
 	{
-		const RowVector* testValues = TestValues[0];
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix identity = BaseMatrix::GetIdentityMatrix<T, matrix.GetRows()>();
 
-		Matrix a = GetTestMatrix(TestValues[0]);
-		Matrix identity = BaseMatrix::GetIdentityMatrix<T, a.GetRows()>();
 
-		Matrix b = a * identity;
-		Matrix c = identity * a;
+		Matrix a = matrix * identity;
+		Matrix b = identity * matrix;
 
-		for (unsigned int i = 0; i < a.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < a.GetColumns(); j++)
-			{
-				EXPECT_EQ(b[i][j], c[i][j]);
-			}
-		}
+
+		ExpectEqual(a, b);
 	}
 	TEST(MatrixTest, SetRow)
 	{

@@ -93,6 +93,14 @@ namespace Math::Matrices
 		RowVector(-0.77338, 0.85192, 0.18259, -0.84092),
 	});
 
+	const GenericMatrix<T, 4, 4> IdentityExpectedResult
+	({
+		RowVector(1, 0, 0, 0),
+		RowVector(0, 1, 0, 0),
+		RowVector(0, 0, 1, 0),
+		RowVector(0, 0, 0, 1),
+	});
+
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
@@ -318,23 +326,13 @@ namespace Math::Matrices
 	}
 	TEST(MatrixTest, Identity)
 	{
-		GenericMatrix<T, 4, 4> expectedResult(
-		{
-			RowVector(1, 0, 0, 0),
-			RowVector(0, 1, 0, 0),
-			RowVector(0, 0, 1, 0),
-			RowVector(0, 0, 0, 1),
-		});
+		Matrix expectedResult = IdentityExpectedResult;
 
-		GenericMatrix<T, 4, 4> identityMatrix = BaseMatrix::GetIdentityMatrix<T, 4>();
 
-		for (unsigned int i = 0; i < identityMatrix.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < identityMatrix.GetColumns(); j++)
-			{
-				EXPECT_EQ(expectedResult[i][j], identityMatrix[i][j]);
-			}
-		}
+		Matrix actualResult = BaseMatrix::GetIdentityMatrix<T, 4>();
+
+
+		ExpectEqual(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, MultiplicativeIdentity)
 	{

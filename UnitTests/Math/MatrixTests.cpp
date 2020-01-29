@@ -85,6 +85,14 @@ namespace Math::Matrices
 		RowVector(24.15625, -26.609375, -5.703125, 26.265625),
 	});
 
+	const GenericMatrix<T, 4, 4> InverseExpectedResult(
+	{
+		RowVector(0.20710, -0.28764, 0.06753, 0.07253),
+		RowVector(0.96848, -0.45622, -0.03201, 0.70635),
+		RowVector(1.30265, -1.14257, -0.01000, 1.47073),
+		RowVector(-0.77338, 0.85192, 0.18259, -0.84092),
+	});
+
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
@@ -498,6 +506,54 @@ namespace Math::Matrices
 			for (unsigned int j = 0; j < actualValue.GetColumns(); j++)
 			{
 				EXPECT_EQ(expectedValues[i][j], actualValue[i][j]);
+			}
+		}
+	}
+
+	TEST(MatrixTest, Inverse)
+	{
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix expectedValues = InverseExpectedResult;
+
+		Matrix actualValue = matrix.GetInverseMatrix();
+
+		for (unsigned int i = 0; i < actualValue.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < actualValue.GetColumns(); j++)
+			{
+				EXPECT_NEAR(expectedValues[i][j], actualValue[i][j], 0.0001);
+			}
+		}
+	}
+	TEST(MatrixTest, MultiplyingInverseMatrixReturnsIdentity)
+	{
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix inverse = matrix.GetInverseMatrix();
+		Matrix identity = matrix.GetIdentityMatrix();
+
+		Matrix product = matrix * inverse;
+
+		for (unsigned int i = 0; i < product.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < product.GetColumns(); j++)
+			{
+				EXPECT_NEAR(identity[i][j], product[i][j], 0.000001);
+			}
+		}
+	}
+	TEST(MatrixTest, InverseCommunatitiveMultiplication)
+	{
+		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix inverse = matrix.GetInverseMatrix();
+
+		Matrix a = matrix * inverse;
+		Matrix b = inverse * matrix;
+
+		for (unsigned int i = 0; i < a.GetRows(); i++)
+		{
+			for (unsigned int j = 0; j < a.GetColumns(); j++)
+			{
+				EXPECT_NEAR(a[i][j], b[i][j], 0.000001);
 			}
 		}
 	}

@@ -48,6 +48,11 @@ namespace ArtemisEngine::Math::Matrices
 
 			for (unsigned int i = 0; i < length; i++)
 			{
+				T a = aMatrix[rowIndex][i];
+				T b = bMatrix[i][columnIndex];
+
+				T value = a * b;
+
 				dotProduct += aMatrix[rowIndex][i] * bMatrix[i][columnIndex];
 			}
 
@@ -133,6 +138,26 @@ namespace ArtemisEngine::Math::Matrices
 			{
 				values[i][columnIndex] = columnValues[i];
 			}
+		}
+
+		template<typename = typename std::enable_if<(rows == columns)>::type>
+		GenericMatrix GetIdentityMatrix() const
+		{
+			return BaseMatrix::GetIdentityMatrix<T, rows>();
+		}
+
+		// Returns the inverse of the matrix.
+		// Requires the matrix to be square.
+		GenericMatrix GetInverseMatrix() const
+		{
+			static_assert(rows == columns, "Cannot get inverse of non-square matrix.");
+
+			GenericMatrix adjoint = GetAdjointMatrix();
+			T determinant = GetDeterminant();
+
+			T scalar = 1 / determinant;
+
+			return scalar * adjoint;
 		}
 
 		// Returns the transpose of this matrix.
@@ -344,6 +369,11 @@ namespace ArtemisEngine::Math::Matrices
 		return a;
 	}
 
+	template<class T, unsigned int rows, unsigned int columns, class TScalar, typename std::enable_if<std::is_arithmetic<TScalar>::value>::type * = nullptr>
+	GenericMatrix<T, rows, columns> operator*(TScalar scalar, const GenericMatrix<T, rows, columns> matrix)
+	{
+		return matrix * scalar;
+	}
 	template<class T, unsigned int rows, unsigned int columns, class TScalar, typename std::enable_if<std::is_arithmetic<TScalar>::value>::type * = nullptr>
 	GenericMatrix<T, rows, columns> operator*(const GenericMatrix<T, rows, columns> matrix, TScalar scalar)
 	{

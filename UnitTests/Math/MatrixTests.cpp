@@ -12,6 +12,7 @@ namespace Math::Matrices
 	typedef double T;
 	const unsigned int rows = 4;
 	const unsigned int columns = 4;
+	const double nearComparisonPrecision = 0.000001;
 
 	typedef VectorBase<T, columns> RowVector;
 	typedef VectorBase<T, columns> ColumnVector;
@@ -226,6 +227,21 @@ namespace Math::Matrices
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
 			EXPECT_EQ(a[i], b[i]);
+		}
+	}
+	void ExpectNear(T a, T b, double precision = nearComparisonPrecision)
+	{
+		EXPECT_NEAR(a, b, nearComparisonPrecision);
+	}
+	template<class T, unsigned int rows, unsigned int columns>
+	void ExpectNear(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b, double precision = nearComparisonPrecision)
+	{
+		for (unsigned int i = 0; i < rows; i++)
+		{
+			for (unsigned int j = 0; j < columns; j++)
+			{
+				EXPECT_NEAR(a[i][j], b[i][j], nearComparisonPrecision);
+			}
 		}
 	}
 	void ExpectTrue(bool expression)
@@ -513,9 +529,11 @@ namespace Math::Matrices
 		Matrix matrix = GetTestMatrix(TestValues[0]);
 		T expectedValue = DeterminantExpectedValue;
 
+
 		T actualValue = matrix.GetDeterminant();
 
-		EXPECT_NEAR(expectedValue, actualValue, 0.0001);
+
+		ExpectNear(expectedValue, actualValue);
 	}
 
 	TEST(MatrixTest, CofactorMatrix)
@@ -523,15 +541,11 @@ namespace Math::Matrices
 		Matrix matrix = GetTestMatrix(TestValues[0]);
 		Matrix expectedValues = CofactorExpectedResult;
 
+
 		Matrix actualValue = matrix.GetCofactorMatrix();
 
-		for (unsigned int i = 0; i < actualValue.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < actualValue.GetColumns(); j++)
-			{
-				EXPECT_EQ(expectedValues[i][j], actualValue[i][j]);
-			}
-		}
+
+		ExpectEqual(expectedValues, actualValue);
 	}
 
 	TEST(MatrixTest, AdjointMatrix)

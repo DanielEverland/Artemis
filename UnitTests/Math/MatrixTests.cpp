@@ -193,7 +193,8 @@ namespace Math::Matrices
 			}
 		}
 	}
-	void ExpectEqual(const Matrix expectedValues, const Matrix actualValues)
+	template<class T, unsigned int rows, unsigned int columns>
+	void ExpectEqual(const GenericMatrix<T, rows, columns>& expectedValues, const GenericMatrix<T, rows, columns>& actualValues)
 	{
 		for (unsigned int i = 0; i < actualValues.GetRows(); i++)
 		{
@@ -483,17 +484,16 @@ namespace Math::Matrices
 
 	TEST(MatrixTest, Minor)
 	{
-		GenericMatrix<T, 4, 4> matrix(
-		{
+		unsigned int rowToDelete = 1;
+		unsigned int columnToDelete = 0;
+
+		GenericMatrix<T, 4, 4> matrix
+		({
 			VectorBase<T, 4>(2, -5, 3, 6),
 			VectorBase<T, 4>(1, 0, 6, 2),
 			VectorBase<T, 4>(-1, -2, 5, 7),
 			VectorBase<T, 4>(1, 0, 3, 1),
 		});
-
-		unsigned int rowToDelete = 1;
-		unsigned int columnToDelete = 0;
-
 		GenericMatrix<T, 3, 3> expectedResult(
 		{
 			VectorBase<T, 3>(-5, 3, 6),
@@ -501,15 +501,11 @@ namespace Math::Matrices
 			VectorBase<T, 3>(0, 3, 1),
 		});
 
-		GenericMatrix<T, 3, 3> minor = matrix.GetMinor(rowToDelete, columnToDelete);
 
-		for (unsigned int i = 0; i < minor.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < minor.GetColumns(); j++)
-			{
-				EXPECT_EQ(expectedResult[i][j], minor[i][j]);
-			}
-		}
+		GenericMatrix<T, 3, 3> actualResult = matrix.GetMinor(rowToDelete, columnToDelete);
+
+
+		ExpectEqual(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, Determinant)

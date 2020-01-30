@@ -219,6 +219,14 @@ namespace Math::Matrices
 			EXPECT_EQ(expectedValues[i][0], column[i]);
 		}
 	}
+	template<class T, unsigned int dimensions>
+	void ExpectEqual(const VectorBase<T, dimensions>& a, const VectorBase<T, dimensions>& b)
+	{
+		for (unsigned int i = 0; i < dimensions; i++)
+		{
+			EXPECT_EQ(a[i], b[i]);
+		}
+	}
 	void ExpectTrue(bool expression)
 	{
 		EXPECT_EQ(true, expression);
@@ -458,21 +466,19 @@ namespace Math::Matrices
 
 	TEST(MatrixTest, VectorMultiplication)
 	{
-		GenericMatrix<T, 2, 3> matrix(
-		{
+		GenericMatrix<T, 2, 3> matrix
+		({
 			VectorBase<T, 3>(6, 4, 3),
 			VectorBase<T, 3>(0, 1, -2),
 		});
-
 		VectorBase<T, 3> vector(3, 0, -1.5);
-
 		VectorBase<T, 2> expectedResult(13.5, 3);
+
+
 		VectorBase<T, 2> actualResult = matrix * vector;
 
-		for (unsigned int i = 0; i < 2; i++)
-		{
-			EXPECT_EQ(expectedResult[i], actualResult[i]);
-		}
+
+		ExpectEqual(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, Minor)

@@ -12,7 +12,7 @@ namespace Math::Matrices
 	typedef double T;
 	const unsigned int rows = 4;
 	const unsigned int columns = 4;
-	const double nearComparisonPrecision = 0.000001;
+	const double nearComparisonPrecision = 1e-8;
 
 	typedef VectorBase<T, columns> RowVector;
 	typedef VectorBase<T, columns> ColumnVector;
@@ -229,9 +229,9 @@ namespace Math::Matrices
 			EXPECT_EQ(a[i], b[i]);
 		}
 	}
-	void ExpectNear(T a, T b, double precision = nearComparisonPrecision)
+	void ExpectNear(T expectedValue, T actualValue, double precision = nearComparisonPrecision)
 	{
-		EXPECT_NEAR(a, b, nearComparisonPrecision);
+		EXPECT_NEAR(expectedValue, actualValue, precision);
 	}
 	template<class T, unsigned int rows, unsigned int columns>
 	void ExpectNear(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b, double precision = nearComparisonPrecision)
@@ -533,7 +533,7 @@ namespace Math::Matrices
 		T actualValue = matrix.GetDeterminant();
 
 
-		ExpectNear(expectedValue, actualValue);
+		ExpectNear(expectedValue, actualValue, 1e-4);
 	}
 
 	TEST(MatrixTest, CofactorMatrix)

@@ -588,16 +588,12 @@ namespace Math::Matrices
 		Matrix matrix = GetTestMatrix(TestValues[0]);
 		Matrix inverse = matrix.GetInverseMatrix();
 
+
 		Matrix a = matrix * inverse;
 		Matrix b = inverse * matrix;
 
-		for (unsigned int i = 0; i < a.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < a.GetColumns(); j++)
-			{
-				EXPECT_NEAR(a[i][j], b[i][j], 0.000001);
-			}
-		}
+
+		ExpectNear(a, b);
 	}
 	TEST(MatrixTest, ScaleTransform)
 	{

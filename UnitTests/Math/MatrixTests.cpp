@@ -2,9 +2,11 @@
 
 #include "Engine/Math/Matrices/GenericMatrix.h"
 #include "Engine/Math/Vectors/VectorBase.h"
+#include "Utility/Comparison/ComparisonUtility.h"
 
 namespace Math::Matrices
 {
+	using namespace ArtemisEngine::UnitTests::Comparisons;
 	using ArtemisEngine::Math::Matrices::BaseMatrix;
 	using ArtemisEngine::Math::Matrices::GenericMatrix;
 	using ArtemisEngine::Math::Vectors::VectorBase;
@@ -243,14 +245,6 @@ namespace Math::Matrices
 				EXPECT_NEAR(expectedValue[i][j], actualValue[i][j], nearComparisonPrecision);
 			}
 		}
-	}
-	void ExpectTrue(bool expression)
-	{
-		EXPECT_EQ(true, expression);
-	}
-	void ExpectFalse(bool expression)
-	{
-		EXPECT_EQ(false, expression);
 	}
 
 	TEST(MatrixTest, EmptyConstructor)

@@ -38,10 +38,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Utility\Comparison\ComparisonUtility.h">
+      <Filter>Utility\Comparison</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
       <UniqueIdentifier>{795fb21f-bec7-47b8-a71d-97759cc97174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{b295762d-4e43-4dcd-a519-abd892c16ef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Comparison">
+      <UniqueIdentifier>{a85fef65-1685-4920-8dcf-b23c86eb20cb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

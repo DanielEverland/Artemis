@@ -219,6 +219,14 @@ namespace Math::Matrices
 			EXPECT_EQ(expectedValues[i][0], column[i]);
 		}
 	}
+	void ExpectTrue(bool expression)
+	{
+		EXPECT_EQ(true, expression);
+	}
+	void ExpectFalse(bool expression)
+	{
+		EXPECT_EQ(false, expression);
+	}
 
 	TEST(MatrixTest, EmptyConstructor)
 	{
@@ -430,10 +438,10 @@ namespace Math::Matrices
 		Matrix b = GetTestMatrix(TestValues[0]);
 		Matrix c = GetTestMatrix(TestValues[1]);
 		GenericMatrix<T, 1, 1> d{};
-		
-		EXPECT_EQ(true, a == b);
-		EXPECT_EQ(false, a == c);
-		EXPECT_EQ(false, a == d);
+
+		ExpectTrue(a == b);
+		ExpectFalse(a == c);
+		ExpectFalse(a == d);
 	}
 
 	TEST(MatrixText, Inequality)

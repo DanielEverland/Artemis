@@ -415,18 +415,13 @@ namespace Math::Matrices
 
 	TEST(MatrixTest, MoveAssignmentOperator)
 	{
-		const RowVector* testValues = TestValues[0];
+		const RowVector* expectedValues = TestValues[0];
 
-		Matrix a{};
-		a = GetTestMatrix(testValues);
 
-		for (unsigned int i = 0; i < a.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < a.GetColumns(); j++)
-			{
-				EXPECT_EQ(testValues[i][j], a[i][j]);
-			}
-		}
+		Matrix actualValues = GetTestMatrix(expectedValues);
+
+
+		ExpectEqual(expectedValues, actualValues);
 	}
 
 	TEST(MatrixText, Equality)

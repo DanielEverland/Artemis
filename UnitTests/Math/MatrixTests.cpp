@@ -553,15 +553,11 @@ namespace Math::Matrices
 		Matrix matrix = GetTestMatrix(TestValues[0]);
 		Matrix expectedValues = AdjoinedExpectedResult;
 
+
 		Matrix actualValue = matrix.GetAdjointMatrix();
 
-		for (unsigned int i = 0; i < actualValue.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < actualValue.GetColumns(); j++)
-			{
-				EXPECT_EQ(expectedValues[i][j], actualValue[i][j]);
-			}
-		}
+
+		ExpectEqual(expectedValues, actualValue);
 	}
 
 	TEST(MatrixTest, Inverse)

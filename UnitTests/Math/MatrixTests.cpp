@@ -451,9 +451,9 @@ namespace Math::Matrices
 		Matrix c = GetTestMatrix(TestValues[1]);
 		GenericMatrix<T, 1, 1> d{};
 
-		EXPECT_EQ(false, a != b);
-		EXPECT_EQ(true, a != c);
-		EXPECT_EQ(true, a != d);
+		ExpectFalse(a != b);
+		ExpectTrue(a != c);
+		ExpectTrue(a != d);
 	}
 
 	TEST(MatrixTest, VectorMultiplication)

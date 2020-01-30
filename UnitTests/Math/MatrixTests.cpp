@@ -575,17 +575,13 @@ namespace Math::Matrices
 	{
 		Matrix matrix = GetTestMatrix(TestValues[0]);
 		Matrix inverse = matrix.GetInverseMatrix();
-		Matrix identity = matrix.GetIdentityMatrix();
+		Matrix expectedValue = matrix.GetIdentityMatrix();
 
-		Matrix product = matrix * inverse;
 
-		for (unsigned int i = 0; i < product.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < product.GetColumns(); j++)
-			{
-				EXPECT_NEAR(identity[i][j], product[i][j], 0.000001);
-			}
-		}
+		Matrix actualValue = matrix * inverse;
+
+
+		ExpectNear(expectedValue, actualValue);
 	}
 	TEST(MatrixTest, InverseCommunatitiveMultiplication)
 	{

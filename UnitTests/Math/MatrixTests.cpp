@@ -91,10 +91,10 @@ namespace Math::Matrices
 
 	const GenericMatrix<T, 4, 4> InverseExpectedResult(
 	{
-		RowVector(0.20710, -0.28764, 0.06753, 0.07253),
-		RowVector(0.96848, -0.45622, -0.03201, 0.70635),
-		RowVector(1.30265, -1.14257, -0.01000, 1.47073),
-		RowVector(-0.77338, 0.85192, 0.18259, -0.84092),
+		RowVector(0.20710355177588794402, -0.28764382191095547775, 0.067533766883441720858, 0.072536268134067033544),
+		RowVector(0.96848424212106053046, -0.45622811405702851436, -0.03201600800400200101, 0.70635317658829414721),
+		RowVector(1.3026513256628314161, -1.1425712856428214108, -0.01000500250125062533, 1.4707353676838419212),
+		RowVector(-0.77338669334667333699, 0.85192596298149074551, 0.18259129564782391197, -0.84092046023011505775),
 	});
 
 	const GenericMatrix<T, 4, 4> IdentityExpectedResult
@@ -234,13 +234,13 @@ namespace Math::Matrices
 		EXPECT_NEAR(expectedValue, actualValue, precision);
 	}
 	template<class T, unsigned int rows, unsigned int columns>
-	void ExpectNear(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b, double precision = nearComparisonPrecision)
+	void ExpectNear(const GenericMatrix<T, rows, columns>& expectedValue, const GenericMatrix<T, rows, columns>& actualValue, double precision = nearComparisonPrecision)
 	{
 		for (unsigned int i = 0; i < rows; i++)
 		{
 			for (unsigned int j = 0; j < columns; j++)
 			{
-				EXPECT_NEAR(a[i][j], b[i][j], nearComparisonPrecision);
+				EXPECT_NEAR(expectedValue[i][j], actualValue[i][j], nearComparisonPrecision);
 			}
 		}
 	}
@@ -565,15 +565,11 @@ namespace Math::Matrices
 		Matrix matrix = GetTestMatrix(TestValues[0]);
 		Matrix expectedValues = InverseExpectedResult;
 
-		Matrix actualValue = matrix.GetInverseMatrix();
 
-		for (unsigned int i = 0; i < actualValue.GetRows(); i++)
-		{
-			for (unsigned int j = 0; j < actualValue.GetColumns(); j++)
-			{
-				EXPECT_NEAR(expectedValues[i][j], actualValue[i][j], 0.0001);
-			}
-		}
+		Matrix actualValues = matrix.GetInverseMatrix();
+
+
+		ExpectNear(expectedValues, actualValues);
 	}
 	TEST(MatrixTest, MultiplyingInverseMatrixReturnsIdentity)
 	{

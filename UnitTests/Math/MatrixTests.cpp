@@ -14,7 +14,6 @@ namespace Math::Matrices
 
 	const unsigned int rows = 4;
 	const unsigned int columns = 4;
-	const double nearComparisonPrecision = 1e-8;
 
 	typedef VectorBase<double, columns> RowVector;
 	typedef VectorBase<double, columns> ColumnVector;
@@ -204,21 +203,6 @@ namespace Math::Matrices
 		for (unsigned int i = 0; i < dimensions; i++)
 		{
 			EXPECT_EQ(a[i], b[i]);
-		}
-	}
-	void ExpectNear(double expectedValue, double actualValue, double precision = nearComparisonPrecision)
-	{
-		EXPECT_NEAR(expectedValue, actualValue, precision);
-	}
-	template<class T, unsigned int rows, unsigned int columns>
-	void ExpectNear(const GenericMatrix<T, rows, columns>& expectedValue, const GenericMatrix<T, rows, columns>& actualValue, double precision = nearComparisonPrecision)
-	{
-		for (unsigned int i = 0; i < rows; i++)
-		{
-			for (unsigned int j = 0; j < columns; j++)
-			{
-				EXPECT_NEAR(expectedValue[i][j], actualValue[i][j], nearComparisonPrecision);
-			}
 		}
 	}
 

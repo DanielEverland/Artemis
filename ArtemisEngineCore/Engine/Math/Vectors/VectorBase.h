@@ -75,6 +75,17 @@ namespace ArtemisEngine::Math::Vectors
 			}
 		}
 
+		template<unsigned int newVectorDimension, typename = typename std::enable_if<(newVectorDimension < dimensions)>::type>
+		operator VectorBase<T, newVectorDimension>()
+		{
+			VectorBase<T, newVectorDimension> toReturn;
+
+			for (unsigned int i = 0; i < newVectorDimension; i++)
+				toReturn[i] = GetValue(i);
+
+			return toReturn;
+		}
+
 		unsigned int GetDimensions() const
 		{
 			return dimensions;

@@ -110,6 +110,7 @@ namespace Math::Matrices
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
 	}
+
 	TEST(MatrixTest, EmptyConstructor)
 	{
 		Matrix matrix;
@@ -454,6 +455,15 @@ namespace Math::Matrices
 	}
 	TEST(MatrixTest, ScaleTransform)
 	{
+		VectorBase<double, 3> positionToScale(-4, -4, 0);
+		VectorBase<double, 3> expectedResult(-2, -8, 0);
+		VectorBase<double, 3> scale(0.5, 2, 1);
+		Matrix matrix = Matrix::Scale(scale);
 
+
+		VectorBase<double, 3> actualResult = matrix * positionToScale;
+		
+
+		ExpectEqual(expectedResult, actualResult);
 	}
 }

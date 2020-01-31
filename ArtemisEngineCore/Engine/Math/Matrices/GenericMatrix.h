@@ -101,6 +101,20 @@ namespace ArtemisEngine::Math::Matrices
 			}
 		}
 
+		// Returns a scale transformation matrix
+		template<unsigned int vectorDimensions>
+		static GenericMatrix Scale(const VectorBase<T, vectorDimensions>& scale)
+		{
+			GenericMatrix matrix = BaseMatrix::GetIdentityMatrix<T, rows>();
+
+			for (unsigned int i = 0; i < vectorDimensions; i++)
+			{
+				matrix[i][i] = scale[i];
+			}
+
+			return matrix;
+		}
+
 		T* operator[](int rowIndex)
 		{
 			return values[rowIndex];
@@ -295,19 +309,6 @@ namespace ArtemisEngine::Math::Matrices
 			return *this;
 		}
 
-		template<typename = typename std::enable_if<(columns == 1)>::type>
-		operator VectorBase<T, rows>()
-		{
-			VectorBase<T, rows> toReturn;
-
-			for (unsigned int i = 0; i < rows; i++)
-			{
-				toReturn[i] = values[i][0];
-			}
-
-			return toReturn;
-		}
-
 	private:
 		T CalculateCofactor(unsigned int i, unsigned int j) const
 		{
@@ -455,17 +456,23 @@ namespace ArtemisEngine::Math::Matrices
 	{
 		return !(aMatrix == bMatrix);
 	}
-
-	template<class T, unsigned int rows, unsigned int vectorDimensions>
-	GenericMatrix<T, rows, 1> operator*(const GenericMatrix<T, rows, vectorDimensions>& aMatrix, const VectorBase<T, vectorDimensions>& vector)
+	
+	template<class T, unsigned int rows, unsigned int columns, unsigned int inputVectorDimensions>
+	VectorBase<T, rows> operator*(const VectorBase<T, inputVectorDimensions>& vector, const GenericMatrix<T, rows, columns>& matrix)
 	{
-		GenericMatrix<T, rows, 1> toReturn;
+		return matrix * vector;
+	}
+	template<class T, unsigned int rows, unsigned int columns, unsigned int inputVectorDimensions>
+	VectorBase<T, rows> operator*(const GenericMatrix<T, rows, columns>& matrix, const VectorBase<T, inputVectorDimensions>& vector)
+	{
+		VectorBase<T, rows> toReturn;
+		unsigned int min = rows < inputVectorDimensions ? rows : inputVectorDimensions;
 
-		for (unsigned int i = 0; i < rows; i++)
+		for (unsigned int i = 0; i < min; i++)
 		{
-			for (unsigned int j = 0; j < vectorDimensions; j++)
+			for (unsigned int j = 0; j < columns; j++)
 			{
-				toReturn[i][0] += aMatrix[i][j] * vector[j];
+				toReturn[i] += matrix[i][j] * vector[i];
 			}
 		}
 

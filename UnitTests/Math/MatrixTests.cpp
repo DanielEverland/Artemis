@@ -12,16 +12,15 @@ namespace Math::Matrices
 	using ArtemisEngine::Math::Matrices::GenericMatrix;
 	using ArtemisEngine::Math::Vectors::VectorBase;
 
-	typedef double T;
 	const unsigned int rows = 4;
 	const unsigned int columns = 4;
 	const double nearComparisonPrecision = 1e-8;
 
-	typedef VectorBase<T, columns> RowVector;
-	typedef VectorBase<T, columns> ColumnVector;
-	typedef GenericMatrix<T, rows, columns> Matrix;
-	typedef	GenericMatrix<T, 1, columns> RowMatrix;
-	typedef	GenericMatrix<T, rows, 1> ColumnMatrix;
+	typedef VectorBase<double, columns> RowVector;
+	typedef VectorBase<double, columns> ColumnVector;
+	typedef GenericMatrix<double, rows, columns> Matrix;
+	typedef	GenericMatrix<double, 1, columns> RowMatrix;
+	typedef	GenericMatrix<double, rows, 1> ColumnMatrix;
 	
 	const static RowVector TestValues[2][rows]
 	{
@@ -39,44 +38,44 @@ namespace Math::Matrices
 		}
 	};
 
-	const T DeterminantExpectedValue = -31.2343;
+	const double DeterminantExpectedValue = -31.2343;
 
-	const GenericMatrix<T, 4, 2> MatrixMultiplicationInputA(
+	const GenericMatrix<double, 4, 2> MatrixMultiplicationInputA(
 	{
-		VectorBase<T, 2>(1, 2),
-		VectorBase<T, 2>(4, -2),
-		VectorBase<T, 2>(-5, 6),
-		VectorBase<T, 2>(0, 2),
+		VectorBase<double, 2>(1, 2),
+		VectorBase<double, 2>(4, -2),
+		VectorBase<double, 2>(-5, 6),
+		VectorBase<double, 2>(0, 2),
 	});
 
-	const GenericMatrix<T, 2, 4> MatrixMultiplicationInputB(
+	const GenericMatrix<double, 2, 4> MatrixMultiplicationInputB(
 	{
-		VectorBase<T, 4>(1, 2, 3, 4),
-		VectorBase<T, 4>(-5, 5, 3, -2),
+		VectorBase<double, 4>(1, 2, 3, 4),
+		VectorBase<double, 4>(-5, 5, 3, -2),
 	});
 
-	const GenericMatrix<T, 4, 4> MatrixMultiplicationExpectedResult(
+	const GenericMatrix<double, 4, 4> MatrixMultiplicationExpectedResult(
 	{
-		VectorBase<T, 4>(-9, 12, 9, 0),
-		VectorBase<T, 4>(14, -2, 6, 20),
-		VectorBase<T, 4>(-35, 20, 3, -32),
-		VectorBase<T, 4>(-10, 10, 6, -4),
+		VectorBase<double, 4>(-9, 12, 9, 0),
+		VectorBase<double, 4>(14, -2, 6, 20),
+		VectorBase<double, 4>(-35, 20, 3, -32),
+		VectorBase<double, 4>(-10, 10, 6, -4),
 	});
 
-	const GenericMatrix<T, 4, 4> TransposeExpectedResult(
+	const GenericMatrix<double, 4, 4> TransposeExpectedResult(
 	{
-		VectorBase<T, 4>(1.0, -2.75, 3.25, -3.0),
-		VectorBase<T, 4>(2.50, 1.25, -1.0, -1.25),
-		VectorBase<T, 4>(-1.25, 0.25, 2.75, 2.0),
-		VectorBase<T, 4>(0.0, 1.25, 4.25, 1.0),
+		VectorBase<double, 4>(1.0, -2.75, 3.25, -3.0),
+		VectorBase<double, 4>(2.50, 1.25, -1.0, -1.25),
+		VectorBase<double, 4>(-1.25, 0.25, 2.75, 2.0),
+		VectorBase<double, 4>(0.0, 1.25, 4.25, 1.0),
 	});
 
-	const GenericMatrix<T, 1, 4> VectorMultiplicationExpectedResult(
+	const GenericMatrix<double, 1, 4> VectorMultiplicationExpectedResult(
 	{
-		VectorBase<T, 4>(2.25, 5.5, 26.5, 4.5),
+		VectorBase<double, 4>(2.25, 5.5, 26.5, 4.5),
 	});
 
-	const GenericMatrix<T, 4, 4> CofactorExpectedResult(
+	const GenericMatrix<double, 4, 4> CofactorExpectedResult(
 	{
 		RowVector(-6.46875, -30.25, -40.6875, 24.15625),
 		RowVector(8.984375, 14.25, 35.6875, -26.609375),
@@ -84,7 +83,7 @@ namespace Math::Matrices
 		RowVector(-2.265625, -22.0625, -45.9375, 26.265625),
 	});
 
-	const GenericMatrix<T, 4, 4> AdjoinedExpectedResult(
+	const GenericMatrix<double, 4, 4> AdjoinedExpectedResult(
 	{
 		RowVector(-6.46875, 8.984375, -2.109375, -2.265625),
 		RowVector(-30.25, 14.25, 1, -22.0625),
@@ -92,7 +91,7 @@ namespace Math::Matrices
 		RowVector(24.15625, -26.609375, -5.703125, 26.265625),
 	});
 
-	const GenericMatrix<T, 4, 4> InverseExpectedResult(
+	const GenericMatrix<double, 4, 4> InverseExpectedResult(
 	{
 		RowVector(0.20710355177588794402, -0.28764382191095547775, 0.067533766883441720858, 0.072536268134067033544),
 		RowVector(0.96848424212106053046, -0.45622811405702851436, -0.03201600800400200101, 0.70635317658829414721),
@@ -100,7 +99,7 @@ namespace Math::Matrices
 		RowVector(-0.77338669334667333699, 0.85192596298149074551, 0.18259129564782391197, -0.84092046023011505775),
 	});
 
-	const GenericMatrix<T, 4, 4> IdentityExpectedResult
+	const GenericMatrix<double, 4, 4> IdentityExpectedResult
 	({
 		RowVector(1, 0, 0, 0),
 		RowVector(0, 1, 0, 0),
@@ -113,7 +112,7 @@ namespace Math::Matrices
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
 	}
 
-	Matrix IterateWorkOnMatrices(const Matrix& a, const Matrix& b, T (*action)(T a, T b))
+	Matrix IterateWorkOnMatrices(const Matrix& a, const Matrix& b, double (*action)(double a, double b))
 	{
 		Matrix output;
 
@@ -127,7 +126,7 @@ namespace Math::Matrices
 
 		return output;
 	}
-	Matrix IterateWorkOnMatrices(const Matrix& a, T b, T(*action)(T a, T b))
+	Matrix IterateWorkOnMatrices(const Matrix& a, double b, double(*action)(double a, double b))
 	{
 		Matrix output;
 
@@ -143,41 +142,42 @@ namespace Math::Matrices
 	}
 	Matrix Add(const Matrix& a, const Matrix& b)
 	{
-		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a + b;
 			});
 	}
 	Matrix Subtract(const Matrix& a, const Matrix& b)
 	{
-		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a - b;
 			});
 	}
 	Matrix Divide(const Matrix& a, const Matrix& b)
 	{
-		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a / b;
 			});
 	}
 	Matrix Multiply(const Matrix& a, const Matrix& b)
 	{
-		return IterateWorkOnMatrices(a, b, [](T a, T b) -> T
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a * b;
 			});
 	}
-	Matrix MultiplyScalar(const Matrix& a, T scalar)
+	Matrix MultiplyScalar(const Matrix& a, double scalar)
 	{
-		return IterateWorkOnMatrices(a, scalar, [](T a, T b) -> T
+		return IterateWorkOnMatrices(a, scalar, [](double a, double b) -> double
 			{
 				return a * b;
 			});
 	}
 
-	void ExpectEqual(const RowVector* expectedValues, const Matrix actualValues)
+	template<class T, unsigned int rows, unsigned int columns>
+	void ExpectEqual(const VectorBase<T, columns>* expectedValues, const GenericMatrix<double, rows, columns>& actualValues)
 	{
 		for (unsigned int i = 0; i < actualValues.GetRows(); i++)
 		{
@@ -206,7 +206,7 @@ namespace Math::Matrices
 			EXPECT_EQ(a[i], b[i]);
 		}
 	}
-	void ExpectNear(T expectedValue, T actualValue, double precision = nearComparisonPrecision)
+	void ExpectNear(double expectedValue, double actualValue, double precision = nearComparisonPrecision)
 	{
 		EXPECT_NEAR(expectedValue, actualValue, precision);
 	}
@@ -324,12 +324,12 @@ namespace Math::Matrices
 	}
 	TEST(MatrixTest, MatrixMultiplication)
 	{
-		GenericMatrix<T, 4, 2> matrixA = MatrixMultiplicationInputA;
-		GenericMatrix<T, 2, 4> matrixB = MatrixMultiplicationInputB;
-		GenericMatrix<T, 4, 4> expectedResult = MatrixMultiplicationExpectedResult;
+		GenericMatrix<double, 4, 2> matrixA = MatrixMultiplicationInputA;
+		GenericMatrix<double, 2, 4> matrixB = MatrixMultiplicationInputB;
+		GenericMatrix<double, 4, 4> expectedResult = MatrixMultiplicationExpectedResult;
 
 
-		GenericMatrix<T, 4, 4> actualResult = matrixA * matrixB;
+		GenericMatrix<double, 4, 4> actualResult = matrixA * matrixB;
 
 
 		ExpectEqual(expectedResult, actualResult);
@@ -350,7 +350,7 @@ namespace Math::Matrices
 		Matrix expectedResult = IdentityExpectedResult;
 
 
-		Matrix actualResult = BaseMatrix::GetIdentityMatrix<T, 4>();
+		Matrix actualResult = BaseMatrix::GetIdentityMatrix<double, 4>();
 
 
 		ExpectEqual(expectedResult, actualResult);
@@ -431,7 +431,7 @@ namespace Math::Matrices
 		Matrix a = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[0]);
 		Matrix c = GetTestMatrix(TestValues[1]);
-		GenericMatrix<T, 1, 1> d{};
+		GenericMatrix<double, 1, 1> d{};
 
 		ExpectTrue(a == b);
 		ExpectFalse(a == c);
@@ -443,7 +443,7 @@ namespace Math::Matrices
 		Matrix a = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[0]);
 		Matrix c = GetTestMatrix(TestValues[1]);
-		GenericMatrix<T, 1, 1> d{};
+		GenericMatrix<double, 1, 1> d{};
 
 		ExpectFalse(a != b);
 		ExpectTrue(a != c);
@@ -452,16 +452,16 @@ namespace Math::Matrices
 
 	TEST(MatrixTest, VectorMultiplication)
 	{
-		GenericMatrix<T, 2, 3> matrix
+		GenericMatrix<double, 2, 3> matrix
 		({
-			VectorBase<T, 3>(6, 4, 3),
-			VectorBase<T, 3>(0, 1, -2),
+			VectorBase<double, 3>(6, 4, 3),
+			VectorBase<double, 3>(0, 1, -2),
 		});
-		VectorBase<T, 3> vector(3, 0, -1.5);
-		VectorBase<T, 2> expectedResult(13.5, 3);
+		VectorBase<double, 3> vector(3, 0, -1.5);
+		VectorBase<double, 2> expectedResult(13.5, 3);
 
 
-		VectorBase<T, 2> actualResult = matrix * vector;
+		VectorBase<double, 2> actualResult = matrix * vector;
 
 
 		ExpectEqual(expectedResult, actualResult);
@@ -472,22 +472,22 @@ namespace Math::Matrices
 		unsigned int rowToDelete = 1;
 		unsigned int columnToDelete = 0;
 
-		GenericMatrix<T, 4, 4> matrix
+		GenericMatrix<double, 4, 4> matrix
 		({
-			VectorBase<T, 4>(2, -5, 3, 6),
-			VectorBase<T, 4>(1, 0, 6, 2),
-			VectorBase<T, 4>(-1, -2, 5, 7),
-			VectorBase<T, 4>(1, 0, 3, 1),
+			VectorBase<double, 4>(2, -5, 3, 6),
+			VectorBase<double, 4>(1, 0, 6, 2),
+			VectorBase<double, 4>(-1, -2, 5, 7),
+			VectorBase<double, 4>(1, 0, 3, 1),
 		});
-		GenericMatrix<T, 3, 3> expectedResult(
+		GenericMatrix<double, 3, 3> expectedResult(
 		{
-			VectorBase<T, 3>(-5, 3, 6),
-			VectorBase<T, 3>(-2, 5, 7),
-			VectorBase<T, 3>(0, 3, 1),
+			VectorBase<double, 3>(-5, 3, 6),
+			VectorBase<double, 3>(-2, 5, 7),
+			VectorBase<double, 3>(0, 3, 1),
 		});
 
 
-		GenericMatrix<T, 3, 3> actualResult = matrix.GetMinor(rowToDelete, columnToDelete);
+		GenericMatrix<double, 3, 3> actualResult = matrix.GetMinor(rowToDelete, columnToDelete);
 
 
 		ExpectEqual(expectedResult, actualResult);
@@ -496,10 +496,10 @@ namespace Math::Matrices
 	TEST(MatrixTest, Determinant)
 	{
 		Matrix matrix = GetTestMatrix(TestValues[0]);
-		T expectedValue = DeterminantExpectedValue;
+		double expectedValue = DeterminantExpectedValue;
 
 
-		T actualValue = matrix.GetDeterminant();
+		double actualValue = matrix.GetDeterminant();
 
 
 		ExpectNear(expectedValue, actualValue, 1e-4);

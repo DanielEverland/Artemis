@@ -198,22 +198,6 @@ namespace Math::Matrices
 			}
 		}
 	}
-	template<class T, unsigned int rows, unsigned int columns>
-	void ExpectRowEqual(const GenericMatrix<T, rows, columns> expectedValues, const VectorBase<T, columns>& row, int rowIndex = 0)
-	{
-		for (unsigned int i = 0; i < row.GetDimensions(); i++)
-		{
-			EXPECT_EQ(expectedValues[0][i], row[i]);
-		}
-	}
-	template<class T, unsigned int rows, unsigned int columns>
-	void ExpectColumnEqual(const GenericMatrix<T, rows, columns> expectedValues, const VectorBase<T, rows>& column, int columnIndex = 0)
-	{
-		for (unsigned int i = 0; i < column.GetDimensions(); i++)
-		{
-			EXPECT_EQ(expectedValues[i][0], column[i]);
-		}
-	}
 	template<class T, unsigned int dimensions>
 	void ExpectEqual(const VectorBase<T, dimensions>& a, const VectorBase<T, dimensions>& b)
 	{

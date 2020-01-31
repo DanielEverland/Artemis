@@ -78,10 +78,10 @@ namespace ArtemisEngine::UnitTests::Comparisons
 			EXPECT_EQ(a[i], b[i]);
 		}
 	}
-	template<class T, unsigned int dimensions>
-	Matrix IterateWorkOnMatrices(const Matrix& a, const Matrix& b, double (*action)(double a, double b))
+	template<class T, unsigned int rows, unsigned int columns>
+	GenericMatrix<T, rows, columns> IterateWorkOnMatrices(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b, double (*action)(double a, double b))
 	{
-		Matrix output;
+		GenericMatrix<T, rows, columns> output;
 
 		for (unsigned int i = 0; i < rows; i++)
 		{
@@ -93,10 +93,10 @@ namespace ArtemisEngine::UnitTests::Comparisons
 
 		return output;
 	}
-	template<class T, unsigned int dimensions>
-	Matrix IterateWorkOnMatrices(const Matrix& a, double b, double(*action)(double a, double b))
+	template<class T, unsigned int rows, unsigned int columns>
+	GenericMatrix<T, rows, columns> IterateWorkOnMatrices(const GenericMatrix<T, rows, columns>& a, double b, double(*action)(double a, double b))
 	{
-		Matrix output;
+		GenericMatrix<T, rows, columns> output;
 
 		for (unsigned int i = 0; i < rows; i++)
 		{
@@ -108,40 +108,40 @@ namespace ArtemisEngine::UnitTests::Comparisons
 
 		return output;
 	}
-	template<class T, unsigned int dimensions>
-	Matrix Add(const Matrix& a, const Matrix& b)
+	template<class T, unsigned int rows, unsigned int columns>
+	GenericMatrix<T, rows, columns> AddMatrices(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a + b;
 			});
 	}
-	template<class T, unsigned int dimensions>
-	Matrix Subtract(const Matrix& a, const Matrix& b)
+	template<class T, unsigned int rows, unsigned int columns>
+	GenericMatrix<T, rows, columns> SubtractMatrices (const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a - b;
 			});
 	}
-	template<class T, unsigned int dimensions>
-	Matrix Divide(const Matrix& a, const Matrix& b)
+	template<class T, unsigned int rows, unsigned int columns>
+	GenericMatrix<T, rows, columns> DivideMatrices(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a / b;
 			});
 	}
-	template<class T, unsigned int dimensions>
-	Matrix Multiply(const Matrix& a, const Matrix& b)
+	template<class T, unsigned int rows, unsigned int columns>
+	GenericMatrix<T, rows, columns> MultiplyMatrices(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b)
 	{
 		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
 			{
 				return a * b;
 			});
 	}
-	template<class T, unsigned int dimensions>
-	Matrix MultiplyScalar(const Matrix& a, double scalar)
+	template<class T, unsigned int rows, unsigned int columns>
+	GenericMatrix<T, rows, columns> MatrixMultiplyScalar(const GenericMatrix<T, rows, columns>& a, double scalar)
 	{
 		return IterateWorkOnMatrices(a, scalar, [](double a, double b) -> double
 			{

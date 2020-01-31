@@ -313,7 +313,7 @@ namespace ArtemisEngine::Math::Matrices
 		{
 			T det = GetMinor(i, j).GetDeterminant();
 
-			if ((i + j) & 1 == 1)
+			if (((i + j) & 1) == 1)
 				det *= -1;
 
 			return det;

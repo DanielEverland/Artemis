@@ -141,7 +141,7 @@ namespace Math::Matrices
 	{
 		Matrix a = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = Add(a, b);
+		Matrix expectedValues = AddMatrices(a, b);
 
 
 		Matrix actualValues = a + b;
@@ -153,7 +153,7 @@ namespace Math::Matrices
 	{
 		Matrix actualValues = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = Add(actualValues, b);
+		Matrix expectedValues = AddMatrices(actualValues, b);
 
 
 		actualValues += b;
@@ -165,7 +165,7 @@ namespace Math::Matrices
 	{
 		Matrix a = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = Subtract(a, b);
+		Matrix expectedValues = SubtractMatrices(a, b);
 		
 
 		Matrix actualValues = a - b;
@@ -177,7 +177,7 @@ namespace Math::Matrices
 	{
 		Matrix actualValues = GetTestMatrix(TestValues[0]);
 		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = Subtract(actualValues, b);
+		Matrix expectedValues = SubtractMatrices(actualValues, b);
 
 
 		actualValues -= b;
@@ -189,7 +189,7 @@ namespace Math::Matrices
 	{
 		double scalar = 2;
 		Matrix matrix = GetTestMatrix(TestValues[0]);
-		Matrix expectedValues = MultiplyScalar(matrix, scalar);
+		Matrix expectedValues = MatrixMultiplyScalar(matrix, scalar);
 
 
 		Matrix actualValues = matrix * scalar;
@@ -201,7 +201,7 @@ namespace Math::Matrices
 	{
 		double scalar = 2;
 		Matrix matrixValues = GetTestMatrix(TestValues[0]);
-		Matrix expectedValues = MultiplyScalar(matrixValues, scalar);
+		Matrix expectedValues = MatrixMultiplyScalar(matrixValues, scalar);
 
 
 		Matrix actualValues(matrixValues);

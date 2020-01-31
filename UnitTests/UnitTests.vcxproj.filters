@@ -41,6 +41,9 @@
     <ClInclude Include="Utility\Comparison\ComparisonUtility.h">
       <Filter>Utility\Comparison</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\Comparison\ComparisonUtilityMatrix.h">
+      <Filter>Utility\Comparison</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">

@@ -35,6 +35,7 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Utility\Comparison\ComparisonUtility.h" />
+    <ClInclude Include="Utility\Comparison\ComparisonUtilityMatrix.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\ArbitraryVector.cpp" />

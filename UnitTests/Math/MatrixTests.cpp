@@ -3,6 +3,7 @@
 #include "Engine/Math/Matrices/GenericMatrix.h"
 #include "Engine/Math/Vectors/VectorBase.h"
 #include "Utility/Comparison/ComparisonUtility.h"
+#include "Utility/Comparison/ComparisonUtilityMatrix.h"
 
 namespace Math::Matrices
 {
@@ -176,16 +177,6 @@ namespace Math::Matrices
 			});
 	}
 
-	void ExpectEmpty(Matrix actualValues)
-	{
-		for (unsigned int i = 0; i < actualValues.GetRows(); i++)
-		{
-			for (unsigned j = 0; j < actualValues.GetColumns(); j++)
-			{
-				EXPECT_EQ(0, actualValues[i][j]);
-			}
-		}
-	}
 	void ExpectEqual(const RowVector* expectedValues, const Matrix actualValues)
 	{
 		for (unsigned int i = 0; i < actualValues.GetRows(); i++)

@@ -78,4 +78,74 @@ namespace ArtemisEngine::UnitTests::Comparisons
 			EXPECT_EQ(a[i], b[i]);
 		}
 	}
+	template<class T, unsigned int dimensions>
+	Matrix IterateWorkOnMatrices(const Matrix& a, const Matrix& b, double (*action)(double a, double b))
+	{
+		Matrix output;
+
+		for (unsigned int i = 0; i < rows; i++)
+		{
+			for (unsigned int j = 0; j < columns; j++)
+			{
+				output[i][j] += action(a[i][j], b[i][j]);
+			}
+		}
+
+		return output;
+	}
+	template<class T, unsigned int dimensions>
+	Matrix IterateWorkOnMatrices(const Matrix& a, double b, double(*action)(double a, double b))
+	{
+		Matrix output;
+
+		for (unsigned int i = 0; i < rows; i++)
+		{
+			for (unsigned int j = 0; j < columns; j++)
+			{
+				output[i][j] += action(a[i][j], b);
+			}
+		}
+
+		return output;
+	}
+	template<class T, unsigned int dimensions>
+	Matrix Add(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
+			{
+				return a + b;
+			});
+	}
+	template<class T, unsigned int dimensions>
+	Matrix Subtract(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
+			{
+				return a - b;
+			});
+	}
+	template<class T, unsigned int dimensions>
+	Matrix Divide(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
+			{
+				return a / b;
+			});
+	}
+	template<class T, unsigned int dimensions>
+	Matrix Multiply(const Matrix& a, const Matrix& b)
+	{
+		return IterateWorkOnMatrices(a, b, [](double a, double b) -> double
+			{
+				return a * b;
+			});
+	}
+	template<class T, unsigned int dimensions>
+	Matrix MultiplyScalar(const Matrix& a, double scalar)
+	{
+		return IterateWorkOnMatrices(a, scalar, [](double a, double b) -> double
+			{
+				return a * b;
+			});
+	}
 }

@@ -8,9 +8,11 @@ namespace ArtemisEngine
 	{
 	public:
 		Quaternion() = default;
+		Quaternion(const Vector3& vector);
+		Quaternion(double xRotation, double yRotation, double zRotation);
 		
 		static Quaternion GetIdentity();
-
+				
 		Quaternion operator+(const Quaternion& other) const;
 		Quaternion operator-(const Quaternion& other) const;
 		Quaternion operator*(const Quaternion& other) const;
@@ -20,7 +22,6 @@ namespace ArtemisEngine
 		bool operator==(const Quaternion& other) const;
 
 	private:
-
 		Quaternion(double x, double y, double z, double w);
 		
 		Vector3 imaginary;

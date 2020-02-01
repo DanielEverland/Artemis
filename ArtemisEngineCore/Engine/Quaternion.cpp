@@ -2,6 +2,18 @@
 
 using ArtemisEngine::Quaternion;
 
+Quaternion::Quaternion(double xRotation, double yRotation, double zRotation)
+{
+	this->imaginary = Vector3(xRotation, yRotation, zRotation);
+	this->real = 0;
+}
+
+Quaternion::Quaternion(const Vector3& rotation)
+{
+	this->imaginary = rotation;
+	this->real = 0;
+}
+
 Quaternion::Quaternion(double x, double y, double z, double w)
 {
 	this->imaginary = Vector3(x, y, z);

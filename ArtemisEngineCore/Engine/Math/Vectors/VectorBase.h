@@ -583,7 +583,7 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	}
 	template<class T, unsigned int dimensions>
-	bool operator==(VectorBase<T, dimensions>& a, VectorBase<T, dimensions>& b)
+	bool operator==(const VectorBase<T, dimensions>& a, const VectorBase<T, dimensions>& b)
 	{
 		for (unsigned int i = 0; i < dimensions; i++)
 		{

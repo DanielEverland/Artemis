@@ -33,18 +33,18 @@ namespace ArtemisEngine::UnitTests::Comparisons
 			EXPECT_EQ(expectedValues[i][0], column[i]);
 		}
 	}
-	void ExpectNear(double expectedValue, double actualValue, double precision = nearComparisonPrecision)
+	void ExpectNear(double expectedValue, double actualValue, double precision = ComparisonConstants::nearComparisonPrecision)
 	{
 		EXPECT_NEAR(expectedValue, actualValue, precision);
 	}
 	template<class T, unsigned int rows, unsigned int columns>
-	void ExpectNear(const GenericMatrix<T, rows, columns>& expectedValue, const GenericMatrix<T, rows, columns>& actualValue, double precision = nearComparisonPrecision)
+	void ExpectNear(const GenericMatrix<T, rows, columns>& expectedValue, const GenericMatrix<T, rows, columns>& actualValue, double precision = ComparisonConstants::nearComparisonPrecision)
 	{
 		for (unsigned int i = 0; i < rows; i++)
 		{
 			for (unsigned int j = 0; j < columns; j++)
 			{
-				EXPECT_NEAR(expectedValue[i][j], actualValue[i][j], nearComparisonPrecision);
+				EXPECT_NEAR(expectedValue[i][j], actualValue[i][j], ComparisonConstants::nearComparisonPrecision);
 			}
 		}
 	}

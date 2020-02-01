@@ -2,13 +2,22 @@
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {
-	const double nearComparisonPrecision = 1e-8;
+	class ComparisonConstants
+	{
+	public:
+		inline static const double nearComparisonPrecision = 1e-8;
+	};
 
-	void ExpectTrue(bool expression)
+	template<class T>
+	inline void ExpectZero(T value)
+	{
+		EXPECT_EQ(0, value);
+	}
+	inline void ExpectTrue(bool expression)
 	{
 		EXPECT_EQ(true, expression);
 	}
-	void ExpectFalse(bool expression)
+	inline void ExpectFalse(bool expression)
 	{
 		EXPECT_EQ(false, expression);
 	}

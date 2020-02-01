@@ -10,10 +10,10 @@ Quaternion::Quaternion(double xRotation, double yRotation, double zRotation)
 
 Quaternion::Quaternion(double x, double y, double z, double w)
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
-	this->w = w;
+	this->X = x;
+	this->Y = y;
+	this->Z = z;
+	this->W = w;
 }
 
 Quaternion Quaternion::GetIdentity()
@@ -24,19 +24,19 @@ Quaternion Quaternion::GetIdentity()
 bool Quaternion::operator==(const Quaternion& other) const
 {
 	return
-		this->x == other.x &&
-		this->y == other.y &&
-		this->z == other.z &&
-		this->w == other.w;
+		this->X == other.X &&
+		this->Y == other.Y &&
+		this->Z == other.Z &&
+		this->W == other.W;
 }
 Quaternion Quaternion::operator+(const Quaternion& other) const
 {
 	Quaternion sum{};
 
-	sum.x = this->x + other.x;
-	sum.y = this->y + other.y;
-	sum.z = this->z + other.z;
-	sum.w = this->w + other.w;
+	sum.X = this->X + other.X;
+	sum.Y = this->Y + other.Y;
+	sum.Z = this->Z + other.Z;
+	sum.W = this->W + other.W;
 
 	return sum;
 }
@@ -44,10 +44,10 @@ Quaternion Quaternion::operator-(const Quaternion& other) const
 {
 	Quaternion difference{};
 
-	difference.x = this->x - other.x;
-	difference.y = this->y - other.y;
-	difference.z = this->z - other.z;
-	difference.w = this->w - other.w;
+	difference.X = this->X - other.X;
+	difference.Y = this->Y - other.Y;
+	difference.Z = this->Z - other.Z;
+	difference.W = this->W - other.W;
 
 	return difference;
 }
@@ -61,17 +61,17 @@ Quaternion Quaternion::operator*(const Quaternion& other) const
 }
 void Quaternion::operator+=(const Quaternion& other)
 {
-	this->x += other.x;
-	this->y += other.y;
-	this->z += other.z;
-	this->w += other.w;
+	this->X += other.X;
+	this->Y += other.Y;
+	this->Z += other.Z;
+	this->W += other.W;
 }
 void Quaternion::operator-=(const Quaternion& other)
 {
-	this->x -= other.x;
-	this->y -= other.y;
-	this->z -= other.z;
-	this->w -= other.w;
+	this->X -= other.X;
+	this->Y -= other.Y;
+	this->Z -= other.Z;
+	this->W -= other.W;
 }
 void Quaternion::operator*=(const Quaternion& other)
 {
@@ -89,5 +89,5 @@ void Quaternion::FromEuler(double x, double y, double z)
 	x = zCos * yCos * xSin - zSin * ySin * xCos;
 	y = zSin * yCos * xSin + zCos * ySin * xCos;
 	z = zSin * yCos * xCos - zCos * ySin * xSin;
-	w =	zCos * yCos * xCos + zSin * ySin * xSin;
+	W =	zCos * yCos * xCos + zSin * ySin * xSin;
 }

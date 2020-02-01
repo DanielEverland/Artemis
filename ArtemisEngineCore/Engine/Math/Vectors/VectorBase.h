@@ -522,6 +522,11 @@ namespace ArtemisEngine::Math::Vectors
 		}
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	VectorBase<T, dimensions> operator*(const TValue value, const VectorBase<T, dimensions> vector)
+	{
+		return vector * value;
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
 	VectorBase<T, dimensions> operator*(const VectorBase<T, dimensions> vector, const TValue value)
 	{
 		VectorBase<T, dimensions> toReturn;
@@ -532,6 +537,11 @@ namespace ArtemisEngine::Math::Vectors
 		}
 
 		return toReturn;
+	}
+	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
+	void operator*=(const TValue value, VectorBase<T, dimensions>& vector)
+	{
+		return vector * value;
 	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
 	void operator*=(VectorBase<T, dimensions>& vector, const TValue value)

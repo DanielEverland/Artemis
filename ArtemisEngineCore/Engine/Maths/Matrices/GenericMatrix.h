@@ -466,13 +466,14 @@ namespace ArtemisEngine::Maths::Matrices
 	VectorBase<T, rows> operator*(const GenericMatrix<T, rows, columns>& matrix, const VectorBase<T, inputVectorDimensions>& vector)
 	{
 		VectorBase<T, rows> toReturn;
-		unsigned int min = rows < inputVectorDimensions ? rows : inputVectorDimensions;
+		unsigned int minRows = rows < inputVectorDimensions ? rows : inputVectorDimensions;
+		unsigned int minColumns = rows < inputVectorDimensions ? columns : inputVectorDimensions;
 
-		for (unsigned int i = 0; i < min; i++)
+		for (unsigned int i = 0; i < minRows; i++)
 		{
-			for (unsigned int j = 0; j < columns; j++)
+			for (unsigned int j = 0; j < minColumns; j++)
 			{
-				toReturn[i] += matrix[i][j] * vector[i];
+				toReturn[i] += matrix[i][j] * vector[j];
 			}
 		}
 

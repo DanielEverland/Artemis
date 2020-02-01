@@ -169,8 +169,8 @@
     <ClInclude Include="Engine\Maths\Matrices\GenericMatrix.h">
       <Filter>Source\Engine\Math\Matrices</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Maths\MathUtility.h">
-      <Filter>Source\Engine\Math</Filter>
+    <ClInclude Include="Engine\Math.h">
+      <Filter>Source\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,8 +225,8 @@
     <ClCompile Include="Engine\Maths\Vectors\MatrixBase.cpp">
       <Filter>Source\Engine\Math\Vectors</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Maths\MathUtility.cpp">
-      <Filter>Source\Engine\Math</Filter>
+    <ClCompile Include="Engine\Math.cpp">
+      <Filter>Source\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 #include "Utility/Comparison/ComparisonUtility.h"
 #include "Utility/Comparison/ComparisonUtilityMatrix.h"
 
-namespace Math::Matrices
+namespace Maths::Matrices
 {
 	using namespace ArtemisEngine::UnitTests::Comparisons;
 	using ArtemisEngine::Maths::Matrices::BaseMatrix;

@@ -2,7 +2,7 @@
 
 #include "Engine/IntVector2.h"
 
-namespace Math::Vectors
+namespace Maths::Vectors
 {
     using ArtemisEngine::IntVector2;
 

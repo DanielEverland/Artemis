@@ -167,7 +167,7 @@
     <ClInclude Include="Engine\IntVector2.h" />
     <ClInclude Include="Engine\IntVector3.h" />
     <ClInclude Include="Engine\IntVector4.h" />
-    <ClInclude Include="Engine\Maths\MathUtility.h" />
+    <ClInclude Include="Engine\Math.h" />
     <ClInclude Include="Engine\Maths\Matrices\GenericMatrix.h" />
     <ClInclude Include="Engine\Maths\Vectors\DoubleVector2.h" />
     <ClInclude Include="Engine\Maths\Vectors\DoubleVector3.h" />
@@ -207,7 +207,7 @@
     <ClCompile Include="Direct X\SwapChain.cpp" />
     <ClCompile Include="Direct X\Texture2D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
-    <ClCompile Include="Engine\Maths\MathUtility.cpp" />
+    <ClCompile Include="Engine\Math.cpp" />
     <ClCompile Include="Engine\Maths\Vectors\MatrixBase.cpp" />
     <ClCompile Include="Engine\Quaternion.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />

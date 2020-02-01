@@ -7,7 +7,7 @@
 #include <type_traits>
 #include <limits>
 
-class MathUtility
+class Math
 {
 public:
 	static const double Pi;
@@ -28,31 +28,31 @@ public:
 	static bool IsNaN(const T& value);
 };
 
-inline const double MathUtility::Pi = M_PI;
-inline const double MathUtility::RadToDeg = 180.0 / MathUtility::Pi;
-inline const double MathUtility::DegToRad = MathUtility::Pi / 180.0;
-inline const double MathUtility::Infinity = std::numeric_limits<double>::infinity();
+inline const double Math::Pi = M_PI;
+inline const double Math::RadToDeg = 180.0 / Math::Pi;
+inline const double Math::DegToRad = Math::Pi / 180.0;
+inline const double Math::Infinity = std::numeric_limits<double>::infinity();
 
 template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type *>
-bool MathUtility::IsFloatingPointIntegral(const T& value)
+bool Math::IsFloatingPointIntegral(const T& value)
 {
 	return std::trunc(value) == value;
 }
 
 template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type*>
-bool MathUtility::IsPositiveInfinity(const T& value)
+bool Math::IsPositiveInfinity(const T& value)
 {
 	return value == Infinity;
 }
 
 template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type*>
-bool MathUtility::IsNegativeInfinity(const T& value)
+bool Math::IsNegativeInfinity(const T& value)
 {
 	return value == -Infinity;
 }
 
 template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type*>
-inline bool MathUtility::IsNaN(const T& value)
+inline bool Math::IsNaN(const T& value)
 {
 	return isnan(value);
 }

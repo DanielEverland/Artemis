@@ -11,7 +11,7 @@
 #include "Engine/Vector3.h"
 #include "Engine/Vector4.h"
 
-namespace Math::Vectors
+namespace Maths::Vectors
 {
     using std::map;
     using std::list;

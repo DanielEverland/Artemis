@@ -9,7 +9,7 @@
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/DivideByZeroException.h"
 #include "Debugging/IDebugStringReturner.h"
-#include "Engine/Maths/MathUtility.h"
+#include "Engine/Math.h"
 
 using ArtemisEngine::Debugging::IDebugStringReturner;
 
@@ -48,7 +48,7 @@ namespace ArtemisEngine::Maths::Vectors
 
 			double radians = acos(quotient);
 
-			return radians * MathUtility::RadToDeg;
+			return radians * Math::RadToDeg;
 		}
 
 
@@ -104,19 +104,19 @@ namespace ArtemisEngine::Maths::Vectors
 
 				if constexpr (std::is_floating_point<T>())
 				{
-					if (MathUtility::IsPositiveInfinity(value))
+					if (Math::IsPositiveInfinity(value))
 					{
 						stream << PositiveInfinityText;
 					}
-					else if (MathUtility::IsNegativeInfinity(value))
+					else if (Math::IsNegativeInfinity(value))
 					{
 						stream << NegativeInfinityText;
 					}
-					else if (MathUtility::IsNaN(value))
+					else if (Math::IsNaN(value))
 					{
 						stream << NaNText;
 					}
-					else if (MathUtility::IsFloatingPointIntegral(value))
+					else if (Math::IsFloatingPointIntegral(value))
 					{
 						stream << std::fixed << std::setprecision(1) << value;
 					}

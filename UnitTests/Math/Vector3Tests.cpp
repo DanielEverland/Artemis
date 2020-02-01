@@ -3,7 +3,7 @@
 
 #include "Engine/Vector3.h"
 
-namespace Math::Vectors
+namespace Maths::Vectors
 {
     using ArtemisEngine::Vector3;
 

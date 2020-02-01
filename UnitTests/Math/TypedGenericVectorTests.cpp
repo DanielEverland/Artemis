@@ -7,7 +7,7 @@
 #include "Engine/IntVector3.h"
 #include "Engine/IntVector4.h"
 
-namespace Math::Vectors
+namespace Maths::Vectors
 {
     using ArtemisEngine::Vector2;
     using ArtemisEngine::Vector3;

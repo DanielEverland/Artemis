@@ -180,6 +180,7 @@
     <ClInclude Include="Engine\Math\Vectors\Vector3Base.h" />
     <ClInclude Include="Engine\Math\Vectors\Vector4Base.h" />
     <ClInclude Include="Engine\Math\Vectors\VectorBase.h" />
+    <ClInclude Include="Engine\Quaternion.h" />
     <ClInclude Include="Engine\Vector2.h" />
     <ClInclude Include="Engine\Vector3.h" />
     <ClInclude Include="Engine\Vector4.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="Direct X\Texture2D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
     <ClCompile Include="Engine\Math\Vectors\MatrixBase.cpp" />
+    <ClCompile Include="Engine\Quaternion.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Input\Input.cpp" />
     <ClCompile Include="Structs\Color.cpp" />

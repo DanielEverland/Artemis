@@ -169,6 +169,9 @@
     <ClInclude Include="Engine\IntVector4.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Quaternion.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -218,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="Debugging\Output.cpp">
       <Filter>Source\Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Quaternion.cpp">
+      <Filter>Source\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

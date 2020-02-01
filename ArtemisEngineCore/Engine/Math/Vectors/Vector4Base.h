@@ -2,7 +2,7 @@
 
 #include "VectorBase.h"
 
-namespace ArtemisEngine::Math::Vectors
+namespace ArtemisEngine::Maths::Vectors
 {
 	template<class T>
 	class Vector4Base : public VectorBase<T, 4>

@@ -13,7 +13,7 @@
 
 using ArtemisEngine::Debugging::IDebugStringReturner;
 
-namespace ArtemisEngine::Math::Vectors
+namespace ArtemisEngine::Maths::Vectors
 {
 	template<class T, unsigned int dimensions>
 	class VectorBase;

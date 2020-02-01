@@ -2,7 +2,7 @@
 
 #include "Vector4Base.h"
 
-namespace ArtemisEngine::Math::Vectors
+namespace ArtemisEngine::Maths::Vectors
 {
 	class FloatVector4 : public Vector4Base<float>
 	{

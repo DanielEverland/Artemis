@@ -3,7 +3,7 @@
 
 #include "Engine/Math/Vectors/VectorBase.h"
 
-using ArtemisEngine::Math::Vectors::VectorBase;
+using ArtemisEngine::Maths::Vectors::VectorBase;
 
 typedef VectorBase<double, 5> Vector;
 

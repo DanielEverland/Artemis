@@ -9,8 +9,8 @@
 namespace ArtemisEngine
 {
 #if defined FLOAT_VECTOR
-	typedef ArtemisEngine::Math::Vectors::FloatVector4 Vector4;
+	typedef ArtemisEngine::Maths::Vectors::FloatVector4 Vector4;
 #else
-	typedef ArtemisEngine::Math::Vectors::DoubleVector4 Vector4;
+	typedef ArtemisEngine::Maths::Vectors::DoubleVector4 Vector4;
 #endif
 }

@@ -4,7 +4,7 @@
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {
-	using ArtemisEngine::Math::Matrices::GenericMatrix;
+	using ArtemisEngine::Maths::Matrices::GenericMatrix;
 
 	template<class T, unsigned int rows, unsigned int columns>
 	void ExpectEmpty(const GenericMatrix<T, rows, columns>& matrix)

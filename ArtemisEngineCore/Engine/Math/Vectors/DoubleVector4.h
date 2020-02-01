@@ -2,7 +2,7 @@
 
 #include "Vector4Base.h"
 
-namespace ArtemisEngine::Math::Vectors
+namespace ArtemisEngine::Maths::Vectors
 {
 	class DoubleVector4 : public Vector4Base<double>
 	{

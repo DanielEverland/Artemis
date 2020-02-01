@@ -8,9 +8,9 @@
 namespace Math::Matrices
 {
 	using namespace ArtemisEngine::UnitTests::Comparisons;
-	using ArtemisEngine::Math::Matrices::BaseMatrix;
-	using ArtemisEngine::Math::Matrices::GenericMatrix;
-	using ArtemisEngine::Math::Vectors::VectorBase;
+	using ArtemisEngine::Maths::Matrices::BaseMatrix;
+	using ArtemisEngine::Maths::Matrices::GenericMatrix;
+	using ArtemisEngine::Maths::Vectors::VectorBase;
 
 	const unsigned int rows = 4;
 	const unsigned int columns = 4;

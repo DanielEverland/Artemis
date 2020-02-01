@@ -2,7 +2,7 @@
 
 #include "Math/Vectors/Vector2Base.h"
 
-using ArtemisEngine::Math::Vectors::Vector2Base;
+using ArtemisEngine::Maths::Vectors::Vector2Base;
 
 namespace ArtemisEngine
 {

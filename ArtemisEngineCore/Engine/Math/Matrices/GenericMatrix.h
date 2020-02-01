@@ -8,10 +8,10 @@
 #include "Engine/Math/Vectors/VectorBase.h"
 #include "Debugging/IDebugStringReturner.h"
 
-using ArtemisEngine::Math::Vectors::VectorBase;
+using ArtemisEngine::Maths::Vectors::VectorBase;
 using std::initializer_list;
 
-namespace ArtemisEngine::Math::Matrices
+namespace ArtemisEngine::Maths::Matrices
 {
 	template<class T, unsigned int rows, unsigned int columns>
 	class GenericMatrix;

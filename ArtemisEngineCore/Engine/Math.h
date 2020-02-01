@@ -16,25 +16,25 @@ public:
 	static const double Infinity;
 
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
-	static bool IsFloatingPointIntegral(const T& value)
+	static bool IsFloatingPointIntegral(T value)
 	{
 		return std::trunc(value) == value;
 	}
 
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
-	static bool IsPositiveInfinity(const T& value)
+	static bool IsPositiveInfinity(T value)
 	{
 		return value == Infinity;
 	}
 
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
-	static bool IsNegativeInfinity(const T& value)
+	static bool IsNegativeInfinity(T value)
 	{
 		return value == -Infinity;
 	}
 
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
-	static bool IsNaN(const T& value)
+	static bool IsNaN(T value)
 	{
 		return isnan(value);
 	}

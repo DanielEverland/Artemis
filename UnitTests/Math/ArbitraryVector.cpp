@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "pch.h"
 
-#include "Engine/Math/Vectors/VectorBase.h"
+#include "Engine/Maths/Vectors/VectorBase.h"
 
 using ArtemisEngine::Maths::Vectors::VectorBase;
 

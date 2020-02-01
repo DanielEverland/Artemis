@@ -1,9 +1,9 @@
 #pragma once
 
 #if defined FLOAT_VECTOR
-#include "Math/Vectors/FloatVector2.h"
+#include "Maths/Vectors/FloatVector2.h"
 #else
-#include "Math/Vectors/DoubleVector2.h"
+#include "Maths/Vectors/DoubleVector2.h"
 #endif
 
 namespace ArtemisEngine

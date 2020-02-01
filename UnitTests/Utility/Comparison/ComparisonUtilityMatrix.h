@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Math/Matrices/GenericMatrix.h"
+#include "Engine/Maths/Matrices/GenericMatrix.h"
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {

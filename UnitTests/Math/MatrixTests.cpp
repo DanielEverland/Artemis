@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include "Engine/Math/Matrices/GenericMatrix.h"
-#include "Engine/Math/Vectors/VectorBase.h"
+#include "Engine/Maths/Matrices/GenericMatrix.h"
+#include "Engine/Maths/Vectors/VectorBase.h"
 #include "Utility/Comparison/ComparisonUtility.h"
 #include "Utility/Comparison/ComparisonUtilityMatrix.h"
 

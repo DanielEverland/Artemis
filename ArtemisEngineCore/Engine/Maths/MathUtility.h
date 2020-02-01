@@ -5,6 +5,7 @@
 
 #include <cmath>
 #include <type_traits>
+#include <limits>
 
 class MathUtility
 {

@@ -100,45 +100,6 @@
     <ClInclude Include="Engine\Vector4.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Math\MathUtility.h">
-      <Filter>Source\Engine\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\DoubleVector2.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\DoubleVector3.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\DoubleVector4.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\FloatVector2.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\FloatVector3.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\FloatVector4.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\MatrixBase.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\Vector2Base.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\Vector3Base.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\Vector4Base.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Vectors\VectorBase.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math\Matrices\GenericMatrix.h">
-      <Filter>Source\Engine\Math\Matrices</Filter>
-    </ClInclude>
     <ClInclude Include="Direct X\DepthBuffer.h">
       <Filter>Source\Direct X</Filter>
     </ClInclude>
@@ -172,6 +133,45 @@
     <ClInclude Include="Engine\Quaternion.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\DoubleVector2.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\DoubleVector3.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\DoubleVector4.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\FloatVector2.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\FloatVector3.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\FloatVector4.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\MatrixBase.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\Vector2Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\Vector3Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\Vector4Base.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Vectors\VectorBase.h">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\Matrices\GenericMatrix.h">
+      <Filter>Source\Engine\Math\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Maths\MathUtility.h">
+      <Filter>Source\Engine\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -198,9 +198,6 @@
     <ClCompile Include="Engine\Application.cpp">
       <Filter>Source\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Math\Vectors\MatrixBase.cpp">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClCompile>
     <ClCompile Include="Direct X\DepthBuffer.cpp">
       <Filter>Source\Direct X</Filter>
     </ClCompile>
@@ -224,6 +221,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Quaternion.cpp">
       <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Maths\Vectors\MatrixBase.cpp">
+      <Filter>Source\Engine\Math\Vectors</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Maths\MathUtility.cpp">
+      <Filter>Source\Engine\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

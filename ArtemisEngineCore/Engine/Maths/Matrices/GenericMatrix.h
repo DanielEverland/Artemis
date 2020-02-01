@@ -5,7 +5,7 @@
 #include <algorithm>
 
 #include "Exceptions/InvalidArgumentException.h"
-#include "Engine/Math/Vectors/VectorBase.h"
+#include "Engine/Maths/Vectors/VectorBase.h"
 #include "Debugging/IDebugStringReturner.h"
 
 using ArtemisEngine::Maths::Vectors::VectorBase;

@@ -9,7 +9,7 @@
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/DivideByZeroException.h"
 #include "Debugging/IDebugStringReturner.h"
-#include "Engine/Math/MathUtility.h"
+#include "Engine/Maths/MathUtility.h"
 
 using ArtemisEngine::Debugging::IDebugStringReturner;
 

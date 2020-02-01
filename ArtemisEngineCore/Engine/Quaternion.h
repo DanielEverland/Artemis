@@ -1,14 +1,11 @@
 #pragma once
 
-#include "Engine/Vector3.h"
-
 namespace ArtemisEngine
 {
 	class Quaternion
 	{
 	public:
 		Quaternion() = default;
-		Quaternion(const Vector3& vector);
 		Quaternion(double xRotation, double yRotation, double zRotation);
 		
 		static Quaternion GetIdentity();
@@ -24,7 +21,11 @@ namespace ArtemisEngine
 	private:
 		Quaternion(double x, double y, double z, double w);
 		
-		Vector3 imaginary;
-		double real;
+		double x;
+		double y;
+		double z;
+		double w;
+
+		void FromEuler(double x, double y, double z);
 	};
 }

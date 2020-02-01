@@ -2,6 +2,17 @@
 
 using ArtemisEngine::Quaternion;
 
+Quaternion::Quaternion(double x, double y, double z, double w)
+{
+	this->imaginary = Vector3(x, y, z);
+	this->real = w;
+}
+
+Quaternion Quaternion::GetIdentity()
+{
+	return Quaternion(0, 0, 0, 1);
+}
+
 bool Quaternion::operator==(const Quaternion& other) const
 {
 	return this->imaginary == other.imaginary && this->real == other.real;

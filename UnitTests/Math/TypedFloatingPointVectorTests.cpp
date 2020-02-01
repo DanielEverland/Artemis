@@ -497,48 +497,6 @@ namespace Math::Vectors
             EXPECT_EQ(ElementValues[i] - scalar, vector[i]);
         }
     }
-
-    TYPED_TEST(TypedFloatingPointVectorTests, MultiplicationOfTwoVectors)
-    {
-        TypeParam aVector = this->vectors[0];
-        TypeParam bVector = this->vectors[1];
-        TypeParam cVector = this->vectors[2];
-
-        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(aVector, aElementValues);
-        this->InitializeToDefaultValues(bVector, bElementValues);
-
-
-        cVector = aVector * bVector;
-
-
-        for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(aElementValues[i] * bElementValues[i], cVector[i]);
-        }
-    }
-    TYPED_TEST(TypedFloatingPointVectorTests, MultiplicationAssignment)
-    {
-        TypeParam aVector = this->vectors[0];
-        TypeParam bVector = this->vectors[1];
-
-        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(aVector, aElementValues);
-        this->InitializeToDefaultValues(bVector, bElementValues);
-
-
-        aVector *= bVector;
-
-
-        for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(aElementValues[i] * bElementValues[i], aVector[i]);
-        }
-    }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplication)
     {
         TypeParam aVector = this->vectors[0];

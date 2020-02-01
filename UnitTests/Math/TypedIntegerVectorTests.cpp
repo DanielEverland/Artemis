@@ -514,50 +514,7 @@ namespace Math::Vectors
 			EXPECT_EQ(static_cast<long>(ElementValues[i] - scalar), vector[i]);
 		}
 	}
-
-	TYPED_TEST(TypedIntegerVectorTests, MultiplicationOfTwoVectors)
-	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-		TypeParam cVector = this->vectors[2];
-
-		const int* aElementValues = TypedIntegerVectorTests::ElementValues[0];
-		const int* bElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(aVector, aElementValues);
-		this->InitializeToDefaultValues(bVector, bElementValues);
-
-
-		cVector = aVector * bVector;
-
-
-		for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(aElementValues[i] * bElementValues[i], cVector[i]);
-		}
-	}
-
-	TYPED_TEST(TypedIntegerVectorTests, MultiplicationAssignment)
-	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-
-		const int* aElementValues = TypedIntegerVectorTests::ElementValues[0];
-		const int* bElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(aVector, aElementValues);
-		this->InitializeToDefaultValues(bVector, bElementValues);
-
-
-		aVector *= bVector;
-
-
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(aElementValues[i] * bElementValues[i], aVector[i]);
-		}
-	}
-
+	
 	TYPED_TEST(TypedIntegerVectorTests, IntegerPointScalarMultiplication)
 	{
 		TypeParam aVector = this->vectors[0];

@@ -86,8 +86,8 @@ void Quaternion::FromEuler(double x, double y, double z)
 	double zCos = Math::Cos(z / 2);
 	double zSin = Math::Sin(z / 2);
 
-	x = zCos * yCos * xSin - zSin * ySin * xCos;
-	y = zSin * yCos * xSin + zCos * ySin * xCos;
-	z = zSin * yCos * xCos - zCos * ySin * xSin;
-	W =	zCos * yCos * xCos + zSin * ySin * xSin;
+	X = zSin * xCos * yCos - zCos * xSin * ySin;
+	Y = zCos * xSin * yCos + zSin * xCos * ySin;
+	Z = zCos * xCos * ySin - zSin * xSin * yCos;
+	W = zCos * xCos * yCos + zSin * xSin * ySin;
 }

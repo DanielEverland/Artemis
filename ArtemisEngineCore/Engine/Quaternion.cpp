@@ -79,9 +79,9 @@ void Quaternion::operator*=(const Quaternion& other)
 }
 void Quaternion::FromEuler(double x, double y, double z)
 {
-	/*yaw *= M_PI / 180.0;
-	pitch *= M_PI / 180.0;
-	roll *= M_PI / 180.0;*/
+	x *= Math::DegToRad;
+	y *= Math::DegToRad;
+	z *= Math::DegToRad;
 
 	// Abbreviations for the various angular functions
 	double xCos = Math::Cos(x / 2);
@@ -116,9 +116,9 @@ Vector3 Quaternion::GetEulerAngles() const
 	double cosr_cosp = 1 - 2 * (X * X + Y * Y);
 	angles.z = Math::ArcTan2(sinr_cosp, cosr_cosp);
 
-	/*angles.x *= 180.0 / M_PI;
-	angles.y *= 180.0 / M_PI;
-	angles.z *= 180.0 / M_PI;*/
+	angles.x *= Math::RadToDeg;
+	angles.y *= Math::RadToDeg;
+	angles.z *= Math::RadToDeg;
 
 	return angles;
 }

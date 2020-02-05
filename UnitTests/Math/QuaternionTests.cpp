@@ -21,7 +21,7 @@ TEST(Quaternions, Empty)
 }
 TEST(Quaternions, EulerConversion)
 {
-	Vector3 input(0.2, -0.1, 1.5);
+	Vector3 input(-45, 45, 30);
 
 
 	Quaternion quaternion(input.x, input.y, input.z);

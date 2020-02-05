@@ -12,10 +12,10 @@ namespace ArtemisEngine::Maths::Vectors
 		Vector3Base() : VectorBase<T, 3>() { }
 		Vector3Base(T x, T y) : VectorBase<T, 3>(x, y) { }
 		Vector3Base(T x, T y, T z) : VectorBase<T, 3>(x, y, z) { }
-		Vector3Base(const VectorBase& copy) : VectorBase<T, 3>(copy) { }
-		Vector3Base(VectorBase&& move) : VectorBase<T, 3>(move) { }
+		Vector3Base(const VectorBase<T, 3>& copy) : VectorBase<T, 3>(copy) { }
+		Vector3Base(VectorBase<T, 3>&& move) : VectorBase<T, 3>(move) { }
 
-		Vector3Base& operator=(VectorBase& copy)
+		Vector3Base& operator=(VectorBase<T, 3>& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;
@@ -23,7 +23,7 @@ namespace ArtemisEngine::Maths::Vectors
 
 			return *this;
 		}
-		Vector3Base& operator=(VectorBase&& move)
+		Vector3Base& operator=(VectorBase<T, 3>&& move)
 		{
 			this->x = move.x;
 			this->y = move.y;

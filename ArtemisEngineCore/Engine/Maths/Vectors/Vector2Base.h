@@ -11,17 +11,17 @@ namespace ArtemisEngine::Maths::Vectors
 		~Vector2Base() = default;
 		Vector2Base() : VectorBase<T, 2>() { }
 		Vector2Base(T x, T y) : VectorBase<T, 2>(x, y) { }
-		Vector2Base(const VectorBase& copy) : VectorBase<T, 2>(copy) { }
-		Vector2Base(VectorBase&& move) : VectorBase<T, 2>(move) { }
+		Vector2Base(const VectorBase<T, 2>& copy) : VectorBase<T, 2>(copy) { }
+		Vector2Base(VectorBase<T, 2>&& move) : VectorBase<T, 2>(move) { }
 
-		Vector2Base& operator=(VectorBase& copy)
+		Vector2Base& operator=(VectorBase<T, 2>& copy)
 		{
 			this->x = copy.x;
 			this->y = copy.y;
 
 			return *this;
 		}
-		Vector2Base& operator=(VectorBase&& move)
+		Vector2Base& operator=(VectorBase<T, 2>&& move)
 		{
 			this->x = move.x;
 			this->y = move.y;

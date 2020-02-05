@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Engine/Vector3.h"
+
+using ArtemisEngine::Vector3;
+
 namespace ArtemisEngine
 {
 	class Quaternion
@@ -15,6 +19,8 @@ namespace ArtemisEngine
 		double W;
 		
 		static Quaternion GetIdentity();
+
+		Vector3 GetEulerAngles() const;
 
 		Quaternion operator+(const Quaternion& other) const;
 		Quaternion operator-(const Quaternion& other) const;

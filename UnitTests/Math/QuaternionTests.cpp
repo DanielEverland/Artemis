@@ -1,5 +1,6 @@
 #include "pch.h"
 
+#include "Engine/Math.h"
 #include "Engine/Quaternion.h"
 #include "..\Utility\Comparison\ComparisonUtility.h"
 #include "..\Utility\Comparison\ComparisonUtilityQuaternions.h"
@@ -19,8 +20,9 @@ TEST(Quaternions, Empty)
 }
 TEST(Quaternions, FromEuler)
 {
-	Quaternion quaternion(45, 90, 180);
+	Quaternion quaternion(0.2, -0.1, 1.5);
 
+	Vector3 euler = quaternion.GetEulerAngles();
 	
 	ExpectNear(quaternion, 0.653, -0.271, 0.653, -0.271);
 }

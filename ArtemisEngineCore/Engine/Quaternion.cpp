@@ -77,17 +77,49 @@ void Quaternion::operator*=(const Quaternion& other)
 {
 	(*this) += (*this) * other;
 }
-void Quaternion::FromEuler(double x, double y, double z)
+void Quaternion::FromEuler(double yaw, double pitch, double roll) // yaw (Z), pitch (Y), roll (X)
 {
-	double xCos = Math::Cos(x / 2);
-	double xSin = Math::Sin(x / 2);
-	double yCos = Math::Cos(y / 2);
-	double ySin = Math::Sin(y / 2);
-	double zCos = Math::Cos(z / 2);
-	double zSin = Math::Sin(z / 2);
+	/*yaw *= M_PI / 180.0;
+	pitch *= M_PI / 180.0;
+	roll *= M_PI / 180.0;*/
 
-	X = zSin * xCos * yCos - zCos * xSin * ySin;
-	Y = zCos * xSin * yCos + zSin * xCos * ySin;
-	Z = zCos * xCos * ySin - zSin * xSin * yCos;
-	W = zCos * xCos * yCos + zSin * xSin * ySin;
+	// Abbreviations for the various angular functions
+	double cy = cos(yaw * 0.5);
+	double sy = sin(yaw * 0.5);
+	double cp = cos(pitch * 0.5);
+	double sp = sin(pitch * 0.5);
+	double cr = cos(roll * 0.5);
+	double sr = sin(roll * 0.5);
+
+	W = cy * cp * cr + sy * sp * sr;
+	X = cy * cp * sr - sy * sp * cr;
+	Y = sy * cp * sr + cy * sp * cr;
+	Z = sy * cp * cr - cy * sp * sr;
+}
+Vector3 Quaternion::GetEulerAngles() const
+{
+	Vector3 angles;
+
+	// roll (x-axis rotation)
+	double sinr_cosp = 2 * (W * X + Y * Z);
+	double cosr_cosp = 1 - 2 * (X * X + Y * Y);
+	angles.x = std::atan2(sinr_cosp, cosr_cosp);
+
+	// pitch (y-axis rotation)
+	double sinp = 2 * (W * Y - Z * X);
+	if (std::abs(sinp) >= 1)
+		angles.y = std::copysign(M_PI / 2, sinp); // use 90 degrees if out of range
+	else
+		angles.y = std::asin(sinp);
+
+	// yaw (z-axis rotation)
+	double siny_cosp = 2 * (W * Z + X * Y);
+	double cosy_cosp = 1 - 2 * (Y * Y + Z * Z);
+	angles.z = std::atan2(siny_cosp, cosy_cosp);
+
+	/*angles.x *= 180.0 / M_PI;
+	angles.y *= 180.0 / M_PI;
+	angles.z *= 180.0 / M_PI;*/
+
+	return angles;
 }

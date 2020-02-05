@@ -16,15 +16,51 @@ public:
 	static const double Infinity;
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T Absolute(T value)
+	{
+		return std::abs(value);
+	}
+
+	// Returns the value of x with the sign of y
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T CopySign(T x, T y)
+	{
+		return std::copysign(x, y);
+	}
+
+	static double ArcTan2(double x, double y)
+	{
+		return std::atan2(x, y);
+	}
+
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T ArcCos(T value)
+	{
+		return std::acos(value);
+	}
+
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T Cos(T value)
 	{
 		return std::cos(value);
 	}
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T ArcSin(T value)
+	{
+		return std::asin(value);
+	}
+
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T Sin(T value)
 	{
 		return std::sin(value);
+	}
+
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T ArcTan(T value)
+	{
+		return std::atan(value);
 	}
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >

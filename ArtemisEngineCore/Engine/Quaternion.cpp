@@ -102,19 +102,19 @@ Vector3 Quaternion::GetEulerAngles() const
 
 	double siny_cosp = 2 * (W * Z + X * Y);
 	double cosy_cosp = 1 - 2 * (Y * Y + Z * Z);
-	angles.x = std::atan2(siny_cosp, cosy_cosp);
+	angles.x = Math::ArcTan2(siny_cosp, cosy_cosp);
 
 
 	double sinp = 2 * (W * Y - Z * X);
-	if (std::abs(sinp) >= 1)
-		angles.y = std::copysign(M_PI / 2, sinp); // use 90 degrees if out of range
+	if (Math::Absolute(sinp) >= 1)
+		angles.y = Math::CopySign(M_PI / 2, sinp); // use 90 degrees if out of range
 	else
-		angles.y = std::asin(sinp);
+		angles.y = Math::ArcSin(sinp);
 
 	
 	double sinr_cosp = 2 * (W * X + Y * Z);
 	double cosr_cosp = 1 - 2 * (X * X + Y * Y);
-	angles.z = std::atan2(sinr_cosp, cosr_cosp);
+	angles.z = Math::ArcTan2(sinr_cosp, cosr_cosp);
 
 	/*angles.x *= 180.0 / M_PI;
 	angles.y *= 180.0 / M_PI;

@@ -21,4 +21,18 @@ namespace ArtemisEngine::UnitTests::Comparisons
 		EXPECT_NEAR(z, quaternion.Z, ComparisonConstants::nearComparisonPrecision);
 		EXPECT_NEAR(w, quaternion.W, ComparisonConstants::nearComparisonPrecision);
 	}
+	inline void ExpectEqual(Quaternion a, Quaternion b)
+	{
+		EXPECT_EQ(a.X, b.X);
+		EXPECT_EQ(a.Y, b.Y);
+		EXPECT_EQ(a.Z, b.Z);
+		EXPECT_EQ(a.W, b.W);
+	}
+	inline void ExpectNear(Quaternion a, Quaternion b)
+	{
+		EXPECT_NEAR(a.X, b.X, ComparisonConstants::nearComparisonPrecision);
+		EXPECT_NEAR(a.Y, b.Y, ComparisonConstants::nearComparisonPrecision);
+		EXPECT_NEAR(a.Z, b.Z, ComparisonConstants::nearComparisonPrecision);
+		EXPECT_NEAR(a.W, b.W, ComparisonConstants::nearComparisonPrecision);
+	}
 }

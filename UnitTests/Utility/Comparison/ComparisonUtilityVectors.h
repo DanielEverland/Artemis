@@ -10,9 +10,8 @@ namespace ArtemisEngine::UnitTests::Comparisons
 	template<class T, unsigned int dimensions>
 	inline void ExpectNear(const VectorBase<T, dimensions>& a, const VectorBase<T, dimensions>& b)
 	{
-		for (unsigned int i = 0; i < a.GetDimensions(); i++)
-		{
-			EXPECT_NEAR(a[i], b[i], ComparisonConstants::nearComparisonPrecision);
-		}
+		EXPECT_NEAR(a.x, b.x, ComparisonConstants::nearComparisonPrecision);
+		EXPECT_NEAR(a.y, b.y, ComparisonConstants::nearComparisonPrecision);
+		EXPECT_NEAR(a.z, b.z, ComparisonConstants::nearComparisonPrecision);
 	}
 }

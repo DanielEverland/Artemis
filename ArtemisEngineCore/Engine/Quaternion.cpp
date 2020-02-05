@@ -59,8 +59,11 @@ Quaternion Quaternion::operator-(const Quaternion& other) const
 Quaternion Quaternion::operator*(const Quaternion& other) const
 {
 	Quaternion product{};
-
-	static_assert(true, "Not implemented");
+	                                                                                                                                                                                                                                  
+	product.W = W * other.W - X * other.X - Y * other.Y - Z * other.Z;
+	product.X = W * other.X + X * other.W + Y * other.Z - Z * other.Y;
+	product.Y = W * other.Y - X * other.Z + Y * other.W + Z * other.X;
+	product.Z = W * other.Z + X * other.Y - Y * other.X + Z * other.W;
 
 	return product;
 }
@@ -80,7 +83,7 @@ void Quaternion::operator-=(const Quaternion& other)
 }
 void Quaternion::operator*=(const Quaternion& other)
 {
-	(*this) += (*this) * other;
+	(*this) = (*this) * other;
 }
 void Quaternion::FromEuler(double x, double y, double z)
 {

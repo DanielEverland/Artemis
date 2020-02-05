@@ -30,3 +30,15 @@ TEST(Quaternions, EulerConversion)
 	
 	ExpectNear(input, euler);
 }
+TEST(Quaternions, Rotation)
+{
+	Quaternion startRotation(25, 45, 30);
+	Quaternion appliedRotation(0, 10, 0);
+	Vector3 expectedValue(25, 55, 30);
+
+	Quaternion rotated = appliedRotation * startRotation;
+
+	Vector3 actualValue = rotated.GetEulerAngles();
+
+	ExpectNear(expectedValue, actualValue);
+}

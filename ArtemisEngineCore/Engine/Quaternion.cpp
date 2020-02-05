@@ -3,6 +3,11 @@
 
 using namespace ArtemisEngine;
 
+Quaternion::Quaternion(Vector3 rotation)
+{
+	FromEuler(rotation.x, rotation.y, rotation.z);
+}
+
 Quaternion::Quaternion(double xRotation, double yRotation, double zRotation)
 {
 	FromEuler(xRotation, yRotation, zRotation);

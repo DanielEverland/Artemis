@@ -10,6 +10,7 @@ namespace ArtemisEngine
 	{
 	public:
 		Quaternion() = default;
+		Quaternion(Vector3 rotation);
 		Quaternion(double xRotation, double yRotation, double zRotation);
 		Quaternion(double x, double y, double z, double w);
 

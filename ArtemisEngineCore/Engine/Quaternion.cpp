@@ -77,24 +77,24 @@ void Quaternion::operator*=(const Quaternion& other)
 {
 	(*this) += (*this) * other;
 }
-void Quaternion::FromEuler(double yaw, double pitch, double roll) // yaw (Z), pitch (Y), roll (X)
+void Quaternion::FromEuler(double x, double y, double z)
 {
 	/*yaw *= M_PI / 180.0;
 	pitch *= M_PI / 180.0;
 	roll *= M_PI / 180.0;*/
 
 	// Abbreviations for the various angular functions
-	double cy = cos(yaw * 0.5);
-	double sy = sin(yaw * 0.5);
-	double cp = cos(pitch * 0.5);
-	double sp = sin(pitch * 0.5);
-	double cr = cos(roll * 0.5);
-	double sr = sin(roll * 0.5);
+	double xCos = Math::Cos(x / 2);
+	double xSin = Math::Sin(x / 2);
+	double yCos = Math::Cos(y / 2);
+	double ySin = Math::Sin(y / 2);
+	double zCos = Math::Cos(z / 2);
+	double zSin = Math::Sin(z / 2);
 
-	W = cy * cp * cr + sy * sp * sr;
-	X = cy * cp * sr - sy * sp * cr;
-	Y = sy * cp * sr + cy * sp * cr;
-	Z = sy * cp * cr - cy * sp * sr;
+	X = xCos * yCos * zSin - xSin * ySin * zCos;
+	Y = xSin * yCos * zSin + xCos * ySin * zCos;
+	Z = xSin * yCos * zCos - xCos * ySin * zSin;
+	W = xCos * yCos * zCos + xSin * ySin * zSin;
 }
 Vector3 Quaternion::GetEulerAngles() const
 {

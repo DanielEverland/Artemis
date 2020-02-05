@@ -4,6 +4,7 @@
 #include "Engine/Quaternion.h"
 #include "..\Utility\Comparison\ComparisonUtility.h"
 #include "..\Utility\Comparison\ComparisonUtilityQuaternions.h"
+#include "..\Utility\Comparison\ComparisonUtilityVectors.h"
 
 using ArtemisEngine::Quaternion;
 using namespace ArtemisEngine::UnitTests::Comparisons;
@@ -18,11 +19,14 @@ TEST(Quaternions, Empty)
 	ExpectZero(quaternion.Z);
 	ExpectZero(quaternion.W);
 }
-TEST(Quaternions, FromEuler)
+TEST(Quaternions, EulerConversion)
 {
-	Quaternion quaternion(0.2, -0.1, 1.5);
+	Vector3 input(0.2, -0.1, 1.5);
 
+
+	Quaternion quaternion(input.x, input.y, input.z);
 	Vector3 euler = quaternion.GetEulerAngles();
+
 	
-	ExpectNear(quaternion, 0.653, -0.271, 0.653, -0.271);
+	ExpectNear(input, euler);
 }

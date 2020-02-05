@@ -50,6 +50,9 @@
     <ClInclude Include="Utility\Comparison\ComparisonUtilityQuaternions.h">
       <Filter>Utility\Comparison</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\Comparison\ComparisonUtilityVectors.h">
+      <Filter>Utility\Comparison</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">

@@ -37,6 +37,7 @@
     <ClInclude Include="Utility\Comparison\ComparisonUtility.h" />
     <ClInclude Include="Utility\Comparison\ComparisonUtilityMatrix.h" />
     <ClInclude Include="Utility\Comparison\ComparisonUtilityQuaternions.h" />
+    <ClInclude Include="Utility\Comparison\ComparisonUtilityVectors.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\ArbitraryVector.cpp" />

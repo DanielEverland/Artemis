@@ -21,10 +21,13 @@ TEST(Quaternions, Empty)
 }
 TEST(Quaternions, EulerConversion)
 {
-	Quaternion actualResult(-45, 45, 180);
 	Quaternion expectedResult(0.3535534, 0.3535534, 0.8535534, -0.1464467);
+
+
+	Quaternion actualResult(-45, 45, 180);
+
 	
-	ExpectNear(actualResult, expectedResult);
+	ExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, Rotation)
 {

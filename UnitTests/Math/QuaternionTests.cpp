@@ -31,32 +31,10 @@ TEST(Quaternions, FromEuler)
 }
 TEST(Quaternions, ToEuler)
 {
-	/*double values[3] { -45.0, -50.0, 88.0 };
+	Vector3 expectedResult(-24, 56, 12);
+	Quaternion quaternion(-0.006797587987017614, -0.13456870804627263, 0.475885694635716, 0.869124767368528);
 
 	
-	Quaternion quaternion{};
-	Vector3 actualResult;
-
-	for (int x = 0; x < 3; x++)
-	{
-		for (int y = 0; y < 3; y++)
-		{
-			for (int z = 0; z < 3; z++)
-			{
-				quaternion = Quaternion(values[x], values[y], values[z]);
-
-				actualResult = quaternion.GetEulerAngles();
-			}
-		}
-	}*/
-
-
-	Vector3 expectedResult(-45.54, 15, 25);
-	//Quaternion quaternion(0.3535534, 0.3535534, 0.8535534, -0.1464467);
-	Quaternion quaternion(expectedResult.x, expectedResult.y, expectedResult.z);
-
-	quaternion = quaternion.GetNormalized();
-
 	Vector3 actualResult = quaternion.GetEulerAngles();
 
 

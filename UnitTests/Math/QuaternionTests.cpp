@@ -50,7 +50,7 @@ TEST(Quaternions, Multiplication)
 	Quaternion actualResult = quaternionA * quaternionB;
 
 
-	ExpectEqual(expectedResult, actualResult);
+	ExpectNear(expectedResult, actualResult);
 }
 
 TEST(Quaternions, Addition)
@@ -63,7 +63,7 @@ TEST(Quaternions, Addition)
 	Quaternion actualResult = quaternionA + quaternionB;
 
 
-	ExpectEqual(expectedResult, actualResult);
+	ExpectNear(expectedResult, actualResult);
 }
 
 TEST(Quaternions, ScalarMultiplication)

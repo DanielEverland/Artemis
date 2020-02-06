@@ -63,3 +63,16 @@ TEST(Quaternions, Addition)
 
 	ExpectEqual(expectedResult, actualResult);
 }
+
+TEST(Quaternions, ScalarMultiplication)
+{
+	Quaternion expectedResult(0.7221174, -0.4569525, 0.28529730000000003, -0.2031783);
+	Quaternion quaternion(0.5452, -0.345, 0.2154, -0.1534);
+	double scalar = 1.3245;
+
+
+	Quaternion actualResult = quaternion * scalar;
+
+
+	ExpectNear(expectedResult, actualResult);
+}

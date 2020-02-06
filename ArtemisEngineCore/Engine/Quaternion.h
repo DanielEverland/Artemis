@@ -28,6 +28,7 @@ namespace ArtemisEngine
 		Quaternion operator+(const Quaternion& other) const;
 		Quaternion operator-(const Quaternion& other) const;
 		Quaternion operator*(const Quaternion& other) const;
+		Quaternion operator*(double scalar) const;
 		void operator+=(const Quaternion& other);
 		void operator-=(const Quaternion& other);
 		void operator*=(const Quaternion& other);

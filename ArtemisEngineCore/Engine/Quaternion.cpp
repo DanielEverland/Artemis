@@ -112,6 +112,14 @@ void Quaternion::operator*=(const Quaternion& other)
 {
 	(*this) = (*this) * other;
 }
+Quaternion Quaternion::operator*(double scalar) const
+{
+	return Quaternion(
+		this->X * scalar,
+		this->Y * scalar,
+		this->Z * scalar,
+		this->W * scalar);
+}
 void Quaternion::FromEuler(double x, double y, double z)
 {
 	x *= Math::DegToRad;

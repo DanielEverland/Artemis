@@ -60,11 +60,11 @@ Quaternion Quaternion::operator*(const Quaternion& other) const
 {
 	Quaternion product{};
 	                                                                                                                                                                                                                                  
-	product.W = W * other.W - X * other.X - Y * other.Y - Z * other.Z;
 	product.X = W * other.X + X * other.W + Y * other.Z - Z * other.Y;
-	product.Y = W * other.Y - X * other.Z + Y * other.W + Z * other.X;
-	product.Z = W * other.Z + X * other.Y - Y * other.X + Z * other.W;
-
+	product.Y = W * other.Y + Y * other.W + Z * other.X - X * other.Z;
+	product.Z = W * other.Z + Z * other.W + X * other.Y - Y * other.X;
+	product.W = W * other.W - X * other.X - Y * other.Y - Z * other.Z;
+	
 	return product;
 }
 void Quaternion::operator+=(const Quaternion& other)

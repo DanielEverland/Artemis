@@ -92,13 +92,13 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)ArtemisEngineCore;$(ProjectDir);$(SolutionDir)GoogleTest\1.8.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\irrlicht-1.8.4\include;$(SolutionDir)ArtemisEngineCore;$(ProjectDir);$(SolutionDir)GoogleTest\1.8.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>gtestd.lib;gtest_maind.lib;Dbghelp.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)GoogleTest\1.8.1.2\lib\x64\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\irrlicht-1.8.4\include;$(SolutionDir)GoogleTest\1.8.1.2\lib\x64\Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

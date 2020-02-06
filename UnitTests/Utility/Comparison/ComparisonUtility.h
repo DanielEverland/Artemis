@@ -21,4 +21,12 @@ namespace ArtemisEngine::UnitTests::Comparisons
 	{
 		EXPECT_EQ(false, expression);
 	}
+	inline void ExpectEqual(double a, double b)
+	{
+		EXPECT_EQ(a, b);
+	}
+	inline void ExpectNear(double a, double b)
+	{
+		EXPECT_NEAR(a, b, ComparisonConstants::nearComparisonPrecision);
+	}
 }

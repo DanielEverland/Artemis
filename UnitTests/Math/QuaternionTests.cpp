@@ -78,3 +78,15 @@ TEST(Quaternions, ScalarMultiplication)
 
 	ExpectNear(expectedResult, actualResult);
 }
+
+TEST(Quaternions, Normalized)
+{
+	Quaternion expectedResult(-0.19460036679210727, 0.18143409662252974, 0.9472480307716923, 0.1786995635873098);
+	Quaternion quaternion(-0.1345, 0.1254, 0.6547, 0.12351);
+
+
+	Quaternion actualResult = quaternion.GetNormalized();
+
+
+	ExpectNear(expectedResult, actualResult);
+}

@@ -50,3 +50,16 @@ TEST(Quaternions, Multiplication)
 
 	ExpectEqual(expectedResult, actualResult);
 }
+
+TEST(Quaternions, Addition)
+{
+	Quaternion expectedResult(0.0902, 0.4685, 0.08884000000000003, 0.000030000000000002247);
+	Quaternion quaternionA(0.4353, 0.1234, -0.3465, 0.23523);
+	Quaternion quaternionB(-0.3451, 0.3451, 0.43534, -0.2352);
+
+
+	Quaternion actualResult = quaternionA + quaternionB;
+
+
+	ExpectEqual(expectedResult, actualResult);
+}

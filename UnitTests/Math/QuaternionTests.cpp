@@ -46,7 +46,9 @@ TEST(Quaternions, Multiplication)
 	Quaternion quaternionA(0.523451, -0.25324, 0.25435, 0.25345);
 	Quaternion quaternionB(-0.15453, 0.235234, 0.125445, 0.12445);
 
+
 	Quaternion actualResult = quaternionA * quaternionB;
+
 
 	ExpectEqual(expectedResult, actualResult);
 }

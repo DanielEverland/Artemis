@@ -24,27 +24,19 @@ TEST(Quaternions, Empty)
 }
 TEST(Quaternions, EulerConversion)
 {
-	Vector3 input(-45, 45, 30);
-
-
-	Quaternion quaternion(input.x, input.y, input.z);
-	Vector3 euler = quaternion.GetEulerAngles();
-
+	Quaternion actualResult(-45, 45, 180);
+	Quaternion expectedResult(0.3535534, 0.3535534, 0.8535534, -0.1464467);
 	
-	ExpectNear(input, euler);
+	ExpectNear(actualResult, expectedResult);
 }
 TEST(Quaternions, Rotation)
 {
-	double arr[3] = { -30, 25, 125 };
+	Quaternion q(10, 35, 90);
+	Quaternion r(0, 10, 0);
 
-	double x = 0.0687661;
-	double y = 0.3206688;
-	double z = 0.862344;
-	double w = 0.3857534;
+	Quaternion s = r * q;
 
-	Quaternion q{};
-
-	for (int x = 0; x < 3; x++)
+	/*for (int x = 0; x < 3; x++)
 	{
 		for (int y = 0; y < 3; y++)
 		{
@@ -53,7 +45,7 @@ TEST(Quaternions, Rotation)
 				q = Quaternion(arr[x], arr[y], arr[z]);
 			}
 		}
-	}
+	}*/
 
 	/*Quaternion appliedRotation(0.008649721, -0.00880202, 0.00880202, 0.9998851);
 	Vector3 expectedValue(45, 60, 30);

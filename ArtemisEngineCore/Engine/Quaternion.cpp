@@ -85,7 +85,7 @@ void Quaternion::operator*=(const Quaternion& other)
 {
 	(*this) = (*this) * other;
 }
-void Quaternion::FromEuler(double x, double y, double z)
+void Quaternion::FromEuler(double y, double x, double z)
 {
 	x *= Math::DegToRad;
 	y *= Math::DegToRad;
@@ -99,9 +99,9 @@ void Quaternion::FromEuler(double x, double y, double z)
 	double zCos = Math::Cos(z / 2);
 	double zSin = Math::Sin(z / 2);
 
-	X = xCos * yCos * zSin - xSin * ySin * zCos;
-	Y = xSin * yCos * zSin + xCos * ySin * zCos;
-	Z = xSin * yCos * zCos - xCos * ySin * zSin;
+	Z = xCos * yCos * zSin - xSin * ySin * zCos;
+	X = xSin * yCos * zSin + xCos * ySin * zCos;
+	Y = xSin * yCos * zCos - xCos * ySin * zSin;
 	W = xCos * yCos * zCos + xSin * ySin * zSin;
 }
 Vector3 Quaternion::GetEulerAngles() const

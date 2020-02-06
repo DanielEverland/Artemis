@@ -1,7 +1,5 @@
 #include "pch.h"
 
-#include <quaternion.h>
-
 #include "Engine/Math.h"
 #include "Engine/Quaternion.h"
 #include "..\Utility\Comparison\ComparisonUtility.h"
@@ -9,7 +7,6 @@
 #include "..\Utility\Comparison\ComparisonUtilityVectors.h"
 
 using ArtemisEngine::Quaternion;
-using irr::core::quaternion;
 using namespace ArtemisEngine::UnitTests::Comparisons;
 
 TEST(Quaternions, Empty)

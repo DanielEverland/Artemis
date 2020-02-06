@@ -19,7 +19,7 @@ TEST(Quaternions, Empty)
 	ExpectZero(quaternion.Z);
 	ExpectZero(quaternion.W);
 }
-TEST(Quaternions, EulerConversion)
+TEST(Quaternions, FromEuler)
 {
 	Quaternion expectedResult(0.3535534, 0.3535534, 0.8535534, -0.1464467);
 

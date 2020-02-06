@@ -107,7 +107,7 @@ TEST(Quaternions, Rotation)
 {
 	Vector3 expectedResult(0, 1, 0);
 	Vector3 point(1, 0, 0);
-	Quaternion rotation(0, 0, 90);
+	Quaternion rotation(0, 90, 0);
 
 
 	Vector3 actualResult = rotation * point;

@@ -29,6 +29,17 @@ TEST(Quaternions, EulerConversion)
 	
 	ExpectNear(expectedResult, actualResult);
 }
+TEST(Quaternions, ToEuler)
+{
+	Vector3 expectedResult(-45, 45, 180);
+	Quaternion quaternion(0.3535534, 0.3535534, 0.8535534, -0.1464467);
+
+
+	Vector3 actualResult = quaternion.GetEulerAngles();
+
+
+	ExpectNear(expectedResult, actualResult);
+}
 TEST(Quaternions, Rotation)
 {
 	Quaternion q(10, 35, 90);

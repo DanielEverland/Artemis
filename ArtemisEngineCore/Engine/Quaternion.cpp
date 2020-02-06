@@ -36,6 +36,10 @@ Quaternion Quaternion::GetNormalized() const
 		Z / magnitude,
 		W / magnitude);
 }
+Quaternion Quaternion::GetConjugate() const
+{
+	return Quaternion(-this->X, -this->Y, -this->Z, this->W);
+}
 
 double Quaternion::Magnitude() const
 {

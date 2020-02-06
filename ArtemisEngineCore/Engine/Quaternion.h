@@ -22,6 +22,7 @@ namespace ArtemisEngine
 		static Quaternion GetIdentity();
 		
 		Quaternion GetNormalized() const;
+		Quaternion GetConjugate() const;
 		Vector3 GetEulerAngles() const;
 		double Magnitude() const;
 

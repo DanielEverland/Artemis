@@ -26,6 +26,31 @@ Quaternion Quaternion::GetIdentity()
 	return Quaternion(0, 0, 0, 1);
 }
 
+Quaternion Quaternion::GetNormalized() const
+{
+	double magnitude = Magnitude();
+
+	return Quaternion(
+		X / magnitude,
+		Y / magnitude,
+		Z / magnitude,
+		W / magnitude);
+}
+
+double Quaternion::Magnitude() const
+{
+	double x = Math::Squared(X);
+	double y = Math::Squared(Y);
+	double z = Math::Squared(Z);
+	double w = Math::Squared(W);
+
+	double sum = x + y + z + w;
+
+	double magnitude = Math::SquareRoot(sum);
+
+	return magnitude;
+}
+
 bool Quaternion::operator==(const Quaternion& other) const
 {
 	return
@@ -85,7 +110,7 @@ void Quaternion::operator*=(const Quaternion& other)
 {
 	(*this) = (*this) * other;
 }
-void Quaternion::FromEuler(double y, double x, double z)
+void Quaternion::FromEuler(double x, double y, double z)
 {
 	x *= Math::DegToRad;
 	y *= Math::DegToRad;
@@ -99,34 +124,60 @@ void Quaternion::FromEuler(double y, double x, double z)
 	double zCos = Math::Cos(z / 2);
 	double zSin = Math::Sin(z / 2);
 
-	Z = xCos * yCos * zSin - xSin * ySin * zCos;
-	X = xSin * yCos * zSin + xCos * ySin * zCos;
-	Y = xSin * yCos * zCos - xCos * ySin * zSin;
-	W = xCos * yCos * zCos + xSin * ySin * zSin;
+	/*X = ySin * xCos * zSin + yCos * xSin * zCos;
+	Y = ySin * xCos * zCos - yCos * xSin * zSin;
+	Z = yCos * xCos * zSin - ySin * xSin * zCos;
+	W = yCos * xCos * zCos + ySin * xSin * zSin;*/
+
+	X = xSin * ySin * zCos + xCos * yCos * zSin;
+	Y = xSin * yCos * zCos + xCos * ySin * zSin;
+	Z = xCos * ySin * zCos - xSin * yCos * zSin;
+	W = xCos * yCos * zCos - xSin * ySin * zSin;
+}
+bool equals(double a, double b, double epsilon)
+{
+	return (Math::Absolute(a - b) < epsilon);
 }
 Vector3 Quaternion::GetEulerAngles() const
 {
-	Vector3 angles;
+	Vector3 euler;
 
-	double siny_cosp = 2 * (W * Z + X * Y);
-	double cosy_cosp = 1 - 2 * (Y * Y + Z * Z);
-	angles.x = Math::ArcTan2(siny_cosp, cosy_cosp);
+	//euler.x = Math::ArcTan2(2 * Y * W - 2 * X * Z, 1 - 2 * Math::Squared(Y) - 2 * Math::Squared(Z));
+	euler.x = Math::ArcTan2(2 * Z * W - 2 * Y * X, 1 - 2 * Math::Squared(Z) - 2 * Math::Squared(X));
 
+	euler.x *= Math::RadToDeg;
+	euler.y *= Math::RadToDeg;
+	euler.z *= Math::RadToDeg;
 
-	double sinp = 2 * (W * Y - Z * X);
-	if (Math::Absolute(sinp) >= 1)
-		angles.y = Math::CopySign(M_PI / 2, sinp); // use 90 degrees if out of range
-	else
-		angles.y = Math::ArcSin(sinp);
+	//euler.x += 90;
 
-	
-	double sinr_cosp = 2 * (W * X + Y * Z);
-	double cosr_cosp = 1 - 2 * (X * X + Y * Y);
-	angles.z = Math::ArcTan2(sinr_cosp, cosr_cosp);
-
-	angles.x *= Math::RadToDeg;
-	angles.y *= Math::RadToDeg;
-	angles.z *= Math::RadToDeg;
-
-	return angles;
+	return euler;
 }
+
+//const static double PI_OVER_2 = M_PI * 0.5;
+	//const static double EPSILON = 1e-10;
+	//double sqW, sqX, sqY, sqZ;
+
+	//// quick conversion to Euler angles to give tilt to user
+	//sqW = W * W;
+	//sqX = X * X;
+	//sqY = Y * Y;
+	//sqZ = Z * Z;
+
+	//euler[1] = asin(2.0 * (W * Y - X * Z));
+	//if (PI_OVER_2 - fabs(euler[1]) > EPSILON) {
+	//	euler[2] = atan2(2.0 * (X * Y + W * Z),
+	//		sqX - sqY - sqZ + sqW);
+	//	euler[0] = atan2(2.0 * (W * X + Y * Z),
+	//		sqW - sqX - sqY + sqZ);
+	//}
+	//else {
+	//	// compute heading from local 'doWn' vector
+	//	euler[2] = atan2(2 * Y * Z - 2 * X * W,
+	//		2 * X * Z + 2 * Y * W);
+	//	euler[0] = 0.0;
+
+	//	// If facing doWn, reverse YaW
+	//	if (euler[1] < 0)
+	//		euler[2] = M_PI - euler[2];
+	//}

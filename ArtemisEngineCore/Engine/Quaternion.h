@@ -20,8 +20,10 @@ namespace ArtemisEngine
 		double W;
 		
 		static Quaternion GetIdentity();
-
+		
+		Quaternion GetNormalized() const;
 		Vector3 GetEulerAngles() const;
+		double Magnitude() const;
 
 		Quaternion operator+(const Quaternion& other) const;
 		Quaternion operator-(const Quaternion& other) const;

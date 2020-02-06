@@ -30,6 +30,8 @@ namespace ArtemisEngine
 		Quaternion operator-(const Quaternion& other) const;
 		Quaternion operator*(const Quaternion& other) const;
 		Quaternion operator*(double scalar) const;
+		Vector3 operator*(const Vector3& point) const;
+
 		void operator+=(const Quaternion& other);
 		void operator-=(const Quaternion& other);
 		void operator*=(const Quaternion& other);

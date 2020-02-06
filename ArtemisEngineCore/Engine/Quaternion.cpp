@@ -55,6 +55,28 @@ double Quaternion::Magnitude() const
 	return magnitude;
 }
 
+Vector3 Quaternion::operator*(const Vector3& point) const
+{
+	double x = X * 2;
+	double y = Y * 2;
+	double z = Z * 2;
+	double xx = X * x;
+	double yy = Y * y;
+	double zz = Z * z;
+	double xy = X * y;
+	double xz = X * z;
+	double yz = Y * z;
+	double wx = W * x;
+	double wy = W * y;
+	double wz = W * z;
+
+	Vector3 res;
+	res.x = (1.0 - (yy + zz)) * point.x + (xy - wz) * point.y + (xz + wy) * point.z;
+	res.y = (xy + wz) * point.x + (1.0 - (xx + zz)) * point.y + (yz - wx) * point.z;
+	res.z = (xz - wy) * point.x + (yz + wx) * point.y + (1.0 - (xx + yy)) * point.z;
+	return res;
+}
+
 bool Quaternion::operator==(const Quaternion& other) const
 {
 	return

@@ -84,11 +84,13 @@ Quaternion Quaternion::operator-(const Quaternion& other) const
 Quaternion Quaternion::operator*(const Quaternion& other) const
 {
 	Quaternion product{};
+
+	
 	                                                                                                                                                                                                                                  
-	product.X = W * other.X + X * other.W + Y * other.Z - Z * other.Y;
-	product.Y = W * other.Y + Y * other.W + Z * other.X - X * other.Z;
-	product.Z = W * other.Z + Z * other.W + X * other.Y - Y * other.X;
-	product.W = W * other.W - X * other.X - Y * other.Y - Z * other.Z;
+	product.X = X * other.W + Y * other.Z - Z * other.Y + W * other.X;
+	product.Y = -X * other.Z + Y * other.W + Z * other.X + W * other.Y;
+	product.Z = X * other.Y - Y * other.X + Z * other.W + W * other.Z;
+	product.W = -X * other.X - Y * other.Y - Z * other.Z + W * other.W;
 	
 	return product;
 }

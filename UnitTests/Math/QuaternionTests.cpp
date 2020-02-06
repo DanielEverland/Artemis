@@ -21,18 +21,18 @@ TEST(Quaternions, Empty)
 }
 TEST(Quaternions, FromEuler)
 {
-	Quaternion expectedResult(0.4015387309747489, -0.13779797639735092, 0.2820094531819598, 0.8603772623355381);
+	Quaternion expectedResult(0.39987815192716875, -0.139654925870582, 0.2872776995099842, 0.8591073790019765);
 
 
-	Quaternion actualResult(-30, 22, 56);
+	Quaternion actualResult(-30.54632, 22.452345, 56.124545);
 
 	
 	ExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, ToEuler)
 {
-	Vector3 expectedResult(-24, 56, 12);
-	Quaternion quaternion(-0.006797587987017614, -0.13456870804627263, 0.475885694635716, 0.869124767368528);
+	Vector3 expectedResult(-24.5453, 56.46343, 12.45341);
+	Quaternion quaternion(-0.0065813969517179716, -0.136038364086436, 0.47981398733518227, 0.866734553521644);
 
 	
 	Vector3 actualResult = quaternion.GetEulerAngles();
@@ -40,30 +40,13 @@ TEST(Quaternions, ToEuler)
 
 	ExpectNear(expectedResult, actualResult);
 }
-TEST(Quaternions, Rotation)
+TEST(Quaternions, Multiplication)
 {
-	/*Quaternion q(10, 35, 90);
-	Quaternion r(0, 10, 0);
+	Quaternion e(-0.06562161125000002, -0.07686467689500001, 0.147448188084, 0.14009445794);
+	Quaternion a(0.523451, -0.25324, 0.25435, 0.25345);
+	Quaternion b(-0.15453, 0.235234, 0.125445, 0.12445);
 
-	Quaternion s = r * q;*/
+	Quaternion c = a * b;
 
-	/*for (int x = 0; x < 3; x++)
-	{
-		for (int y = 0; y < 3; y++)
-		{
-			for (int z = 0; z < 3; z++)
-			{
-				q = Quaternion(arr[x], arr[y], arr[z]);
-			}
-		}
-	}*/
-
-	/*Quaternion appliedRotation(0.008649721, -0.00880202, 0.00880202, 0.9998851);
-	Vector3 expectedValue(45, 60, 30);
-
-	Quaternion rotated = appliedRotation * startRotation;
-
-	Vector3 actualValue = rotated.GetEulerAngles();
-
-	ExpectNear(expectedValue, actualValue);*/
+	ExpectEqual(e, c);
 }

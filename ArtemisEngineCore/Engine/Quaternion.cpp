@@ -54,6 +54,40 @@ double Quaternion::Magnitude() const
 
 	return magnitude;
 }
+void Quaternion::FromEuler(double x, double y, double z)
+{
+	x = Math::DegreesToRadians(x);
+	y = Math::DegreesToRadians(y);
+	z = Math::DegreesToRadians(z);
+
+	// Abbreviations for the various angular functions
+	double xCos = Math::Cos(x / 2);
+	double xSin = Math::Sin(x / 2);
+	double yCos = Math::Cos(y / 2);
+	double ySin = Math::Sin(y / 2);
+	double zCos = Math::Cos(z / 2);
+	double zSin = Math::Sin(z / 2);
+
+	X = xSin * ySin * zCos + xCos * yCos * zSin;
+	Y = xSin * yCos * zCos + xCos * ySin * zSin;
+	Z = xCos * ySin * zCos - xSin * yCos * zSin;
+	W = xCos * yCos * zCos - xSin * ySin * zSin;
+}
+Vector3 Quaternion::GetEulerAngles() const
+{
+	Vector3 euler;
+
+	euler.x = Math::ArcTan2(2 * Y * W - 2 * X * Z, 1 - 2 * Math::Square(Y) - 2 * Math::Square(Z));
+	euler.y = Math::ArcSin(2 * X * Y + 2 * Z * W);
+	euler.z = Math::ArcTan2(2 * X * W - 2 * Y * Z, 1 - 2 * Math::Square(X) - 2 * Math::Square(Z));
+
+
+	euler.x = Math::RadiansToDegrees(euler.x);
+	euler.y = Math::RadiansToDegrees(euler.y);
+	euler.z = Math::RadiansToDegrees(euler.z);
+
+	return euler;
+}
 
 Vector3 Quaternion::operator*(const Vector3& point) const
 {
@@ -145,38 +179,4 @@ Quaternion Quaternion::operator*(double scalar) const
 		this->Y * scalar,
 		this->Z * scalar,
 		this->W * scalar);
-}
-void Quaternion::FromEuler(double x, double y, double z)
-{
-	x = Math::DegreesToRadians(x);
-	y = Math::DegreesToRadians(y);
-	z = Math::DegreesToRadians(z);
-
-	// Abbreviations for the various angular functions
-	double xCos = Math::Cos(x / 2);
-	double xSin = Math::Sin(x / 2);
-	double yCos = Math::Cos(y / 2);
-	double ySin = Math::Sin(y / 2);
-	double zCos = Math::Cos(z / 2);
-	double zSin = Math::Sin(z / 2);
-	
-	X = xSin * ySin * zCos + xCos * yCos * zSin;
-	Y = xSin * yCos * zCos + xCos * ySin * zSin;
-	Z = xCos * ySin * zCos - xSin * yCos * zSin;
-	W = xCos * yCos * zCos - xSin * ySin * zSin;
-}
-Vector3 Quaternion::GetEulerAngles() const
-{
-	Vector3 euler;
-
-	euler.x = Math::ArcTan2(2 * Y * W - 2 * X * Z, 1 - 2 * Math::Square(Y) - 2 * Math::Square(Z));
-	euler.y = Math::ArcSin(2 * X * Y + 2 * Z * W);
-	euler.z = Math::ArcTan2(2 * X * W - 2 * Y * Z, 1 - 2 * Math::Square(X) - 2 * Math::Square(Z));
-
-
-	euler.x = Math::RadiansToDegrees(euler.x);
-	euler.y = Math::RadiansToDegrees(euler.y);
-	euler.z = Math::RadiansToDegrees(euler.z);
-
-	return euler;
 }

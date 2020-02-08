@@ -11,9 +11,19 @@ class Math
 {
 public:
 	static const double Pi;
-	static const double RadToDeg;
-	static const double DegToRad;
 	static const double Infinity;
+
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T RadiansToDegrees(T value)
+	{
+		return value *= 180.0 / Math::Pi;
+	}
+
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T DegreesToRadians(T value)
+	{
+		return value *= Math::Pi / 180.0;
+	}
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T Square(T value)

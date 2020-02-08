@@ -148,9 +148,9 @@ Quaternion Quaternion::operator*(double scalar) const
 }
 void Quaternion::FromEuler(double x, double y, double z)
 {
-	x *= Math::DegToRad;
-	y *= Math::DegToRad;
-	z *= Math::DegToRad;
+	x = Math::DegreesToRadians(x);
+	y = Math::DegreesToRadians(y);
+	z = Math::DegreesToRadians(z);
 
 	// Abbreviations for the various angular functions
 	double xCos = Math::Cos(x / 2);
@@ -174,9 +174,9 @@ Vector3 Quaternion::GetEulerAngles() const
 	euler.z = Math::ArcTan2(2 * X * W - 2 * Y * Z, 1 - 2 * Math::Square(X) - 2 * Math::Square(Z));
 
 
-	euler.x *= Math::RadToDeg;
-	euler.y *= Math::RadToDeg;
-	euler.z *= Math::RadToDeg;
+	euler.x = Math::RadiansToDegrees(euler.x);
+	euler.y = Math::RadiansToDegrees(euler.y);
+	euler.z = Math::RadiansToDegrees(euler.z);
 
 	return euler;
 }

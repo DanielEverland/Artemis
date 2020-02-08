@@ -46,7 +46,7 @@ namespace ArtemisEngine::Maths::Vectors
 
 			double quotient = dotProduct / magnitudeProduct;
 
-			double radians = acos(quotient);
+			double radians = Math::ArcCos(quotient);
 
 			return Math::RadiansToDegrees(radians);
 		}

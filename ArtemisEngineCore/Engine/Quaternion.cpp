@@ -43,10 +43,10 @@ Quaternion Quaternion::GetConjugate() const
 
 double Quaternion::Magnitude() const
 {
-	double x = Math::Squared(X);
-	double y = Math::Squared(Y);
-	double z = Math::Squared(Z);
-	double w = Math::Squared(W);
+	double x = Math::Square(X);
+	double y = Math::Square(Y);
+	double z = Math::Square(Z);
+	double w = Math::Square(W);
 
 	double sum = x + y + z + w;
 
@@ -169,9 +169,9 @@ Vector3 Quaternion::GetEulerAngles() const
 {
 	Vector3 euler;
 
-	euler.x = Math::ArcTan2(2 * Y * W - 2 * X * Z, 1 - 2 * Math::Squared(Y) - 2 * Math::Squared(Z));
+	euler.x = Math::ArcTan2(2 * Y * W - 2 * X * Z, 1 - 2 * Math::Square(Y) - 2 * Math::Square(Z));
 	euler.y = Math::ArcSin(2 * X * Y + 2 * Z * W);
-	euler.z = Math::ArcTan2(2 * X * W - 2 * Y * Z, 1 - 2 * Math::Squared(X) - 2 * Math::Squared(Z));
+	euler.z = Math::ArcTan2(2 * X * W - 2 * Y * Z, 1 - 2 * Math::Square(X) - 2 * Math::Square(Z));
 
 
 	euler.x *= Math::RadToDeg;

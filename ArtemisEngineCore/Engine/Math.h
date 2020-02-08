@@ -16,7 +16,7 @@ public:
 	static const double Infinity;
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Squared(T value)
+	static T Square(T value)
 	{
 		return value * value;
 	}

@@ -68,10 +68,10 @@ void Quaternion::FromEuler(double x, double y, double z)
 	double zCos = Math::Cos(z / 2);
 	double zSin = Math::Sin(z / 2);
 
-	X = xSin * ySin * zCos + xCos * yCos * zSin;
-	Y = xSin * yCos * zCos + xCos * ySin * zSin;
-	Z = xCos * ySin * zCos - xSin * yCos * zSin;
-	W = xCos * yCos * zCos - xSin * ySin * zSin;
+	X =  xCos * ySin * zSin - xSin * yCos * zCos;
+	Y = -xCos * ySin * zCos - xSin * yCos * zSin;
+	Z =  xCos * yCos * zSin - xSin * ySin * zCos;
+	W =  xCos * yCos * zCos + xSin * ySin * zSin;
 }
 Vector3 Quaternion::GetEulerAngles() const
 {

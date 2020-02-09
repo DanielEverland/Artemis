@@ -19,6 +19,14 @@ TEST(Quaternions, Empty)
 	ExpectZero(quaternion.Z);
 	ExpectZero(quaternion.W);
 }
+TEST(Quaternions, Identity)
+{
+	Quaternion expectedResult(0, 0, 0, 1);
+	Quaternion actualResult = Quaternion::GetIdentity();
+
+	
+	ExpectEqual(expectedResult, actualResult);
+}
 TEST(Quaternions, FromEuler)
 {
 	Quaternion expectedResult(0.31635482569715384, -0.044176908151091668, 0.4903870041208746, 0.8108567143667782);

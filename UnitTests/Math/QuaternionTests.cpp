@@ -37,6 +37,16 @@ TEST(Quaternions, FromEuler)
 	
 	ExpectNear(expectedResult, actualResult);
 }
+TEST(Quaternions, FromEulerVector)
+{
+	Quaternion expectedResult(0.31635482569715384, -0.044176908151091668, 0.4903870041208746, 0.8108567143667782);
+
+
+	Quaternion actualResult(Vector3(-30.54632, 22.452345, 56.124545));
+
+
+	ExpectNear(expectedResult, actualResult);
+}
 TEST(Quaternions, ToEuler)
 {
 	Vector3 expectedResult(-24.545300286512489, 56.463428328833587, 12.453410273041552);

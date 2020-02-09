@@ -49,10 +49,32 @@ TEST(Quaternions, FromEulerVector)
 }
 TEST(Quaternions, ToEuler)
 {
-	Vector3 expectedResult(-24.545300286512489, 56.463428328833587, 12.453410273041552);
+	Vector3 expectedResult(-24.545299999999997, 56.463429999999988, 12.453409999999998);
 	Quaternion quaternion(0.23630741822024112, -0.43918868728586835, 0.19333409991110806, 0.84492249754978199);
 
 	
+	Vector3 actualResult = quaternion.GetEulerAngles();
+
+
+	ExpectNear(expectedResult, actualResult);
+}
+TEST(Quaternions, NorthPoleSingularity)
+{
+	Vector3 expectedResult(0, 90, 0);
+	Quaternion quaternion(expectedResult);
+
+
+	Vector3 actualResult = quaternion.GetEulerAngles();
+
+
+	ExpectNear(expectedResult, actualResult);
+}
+TEST(Quaternions, SouthPoleSingularity)
+{
+	Vector3 expectedResult(0, -90, 0);
+	Quaternion quaternion(expectedResult);
+
+
 	Vector3 actualResult = quaternion.GetEulerAngles();
 
 

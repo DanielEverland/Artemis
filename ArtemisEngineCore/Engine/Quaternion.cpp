@@ -76,29 +76,30 @@ void Quaternion::FromEuler(double x, double y, double z)
 Vector3 Quaternion::GetEulerAngles() const
 {
 	Vector3 euler;
-	const float SingularityTest = Z * X - W * Y;
-	const float YawY = 2.0 * (W * Z + X * Y);
-	const float YawX = (1.0 - 2.0 * (Math::Square(Y) + Math::Square(Z)));
+	const double SingularityThreshold = 0.4999995;
+	const double RadToDeg = 180.0 / Math::Pi;
 
-	const float SingularityThreshold = 0.4999995;
-	const float RadToDeg = (180.0) / Math::Pi;
+	const double SingularityTest = Z * X - W * Y;
 
+	const double YawY = 2.0 * (W * Z + X * Y);
+	const double YawX = 1.0 - 2.0 * (Math::Square(Y) + Math::Square(Z));
+	
 	if (SingularityTest < -SingularityThreshold)
 	{
-		euler.X = -euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg);
-		euler.Y = -90.0;
-		euler.Z = Math::ArcTan2(YawY, YawX) * RadToDeg;
+		euler.X = Math::NormalizeAngle(-euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg));
+		euler.Y = -90;
+		euler.Z = 0;
 	}
 	else if (SingularityTest > SingularityThreshold)
 	{
-		euler.X = euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg);
-		euler.Y = 90.0;
-		euler.Z = Math::ArcTan2(YawY, YawX) * RadToDeg;
+		euler.X = Math::NormalizeAngle(euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg));
+		euler.Y = 90;
+		euler.Z = 0;
 	}
 	else
 	{
-		euler.X = Math::ArcTan2(-2.0 * (W * X + Y * Z), (1.0 - 2.0 * (Math::Square(X) + Math::Square(Y)))) * RadToDeg;
-		euler.Y = Math::ArcSin(2.0 * (SingularityTest)) * RadToDeg;
+		euler.X = Math::ArcTan2(-2.0 * (W * X + Y * Z), 1.0 - 2.0 * (Math::Square(X) + Math::Square(Y))) * RadToDeg;
+		euler.Y = Math::ArcSin(2.0 * SingularityTest) * RadToDeg;
 		euler.Z = Math::ArcTan2(YawY, YawX) * RadToDeg;
 	}
 

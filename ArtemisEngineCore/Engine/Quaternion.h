@@ -35,6 +35,7 @@ namespace ArtemisEngine
 		void operator+=(const Quaternion& other);
 		void operator-=(const Quaternion& other);
 		void operator*=(const Quaternion& other);
+		void operator*=(double scalar);
 		bool operator==(const Quaternion& other) const;
 
 	private:

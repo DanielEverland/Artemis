@@ -196,3 +196,10 @@ Quaternion Quaternion::operator*(double scalar) const
 		this->Z * scalar,
 		this->W * scalar);
 }
+void Quaternion::operator*=(double scalar)
+{
+	this->X *= scalar;
+	this->Y *= scalar;
+	this->Z *= scalar;
+	this->W *= scalar;
+}

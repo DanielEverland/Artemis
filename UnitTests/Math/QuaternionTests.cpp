@@ -21,7 +21,7 @@ TEST(Quaternions, Empty)
 }
 TEST(Quaternions, FromEuler)
 {
-	Quaternion expectedResult(0.39987815192716875, -0.139654925870582, 0.2872776995099842, 0.8591073790019765);
+	Quaternion expectedResult(0.31635482569715384, -0.044176908151091668, 0.4903870041208746, 0.8108567143667782);
 
 
 	Quaternion actualResult(-30.54632, 22.452345, 56.124545);
@@ -31,8 +31,8 @@ TEST(Quaternions, FromEuler)
 }
 TEST(Quaternions, ToEuler)
 {
-	Vector3 expectedResult(-24.5453, 56.46343, 12.45341);
-	Quaternion quaternion(-0.0065813969517179716, -0.136038364086436, 0.47981398733518227, 0.866734553521644);
+	Vector3 expectedResult(-24.545300286512489, 56.463428328833587, 12.453410273041552);
+	Quaternion quaternion(0.23630741822024112, -0.43918868728586835, 0.19333409991110806, 0.84492249754978199);
 
 	
 	Vector3 actualResult = quaternion.GetEulerAngles();
@@ -105,9 +105,9 @@ TEST(Quaternions, Conjugate)
 
 TEST(Quaternions, Rotation)
 {
-	Vector3 expectedResult(0, 1, 0);
-	Vector3 point(1, 0, 0);
-	Quaternion rotation(0, 90, 0);
+	Vector3 expectedResult(31.670876291653691, -0.68343385195173312, 71.162023144994777);
+	Vector3 point(76.32, -1.145, 15.54);
+	Quaternion rotation(-24.5453, 56.46343, 12.45341);
 
 
 	Vector3 actualResult = rotation * point;

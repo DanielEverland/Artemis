@@ -70,6 +70,18 @@ TEST(Quaternions, Multiplication)
 
 	ExpectNear(expectedResult, actualResult);
 }
+TEST(Quaternions, MultiplicationEqual)
+{
+	Quaternion expectedResult(-0.06562161125000002, -0.07686467689500001, 0.147448188084, 0.14009445794);
+	Quaternion actualResult(0.523451, -0.25324, 0.25435, 0.25345);
+	Quaternion quaternionB(-0.15453, 0.235234, 0.125445, 0.12445);
+
+
+	actualResult *= quaternionB;
+
+
+	ExpectNear(expectedResult, actualResult);
+}
 TEST(Quaternions, Equality)
 {
 	Quaternion a(0.4563, -3451.0453, Math::Pi, 1);

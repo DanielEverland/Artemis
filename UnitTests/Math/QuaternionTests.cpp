@@ -70,7 +70,17 @@ TEST(Quaternions, Multiplication)
 
 	ExpectNear(expectedResult, actualResult);
 }
+TEST(Quaternions, Equality)
+{
+	Quaternion a(0.4563, -3451.0453, Math::Pi, 1);
+	Quaternion b(0.4563, -3451.0453, Math::Pi, 1);
 
+	
+	bool actualResult = a == b;
+
+
+	ExpectTrue(actualResult);
+}
 TEST(Quaternions, Addition)
 {
 	Quaternion expectedResult(0.0902, 0.4685, 0.08884000000000003, 0.000030000000000002247);

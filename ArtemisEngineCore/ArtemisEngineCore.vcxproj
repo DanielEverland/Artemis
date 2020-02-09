@@ -175,7 +175,6 @@
     <ClInclude Include="Engine\Maths\Vectors\FloatVector2.h" />
     <ClInclude Include="Engine\Maths\Vectors\FloatVector3.h" />
     <ClInclude Include="Engine\Maths\Vectors\FloatVector4.h" />
-    <ClInclude Include="Engine\Maths\Vectors\MatrixBase.h" />
     <ClInclude Include="Engine\Maths\Vectors\Vector2Base.h" />
     <ClInclude Include="Engine\Maths\Vectors\Vector3Base.h" />
     <ClInclude Include="Engine\Maths\Vectors\Vector4Base.h" />
@@ -208,7 +207,6 @@
     <ClCompile Include="Direct X\Texture2D.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
     <ClCompile Include="Engine\Math.cpp" />
-    <ClCompile Include="Engine\Maths\Vectors\MatrixBase.cpp" />
     <ClCompile Include="Engine\Quaternion.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Input\Input.cpp" />

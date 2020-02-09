@@ -18,21 +18,21 @@ namespace ArtemisEngine
 
 		IntVector3& operator=(const Vector3Base<int>& copy)
 		{
-			this->x = copy.x;
-			this->y = copy.y;
-			this->z = copy.z;
+			this->X = copy.X;
+			this->Y = copy.Y;
+			this->Z = copy.Z;
 
 			return *this;
 		}
 		IntVector3& operator=(Vector3Base<int>&& move)
 		{
-			this->x = move.x;
-			this->y = move.y;
-			this->z = move.z;
+			this->X = move.X;
+			this->Y = move.Y;
+			this->Z = move.Z;
 
-			move.x = 0;
-			move.y = 0;
-			move.z = 0;
+			move.X = 0;
+			move.Y = 0;
+			move.Z = 0;
 
 			return *this;
 		}

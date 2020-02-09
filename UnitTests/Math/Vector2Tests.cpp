@@ -11,24 +11,24 @@ namespace Maths::Vectors
     {
         Vector2 vector(10.0, 20.25);
 
-        EXPECT_EQ(10.0, vector.x);
-        EXPECT_EQ(20.25, vector.y);
+        EXPECT_EQ(10.0, vector.X);
+        EXPECT_EQ(20.25, vector.Y);
     }
     TEST(Vector2, IntConstructorXY)
     {
         Vector2 vector(1, 2);
 
-        EXPECT_EQ(1, vector.x);
-        EXPECT_EQ(2, vector.y);
+        EXPECT_EQ(1, vector.X);
+        EXPECT_EQ(2, vector.Y);
     }
     TEST(Vector2, MemberAssignment)
     {
         Vector2 vector;
 
-        vector.x = 5;
-        vector.y = 10;
+        vector.X = 5;
+        vector.Y = 10;
 
-        EXPECT_EQ(5, vector.x);
-        EXPECT_EQ(10, vector.y);
+        EXPECT_EQ(5, vector.X);
+        EXPECT_EQ(10, vector.Y);
     }
 }

@@ -129,7 +129,7 @@ char (&IsNullLiteralHelper(...))[2];  // NOLINT
 #ifdef GTEST_ELLIPSIS_NEEDS_POD_
 // We lose support for NULL detection where the compiler doesn't like
 // passing non-POD classes through ellipsis (...).
-# define GTEST_IS_NULL_LITERAL_(x) false
+# define GTEST_IS_NULL_LITERAL_(X) false
 #else
 # define GTEST_IS_NULL_LITERAL_(x) \
     (sizeof(::testing::internal::IsNullLiteralHelper(x)) == 1)

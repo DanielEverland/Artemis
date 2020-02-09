@@ -16,18 +16,18 @@ namespace ArtemisEngine::Maths::Vectors
 
 		Vector2Base& operator=(VectorBase<T, 2>& copy)
 		{
-			this->x = copy.x;
-			this->y = copy.y;
+			this->X = copy.X;
+			this->Y = copy.Y;
 
 			return *this;
 		}
 		Vector2Base& operator=(VectorBase<T, 2>&& move)
 		{
-			this->x = move.x;
-			this->y = move.y;
+			this->X = move.X;
+			this->Y = move.Y;
 
-			move.x = 0;
-			move.y = 0;
+			move.X = 0;
+			move.Y = 0;
 
 			return *this;
 		}

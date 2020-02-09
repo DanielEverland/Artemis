@@ -17,18 +17,18 @@ namespace ArtemisEngine
 
 		IntVector2& operator=(const Vector2Base<int>& copy)
 		{
-			this->x = copy.x;
-			this->y = copy.y;
+			this->X = copy.X;
+			this->Y = copy.Y;
 
 			return *this;
 		}
 		IntVector2& operator=(Vector2Base<int>&& move)
 		{
-			this->x = move.x;
-			this->y = move.y;
+			this->X = move.X;
+			this->Y = move.Y;
 
-			move.x = 0;
-			move.y = 0;
+			move.X = 0;
+			move.Y = 0;
 
 			return *this;
 		}

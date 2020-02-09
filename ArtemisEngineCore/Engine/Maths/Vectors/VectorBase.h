@@ -228,18 +228,18 @@ namespace ArtemisEngine::Maths::Vectors
 	class VectorBase<T, 2> : public VectorImplementor<T, 2>
 	{
 	public:
-		T x;
-		T y;
+		T X;
+		T Y;
 		
 		VectorBase()
 		{
-			this->x = 0;
-			this->y = 0;
+			this->X = 0;
+			this->Y = 0;
 		}
 		VectorBase(T x, T y)
 		{
-			this->x = x;
-			this->y = y;
+			this->X = x;
+			this->Y = y;
 		}
 
 	private:
@@ -247,11 +247,11 @@ namespace ArtemisEngine::Maths::Vectors
 		{
 			if (index == 0)
 			{
-				return x;
+				return X;
 			}
 			else if (index == 1)
 			{
-				return y;
+				return Y;
 			}
 			else
 			{
@@ -262,11 +262,11 @@ namespace ArtemisEngine::Maths::Vectors
 		{
 			if (index == 0)
 			{
-				return x;
+				return X;
 			}
 			else if (index == 1)
 			{
-				return y;
+				return Y;
 			}
 			else
 			{
@@ -279,36 +279,36 @@ namespace ArtemisEngine::Maths::Vectors
 	class VectorBase<T, 3> : public VectorImplementor<T, 3>
 	{
 	public:
-		T x;
-		T y;
-		T z;
+		T X;
+		T Y;
+		T Z;
 
 		// Returns cross product of two vectors
 		static VectorBase GetCrossProduct(const VectorBase& a, const VectorBase& b)
 		{
 			return VectorBase(
-				a.y * b.z - a.z * b.y,
-				a.z * b.x - a.x * b.z,
-				a.x * b.y - a.y * b.x);
+				a.Y * b.Z - a.Z * b.Y,
+				a.Z * b.X - a.X * b.Z,
+				a.X * b.Y - a.Y * b.X);
 		}
 
 		VectorBase()
 		{
-			x = 0;
-			y = 0;
-			z = 0;
+			X = 0;
+			Y = 0;
+			Z = 0;
 		}
 		VectorBase(T x, T y)
 		{
-			this->x = x;
-			this->y = y;
-			this->z = 0;
+			this->X = x;
+			this->Y = y;
+			this->Z = 0;
 		}
 		VectorBase(T x, T y, T z)
 		{
-			this->x = x;
-			this->y = y;
-			this->z = z;
+			this->X = x;
+			this->Y = y;
+			this->Z = z;
 		}
 
 	private:
@@ -316,15 +316,15 @@ namespace ArtemisEngine::Maths::Vectors
 		{
 			if (index == 0)
 			{
-				return x;
+				return X;
 			}
 			else if (index == 1)
 			{
-				return y;
+				return Y;
 			}
 			else if (index == 2)
 			{
-				return z;
+				return Z;
 			}
 			else
 			{
@@ -335,15 +335,15 @@ namespace ArtemisEngine::Maths::Vectors
 		{
 			if (index == 0)
 			{
-				return x;
+				return X;
 			}
 			else if (index == 1)
 			{
-				return y;
+				return Y;
 			}
 			else if (index == 2)
 			{
-				return z;
+				return Z;
 			}
 			else
 			{
@@ -356,38 +356,38 @@ namespace ArtemisEngine::Maths::Vectors
 	class VectorBase<T, 4> : public VectorImplementor<T, 4>
 	{
 	public:
-		T x;
-		T y;
-		T z;
-		T w;
+		T X;
+		T Y;
+		T Z;
+		T W;
 
 		VectorBase()
 		{
-			x = 0;
-			y = 0;
-			z = 0;
-			w = 0;
+			X = 0;
+			Y = 0;
+			Z = 0;
+			W = 0;
 		}
 		VectorBase(T x, T y)
 		{
-			this->x = x;
-			this->y = y;
-			this->z = 0;
-			this->w = 0;
+			this->X = x;
+			this->Y = y;
+			this->Z = 0;
+			this->W = 0;
 		}
 		VectorBase(T x, T y, T z)
 		{
-			this->x = x;
-			this->y = y;
-			this->z = z;
-			this->w = 0;
+			this->X = x;
+			this->Y = y;
+			this->Z = z;
+			this->W = 0;
 		}
 		VectorBase(T x, T y, T z, T w)
 		{
-			this->x = x;
-			this->y = y;
-			this->z = z;
-			this->w = w;
+			this->X = x;
+			this->Y = y;
+			this->Z = z;
+			this->W = w;
 		}
 
 	private:
@@ -395,19 +395,19 @@ namespace ArtemisEngine::Maths::Vectors
 		{
 			if (index == 0)
 			{
-				return x;
+				return X;
 			}
 			else if (index == 1)
 			{
-				return y;
+				return Y;
 			}
 			else if (index == 2)
 			{
-				return z;
+				return Z;
 			}
 			else if (index == 3)
 			{
-				return w;
+				return W;
 			}
 			else
 			{
@@ -418,19 +418,19 @@ namespace ArtemisEngine::Maths::Vectors
 		{
 			if (index == 0)
 			{
-				return x;
+				return X;
 			}
 			else if (index == 1)
 			{
-				return y;
+				return Y;
 			}
 			else if (index == 2)
 			{
-				return z;
+				return Z;
 			}
 			else if (index == 3)
 			{
-				return w;
+				return W;
 			}
 			else
 			{

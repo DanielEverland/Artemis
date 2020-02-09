@@ -10,28 +10,28 @@ namespace Maths::Vectors
     {
         IntVector3 vector(1, 3);
 
-        EXPECT_EQ(1, vector.x);
-        EXPECT_EQ(3, vector.y);
+        EXPECT_EQ(1, vector.X);
+        EXPECT_EQ(3, vector.Y);
     }
     TEST(IntVector3, ConstructorXYZ)
     {
         IntVector3 vector(19, 2, 5);
 
-        EXPECT_EQ(19, vector.x);
-        EXPECT_EQ(2, vector.y);
-        EXPECT_EQ(5, vector.z);
+        EXPECT_EQ(19, vector.X);
+        EXPECT_EQ(2, vector.Y);
+        EXPECT_EQ(5, vector.Z);
     }
     TEST(IntVector3, MemberAssignment)
     {
         IntVector3 vector;
 
-        vector.x = 5;
-        vector.y = 10;
-        vector.z = 2;
+        vector.X = 5;
+        vector.Y = 10;
+        vector.Z = 2;
 
-        EXPECT_EQ(5, vector.x);
-        EXPECT_EQ(10, vector.y);
-        EXPECT_EQ(2, vector.z);
+        EXPECT_EQ(5, vector.X);
+        EXPECT_EQ(10, vector.Y);
+        EXPECT_EQ(2, vector.Z);
     }
     TEST(IntVector3, CrossProduct)
     {
@@ -40,8 +40,8 @@ namespace Maths::Vectors
 
         IntVector3 c = IntVector3::GetCrossProduct(a, b);
 
-        EXPECT_EQ(40, c.x);
-        EXPECT_EQ(-80, c.y);
-        EXPECT_EQ(40, c.z);
+        EXPECT_EQ(40, c.X);
+        EXPECT_EQ(-80, c.Y);
+        EXPECT_EQ(40, c.Z);
     }
 }

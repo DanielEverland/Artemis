@@ -151,9 +151,6 @@
     <ClInclude Include="Engine\Maths\Vectors\FloatVector4.h">
       <Filter>Source\Engine\Math\Vectors</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\MatrixBase.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\Vector2Base.h">
       <Filter>Source\Engine\Math\Vectors</Filter>
     </ClInclude>
@@ -221,9 +218,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Quaternion.cpp">
       <Filter>Source\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Maths\Vectors\MatrixBase.cpp">
-      <Filter>Source\Engine\Math\Vectors</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Math.cpp">
       <Filter>Source\Engine</Filter>

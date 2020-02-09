@@ -17,21 +17,21 @@ namespace ArtemisEngine::Maths::Vectors
 
 		Vector3Base& operator=(VectorBase<T, 3>& copy)
 		{
-			this->x = copy.x;
-			this->y = copy.y;
-			this->z = copy.z;
+			this->X = copy.X;
+			this->Y = copy.Y;
+			this->Z = copy.Z;
 
 			return *this;
 		}
 		Vector3Base& operator=(VectorBase<T, 3>&& move)
 		{
-			this->x = move.x;
-			this->y = move.y;
-			this->z = move.z;
+			this->X = move.X;
+			this->Y = move.Y;
+			this->Z = move.Z;
 
-			move.x = 0;
-			move.y = 0;
-			move.z = 0;
+			move.X = 0;
+			move.Y = 0;
+			move.Z = 0;
 
 			return *this;
 		}

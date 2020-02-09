@@ -10,38 +10,38 @@ namespace Maths::Vectors
     {
         IntVector4 vector(5, 4);
 
-        EXPECT_EQ(5, vector.x);
-        EXPECT_EQ(4, vector.y);
+        EXPECT_EQ(5, vector.X);
+        EXPECT_EQ(4, vector.Y);
     }
     TEST(IntVector4, ConstructorXYZ)
     {
         IntVector4 vector(-24, 5, 5);
 
-        EXPECT_EQ(-24, vector.x);
-        EXPECT_EQ(5, vector.y);
-        EXPECT_EQ(5, vector.z);
+        EXPECT_EQ(-24, vector.X);
+        EXPECT_EQ(5, vector.Y);
+        EXPECT_EQ(5, vector.Z);
     }
     TEST(IntVector4, ConstructorXYZW)
     {
         IntVector4 vector(0, 54, 1, 4);
 
-        EXPECT_EQ(0, vector.x);
-        EXPECT_EQ(54, vector.y);
-        EXPECT_EQ(1, vector.z);
-        EXPECT_EQ(4, vector.w);
+        EXPECT_EQ(0, vector.X);
+        EXPECT_EQ(54, vector.Y);
+        EXPECT_EQ(1, vector.Z);
+        EXPECT_EQ(4, vector.W);
     }
     TEST(IntVector4, MemberAssignment)
     {
         IntVector4 vector;
 
-        vector.x = 1;
-        vector.y = 2;
-        vector.z = 3;
-        vector.w = 4;
+        vector.X = 1;
+        vector.Y = 2;
+        vector.Z = 3;
+        vector.W = 4;
 
-        EXPECT_EQ(1, vector.x);
-        EXPECT_EQ(2, vector.y);
-        EXPECT_EQ(3, vector.z);
-        EXPECT_EQ(4, vector.w);
+        EXPECT_EQ(1, vector.X);
+        EXPECT_EQ(2, vector.Y);
+        EXPECT_EQ(3, vector.Z);
+        EXPECT_EQ(4, vector.W);
     }
 }

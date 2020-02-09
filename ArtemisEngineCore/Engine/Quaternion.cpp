@@ -5,7 +5,7 @@ using namespace ArtemisEngine;
 
 Quaternion::Quaternion(Vector3 rotation)
 {
-	FromEuler(rotation.x, rotation.y, rotation.z);
+	FromEuler(rotation.X, rotation.Y, rotation.Z);
 }
 
 Quaternion::Quaternion(double xRotation, double yRotation, double zRotation)
@@ -85,21 +85,21 @@ Vector3 Quaternion::GetEulerAngles() const
 
 	if (SingularityTest < -SingularityThreshold)
 	{
-		euler.x = -euler.z - (2.0 * Math::ArcTan2(X, W) * RadToDeg);
-		euler.y = -90.0;
-		euler.z = Math::ArcTan2(YawY, YawX) * RadToDeg;
+		euler.X = -euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg);
+		euler.Y = -90.0;
+		euler.Z = Math::ArcTan2(YawY, YawX) * RadToDeg;
 	}
 	else if (SingularityTest > SingularityThreshold)
 	{
-		euler.x = euler.z - (2.0 * Math::ArcTan2(X, W) * RadToDeg);
-		euler.y = 90.0;
-		euler.z = Math::ArcTan2(YawY, YawX) * RadToDeg;
+		euler.X = euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg);
+		euler.Y = 90.0;
+		euler.Z = Math::ArcTan2(YawY, YawX) * RadToDeg;
 	}
 	else
 	{
-		euler.x = Math::ArcTan2(-2.0 * (W * X + Y * Z), (1.0 - 2.0 * (Math::Square(X) + Math::Square(Y)))) * RadToDeg;
-		euler.y = Math::ArcSin(2.0 * (SingularityTest)) * RadToDeg;
-		euler.z = Math::ArcTan2(YawY, YawX) * RadToDeg;
+		euler.X = Math::ArcTan2(-2.0 * (W * X + Y * Z), (1.0 - 2.0 * (Math::Square(X) + Math::Square(Y)))) * RadToDeg;
+		euler.Y = Math::ArcSin(2.0 * (SingularityTest)) * RadToDeg;
+		euler.Z = Math::ArcTan2(YawY, YawX) * RadToDeg;
 	}
 
 	return euler;
@@ -121,9 +121,9 @@ Vector3 Quaternion::operator*(const Vector3& point) const
 	double wz = W * z;
 
 	Vector3 res;
-	res.x = (1.0 - (yy + zz)) * point.x + (xy - wz) * point.y + (xz + wy) * point.z;
-	res.y = (xy + wz) * point.x + (1.0 - (xx + zz)) * point.y + (yz - wx) * point.z;
-	res.z = (xz - wy) * point.x + (yz + wx) * point.y + (1.0 - (xx + yy)) * point.z;
+	res.X = (1.0 - (yy + zz)) * point.X + (xy - wz) * point.Y + (xz + wy) * point.Z;
+	res.Y = (xy + wz) * point.X + (1.0 - (xx + zz)) * point.Y + (yz - wx) * point.Z;
+	res.Z = (xz - wy) * point.X + (yz + wx) * point.Y + (1.0 - (xx + yy)) * point.Z;
 	return res;
 }
 

@@ -38,6 +38,9 @@
     <ClCompile Include="Math\QuaternionTests.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="Math\MathTests.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

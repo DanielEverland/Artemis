@@ -116,7 +116,7 @@ namespace Maths::Matrices
 		Matrix matrix;
 
 
-		ExpectEmpty(matrix);
+		MatrixExpectEmpty(matrix);
 	}
 	TEST(MatrixTest, InitializerListConstructor)
 	{

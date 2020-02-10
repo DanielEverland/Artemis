@@ -1,5 +1,7 @@
 #pragma once
 
+#define TempExpectEqual(expectedValue, actualValue) EXPECT_EQ(expectedValue, actualValue);
+
 namespace ArtemisEngine::UnitTests::Comparisons
 {
 	class ComparisonConstants

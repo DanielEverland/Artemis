@@ -1,22 +1,19 @@
 #pragma once
 
+#include "ComparisonUtility.h"
 #include "Engine/Maths/Matrices/GenericMatrix.h"
+
+#define MatrixExpectEmpty(matrix) \
+for (unsigned int i = 0; i < matrix.GetRows(); i++) \
+	for (unsigned int j = 0; j < matrix.GetColumns(); j++) \
+		TempExpectEqual(0, matrix[i][j]);
+
+
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {
 	using ArtemisEngine::Maths::Matrices::GenericMatrix;
 
-	template<class T, unsigned int rows, unsigned int columns>
-	void ExpectEmpty(const GenericMatrix<T, rows, columns>& matrix)
-	{
-		for (unsigned int i = 0; i < matrix.GetRows(); i++)
-		{
-			for (unsigned j = 0; j < matrix.GetColumns(); j++)
-			{
-				EXPECT_EQ(0, matrix[i][j]);
-			}
-		}
-	}
 	template<class T, unsigned int rows, unsigned int columns>
 	void ExpectRowEqual(const GenericMatrix<T, rows, columns> expectedValues, const VectorBase<T, columns>& row, int rowIndex = 0)
 	{

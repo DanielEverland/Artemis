@@ -134,16 +134,6 @@ namespace Maths::Matrices
 
 		MatrixExpectNear(expectedResult, actualValues);
 	}
-	TEST(MatrixTest, MultiDimensionalIndexer)
-	{
-		const RowVector* expectedValues = TestValues[0];
-
-
-		Matrix matrix = GetTestMatrix(expectedValues);
-
-
-		ExpectEqual(expectedValues, matrix);
-	}
 	TEST(MatrixTest, Addition)
 	{
 		Matrix a = GetTestMatrix(TestValues[0]);

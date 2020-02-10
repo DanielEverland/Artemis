@@ -162,7 +162,7 @@ namespace Maths::Matrices
 		Matrix actualResult = a + b;
 
 
-		ExpectEqual(expectedResult, actualResult);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, AdditionAssignment)
 	{

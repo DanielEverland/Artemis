@@ -6,6 +6,9 @@ using ArtemisEngine::Vector3;
 
 namespace ArtemisEngine
 {
+	// Quaternions represent rotations in an efficient manner without suffering from gimbal lock.
+	// Rotations can be multiplied with each other, and points can be rotated by being multiplied with a quaternion.
+	// Note that multiplying a point is not communitative. The quaternion must be the first operand.
 	class Quaternion
 	{
 	public:

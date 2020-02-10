@@ -69,7 +69,7 @@ void Quaternion::FromEuler(double x, double y, double z)
 	Z =  xCos * yCos * zSin - xSin * ySin * zCos;
 	W =  xCos * yCos * zCos + xSin * ySin * zSin;
 }
-Vector3 Quaternion::GetEulerAngles() const
+Vector3 Quaternion::GetEuler() const
 {
 	Vector3 euler;
 	const double SingularityThreshold = 0.4999995;

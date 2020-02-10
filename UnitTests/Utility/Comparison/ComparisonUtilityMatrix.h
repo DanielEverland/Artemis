@@ -8,6 +8,14 @@ for (unsigned int i = 0; i < matrix.GetRows(); i++) \
 	for (unsigned int j = 0; j < matrix.GetColumns(); j++) \
 		TempExpectEqual(0, matrix[i][j]);
 
+#define MatrixExpectRowNear(matrix, row) \
+for (unsigned int j = 0; i < matrix.GetColumns(); i++) \
+	TempExpectNear(matrix[0][j], row[j]);
+	
+#define MatrixExpectNear(expectedResult, actualResult) \
+for (unsigned int i = 0; i < actualResult.GetRows(); i++) \
+	for (unsigned int j = 0; j < actualResult.GetColumns(); j++) \
+		TempExpectNear(expectedResult[i][j], actualResult[i][j]);
 
 
 namespace ArtemisEngine::UnitTests::Comparisons
@@ -30,18 +38,18 @@ namespace ArtemisEngine::UnitTests::Comparisons
 			EXPECT_EQ(expectedValues[i][0], column[i]);
 		}
 	}
-	void ExpectNear(double expectedValue, double actualValue, double precision = ComparisonConstants::nearComparisonPrecision)
+	void ExpectNear(double expectedValue, double actualValue, double precision = NearComparisonPrecision)
 	{
 		EXPECT_NEAR(expectedValue, actualValue, precision);
 	}
 	template<class T, unsigned int rows, unsigned int columns>
-	void ExpectNear(const GenericMatrix<T, rows, columns>& expectedValue, const GenericMatrix<T, rows, columns>& actualValue, double precision = ComparisonConstants::nearComparisonPrecision)
+	void ExpectNear(const GenericMatrix<T, rows, columns>& expectedValue, const GenericMatrix<T, rows, columns>& actualValue, double precision = NearComparisonPrecision)
 	{
 		for (unsigned int i = 0; i < rows; i++)
 		{
 			for (unsigned int j = 0; j < columns; j++)
 			{
-				EXPECT_NEAR(expectedValue[i][j], actualValue[i][j], ComparisonConstants::nearComparisonPrecision);
+				EXPECT_NEAR(expectedValue[i][j], actualValue[i][j], NearComparisonPrecision);
 			}
 		}
 	}

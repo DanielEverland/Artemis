@@ -1,15 +1,16 @@
 #pragma once
 
-#define TempExpectEqual(expectedValue, actualValue) EXPECT_EQ(expectedValue, actualValue);
+#define NearComparisonPrecision 1e-8
+
+#define TempExpectEqual(expectedValue, actualValue) \
+	EXPECT_EQ(expectedValue, actualValue);
+
+#define TempExpectNear(expectedValue, actualValue) \
+	EXPECT_NEAR(expectedValue, actualValue, NearComparisonPrecision);
+
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {
-	class ComparisonConstants
-	{
-	public:
-		inline static const double nearComparisonPrecision = 1e-8;
-	};
-
 	template<class T>
 	inline void ExpectZero(T value)
 	{
@@ -29,6 +30,6 @@ namespace ArtemisEngine::UnitTests::Comparisons
 	}
 	inline void ExpectNear(double a, double b)
 	{
-		EXPECT_NEAR(a, b, ComparisonConstants::nearComparisonPrecision);
+		TempExpectNear(a, b);
 	}
 }

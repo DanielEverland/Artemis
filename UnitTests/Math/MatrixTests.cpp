@@ -120,13 +120,19 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, InitializerListConstructor)
 	{
-		const RowVector* expectedValues = TestValues[0];
+		RowVector expectedResult[4]
+		{
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		};
 
 
-		Matrix matrix({ expectedValues[0], expectedValues[1], expectedValues[2], expectedValues[3] });
+		Matrix actualValues(expectedResult);
 
 
-		ExpectEqual(expectedValues, matrix);
+		MatrixExpectNear(expectedResult, actualValues);
 	}
 	TEST(MatrixTest, MultiDimensionalIndexer)
 	{

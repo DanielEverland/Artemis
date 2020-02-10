@@ -16,10 +16,10 @@ namespace ArtemisEngine::UnitTests::Comparisons
 	}
 	inline void ExpectNear(Quaternion quaternion, double x, double y, double z, double w)
 	{
-		EXPECT_NEAR(x, quaternion.X, ComparisonConstants::nearComparisonPrecision);
-		EXPECT_NEAR(y, quaternion.Y, ComparisonConstants::nearComparisonPrecision);
-		EXPECT_NEAR(z, quaternion.Z, ComparisonConstants::nearComparisonPrecision);
-		EXPECT_NEAR(w, quaternion.W, ComparisonConstants::nearComparisonPrecision);
+		EXPECT_NEAR(x, quaternion.X, NearComparisonPrecision);
+		EXPECT_NEAR(y, quaternion.Y, NearComparisonPrecision);
+		EXPECT_NEAR(z, quaternion.Z, NearComparisonPrecision);
+		EXPECT_NEAR(w, quaternion.W, NearComparisonPrecision);
 	}
 	inline void ExpectEqual(Quaternion a, Quaternion b)
 	{
@@ -30,9 +30,9 @@ namespace ArtemisEngine::UnitTests::Comparisons
 	}
 	inline void ExpectNear(Quaternion a, Quaternion b)
 	{
-		EXPECT_NEAR(a.X, b.X, ComparisonConstants::nearComparisonPrecision);
-		EXPECT_NEAR(a.Y, b.Y, ComparisonConstants::nearComparisonPrecision);
-		EXPECT_NEAR(a.Z, b.Z, ComparisonConstants::nearComparisonPrecision);
-		EXPECT_NEAR(a.W, b.W, ComparisonConstants::nearComparisonPrecision);
+		EXPECT_NEAR(a.X, b.X, NearComparisonPrecision);
+		EXPECT_NEAR(a.Y, b.Y, NearComparisonPrecision);
+		EXPECT_NEAR(a.Z, b.Z, NearComparisonPrecision);
+		EXPECT_NEAR(a.W, b.W, NearComparisonPrecision);
 	}
 }

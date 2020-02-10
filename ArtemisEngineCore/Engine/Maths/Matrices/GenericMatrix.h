@@ -64,6 +64,9 @@ namespace ArtemisEngine::Maths::Matrices
 	class GenericMatrix : BaseMatrix
 	{
 	public:
+		typedef VectorBase<T, columns> RowVector;
+		typedef VectorBase<T, rows> ColumnVector;
+
 		~GenericMatrix() = default;
 		GenericMatrix() = default;
 		
@@ -91,7 +94,7 @@ namespace ArtemisEngine::Maths::Matrices
 		}
 		
 		template<std::size_t N>
-		GenericMatrix(const VectorBase<T, columns>(&rowVectors)[N])
+		GenericMatrix(const RowVector(&rowVectors)[N])
 		{
 			static_assert(N <= rows, "Passed more row vectors to matrix constructor than there are rows");
 

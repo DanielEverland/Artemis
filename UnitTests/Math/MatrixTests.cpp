@@ -16,7 +16,7 @@ namespace Maths::Matrices
 	const unsigned int columns = 4;
 
 	typedef VectorBase<double, columns> RowVector;
-	typedef VectorBase<double, columns> ColumnVector;
+	typedef VectorBase<double, rows> ColumnVector;
 	typedef GenericMatrix<double, rows, columns> Matrix;
 	typedef	GenericMatrix<double, 1, columns> RowMatrix;
 	typedef	GenericMatrix<double, rows, 1> ColumnMatrix;
@@ -136,15 +136,33 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, Addition)
 	{
-		Matrix a = GetTestMatrix(TestValues[0]);
-		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = AddMatrices(a, b);
+		Matrix a
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix b
+		({
+			RowVector(4.25, -1.25, 3.0, 5.25),
+			RowVector(-1.0, 1.25, 2.0, 3.25),
+			RowVector(-0.75, -1.25, -2.0, 3.25),
+			RowVector(2.50, -1.50, -1.75, 2.0),
+		});
+		Matrix expectedResult
+		({
+			RowVector(5.25, 1.25, 1.75, 5.25),
+			RowVector(-3.75, 2.50, 2.25, 4.50),
+			RowVector(2.50, -2.25, 0.75, 7.50),
+			RowVector(-0.5, -2.75, 0.25, 3.0),
+		});
 
 
-		Matrix actualValues = a + b;
+		Matrix actualResult = a + b;
 
 
-		ExpectEqual(expectedValues, actualValues);
+		ExpectEqual(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, AdditionAssignment)
 	{

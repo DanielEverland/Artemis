@@ -199,18 +199,6 @@ TEST(Quaternions, Normalized)
 	ExpectNear(expectedResult, actualResult);
 }
 
-TEST(Quaternions, Conjugate)
-{
-	Quaternion expectedResult(-0.4351, 0.4745, -0.1543, 0.7563);
-	Quaternion quaternion(0.4351, -0.4745, 0.1543, 0.7563);
-
-
-	Quaternion actualResult = quaternion.GetConjugate();
-
-
-	ExpectNear(expectedResult, actualResult);
-}
-
 TEST(Quaternions, Rotation)
 {
 	Vector3 expectedResult(31.670876291653691, -0.68343385195173312, 71.162023144994777);

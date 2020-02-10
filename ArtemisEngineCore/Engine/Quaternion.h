@@ -19,7 +19,7 @@ namespace ArtemisEngine
 		double Z;
 		double W;
 		
-		// Quaternion with no rotation
+		// Quaternion with no rotation.
 		// (0, 0, 0, 1)
 		static Quaternion GetIdentity();
 		

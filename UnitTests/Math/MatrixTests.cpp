@@ -196,15 +196,33 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, Subtraction)
 	{
-		Matrix a = GetTestMatrix(TestValues[0]);
-		Matrix b = GetTestMatrix(TestValues[1]);
-		Matrix expectedValues = SubtractMatrices(a, b);
+		Matrix a
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix b
+		({
+			RowVector(4.25, -1.25, 3.0, 5.25),
+			RowVector(-1.0, 1.25, 2.0, 3.25),
+			RowVector(-0.75, -1.25, -2.0, 3.25),
+			RowVector(2.50, -1.50, -1.75, 2.0),
+		});
+		Matrix expectedResult
+		({
+			RowVector(-3.25, 3.75, -4.25, -5.25),
+			RowVector(-1.75, 0, -1.75, -2.0),
+			RowVector(4.0, 0.25, 4.75, 1.0),
+			RowVector(-5.50, 0.25, 3.75, -1.0),
+		});
 		
 
-		Matrix actualValues = a - b;
+		Matrix actualResult = a - b;
 
 
-		ExpectEqual(expectedValues, actualValues);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, SubtractionAssignment)
 	{

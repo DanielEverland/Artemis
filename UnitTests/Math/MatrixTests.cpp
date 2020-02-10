@@ -257,14 +257,26 @@ namespace Maths::Matrices
 	TEST(MatrixTest, ScalarMultiplication)
 	{
 		double scalar = 2;
-		Matrix matrix = GetTestMatrix(TestValues[0]);
-		Matrix expectedValues = MatrixMultiplyScalar(matrix, scalar);
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix expectedResult
+		({
+			RowVector(2.0, 5.0, -2.50, 0),
+			RowVector(-5.50, 2.50, 0.5, 2.50),
+			RowVector(6.50, -2.0, 5.50, 8.50),
+			RowVector(-6.0, -2.50, 4.0, 2.0)
+		});
 
 
-		Matrix actualValues = matrix * scalar;
+		Matrix actualResult = matrix * scalar;
 
 
-		ExpectEqual(expectedValues, actualValues);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, ScalarMultiplicationAssignment)
 	{

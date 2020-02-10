@@ -13,8 +13,6 @@ namespace ArtemisEngine
 	{
 	public:
 		Quaternion() = default;
-		Quaternion(Vector3 rotation);
-		Quaternion(double xRotation, double yRotation, double zRotation);
 		Quaternion(double x, double y, double z, double w);
 
 		double X;
@@ -25,6 +23,12 @@ namespace ArtemisEngine
 		// Quaternion with no rotation.
 		// (0, 0, 0, 1)
 		static Quaternion GetIdentity();
+
+		// Constructs a quaternion using euler angles.
+		static Quaternion FromEuler(const Vector3& eulerAngles);
+
+		// Constructs a quaternion using euler angles.
+		static Quaternion FromEuler(double xRotation, double yRotation, double zRotation);
 		
 		// Returns a quaternion that moves along a unit sphere.
 		// Keeps the same orientation, but its magnitude becomes 1.
@@ -47,8 +51,5 @@ namespace ArtemisEngine
 		void operator*=(const Quaternion& other);
 		void operator*=(double scalar);
 		bool operator==(const Quaternion& other) const;
-
-	private:
-		void FromEuler(double x, double y, double z);
 	};
 }

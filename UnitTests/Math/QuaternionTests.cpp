@@ -32,7 +32,7 @@ TEST(Quaternions, FromEuler)
 	Quaternion expectedResult(0.31635482569715384, -0.044176908151091668, 0.4903870041208746, 0.8108567143667782);
 
 
-	Quaternion actualResult(-30.54632, 22.452345, 56.124545);
+	Quaternion actualResult = Quaternion::FromEuler(-30.54632, 22.452345, 56.124545);
 
 	
 	ExpectNear(expectedResult, actualResult);
@@ -42,7 +42,7 @@ TEST(Quaternions, FromEulerVector)
 	Quaternion expectedResult(0.31635482569715384, -0.044176908151091668, 0.4903870041208746, 0.8108567143667782);
 
 
-	Quaternion actualResult(Vector3(-30.54632, 22.452345, 56.124545));
+	Quaternion actualResult = Quaternion::FromEuler(Vector3(-30.54632, 22.452345, 56.124545));
 
 
 	ExpectNear(expectedResult, actualResult);
@@ -61,7 +61,7 @@ TEST(Quaternions, ToEuler)
 TEST(Quaternions, NorthPoleSingularity)
 {
 	Vector3 expectedResult(0, 90, 0);
-	Quaternion quaternion(expectedResult);
+	Quaternion quaternion = Quaternion::FromEuler(expectedResult);
 
 
 	Vector3 actualResult = quaternion.GetEuler();
@@ -72,7 +72,7 @@ TEST(Quaternions, NorthPoleSingularity)
 TEST(Quaternions, SouthPoleSingularity)
 {
 	Vector3 expectedResult(0, -90, 0);
-	Quaternion quaternion(expectedResult);
+	Quaternion quaternion = Quaternion::FromEuler(expectedResult);
 
 
 	Vector3 actualResult = quaternion.GetEuler();
@@ -203,7 +203,7 @@ TEST(Quaternions, Rotation)
 {
 	Vector3 expectedResult(31.670876291653691, -0.68343385195173312, 71.162023144994777);
 	Vector3 point(76.32, -1.145, 15.54);
-	Quaternion rotation(-24.5453, 56.46343, 12.45341);
+	Quaternion rotation = Quaternion::FromEuler(-24.5453, 56.46343, 12.45341);
 
 
 	Vector3 actualResult = rotation * point;

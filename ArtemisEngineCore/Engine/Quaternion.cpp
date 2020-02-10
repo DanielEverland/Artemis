@@ -3,16 +3,6 @@
 
 using namespace ArtemisEngine;
 
-Quaternion::Quaternion(Vector3 rotation)
-{
-	FromEuler(rotation.X, rotation.Y, rotation.Z);
-}
-
-Quaternion::Quaternion(double xRotation, double yRotation, double zRotation)
-{
-	FromEuler(xRotation, yRotation, zRotation);
-}
-
 Quaternion::Quaternion(double x, double y, double z, double w)
 {
 	this->X = x;
@@ -50,24 +40,29 @@ double Quaternion::Magnitude() const
 
 	return magnitude;
 }
-void Quaternion::FromEuler(double x, double y, double z)
+Quaternion Quaternion::FromEuler(const Vector3& eulerAngles)
 {
-	x = Math::DegreesToRadians(x);
-	y = Math::DegreesToRadians(y);
-	z = Math::DegreesToRadians(z);
+	return FromEuler(eulerAngles.X, eulerAngles.Y, eulerAngles.Z);
+}
+Quaternion Quaternion::FromEuler(double xRotation, double yRotation, double zRotation)
+{
+	xRotation = Math::DegreesToRadians(xRotation);
+	yRotation = Math::DegreesToRadians(yRotation);
+	zRotation = Math::DegreesToRadians(zRotation);
 
 	// Abbreviations for the various angular functions
-	double xCos = Math::Cos(x / 2);
-	double xSin = Math::Sin(x / 2);
-	double yCos = Math::Cos(y / 2);
-	double ySin = Math::Sin(y / 2);
-	double zCos = Math::Cos(z / 2);
-	double zSin = Math::Sin(z / 2);
+	double xCos = Math::Cos(xRotation / 2);
+	double xSin = Math::Sin(xRotation / 2);
+	double yCos = Math::Cos(yRotation / 2);
+	double ySin = Math::Sin(yRotation / 2);
+	double zCos = Math::Cos(zRotation / 2);
+	double zSin = Math::Sin(zRotation / 2);
 
-	X =  xCos * ySin * zSin - xSin * yCos * zCos;
-	Y = -xCos * ySin * zCos - xSin * yCos * zSin;
-	Z =  xCos * yCos * zSin - xSin * ySin * zCos;
-	W =  xCos * yCos * zCos + xSin * ySin * zSin;
+	return Quaternion(
+	 xCos * ySin * zSin - xSin * yCos * zCos,
+	-xCos * ySin * zCos - xSin * yCos * zSin,
+	 xCos * yCos * zSin - xSin * ySin * zCos,
+	 xCos * yCos * zCos + xSin * ySin * zSin);
 }
 Vector3 Quaternion::GetEuler() const
 {

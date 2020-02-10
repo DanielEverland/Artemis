@@ -32,6 +32,8 @@ namespace ArtemisEngine
 
 		// Returns the euler angles of the current rotation.
 		Vector3 GetEulerAngles() const;
+
+		// Returns the length of this quaternion.
 		double Magnitude() const;
 
 		Quaternion operator+(const Quaternion& other) const;

@@ -29,6 +29,8 @@ namespace ArtemisEngine
 		// Returns a quaternion that moves along a unit sphere.
 		// Keeps the same orientation, but its magnitude becomes 1.
 		Quaternion GetNormalized() const;
+
+		// Returns the euler angles of the current rotation.
 		Vector3 GetEulerAngles() const;
 		double Magnitude() const;
 

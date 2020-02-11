@@ -7,6 +7,15 @@ namespace Maths::Vectors
 {
     using ArtemisEngine::Vector4;
 
+    TEST(Vector4, InitializerListConstructor)
+    {
+        Vector4 vector({ 43.51, 2.0, 12.3, 153.0154, 12453.123 });
+
+        EXPECT_EQ(43.51, vector.X);
+        EXPECT_EQ(2.0, vector.Y);
+        EXPECT_EQ(12.3, vector.Z);
+        EXPECT_EQ(153.0154, vector.W);
+    }
     TEST(Vector4, ConstructorXY)
     {
         Vector4 vector(10.0, 20.25);

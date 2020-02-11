@@ -14,6 +14,13 @@ namespace Maths::Vectors
         EXPECT_EQ(10.0, vector.X);
         EXPECT_EQ(20.25, vector.Y);
     }
+    TEST(Vector2, InitializerListConstructor)
+    {
+        Vector2 vector({ 43.51, 2.0, 12.3 });
+
+        EXPECT_EQ(43.51, vector.X);
+        EXPECT_EQ(2.0, vector.Y);
+    }
     TEST(Vector2, IntConstructorXY)
     {
         Vector2 vector(1, 2);

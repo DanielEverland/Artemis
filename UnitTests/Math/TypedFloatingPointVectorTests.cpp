@@ -156,7 +156,6 @@ namespace Maths::Vectors
     using MyTypes = ::testing::Types<Vector2, Vector3, Vector4>;
     TYPED_TEST_CASE(TypedFloatingPointVectorTests, MyTypes);
 
-
     TYPED_TEST(TypedFloatingPointVectorTests, CopyConstructor)
     {
         TypeParam expectedResult = TypeParam({ 2.53, 1.0, 0.2567, -1.5 });

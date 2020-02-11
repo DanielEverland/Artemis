@@ -122,7 +122,7 @@ TEST(Quaternions, Addition)
 	Quaternion actualResult = quaternionA + quaternionB;
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, AdditionEqual)
 {

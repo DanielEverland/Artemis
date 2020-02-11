@@ -110,10 +110,7 @@ TEST(Quaternions, Equality)
 	Quaternion b(0.4563, -3451.0453, Math::Pi, 1);
 
 	
-	bool actualResult = a == b;
-
-
-	ExpectTrue(actualResult);
+	TempExpectTrue(a == b);
 }
 TEST(Quaternions, Addition)
 {

@@ -399,25 +399,37 @@ namespace Maths::Matrices
 
 	TEST(MatrixTest, AssignmentOperator)
 	{
-		Matrix a = GetTestMatrix(TestValues[0]);
-		Matrix b{};
+		Matrix expectedResult
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix actualResult{};
 
 
-		b = a;
+		actualResult = expectedResult;
 
 
-		ExpectEqual(a, b);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, MoveAssignmentOperator)
 	{
-		const RowVector* expectedValues = TestValues[0];
+		RowVector expectedResult[4]
+		{
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		};
 
 
-		Matrix actualValues = GetTestMatrix(expectedValues);
+		Matrix actualResult = std::move(Matrix({ expectedResult }));
 
 
-		ExpectEqual(expectedValues, actualValues);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 
 	TEST(MatrixText, Equality)

@@ -206,5 +206,5 @@ TEST(Quaternions, Rotation)
 	Vector3 actualResult = rotation * point;
 
 
-	ExpectNear(expectedResult, actualResult);
+	VectorExpectNear(expectedResult, actualResult);
 }

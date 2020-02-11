@@ -170,7 +170,7 @@ TEST(Quaternions, ScalarMultiplication)
 	Quaternion actualResult = quaternion * scalar;
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, ScalarMultiplicationEqual)
 {

@@ -38,29 +38,7 @@ namespace Maths::Matrices
 	};
 
 	const double DeterminantExpectedValue = -31.2343;
-
-	const GenericMatrix<double, 4, 2> MatrixMultiplicationInputA(
-	{
-		VectorBase<double, 2>(1, 2),
-		VectorBase<double, 2>(4, -2),
-		VectorBase<double, 2>(-5, 6),
-		VectorBase<double, 2>(0, 2),
-	});
-
-	const GenericMatrix<double, 2, 4> MatrixMultiplicationInputB(
-	{
-		VectorBase<double, 4>(1, 2, 3, 4),
-		VectorBase<double, 4>(-5, 5, 3, -2),
-	});
-
-	const GenericMatrix<double, 4, 4> MatrixMultiplicationExpectedResult(
-	{
-		VectorBase<double, 4>(-9, 12, 9, 0),
-		VectorBase<double, 4>(14, -2, 6, 20),
-		VectorBase<double, 4>(-35, 20, 3, -32),
-		VectorBase<double, 4>(-10, 10, 6, -4),
-	});
-
+	
 	const GenericMatrix<double, 4, 4> TransposeExpectedResult(
 	{
 		VectorBase<double, 4>(1.0, -2.75, 3.25, -3.0),
@@ -304,15 +282,31 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, MatrixMultiplication)
 	{
-		GenericMatrix<double, 4, 2> matrixA = MatrixMultiplicationInputA;
-		GenericMatrix<double, 2, 4> matrixB = MatrixMultiplicationInputB;
-		GenericMatrix<double, 4, 4> expectedResult = MatrixMultiplicationExpectedResult;
+		GenericMatrix<double, 4, 2> matrixA
+		({
+			VectorBase<double, 2>(1, 2),
+			VectorBase<double, 2>(4, -2),
+			VectorBase<double, 2>(-5, 6),
+			VectorBase<double, 2>(0, 2),
+		});
+		GenericMatrix<double, 2, 4> matrixB
+		({
+			VectorBase<double, 4>(1, 2, 3, 4),
+			VectorBase<double, 4>(-5, 5, 3, -2),
+		});
+		GenericMatrix<double, 4, 4> expectedResult
+		({
+			VectorBase<double, 4>(-9, 12, 9, 0),
+			VectorBase<double, 4>(14, -2, 6, 20),
+			VectorBase<double, 4>(-35, 20, 3, -32),
+			VectorBase<double, 4>(-10, 10, 6, -4),
+		});
 
 
 		GenericMatrix<double, 4, 4> actualResult = matrixA * matrixB;
 
 
-		ExpectEqual(expectedResult, actualResult);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, Transpose)
 	{

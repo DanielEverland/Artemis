@@ -98,14 +98,6 @@ namespace Maths::Vectors
     };
 
     template<typename T>
-    map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedStrings
-    {
-        { 2, "(2.53, 1.0)" },
-        { 3, "(2.53, 1.0, 0.2567)" },
-        { 4, "(2.53, 1.0, 0.2567, -1.5)" },
-    };
-
-    template<typename T>
     map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedNaNStrings
     {
         { 2, "(NaN, NaN)" },
@@ -264,17 +256,20 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToString)
     {
-        TypeParam vector = this->vectors[0];
-        string expectedString = TypedFloatingPointVectorTests::ExpectedStrings[vector.GetDimensions()];
-        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        TypeParam vector = TypeParam({ 2.53, 1.0, 0.2567, Math::Pi });
+        map<unsigned int, string> expectedStrings
+        {
+            { 2, "(2.53, 1.0)" },
+            { 3, "(2.53, 1.0, 0.2567)" },
+            { 4, "(2.53, 1.0, 0.2567, 3.14159)" },
+        };
+        string expectedResult = expectedStrings[vector.GetDimensions()];
 
-        this->InitializeToDefaultValues(vector, elementValues);
+
+        string actualResult = vector.ToString();
 
 
-        string vectorString = vector.ToString();
-
-
-        EXPECT_EQ(expectedString, vectorString);
+        TempExpectEqual(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToStringNaN)

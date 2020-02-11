@@ -98,14 +98,6 @@ namespace Maths::Vectors
     };
 
     template<typename T>
-    map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedInfinityStrings
-    {
-        { 2, "(PositiveInfinity, NegativeInfinity)" },
-        { 3, "(PositiveInfinity, NegativeInfinity, PositiveInfinity)" },
-        { 4, "(PositiveInfinity, NegativeInfinity, PositiveInfinity, NegativeInfinity)" },
-    };
-
-    template<typename T>
     map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedMagnitude
     {
         { 2, 2.72045 },
@@ -284,17 +276,20 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToStringInfinity)
     {
-        TypeParam vector = this->vectors[0];
-        string expectedString = TypedFloatingPointVectorTests::ExpectedInfinityStrings[vector.GetDimensions()];
+        TypeParam vector = TypeParam({ Infinity, -Infinity, Infinity, -Infinity });
+        map<unsigned int, string> expectedStrings
+        {
+            { 2, "(PositiveInfinity, NegativeInfinity)" },
+            { 3, "(PositiveInfinity, NegativeInfinity, PositiveInfinity)" },
+            { 4, "(PositiveInfinity, NegativeInfinity, PositiveInfinity, NegativeInfinity)" },
+        };
+        string expectedResult = expectedStrings[vector.GetDimensions()];
 
-        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-            vector[i] = TypedFloatingPointVectorTests::InfinityValues[i];
+
+        string actualResult = vector.ToString();
 
 
-        string vectorString = vector.ToString();
-
-
-        EXPECT_EQ(expectedString, vectorString);
+        TempExpectEqual(expectedResult, actualResult);
     }
 
 

@@ -4,6 +4,7 @@
 #include "Engine/Maths/Vectors/VectorBase.h"
 #include "Utility/Comparison/ComparisonUtility.h"
 #include "Utility/Comparison/ComparisonUtilityMatrix.h"
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 
 namespace Maths::Matrices
 {
@@ -508,7 +509,7 @@ namespace Maths::Matrices
 		VectorBase<double, 2> actualResult = matrix * vector;
 
 
-		ExpectEqual(expectedResult, actualResult);
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, Minor)

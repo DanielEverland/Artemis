@@ -3,6 +3,10 @@
 #include "ComparisonUtility.h"
 #include "Engine/Maths/Vectors/VectorBase.h"
 
+#define VectorExpectNear(expectedResult, actualResult) \
+	for (unsigned int i = 0; i < expectedResult.GetDimensions(); i++) \
+		TempExpectNear(expectedResult[i], actualResult[i]);
+
 using ArtemisEngine::Maths::Vectors::VectorBase;
 
 namespace ArtemisEngine::UnitTests::Comparisons

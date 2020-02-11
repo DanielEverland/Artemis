@@ -295,9 +295,9 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, AdditionOfTwoVectors)
     {
+        TypeParam expectedResult({ 3.78, -1.25, 1.2567, 3.75 });
         TypeParam a({ 2.53, 1.0, 0.2567, -1.5 });
         TypeParam b({ 1.25, -2.25, 1.0, 5.25 });
-        TypeParam expectedResult({ 3.78, -1.25, 1.2567, 3.75 });
         TypeParam actualResult;
 
 
@@ -308,23 +308,15 @@ namespace Maths::Vectors
     }
     TYPED_TEST(TypedFloatingPointVectorTests, AdditionAssignment)
     {
-        TypeParam aVector = this->vectors[0];
-        TypeParam bVector = this->vectors[1];
-
-        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(aVector, aElementValues);
-        this->InitializeToDefaultValues(bVector, bElementValues);
+        TypeParam expectedResult({ 3.78, -1.25, 1.2567, 3.75 });
+        TypeParam actualResult({ 2.53, 1.0, 0.2567, -1.5 });
+        TypeParam b({ 1.25, -2.25, 1.0, 5.25 });
 
 
-        aVector += bVector;
+        actualResult += b;
 
 
-        for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(aElementValues[i] + bElementValues[i], aVector[i]);
-        }
+        VectorExpectNear(expectedResult, actualResult);
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarAddition)
     {

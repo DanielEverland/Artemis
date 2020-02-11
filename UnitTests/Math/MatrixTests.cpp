@@ -37,9 +37,7 @@ namespace Maths::Matrices
 			RowVector(2.50, -1.50, -1.75, 2.0),
 		}
 	};
-
-	const double DeterminantExpectedValue = -31.2343;
-	
+		
 	const GenericMatrix<double, 1, 4> VectorMultiplicationExpectedResult(
 	{
 		VectorBase<double, 4>(2.25, 5.5, 26.5, 4.5),
@@ -540,14 +538,20 @@ namespace Maths::Matrices
 
 	TEST(MatrixTest, Determinant)
 	{
-		Matrix matrix = GetTestMatrix(TestValues[0]);
-		double expectedValue = DeterminantExpectedValue;
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		double expectedResult = -31.234375;
 
 
-		double actualValue = matrix.GetDeterminant();
+		double actualResult = matrix.GetDeterminant();
 
 
-		ExpectNear(expectedValue, actualValue, 1e-4);
+		TempExpectNear(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, CofactorMatrix)

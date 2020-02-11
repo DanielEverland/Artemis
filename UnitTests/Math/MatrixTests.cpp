@@ -535,7 +535,7 @@ namespace Maths::Matrices
 		GenericMatrix<double, 3, 3> actualResult = matrix.GetMinor(rowToDelete, columnToDelete);
 
 
-		ExpectEqual(expectedResult, actualResult);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, Determinant)

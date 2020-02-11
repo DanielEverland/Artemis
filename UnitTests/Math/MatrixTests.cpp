@@ -67,15 +67,7 @@ namespace Maths::Matrices
 		RowVector(1.3026513256628314161, -1.1425712856428214108, -0.01000500250125062533, 1.4707353676838419212),
 		RowVector(-0.77338669334667333699, 0.85192596298149074551, 0.18259129564782391197, -0.84092046023011505775),
 	});
-
-	const GenericMatrix<double, 4, 4> IdentityExpectedResult
-	({
-		RowVector(1, 0, 0, 0),
-		RowVector(0, 1, 0, 0),
-		RowVector(0, 0, 1, 0),
-		RowVector(0, 0, 0, 1),
-	});
-
+	
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
 		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
@@ -325,13 +317,19 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, Identity)
 	{
-		Matrix expectedResult = IdentityExpectedResult;
+		Matrix expectedResult
+		({
+			RowVector(1, 0, 0, 0),
+			RowVector(0, 1, 0, 0),
+			RowVector(0, 0, 1, 0),
+			RowVector(0, 0, 0, 1),
+		});
 
 
 		Matrix actualResult = BaseMatrix::GetIdentityMatrix<double, 4>();
 
 
-		ExpectEqual(expectedResult, actualResult);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, MultiplicativeIdentity)
 	{

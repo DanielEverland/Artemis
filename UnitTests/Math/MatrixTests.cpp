@@ -22,32 +22,6 @@ namespace Maths::Matrices
 	typedef	GenericMatrix<double, 1, columns> RowMatrix;
 	typedef	GenericMatrix<double, rows, 1> ColumnMatrix;
 	
-	const static RowVector TestValues[2][rows]
-	{
-		{
-			RowVector(1.0, 2.50, -1.25, 0),
-			RowVector(-2.75, 1.25, 0.25, 1.25),
-			RowVector(3.25, -1.0, 2.75, 4.25),
-			RowVector(-3.0, -1.25, 2.0, 1.0)
-		},
-		{
-			RowVector(4.25, -1.25, 3.0, 5.25),
-			RowVector(-1.0, 1.25, 2.0, 3.25),
-			RowVector(-0.75, -1.25, -2.0, 3.25),
-			RowVector(2.50, -1.50, -1.75, 2.0),
-		}
-	};
-		
-	const GenericMatrix<double, 1, 4> VectorMultiplicationExpectedResult(
-	{
-		VectorBase<double, 4>(2.25, 5.5, 26.5, 4.5),
-	});
-	
-	Matrix GetTestMatrix(const RowVector* rowVectorArray)
-	{
-		return Matrix({ rowVectorArray[0], rowVectorArray[1], rowVectorArray[2], rowVectorArray[3] });
-	}
-
 	TEST(MatrixTest, EmptyConstructor)
 	{
 		Matrix matrix;

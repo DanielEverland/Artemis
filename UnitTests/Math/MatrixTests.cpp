@@ -603,15 +603,21 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, MultiplyingInverseMatrixReturnsIdentity)
 	{
-		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
 		Matrix inverse = matrix.GetInverseMatrix();
-		Matrix expectedValue = matrix.GetIdentityMatrix();
+		Matrix expectedResult = matrix.GetIdentityMatrix();
 
 
-		Matrix actualValue = matrix * inverse;
+		Matrix actualResult = matrix * inverse;
 
 
-		ExpectNear(expectedValue, actualValue);
+		ExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, InverseCommunatitiveMultiplication)
 	{

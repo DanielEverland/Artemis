@@ -179,17 +179,12 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, ConstIndexing)
     {
-        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        this->InitializeToDefaultValues(this->vectors[0], elementValues);
+        double expectedResult[MaximumDimensions]{ 2.53, 1.0, 0.2567, -1.5 };
+        const TypeParam actualResult({ 2.53, 1.0, 0.2567, -1.5 });
 
 
-        const TypeParam vector = this->vectors[0];
-
-
-        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(elementValues[i], vector[i]);
-        }
+        for (unsigned int i = 0; i < actualResult.GetDimensions(); i++)
+            TempExpectNear(expectedResult[i], actualResult[i]);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, GetDotProduct)

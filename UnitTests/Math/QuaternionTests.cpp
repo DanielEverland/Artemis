@@ -146,7 +146,7 @@ TEST(Quaternions, Subtraction)
 	Quaternion actualResult = quaternionA - quaternionB;
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, SubtractionEqual)
 {

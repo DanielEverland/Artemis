@@ -42,14 +42,6 @@ namespace Maths::Matrices
 	{
 		VectorBase<double, 4>(2.25, 5.5, 26.5, 4.5),
 	});
-
-	const GenericMatrix<double, 4, 4> InverseExpectedResult(
-	{
-		RowVector(0.20710355177588794402, -0.28764382191095547775, 0.067533766883441720858, 0.072536268134067033544),
-		RowVector(0.96848424212106053046, -0.45622811405702851436, -0.03201600800400200101, 0.70635317658829414721),
-		RowVector(1.3026513256628314161, -1.1425712856428214108, -0.01000500250125062533, 1.4707353676838419212),
-		RowVector(-0.77338669334667333699, 0.85192596298149074551, 0.18259129564782391197, -0.84092046023011505775),
-	});
 	
 	Matrix GetTestMatrix(const RowVector* rowVectorArray)
 	{
@@ -588,14 +580,26 @@ namespace Maths::Matrices
 
 	TEST(MatrixTest, Inverse)
 	{
-		Matrix matrix = GetTestMatrix(TestValues[0]);
-		Matrix expectedValues = InverseExpectedResult;
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix expectedResult
+		({
+			RowVector(0.20710355177588794402, -0.28764382191095547775, 0.067533766883441720858, 0.072536268134067033544),
+			RowVector(0.96848424212106053046, -0.45622811405702851436, -0.03201600800400200101, 0.70635317658829414721),
+			RowVector(1.3026513256628314161, -1.1425712856428214108, -0.01000500250125062533, 1.4707353676838419212),
+			RowVector(-0.77338669334667333699, 0.85192596298149074551, 0.18259129564782391197, -0.84092046023011505775),
+		});
 
 
-		Matrix actualValues = matrix.GetInverseMatrix();
+		Matrix actualResult = matrix.GetInverseMatrix();
 
 
-		ExpectNear(expectedValues, actualValues);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, MultiplyingInverseMatrixReturnsIdentity)
 	{

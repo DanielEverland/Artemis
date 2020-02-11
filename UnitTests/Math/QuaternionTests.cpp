@@ -67,7 +67,7 @@ TEST(Quaternions, NorthPoleSingularity)
 	Vector3 actualResult = quaternion.GetEuler();
 
 
-	ExpectNear(expectedResult, actualResult);
+	VectorExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, SouthPoleSingularity)
 {

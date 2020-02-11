@@ -11,6 +11,7 @@ namespace ArtemisEngine::Maths::Vectors
 		~Vector2Base() = default;
 		Vector2Base() : VectorBase<T, 2>() { }
 		Vector2Base(T x, T y) : VectorBase<T, 2>(x, y) { }
+		Vector2Base(std::initializer_list<T> arguments) : VectorBase<T, 2>(arguments) { }
 		Vector2Base(const VectorBase<T, 2>& copy) : VectorBase<T, 2>(copy) { }
 		Vector2Base(VectorBase<T, 2>&& move) : VectorBase<T, 2>(move) { }
 

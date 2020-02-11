@@ -13,6 +13,7 @@ namespace ArtemisEngine::Maths::Vectors
 		Vector4Base(T x, T y) : VectorBase<T, 4>(x, y) { }
 		Vector4Base(T x, T y, T z) : VectorBase<T, 4>(x, y, z) { }
 		Vector4Base(T x, T y, T z, T w) : VectorBase<T, 4>(x, y, z, w) { }
+		Vector4Base(std::initializer_list<T> arguments) : VectorBase<T, 4>(arguments) { }
 		Vector4Base(const VectorBase<T, 4>& copy) : VectorBase<T, 4>(copy) { }
 		Vector4Base(VectorBase<T, 4>&& move) : VectorBase<T, 4>(move) { }
 

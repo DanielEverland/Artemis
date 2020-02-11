@@ -12,6 +12,7 @@ namespace ArtemisEngine::Maths::Vectors
 		Vector3Base() : VectorBase<T, 3>() { }
 		Vector3Base(T x, T y) : VectorBase<T, 3>(x, y) { }
 		Vector3Base(T x, T y, T z) : VectorBase<T, 3>(x, y, z) { }
+		Vector3Base(std::initializer_list<T> arguments) : VectorBase<T, 3>(arguments) { }
 		Vector3Base(const VectorBase<T, 3>& copy) : VectorBase<T, 3>(copy) { }
 		Vector3Base(VectorBase<T, 3>&& move) : VectorBase<T, 3>(move) { }
 

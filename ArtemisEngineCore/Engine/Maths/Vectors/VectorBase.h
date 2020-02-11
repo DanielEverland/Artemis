@@ -22,6 +22,7 @@ namespace ArtemisEngine::Maths::Vectors
 	class VectorImplementor : public IDebugStringReturner
 	{
 	public:
+
 		// Returns the dot product of two vectors.
 		// Value returned for normalized vector is in the interval [-1; 1]
 		static double GetDotProduct(const VectorBase<T, dimensions>& a, const VectorBase<T, dimensions>& b)
@@ -179,6 +180,20 @@ namespace ArtemisEngine::Maths::Vectors
 				+"\nValid indexes are >= 0 and < " + std::to_string(dimensions);
 		}
 
+		void InitializeFromList(std::initializer_list<T> arguments, int dimensions)
+		{
+			int amountOfArguments = arguments.size();
+			int elementsToInitialize = min(dimensions, amountOfArguments);
+			auto iter = arguments.begin();
+
+			for (int i = 0; i < elementsToInitialize; i++)
+			{
+				GetValue(i) = *iter;
+
+				iter++;
+			}
+		}
+
 	private:
 		virtual T& GetValue(int index) = 0;
 		virtual T GetValue(int index) const = 0;
@@ -197,16 +212,7 @@ namespace ArtemisEngine::Maths::Vectors
 
 		VectorBase<T, dimensions>(std::initializer_list<T> arguments)
 		{
-			int amountOfArguments = arguments.size();
-			int elementsToInitialize = min(dimensions, amountOfArguments);
-			auto iter = arguments.begin();
-			
-			for (int i = 0; i < elementsToInitialize; i++)
-			{
-				values[i] = *iter;
-
-				iter++;
-			}
+			InitializeFromList(arguments, dimensions);
 		}
 		VectorBase<T, dimensions>()
 		{
@@ -240,6 +246,10 @@ namespace ArtemisEngine::Maths::Vectors
 		{
 			this->X = x;
 			this->Y = y;
+		}
+		VectorBase(std::initializer_list<T> arguments)
+		{
+			InitializeFromList(arguments, 2);
 		}
 
 	private:
@@ -309,6 +319,10 @@ namespace ArtemisEngine::Maths::Vectors
 			this->X = x;
 			this->Y = y;
 			this->Z = z;
+		}
+		VectorBase(std::initializer_list<T> arguments)
+		{
+			InitializeFromList(arguments, 3);
 		}
 
 	private:
@@ -388,6 +402,10 @@ namespace ArtemisEngine::Maths::Vectors
 			this->Y = y;
 			this->Z = z;
 			this->W = w;
+		}
+		VectorBase(std::initializer_list<T> arguments)
+		{
+			InitializeFromList(arguments, 4);
 		}
 
 	private:

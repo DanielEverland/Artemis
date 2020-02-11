@@ -4,6 +4,7 @@
 #include <list>
 #include <map>
 
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Exceptions/DivideByZeroException.h"
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/NullReferenceException.h"
@@ -65,6 +66,18 @@ namespace Maths::Vectors
         {
             for (unsigned int i = 0; i < vector.GetDimensions(); i++)
                 vector[i] = elements[i];
+        }
+
+
+        // NEW
+        T Initialize(const double* const elements) const
+        {
+            T toReturn;
+
+            for (unsigned int i = 0; i < toReturn.GetDimensions(); i++)
+                toReturn[i] = elements[i];
+
+            return toReturn;
         }
     };
 
@@ -146,18 +159,13 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, CopyConstructor)
     {
-        TypeParam copy = this->vectors[0];
-        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        TypeParam expectedResult = TypeParam({ 2.53, 1.0, 0.2567, -1.5 });
 
-		this->InitializeToDefaultValues(copy, elementValues);
 
-        TypeParam vector = this->CallCopyConstructor(copy);
+        TypeParam actualResult = TypeParam(expectedResult);
 
-        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(copy[i], vector[i]);
-			EXPECT_EQ(elementValues[i], vector[i]);
-        }
+
+        VectorExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, Indexing)

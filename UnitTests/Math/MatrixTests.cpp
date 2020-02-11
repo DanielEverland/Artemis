@@ -648,6 +648,6 @@ namespace Maths::Matrices
 		VectorBase<double, 3> actualResult = matrix * positionToScale;
 		
 
-		ExpectEqual(expectedResult, actualResult);
+		VectorExpectNear(expectedResult, actualResult);
 	}
 }

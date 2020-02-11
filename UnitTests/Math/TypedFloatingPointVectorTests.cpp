@@ -92,14 +92,6 @@ namespace Maths::Vectors
     };
 
     template <typename T>
-    map<unsigned int, list<double>> TypedFloatingPointVectorTests<T>::ExpectedNormalizedValues
-    {
-        { 2, list<double> { 0.92998, 0.36758 } },
-        { 3, list<double> { 0.92587, 0.36595, 0.09394 } },
-        { 4, list<double> { 0.81163, 0.32080, 0.08235, -0.48120 } },
-    };
-
-    template <typename T>
     const double TypedFloatingPointVectorTests<T>::InfinityValues[MaximumDimensions]
     {
         Infinity, -Infinity, Infinity, -Infinity
@@ -254,23 +246,20 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, Normalized)
     {
-        TypeParam vector = this->vectors[0];
-        list<double> expectedValues = TypedFloatingPointVectorTests::ExpectedNormalizedValues[vector.GetDimensions()];
-        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
-
-        TypedFloatingPointVectorTests::InitializeToDefaultValues(vector, elementValues);
-
-
-        TypeParam normalized = vector.GetNormalized();
-
-
-        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+        TypeParam vector = TypeParam({ 2.53, 1.0, 0.2567, -1.5 });
+        map<unsigned int, Vector4> expectedVectors
         {
-            auto iter = expectedValues.begin();
-            std::advance(iter, i);
+            { 2, Vector4(0.92998994522547751, 0.36758495858714529) },
+            { 3, Vector4(0.92587724430656082, 0.36595938510140746, 0.093941774155531288) },
+            { 4, Vector4(0.81163170466625378, 0.32080304532262999, 0.082350141734319121, -0.48120456798394501) },
+        };
+        TypeParam expectedResult = expectedVectors[vector.GetDimensions()];
 
-            EXPECT_NEAR(*iter, normalized[i], FloatingPointComparisonPrecision);
-        }
+
+        TypeParam actualResult = vector.GetNormalized();
+
+
+        VectorExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToString)

@@ -9,7 +9,7 @@ for (unsigned int i = 0; i < matrix.GetRows(); i++) \
 		TempExpectEqual(0, matrix[i][j]);
 
 #define MatrixExpectRowNear(matrix, row) \
-for (unsigned int j = 0; i < matrix.GetColumns(); i++) \
+for (unsigned int j = 0; j < matrix.GetColumns(); j++) \
 	TempExpectNear(matrix[0][j], row[j]);
 	
 #define MatrixExpectNear(expectedResult, actualResult) \

@@ -382,7 +382,7 @@ namespace Maths::Matrices
 		matrix.SetRow(0, row);
 
 
-		ExpectRowEqual(matrix, row);
+		MatrixExpectRowNear(matrix, row);
 	}
 
 	TEST(MatrixTest, SetColumn)

@@ -172,7 +172,7 @@ TEST(Quaternions, ScalarMultiplication)
 
 	QuaternionExpectNear(expectedResult, actualResult);
 }
-TEST(Quaternions, ScalarMultiplicationEqual)
+TEST(Quaternions, ScalarMultiplicationAssignment)
 {
 	Quaternion expectedResult(0.7221174, -0.4569525, 0.28529730000000003, -0.2031783);
 	Quaternion actualResult(0.5452, -0.345, 0.2154, -0.1534);
@@ -182,7 +182,7 @@ TEST(Quaternions, ScalarMultiplicationEqual)
 	actualResult *= scalar;
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, Normalized)
 {

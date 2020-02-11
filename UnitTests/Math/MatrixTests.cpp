@@ -617,7 +617,7 @@ namespace Maths::Matrices
 		Matrix actualResult = matrix * inverse;
 
 
-		ExpectNear(expectedResult, actualResult);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, InverseCommunatitiveMultiplication)
 	{

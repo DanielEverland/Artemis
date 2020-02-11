@@ -229,17 +229,20 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, Magnitude)
     {
-        TypeParam vector = this->vectors[0];
-        double expectedValue = TypedFloatingPointVectorTests::ExpectedMagnitude[vector.GetDimensions()];
-        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
+        TypeParam vector = TypeParam({ 2.53, 1.0, 0.2567, -1.5 });
+        map<unsigned int, double> values
+        {
+            { 2, 2.7204595200076032 },
+            { 3, 2.732543666622731 },
+            { 4, 3.1171773914873691 },
+        };
+        double expectedResult = values[vector.GetDimensions()];
 
-        TypedFloatingPointVectorTests::InitializeToDefaultValues(vector, elementValues);
+
+        double actualResult = vector.GetMagnitude();
 
 
-        double magnitude = vector.GetMagnitude();
-
-
-        EXPECT_NEAR(expectedValue, magnitude, FloatingPointComparisonPrecision);
+        TempExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, NormalizedDivideByZero)

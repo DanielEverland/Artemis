@@ -14,6 +14,9 @@
 #define TempExpectFalse(expression) \
 	EXPECT_EQ(false, expression);
 
+#define TempExpectZero(value) \
+	EXPECT_EQ(0, value);
+
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {

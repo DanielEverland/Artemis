@@ -14,10 +14,10 @@ TEST(Quaternions, Empty)
 	Quaternion quaternion{};
 
 
-	ExpectZero(quaternion.X);
-	ExpectZero(quaternion.Y);
-	ExpectZero(quaternion.Z);
-	ExpectZero(quaternion.W);
+	TempExpectZero(quaternion.X);
+	TempExpectZero(quaternion.Y);
+	TempExpectZero(quaternion.Z);
+	TempExpectZero(quaternion.W);
 }
 TEST(Quaternions, Identity)
 {

@@ -5,6 +5,12 @@
 #include "Engine/Quaternion.h"
 #include "ComparisonUtility.h"
 
+#define QuaternionExpectNear(expectedResult, actualResult) \
+	TempExpectNear(expectedResult.X, actualResult.X); \
+	TempExpectNear(expectedResult.Y, actualResult.Y); \
+	TempExpectNear(expectedResult.Z, actualResult.Z); \
+	TempExpectNear(expectedResult.W, actualResult.W);
+
 namespace ArtemisEngine::UnitTests::Comparisons
 {
 	inline void ExpectEqual(Quaternion quaternion, double x, double y, double z, double w)

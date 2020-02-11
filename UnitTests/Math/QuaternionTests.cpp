@@ -25,7 +25,7 @@ TEST(Quaternions, Identity)
 	Quaternion actualResult = Quaternion::GetIdentity();
 
 	
-	ExpectEqual(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, FromEuler)
 {

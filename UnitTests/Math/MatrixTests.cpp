@@ -333,15 +333,27 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, MultiplicativeIdentity)
 	{
-		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix expectedResult
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
 		Matrix identity = matrix.GetIdentityMatrix();
-		Matrix expectedResult(matrix);
 
 
 		Matrix actualResult = matrix * identity;
 
 
-		ExpectEqual(expectedResult, actualResult);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, SquareMatrixCommunitativeIdentityMultiplication)
 	{

@@ -137,14 +137,6 @@ namespace Maths::Vectors
         { 4, 3.11717 },
     };
 
-    template <typename T>
-    map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedAngle
-    {
-        { 2, 82.51214 },
-        { 3, 81.08589 },
-        { 4, 111.26340 },
-    };
-
     using MyTypes = ::testing::Types<Vector2, Vector3, Vector4>;
     TYPED_TEST_CASE(TypedFloatingPointVectorTests, MyTypes);
 
@@ -200,23 +192,21 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, GetAngle)
     {
-        TypeParam vectorA = this->vectors[0];
-        TypeParam vectorB = this->vectors[1];
-
-        const double* elementValuesA = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* elementValuesB = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(vectorA, elementValuesA);
-        this->InitializeToDefaultValues(vectorB, elementValuesB);
-
-
-
-        double expectedAngle = TypedFloatingPointVectorTests::ExpectedAngle[vectorA.GetDimensions()];
-        double actualAngle = this->GetAngle(vectorA, vectorB);
+        TypeParam vectorA = TypeParam({ 2.53, 1.0, 0.2567, -1.5 });
+        TypeParam vectorB = TypeParam({ 1.25, -2.25, 1.0, 5.25 });
+        map<unsigned int, double> angles
+        {
+            { 2, 82.51214821663946 },
+            { 3, 81.08589268721897 },
+            { 4, 111.2634002331296 },
+        };
+        double expectedResult = angles[vectorA.GetDimensions()];
 
 
+        double actualResult = TypeParam::GetAngle(vectorA, vectorB);
 
-        EXPECT_NEAR(expectedAngle, actualAngle, FloatingPointComparisonPrecision);
+
+        TempExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, SqrMagnitude)

@@ -148,7 +148,7 @@ TEST(Quaternions, Subtraction)
 
 	QuaternionExpectNear(expectedResult, actualResult);
 }
-TEST(Quaternions, SubtractionEqual)
+TEST(Quaternions, SubtractionAssignment)
 {
 	Quaternion expectedResult(0.7804, -0.2217, -0.78184, 0.47043);
 	Quaternion actualResult(0.4353, 0.1234, -0.3465, 0.23523);
@@ -158,7 +158,7 @@ TEST(Quaternions, SubtractionEqual)
 	actualResult -= quaternionB;
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, ScalarMultiplication)
 {

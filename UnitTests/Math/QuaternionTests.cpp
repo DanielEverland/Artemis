@@ -45,7 +45,7 @@ TEST(Quaternions, FromEulerVector)
 	Quaternion actualResult = Quaternion::FromEuler(Vector3(-30.54632, 22.452345, 56.124545));
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, ToEuler)
 {

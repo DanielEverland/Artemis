@@ -320,22 +320,16 @@ namespace Maths::Vectors
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarAddition)
     {
-        TypeParam aVector = this->vectors[0];
-        TypeParam bVector = this->vectors[1];
-        double scalar = this->ElementValues[2][0];
+        TypeParam expectedResult({ 2.50, -1.0, 2.25, 6.50 });
+        TypeParam actualResult({ 2.53, 1.0, 0.2567, -1.5 });
+        TypeParam b({ 1.25, -2.25, 1.0, 5.25 });
+        double scalar = 1.25;
+        
 
-        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(bVector, ElementValues);
-
-
-        aVector = bVector + scalar;
+        actualResult = b + scalar;
 
 
-        for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(bVector[i] + scalar, aVector[i]);
-        }
+        VectorExpectNear(expectedResult, actualResult);
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarAdditionAssignment)
     {

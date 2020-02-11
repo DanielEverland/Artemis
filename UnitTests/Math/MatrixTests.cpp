@@ -43,14 +43,6 @@ namespace Maths::Matrices
 		VectorBase<double, 4>(2.25, 5.5, 26.5, 4.5),
 	});
 
-	const GenericMatrix<double, 4, 4> CofactorExpectedResult(
-	{
-		RowVector(-6.46875, -30.25, -40.6875, 24.15625),
-		RowVector(8.984375, 14.25, 35.6875, -26.609375),
-		RowVector(-2.109375, 1, 0.3125, -5.703125),
-		RowVector(-2.265625, -22.0625, -45.9375, 26.265625),
-	});
-
 	const GenericMatrix<double, 4, 4> AdjoinedExpectedResult(
 	{
 		RowVector(-6.46875, 8.984375, -2.109375, -2.265625),
@@ -556,14 +548,26 @@ namespace Maths::Matrices
 
 	TEST(MatrixTest, CofactorMatrix)
 	{
-		Matrix matrix = GetTestMatrix(TestValues[0]);
-		Matrix expectedValues = CofactorExpectedResult;
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix expectedResult
+		({
+			RowVector(-6.46875, -30.25, -40.6875, 24.15625),
+			RowVector(8.984375, 14.25, 35.6875, -26.609375),
+			RowVector(-2.109375, 1, 0.3125, -5.703125),
+			RowVector(-2.265625, -22.0625, -45.9375, 26.265625),
+		});
 
 
-		Matrix actualValue = matrix.GetCofactorMatrix();
+		Matrix actualResult = matrix.GetCofactorMatrix();
 
 
-		ExpectEqual(expectedValues, actualValue);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, AdjointMatrix)

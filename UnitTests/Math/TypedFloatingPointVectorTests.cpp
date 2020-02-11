@@ -129,14 +129,6 @@ namespace Maths::Vectors
         { 4, "(PositiveInfinity, NegativeInfinity, PositiveInfinity, NegativeInfinity)" },
     };
 
-    template <typename T>
-    map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedDotProduct
-    {
-        { 2, 0.9125 },
-        { 3, 1.1692 },
-        { 4, -6.7058 },
-    };
-
     template<typename T>
     map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedMagnitude
     {
@@ -189,23 +181,21 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, GetDotProduct)
     {
-        TypeParam vectorA = this->vectors[0];
-        TypeParam vectorB = this->vectors[1];
+        TypeParam vectorA = TypeParam({ 2.53, 1.0, 0.2567, -1.5 });
+        TypeParam vectorB = TypeParam({ 1.25, -2.25, 1.0, 5.25 });
+        map<unsigned int, double> dotProducts
+        {
+            { 2, 0.9125 },
+            { 3, 1.1692 },
+            { 4, -6.7058 },
+        };
+        double expectedResult = dotProducts[vectorA.GetDimensions()];
+        
 
-        const double* elementValuesA = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* elementValuesB = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(vectorA, elementValuesA);
-        this->InitializeToDefaultValues(vectorB, elementValuesB);
-
-
-
-        double expectedValue = TypedFloatingPointVectorTests::ExpectedDotProduct[vectorA.GetDimensions()];
-        double dotProduct = this->GetDotProduct(vectorA, vectorB);
-
+        double actualResult = TypeParam::GetDotProduct(vectorA, vectorB);
 
 
-        EXPECT_NEAR(expectedValue, dotProduct, FloatingPointComparisonPrecision);
+        TempExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, GetAngle)

@@ -92,7 +92,7 @@ TEST(Quaternions, Multiplication)
 
 	QuaternionExpectNear(expectedResult, actualResult);
 }
-TEST(Quaternions, MultiplicationEqual)
+TEST(Quaternions, MultiplicationAssignment)
 {
 	Quaternion expectedResult(-0.06562161125000002, -0.07686467689500001, 0.147448188084, 0.14009445794);
 	Quaternion actualResult(0.523451, -0.25324, 0.25435, 0.25345);
@@ -102,7 +102,7 @@ TEST(Quaternions, MultiplicationEqual)
 	actualResult *= quaternionB;
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 TEST(Quaternions, Equality)
 {

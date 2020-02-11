@@ -39,14 +39,6 @@ namespace Maths::Matrices
 
 	const double DeterminantExpectedValue = -31.2343;
 	
-	const GenericMatrix<double, 4, 4> TransposeExpectedResult(
-	{
-		VectorBase<double, 4>(1.0, -2.75, 3.25, -3.0),
-		VectorBase<double, 4>(2.50, 1.25, -1.0, -1.25),
-		VectorBase<double, 4>(-1.25, 0.25, 2.75, 2.0),
-		VectorBase<double, 4>(0.0, 1.25, 4.25, 1.0),
-	});
-
 	const GenericMatrix<double, 1, 4> VectorMultiplicationExpectedResult(
 	{
 		VectorBase<double, 4>(2.25, 5.5, 26.5, 4.5),
@@ -310,14 +302,26 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, Transpose)
 	{
-		Matrix expectedResults = TransposeExpectedResult;
-		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix expectedResult
+		({
+			RowVector(1.0, -2.75, 3.25, -3.0),
+			RowVector(2.50, 1.25, -1.0, -1.25),
+			RowVector(-1.25, 0.25, 2.75, 2.0),
+			RowVector(0.0, 1.25, 4.25, 1.0),
+		});
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
 
 
-		Matrix actualResults = matrix.GetTranspose();
+		Matrix actualResult = matrix.GetTranspose();
 
 
-		ExpectEqual(expectedResults, actualResults);
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 	TEST(MatrixTest, Identity)
 	{

@@ -193,7 +193,7 @@ TEST(Quaternions, Normalized)
 	Quaternion actualResult = quaternion.GetNormalized();
 
 
-	ExpectNear(expectedResult, actualResult);
+	QuaternionExpectNear(expectedResult, actualResult);
 }
 
 TEST(Quaternions, Rotation)

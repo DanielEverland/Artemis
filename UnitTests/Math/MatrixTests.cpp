@@ -434,14 +434,33 @@ namespace Maths::Matrices
 
 	TEST(MatrixText, Equality)
 	{
-		Matrix a = GetTestMatrix(TestValues[0]);
-		Matrix b = GetTestMatrix(TestValues[0]);
-		Matrix c = GetTestMatrix(TestValues[1]);
+		Matrix a
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix b
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
+		Matrix c
+		({
+			RowVector(4.25, -1.25, 3.0, 5.25),
+			RowVector(-1.0, 1.25, 2.0, 3.25),
+			RowVector(-0.75, -1.25, -2.0, 3.25),
+			RowVector(2.50, -1.50, -1.75, 2.0),
+		});
 		GenericMatrix<double, 1, 1> d{};
 
-		ExpectTrue(a == b);
-		ExpectFalse(a == c);
-		ExpectFalse(a == d);
+
+		TempExpectTrue(a == b);
+		TempExpectFalse(a == c);
+		TempExpectFalse(a == d);
 	}
 
 	TEST(MatrixText, Inequality)

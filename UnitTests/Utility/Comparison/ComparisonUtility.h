@@ -8,6 +8,12 @@
 #define TempExpectNear(expectedValue, actualValue) \
 	EXPECT_NEAR(expectedValue, actualValue, NearComparisonPrecision);
 
+#define TempExpectTrue(expression) \
+	EXPECT_EQ(true, expression);
+
+#define TempExpectFalse(expression) \
+	EXPECT_EQ(false, expression);
+
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {

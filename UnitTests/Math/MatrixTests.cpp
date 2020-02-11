@@ -394,7 +394,7 @@ namespace Maths::Matrices
 		matrix.SetColumn(0, column);
 
 
-		ExpectColumnEqual(matrix, column);
+		MatrixExpectColumnNear(matrix, column);
 	}
 
 	TEST(MatrixTest, AssignmentOperator)

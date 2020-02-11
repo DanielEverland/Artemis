@@ -98,14 +98,6 @@ namespace Maths::Vectors
     };
 
     template<typename T>
-    map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedNaNStrings
-    {
-        { 2, "(NaN, NaN)" },
-        { 3, "(NaN, NaN, NaN)" },
-        { 4, "(NaN, NaN, NaN, NaN)" },
-    };
-
-    template<typename T>
     map<unsigned int, string> TypedFloatingPointVectorTests<T>::ExpectedInfinityStrings
     {
         { 2, "(PositiveInfinity, NegativeInfinity)" },
@@ -274,17 +266,20 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToStringNaN)
     {
-        TypeParam vector = this->vectors[0];
-        string expectedString = TypedFloatingPointVectorTests::ExpectedNaNStrings[vector.GetDimensions()];
+        TypeParam vector = TypeParam({ nan(""), nan(""), nan(""), nan("") });
+        map<unsigned int, string> expectedStrings
+        {
+            { 2, "(NaN, NaN)" },
+            { 3, "(NaN, NaN, NaN)" },
+            { 4, "(NaN, NaN, NaN, NaN)" },
+        };
+        string expectedResult = expectedStrings[vector.GetDimensions()];
 
-        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-            vector[i] = nan("");
+
+        string actualResult = vector.ToString();
 
 
-        string vectorString = vector.ToString();
-
-
-        EXPECT_EQ(expectedString, vectorString);
+        TempExpectEqual(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToStringInfinity)

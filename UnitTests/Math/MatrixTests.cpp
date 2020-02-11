@@ -621,7 +621,13 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, InverseCommunatitiveMultiplication)
 	{
-		Matrix matrix = GetTestMatrix(TestValues[0]);
+		Matrix matrix
+		({
+			RowVector(1.0, 2.50, -1.25, 0),
+			RowVector(-2.75, 1.25, 0.25, 1.25),
+			RowVector(3.25, -1.0, 2.75, 4.25),
+			RowVector(-3.0, -1.25, 2.0, 1.0)
+		});
 		Matrix inverse = matrix.GetInverseMatrix();
 
 
@@ -629,7 +635,7 @@ namespace Maths::Matrices
 		Matrix b = inverse * matrix;
 
 
-		ExpectNear(a, b);
+		MatrixExpectNear(a, b);
 	}
 	TEST(MatrixTest, ScaleTransform)
 	{

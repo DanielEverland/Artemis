@@ -211,21 +211,20 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, SqrMagnitude)
     {
-        TypeParam vector = this->vectors[0];
-        const double* elementValues = TypedFloatingPointVectorTests::ElementValues[0];
-
-        TypedFloatingPointVectorTests::InitializeToDefaultValues(vector, elementValues);
-
-        double vectorSqrMagnitude = vector.GetSqrMagnitude();
-
-        double expectedValue = 0;
-        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+        TypeParam vector = TypeParam({ 2.53, 1.0, 0.2567, -1.5 });
+        map<unsigned int, double> values
         {
-            expectedValue += vector[i] * vector[i];
-        }
+            { 2, 7.400899999999991 },
+            { 3, 7.466794889999999 },
+            { 4, 9.716794889999999 },
+        };
+        double expectedResult = values[vector.GetDimensions()];
 
 
-        EXPECT_NEAR(expectedValue, vectorSqrMagnitude, FloatingPointComparisonPrecision);
+        double actualResult = vector.GetSqrMagnitude();
+
+
+        TempExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, Magnitude)

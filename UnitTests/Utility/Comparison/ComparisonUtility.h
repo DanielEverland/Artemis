@@ -17,6 +17,9 @@
 #define TempExpectZero(value) \
 	EXPECT_EQ(0, value);
 
+#define ExpectThrow(expression, exception) \
+	EXPECT_THROW(expression, exception);
+
 
 namespace ArtemisEngine::UnitTests::Comparisons
 {

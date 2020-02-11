@@ -247,9 +247,9 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, NormalizedDivideByZero)
     {
-        TypeParam vector = this->vectors[0];
+        TypeParam vector = TypeParam();
 
-        EXPECT_THROW(vector.GetNormalized(), DivideByZeroException);
+        ExpectThrow(vector.GetNormalized(), DivideByZeroException);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, Normalized)

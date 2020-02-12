@@ -54,9 +54,10 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedGenericVectorTests, ConstIndexingOutOfRange)
     {
-        TypeParam const vector = this->vectors[0];
+        const TypeParam vector{ };
 
-        EXPECT_THROW(vector[-1], OutOfRangeException);
-        EXPECT_THROW(vector[100], OutOfRangeException);
+
+        ExpectThrow(vector[-1], OutOfRangeException);
+        ExpectThrow(vector[100], OutOfRangeException);
     }
 }

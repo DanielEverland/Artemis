@@ -38,6 +38,7 @@ namespace Maths::Vectors
     {
         TypeParam vector{ };
 
+
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
             TempExpectZero(vector[i]);
     }

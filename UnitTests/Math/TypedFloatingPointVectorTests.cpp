@@ -396,22 +396,16 @@ namespace Maths::Vectors
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplication)
     {
-        TypeParam aVector = this->vectors[0];
-        TypeParam bVector = this->vectors[1];
-        double scalar = this->ElementValues[2][0];
+        TypeParam expectedResult({ 1.875, -3.375, 1.5, 7.875 });
+        TypeParam actualResult({ });
+        TypeParam vector({ 1.25, -2.25, 1.0, 5.25 });
+        double scalar = 1.5;
 
-        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(bVector, ElementValues);
-
-
-        aVector = bVector * scalar;
+        
+        actualResult = vector * scalar;
 
 
-        for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(bVector[i] * scalar, aVector[i]);
-        }
+        VectorExpectNear(expectedResult, actualResult);
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplicationAssignment)
     {

@@ -1,5 +1,6 @@
 #include "pch.h"
 
+#include "Utility/Comparison/ComparisonUtility.h"
 #include "Engine/Vector2.h"
 #include "Engine/Vector3.h"
 #include "Engine/Vector4.h"
@@ -35,12 +36,10 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedGenericVectorTests, EmptyConstructor)
     {
-        TypeParam vector = this->CallConstructorNoArguments();
+        TypeParam vector{ };
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(0, vector[i]);
-        }
+            TempExpectZero(vector[i]);
     }
 
     TYPED_TEST(TypedGenericVectorTests, DimensionIsPositive)

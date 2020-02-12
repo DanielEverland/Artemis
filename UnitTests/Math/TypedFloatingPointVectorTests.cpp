@@ -359,23 +359,15 @@ namespace Maths::Vectors
     }
     TYPED_TEST(TypedFloatingPointVectorTests, SubtractionAssignment)
     {
-        TypeParam aVector = this->vectors[0];
-        TypeParam bVector = this->vectors[1];
+        TypeParam expectedResult({ 1.25, 3.25, 0, -6.75 });
+        TypeParam actualResult({ 2.50, 1.0, 1.0, -1.5 });
+        TypeParam b({ 1.25, -2.25, 1.0, 5.25 });
+        
 
-        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(aVector, aElementValues);
-        this->InitializeToDefaultValues(bVector, bElementValues);
+        actualResult -= b;
 
 
-        aVector -= bVector;
-
-
-        for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(aElementValues[i] - bElementValues[i], aVector[i]);
-        }
+        VectorExpectNear(expectedResult, actualResult);
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarSubtraction)
     {

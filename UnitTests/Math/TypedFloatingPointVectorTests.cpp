@@ -482,19 +482,12 @@ namespace Maths::Vectors
     }
     TYPED_TEST(TypedFloatingPointVectorTests, Inequality)
     {
-        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* cElementValues = TypedFloatingPointVectorTests::ElementValues[1];
+        TypeParam a({ 2.53, 1.0, 0.2567, -1.5 });
+        TypeParam b({ 2.53, 1.0, 0.2567, -1.5 });
+        TypeParam c({ 1.25, -2.25, 1.0, 5.25 });
 
-        TypeParam a = this->vectors[0];
-        TypeParam b = this->vectors[0];
-        TypeParam c = this->vectors[1];
 
-        this->InitializeToDefaultValues(a, aElementValues);
-        this->InitializeToDefaultValues(b, bElementValues);
-        this->InitializeToDefaultValues(c, cElementValues);
-
-        EXPECT_EQ(false, a != b);
-        EXPECT_EQ(true, a != c);
+        TempExpectFalse(a != b);
+        TempExpectTrue(a != c);
     }
 }

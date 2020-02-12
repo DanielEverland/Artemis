@@ -422,24 +422,16 @@ namespace Maths::Vectors
 
     TYPED_TEST(TypedFloatingPointVectorTests, DivisionOfTwoVectors)
     {
-        TypeParam aVector = this->vectors[0];
-        TypeParam bVector = this->vectors[1];
-        TypeParam cVector = this->vectors[2];
-
-        const double* aElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-        const double* bElementValues = TypedFloatingPointVectorTests::ElementValues[1];
-
-        this->InitializeToDefaultValues(aVector, aElementValues);
-        this->InitializeToDefaultValues(bVector, bElementValues);
+        TypeParam expectedResult({ 2.0, -0.44444444444444442, 1.0, -0.2857142857142857 });
+        TypeParam a({ 2.50, 1.0, 1.0, -1.5 });
+        TypeParam b({ 1.25, -2.25, 1.0, 5.25 });
+        TypeParam actualResult{ };
 
 
-        cVector = aVector / bVector;
+        actualResult = a / b;
 
 
-        for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(aElementValues[i] / bElementValues[i], cVector[i]);
-        }
+        VectorExpectNear(expectedResult, actualResult);
     }
     TYPED_TEST(TypedFloatingPointVectorTests, DivisionAssignment)
     {

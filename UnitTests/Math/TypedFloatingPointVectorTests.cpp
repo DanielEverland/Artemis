@@ -1,7 +1,5 @@
 #include "pch.h"
 
-#include <iterator>
-#include <list>
 #include <map>
 
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
@@ -12,97 +10,21 @@
 #include "Engine/Vector3.h"
 #include "Engine/Vector4.h"
 
+#define Infinity std::numeric_limits<double>::infinity()
+
 namespace Maths::Vectors
 {
     using std::map;
-    using std::list;
 
     using ArtemisEngine::Vector2;
     using ArtemisEngine::Vector3;
     using ArtemisEngine::Vector4;
 
-#define Infinity std::numeric_limits<double>::infinity()
-
-    const double FloatingPointComparisonPrecision = 0.00001;
+    const static int MaximumDimensions = 4;
 
     template <typename T>
     class TypedFloatingPointVectorTests : public ::testing::Test
     {
-    public:
-
-        const static int VectorsToInstantiate = 4;
-        const static int MaximumDimensions = 4;
-        const static int SetCount = 5;
-
-        const static double ElementValues[SetCount][MaximumDimensions];
-        const static double InfinityValues[MaximumDimensions];
-        static map<unsigned int, list<double>> ExpectedNormalizedValues;
-        static map<unsigned int, string> ExpectedStrings;
-        static map<unsigned int, string> ExpectedNaNStrings;
-        static map<unsigned int, string> ExpectedInfinityStrings;
-        static map<unsigned int, double> ExpectedDotProduct;
-        static map<unsigned int, double> ExpectedMagnitude;
-        static map<unsigned int, double> ExpectedAngle;
-
-        T vectors[VectorsToInstantiate];
-
-        double GetDotProduct(T a, T b)
-        {
-            return T::GetDotProduct(a, b);
-        }
-        double GetAngle(T a, T b)
-        {
-            return T::GetAngle(a, b);
-        }
-        T CallConstructorNoArguments()
-        {
-            return T();
-        }
-        T CallCopyConstructor(const T& copy)
-        {
-            return T(copy);
-        }
-        void InitializeToDefaultValues(T& vector, const double* const elements) const
-        {
-            for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-                vector[i] = elements[i];
-        }
-
-
-        // NEW
-        T Initialize(const double* const elements) const
-        {
-            T toReturn;
-
-            for (unsigned int i = 0; i < toReturn.GetDimensions(); i++)
-                toReturn[i] = elements[i];
-
-            return toReturn;
-        }
-    };
-
-    template <typename T>
-    const double TypedFloatingPointVectorTests<T>::ElementValues[SetCount][MaximumDimensions]
-    {
-        { 2.53, 1.0, 0.2567, -1.5 },
-        { 1.25, -2.25, 1.0, 5.25 },
-        { -0.75, 0.5, -3.75, -1.75 },
-        { 3.0, 2.25, -4.75, 3.25 },
-        { -1.25, -0.75, 2.75, 3.0 },
-    };
-
-    template <typename T>
-    const double TypedFloatingPointVectorTests<T>::InfinityValues[MaximumDimensions]
-    {
-        Infinity, -Infinity, Infinity, -Infinity
-    };
-
-    template<typename T>
-    map<unsigned int, double> TypedFloatingPointVectorTests<T>::ExpectedMagnitude
-    {
-        { 2, 2.72045 },
-        { 3, 2.73254 },
-        { 4, 3.11717 },
     };
 
     using MyTypes = ::testing::Types<Vector2, Vector3, Vector4>;

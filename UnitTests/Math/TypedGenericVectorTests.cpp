@@ -41,14 +41,7 @@ namespace Maths::Vectors
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
             TempExpectZero(vector[i]);
     }
-
-    TYPED_TEST(TypedGenericVectorTests, DimensionIsPositive)
-    {
-        TypeParam vector = this->vectors[0];
-
-        EXPECT_LT(0, vector.GetDimensions());
-    }
-
+    
     TYPED_TEST(TypedGenericVectorTests, IndexingOutOfRange)
     {
         TypeParam vector = this->vectors[0];

@@ -20,15 +20,6 @@ namespace Maths::Vectors
     template <typename T>
     class TypedGenericVectorTests : public ::testing::Test
     {
-    public:
-        const static int VectorsToInstantiate = 4;
-
-        T vectors[VectorsToInstantiate];
-
-        T CallConstructorNoArguments()
-        {
-            return T();
-        }
     };
 
     using MyTypes = ::testing::Types<Vector2, Vector3, Vector4, IntVector2, IntVector3, IntVector4>;

@@ -384,21 +384,15 @@ namespace Maths::Vectors
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarSubtractionAssignment)
     {
-        TypeParam vector = this->vectors[0];
-        double scalar = this->ElementValues[1][0];
-
-        const double* ElementValues = TypedFloatingPointVectorTests::ElementValues[0];
-
-        this->InitializeToDefaultValues(vector, ElementValues);
+        TypeParam expectedResult({ -0.25, -3.75, -0.5, 3.75 });
+        TypeParam actualResult({ 1.25, -2.25, 1.0, 5.25 });
+        double scalar = 1.5;
 
 
-        vector -= scalar;
+        actualResult -= scalar;
 
 
-        for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-        {
-            EXPECT_EQ(ElementValues[i] - scalar, vector[i]);
-        }
+        VectorExpectNear(expectedResult, actualResult);
     }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarMultiplication)
     {

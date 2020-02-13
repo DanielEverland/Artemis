@@ -69,15 +69,7 @@ namespace Maths::Vectors
         { 3, 2, -5, 3 },
         { -1, 0, 3, 3 },
     };
-
-	template <typename T>
-	map<unsigned int, int> TypedIntegerVectorTests<T>::ExpectedDotProduct
-	{
-		{ 2, 5 },
-		{ 3, 8 },
-		{ 4, 3 },
-	};
-
+	
 	template<typename T>
 	map<unsigned int, double> TypedIntegerVectorTests<T>::ExpectedMagnitude
 	{
@@ -135,37 +127,30 @@ namespace Maths::Vectors
 	}
 	TYPED_TEST(TypedIntegerVectorTests, ConstIndexing)
 	{
-		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];
-		this->InitializeToDefaultValues(this->vectors[0], elementValues);
-		
-		
-		const TypeParam vector = this->vectors[0];
-		
-		
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-		    EXPECT_EQ(elementValues[i], vector[i]);
-		}
+		int expectedResult[MaximumDimensions]{ 15, 5, 3, -1 };
+		const TypeParam actualResult({ 15, 5, 3, -1 });
+
+
+		for (unsigned int i = 0; i < actualResult.GetDimensions(); i++)
+			TempExpectNear(expectedResult[i], actualResult[i]);
 	}
 	TYPED_TEST(TypedIntegerVectorTests, GetDotProduct)
 	{
-		TypeParam vectorA = this->vectors[0];
-		TypeParam vectorB = this->vectors[1];
-		
-		const int* elementValuesA = TypedIntegerVectorTests::ElementValues[0];
-		const int* elementValuesB = TypedIntegerVectorTests::ElementValues[1];
-		
-		this->InitializeToDefaultValues(vectorA, elementValuesA);
-		this->InitializeToDefaultValues(vectorB, elementValuesB);
-		
-		
-		
-		double expectedValue = TypedIntegerVectorTests::ExpectedDotProduct[vectorA.GetDimensions()];
-		double dotProduct = this->GetDotProduct(vectorA, vectorB);
+		map<unsigned int, int> expectedValues
+		{
+			{ 2, 5 },
+			{ 3, 8 },
+			{ 4, 3 },
+		};
+		TypeParam a({ 15, 5, 3, -1 });
+		TypeParam b({ 1, -2, 1, 5 });
+		double expectedResult = expectedValues[a.GetDimensions()];
 		
 		
+		double actualResult = TypeParam::GetDotProduct(a, b);
+				
 		
-		EXPECT_EQ(expectedValue, dotProduct);
+		TempExpectEqual(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, GetAngle)

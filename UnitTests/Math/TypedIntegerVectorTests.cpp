@@ -3,6 +3,7 @@
 #include <map>
 #include <list>
 
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Exceptions/DivideByZeroException.h"
 #include "Engine/IntVector2.h"
 #include "Engine/IntVector3.h"
@@ -112,18 +113,14 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, CopyConstructor)
 	{
-		TypeParam copy = this->vectors[0];
-		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];
+		TypeParam expectedResult({ 15, 5, 3, -1 });
+		TypeParam copy({ 15, 5, 3, -1 });
+		
 
-		this->InitializeToDefaultValues(copy, elementValues);
+		TypeParam actualResult(copy);
 		
-		TypeParam vector = this->CallCopyConstructor(copy);
-		
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-		    EXPECT_EQ(copy[i], vector[i]);
-			EXPECT_EQ(elementValues[i], vector[i]);
-		}
+
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, Indexing)

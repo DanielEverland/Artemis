@@ -3,6 +3,7 @@
 #include <map>
 #include <list>
 
+#include "Utility/Comparison/ComparisonUtility.h"
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Exceptions/DivideByZeroException.h"
 #include "Engine/IntVector2.h"
@@ -125,17 +126,12 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, Indexing)
 	{
-		TypeParam vector = this->vectors[0];
-		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];
+		int expectedResult[MaximumDimensions]{ 15, 5, 3, -1 };
+		TypeParam actualResult({ 15, 5, 3, -1 });
+				
 		
-		
-		this->InitializeToDefaultValues(vector, elementValues);
-		
-		
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(elementValues[i], vector[i]);
-		}
+		for (unsigned int i = 0; i < actualResult.GetDimensions(); i++)
+			TempExpectNear(expectedResult[i], actualResult[i]);
 	}
 	TYPED_TEST(TypedIntegerVectorTests, ConstIndexing)
 	{

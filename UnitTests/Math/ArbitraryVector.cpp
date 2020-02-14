@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "pch.h"
 
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Engine/Maths/Vectors/VectorBase.h"
 
 using ArtemisEngine::Maths::Vectors::VectorBase;
@@ -37,4 +38,15 @@ TEST(ArbitraryVector, ConstIndexer)
 	EXPECT_EQ(3, constVector[2]);
 	EXPECT_EQ(4, constVector[3]);
 	EXPECT_EQ(5, constVector[4]);
+}
+TEST(ArbitraryVector, Upgrading)
+{
+	VectorBase<double, 6> expectedResult({ 1, 2, 3, 4, 5, 0 });
+	VectorBase<double, 5> vector({ 1, 2, 3, 4, 5 });
+
+
+	VectorBase<double, 6> actualResult(vector);
+
+
+	VectorExpectNear(expectedResult, actualResult);
 }

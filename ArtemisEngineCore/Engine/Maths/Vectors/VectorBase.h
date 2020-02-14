@@ -15,11 +15,13 @@ using ArtemisEngine::Debugging::IDebugStringReturner;
 
 namespace ArtemisEngine::Maths::Vectors
 {
+	class Test{};
+
 	template<class T, unsigned int dimensions>
 	class VectorBase;
 
 	template<class T, unsigned int dimensions>
-	class VectorImplementor : public IDebugStringReturner
+	class VectorImplementor : public IDebugStringReturner, public Test
 	{
 	public:
 
@@ -210,12 +212,21 @@ namespace ArtemisEngine::Maths::Vectors
 	public:
 		T values[dimensions] = {};
 
+		template<class TOther, unsigned int otherDimensions, typename = typename std::enable_if<(otherDimensions < dimensions)>::type>
+		VectorBase<T, dimensions>(const VectorBase<TOther, otherDimensions>& other)
+		{
+			for (unsigned int i = 0; i < otherDimensions; i++)
+				values[i] = other[i];
+		}
+
 		VectorBase<T, dimensions>(std::initializer_list<T> arguments)
 		{
 			InitializeFromList(arguments, dimensions);
 		}
 		VectorBase<T, dimensions>()
 		{
+			for (unsigned int i = 0; i < dimensions; i++)
+				values[i] = 0;
 		}
 
 	private:
@@ -320,6 +331,13 @@ namespace ArtemisEngine::Maths::Vectors
 			this->Y = y;
 			this->Z = z;
 		}
+		template<class TOther>
+		VectorBase(const VectorBase<TOther, 2>& other)
+		{
+			this->X = other[0];
+			this->Y = other[1];
+			this->Z = 0;
+		}
 		VectorBase(std::initializer_list<T> arguments)
 		{
 			InitializeFromList(arguments, 3);
@@ -402,6 +420,22 @@ namespace ArtemisEngine::Maths::Vectors
 			this->Y = y;
 			this->Z = z;
 			this->W = w;
+		}
+		template<class TOther>
+		VectorBase(const VectorBase<TOther, 2>& other)
+		{
+			this->X = other[0];
+			this->Y = other[1];
+			this->Z = 0;
+			this->W = 0;
+		}
+		template<class TOther>
+		VectorBase(const VectorBase<TOther, 3>& other)
+		{
+			this->X = other[0];
+			this->Y = other[1];
+			this->Z = other[2];
+			this->W = 0;
 		}
 		VectorBase(std::initializer_list<T> arguments)
 		{

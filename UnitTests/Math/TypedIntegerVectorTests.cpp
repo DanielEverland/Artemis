@@ -9,15 +9,17 @@
 #include "Engine/IntVector2.h"
 #include "Engine/IntVector3.h"
 #include "Engine/IntVector4.h"
+#include "Engine/Vector2.h"
+#include "Engine/Vector3.h"
+#include "Engine/Vector4.h"
 
 namespace Maths::Vectors
 {
 	using std::map;
 	using std::list;
 
-	using ArtemisEngine::IntVector2;
-	using ArtemisEngine::IntVector3;
-	using ArtemisEngine::IntVector4;
+	using namespace ArtemisEngine;
+	using ArtemisEngine::Maths::Vectors::Test;
 
 	const double FloatingPointComparisonPrecision = 0.00001;
 
@@ -78,14 +80,6 @@ namespace Maths::Vectors
 		{ 4, 16.12452 },
 	};
 	
-	template <typename T>
-	map<unsigned int, list<double>> TypedIntegerVectorTests<T>::ExpectedNormalizedValues
-	{
-		{ 2, list<double> { 0.94868, 0.31623 } },
-		{ 3, list<double> { 0.93205, 0.31068, 0.18641 } },
-		{ 4, list<double> { 0.93026, 0.31009, 0.18605, -0.06202 } },
-	};
-
 	template<typename T>
 	map<unsigned int, string> TypedIntegerVectorTests<T>::ExpectedStrings
 	{
@@ -202,23 +196,20 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, Normalized)
 	{
-		TypeParam vector = this->vectors[0];
-		list<double> expectedValues = TypedIntegerVectorTests::ExpectedNormalizedValues[vector.GetDimensions()];
-		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		TypedIntegerVectorTests::InitializeToDefaultValues(vector, elementValues);
-
-
-		auto normalized = vector.GetNormalized();
-
-
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+		TypeParam vector({ 15, 5, 3, -1 });
+		map<unsigned int, Vector4> expectedValues
 		{
-			auto iter = expectedValues.begin();
-			std::advance(iter, i);
+			{ 2, Vector2(0.94868329805051377, 0.31622776601683794) },
+			{ 3, Vector3(0.93205464900180002, 0.31068488300060004, 0.18641092980036) },
+			{ 4, Vector4(0.93026050941906346, 0.31008683647302115, 0.18605210188381269, -0.062017367294604234) },
+		};
+		Vector4 expectedResult = expectedValues[vector.GetDimensions()];
 
-			EXPECT_NEAR(*iter, normalized[i], FloatingPointComparisonPrecision);
-		}
+
+		Vector4 actualResult = vector.GetNormalized();
+
+
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, NormalizedZeroLengthException)

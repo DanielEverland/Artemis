@@ -16,6 +16,9 @@ namespace ArtemisEngine::Maths::Vectors
 		Vector3Base(const VectorBase<T, 3>& copy) : VectorBase<T, 3>(copy) { }
 		Vector3Base(VectorBase<T, 3>&& move) : VectorBase<T, 3>(move) { }
 
+		template<class TOther>
+		Vector3Base(const VectorBase<TOther, 2>& other) : VectorBase<T, 3>(other) { }
+
 		Vector3Base& operator=(VectorBase<T, 3>& copy)
 		{
 			this->X = copy.X;

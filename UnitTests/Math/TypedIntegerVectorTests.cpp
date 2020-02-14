@@ -459,59 +459,41 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarDivision)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-		double scalar = 2.54;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(bVector, ElementValues);
+		TypeParam expectedResult({ 6, 2, 1, 0 });
+		TypeParam vector({ 15, 5, 3, -1 });
+		TypeParam actualResult;
+		double scalar = 2.5;
 
 
-		aVector = bVector / scalar;
+		actualResult = vector / scalar;
 
 
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(static_cast<long>(bVector[i] / scalar), aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, IntegerScalarDivisionAssignment)
 	{
-		TypeParam vector = this->vectors[0];
-		int scalar = 4;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, ElementValues);
+		TypeParam expectedResult({ 7, 2, 1, 0 });
+		TypeParam actualResult({ 15, 5, 3, -1 });
+		int scalar = 2;
 
 
-		vector /= scalar;
+		actualResult /= scalar;
 
 
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(ElementValues[i] / scalar, vector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarDivisionAssignment)
 	{
-		TypeParam vector = this->vectors[0];
-		double scalar = 4.21;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, ElementValues);
+		TypeParam expectedResult({ 6, 2, 1, 0 });
+		TypeParam actualResult({ 15, 5, 3, -1 });
+		double scalar = 2.5;
 
 
-		vector /= scalar;
+		actualResult /= scalar;
 
 
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(static_cast<long>(ElementValues[i] / scalar), vector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 }

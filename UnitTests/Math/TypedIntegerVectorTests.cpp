@@ -297,21 +297,15 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarAdditionAssignment)
 	{
-		TypeParam vector = this->vectors[0];
+		TypeParam expectedResult({ 25, 15, 13, 9 });
+		TypeParam actualResult({ 20, 10, 8, 4 });
 		double scalar = 5.86;
+				
 
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, ElementValues);
-
-
-		vector += scalar;
+		actualResult += scalar;
 
 
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(static_cast<long>(ElementValues[i] + scalar), vector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, SubtractionOfTwoVectors)

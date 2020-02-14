@@ -445,22 +445,16 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, IntegerScalarDivision)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-		int scalar = 34;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(bVector, ElementValues);
+		TypeParam expectedResult({ 7, 2, 1, 0 });
+		TypeParam vector({ 15, 5, 3, -1 });
+		TypeParam actualResult;
+		int scalar = 2;
 
 
-		aVector = bVector / scalar;
+		actualResult = vector / scalar;
 
 
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(bVector[i] / scalar, aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarDivision)

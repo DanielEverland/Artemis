@@ -341,32 +341,6 @@ namespace Maths::Vectors
 
         VectorExpectNear(expectedResult, actualResult);
     }
-
-    TYPED_TEST(TypedFloatingPointVectorTests, DivisionOfTwoVectors)
-    {
-        TypeParam expectedResult({ 2.0, -0.44444444444444442, 1.0, -0.2857142857142857 });
-        TypeParam a({ 2.50, 1.0, 1.0, -1.5 });
-        TypeParam b({ 1.25, -2.25, 1.0, 5.25 });
-        TypeParam actualResult{ };
-
-
-        actualResult = a / b;
-
-
-        VectorExpectNear(expectedResult, actualResult);
-    }
-    TYPED_TEST(TypedFloatingPointVectorTests, DivisionAssignment)
-    {
-        TypeParam expectedResult({ 2.0, -0.44444444444444442, 1.0, -0.2857142857142857 });
-        TypeParam actualResult({ 2.50, 1.0, 1.0, -1.5 });
-        TypeParam vector({ 1.25, -2.25, 1.0, 5.25 });
-
-
-        actualResult /= vector;
-
-
-        VectorExpectNear(expectedResult, actualResult);
-    }
     TYPED_TEST(TypedFloatingPointVectorTests, ScalarDivision)
     {
         TypeParam expectedResult({ 0.625, -1.125, 0.5, 2.625 });

@@ -105,4 +105,26 @@ namespace Maths::Vectors
 
         VectorExpectNear(expectedResult, actualResult);
     }
+    TEST(Vector4, UpgradeVector3)
+    {
+        Vector4 expectedResult(154.14, 12.4, 56.99, 0);
+        Vector3 vector(154.14, 12.4, 56.99);
+
+
+        Vector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
+    TEST(Vector4, UpgradeIntVector3)
+    {
+        Vector4 expectedResult(154, 12, 54, 0);
+        IntVector3 vector(154, 12, 54);
+
+
+        Vector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
 }

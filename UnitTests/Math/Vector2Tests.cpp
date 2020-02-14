@@ -1,4 +1,3 @@
-#include "gtest/gtest.h"
 #include "pch.h"
 
 #include "Engine/Vector2.h"

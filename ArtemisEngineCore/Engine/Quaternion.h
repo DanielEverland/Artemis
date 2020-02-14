@@ -1,15 +1,22 @@
 #pragma once
 
-#include "Engine/Vector3.h"
+#include <string>
 
+#include "Engine/Vector3.h"
+#include "Debugging/IDebugStringReturner.h"
+#include <sstream>
+
+using ArtemisEngine::Debugging::IDebugStringReturner;
 using ArtemisEngine::Vector3;
+using std::string;
+using std::stringstream;
 
 namespace ArtemisEngine
 {
 	// Quaternions represent rotations in an efficient manner without suffering from gimbal lock.
 	// Rotations can be multiplied with each other, and points can be rotated by being multiplied with a quaternion.
 	// Note that multiplying a point is not communitative. The quaternion must be the first operand.
-	struct Quaternion
+	struct Quaternion : IDebugStringReturner
 	{
 	public:
 		Quaternion() = default;
@@ -40,6 +47,9 @@ namespace ArtemisEngine
 		// Returns the length of this quaternion.
 		double Magnitude() const;
 
+		// Returns a string of the quaternion with the format (X, Y, Z, W)
+		string ToString() const;
+
 		Quaternion operator+(const Quaternion& other) const;
 		Quaternion operator-(const Quaternion& other) const;
 		Quaternion operator*(const Quaternion& other) const;
@@ -51,5 +61,12 @@ namespace ArtemisEngine
 		void operator*=(const Quaternion& other);
 		void operator*=(double scalar);
 		bool operator==(const Quaternion& other) const;
+
+	private:
+		inline static const string PositiveInfinityText = "PositiveInfinity";
+		inline static const string NegativeInfinityText = "NegativeInfinity";
+		inline static const string NaNText = "NaN";
+
+		stringstream& FormatNumber(stringstream& stream, std::streamsize defaultPrecision, double value) const;
 	};
 }

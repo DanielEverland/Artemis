@@ -2,6 +2,7 @@
 
 const double Math::Pi = M_PI;
 const double Math::Infinity = std::numeric_limits<double>::infinity();
+const double Math::NaN = nan("");
 
 double Math::NormalizeAngle(double angle)
 {	

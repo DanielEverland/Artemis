@@ -207,3 +207,50 @@ TEST(Quaternions, Rotation)
 
 	VectorExpectNear(expectedResult, actualResult);
 }
+TEST(Quaternions, ToString)
+{
+	Quaternion quat(153.5341, 12.00, 53, 1);
+	string expectedResult = "(153.5341, 12, 53, 1)";
+
+
+	string actualResult = quat.ToString();
+
+
+	ExpectEqual(expectedResult, actualResult);
+}
+//
+//TEST(Quaternions, ToStringNaN)
+//{
+//	TypeParam vector = TypeParam({ nan(""), nan(""), nan(""), nan("") });
+//	map<unsigned int, string> expectedStrings
+//	{
+//		{ 2, "(NaN, NaN)" },
+//		{ 3, "(NaN, NaN, NaN)" },
+//		{ 4, "(NaN, NaN, NaN, NaN)" },
+//	};
+//	string expectedResult = expectedStrings[vector.GetDimensions()];
+//
+//
+//	string actualResult = vector.ToString();
+//
+//
+//	ExpectEqual(expectedResult, actualResult);
+//}
+//
+//TEST(Quaternions, ToStringInfinity)
+//{
+//	TypeParam vector = TypeParam({ Infinity, -Infinity, Infinity, -Infinity });
+//	map<unsigned int, string> expectedStrings
+//	{
+//		{ 2, "(PositiveInfinity, NegativeInfinity)" },
+//		{ 3, "(PositiveInfinity, NegativeInfinity, PositiveInfinity)" },
+//		{ 4, "(PositiveInfinity, NegativeInfinity, PositiveInfinity, NegativeInfinity)" },
+//	};
+//	string expectedResult = expectedStrings[vector.GetDimensions()];
+//
+//
+//	string actualResult = vector.ToString();
+//
+//
+//	ExpectEqual(expectedResult, actualResult);
+//}

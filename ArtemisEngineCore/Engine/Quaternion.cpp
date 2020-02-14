@@ -97,6 +97,46 @@ Vector3 Quaternion::GetEuler() const
 	return euler;
 }
 
+string ArtemisEngine::Quaternion::ToString() const
+{
+	std::stringstream stream;
+	std::streamsize defaultPrecision = stream.precision();
+
+	stream << "(";
+	FormatNumber(stream, defaultPrecision, X) << ", ";
+	FormatNumber(stream, defaultPrecision, Y) << ", ";
+	FormatNumber(stream, defaultPrecision, Z) << ", ";
+	FormatNumber(stream, defaultPrecision, W);
+	stream << ")";
+
+	return stream.str();
+}
+stringstream& Quaternion::FormatNumber(stringstream& stream, std::streamsize defaultPrecision, double value) const
+{
+	if (Math::IsPositiveInfinity(value))
+	{
+		stream << PositiveInfinityText;
+	}
+	else if (Math::IsNegativeInfinity(value))
+	{
+		stream << NegativeInfinityText;
+	}
+	else if (Math::IsNaN(value))
+	{
+		stream << NaNText;
+	}
+	else if (Math::IsFloatingPointIntegral(value))
+	{
+		stream << std::fixed << std::setprecision(1) << value;
+	}
+	else
+	{
+		stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
+	}
+
+	return stream;
+}
+
 Vector3 Quaternion::operator*(const Vector3& point) const
 {
 	double x = X * 2;

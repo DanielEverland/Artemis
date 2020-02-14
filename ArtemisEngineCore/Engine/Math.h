@@ -12,6 +12,7 @@ class Math
 public:
 	static const double Pi;
 	static const double Infinity;
+	static const double NaN;
 
 	// Returns an angle in the range (-180;180]
 	static double NormalizeAngle(double value);

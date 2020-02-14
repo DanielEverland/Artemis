@@ -324,23 +324,15 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, SubtractionAssignment)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-
-		const int* aElementValues = TypedIntegerVectorTests::ElementValues[0];
-		const int* bElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(aVector, aElementValues);
-		this->InitializeToDefaultValues(bVector, bElementValues);
+		TypeParam expectedResult({ 14, 7, 2, -6 });
+		TypeParam actualResult({ 15, 5, 3, -1 });
+		TypeParam vector({ 1, -2, 1, 5 });
 
 
-		aVector -= bVector;
+		actualResult -= vector;
 
 
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(aElementValues[i] - bElementValues[i], aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, IntegerPointScalarSubtraction)

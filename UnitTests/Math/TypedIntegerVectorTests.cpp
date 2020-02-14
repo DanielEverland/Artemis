@@ -378,41 +378,29 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarSubtractionAssignment)
 	{
-		TypeParam vector = this->vectors[0];
-		double scalar = 7.84;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, ElementValues);
+		TypeParam expectedResult({ 11, 1, 0, -4 });
+		TypeParam actualResult({ 15, 5, 3, -1 });
+		double scalar = 3.84;
 
 
-		vector -= scalar;
+		actualResult -= scalar;
 
 
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(static_cast<long>(ElementValues[i] - scalar), vector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 	
 	TYPED_TEST(TypedIntegerVectorTests, IntegerPointScalarMultiplication)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-		int scalar = 15;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(bVector, ElementValues);
+		TypeParam expectedResult({ 30, 10, 6, -2 });
+		TypeParam vector({ 15, 5, 3, -1 });
+		TypeParam actualResult;
+		int scalar = 2;
 
 
-		aVector = bVector * scalar;
+		actualResult = vector * scalar;
 
 
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(bVector[i] * scalar, aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarMultiplication)

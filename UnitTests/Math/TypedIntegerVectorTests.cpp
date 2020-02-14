@@ -310,24 +310,16 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, SubtractionOfTwoVectors)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-		TypeParam cVector = this->vectors[2];
-
-		const int* aElementValues = TypedIntegerVectorTests::ElementValues[0];
-		const int* bElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(aVector, aElementValues);
-		this->InitializeToDefaultValues(bVector, bElementValues);
+		TypeParam expectedResult({ 14, 7, 2, -6 });
+		TypeParam a({ 15, 5, 3, -1 });
+		TypeParam b({ 1, -2, 1, 5 });
+		TypeParam actualResult{ };
 
 
-		cVector = aVector - bVector;
+		actualResult = a - b;
 
 
-		for (unsigned int i = 0; i < cVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(aElementValues[i] - bElementValues[i], cVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, SubtractionAssignment)

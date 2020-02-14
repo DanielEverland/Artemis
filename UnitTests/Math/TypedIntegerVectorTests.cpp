@@ -78,16 +78,6 @@ namespace Maths::Vectors
 		{ 3, 16.09348 },
 		{ 4, 16.12452 },
 	};
-	
-	template<typename T>
-	map<unsigned int, string> TypedIntegerVectorTests<T>::ExpectedStrings
-	{
-		{ 2, "(15, 5)" },
-		{ 3, "(15, 5, 3)" },
-		{ 4, "(15, 5, 3, -1)" },
-	};
-
-
 
 	TYPED_TEST(TypedIntegerVectorTests, CopyConstructor)
 	{
@@ -221,17 +211,20 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, ToString)
 	{
-		TypeParam vector = this->vectors[0];
-		string expectedString = TypedIntegerVectorTests::ExpectedStrings[vector.GetDimensions()];
-		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];
+		map<unsigned int, string> expectedStrings
+		{
+			{ 2, "(15, 5)" },
+			{ 3, "(15, 5, 3)" },
+			{ 4, "(15, 5, 3, -1)" },
+		};
+		TypeParam vector({ 15, 5, 3, -1 });
+		string expectedResult = expectedStrings[vector.GetDimensions()];
 
-		this->InitializeToDefaultValues(vector, elementValues);
+
+		string actualResult = vector.ToString();
 
 
-		string vectorString = vector.ToString();
-
-
-		EXPECT_EQ(expectedString, vectorString);
+		EXPECT_EQ(expectedResult, actualResult);
 	}
 	
 	TYPED_TEST(TypedIntegerVectorTests, AdditionOfTwoVectors)

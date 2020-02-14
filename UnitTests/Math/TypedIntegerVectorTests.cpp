@@ -432,21 +432,15 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarMultiplicationAssignment)
 	{
-		TypeParam vector = this->vectors[0];
-		double scalar = -1.432;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, ElementValues);
+		TypeParam expectedResult({ 37, 12, 7, -2 });
+		TypeParam actualResult({ 15, 5, 3, -1 });
+		double scalar = 2.5;
 
 
-		vector *= scalar;
+		actualResult *= scalar;
 
 
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(static_cast<long>(ElementValues[i] * scalar), vector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, DivisionOfTwoVectors)

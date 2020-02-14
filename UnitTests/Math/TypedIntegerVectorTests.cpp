@@ -224,7 +224,7 @@ namespace Maths::Vectors
 		string actualResult = vector.ToString();
 
 
-		EXPECT_EQ(expectedResult, actualResult);
+		TempExpectEqual(expectedResult, actualResult);
 	}
 	
 	TYPED_TEST(TypedIntegerVectorTests, AdditionOfTwoVectors)

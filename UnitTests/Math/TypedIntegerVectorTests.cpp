@@ -190,17 +190,14 @@ namespace Maths::Vectors
 			{ 3, 16.0934769394 },
 			{ 4, 16.1245154966 },
 		};
-		TypeParam vector = this->vectors[0];
-		double expectedValue = TypedIntegerVectorTests::ExpectedMagnitude[vector.GetDimensions()];
-		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, elementValues);
+		TypeParam vector({ 15, 5, 3, -1 });
+		double expectedResult = expectedValues[vector.GetDimensions()];
 
 
-		double magnitude = vector.GetMagnitude();
+		double actualResult = vector.GetMagnitude();
 
 
-		EXPECT_NEAR(expectedValue, magnitude, FloatingPointComparisonPrecision);
+		TempExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, Normalized)

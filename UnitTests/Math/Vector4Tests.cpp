@@ -1,11 +1,16 @@
 #include "gtest/gtest.h"
 #include "pch.h"
 
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Engine/Vector4.h"
+#include "Engine/Vector2.h"
+#include "Engine/Vector3.h"
+#include "Engine/IntVector2.h"
+#include "Engine/IntVector3.h"
 
 namespace Maths::Vectors
 {
-    using ArtemisEngine::Vector4;
+    using namespace ArtemisEngine;
 
     TEST(Vector4, InitializerListConstructor)
     {
@@ -77,5 +82,27 @@ namespace Maths::Vectors
         EXPECT_EQ(10, vector.Y);
         EXPECT_EQ(1, vector.Z);
         EXPECT_EQ(100, vector.W);
+    }
+    TEST(Vector4, UpgradeVector2)
+    {
+        Vector4 expectedResult(154.14, 12.4, 0, 0);
+        Vector2 vector(154.14, 12.4);
+
+
+        Vector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
+    TEST(Vector4, UpgradeIntVector2)
+    {
+        Vector4 expectedResult(154, 12, 0, 0);
+        IntVector2 vector(154, 12);
+
+
+        Vector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
     }
 }

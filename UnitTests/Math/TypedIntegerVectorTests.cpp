@@ -173,13 +173,13 @@ namespace Maths::Vectors
 			{ 4, 260 },
 		};
 		TypeParam vector({ 15, 5, 3, -1 });
-		double expectedResult = expectedValues[vector.GetDimensions()];
+		int expectedResult = expectedValues[vector.GetDimensions()];
 
 
-		double actualResult = vector.GetSqrMagnitude();
+		int actualResult = vector.GetSqrMagnitude();
 
 
-		TempExpectNear(expectedResult, actualResult);
+		TempExpectEqual(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, Magnitude)

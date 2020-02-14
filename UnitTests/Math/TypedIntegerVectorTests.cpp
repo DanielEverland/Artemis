@@ -405,22 +405,16 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarMultiplication)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-		double scalar = 6.154;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(bVector, ElementValues);
+		TypeParam expectedResult({ 37, 12, 7, -2 });
+		TypeParam vector({ 15, 5, 3, -1 });
+		TypeParam actualResult;
+		double scalar = 2.5;
 
 
-		aVector = bVector * scalar;
+		actualResult = vector * scalar;
 
 
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(static_cast<long>(bVector[i] * scalar), aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, IntegerScalarMultiplicationAssignment)

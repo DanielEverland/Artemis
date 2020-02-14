@@ -77,15 +77,7 @@ namespace Maths::Vectors
 		{ 3, 16.09348 },
 		{ 4, 16.12452 },
 	};
-
-	template <typename T>
-	map<unsigned int, double> TypedIntegerVectorTests<T>::ExpectedAngle
-	{
-		{ 2, 81.86989 },
-		{ 3, 78.29115 },
-		{ 4, 88.08505 },
-	};
-
+	
 	template <typename T>
 	map<unsigned int, list<double>> TypedIntegerVectorTests<T>::ExpectedNormalizedValues
 	{
@@ -155,46 +147,49 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, GetAngle)
 	{
-		TypeParam vectorA = this->vectors[0];
-		TypeParam vectorB = this->vectors[1];
+		map<unsigned int, double> expectedValues
+		{
+			{ 2, 81.86989 },
+			{ 3, 78.29115 },
+			{ 4, 88.08505 },
+		};
+		TypeParam a({ 15, 5, 3, -1 });
+		TypeParam b({ 1, -2, 1, 5 });
+		double expectedResult = expectedValues[a.GetDimensions()];
+		
 
-		const int* elementValuesA = TypedIntegerVectorTests::ElementValues[0];
-		const int* elementValuesB = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(vectorA, elementValuesA);
-		this->InitializeToDefaultValues(vectorB, elementValuesB);
-
-
-
-		double expectedAngle = TypedIntegerVectorTests::ExpectedAngle[vectorA.GetDimensions()];
-		double actualAngle = this->GetAngle(vectorA, vectorB);
-
+		double actualResult = TypeParam::GetAngle(a, b);
 
 
-		EXPECT_NEAR(expectedAngle, actualAngle, FloatingPointComparisonPrecision);
+		TempExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, SqrMagnitude)
 	{
-		TypeParam vector = this->vectors[0];
-		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, elementValues);
-
-		double vectorSqrMagnitude = vector.GetSqrMagnitude();
-
-		double expectedValue = 0;
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
+		map<unsigned int, double> expectedValues
 		{
-			expectedValue += vector[i] * vector[i];
-		}
+			{ 2, 250 },
+			{ 3, 259 },
+			{ 4, 260 },
+		};
+		TypeParam vector({ 15, 5, 3, -1 });
+		double expectedResult = expectedValues[vector.GetDimensions()];
 
 
-		EXPECT_NEAR(expectedValue, vectorSqrMagnitude, FloatingPointComparisonPrecision);
+		double actualResult = vector.GetSqrMagnitude();
+
+
+		TempExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, Magnitude)
 	{
+		map<unsigned int, double> expectedValues
+		{
+			{ 2, 15.8113883008 },
+			{ 3, 16.0934769394 },
+			{ 4, 16.1245154966 },
+		};
 		TypeParam vector = this->vectors[0];
 		double expectedValue = TypedIntegerVectorTests::ExpectedMagnitude[vector.GetDimensions()];
 		const int* elementValues = TypedIntegerVectorTests::ElementValues[0];

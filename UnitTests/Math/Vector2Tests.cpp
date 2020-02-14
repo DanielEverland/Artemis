@@ -12,24 +12,24 @@ namespace Maths::Vectors
         Vector2 vector(10.0, 20.25);
 
 
-        TempExpectNear(10.0, vector.X);
-        TempExpectNear(20.25, vector.Y);
+        ExpectNear(10.0, vector.X);
+        ExpectNear(20.25, vector.Y);
     }
     TEST(Vector2, InitializerListConstructor)
     {
         Vector2 vector({ 43.51, 2.0, 12.3 });
 
 
-        TempExpectNear(43.51, vector.X);
-        TempExpectNear(2.0, vector.Y);
+        ExpectNear(43.51, vector.X);
+        ExpectNear(2.0, vector.Y);
     }
     TEST(Vector2, IntConstructorXY)
     {
         Vector2 vector(1, 2);
 
 
-        TempExpectEqual(1, vector.X);
-        TempExpectEqual(2, vector.Y);
+        ExpectEqual(1, vector.X);
+        ExpectEqual(2, vector.Y);
     }
     TEST(Vector2, MemberAssignment)
     {
@@ -40,7 +40,7 @@ namespace Maths::Vectors
         vector.Y = 10;
 
 
-        TempExpectEqual(5, vector.X);
-        TempExpectEqual(10, vector.Y);
+        ExpectEqual(5, vector.X);
+        ExpectEqual(10, vector.Y);
     }
 }

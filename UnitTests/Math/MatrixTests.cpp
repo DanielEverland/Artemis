@@ -8,7 +8,6 @@
 
 namespace Maths::Matrices
 {
-	using namespace ArtemisEngine::UnitTests::Comparisons;
 	using ArtemisEngine::Maths::Matrices::BaseMatrix;
 	using ArtemisEngine::Maths::Matrices::GenericMatrix;
 	using ArtemisEngine::Maths::Vectors::VectorBase;
@@ -407,9 +406,9 @@ namespace Maths::Matrices
 		GenericMatrix<double, 1, 1> d{};
 
 
-		TempExpectTrue(a == b);
-		TempExpectFalse(a == c);
-		TempExpectFalse(a == d);
+		ExpectTrue(a == b);
+		ExpectFalse(a == c);
+		ExpectFalse(a == d);
 	}
 
 	TEST(MatrixText, Inequality)
@@ -438,9 +437,9 @@ namespace Maths::Matrices
 		GenericMatrix<double, 1, 1> d{};
 
 
-		TempExpectFalse(a != b);
-		TempExpectTrue(a != c);
-		TempExpectTrue(a != d);
+		ExpectFalse(a != b);
+		ExpectTrue(a != c);
+		ExpectTrue(a != d);
 	}
 
 	TEST(MatrixTest, VectorMultiplication)
@@ -501,7 +500,7 @@ namespace Maths::Matrices
 		double actualResult = matrix.GetDeterminant();
 
 
-		TempExpectNear(expectedResult, actualResult);
+		ExpectNear(expectedResult, actualResult);
 	}
 
 	TEST(MatrixTest, CofactorMatrix)

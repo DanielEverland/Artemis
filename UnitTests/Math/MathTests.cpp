@@ -3,8 +3,6 @@
 #include "Engine/Math.h"
 #include "Utility/Comparison/ComparisonUtility.h"
 
-using namespace ArtemisEngine::UnitTests::Comparisons;
-
 TEST(Math, NormalizeAngle)
 {
     ExpectEqual(90, Math::NormalizeAngle(450));

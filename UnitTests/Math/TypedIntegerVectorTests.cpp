@@ -50,7 +50,7 @@ namespace Maths::Vectors
 				
 		
 		for (unsigned int i = 0; i < actualResult.GetDimensions(); i++)
-			TempExpectNear(expectedResult[i], actualResult[i]);
+			ExpectNear(expectedResult[i], actualResult[i]);
 	}
 	TYPED_TEST(TypedIntegerVectorTests, ConstIndexing)
 	{
@@ -59,7 +59,7 @@ namespace Maths::Vectors
 
 
 		for (unsigned int i = 0; i < actualResult.GetDimensions(); i++)
-			TempExpectNear(expectedResult[i], actualResult[i]);
+			ExpectNear(expectedResult[i], actualResult[i]);
 	}
 	TYPED_TEST(TypedIntegerVectorTests, GetDotProduct)
 	{
@@ -77,7 +77,7 @@ namespace Maths::Vectors
 		double actualResult = TypeParam::GetDotProduct(a, b);
 				
 		
-		TempExpectEqual(expectedResult, actualResult);
+		ExpectEqual(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, GetAngle)
@@ -96,7 +96,7 @@ namespace Maths::Vectors
 		double actualResult = TypeParam::GetAngle(a, b);
 
 
-		TempExpectNear(expectedResult, actualResult);
+		ExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, SqrMagnitude)
@@ -114,7 +114,7 @@ namespace Maths::Vectors
 		int actualResult = vector.GetSqrMagnitude();
 
 
-		TempExpectEqual(expectedResult, actualResult);
+		ExpectEqual(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, Magnitude)
@@ -132,7 +132,7 @@ namespace Maths::Vectors
 		double actualResult = vector.GetMagnitude();
 
 
-		TempExpectNear(expectedResult, actualResult);
+		ExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, Normalized)
@@ -176,7 +176,7 @@ namespace Maths::Vectors
 		string actualResult = vector.ToString();
 
 
-		TempExpectEqual(expectedResult, actualResult);
+		ExpectEqual(expectedResult, actualResult);
 	}
 	
 	TYPED_TEST(TypedIntegerVectorTests, AdditionOfTwoVectors)

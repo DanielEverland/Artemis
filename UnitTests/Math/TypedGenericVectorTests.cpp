@@ -31,7 +31,7 @@ namespace Maths::Vectors
 
 
         for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-            TempExpectZero(vector[i]);
+            ExpectZero(vector[i]);
     }
     
     TYPED_TEST(TypedGenericVectorTests, IndexingOutOfRange)

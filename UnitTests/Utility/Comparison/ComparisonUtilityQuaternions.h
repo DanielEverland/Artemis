@@ -2,7 +2,7 @@
 #include "ComparisonUtility.h"
 
 #define QuaternionExpectNear(expectedResult, actualResult) \
-	TempExpectNear(expectedResult.X, actualResult.X); \
-	TempExpectNear(expectedResult.Y, actualResult.Y); \
-	TempExpectNear(expectedResult.Z, actualResult.Z); \
-	TempExpectNear(expectedResult.W, actualResult.W);
+	ExpectNear(expectedResult.X, actualResult.X); \
+	ExpectNear(expectedResult.Y, actualResult.Y); \
+	ExpectNear(expectedResult.Z, actualResult.Z); \
+	ExpectNear(expectedResult.W, actualResult.W);

@@ -7,17 +7,16 @@
 #include "..\Utility\Comparison\ComparisonUtilityVectors.h"
 
 using ArtemisEngine::Quaternion;
-using namespace ArtemisEngine::UnitTests::Comparisons;
 
 TEST(Quaternions, Empty)
 {
 	Quaternion quaternion{};
 
 
-	TempExpectZero(quaternion.X);
-	TempExpectZero(quaternion.Y);
-	TempExpectZero(quaternion.Z);
-	TempExpectZero(quaternion.W);
+	ExpectZero(quaternion.X);
+	ExpectZero(quaternion.Y);
+	ExpectZero(quaternion.Z);
+	ExpectZero(quaternion.W);
 }
 TEST(Quaternions, Identity)
 {
@@ -110,7 +109,7 @@ TEST(Quaternions, Equality)
 	Quaternion b(0.4563, -3451.0453, Math::Pi, 1);
 
 	
-	TempExpectTrue(a == b);
+	ExpectTrue(a == b);
 }
 TEST(Quaternions, Addition)
 {

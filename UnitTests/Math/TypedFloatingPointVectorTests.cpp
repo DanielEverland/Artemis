@@ -48,7 +48,7 @@ namespace Maths::Vectors
 
 
         for (unsigned int i = 0; i < actualResult.GetDimensions(); i++)
-            TempExpectNear(expectedResult[i], actualResult[i]);
+            ExpectNear(expectedResult[i], actualResult[i]);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, ConstIndexing)
@@ -58,7 +58,7 @@ namespace Maths::Vectors
 
 
         for (unsigned int i = 0; i < actualResult.GetDimensions(); i++)
-            TempExpectNear(expectedResult[i], actualResult[i]);
+            ExpectNear(expectedResult[i], actualResult[i]);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, GetDotProduct)
@@ -77,7 +77,7 @@ namespace Maths::Vectors
         double actualResult = TypeParam::GetDotProduct(vectorA, vectorB);
 
 
-        TempExpectNear(expectedResult, actualResult);
+        ExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, GetAngle)
@@ -96,7 +96,7 @@ namespace Maths::Vectors
         double actualResult = TypeParam::GetAngle(vectorA, vectorB);
 
 
-        TempExpectNear(expectedResult, actualResult);
+        ExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, SqrMagnitude)
@@ -114,7 +114,7 @@ namespace Maths::Vectors
         double actualResult = vector.GetSqrMagnitude();
 
 
-        TempExpectNear(expectedResult, actualResult);
+        ExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, Magnitude)
@@ -132,7 +132,7 @@ namespace Maths::Vectors
         double actualResult = vector.GetMagnitude();
 
 
-        TempExpectNear(expectedResult, actualResult);
+        ExpectNear(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, NormalizedDivideByZero)
@@ -175,7 +175,7 @@ namespace Maths::Vectors
         string actualResult = vector.ToString();
 
 
-        TempExpectEqual(expectedResult, actualResult);
+        ExpectEqual(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToStringNaN)
@@ -193,7 +193,7 @@ namespace Maths::Vectors
         string actualResult = vector.ToString();
 
 
-        TempExpectEqual(expectedResult, actualResult);
+        ExpectEqual(expectedResult, actualResult);
     }
 
     TYPED_TEST(TypedFloatingPointVectorTests, ToStringInfinity)
@@ -211,7 +211,7 @@ namespace Maths::Vectors
         string actualResult = vector.ToString();
 
 
-        TempExpectEqual(expectedResult, actualResult);
+        ExpectEqual(expectedResult, actualResult);
     }
 
 
@@ -373,8 +373,8 @@ namespace Maths::Vectors
         TypeParam c({ 1.25, -2.25, 1.0, 5.25 });
         
 
-        TempExpectTrue(a == b);
-        TempExpectFalse(a == c);
+        ExpectTrue(a == b);
+        ExpectFalse(a == c);
     }
     TYPED_TEST(TypedFloatingPointVectorTests, Inequality)
     {
@@ -383,7 +383,7 @@ namespace Maths::Vectors
         TypeParam c({ 1.25, -2.25, 1.0, 5.25 });
 
 
-        TempExpectFalse(a != b);
-        TempExpectTrue(a != c);
+        ExpectFalse(a != b);
+        ExpectTrue(a != c);
     }
 }

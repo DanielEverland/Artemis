@@ -1,10 +1,12 @@
 #include "pch.h"
 
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Engine/IntVector3.h"
+#include "Engine/Vector2.h"
 
 namespace Maths::Vectors
 {
-    using ArtemisEngine::IntVector3;
+    using namespace ArtemisEngine;
 
     TEST(IntVector3, ConstructorXY)
     {
@@ -43,5 +45,27 @@ namespace Maths::Vectors
         EXPECT_EQ(40, c.X);
         EXPECT_EQ(-80, c.Y);
         EXPECT_EQ(40, c.Z);
+    }
+    TEST(IntVector3, UpgradeVector2)
+    {
+        IntVector3 expectedResult(154, 12, 0);
+        Vector2 vector(154.14, 12.4);
+
+
+        IntVector3 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
+    TEST(IntVector3, UpgradeIntVector2)
+    {
+        IntVector3 expectedResult(154, 12, 0);
+        Vector2 vector(154, 12);
+
+
+        IntVector3 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
     }
 }

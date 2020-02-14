@@ -235,7 +235,7 @@ namespace Maths::Vectors
 		TypeParam actualResult{ };
 
 
-		actualResult = aVector + bVector;
+		actualResult = a + b;
 
 
 		VectorExpectNear(expectedResult, actualResult);
@@ -243,43 +243,29 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, AdditionAssignment)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
+		TypeParam expectedResult({ 16, 3, 4, 4 });
+		TypeParam actualResult({ 15, 5, 3, -1 });
+		TypeParam vector({ 1, -2, 1, 5 });
 
-		const int* aElementValues = TypedIntegerVectorTests::ElementValues[0];
-		const int* bElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(aVector, aElementValues);
-		this->InitializeToDefaultValues(bVector, bElementValues);
+		
+		actualResult += vector;
 
 
-		aVector += bVector;
-
-
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(aElementValues[i] + bElementValues[i], aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, IntegerScalarAddition)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
+		TypeParam expectedResult({ 18, 8, 6, 2 });
+		TypeParam vector({ 15, 5, 3, -1 });
+		TypeParam actualResult;
 		int scalar = 3;
 
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[1];
 
-		this->InitializeToDefaultValues(bVector, ElementValues);
-
-
-		aVector = bVector + scalar;
+		actualResult = vector + scalar;
 
 
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(bVector[i] + scalar, aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarAddition)

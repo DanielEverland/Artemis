@@ -1,5 +1,6 @@
 #include "pch.h"
 
+#include "Utility/Comparison/ComparisonUtility.h"
 #include "Engine/Vector2.h"
 
 namespace Maths::Vectors
@@ -10,22 +11,22 @@ namespace Maths::Vectors
     {
         Vector2 vector(10.0, 20.25);
 
-        EXPECT_EQ(10.0, vector.X);
-        EXPECT_EQ(20.25, vector.Y);
+        TempExpectNear(10.0, vector.X);
+        TempExpectNear(20.25, vector.Y);
     }
     TEST(Vector2, InitializerListConstructor)
     {
         Vector2 vector({ 43.51, 2.0, 12.3 });
 
-        EXPECT_EQ(43.51, vector.X);
-        EXPECT_EQ(2.0, vector.Y);
+        TempExpectNear(43.51, vector.X);
+        TempExpectNear(2.0, vector.Y);
     }
     TEST(Vector2, IntConstructorXY)
     {
         Vector2 vector(1, 2);
 
-        EXPECT_EQ(1, vector.X);
-        EXPECT_EQ(2, vector.Y);
+        TempExpectEqual(1, vector.X);
+        TempExpectEqual(2, vector.Y);
     }
     TEST(Vector2, MemberAssignment)
     {
@@ -34,7 +35,7 @@ namespace Maths::Vectors
         vector.X = 5;
         vector.Y = 10;
 
-        EXPECT_EQ(5, vector.X);
-        EXPECT_EQ(10, vector.Y);
+        TempExpectEqual(5, vector.X);
+        TempExpectEqual(10, vector.Y);
     }
 }

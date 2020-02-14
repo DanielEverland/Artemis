@@ -20,64 +20,16 @@ namespace Maths::Vectors
 
 	using namespace ArtemisEngine;
 
-	const double FloatingPointComparisonPrecision = 0.00001;
+	const int MaximumDimensions = 4;
 
 	template<typename T>
 	class TypedIntegerVectorTests : public ::testing::Test
 	{
-	public:
-		const static int VectorsToInstantiate = 4;
-		const static int MaximumDimensions = 4;
-		const static int SetCount = 5;
-
-		const static int ElementValues[SetCount][MaximumDimensions];
-		static map<unsigned int, list<double>> ExpectedNormalizedValues;
-		static map<unsigned int, string> ExpectedStrings;
-		static map<unsigned int, int> ExpectedDotProduct;
-		static map<unsigned int, double> ExpectedAngle;
-		static map<unsigned int, double> ExpectedMagnitude;
-
-		T vectors[VectorsToInstantiate];
-
-		double GetAngle(T a, T b)
-		{
-			return T::GetAngle(a, b);
-		}
-		int GetDotProduct(T a, T b)
-		{
-			return T::GetDotProduct(a, b);
-		}
-		void InitializeToDefaultValues(T& vector, const int* const elements) const
-		{
-			for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-			    vector[i] = elements[i];
-		}
-		T CallCopyConstructor(const T& copy)
-		{
-			return T(copy);
-		}
 	};
 
 	using MyTypes = ::testing::Types<IntVector2, IntVector3, IntVector4>;
     TYPED_TEST_CASE(TypedIntegerVectorTests, MyTypes);
 
-    template <typename T>
-    const int TypedIntegerVectorTests<T>::ElementValues[SetCount][MaximumDimensions]
-    {
-        { 15, 5, 3, -1 },
-        { 1, -2, 1, 5 },
-        { -1, 0, -3, -1 },
-        { 3, 2, -5, 3 },
-        { -1, 0, 3, 3 },
-    };
-	
-	template<typename T>
-	map<unsigned int, double> TypedIntegerVectorTests<T>::ExpectedMagnitude
-	{
-		{ 2, 15.81139 },
-		{ 3, 16.09348 },
-		{ 4, 16.12452 },
-	};
 
 	TYPED_TEST(TypedIntegerVectorTests, CopyConstructor)
 	{

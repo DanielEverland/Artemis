@@ -1,11 +1,13 @@
 #include "gtest/gtest.h"
 #include "pch.h"
 
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Engine/Vector3.h"
+#include "Engine/Vector2.h"
 
 namespace Maths::Vectors
 {
-    using ArtemisEngine::Vector3;
+    using namespace ArtemisEngine;
 
     TEST(Vector3, ConstructorXY)
     {
@@ -67,5 +69,27 @@ namespace Maths::Vectors
         EXPECT_EQ(-3, c.X);
         EXPECT_EQ(6, c.Y);
         EXPECT_EQ(-3, c.Z);
+    }
+    TEST(Vector3, UpgradeVector2)
+    {
+        Vector3 expectedResult(154.14, 12.4, 0);
+        Vector2 vector(154.14, 12.4);
+
+
+        Vector3 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
+    TEST(Vector3, UpgradeIntVector2)
+    {
+        Vector3 expectedResult(154, 12, 0);
+        Vector2 vector(154, 12);
+
+
+        Vector3 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
     }
 }

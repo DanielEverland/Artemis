@@ -351,22 +351,16 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarSubtraction)
 	{
-		TypeParam aVector = this->vectors[0];
-		TypeParam bVector = this->vectors[1];
-		double scalar = 5.68;
+		TypeParam expectedResult({ 6, -3, -5, -9 });
+		TypeParam vector({ 11, 1, -1, -5 });
+		TypeParam actualResult;
+		double scalar = 4.68;
+		
 
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[1];
-
-		this->InitializeToDefaultValues(bVector, ElementValues);
-
-
-		aVector = bVector - scalar;
+		actualResult = vector - scalar;
 
 
-		for (unsigned int i = 0; i < aVector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(static_cast<long>(bVector[i] - scalar), aVector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, IntegerScalarSubtractionAssignment)

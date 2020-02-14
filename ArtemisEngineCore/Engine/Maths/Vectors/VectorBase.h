@@ -15,13 +15,11 @@ using ArtemisEngine::Debugging::IDebugStringReturner;
 
 namespace ArtemisEngine::Maths::Vectors
 {
-	class Test{};
-
 	template<class T, unsigned int dimensions>
 	class VectorBase;
 
 	template<class T, unsigned int dimensions>
-	class VectorImplementor : public IDebugStringReturner, public Test
+	class VectorImplementor : public IDebugStringReturner
 	{
 	public:
 

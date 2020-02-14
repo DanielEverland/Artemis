@@ -19,7 +19,6 @@ namespace Maths::Vectors
 	using std::list;
 
 	using namespace ArtemisEngine;
-	using ArtemisEngine::Maths::Vectors::Test;
 
 	const double FloatingPointComparisonPrecision = 0.00001;
 

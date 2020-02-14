@@ -601,27 +601,6 @@ namespace ArtemisEngine::Maths::Vectors
 			vector[i] *= value;
 		}
 	}
-
-	template<class T, unsigned int dimensions>
-	VectorBase<T, dimensions> operator/(const VectorBase<T, dimensions> a, const VectorBase<T, dimensions> b)
-	{
-		VectorBase<T, dimensions> c;
-
-		for (unsigned int i = 0; i < dimensions; i++)
-		{
-			c[i] = a[i] / b[i];
-		}
-
-		return c;
-	}
-	template<class T, unsigned int dimensions>
-	void operator/=(VectorBase<T, dimensions>& a, const VectorBase<T, dimensions> b)
-	{
-		for (unsigned int i = 0; i < dimensions; i++)
-		{
-			a[i] /= b[i];
-		}
-	}
 	template<class T, unsigned int dimensions, class TValue, typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr>
 	VectorBase<T, dimensions> operator/(const VectorBase<T, dimensions> vector, const TValue value)
 	{

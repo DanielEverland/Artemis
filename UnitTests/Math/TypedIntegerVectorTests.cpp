@@ -149,9 +149,9 @@ namespace Maths::Vectors
 	{
 		map<unsigned int, double> expectedValues
 		{
-			{ 2, 81.86989 },
-			{ 3, 78.29115 },
-			{ 4, 88.08505 },
+			{ 2, 81.869897645844034 },
+			{ 3, 78.291151727557974 },
+			{ 4, 88.085050950218601 },
 		};
 		TypeParam a({ 15, 5, 3, -1 });
 		TypeParam b({ 1, -2, 1, 5 });

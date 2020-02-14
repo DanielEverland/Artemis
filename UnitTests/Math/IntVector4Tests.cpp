@@ -1,10 +1,15 @@
 #include "pch.h"
 
+#include "Utility/Comparison/ComparisonUtilityVectors.h"
 #include "Engine/IntVector4.h"
+#include "Engine/IntVector3.h"
+#include "Engine/IntVector2.h"
+#include "Engine/Vector2.h"
+#include "Engine/Vector3.h"
 
 namespace Maths::Vectors
 {
-    using ArtemisEngine::IntVector4;
+    using namespace ArtemisEngine;
 
     TEST(IntVector4, ConstructorXY)
     {
@@ -43,5 +48,49 @@ namespace Maths::Vectors
         EXPECT_EQ(2, vector.Y);
         EXPECT_EQ(3, vector.Z);
         EXPECT_EQ(4, vector.W);
+    }
+    TEST(IntVector4, UpgradeVector2)
+    {
+        IntVector4 expectedResult(154, 12, 0, 0);
+        Vector2 vector(154.14, 12.5);
+
+
+        IntVector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
+    TEST(IntVector4, UpgradeIntVector2)
+    {
+        IntVector4 expectedResult(154, 12, 0, 0);
+        IntVector2 vector(154, 12);
+
+
+        IntVector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
+    TEST(IntVector4, UpgradeVector3)
+    {
+        IntVector4 expectedResult(154, 12, 56, 0);
+        Vector3 vector(154.14, 12.4, 56.99);
+
+
+        IntVector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
+    }
+    TEST(IntVector4, UpgradeIntVector3)
+    {
+        IntVector4 expectedResult(154, 12, 54, 0);
+        IntVector3 vector(154, 12, 54);
+
+
+        IntVector4 actualResult(vector);
+
+
+        VectorExpectNear(expectedResult, actualResult);
     }
 }

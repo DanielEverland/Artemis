@@ -365,21 +365,15 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, IntegerScalarSubtractionAssignment)
 	{
-		TypeParam vector = this->vectors[0];
-		int scalar = 7;
-
-		const int* ElementValues = TypedIntegerVectorTests::ElementValues[0];
-
-		this->InitializeToDefaultValues(vector, ElementValues);
+		TypeParam expectedResult({ 7, -3, -5, -9 });
+		TypeParam actualResult({ 11, 1, -1, -5 });
+		int scalar = 4;
 
 
-		vector -= scalar;
+		actualResult -= scalar;
 
 
-		for (unsigned int i = 0; i < vector.GetDimensions(); i++)
-		{
-			EXPECT_EQ(ElementValues[i] - scalar, vector[i]);
-		}
+		VectorExpectNear(expectedResult, actualResult);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, FloatingPointScalarSubtractionAssignment)

@@ -213,9 +213,10 @@ namespace Maths::Vectors
 
 	TYPED_TEST(TypedIntegerVectorTests, NormalizedZeroLengthException)
 	{
-		TypeParam vector = this->vectors[0];
+		TypeParam vector{};
 
-		EXPECT_THROW(vector.GetNormalized(), DivideByZeroException);
+
+		ExpectThrow(vector.GetNormalized(), DivideByZeroException);
 	}
 
 	TYPED_TEST(TypedIntegerVectorTests, ToString)

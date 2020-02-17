@@ -33,3 +33,8 @@ double Math::DegreesToRadians(double value)
 {
 	return value * Math::Pi / 180.0;
 }
+
+double Math::Power(double value, double power)
+{
+	return std::pow(value, power);
+}

@@ -46,3 +46,9 @@ TEST(Math, Squared)
     ExpectNear(0.0625, Math::Square(0.25));
     ExpectNear(30.25, Math::Square(5.5));
 }
+TEST(Math, Power)
+{
+    ExpectEqual(3125, Math::Power(5, 5));
+    ExpectNear(0.2, Math::Power(5, -1));
+    ExpectNear(55.9016994375, Math::Power(5, 2.5));
+}

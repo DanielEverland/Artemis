@@ -34,18 +34,9 @@ public:
 	{
 		return value * value;
 	}
-
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Power(T value, int power)
-	{
-		return std::pow(value, power);
-	}
-
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Power(T value, float power)
-	{
-		return std::powf(value, power);
-	}
+	
+	// Returns value raised to power.
+	static double Power(double value, double power);
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T SquareRoot(T value)

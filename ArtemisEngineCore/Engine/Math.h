@@ -27,6 +27,8 @@ public:
 	// Converts degrees into radians
 	static double DegreesToRadians(double value);
 
+	// Squares value.
+	// Useful in long equations where writing it out manually is too messy.
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T Square(T value)
 	{

@@ -39,3 +39,10 @@ TEST(Math, DegreesToRadians)
     ExpectNear(-0.6108652381980153, Math::DegreesToRadians(-35));
     ExpectNear(Math::Pi, Math::DegreesToRadians(180));
 }
+TEST(Math, Squared)
+{
+    ExpectEqual(4, Math::Square(2));
+    ExpectEqual(4, Math::Square(-2));
+    ExpectNear(0.0625, Math::Square(0.25));
+    ExpectNear(30.25, Math::Square(5.5));
+}

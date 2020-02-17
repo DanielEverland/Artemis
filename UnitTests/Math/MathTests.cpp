@@ -18,3 +18,9 @@ TEST(Math, IsNaN)
     ExpectFalse(Math::IsNaN(1.0));
     ExpectTrue(Math::IsNaN(Math::NaN));
 }
+TEST(Math, Remainder)
+{
+    ExpectEqual(1, Math::Remainder(7, 3));
+    ExpectNear(2.1, Math::Remainder(5.1, 3));
+    ExpectNear(-2.1, Math::Remainder(-5.1, 3));
+}

@@ -18,3 +18,8 @@ double Math::NormalizeAngle(double angle)
 	return angle;
 
 }
+
+double Math::Remainder(double numerator, double denominator)
+{
+	return std::fmod(numerator, denominator);
+}

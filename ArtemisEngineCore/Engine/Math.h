@@ -17,13 +17,9 @@ public:
 	// Returns an angle in the range (-180;180]
 	static double NormalizeAngle(double value);
 
-	template<class TNum, class TDen,
-		typename std::enable_if<std::is_floating_point<TNum>::value>::type* = nullptr,
-		typename std::enable_if<std::is_arithmetic<TDen>::value>::type* = nullptr>
-	static TNum Remainder(TNum numerator, TDen denominator)
-	{
-		return std::fmod(numerator, denominator);
-	}
+	// "Left over" after dividing the numerator with the denominator (numerator/denominator)
+	// Will return same sign as numerator
+	static double Remainder(double numerator, double denominator);
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T RadiansToDegrees(T value)

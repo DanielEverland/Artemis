@@ -52,3 +52,9 @@ TEST(Math, Power)
     ExpectNear(0.2, Math::Power(5, -1));
     ExpectNear(55.9016994375, Math::Power(5, 2.5));
 }
+TEST(Math, SquareRoot)
+{
+    ExpectEqual(5, Math::SquareRoot(25));
+    ExpectNear(1.41421356237, Math::SquareRoot(2));
+    ExpectTrue(Math::IsNaN(Math::SquareRoot(-1)));
+}

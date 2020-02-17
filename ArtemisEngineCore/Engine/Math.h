@@ -38,11 +38,8 @@ public:
 	// Returns value raised to power.
 	static double Power(double value, double power);
 
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T SquareRoot(T value)
-	{
-		return std::sqrt(value);
-	}
+	// Returns the square root of value.
+	static double SquareRoot(double value);
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T Absolute(T value)

@@ -38,3 +38,11 @@ double Math::Power(double value, double power)
 {
 	return std::pow(value, power);
 }
+
+double Math::SquareRoot(double value)
+{
+	if (value < 0)
+		return Math::NaN;
+
+	return std::sqrt(value);
+}

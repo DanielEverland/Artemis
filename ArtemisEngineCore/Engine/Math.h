@@ -21,17 +21,11 @@ public:
 	// Will return same sign as numerator
 	static double Remainder(double numerator, double denominator);
 
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T RadiansToDegrees(T value)
-	{
-		return value *= 180.0 / Math::Pi;
-	}
+	// Converts radians into degrees
+	static double RadiansToDegrees(double value);
 
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T DegreesToRadians(T value)
-	{
-		return value *= Math::Pi / 180.0;
-	}
+	// Converts degrees into radians
+	static double DegreesToRadians(double value);
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T Square(T value)

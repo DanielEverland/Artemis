@@ -24,3 +24,18 @@ TEST(Math, Remainder)
     ExpectNear(2.1, Math::Remainder(5.1, 3));
     ExpectNear(-2.1, Math::Remainder(-5.1, 3));
 }
+TEST(Math, RadiansToDegrees)
+{
+    ExpectEqual(0, Math::RadiansToDegrees(0));
+    ExpectNear(57.295779513082323, Math::RadiansToDegrees(1));
+    ExpectNear(5.7295779513082321, Math::RadiansToDegrees(0.1));
+    ExpectNear(-5.7295779513082321, Math::RadiansToDegrees(-0.1));
+    ExpectNear(28.647889756541161, Math::RadiansToDegrees(0.5));
+}
+TEST(Math, DegreesToRadians)
+{
+    ExpectEqual(0, Math::RadiansToDegrees(0));
+    ExpectNear(0.6108652381980153, Math::DegreesToRadians(35));
+    ExpectNear(-0.6108652381980153, Math::DegreesToRadians(-35));
+    ExpectNear(Math::Pi, Math::DegreesToRadians(180));
+}

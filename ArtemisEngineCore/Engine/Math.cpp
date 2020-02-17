@@ -23,3 +23,13 @@ double Math::Remainder(double numerator, double denominator)
 {
 	return std::fmod(numerator, denominator);
 }
+
+double Math::RadiansToDegrees(double value)
+{
+	return value * 180.0 / Math::Pi;
+}
+
+double Math::DegreesToRadians(double value)
+{
+	return value * Math::Pi / 180.0;
+}

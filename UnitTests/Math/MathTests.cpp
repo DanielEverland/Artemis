@@ -11,10 +11,10 @@ TEST(Math, NormalizeAngle)
 }
 TEST(Math, NaNConst)
 {
-    ExpectTrue(Math::IsNaN(Math::NaN));
+    ExpectTrue(std::isnan(Math::NaN));
 }
 TEST(Math, IsNaN)
 {
-    ExpectEqual(Math::IsNaN(1.0), std::isnan(1.0));
-    ExpectEqual(Math::IsNaN(Math::NaN), std::isnan(Math::NaN));
+    ExpectFalse(Math::IsNaN(1.0));
+    ExpectTrue(Math::IsNaN(Math::NaN));
 }

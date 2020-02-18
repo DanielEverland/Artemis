@@ -81,3 +81,15 @@ TEST(Math, ArcTan2)
     ExpectNear(-2.498091544, Math::ArcTan2(-1.5, -2));
     ExpectNear(2.83870778521, Math::ArcTan2(0.75, -2.4));
 }
+TEST(Math, Cosine)
+{
+    ExpectNear(0.87758256189, Math::Cosine(0.5));
+    ExpectNear(0.54030230586, Math::Cosine(1));
+    ExpectNear(-0.80114361554, Math::Cosine(-2.5));
+}
+TEST(Math, ArcCos)
+{
+    ExpectNear(1.04719755, Math::ArcCosine(0.5));
+    ExpectNear(Math::Pi, Math::ArcCosine(-1));
+    ExpectNear(2.41885841, Math::ArcCosine(-0.75));
+}

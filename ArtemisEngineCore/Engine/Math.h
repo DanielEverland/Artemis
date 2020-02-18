@@ -59,18 +59,12 @@ public:
 
 	// Returns the angle in radians between x-axis and the ray of point (x, y)
 	static double ArcTan2(double x, double y);
+	
+	// Computes the cosine of angle given in radians
+	static double Cosine(double angle);
 
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T ArcCos(T value)
-	{
-		return std::acos(value);
-	}
-
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Cos(T value)
-	{
-		return std::cos(value);
-	}
+	// Computes the angle given the value of a cosine
+	static double ArcCosine(double value);
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T ArcSin(T value)

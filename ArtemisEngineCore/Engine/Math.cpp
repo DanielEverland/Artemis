@@ -51,3 +51,13 @@ double Math::ArcTan2(double x, double y)
 {
 	return std::atan2(x, y);
 }
+
+double Math::Cosine(double value)
+{
+	return std::cos(value);
+}
+
+double Math::ArcCosine(double value)
+{
+	return std::acos(value);
+}

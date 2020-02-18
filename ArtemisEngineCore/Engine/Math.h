@@ -48,11 +48,13 @@ public:
 		return std::abs(value);
 	}
 
-	// Returns the value of x with the sign of y
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T CopySign(T x, T y)
+	// Copies the sign to value
+	template<class TValue, class TSign,
+		typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr,
+		typename std::enable_if<std::is_arithmetic<TSign>::value>::type * = nullptr>
+	static TValue CopySign(TValue value, TSign sign)
 	{
-		return std::copysign(x, y);
+		return std::copysign(value, sign);
 	}
 
 	static double ArcTan2(double x, double y)

@@ -68,3 +68,9 @@ TEST(Math, Absolute)
 
     ExpectNear(2.25, Math::Absolute(-2.25));
 }
+TEST(Math, CopySign)
+{
+    ExpectEqual(-1, Math::CopySign(1, -253));
+    ExpectEqual(-Math::Infinity, Math::CopySign(Math::Infinity, -253));
+    ExpectEqual(1.0, Math::CopySign(1.0, 52.0));
+}

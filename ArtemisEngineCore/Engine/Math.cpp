@@ -47,7 +47,7 @@ double Math::SquareRoot(double value)
 	return std::sqrt(value);
 }
 
-double Math::ArcTan2(double x, double y)
+double Math::ArcTangent2(double x, double y)
 {
 	return std::atan2(x, y);
 }

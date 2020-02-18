@@ -76,10 +76,10 @@ TEST(Math, CopySign)
 }
 TEST(Math, ArcTan2)
 {
-    ExpectNear(0.785398163, Math::ArcTan2(1, 1));
-    ExpectNear(-0.643501108, Math::ArcTan2(-3, 4));
-    ExpectNear(-2.498091544, Math::ArcTan2(-1.5, -2));
-    ExpectNear(2.83870778521, Math::ArcTan2(0.75, -2.4));
+    ExpectNear(0.785398163, Math::ArcTangent2(1, 1));
+    ExpectNear(-0.643501108, Math::ArcTangent2(-3, 4));
+    ExpectNear(-2.498091544, Math::ArcTangent2(-1.5, -2));
+    ExpectNear(2.83870778521, Math::ArcTangent2(0.75, -2.4));
 }
 TEST(Math, Cosine)
 {

@@ -51,11 +51,11 @@ Quaternion Quaternion::FromEuler(double xRotation, double yRotation, double zRot
 	zRotation = Math::DegreesToRadians(zRotation);
 
 	// Abbreviations for the various angular functions
-	double xCos = Math::Cos(xRotation / 2);
+	double xCos = Math::Cosine(xRotation / 2);
 	double xSin = Math::Sin(xRotation / 2);
-	double yCos = Math::Cos(yRotation / 2);
+	double yCos = Math::Cosine(yRotation / 2);
 	double ySin = Math::Sin(yRotation / 2);
-	double zCos = Math::Cos(zRotation / 2);
+	double zCos = Math::Cosine(zRotation / 2);
 	double zSin = Math::Sin(zRotation / 2);
 
 	return Quaternion(
@@ -77,21 +77,21 @@ Vector3 Quaternion::GetEuler() const
 	
 	if (SingularityTest < -SingularityThreshold)
 	{
-		euler.X = Math::NormalizeAngle(-euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg));
+		euler.X = Math::NormalizeAngle(-euler.Z - (2.0 * Math::ArcTangent2(X, W) * RadToDeg));
 		euler.Y = -90;
 		euler.Z = 0;
 	}
 	else if (SingularityTest > SingularityThreshold)
 	{
-		euler.X = Math::NormalizeAngle(euler.Z - (2.0 * Math::ArcTan2(X, W) * RadToDeg));
+		euler.X = Math::NormalizeAngle(euler.Z - (2.0 * Math::ArcTangent2(X, W) * RadToDeg));
 		euler.Y = 90;
 		euler.Z = 0;
 	}
 	else
 	{
-		euler.X = Math::ArcTan2(-2.0 * (W * X + Y * Z), 1.0 - 2.0 * (Math::Square(X) + Math::Square(Y))) * RadToDeg;
+		euler.X = Math::ArcTangent2(-2.0 * (W * X + Y * Z), 1.0 - 2.0 * (Math::Square(X) + Math::Square(Y))) * RadToDeg;
 		euler.Y = Math::ArcSin(2.0 * SingularityTest) * RadToDeg;
-		euler.Z = Math::ArcTan2(YawY, YawX) * RadToDeg;
+		euler.Z = Math::ArcTangent2(YawY, YawX) * RadToDeg;
 	}
 
 	return euler;

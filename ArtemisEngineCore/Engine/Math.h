@@ -58,7 +58,7 @@ public:
 	}
 
 	// Returns the angle in radians between x-axis and the ray of point (x, y)
-	static double ArcTan2(double x, double y);
+	static double ArcTangent2(double x, double y);
 	
 	// Computes the cosine of angle given in radians
 	static double Cosine(double angle);

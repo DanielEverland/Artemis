@@ -41,6 +41,7 @@ public:
 	// Returns the square root of value.
 	static double SquareRoot(double value);
 
+	// Returns positive value
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T Absolute(T value)
 	{

@@ -58,3 +58,13 @@ TEST(Math, SquareRoot)
     ExpectNear(1.41421356237, Math::SquareRoot(2));
     ExpectTrue(Math::IsNaN(Math::SquareRoot(-1)));
 }
+TEST(Math, Absolute)
+{
+    ExpectEqual(1, Math::Absolute(1));
+    ExpectEqual(1, Math::Absolute(-1));
+
+    ExpectEqual(Math::Infinity, Math::Absolute(Math::Infinity));
+    ExpectEqual(Math::Infinity, Math::Absolute(-Math::Infinity));
+
+    ExpectNear(2.25, Math::Absolute(-2.25));
+}

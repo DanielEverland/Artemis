@@ -74,3 +74,10 @@ TEST(Math, CopySign)
     ExpectEqual(-Math::Infinity, Math::CopySign(Math::Infinity, -253));
     ExpectEqual(1.0, Math::CopySign(1.0, 52.0));
 }
+TEST(Math, ArcTan2)
+{
+    ExpectNear(0.785398163, Math::ArcTan2(1, 1));
+    ExpectNear(-0.643501108, Math::ArcTan2(-3, 4));
+    ExpectNear(-2.498091544, Math::ArcTan2(-1.5, -2));
+    ExpectNear(2.83870778521, Math::ArcTan2(0.75, -2.4));
+}

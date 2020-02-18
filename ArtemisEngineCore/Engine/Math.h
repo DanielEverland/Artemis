@@ -57,10 +57,8 @@ public:
 		return std::copysign(value, sign);
 	}
 
-	static double ArcTan2(double x, double y)
-	{
-		return std::atan2(x, y);
-	}
+	// Returns the angle in radians between x-axis and the ray of point (x, y)
+	static double ArcTan2(double x, double y);
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T ArcCos(T value)

@@ -27,36 +27,12 @@ public:
 
 	// Converts degrees into radians
 	static double DegreesToRadians(double value);
-
-	// Squares value.
-	// Useful in long equations where writing it out manually is too messy.
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Square(T value)
-	{
-		return value * value;
-	}
-	
+		
 	// Returns value raised to power.
 	static double Power(double value, double power);
 
 	// Returns the square root of value.
 	static double SquareRoot(double value);
-
-	// Returns positive value
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Absolute(T value)
-	{
-		return std::abs(value);
-	}
-
-	// Copies the sign to value
-	template<class TValue, class TSign,
-		typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr,
-		typename std::enable_if<std::is_arithmetic<TSign>::value>::type * = nullptr>
-	static TValue CopySign(TValue value, TSign sign)
-	{
-		return std::copysign(value, sign);
-	}
 
 	// Returns the angle in radians between x-axis and the ray of point (x, y)
 	static double ArcTangent2(double x, double y);
@@ -100,5 +76,29 @@ public:
 	static bool IsNaN(T value)
 	{
 		return isnan(value);
+	}
+
+	// Copies the sign to value
+	template<class TValue, class TSign,
+		typename std::enable_if<std::is_arithmetic<TValue>::value>::type * = nullptr,
+		typename std::enable_if<std::is_arithmetic<TSign>::value>::type * = nullptr>
+		static TValue CopySign(TValue value, TSign sign)
+	{
+		return std::copysign(value, sign);
+	}
+
+	// Returns positive value
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T Absolute(T value)
+	{
+		return std::abs(value);
+	}
+
+	// Squares value.
+	// Useful in long equations where writing it out manually is too messy.
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
+	static T Square(T value)
+	{
+		return value * value;
 	}
 };

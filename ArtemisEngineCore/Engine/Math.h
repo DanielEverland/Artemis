@@ -83,7 +83,7 @@ public:
 	
 
 	// Checks if floating point number is an integer
-	// For instance, 3.0 would return true, 3.1 would return false
+	// For instance, 3.0 would return true and 3.1 would return false
 	static bool IsFloatingPointIntegral(double value);
 
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >

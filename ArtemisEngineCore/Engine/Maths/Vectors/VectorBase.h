@@ -15,10 +15,10 @@ using ArtemisEngine::Debugging::IDebugStringReturner;
 namespace ArtemisEngine::Maths::Vectors
 {
 	template<class T, unsigned int dimensions>
-	class VectorBase;
+	struct VectorBase;
 
 	template<class T, unsigned int dimensions>
-	class VectorImplementor : public IDebugStringReturner
+	struct VectorImplementor : public IDebugStringReturner
 	{
 	public:
 
@@ -173,7 +173,7 @@ namespace ArtemisEngine::Maths::Vectors
 
 
 	template<class T, unsigned int dimensions>
-	class VectorBase : public VectorImplementor<T, dimensions>
+	struct VectorBase : public VectorImplementor<T, dimensions>
 	{
 	public:
 		T values[dimensions] = {};
@@ -208,7 +208,7 @@ namespace ArtemisEngine::Maths::Vectors
 
 
 	template<class T>
-	class VectorBase<T, 2> : public VectorImplementor<T, 2>
+	struct VectorBase<T, 2> : public VectorImplementor<T, 2>
 	{
 	public:
 		T X;
@@ -263,7 +263,7 @@ namespace ArtemisEngine::Maths::Vectors
 	};
 
 	template<class T>
-	class VectorBase<T, 3> : public VectorImplementor<T, 3>
+	struct VectorBase<T, 3> : public VectorImplementor<T, 3>
 	{
 	public:
 		T X;
@@ -351,7 +351,7 @@ namespace ArtemisEngine::Maths::Vectors
 	};
 
 	template<class T>
-	class VectorBase<T, 4> : public VectorImplementor<T, 4>
+	struct VectorBase<T, 4> : public VectorImplementor<T, 4>
 	{
 	public:
 		T X;

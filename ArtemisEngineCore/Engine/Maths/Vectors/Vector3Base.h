@@ -5,7 +5,7 @@
 namespace ArtemisEngine::Maths::Vectors
 {
 	template<class T>
-	class Vector3Base : public VectorBase<T, 3>
+	struct Vector3Base : public VectorBase<T, 3>
 	{
 	public:
 		~Vector3Base() = default;

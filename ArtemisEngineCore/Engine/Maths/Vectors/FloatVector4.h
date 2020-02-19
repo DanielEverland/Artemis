@@ -4,7 +4,7 @@
 
 namespace ArtemisEngine::Maths::Vectors
 {
-	class FloatVector4 : public Vector4Base<float>
+	struct FloatVector4 : public Vector4Base<float>
 	{
 		using Vector4Base::Vector4Base;
 	};

@@ -9,6 +9,7 @@
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/DivideByZeroException.h"
 #include "Debugging/IDebugStringReturner.h"
+#include "Formatting/NumberFormatting.h"
 #include "Engine/Math.h"
 
 using ArtemisEngine::Debugging::IDebugStringReturner;
@@ -94,50 +95,23 @@ namespace ArtemisEngine::Maths::Vectors
 
 		virtual string ToString() const
 		{
-			std::stringstream stream;
-			std::streamsize defaultPrecision = stream.precision();
+			string str = "";
 
-			stream << "(";
+			str += "(";
 
 			for (int i = 0; i < dimensions; i++)
 			{
 				T value = GetValue(i);
 
-				if constexpr (std::is_floating_point<T>())
-				{
-					if (Math::IsPositiveInfinity(value))
-					{
-						stream << PositiveInfinityText;
-					}
-					else if (Math::IsNegativeInfinity(value))
-					{
-						stream << NegativeInfinityText;
-					}
-					else if (Math::IsNaN(value))
-					{
-						stream << NaNText;
-					}
-					else if (Math::IsFloatingPointIntegral(value))
-					{
-						stream << std::fixed << std::setprecision(1) << value;
-					}
-					else
-					{
-						stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
-					}
-				}
-				else
-				{
-					stream << value;
-				}
+				str += NumberFormatting::FormatGeneric(value);
 
 				if (i < dimensions - 1)
-					stream << ", ";
+					str += ", ";
 			}
 
-			stream << ")";
+			str += ")";
 
-			return stream.str();
+			return str;
 		}
 
 		// Returns squared length of vector.

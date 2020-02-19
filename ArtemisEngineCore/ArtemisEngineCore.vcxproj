@@ -189,6 +189,7 @@
     <ClInclude Include="Exceptions\InvalidArgumentException.h" />
     <ClInclude Include="Exceptions\NullReferenceException.h" />
     <ClInclude Include="Exceptions\OutOfRangeException.h" />
+    <ClInclude Include="Formatting\NumberFormatting.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\Key.h" />
     <ClInclude Include="Structs\Color.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="Engine\Math.cpp" />
     <ClCompile Include="Engine\Quaternion.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
+    <ClCompile Include="Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Input\Input.cpp" />
     <ClCompile Include="Structs\Color.cpp" />
     <ClCompile Include="Time\Time.cpp" />

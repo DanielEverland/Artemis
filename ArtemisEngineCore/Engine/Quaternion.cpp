@@ -1,5 +1,6 @@
 #include "Quaternion.h"
 #include "Math.h"
+#include "..\Formatting\NumberFormatting.h"
 
 using namespace ArtemisEngine;
 
@@ -99,42 +100,16 @@ Vector3 Quaternion::GetEuler() const
 
 string ArtemisEngine::Quaternion::ToString() const
 {
-	std::stringstream stream;
-	std::streamsize defaultPrecision = stream.precision();
+	string text = "";
 
-	stream << "(";
-	FormatNumber(stream, defaultPrecision, X) << ", ";
-	FormatNumber(stream, defaultPrecision, Y) << ", ";
-	FormatNumber(stream, defaultPrecision, Z) << ", ";
-	FormatNumber(stream, defaultPrecision, W);
-	stream << ")";
+	text += "(";
+	text += NumberFormatting::Format(X) + ", ";
+	text += NumberFormatting::Format(Y) + ", ";
+	text += NumberFormatting::Format(Z) + ", ";
+	text += NumberFormatting::Format(W);
+	text += ")";
 
-	return stream.str();
-}
-stringstream& Quaternion::FormatNumber(stringstream& stream, std::streamsize defaultPrecision, double value) const
-{
-	if (Math::IsPositiveInfinity(value))
-	{
-		stream << PositiveInfinityText;
-	}
-	else if (Math::IsNegativeInfinity(value))
-	{
-		stream << NegativeInfinityText;
-	}
-	else if (Math::IsNaN(value))
-	{
-		stream << NaNText;
-	}
-	else if (Math::IsFloatingPointIntegral(value))
-	{
-		stream << std::fixed << std::setprecision(1) << value;
-	}
-	else
-	{
-		stream << std::defaultfloat << std::setprecision(defaultPrecision) << value;
-	}
-
-	return stream;
+	return text;
 }
 
 Vector3 Quaternion::operator*(const Vector3& point) const

@@ -4,12 +4,10 @@
 
 #include "Engine/Vector3.h"
 #include "Debugging/IDebugStringReturner.h"
-#include <sstream>
 
 using ArtemisEngine::Debugging::IDebugStringReturner;
 using ArtemisEngine::Vector3;
 using std::string;
-using std::stringstream;
 
 namespace ArtemisEngine
 {
@@ -61,12 +59,5 @@ namespace ArtemisEngine
 		void operator*=(const Quaternion& other);
 		void operator*=(double scalar);
 		bool operator==(const Quaternion& other) const;
-
-	private:
-		inline static const string PositiveInfinityText = "PositiveInfinity";
-		inline static const string NegativeInfinityText = "NegativeInfinity";
-		inline static const string NaNText = "NaN";
-
-		stringstream& FormatNumber(stringstream& stream, std::streamsize defaultPrecision, double value) const;
 	};
 }

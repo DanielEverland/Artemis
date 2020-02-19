@@ -41,6 +41,9 @@
     <Filter Include="Source\Debugging">
       <UniqueIdentifier>{a9c6e40e-c24c-4a1e-9168-ab37d27532c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Formatting">
+      <UniqueIdentifier>{018a452b-a22b-4598-b891-f1a797b4a2fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Structs\Color.h">
@@ -169,6 +172,9 @@
     <ClInclude Include="Engine\Math.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Formatting\NumberFormatting.h">
+      <Filter>Source\Formatting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -221,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Math.cpp">
       <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Formatting\NumberFormatting.cpp">
+      <Filter>Source\Formatting</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

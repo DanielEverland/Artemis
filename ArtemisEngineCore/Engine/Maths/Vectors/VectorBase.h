@@ -2,9 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
-#include <sstream>
 #include <utility>
-#include <iomanip>
 
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/DivideByZeroException.h"
@@ -171,10 +169,6 @@ namespace ArtemisEngine::Maths::Vectors
 	private:
 		virtual T& GetValue(int index) = 0;
 		virtual T GetValue(int index) const = 0;
-
-		inline static const string PositiveInfinityText = "PositiveInfinity";
-		inline static const string NegativeInfinityText = "NegativeInfinity";
-		inline static const string NaNText = "NaN";
 	};
 
 

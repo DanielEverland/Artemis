@@ -52,12 +52,22 @@ double Math::ArcTangent2(double x, double y)
 	return std::atan2(x, y);
 }
 
-double Math::Cosine(double value)
+double Math::Cosine(double angle)
 {
-	return std::cos(value);
+	return std::cos(angle);
 }
 
 double Math::ArcCosine(double value)
 {
 	return std::acos(value);
+}
+
+double Math::Sine(double angle)
+{
+	return std::sin(angle);
+}
+
+double Math::ArcSine(double value)
+{
+	return std::asin(value);
 }

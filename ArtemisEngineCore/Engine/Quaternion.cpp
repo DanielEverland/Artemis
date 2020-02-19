@@ -52,11 +52,11 @@ Quaternion Quaternion::FromEuler(double xRotation, double yRotation, double zRot
 
 	// Abbreviations for the various angular functions
 	double xCos = Math::Cosine(xRotation / 2);
-	double xSin = Math::Sin(xRotation / 2);
+	double xSin = Math::Sine(xRotation / 2);
 	double yCos = Math::Cosine(yRotation / 2);
-	double ySin = Math::Sin(yRotation / 2);
+	double ySin = Math::Sine(yRotation / 2);
 	double zCos = Math::Cosine(zRotation / 2);
-	double zSin = Math::Sin(zRotation / 2);
+	double zSin = Math::Sine(zRotation / 2);
 
 	return Quaternion(
 	 xCos * ySin * zSin - xSin * yCos * zCos,
@@ -90,7 +90,7 @@ Vector3 Quaternion::GetEuler() const
 	else
 	{
 		euler.X = Math::ArcTangent2(-2.0 * (W * X + Y * Z), 1.0 - 2.0 * (Math::Square(X) + Math::Square(Y))) * RadToDeg;
-		euler.Y = Math::ArcSin(2.0 * SingularityTest) * RadToDeg;
+		euler.Y = Math::ArcSine(2.0 * SingularityTest) * RadToDeg;
 		euler.Z = Math::ArcTangent2(YawY, YawX) * RadToDeg;
 	}
 

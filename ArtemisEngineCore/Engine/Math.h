@@ -63,20 +63,14 @@ public:
 	// Computes the cosine of angle given in radians
 	static double Cosine(double angle);
 
-	// Computes the angle given the value of a cosine
+	// Computes the angle given the value of cosine
 	static double ArcCosine(double value);
 
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T ArcSin(T value)
-	{
-		return std::asin(value);
-	}
-
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Sin(T value)
-	{
-		return std::sin(value);
-	}
+	// Computes the sine of angle given in radians
+	static double Sine(double angle);
+	 
+	// Computes the angle given the value of sine
+	static double ArcSine(double value);
 
 	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static T ArcTan(T value)

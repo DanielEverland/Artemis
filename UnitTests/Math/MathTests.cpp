@@ -93,3 +93,13 @@ TEST(Math, ArcCos)
     ExpectNear(Math::Pi, Math::ArcCosine(-1));
     ExpectNear(2.41885841, Math::ArcCosine(-0.75));
 }
+TEST(Math, Sine)
+{
+    ExpectNear(0.8414709848, Math::Sine(1));
+    ExpectNear(-0.5984721441, Math::Sine(-2.5));
+}
+TEST(Math, ArcSine)
+{
+    ExpectNear(0.523598776, Math::ArcSine(0.5));
+    ExpectNear(-1.57079633, Math::ArcSine(-1));
+}

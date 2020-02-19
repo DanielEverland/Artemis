@@ -17,6 +17,7 @@ namespace ArtemisEngine::Maths::Vectors
 	template<class T, unsigned int dimensions>
 	struct VectorBase;
 
+	// Vectors represent directions with a magnitude
 	template<class T, unsigned int dimensions>
 	struct VectorImplementor : public IDebugStringReturner
 	{
@@ -86,11 +87,13 @@ namespace ArtemisEngine::Maths::Vectors
 			return toReturn;
 		}
 
+		// Returns the amount of dimensions this vector represents
 		unsigned int GetDimensions() const
 		{
 			return dimensions;
 		}
 
+		// Returns a nicely formatted string
 		virtual string ToString() const
 		{
 			string str = "";
@@ -270,7 +273,7 @@ namespace ArtemisEngine::Maths::Vectors
 		T Y;
 		T Z;
 
-		// Returns cross product of two vectors
+		// Returns a thrid vector perpendicular to a and b
 		static VectorBase GetCrossProduct(const VectorBase& a, const VectorBase& b)
 		{
 			return VectorBase(

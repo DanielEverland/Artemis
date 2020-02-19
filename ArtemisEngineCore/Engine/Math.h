@@ -60,19 +60,22 @@ public:
 	// Returns the angle in radians between x-axis and the ray of point (x, y)
 	static double ArcTangent2(double x, double y);
 	
-	// Computes the cosine of angle given in radians
+	/// <summary>Computes the cosine of angle given in radians</summary>
+	/// <param name="angle">Given in radians</param>
 	static double Cosine(double angle);
 
 	// Computes the angle given the value of cosine
 	static double ArcCosine(double value);
 
-	// Computes the sine of angle given in radians
+	/// <summary>Computes the sine of angle given in radians</summary>
+	/// <param name="angle">Given in radians</param>
 	static double Sine(double angle);
 	 
 	// Computes the angle given the value of sine
 	static double ArcSine(double value);
 
-	// Computes the tangent of angle given in radians
+	/// <summary>Computes the tangent of angle given in radians</summary>
+	/// <param name="angle">Given in radians</param>
 	static double Tangent(double angle);
 
 	// Computes the angle given the value of tangent

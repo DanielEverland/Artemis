@@ -1,7 +1,8 @@
 #include "Math.h"
 
 const double Math::Pi = M_PI;
-const double Math::Infinity = std::numeric_limits<double>::infinity();
+const double Math::PositiveInfinity = std::numeric_limits<double>::infinity();
+const double Math::NegativeInfinity = -Math::PositiveInfinity;
 const double Math::NaN = nan("");
 
 double Math::NormalizeAngle(double angle)
@@ -85,4 +86,19 @@ double Math::ArcTangent(double value)
 bool Math::IsFloatingPointIntegral(double value)
 {
 	return std::trunc(value) == value;
+}
+
+bool Math::IsPositiveInfinity(double value)
+{
+	return value == PositiveInfinity;
+}
+
+bool Math::IsNegativeInfinity(double value)
+{
+	return value == -PositiveInfinity;
+}
+
+bool Math::IsInfinity(double value)
+{
+	return value == -PositiveInfinity || value == PositiveInfinity;
 }

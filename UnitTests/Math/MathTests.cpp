@@ -63,15 +63,15 @@ TEST(Math, Absolute)
     ExpectEqual(1, Math::Absolute(1));
     ExpectEqual(1, Math::Absolute(-1));
 
-    ExpectEqual(Math::Infinity, Math::Absolute(Math::Infinity));
-    ExpectEqual(Math::Infinity, Math::Absolute(-Math::Infinity));
+    ExpectEqual(Math::PositiveInfinity, Math::Absolute(Math::PositiveInfinity));
+    ExpectEqual(Math::PositiveInfinity, Math::Absolute(-Math::PositiveInfinity));
 
     ExpectNear(2.25, Math::Absolute(-2.25));
 }
 TEST(Math, CopySign)
 {
     ExpectEqual(-1, Math::CopySign(1, -253));
-    ExpectEqual(-Math::Infinity, Math::CopySign(Math::Infinity, -253));
+    ExpectEqual(-Math::PositiveInfinity, Math::CopySign(Math::PositiveInfinity, -253));
     ExpectEqual(1.0, Math::CopySign(1.0, 52.0));
 }
 TEST(Math, ArcTan2)
@@ -118,4 +118,25 @@ TEST(Math, IsFloatingPointIntegral)
     ExpectTrue(Math::IsFloatingPointIntegral(-3.0));
     ExpectTrue(Math::IsFloatingPointIntegral(3.0));
     ExpectFalse(Math::IsFloatingPointIntegral(3.6));
+}
+TEST(Math, IsPositiveInfinity)
+{
+    ExpectTrue(Math::IsPositiveInfinity(Math::PositiveInfinity));
+    ExpectFalse(Math::IsPositiveInfinity(-Math::PositiveInfinity));
+    ExpectFalse(Math::IsPositiveInfinity(1));
+    ExpectFalse(Math::IsPositiveInfinity(2.5));
+}
+TEST(Math, IsNegativeInfinity)
+{
+    ExpectTrue(Math::IsNegativeInfinity(-Math::PositiveInfinity));
+    ExpectFalse(Math::IsNegativeInfinity(Math::PositiveInfinity));
+    ExpectFalse(Math::IsNegativeInfinity(1));
+    ExpectFalse(Math::IsNegativeInfinity(2.5));
+}
+TEST(Math, IsAnyInfinity)
+{
+    ExpectTrue(Math::IsInfinity(-Math::PositiveInfinity));
+    ExpectTrue(Math::IsInfinity(Math::PositiveInfinity));
+    ExpectFalse(Math::IsInfinity(1));
+    ExpectFalse(Math::IsInfinity(2.5));
 }

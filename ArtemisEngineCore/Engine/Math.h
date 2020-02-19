@@ -11,7 +11,8 @@ class Math
 {
 public:
 	static const double Pi;
-	static const double Infinity;
+	static const double PositiveInfinity;
+	static const double NegativeInfinity;
 	static const double NaN;
 
 	// Returns an angle in the range (-180;180]
@@ -81,22 +82,18 @@ public:
 	// Computes the angle given the value of tangent
 	static double ArcTangent(double value);
 	
-
 	// Checks if floating point number is an integer
 	// For instance, 3.0 would return true and 3.1 would return false
 	static bool IsFloatingPointIntegral(double value);
 
-	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
-	static bool IsPositiveInfinity(T value)
-	{
-		return value == Infinity;
-	}
+	// Checks if value is positive infinity
+	static bool IsPositiveInfinity(double value);
 
-	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
-	static bool IsNegativeInfinity(T value)
-	{
-		return value == -Infinity;
-	}
+	// Checks if value is negative infinity
+	static bool IsNegativeInfinity(double value);
+
+	// Checks if value is +/- infinity
+	static bool IsInfinity(double value);
 
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
 	static bool IsNaN(T value)

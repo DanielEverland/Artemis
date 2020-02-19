@@ -233,7 +233,7 @@ TEST(Quaternions, ToStringNaN)
 
 TEST(Quaternions, ToStringInfinity)
 {
-	Quaternion quat(Math::Infinity, -Math::Infinity, Math::Infinity, -Math::Infinity);
+	Quaternion quat(Math::PositiveInfinity, -Math::PositiveInfinity, Math::PositiveInfinity, -Math::PositiveInfinity);
 	string expectedResult = "(PositiveInfinity, NegativeInfinity, PositiveInfinity, NegativeInfinity)";
 
 

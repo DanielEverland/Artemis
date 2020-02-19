@@ -71,3 +71,13 @@ double Math::ArcSine(double value)
 {
 	return std::asin(value);
 }
+
+double Math::Tangent(double angle)
+{
+	return std::tan(angle);
+}
+
+double Math::ArcTangent(double value)
+{
+	return std::atan(value);
+}

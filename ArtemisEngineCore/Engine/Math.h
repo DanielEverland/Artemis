@@ -72,18 +72,12 @@ public:
 	// Computes the angle given the value of sine
 	static double ArcSine(double value);
 
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T ArcTan(T value)
-	{
-		return std::atan(value);
-	}
+	// Computes the tangent of angle given in radians
+	static double Tangent(double angle);
 
-	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
-	static T Tan(T value)
-	{
-		return std::tan(value);
-	}
-
+	// Computes the angle given the value of tangent
+	static double ArcTangent(double value);
+	
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
 	static bool IsFloatingPointIntegral(T value)
 	{

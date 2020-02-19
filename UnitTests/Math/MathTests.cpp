@@ -103,3 +103,13 @@ TEST(Math, ArcSine)
     ExpectNear(0.523598776, Math::ArcSine(0.5));
     ExpectNear(-1.57079633, Math::ArcSine(-1));
 }
+TEST(Math, Tangent)
+{
+    ExpectNear(1.55740772465, Math::Tangent(1));
+    ExpectNear(-0.54630248984, Math::Tangent(-0.5));
+}
+TEST(Math, ArcTangent)
+{
+    ExpectNear(-0.463647609, Math::ArcTangent(-0.5));
+    ExpectNear(1.10714872, Math::ArcTangent(2));
+}

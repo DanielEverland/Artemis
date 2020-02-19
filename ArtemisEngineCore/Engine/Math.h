@@ -95,7 +95,8 @@ public:
 	// Checks if value is +/- infinity
 	static bool IsInfinity(double value);
 
-	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
+	// Checks if value is Not a Number
+	template<class T, typename std::enable_if<std::is_arithmetic<T>::value>::type * = nullptr >
 	static bool IsNaN(T value)
 	{
 		return isnan(value);

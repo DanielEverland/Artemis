@@ -140,3 +140,9 @@ TEST(Math, IsAnyInfinity)
     ExpectFalse(Math::IsInfinity(1));
     ExpectFalse(Math::IsInfinity(2.5));
 }
+TEST(Math, IsNaN)
+{
+    ExpectTrue(Math::IsNaN(Math::NaN));
+    ExpectFalse(Math::IsNaN(1));
+    ExpectFalse(Math::IsNaN(2.5));
+}

@@ -113,3 +113,9 @@ TEST(Math, ArcTangent)
     ExpectNear(-0.463647609, Math::ArcTangent(-0.5));
     ExpectNear(1.10714872, Math::ArcTangent(2));
 }
+TEST(Math, IsFloatingPointIntegral)
+{
+    ExpectTrue(Math::IsFloatingPointIntegral(-3.0));
+    ExpectTrue(Math::IsFloatingPointIntegral(3.0));
+    ExpectFalse(Math::IsFloatingPointIntegral(3.6));
+}

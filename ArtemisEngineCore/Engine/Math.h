@@ -81,11 +81,10 @@ public:
 	// Computes the angle given the value of tangent
 	static double ArcTangent(double value);
 	
-	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
-	static bool IsFloatingPointIntegral(T value)
-	{
-		return std::trunc(value) == value;
-	}
+
+	// Checks if floating point number is an integer
+	// For instance, 3.0 would return true, 3.1 would return false
+	static bool IsFloatingPointIntegral(double value);
 
 	template<class T, typename std::enable_if<std::is_floating_point<T>::value>::type * = nullptr >
 	static bool IsPositiveInfinity(T value)

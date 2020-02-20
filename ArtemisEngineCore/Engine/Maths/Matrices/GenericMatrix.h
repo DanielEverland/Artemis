@@ -514,27 +514,4 @@ namespace ArtemisEngine::Maths::Matrices
 	{
 		return !(aMatrix == bMatrix);
 	}
-	
-	template<class T, unsigned int rows, unsigned int columns, unsigned int inputVectorDimensions>
-	VectorBase<T, rows> operator*(const VectorBase<T, inputVectorDimensions>& vector, const GenericMatrix<T, rows, columns>& matrix)
-	{
-		return matrix * vector;
-	}
-	template<class T, unsigned int rows, unsigned int columns, unsigned int inputVectorDimensions>
-	VectorBase<T, rows> operator*(const GenericMatrix<T, rows, columns>& matrix, const VectorBase<T, inputVectorDimensions>& vector)
-	{
-		VectorBase<T, rows> toReturn;
-		unsigned int minRows = rows < inputVectorDimensions ? rows : inputVectorDimensions;
-		unsigned int minColumns = rows < inputVectorDimensions ? columns : inputVectorDimensions;
-
-		for (unsigned int i = 0; i < minRows; i++)
-		{
-			for (unsigned int j = 0; j < minColumns; j++)
-			{
-				toReturn[i] += matrix[i][j] * vector[j];
-			}
-		}
-
-		return toReturn;
-	}
 }

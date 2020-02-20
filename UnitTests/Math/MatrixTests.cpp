@@ -444,23 +444,6 @@ namespace Maths::Matrices
 		ExpectTrue(a != d);
 	}
 
-	TEST(MatrixTest, VectorMultiplication)
-	{
-		GenericMatrix<double, 2, 3> matrix
-		({
-			VectorBase<double, 3>(6, 4, 3),
-			VectorBase<double, 3>(0, 1, -2),
-		});
-		VectorBase<double, 3> vector(3, 0, -1.5);
-		VectorBase<double, 2> expectedResult(13.5, 3);
-
-
-		VectorBase<double, 2> actualResult = matrix * vector;
-
-
-		VectorExpectNear(expectedResult, actualResult);
-	}
-
 	TEST(MatrixTest, Minor)
 	{
 		unsigned int rowToDelete = 1;

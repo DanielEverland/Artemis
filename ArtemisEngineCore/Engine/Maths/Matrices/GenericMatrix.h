@@ -128,17 +128,17 @@ namespace ArtemisEngine::Maths::Matrices
 
 			GenericMatrix m = BaseMatrix::GetIdentityMatrix<T, rows>();
 
-			const float xx = q.X * (q.X + q.X);
-			const float yy = q.Y * (q.Y + q.Y);
-			const float wx = q.W * (q.X + q.X);
+			const double xx = q.X * (q.X + q.X);
+			const double yy = q.Y * (q.Y + q.Y);
+			const double wx = q.W * (q.X + q.X);
 
-			const float xy = q.X * (q.Y + q.Y);
-			const float yz = q.Y * (q.Z + q.Z);
-			const float wy = q.W * (q.Y + q.Y);
+			const double xy = q.X * (q.Y + q.Y);
+			const double yz = q.Y * (q.Z + q.Z);
+			const double wy = q.W * (q.Y + q.Y);
 
-			const float xz = q.X * (q.Z + q.Z);
-			const float zz = q.Z * (q.Z + q.Z);
-			const float wz = q.W * (q.Z + q.Z);
+			const double xz = q.X * (q.Z + q.Z);
+			const double zz = q.Z * (q.Z + q.Z);
+			const double wz = q.W * (q.Z + q.Z);
 
 			// We only modify the top-left 3x3 minor of the 4x4 identity matrix
 			m[0][0] = 1.0f - (yy + zz);
@@ -193,6 +193,23 @@ namespace ArtemisEngine::Maths::Matrices
 			{
 				values[i][columnIndex] = columnValues[i];
 			}
+		}
+
+		Vector3 TransformPoint(const Vector3& point)
+		{
+			Vector3 xTempVector(point.X, point.X, point.X);
+			Vector3 yTempVector(point.Y, point.Y, point.Y);
+			Vector3 zTempVector(point.Z, point.Z, point.Z);
+
+			xTempVector = Vector3(xTempVector.X * values[0][0], xTempVector.Y * values[0][1], xTempVector.X * values[0][2]);
+			yTempVector = Vector3(yTempVector.X * values[1][0], yTempVector.Y * values[1][1], yTempVector.Z * values[1][2]);
+			zTempVector = Vector3(zTempVector.X * values[2][0], zTempVector.Y * values[2][1], zTempVector.Z * values[2][2]);
+
+			xTempVector = Vector3(xTempVector.X + yTempVector.X, xTempVector.Y + yTempVector.Y, xTempVector.Z + yTempVector.Z);
+			yTempVector = Vector3(zTempVector.X + 1, zTempVector.Y + 1, zTempVector.Z + 1);
+			xTempVector = Vector3(xTempVector.X + zTempVector.X, xTempVector.Y + zTempVector.Y, xTempVector.Z + zTempVector.Z);
+
+			return xTempVector;
 		}
 
 		template<typename = typename std::enable_if<(rows == columns)>::type>

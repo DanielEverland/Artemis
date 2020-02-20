@@ -633,9 +633,9 @@ namespace Maths::Matrices
 
 		Matrix expectedResult
 		({
-			RowVector(0.74672490358352661, 0.26200872659683228, -0.61135369539260864, 0),
-			RowVector(0.61135369539260864, 0.091703057289123535, 0.78602617979049683, 0),
-			RowVector(0.26200872659683228, -0.96069866418838501, -0.091703057289123535, 0),
+			RowVector(0.74672489082969429, 0.26200872659683228, -0.611353711790393, 0),
+			RowVector(0.611353711790393, 0.091703057289123535, 0.7860262008733625, 0),
+			RowVector(0.26200872659683228, -0.9606986899563319, -0.091703057289123535, 0),
 			RowVector(0, 0, 0, 1)
 		});
 
@@ -647,5 +647,18 @@ namespace Maths::Matrices
 	TEST(MatrixTest, QuaternionToMatrixNonNormalizedException)
 	{
 		ExpectThrow(Matrix::Rotation(Quaternion(1, 0.5, -0.2, 1)), InvalidArgumentException);
+	}
+	TEST(MatrixTest, PointRotation)
+	{
+		Vector3 point(2.5, -3.75, 1.25);
+		Vector3 expectedResult(3.6154770433224894, 2.8343231363825439, 0.877461171662137);
+		Quaternion rotationQuaternion = Quaternion::FromEuler(-26.35, 32.34, 96.55);
+		Matrix rotationMatrix = Matrix::Rotation(rotationQuaternion);
+
+
+		Vector3 actualResult = rotationMatrix.TransformPoint(point);
+
+
+		VectorExpectNear(expectedResult, actualResult);
 	}
 }

@@ -215,6 +215,7 @@ namespace ArtemisEngine::Maths::Matrices
 			}
 		}
 
+		// Transforms a point by this matrix
 		Vector3 TransformPoint(const Vector3& point)
 		{
 			Vector4 xTempVector(point.X, point.X, point.X, point.X);

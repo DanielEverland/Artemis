@@ -658,5 +658,15 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, PointTranslationVector)
 	{
+		Vector3 point(-4, -4, 0);
+		Vector3 expectedResult(-3.5, -2.0, 1.0);
+		Vector3 translationVector(0.5, 2, 1);
+		Matrix translationMatrix = Matrix::Translation(translationVector);
+
+
+		Vector3 actualResult = translationMatrix.TransformPoint(point);
+
+
+		VectorExpectNear(expectedResult, actualResult);
 	}
 }

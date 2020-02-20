@@ -107,11 +107,16 @@ namespace ArtemisEngine::Maths::Matrices
 			}
 		}
 
+		static GenericMatrix TranslateRotationScale(const Vector3& translate, const Quaternion& rotation, const Vector3& scale)
+		{
+
+		}
+
 		// Returns a translation matrix
 		template<unsigned int vectorDimensions>
 		static GenericMatrix Translation(const VectorBase<T, vectorDimensions>& vector)
 		{
-			return TranslateAccelerator(vector[0], vector[1], vector[2]);
+			return Translation(vector[0], vector[1], vector[2]);
 		}
 
 		// Returns a translation matrix

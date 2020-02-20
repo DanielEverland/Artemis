@@ -123,25 +123,36 @@ namespace ArtemisEngine::Maths::Matrices
 		// Converts a quaternion to a rotation matrix
 		static GenericMatrix Rotation(const Quaternion& q)
 		{
+			if (!q.IsNormalized())
+				throw InvalidArgumentException("Quaternion must be normalized when creating rotation matrix");
+
 			GenericMatrix m = BaseMatrix::GetIdentityMatrix<T, rows>();
 
-			T xSquared = Math::Square(q.X);
-			T ySquared = Math::Square(q.Y);
-			T zSquared = Math::Square(q.Z);
-			T wSquared = Math::Square(q.W);
+			const float xx = q.X * (q.X + q.X);
+			const float yy = q.Y * (q.Y + q.Y);
+			const float wx = q.W * (q.X + q.X);
 
-			m[0][0] = 1 - 2 * ySquared - 2 * zSquared;
-			m[0][1] = 2 * q.X * q.Y - 2 * q.Z * q.W;
-			m[0][2] = 2 * q.X * q.Z + 2 * q.Y * q.W;
+			const float xy = q.X * (q.Y + q.Y);
+			const float yz = q.Y * (q.Z + q.Z);
+			const float wy = q.W * (q.Y + q.Y);
 
-			m[1][0] = 2 * q.X * q.Y + 2 * q.Z * q.W;
-			m[1][1] = 1 - 2 * xSquared - 2 * zSquared;
-			m[1][2] = 2 * q.Y * q.Z - 2 * q.X * q.W;
+			const float xz = q.X * (q.Z + q.Z);
+			const float zz = q.Z * (q.Z + q.Z);
+			const float wz = q.W * (q.Z + q.Z);
 
-			m[2][0] = 2 * q.X * q.Z - 2 * q.Y * q.W;
-			m[2][1] = 2 * q.Y * q.Z + 2 * q.X * q.W;
-			m[2][2] = 1 - 2 * xSquared - 2 * ySquared;
+			// We only modify the top-left 3x3 minor of the 4x4 identity matrix
+			m[0][0] = 1.0f - (yy + zz);
+			m[0][1] = xy + wz;
+			m[0][2] = xz - wy;
 
+			m[1][0] = xy - wz;
+			m[1][1] = 1.0f - (xx + zz);
+			m[1][2] = yz + wx;
+
+			m[2][0] = xz + wy;
+			m[2][1] = yz - wx;
+			m[2][2] = 1.0f - (xx + yy);
+			
 			return m;
 		}
 

@@ -629,18 +629,23 @@ namespace Maths::Matrices
 	{
 		Quaternion quaternion(1, 0.5, -0.2, 1);
 
+		quaternion = quaternion.GetNormalized();
+
 		Matrix expectedResult
 		({
-			RowVector(0.7467249, 0.6113537, 0.2620087, 0),
-			RowVector(0.2620087, 0.0917031, -0.9606987, 0),
-			RowVector(-0.6113537, 0.7860262, -0.0917031, 0),
+			RowVector(0.74672490358352661, 0.26200872659683228, -0.61135369539260864, 0),
+			RowVector(0.61135369539260864, 0.091703057289123535, 0.78602617979049683, 0),
+			RowVector(0.26200872659683228, -0.96069866418838501, -0.091703057289123535, 0),
 			RowVector(0, 0, 0, 1)
 		});
 
-		
 		Matrix actualResult = Matrix::Rotation(quaternion);
 
 
 		MatrixExpectNear(expectedResult, actualResult);
+	}
+	TEST(MatrixTest, QuaternionToMatrixNonNormalizedException)
+	{
+		ExpectThrow(Matrix::Rotation(Quaternion(1, 0.5, -0.2, 1)), InvalidArgumentException);
 	}
 }

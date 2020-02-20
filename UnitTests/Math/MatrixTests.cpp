@@ -614,13 +614,13 @@ namespace Maths::Matrices
 	}
 	TEST(MatrixTest, ScaleTransform)
 	{
-		VectorBase<double, 3> positionToScale(-4, -4, 0);
-		VectorBase<double, 3> expectedResult(-2, -8, 0);
-		VectorBase<double, 3> scale(0.5, 2, 1);
+		Vector3 positionToScale(-4, -4, 0);
+		Vector3 expectedResult(-2, -8, 0);
+		Vector3 scale(0.5, 2, 1);
 		Matrix matrix = Matrix::Scale(scale);
 
 
-		VectorBase<double, 3> actualResult = matrix * positionToScale;
+		Vector3 actualResult = matrix.TransformPoint(positionToScale);
 		
 
 		VectorExpectNear(expectedResult, actualResult);

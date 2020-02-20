@@ -644,4 +644,19 @@ namespace Maths::Matrices
 
 		VectorExpectNear(expectedResult, actualResult);
 	}
+	TEST(MatrixTest, PointTranslation)
+	{
+		Vector3 point(-4, -4, 0);
+		Vector3 expectedResult(-3.5, -2.0, 1.0);
+		Matrix translationMatrix = Matrix::Translation(0.5, 2, 1);
+
+
+		Vector3 actualResult = translationMatrix.TransformPoint(point);
+
+
+		VectorExpectNear(expectedResult, actualResult);
+	}
+	TEST(MatrixTest, PointTranslationVector)
+	{
+	}
 }

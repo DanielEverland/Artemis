@@ -8,6 +8,7 @@
 #include "Engine/Maths/Vectors/VectorBase.h"
 #include "Debugging/IDebugStringReturner.h"
 #include "Engine/Quaternion.h"
+#include "Engine/Vector4.h"
 
 using namespace ArtemisEngine;
 using ArtemisEngine::Maths::Vectors::VectorBase;
@@ -106,6 +107,25 @@ namespace ArtemisEngine::Maths::Matrices
 			}
 		}
 
+		// Returns a translation matrix
+		template<unsigned int vectorDimensions>
+		static GenericMatrix Translation(const VectorBase<T, vectorDimensions>& vector)
+		{
+			return TranslateAccelerator(vector[0], vector[1], vector[2]);
+		}
+
+		// Returns a translation matrix
+		static GenericMatrix Translation(double x, double y, double z)
+		{
+			GenericMatrix matrix = BaseMatrix::GetIdentityMatrix<T, rows>();
+
+			matrix[3][0] = x;
+			matrix[3][1] = y;
+			matrix[3][2] = z;
+
+			return matrix;
+		}
+
 		// Returns a scale transformation matrix
 		template<unsigned int vectorDimensions>
 		static GenericMatrix Scale(const VectorBase<T, vectorDimensions>& scale)
@@ -197,19 +217,17 @@ namespace ArtemisEngine::Maths::Matrices
 
 		Vector3 TransformPoint(const Vector3& point)
 		{
-			Vector3 xTempVector(point.X, point.X, point.X);
-			Vector3 yTempVector(point.Y, point.Y, point.Y);
-			Vector3 zTempVector(point.Z, point.Z, point.Z);
+			Vector4 xTempVector(point.X, point.X, point.X, point.X);
+			Vector4 yTempVector(point.Y, point.Y, point.Y, point.Y);
+			Vector4 zTempVector(point.Z, point.Z, point.Z, point.Z);
+			Vector4 wTempVector(1, 1, 1, 1);
 
-			xTempVector = Vector3(xTempVector.X * values[0][0], xTempVector.Y * values[0][1], xTempVector.X * values[0][2]);
-			yTempVector = Vector3(yTempVector.X * values[1][0], yTempVector.Y * values[1][1], yTempVector.Z * values[1][2]);
-			zTempVector = Vector3(zTempVector.X * values[2][0], zTempVector.Y * values[2][1], zTempVector.Z * values[2][2]);
-
-			xTempVector = Vector3(xTempVector.X + yTempVector.X, xTempVector.Y + yTempVector.Y, xTempVector.Z + yTempVector.Z);
-			yTempVector = Vector3(zTempVector.X + 1, zTempVector.Y + 1, zTempVector.Z + 1);
-			xTempVector = Vector3(xTempVector.X + zTempVector.X, xTempVector.Y + zTempVector.Y, xTempVector.Z + zTempVector.Z);
-
-			return xTempVector;
+			xTempVector = Vector4(xTempVector.X * values[0][0], xTempVector.Y * values[0][1], xTempVector.Z * values[0][2], xTempVector.W * values[0][3]);
+			yTempVector = Vector4(yTempVector.X * values[1][0], yTempVector.Y * values[1][1], yTempVector.Z * values[1][2], yTempVector.W * values[1][3]);
+			zTempVector = Vector4(zTempVector.X * values[2][0], zTempVector.Y * values[2][1], zTempVector.Z * values[2][2], zTempVector.W * values[2][3]);
+			wTempVector = Vector4(wTempVector.X * values[3][0], wTempVector.Y * values[3][1], wTempVector.Z * values[3][2], wTempVector.W * values[3][3]);
+			
+			return xTempVector + yTempVector + zTempVector + wTempVector;
 		}
 
 		template<typename = typename std::enable_if<(rows == columns)>::type>

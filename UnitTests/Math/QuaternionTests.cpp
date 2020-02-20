@@ -242,3 +242,15 @@ TEST(Quaternions, ToStringInfinity)
 
 	ExpectEqual(expectedResult, actualResult);
 }
+TEST(Quaternions, IsNormalized)
+{
+	Quaternion a(1, 0.5, -0.2, 1);
+	Quaternion b(1, 0.5, -0.2, 1);
+
+	
+	b = b.GetNormalized();
+
+	
+	ExpectFalse(a.IsNormalized());
+	ExpectTrue(b.IsNormalized());
+}

@@ -4,6 +4,8 @@
 
 using namespace ArtemisEngine;
 
+const double Quaternion::QuaternionNormalizedPrecision = 1e-8;
+
 Quaternion::Quaternion(double x, double y, double z, double w)
 {
 	this->X = x;
@@ -110,6 +112,13 @@ string ArtemisEngine::Quaternion::ToString() const
 	text += ")";
 
 	return text;
+}
+
+bool Quaternion::IsNormalized() const
+{
+	double magnitude = Magnitude();
+
+	return Math::Absolute(1.0 - Magnitude()) < QuaternionNormalizedPrecision;
 }
 
 Vector3 Quaternion::operator*(const Vector3& point) const

@@ -20,6 +20,8 @@ namespace ArtemisEngine
 		Quaternion() = default;
 		Quaternion(double x, double y, double z, double w);
 
+		static const double QuaternionNormalizedPrecision;
+
 		double X;
 		double Y;
 		double Z;
@@ -47,6 +49,9 @@ namespace ArtemisEngine
 
 		// Returns a string of the quaternion with the format (X, Y, Z, W)
 		string ToString() const;
+
+		// Returns whether the quaternion is normalized
+		bool IsNormalized() const;
 
 		Quaternion operator+(const Quaternion& other) const;
 		Quaternion operator-(const Quaternion& other) const;

@@ -107,9 +107,42 @@ namespace ArtemisEngine::Maths::Matrices
 			}
 		}
 
+		// Creates a matrix from a translation, rotation and scale
 		static GenericMatrix TranslateRotationScale(const Vector3& translate, const Quaternion& rotation, const Vector3& scale)
 		{
+			GenericMatrix m;
+			Vector3 eulerAngles = rotation.GetEuler();
+			double sinX, sinY, sinZ;
+			double cosX, cosY, cosZ;
 
+			sinX = Math::Sine(Math::DegreesToRadians(eulerAngles.X));
+			sinY = Math::Sine(Math::DegreesToRadians(eulerAngles.Y));
+			sinZ = Math::Sine(Math::DegreesToRadians(eulerAngles.Z));
+			cosX = Math::Cosine(Math::DegreesToRadians(eulerAngles.X));
+			cosY = Math::Cosine(Math::DegreesToRadians(eulerAngles.Y));
+			cosZ = Math::Cosine(Math::DegreesToRadians(eulerAngles.Z));
+
+			m[0][0] = cosY * cosZ * scale.X;
+			m[0][1] = cosY * sinZ * scale.X;
+			m[0][2] = sinY * scale.X;
+			m[0][3] = 0;
+
+			m[1][0] = (sinX * sinY * cosZ - cosX * sinZ) * scale.Y;
+			m[1][1] = (sinX * sinY * sinZ + cosX * cosZ) * scale.Y;
+			m[1][2] = -sinX * cosY * scale.Y;
+			m[1][3] = 0;
+
+			m[2][0] = -(cosX * sinY * cosZ + sinX * sinZ) * scale.Z;
+			m[2][1] = (cosZ * sinX - cosX * sinY * sinZ) * scale.Z;
+			m[2][2] = cosX * cosY * scale.Z;
+			m[2][3] = 0;
+
+			m[3][0] = translate.X;
+			m[3][1] = translate.Y;
+			m[3][2] = translate.Z;
+			m[3][3] = 1;
+
+			return m;
 		}
 
 		// Returns a translation matrix

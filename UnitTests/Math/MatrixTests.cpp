@@ -669,4 +669,19 @@ namespace Maths::Matrices
 
 		VectorExpectNear(expectedResult, actualResult);
 	}
+	TEST(MatrixTest, TranslationRotationScale)
+	{
+		Vector3 point(-4, 4, 2.5);
+		Vector3 translation(2, 5, -10.5);
+		Quaternion rotation = Quaternion::FromEuler(45, 25, 0.52349);
+		Vector3 scale(0.5, 2, 1);
+		Vector3 expectedResult(1.7631557642302262, 12.422767092162095, -14.869946624788238);
+
+
+		Matrix matrix = Matrix::TranslateRotationScale(translation, rotation, scale);		
+		Vector3 actualResult = matrix.TransformPoint(point);
+
+
+		VectorExpectNear(expectedResult, actualResult);
+	}
 }

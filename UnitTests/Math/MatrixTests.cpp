@@ -2,12 +2,14 @@
 
 #include "Engine/Maths/Matrices/GenericMatrix.h"
 #include "Engine/Maths/Vectors/VectorBase.h"
+#include "Engine/Quaternion.h"
 #include "Utility/Comparison/ComparisonUtility.h"
 #include "Utility/Comparison/ComparisonUtilityMatrix.h"
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
 
 namespace Maths::Matrices
 {
+	using namespace ArtemisEngine;
 	using ArtemisEngine::Maths::Matrices::BaseMatrix;
 	using ArtemisEngine::Maths::Matrices::GenericMatrix;
 	using ArtemisEngine::Maths::Vectors::VectorBase;
@@ -622,5 +624,23 @@ namespace Maths::Matrices
 		
 
 		VectorExpectNear(expectedResult, actualResult);
+	}
+	TEST(MatrixTest, QuaternionToMatrix)
+	{
+		Quaternion quaternion(1, 0.5, -0.2, 1);
+
+		Matrix expectedResult
+		({
+			RowVector(0.7467249, 0.6113537, 0.2620087, 0),
+			RowVector(0.2620087, 0.0917031, -0.9606987, 0),
+			RowVector(-0.6113537, 0.7860262, -0.0917031, 0),
+			RowVector(0, 0, 0, 1)
+		});
+
+		
+		Matrix actualResult = Matrix::Rotation(quaternion);
+
+
+		MatrixExpectNear(expectedResult, actualResult);
 	}
 }

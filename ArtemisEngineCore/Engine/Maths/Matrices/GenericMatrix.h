@@ -7,7 +7,9 @@
 #include "Exceptions/InvalidArgumentException.h"
 #include "Engine/Maths/Vectors/VectorBase.h"
 #include "Debugging/IDebugStringReturner.h"
+#include "Engine/Quaternion.h"
 
+using namespace ArtemisEngine;
 using ArtemisEngine::Maths::Vectors::VectorBase;
 using std::initializer_list;
 
@@ -116,6 +118,31 @@ namespace ArtemisEngine::Maths::Matrices
 			}
 
 			return matrix;
+		}
+
+		// Converts a quaternion to a rotation matrix
+		static GenericMatrix Rotation(const Quaternion& q)
+		{
+			GenericMatrix m = BaseMatrix::GetIdentityMatrix<T, rows>();
+
+			T xSquared = Math::Square(q.X);
+			T ySquared = Math::Square(q.Y);
+			T zSquared = Math::Square(q.Z);
+			T wSquared = Math::Square(q.W);
+
+			m[0][0] = 1 - 2 * ySquared - 2 * zSquared;
+			m[0][1] = 2 * q.X * q.Y - 2 * q.Z * q.W;
+			m[0][2] = 2 * q.X * q.Z + 2 * q.Y * q.W;
+
+			m[1][0] = 2 * q.X * q.Y + 2 * q.Z * q.W;
+			m[1][1] = 1 - 2 * xSquared - 2 * zSquared;
+			m[1][2] = 2 * q.Y * q.Z - 2 * q.X * q.W;
+
+			m[2][0] = 2 * q.X * q.Z - 2 * q.Y * q.W;
+			m[2][1] = 2 * q.Y * q.Z + 2 * q.X * q.W;
+			m[2][2] = 1 - 2 * xSquared - 2 * ySquared;
+
+			return m;
 		}
 
 		T* operator[](int rowIndex)

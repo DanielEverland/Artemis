@@ -382,7 +382,7 @@ namespace Maths::Matrices
 		MatrixExpectNear(expectedResult, actualResult);
 	}
 
-	TEST(MatrixText, Equality)
+	TEST(MatrixTest, Equality)
 	{
 		Matrix a
 		({
@@ -413,7 +413,7 @@ namespace Maths::Matrices
 		ExpectFalse(a == d);
 	}
 
-	TEST(MatrixText, Inequality)
+	TEST(MatrixTest, Inequality)
 	{
 		Matrix a
 		({

@@ -193,6 +193,9 @@
     <ClInclude Include="Direct X\VertexBuffer.h">
       <Filter>Source\Direct X</Filter>
     </ClInclude>
+    <ClInclude Include="Direct X\IndexBuffer.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -253,6 +256,9 @@
       <Filter>Source\Engine\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\VertexBuffer.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\IndexBuffer.cpp">
       <Filter>Source\Direct X</Filter>
     </ClCompile>
   </ItemGroup>

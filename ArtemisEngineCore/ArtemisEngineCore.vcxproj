@@ -160,6 +160,7 @@
     <ClInclude Include="Direct X\DirectXHelper.h" />
     <ClInclude Include="Direct X\GraphicsDevice.h" />
     <ClInclude Include="Direct X\GraphicsResource.h" />
+    <ClInclude Include="Direct X\IndexBuffer.h" />
     <ClInclude Include="Direct X\RenderTargetView.h" />
     <ClInclude Include="Direct X\SwapChain.h" />
     <ClInclude Include="Direct X\Texture2D.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="Direct X\DepthBuffer.cpp" />
     <ClCompile Include="Direct X\GraphicsDevice.cpp" />
     <ClCompile Include="Direct X\GraphicsResource.cpp" />
+    <ClCompile Include="Direct X\IndexBuffer.cpp" />
     <ClCompile Include="Direct X\RenderTargetView.cpp" />
     <ClCompile Include="Direct X\SwapChain.cpp" />
     <ClCompile Include="Direct X\Texture2D.cpp" />

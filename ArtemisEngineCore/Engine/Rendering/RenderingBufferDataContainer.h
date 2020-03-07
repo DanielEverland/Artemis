@@ -1,6 +1,9 @@
 #pragma once
 #include <memory>
 
+#include "Exceptions/NullReferenceException.h"
+#include "Exceptions/OutOfRangeException.h"
+
 namespace ArtemisEngine::Rendering
 {
 	using std::unique_ptr;

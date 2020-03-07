@@ -163,6 +163,7 @@
     <ClInclude Include="Direct X\RenderTargetView.h" />
     <ClInclude Include="Direct X\SwapChain.h" />
     <ClInclude Include="Direct X\Texture2D.h" />
+    <ClInclude Include="Direct X\VertexBuffer.h" />
     <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Engine\IntVector2.h" />
     <ClInclude Include="Engine\IntVector3.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Direct X\RenderTargetView.cpp" />
     <ClCompile Include="Direct X\SwapChain.cpp" />
     <ClCompile Include="Direct X\Texture2D.cpp" />
+    <ClCompile Include="Direct X\VertexBuffer.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
     <ClCompile Include="Engine\Math.cpp" />
     <ClCompile Include="Engine\Quaternion.cpp" />

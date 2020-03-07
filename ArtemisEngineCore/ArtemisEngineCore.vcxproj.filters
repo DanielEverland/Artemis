@@ -190,6 +190,9 @@
     <ClInclude Include="Engine\Rendering\RenderingBufferDataContainer.h">
       <Filter>Source\Engine\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Direct X\VertexBuffer.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -248,6 +251,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Rendering\Mesh.cpp">
       <Filter>Source\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\VertexBuffer.cpp">
+      <Filter>Source\Direct X</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

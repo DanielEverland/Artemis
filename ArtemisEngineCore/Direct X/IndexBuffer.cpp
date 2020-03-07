@@ -5,8 +5,7 @@ IndexBuffer::IndexBuffer(const GraphicsDevice& device, const IndexBufferData& da
 	D3D11_BUFFER_DESC description = CreateBufferDescription(data);
 	D3D11_SUBRESOURCE_DATA resourceData = CreateResourceData(data);
 
-
-
+	CreateRawBuffer(device.GetRawDevice(), &description, &resourceData);
 }
 D3D11_BUFFER_DESC IndexBuffer::CreateBufferDescription(const IndexBufferData& data)
 {

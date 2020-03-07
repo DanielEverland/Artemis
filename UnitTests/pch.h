@@ -7,3 +7,4 @@
 
 #include "gtest/gtest.h"
 #include "Debugging/Output.h"
+#include "Utility/Comparison/ComparisonUtility.h"

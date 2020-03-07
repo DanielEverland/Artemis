@@ -41,6 +41,9 @@
     <ClCompile Include="Math\MathTests.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\RenderBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -66,6 +69,9 @@
     </Filter>
     <Filter Include="Utility\Comparison">
       <UniqueIdentifier>{a85fef65-1685-4920-8dcf-b23c86eb20cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{c3e7a6fc-ddc5-4c25-82a2-218be2c3359c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

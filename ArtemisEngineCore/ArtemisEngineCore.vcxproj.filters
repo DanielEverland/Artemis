@@ -44,6 +44,9 @@
     <Filter Include="Source\Formatting">
       <UniqueIdentifier>{018a452b-a22b-4598-b891-f1a797b4a2fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Rendering">
+      <UniqueIdentifier>{c4380605-9c87-40c2-9a88-e55a9f373c4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Structs\Color.h">
@@ -175,6 +178,18 @@
     <ClInclude Include="Formatting\NumberFormatting.h">
       <Filter>Source\Formatting</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Rendering\Mesh.h">
+      <Filter>Source\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\VertexBuffer.h">
+      <Filter>Source\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\IndexBuffer.h">
+      <Filter>Source\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\RenderingBuffer.h">
+      <Filter>Source\Engine\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -230,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="Formatting\NumberFormatting.cpp">
       <Filter>Source\Formatting</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Rendering\Mesh.cpp">
+      <Filter>Source\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

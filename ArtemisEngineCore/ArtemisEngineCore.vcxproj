@@ -180,10 +180,10 @@
     <ClInclude Include="Engine\Maths\Vectors\Vector4Base.h" />
     <ClInclude Include="Engine\Maths\Vectors\VectorBase.h" />
     <ClInclude Include="Engine\Quaternion.h" />
-    <ClInclude Include="Engine\Rendering\IndexBuffer.h" />
+    <ClInclude Include="Engine\Rendering\IndexBufferData.h" />
     <ClInclude Include="Engine\Rendering\Mesh.h" />
-    <ClInclude Include="Engine\Rendering\RenderingBuffer.h" />
-    <ClInclude Include="Engine\Rendering\VertexBuffer.h" />
+    <ClInclude Include="Engine\Rendering\RenderingBufferDataContainer.h" />
+    <ClInclude Include="Engine\Rendering\VertexBufferData.h" />
     <ClInclude Include="Engine\Vector2.h" />
     <ClInclude Include="Engine\Vector3.h" />
     <ClInclude Include="Engine\Vector4.h" />

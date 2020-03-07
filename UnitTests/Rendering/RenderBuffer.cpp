@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "Engine/Rendering/RenderingBuffer.h"
+#include "Engine/Rendering/RenderingBufferDataContainer.h"
 #include "Exceptions/NullReferenceException.h"
 #include "Exceptions/OutOfRangeException.h"
 
@@ -8,9 +8,9 @@ namespace Rendering::Buffer
 {
 	using namespace ArtemisEngine::Rendering;
 
-	typedef RenderingBuffer<int> Buffer;
+	typedef RenderingBufferDataContainer<int> Buffer;
 
-	TEST(Buffer, EmptyConstructor)
+	TEST(BufferDataContainer, EmptyConstructor)
 	{
 		Buffer buff;
 
@@ -18,21 +18,21 @@ namespace Rendering::Buffer
 		ExpectEqual(0, buff.BufferSize);
 		ExpectEqual(nullptr, buff.Elements.get());
 	}
-	TEST(Buffer, EmptyConstructorIndexingException)
+	TEST(BufferDataContainer, EmptyConstructorIndexingException)
 	{
 		Buffer buff;
 
 
 		ExpectThrow(buff[0], NullReferenceException);
 	}
-	TEST(Buffer, ConstEmptyConstructorIndexingException)
+	TEST(BufferDataContainer, ConstEmptyConstructorIndexingException)
 	{
 		const Buffer buff;
 
 
 		ExpectThrow(buff[0], NullReferenceException);
 	}
-	TEST(Buffer, Indexing)
+	TEST(BufferDataContainer, Indexing)
 	{
 		Buffer buff(3);
 
@@ -42,7 +42,7 @@ namespace Rendering::Buffer
 
 		ExpectEqual(3, buff[0]);
 	}
-	TEST(Buffer, ConstIndexing)
+	TEST(BufferDataContainer, ConstIndexing)
 	{
 		const Buffer buff(3);
 
@@ -51,7 +51,7 @@ namespace Rendering::Buffer
 		// so we don't check for equality
 		int value = buff[0];
 	}
-	TEST(Buffer, OutOfRangeIndexingException)
+	TEST(BufferDataContainer, OutOfRangeIndexingException)
 	{
 		Buffer buff(3);
 
@@ -59,7 +59,7 @@ namespace Rendering::Buffer
 		ExpectThrow(buff[-1], OutOfRangeException);
 		ExpectThrow(buff[3], OutOfRangeException);
 	}
-	TEST(Buffer, ConstOutOfRangeIndexingException)
+	TEST(BufferDataContainer, ConstOutOfRangeIndexingException)
 	{
 		const Buffer buff(3);
 

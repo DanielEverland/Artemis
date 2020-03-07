@@ -6,13 +6,13 @@ namespace ArtemisEngine::Rendering
 	using std::unique_ptr;
 
 	template<class T>
-	struct RenderingBuffer
+	struct RenderingBufferDataContainer
 	{
 	public:
-		RenderingBuffer() : BufferSize(0)
+		RenderingBufferDataContainer() : BufferSize(0)
 		{
 		}
-		RenderingBuffer(int size) : BufferSize(size), Elements(new T[size])
+		RenderingBufferDataContainer(int size) : BufferSize(size), Elements(new T[size])
 		{
 		}
 		

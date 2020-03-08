@@ -7,13 +7,12 @@
 #include <memory>
 
 #include "SwapChain.h"
-#include "GraphicsResource.h"
 
 using namespace Microsoft::WRL;
 
 using std::shared_ptr;
 
-class RenderTargetView : protected GraphicsResource
+class RenderTargetView
 {
 public:
 	explicit RenderTargetView(const shared_ptr<const SwapChain> swapChain, const shared_ptr<const GraphicsDevice> graphicsDevice);
@@ -26,7 +25,8 @@ public:
 private:
 	const shared_ptr<const SwapChain> GetSwapChain() const;
 
-	weak_ptr<const SwapChain> swapChain;
+	shared_ptr<const SwapChain> swapChain;
+	shared_ptr<const GraphicsDevice> graphicsDevice;
 
 	ComPtr<ID3D11RenderTargetView> renderTargetView;
 	ComPtr<ID3D11Texture2D> backBuffer;

@@ -6,26 +6,12 @@
 // Windows Runtime Library. Needed for Microsoft::WRL::ComPtr<> template class.
 #include <wrl.h>
 
-// STL Headers
-#include <algorithm>
+#include <memory>
 #include <cassert>
 #include <chrono>
 
 #include "Window.h"
-#include "Direct X/GraphicsDevice.h"
-#include "Direct X/SwapChain.h"
-#include "Direct X/DepthBuffer.h"
-#include "Direct X/RenderTargetView.h"
-
-// The min/max macros conflict with like-named member functions.
-// Only use std::min and std::max defined in <algorithm>.
-#if defined(min)
-#undef min
-#endif
-
-#if defined(max)
-#undef max
-#endif
+#include "Direct X/Renderer.h"
 
 using namespace Microsoft::WRL;
 
@@ -37,31 +23,15 @@ namespace ArtemisWindow
 	{
 	public:
 		explicit GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int windowState);
+		
+		inline shared_ptr<Renderer> GetRenderer() { return renderer; }
 
-		inline bool GetUseWARPAdapter() const { return useWARPAdapter; }
-		inline void SetUseWARPAdapter(bool value) { useWARPAdapter = value; }
+		inline bool IsFullscreen() const { return fullscreen; }
 
-		virtual void Show();
+		virtual void Show() override;
 
 	private:
-		static const bool AllowAltEnterFullscreen = false;
-		static const uint8_t swapChainBufferSize = 3;
-				
-		Color BackbufferColor = Color::CornflowerBlue;
-
-		bool useWARPAdapter = false;
-
-		bool directXInitialized = false;
-
-		RECT previousWindowRect;
-
-		bool fullscreen = false;
-		float rawBackBufferColor[4] = {};
-
-		shared_ptr<GraphicsDevice> graphicsDevice;
-		shared_ptr<SwapChain> swapChain;
-		shared_ptr<RenderTargetView> renderTargetView;
-		shared_ptr<DepthBuffer> depthBuffer;
+		shared_ptr<Renderer> renderer;
 
 		virtual void RunMessageLoop() final;
 		virtual void CreateWindowClass() const;
@@ -69,14 +39,12 @@ namespace ArtemisWindow
 
 		void Update();
 		void Render();
-		void Resize(uint32_t width, uint32_t height);
-		void SetFullscreen(bool fullscreen);
-		void SwitchToFullscreen();
-		void SwitchToWindowed();
+		
+		void InitializeRenderer();
 		void ToggleVSync();
-		void ToggleFullscreen();
 		void HandleKeyBindings();
 		void OutputFramerate() const;
+		virtual void HasResized() override;
 
 		// Messages
 		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);
@@ -87,12 +55,6 @@ namespace ArtemisWindow
 		virtual void OnKeyUp(UINT_PTR wParam);
 		virtual void OnResize();
 		virtual void OnClose();
-		virtual void OnGainedFocus();	
-		
-		// DirectX
-		void InitializeDirectX();
-		void CreateDirectXObjects();
-		void CreateViewport();
-		void CreateRawBackBufferColor();
+		virtual void OnGainedFocus();
 	};
 }

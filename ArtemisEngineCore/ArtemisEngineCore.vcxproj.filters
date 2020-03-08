@@ -112,12 +112,6 @@
     <ClInclude Include="Direct X\DirectXHelper.h">
       <Filter>Source\Direct X</Filter>
     </ClInclude>
-    <ClInclude Include="Direct X\GraphicsDevice.h">
-      <Filter>Source\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\GraphicsResource.h">
-      <Filter>Source\Direct X</Filter>
-    </ClInclude>
     <ClInclude Include="Direct X\RenderTargetView.h">
       <Filter>Source\Direct X</Filter>
     </ClInclude>
@@ -196,6 +190,15 @@
     <ClInclude Include="Direct X\IndexBuffer.h">
       <Filter>Source\Direct X</Filter>
     </ClInclude>
+    <ClInclude Include="Direct X\Renderer.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\IWindow.h">
+      <Filter>Source\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Direct X\GraphicsDevice.h">
+      <Filter>Source\Direct X</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -228,9 +231,6 @@
     <ClCompile Include="Direct X\GraphicsDevice.cpp">
       <Filter>Source\Direct X</Filter>
     </ClCompile>
-    <ClCompile Include="Direct X\GraphicsResource.cpp">
-      <Filter>Source\Direct X</Filter>
-    </ClCompile>
     <ClCompile Include="Direct X\RenderTargetView.cpp">
       <Filter>Source\Direct X</Filter>
     </ClCompile>
@@ -259,6 +259,9 @@
       <Filter>Source\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\IndexBuffer.cpp">
+      <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct X\Renderer.cpp">
       <Filter>Source\Direct X</Filter>
     </ClCompile>
   </ItemGroup>

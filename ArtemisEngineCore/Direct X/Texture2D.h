@@ -7,12 +7,12 @@
 #include <d3d11.h>
 
 #include "DirectXHelper.h"
-#include "GraphicsResource.h"
+#include "GraphicsDevice.h"
 
 using Microsoft::WRL::ComPtr;
 using std::shared_ptr;
 
-class Texture2D : protected GraphicsResource
+class Texture2D
 {
 public:
 	explicit Texture2D(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice);
@@ -26,6 +26,7 @@ protected:
 	void Resize(UINT width, UINT height);
 
 	ComPtr<ID3D11Texture2D> textureResource;
+	shared_ptr<const GraphicsDevice> graphicsDevice;
 
 private:
 	UINT width;

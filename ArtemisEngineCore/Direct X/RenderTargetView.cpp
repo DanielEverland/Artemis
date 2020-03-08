@@ -2,9 +2,10 @@
 #include "RenderTargetView.h"
 #include "DirectXHelper.h"
 
-RenderTargetView::RenderTargetView(const shared_ptr<const SwapChain> swapChain, const shared_ptr<const GraphicsDevice> graphicsDevice) : GraphicsResource(graphicsDevice)
+RenderTargetView::RenderTargetView(const shared_ptr<const SwapChain> swapChain, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
 	this->swapChain = swapChain;
+	this->graphicsDevice = graphicsDevice;
 
 	CreateBackBuffer();
 }
@@ -12,7 +13,7 @@ RenderTargetView::RenderTargetView(const shared_ptr<const SwapChain> swapChain, 
 void RenderTargetView::CreateBackBuffer()
 {
 	GetSwapChain()->GetBuffer(backBuffer);
-	GetGraphicsDevice()->CreateRenderTargetView(backBuffer, renderTargetView);
+	graphicsDevice->CreateRenderTargetView(backBuffer, renderTargetView);
 }
 
 ComPtr<ID3D11RenderTargetView> RenderTargetView::GetRawRenderTargetView() const
@@ -22,7 +23,7 @@ ComPtr<ID3D11RenderTargetView> RenderTargetView::GetRawRenderTargetView() const
 
 void RenderTargetView::Clear(const float* clearColor) const
 {
-	GetGraphicsDevice()->GetRawContext()->ClearRenderTargetView(renderTargetView.Get(), clearColor);
+	graphicsDevice->GetRawContext()->ClearRenderTargetView(renderTargetView.Get(), clearColor);
 }
 
 void RenderTargetView::Reset()

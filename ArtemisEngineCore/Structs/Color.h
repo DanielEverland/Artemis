@@ -16,7 +16,7 @@ namespace ArtemisEngine
 		Color(BYTE red, BYTE green, BYTE blue, BYTE alpha);
 
 		operator HBRUSH() { return CreateSolidBrush(RGB(r, g, b)); }
-		
+
 		void ToFloat(float* const arr) const;
 		void ToFloatNoAlpha(float* const arr) const;
 

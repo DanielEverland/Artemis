@@ -6,11 +6,13 @@
 #include "Exceptions/DirectXException.h"
 #include "Engine/Application.h"
 
-SwapChain::SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice)
+SwapChain::SwapChain(const IWindow* window, const shared_ptr<const GraphicsDevice> graphicsDevice)
 {
-	DXGI_SWAP_CHAIN_DESC description = GetDescription(width, height, windowed, windowHandle, graphicsDevice);
+	this->window = window;
+	this->graphicsDevice = graphicsDevice;
 
-	ComPtr<IDXGIFactory> factory = GetFactory(graphicsDevice);
+	DXGI_SWAP_CHAIN_DESC description = GetDescription();
+	ComPtr<IDXGIFactory> factory = GetFactory();
 
 	ThrowIfFailed(factory->CreateSwapChain(
 		graphicsDevice->GetRawDevice().Get(),
@@ -28,9 +30,9 @@ void SwapChain::Present() const
 	ThrowIfFailed(swapChain->Present(Application::GetVSync(), 0));
 }
 
-void SwapChain::Resize(UINT width, UINT height) const
+void SwapChain::Resize() const
 {
-	ThrowIfFailed(swapChain->ResizeBuffers(BufferCount, width, height, PixelFormat, Flags));
+	ThrowIfFailed(swapChain->ResizeBuffers(BufferCount, window->GetWidth(), window->GetHeight(), PixelFormat, Flags));
 }
 
 void SwapChain::Release() const
@@ -43,12 +45,12 @@ ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const
 	return swapChain;
 }
 
-DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice)
+DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription()
 {
 	DXGI_MODE_DESC bufferDescription
 	{
-		width,
-		height,
+		window->GetWidth(),
+		window->GetHeight(),
 		GetRefreshRate(),
 		PixelFormat,
 		ScanlineOrder,
@@ -59,8 +61,8 @@ DXGI_SWAP_CHAIN_DESC SwapChain::GetDescription(UINT width, UINT height, bool win
 	description.BufferDesc = bufferDescription;
 	description.BufferUsage = BufferUsage;
 	description.BufferCount = BufferCount;
-	description.OutputWindow = windowHandle;
-	description.Windowed = windowed;
+	description.OutputWindow = window->GetHandle();
+	description.Windowed = window->IsWindowed();
 	description.SwapEffect = SwapEffect;
 	description.Flags = Flags;
 
@@ -77,7 +79,7 @@ DXGI_RATIONAL SwapChain::GetRefreshRate()
 
 	return refreshRate;
 }
-ComPtr<IDXGIFactory> SwapChain::GetFactory(const shared_ptr<const GraphicsDevice> graphicsDevice)
+ComPtr<IDXGIFactory> SwapChain::GetFactory()
 {
 	ComPtr<ID3D11Device> device = graphicsDevice->GetRawDevice();
 

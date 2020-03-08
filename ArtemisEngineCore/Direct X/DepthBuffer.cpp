@@ -1,22 +1,23 @@
 #include "DepthBuffer.h"
 #include "DirectXHelper.h"
 
-DepthBuffer::DepthBuffer(UINT width, UINT height, const shared_ptr<const GraphicsDevice> graphicsDevice) : Texture2D(width, height, 1, graphicsDevice)
+DepthBuffer::DepthBuffer(const IWindow* window, const shared_ptr<const GraphicsDevice> graphicsDevice)
+	: Texture2D(window->GetWidth(), window->GetHeight(), 1, graphicsDevice)
 {
+	this->window = window;
+
 	CreateTextureResource();
 	CreateStencilView();
 }
 
 void DepthBuffer::CreateStencilView()
 {
-	const shared_ptr<const GraphicsDevice> graphicsDevice = GetGraphicsDevice();
-
 	ThrowIfFailed(graphicsDevice->GetRawDevice()->CreateDepthStencilView(textureResource.Get(), 0, &stencilView));
 }
 
-void DepthBuffer::Resize(UINT width, UINT height)
+void DepthBuffer::Resize()
 {
-	Texture2D::Resize(width, height);
+	Texture2D::Resize(window->GetWidth(), window->GetHeight());
 
 	CreateStencilView();
 }
@@ -29,7 +30,7 @@ D3D11_TEXTURE2D_DESC DepthBuffer::GetDescription()
 	description.Usage = D3D11_USAGE_DEFAULT;
 	description.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 
-	GetGraphicsDevice()->GetMSAASupport(description.Format, &description.SampleDesc.Count, &description.SampleDesc.Quality);
+	graphicsDevice->GetMSAASupport(description.Format, &description.SampleDesc.Count, &description.SampleDesc.Quality);
 
 	return description;
 }
@@ -41,5 +42,5 @@ ComPtr<ID3D11DepthStencilView> DepthBuffer::GetRawStencilView() const
 
 void DepthBuffer::Clear() const
 {
-	GetGraphicsDevice()->GetRawContext()->ClearDepthStencilView(stencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	graphicsDevice->GetRawContext()->ClearDepthStencilView(stencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }

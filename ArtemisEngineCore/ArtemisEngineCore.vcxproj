@@ -159,8 +159,8 @@
     <ClInclude Include="Direct X\DepthBuffer.h" />
     <ClInclude Include="Direct X\DirectXHelper.h" />
     <ClInclude Include="Direct X\GraphicsDevice.h" />
-    <ClInclude Include="Direct X\GraphicsResource.h" />
     <ClInclude Include="Direct X\IndexBuffer.h" />
+    <ClInclude Include="Direct X\Renderer.h" />
     <ClInclude Include="Direct X\RenderTargetView.h" />
     <ClInclude Include="Direct X\SwapChain.h" />
     <ClInclude Include="Direct X\Texture2D.h" />
@@ -201,6 +201,7 @@
     <ClInclude Include="Structs\Color.h" />
     <ClInclude Include="Time\Time.h" />
     <ClInclude Include="Windows\GameWindow.h" />
+    <ClInclude Include="Windows\IWindow.h" />
     <ClInclude Include="Windows\Window.h" />
     <ClInclude Include="Windows\WindowProcedure.h" />
   </ItemGroup>
@@ -208,8 +209,8 @@
     <ClCompile Include="Debugging\Output.cpp" />
     <ClCompile Include="Direct X\DepthBuffer.cpp" />
     <ClCompile Include="Direct X\GraphicsDevice.cpp" />
-    <ClCompile Include="Direct X\GraphicsResource.cpp" />
     <ClCompile Include="Direct X\IndexBuffer.cpp" />
+    <ClCompile Include="Direct X\Renderer.cpp" />
     <ClCompile Include="Direct X\RenderTargetView.cpp" />
     <ClCompile Include="Direct X\SwapChain.cpp" />
     <ClCompile Include="Direct X\Texture2D.cpp" />

@@ -3,7 +3,6 @@
 #include "GameWindow.h"
 #include "WindowProcedure.h"
 
-#include "Exceptions/DirectXException.h"
 #include "Time/Time.h"
 #include "Debugging/Output.h"
 #include "Input/Key.h"
@@ -19,6 +18,8 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 {
 	// Initialize the global window rect variable.
 	::GetWindowRect(windowHandle, &previousWindowRect);
+
+	renderer = shared_ptr<Renderer>(new Renderer(this));
 }
 
 void GameWindow::Show()
@@ -26,7 +27,7 @@ void GameWindow::Show()
 	CreateWindowClass();
 	HWND windowHandle = CreateWindowHandle();
 
-	InitializeDirectX();
+	InitializeRenderer();
 
 	ShowWindow(windowHandle, SW_SHOW);
 	RunMessageLoop();
@@ -67,91 +68,12 @@ void GameWindow::Update()
 
 void GameWindow::Render()
 {
-	renderTargetView->Clear(rawBackBufferColor);
-	depthBuffer->Clear();
-	swapChain->Present();
-}
-
-void GameWindow::SetFullscreen(bool newFullscreenState)
-{
-	if (fullscreen != newFullscreenState)
-	{
-		fullscreen = newFullscreenState;
-
-		if (fullscreen)
-		{
-			SwitchToFullscreen();
-		}
-		else
-		{
-			SwitchToWindowed();
-		}
-	}
-}
-
-void GameWindow::Resize(uint32_t newWidth, uint32_t newHeight)
-{
-	if (width != newWidth || height != newHeight)
-	{
-		width = std::max(1u, newWidth);
-		height = std::max(1u, newHeight);
-		
-		renderTargetView->Reset();
-
-		swapChain->Resize(width, height);
-		renderTargetView->CreateBackBuffer();
-		depthBuffer->Resize(width, height);
-		
-		CreateViewport();
-	}
-}
-
-void GameWindow::ToggleFullscreen()
-{
-	SetFullscreen(!fullscreen);
+	renderer->Render();
 }
 
 void GameWindow::ToggleVSync()
 {
 	Application::SetVSync(!Application::GetVSync());
-}
-
-void GameWindow::SwitchToFullscreen()
-{
-	// Store the current window dimensions so they can be restored 
-	// when switching out of fullscreen state.
-	GetWindowRect(windowHandle, &previousWindowRect);
-
-	UINT windowStyle = WS_OVERLAPPEDWINDOW & ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
-	SetWindowLong(windowHandle, GWL_STYLE, windowStyle);
-
-	HMONITOR monitor = MonitorFromWindow(windowHandle, MONITOR_DEFAULTTONEAREST);
-	MONITORINFOEX monitorInfo = { };
-	monitorInfo.cbSize = sizeof(MONITORINFOEX);
-	GetMonitorInfo(monitor, &monitorInfo);
-
-	SetWindowPos(windowHandle, HWND_TOP,
-		monitorInfo.rcMonitor.left,
-		monitorInfo.rcMonitor.top,
-		monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
-		monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
-		SWP_FRAMECHANGED | SWP_NOACTIVATE);
-
-	ShowWindow(windowHandle, SW_MAXIMIZE);
-}
-
-void GameWindow::SwitchToWindowed()
-{
-	SetWindowLong(windowHandle, GWL_STYLE, WS_OVERLAPPEDWINDOW);
-
-	SetWindowPos(windowHandle, HWND_NOTOPMOST,
-		previousWindowRect.left,
-		previousWindowRect.top,
-		previousWindowRect.right - previousWindowRect.left,
-		previousWindowRect.bottom - previousWindowRect.top,
-		SWP_FRAMECHANGED | SWP_NOACTIVATE);
-
-	ShowWindow(windowHandle, SW_NORMAL);
 }
 
 void GameWindow::HandleKeyBindings()
@@ -188,6 +110,11 @@ void GameWindow::OutputFramerate() const
 	}
 }
 
+void GameWindow::HasResized()
+{
+	renderer->Resize();
+}
+
 //-------------------------------------------------------------------------------------------------------------
 //---------------------------------------------MESSAGES--------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
@@ -197,57 +124,20 @@ void GameWindow::OnGainedFocus()
 	Input::SanitizeDownKeys();
 }
 
-void GameWindow::InitializeDirectX()
+void GameWindow::InitializeRenderer()
 {
 	// Initialize the global window rect variable.
 	GetWindowRect(windowHandle, &previousWindowRect);
 
-	if (directXInitialized)
-		throw DirectXException("DirectX has already been initialized!");
-	
-	CreateDirectXObjects();
-	CreateViewport();
-	CreateRawBackBufferColor();
-
-	directXInitialized = true;
-}
-
-void GameWindow::CreateRawBackBufferColor()
-{
-	BackbufferColor.ToFloat(rawBackBufferColor);
-}
-
-void GameWindow::CreateDirectXObjects()
-{
-	graphicsDevice = shared_ptr<GraphicsDevice>(new GraphicsDevice());
-	swapChain = shared_ptr<SwapChain>(new SwapChain(width, height, !fullscreen, windowHandle, graphicsDevice));
-	renderTargetView = shared_ptr<RenderTargetView>(new RenderTargetView(swapChain, graphicsDevice));
-	depthBuffer = shared_ptr<DepthBuffer>(new DepthBuffer(width, height, graphicsDevice));
-}
-
-void GameWindow::CreateViewport()
-{
-	ComPtr<ID3D11DeviceContext> rawContext = graphicsDevice->GetRawContext();
-	ComPtr<ID3D11RenderTargetView> rawRenderTargetView = renderTargetView->GetRawRenderTargetView();
-	ComPtr<ID3D11DepthStencilView> rawDepthStencilView = depthBuffer->GetRawStencilView();
-
-	rawContext->OMSetRenderTargets(1, &rawRenderTargetView, rawDepthStencilView.Get());
-
-	D3D11_VIEWPORT viewPortDescription
-	{
-		0, 0, // Top left (x, y)
-		static_cast<float>(width),
-		static_cast<float>(height),
-		0, 1, // Min, Max depth
-	};
-
-	rawContext->RSSetViewports(1, &viewPortDescription);
+	renderer->Initialize();
 }
 
 LONG_PTR GameWindow::HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam)
 {
-	if (directXInitialized)
+	if (renderer->IsInitialized())
 		return Window::HandleMessage(messageCode, wParam, lParam);
+	
+	Output::LogWarning("Game Window cannot handle messages because renderer isn't initialized");
 
 	return DefWindowProcW(windowHandle, messageCode, wParam, lParam);
 }

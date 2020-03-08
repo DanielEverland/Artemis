@@ -68,5 +68,5 @@ void ParseCommandLineArguments(GameWindow& window)
 		window.SetWidth(ApplicationArguments::GetWidth());
 
 	if (ApplicationArguments::HasUseWARP())
-		window.SetUseWARPAdapter(true);
+		window.GetRenderer()->SetUseWARPAdapter(true);
 }

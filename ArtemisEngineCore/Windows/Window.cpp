@@ -67,6 +67,77 @@ namespace ArtemisWindow
 		RegisterClass(&windowClass);
 	}
 
+	void Window::SetFullscreen(bool newFullscreenState)
+	{
+		if (fullscreen != newFullscreenState)
+		{
+			fullscreen = newFullscreenState;
+
+			if (fullscreen)
+			{
+				SwitchToFullscreen();
+			}
+			else
+			{
+				SwitchToWindowed();
+			}
+		}
+	}
+
+	void Window::Resize(unsigned int newWidth, unsigned int newHeight)
+	{
+		if (width != newWidth || height != newHeight)
+		{
+			width = std::max(1u, newWidth);
+			height = std::max(1u, newHeight);
+
+			HasResized();
+		}
+	}
+
+	void Window::ToggleFullscreen()
+	{
+		SetFullscreen(!fullscreen);
+	}
+
+	void Window::SwitchToFullscreen()
+	{
+		// Store the current window dimensions so they can be restored 
+		// when switching out of fullscreen state.
+		GetWindowRect(windowHandle, &previousWindowRect);
+
+		UINT windowStyle = WS_OVERLAPPEDWINDOW & ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
+		SetWindowLong(windowHandle, GWL_STYLE, windowStyle);
+
+		HMONITOR monitor = MonitorFromWindow(windowHandle, MONITOR_DEFAULTTONEAREST);
+		MONITORINFOEX monitorInfo = { };
+		monitorInfo.cbSize = sizeof(MONITORINFOEX);
+		GetMonitorInfo(monitor, &monitorInfo);
+
+		SetWindowPos(windowHandle, HWND_TOP,
+			monitorInfo.rcMonitor.left,
+			monitorInfo.rcMonitor.top,
+			monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left,
+			monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top,
+			SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+		ShowWindow(windowHandle, SW_MAXIMIZE);
+	}
+
+	void Window::SwitchToWindowed()
+	{
+		SetWindowLong(windowHandle, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+
+		SetWindowPos(windowHandle, HWND_NOTOPMOST,
+			previousWindowRect.left,
+			previousWindowRect.top,
+			previousWindowRect.right - previousWindowRect.left,
+			previousWindowRect.bottom - previousWindowRect.top,
+			SWP_FRAMECHANGED | SWP_NOACTIVATE);
+
+		ShowWindow(windowHandle, SW_NORMAL);
+	}
+
 	//-------------------------------------------------------------------------------------------------------------
 	//------------------------------------------MESSAGE HANDLER----------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------------

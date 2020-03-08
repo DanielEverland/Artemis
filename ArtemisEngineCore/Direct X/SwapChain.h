@@ -7,19 +7,21 @@
 #include <d3d11.h>
 
 #include "GraphicsDevice.h"
+#include "Windows/IWindow.h"
 
 using namespace Microsoft::WRL;
+using namespace ArtemisWindow;
 
 using std::shared_ptr;
 
 class SwapChain
 {
 public:
-	explicit SwapChain(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice);
+	explicit SwapChain(const IWindow* window, const shared_ptr<const GraphicsDevice> graphicsDevice);
 
 	ComPtr<IDXGISwapChain> GetRawSwapChain() const;
 	void Present() const;
-	void Resize(UINT width, UINT height) const;
+	void Resize() const;
 	void GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const;
 	void Release() const;
 
@@ -35,9 +37,13 @@ private:
 	const static UINT Flags = 0;
 	
 	ComPtr<IDXGISwapChain> swapChain;
+
+	const IWindow* window;
+	shared_ptr<const GraphicsDevice> graphicsDevice;
 #pragma warning(default : 26812)
 
-	static DXGI_SWAP_CHAIN_DESC GetDescription(UINT width, UINT height, bool windowed, HWND windowHandle, const shared_ptr<const GraphicsDevice> graphicsDevice);
-	static ComPtr<IDXGIFactory> GetFactory(const shared_ptr<const GraphicsDevice> graphicsDevice);
+	DXGI_SWAP_CHAIN_DESC GetDescription();
+	ComPtr<IDXGIFactory> GetFactory();
+
 	static DXGI_RATIONAL GetRefreshRate();	
 };

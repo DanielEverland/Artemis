@@ -2,6 +2,8 @@
 
 IndexBuffer::IndexBuffer(const GraphicsDevice& device, const IndexBufferData& data)
 {
+	this->length = data.GetBufferSize();
+
 	D3D11_BUFFER_DESC description = CreateBufferDescription(data);
 	D3D11_SUBRESOURCE_DATA resourceData = CreateResourceData(data);
 
@@ -39,4 +41,8 @@ ComPtr<ID3D11Buffer> IndexBuffer::GetRawBuffer()
 DXGI_FORMAT IndexBuffer::GetFormat() const
 {
 	return DXGI_FORMAT_R32_UINT;
+}
+int IndexBuffer::GetLength() const
+{
+	return length;
 }

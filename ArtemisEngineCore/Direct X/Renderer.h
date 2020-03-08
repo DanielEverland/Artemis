@@ -54,5 +54,7 @@ private:
 	void CreateRawBackbufferColor();
 	void CreateResources();
 	void BindVertexBuffer(const VertexBuffer& vertexBuffer) const;
+	void DrawVertices(const VertexBuffer& vertexBuffer) const;
 	void BindIndexBuffer(IndexBuffer& indexBuffer) const;
+	void DrawIndices(const IndexBuffer& indexBuffer) const;
 };

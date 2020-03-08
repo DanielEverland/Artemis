@@ -52,6 +52,8 @@ void Renderer::Render()
 	mesh.Indices = ibd;
 	mesh.Vertices = vertexBufferData;
 	// End Test
+
+	Draw(mesh);
 }
 void Renderer::Resize()
 {
@@ -98,7 +100,10 @@ void Renderer::Draw(const Mesh& mesh) const
 	IndexBuffer indexBuffer(*graphicsDevice, mesh.Indices);
 
 	BindVertexBuffer(vertexBuffer);
+	DrawVertices(vertexBuffer);
+
 	BindIndexBuffer(indexBuffer);
+	DrawIndices(indexBuffer);
 }
 void Renderer::BindVertexBuffer(const VertexBuffer& vertexBuffer) const
 {
@@ -111,7 +116,15 @@ void Renderer::BindVertexBuffer(const VertexBuffer& vertexBuffer) const
 		&stride,
 		0);
 }
+void Renderer::DrawVertices(const VertexBuffer& vertexBuffer) const
+{
+	graphicsDevice->GetRawContext()->Draw(vertexBuffer.GetLength(), 0);
+}
 void Renderer::BindIndexBuffer(IndexBuffer& indexBuffer) const
 {
 	graphicsDevice->GetRawContext()->IASetIndexBuffer(indexBuffer.GetRawBuffer().Get(), indexBuffer.GetFormat(), 0);
+}
+void Renderer::DrawIndices(const IndexBuffer& indexBuffer) const
+{
+	graphicsDevice->GetRawContext()->DrawIndexed(indexBuffer.GetLength(), 0, 0);
 }

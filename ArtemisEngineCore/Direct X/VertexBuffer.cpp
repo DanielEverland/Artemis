@@ -10,6 +10,8 @@ using namespace ArtemisEngine::Rendering;
 
 VertexBuffer::VertexBuffer(const GraphicsDevice& device, const VertexBufferData& data)
 {
+	length = data.GetBufferSize();
+
 	D3D11_BUFFER_DESC bufferDescription = CreateBufferDescription(data);
 	D3D11_SUBRESOURCE_DATA resourcesData = CreateResourceData(data);
 
@@ -78,4 +80,8 @@ ComPtr<ID3D11Buffer> VertexBuffer::GetRawBuffer() const
 unsigned int VertexBuffer::GetStride() const
 {
 	return sizeof(VertexData);
+}
+int VertexBuffer::GetLength() const
+{
+	return length;
 }

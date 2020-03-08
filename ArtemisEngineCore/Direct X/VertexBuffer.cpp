@@ -75,3 +75,7 @@ ComPtr<ID3D11Buffer> VertexBuffer::GetRawBuffer() const
 {
 	return rawBuffer;
 }
+unsigned int VertexBuffer::GetStride() const
+{
+	return sizeof(VertexData);
+}

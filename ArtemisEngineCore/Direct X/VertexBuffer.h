@@ -14,6 +14,8 @@ class VertexBuffer
 public:
 	VertexBuffer(const GraphicsDevice& device, const VertexBufferData& data);
 
+	unsigned int GetStride() const;
+
 	ComPtr<ID3D11Buffer> GetRawBuffer() const;
 
 private:

@@ -1,6 +1,7 @@
 #include "Renderer.h"
 
 #include "Exceptions/DirectXException.h"
+#include "VertexBuffer.h"
 
 using ArtemisWindow::IWindow;
 
@@ -64,4 +65,27 @@ void Renderer::CreateResources()
 	swapChain = shared_ptr<SwapChain>(new SwapChain(gameWindow, graphicsDevice));
 	renderTargetView = shared_ptr<RenderTargetView>(new RenderTargetView(swapChain, graphicsDevice));
 	depthBuffer = shared_ptr<DepthBuffer>(new DepthBuffer(gameWindow, graphicsDevice));
+}
+void Renderer::Draw(const Mesh& mesh) const
+{
+	VertexBuffer vertexBuffer(mesh.Vertices);
+	IndexBuffer indexBuffer(mesh.Indices);
+
+	BindVertexBuffer(vertexBuffer);
+	BindIndexBuffer(indexBuffer);
+}
+void Renderer::BindVertexBuffer(const VertexBuffer& vertexBuffer) const
+{
+	const unsigned int stride = vertexBuffer.GetStride();
+
+	graphicsDevice->GetRawContext()->IASetVertexBuffers(
+		0,
+		1,
+		&vertexBuffer.GetRawBuffer(),
+		&stride,
+		0);
+}
+void Renderer::BindIndexBuffer(IndexBuffer& indexBuffer) const
+{
+	graphicsDevice->GetRawContext()->IASetIndexBuffer(indexBuffer.GetRawBuffer().Get(), indexBuffer.GetFormat(), 0);
 }

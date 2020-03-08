@@ -32,3 +32,11 @@ void IndexBuffer::CreateRawBuffer(const ComPtr<ID3D11Device> device, const D3D11
 {
 	device->CreateBuffer(description, resource, &rawBuffer);
 }
+ComPtr<ID3D11Buffer> IndexBuffer::GetRawBuffer()
+{
+	return rawBuffer;
+}
+DXGI_FORMAT IndexBuffer::GetFormat() const
+{
+	return DXGI_FORMAT_R32_UINT;
+}

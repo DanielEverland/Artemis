@@ -9,6 +9,9 @@
 #include "Windows/IWindow.h"
 
 #include "Structs/Color.h"
+#include "Engine/Rendering/Mesh.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 using namespace ArtemisEngine;
 using namespace ArtemisWindow;
@@ -47,7 +50,9 @@ private:
 
 	const IWindow* gameWindow;
 
+	void Draw(const Mesh& mesh) const;
 	void CreateRawBackbufferColor();
 	void CreateResources();
+	void BindVertexBuffer(const VertexBuffer& vertexBuffer) const;
+	void BindIndexBuffer(IndexBuffer& indexBuffer) const;
 };
-

@@ -12,6 +12,9 @@ class IndexBuffer
 public:
 	IndexBuffer(const GraphicsDevice& device, const IndexBufferData& data);
 
+	DXGI_FORMAT GetFormat() const;
+	ComPtr<ID3D11Buffer> GetRawBuffer();
+
 private:
 	D3D11_BUFFER_DESC CreateBufferDescription(const IndexBufferData& data);
 	D3D11_SUBRESOURCE_DATA CreateResourceData(const IndexBufferData& data);

@@ -27,6 +27,8 @@ void Renderer::Render()
 	depthBuffer->Clear();
 	swapChain->Present();
 
+	SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
 	// Test remove this hard reference to mesh
 	VertexBufferData vertexBufferData(8);
 	vertexBufferData[0] = Vector3(-1.0, -1.0, -1.0);
@@ -108,13 +110,15 @@ void Renderer::Draw(const Mesh& mesh) const
 void Renderer::BindVertexBuffer(const VertexBuffer& vertexBuffer) const
 {
 	const unsigned int stride = vertexBuffer.GetStride();
+	const unsigned int offset = 0;
 
-	graphicsDevice->GetRawContext()->IASetVertexBuffers(
-		0,
-		1,
-		&vertexBuffer.GetRawBuffer(),
+	ComPtr<ID3D11Buffer> buffer = vertexBuffer.GetRawBuffer();
+	ComPtr<ID3D11DeviceContext> context = graphicsDevice->GetRawContext();
+
+	context->IASetVertexBuffers(0, 1,
+		&buffer,
 		&stride,
-		0);
+		&offset);
 }
 void Renderer::DrawVertices(const VertexBuffer& vertexBuffer) const
 {
@@ -127,4 +131,8 @@ void Renderer::BindIndexBuffer(IndexBuffer& indexBuffer) const
 void Renderer::DrawIndices(const IndexBuffer& indexBuffer) const
 {
 	graphicsDevice->GetRawContext()->DrawIndexed(indexBuffer.GetLength(), 0, 0);
+}
+void Renderer::SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology)
+{
+	graphicsDevice->GetRawContext()->IASetPrimitiveTopology(topology);
 }

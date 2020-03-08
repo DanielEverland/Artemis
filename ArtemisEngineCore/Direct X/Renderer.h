@@ -57,4 +57,5 @@ private:
 	void DrawVertices(const VertexBuffer& vertexBuffer) const;
 	void BindIndexBuffer(IndexBuffer& indexBuffer) const;
 	void DrawIndices(const IndexBuffer& indexBuffer) const;
+	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology);
 };

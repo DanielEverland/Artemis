@@ -15,7 +15,7 @@ namespace Rendering::Buffer
 		Buffer buff;
 
 
-		ExpectEqual(0, buff.BufferSize);
+		ExpectEqual(0, buff.GetBufferSize());
 		ExpectEqual(nullptr, buff.Elements.get());
 	}
 	TEST(BufferDataContainer, EmptyConstructorIndexingException)

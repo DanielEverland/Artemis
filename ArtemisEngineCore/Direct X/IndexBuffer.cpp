@@ -12,7 +12,7 @@ D3D11_BUFFER_DESC IndexBuffer::CreateBufferDescription(const IndexBufferData& da
 	D3D11_BUFFER_DESC description;
 
 	description.Usage = D3D11_USAGE_IMMUTABLE;
-	description.ByteWidth = sizeof(int) * data.BufferSize;
+	description.ByteWidth = sizeof(int) * data.GetBufferSize();
 	description.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	description.CPUAccessFlags = 0;
 	description.MiscFlags = 0;

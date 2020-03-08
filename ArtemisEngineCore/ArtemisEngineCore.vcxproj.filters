@@ -175,15 +175,6 @@
     <ClInclude Include="Engine\Rendering\Mesh.h">
       <Filter>Source\Engine\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Rendering\VertexBufferData.h">
-      <Filter>Source\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Rendering\IndexBufferData.h">
-      <Filter>Source\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Rendering\RenderingBufferDataContainer.h">
-      <Filter>Source\Engine\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Direct X\VertexBuffer.h">
       <Filter>Source\Direct X</Filter>
     </ClInclude>
@@ -198,6 +189,15 @@
     </ClInclude>
     <ClInclude Include="Direct X\GraphicsDevice.h">
       <Filter>Source\Direct X</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\IndexBufferData.h">
+      <Filter>Source\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\RenderingBufferDataContainer.h">
+      <Filter>Source\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\VertexBufferData.h">
+      <Filter>Source\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
 
 namespace ArtemisEngine::Rendering
 {
-	using std::unique_ptr;
+	using std::shared_ptr;
 
 	template<class T>
 	struct RenderingBufferDataContainer
@@ -19,9 +19,12 @@ namespace ArtemisEngine::Rendering
 		{
 		}
 		
-		const int BufferSize;
-		const unique_ptr<T[]> Elements;
+		shared_ptr<T[]> Elements;
 
+		int GetBufferSize() const
+		{
+			return BufferSize;
+		}
 		T& operator[](int index)
 		{
 			ThrowIfInvalidIndex(index);
@@ -34,8 +37,23 @@ namespace ArtemisEngine::Rendering
 
 			return Elements[index];
 		}
+		void operator=(RenderingBufferDataContainer& other)
+		{
+			BufferSize = other.BufferSize;
+			Elements.swap(other.Elements);
+		}
+		void operator=(RenderingBufferDataContainer&& other)
+		{
+			BufferSize = other.BufferSize;
+			Elements.swap(other.Elements);
+
+			other.BufferSize = 0;
+			other.Elements = 0;
+		}
 
 	private:
+		int BufferSize;
+
 		void ThrowIfInvalidIndex(int index) const
 		{
 			if (Elements.get() == nullptr)

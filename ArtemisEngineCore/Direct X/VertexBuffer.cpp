@@ -20,7 +20,7 @@ D3D11_BUFFER_DESC VertexBuffer::CreateBufferDescription(const VertexBufferData& 
 	D3D11_BUFFER_DESC description;
 
 	description.Usage = D3D11_USAGE_IMMUTABLE;
-	description.ByteWidth = data.BufferSize * sizeof(VertexData);
+	description.ByteWidth = data.GetBufferSize() * sizeof(VertexData);
 	description.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	description.CPUAccessFlags = 0;
 	description.MiscFlags = 0;
@@ -47,9 +47,9 @@ D3D11_SUBRESOURCE_DATA VertexBuffer::CreateResourceData(const VertexBufferData& 
 		{ 1.0f, 0.0f, 1.0f, 1.0f }, // Magenta
 	};
 
-	std::shared_ptr<VertexData[]> vertexData(new VertexData[data.BufferSize]);
+	std::shared_ptr<VertexData[]> vertexData(new VertexData[data.GetBufferSize()]);
 
-	for (int i = 0; i < data.BufferSize; i++)
+	for (int i = 0; i < data.GetBufferSize(); i++)
 	{
 		XMFLOAT4 color = colors[i % ColorCount];
 		

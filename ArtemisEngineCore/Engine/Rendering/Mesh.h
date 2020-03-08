@@ -7,10 +7,8 @@ namespace ArtemisEngine::Rendering
 {
 	struct Mesh
 	{
-	public:
-		Mesh();
-		
-		VertexBuffer Vertices;
-		IndexBuffer Indices;
+	public:		
+		VertexBufferData Vertices;
+		IndexBufferData Indices;
 	};
 }

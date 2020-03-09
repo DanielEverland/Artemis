@@ -47,6 +47,9 @@
     <Filter Include="Source\Engine\Rendering">
       <UniqueIdentifier>{c4380605-9c87-40c2-9a88-e55a9f373c4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Base Components">
+      <UniqueIdentifier>{65de2926-67b8-45ad-a39f-187c2d3f8d75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Structs\Color.h">
@@ -199,6 +202,15 @@
     <ClInclude Include="Engine\Rendering\VertexBufferData.h">
       <Filter>Source\Engine\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\GameObject.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\IComponent.h">
+      <Filter>Source\Engine\Base Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ComponentHandler.h">
+      <Filter>Source\Engine\Base Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -263,6 +275,12 @@
     </ClCompile>
     <ClCompile Include="Direct X\Renderer.cpp">
       <Filter>Source\Direct X</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GameObject.cpp">
+      <Filter>Source\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ComponentHandler.cpp">
+      <Filter>Source\Engine\Base Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

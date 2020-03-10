@@ -15,5 +15,5 @@ TEST(ComponentContainerTest, AddComponent)
 	IComponent* testComponent = container.AddComponent<IComponent>();
 
 	ExpectEqual(1, container.GetCount());
-	ExpectFalse(testComponent == nullptr);
+	ExpectTrue(testComponent != nullptr);
 }

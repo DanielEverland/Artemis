@@ -2,12 +2,12 @@
 
 #include <algorithm>
 #include <memory>
-#include <list>
+#include <vector>
 
 #include "IComponent.h"
 
 using std::unique_ptr;
-using std::list;
+using std::vector;
 
 class ComponentContainer
 {
@@ -21,8 +21,8 @@ public:
 	{
 		static_assert(std::is_base_of<IComponent, T>(), "Type mismatch in AddComponent() -> Component type must inherit IComponent");
 		
-		unique_ptr<T> newComponent = unique_ptr<IComponent>(new T());
-		components.push_back(newComponent);
+		components.push_back(unique_ptr<IComponent>(new T()));
+		T* newComponent = components.back().get();
 		
 		return newComponent;
 	}
@@ -45,5 +45,7 @@ public:
 	}
 
 private:
-	list<unique_ptr<IComponent>> components;
+	vector<unique_ptr<IComponent>> components;
+
+	bool IsEqual(const vector<unique_ptr<IComponent>>::const_iterator& iter, const IComponent* const other) const;
 };

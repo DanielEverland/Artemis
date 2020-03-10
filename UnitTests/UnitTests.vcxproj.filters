@@ -44,6 +44,9 @@
     <ClCompile Include="Rendering\RenderBuffer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Components\ComponentTests.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -72,6 +75,9 @@
     </Filter>
     <Filter Include="Rendering">
       <UniqueIdentifier>{c3e7a6fc-ddc5-4c25-82a2-218be2c3359c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{ba211eb9-61dc-4b20-9718-b6f1ce8ddae7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

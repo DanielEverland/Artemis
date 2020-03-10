@@ -8,7 +8,7 @@ bool ComponentContainer::Contains(const IComponent* component) const
 {
 	for (auto iter = components.begin(); iter != components.end(); iter++)
 	{
-		if ((*iter).get() == component)
+		if (IsEqual(iter, component))
 			return true;
 	}
 
@@ -16,5 +16,16 @@ bool ComponentContainer::Contains(const IComponent* component) const
 }
 void ComponentContainer::RemoveComponent(const IComponent* toRemove)
 {
-	components.remove_if([toRemove](unique_ptr<IComponent> storedComponent) -> bool { return storedComponent.get() == toRemove;  });
+	for (auto iter = components.begin(); iter != components.end(); iter++)
+	{
+		if (IsEqual(iter, toRemove))
+		{
+			components.erase(iter);
+			return;
+		}
+	}
+}
+bool ComponentContainer::IsEqual(const vector<unique_ptr<IComponent>>::const_iterator& iter, const IComponent* const other) const
+{
+	return (*iter).get() == other;
 }

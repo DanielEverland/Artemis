@@ -40,6 +40,7 @@
     <ClInclude Include="Utility\Comparison\ComparisonUtilityVectors.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\ComponentTests.cpp" />
     <ClCompile Include="Math\ArbitraryVector.cpp" />
     <ClCompile Include="Math\IntVector2Tests.cpp" />
     <ClCompile Include="Math\IntVector3Tests.cpp" />

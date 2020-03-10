@@ -208,7 +208,7 @@
     <ClInclude Include="Engine\IComponent.h">
       <Filter>Source\Engine\Base Components</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\ComponentHandler.h">
+    <ClInclude Include="Engine\ComponentContainer.h">
       <Filter>Source\Engine\Base Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -279,7 +279,7 @@
     <ClCompile Include="Engine\GameObject.cpp">
       <Filter>Source\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ComponentHandler.cpp">
+    <ClCompile Include="Engine\ComponentContainer.cpp">
       <Filter>Source\Engine\Base Components</Filter>
     </ClCompile>
   </ItemGroup>

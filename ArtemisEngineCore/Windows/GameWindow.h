@@ -30,6 +30,8 @@ namespace ArtemisWindow
 
 		virtual void Show() override;
 
+		class IComponent* component;
+
 	private:
 		shared_ptr<Renderer> renderer;
 

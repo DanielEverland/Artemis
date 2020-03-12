@@ -9,6 +9,7 @@
 #include "Input/Input.h"
 #include "Exceptions/Exception.h"
 #include "Engine/Application.h"
+#include "Engine/ComponentContainer.h"
 
 using ArtemisWindow::GameWindow;
 using std::string;
@@ -20,6 +21,9 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 	::GetWindowRect(windowHandle, &previousWindowRect);
 
 	renderer = shared_ptr<Renderer>(new Renderer(this));
+
+	ComponentContainer* container = new ComponentContainer();
+	IComponent* component = container->AddComponent<IComponent>();
 }
 
 void GameWindow::Show()
@@ -47,6 +51,11 @@ void TickTime()
 
 void GameWindow::Update()
 {
+	if (!component)
+	{
+		bool noo = true;
+	}
+
 	try
 	{
 		TickTime();

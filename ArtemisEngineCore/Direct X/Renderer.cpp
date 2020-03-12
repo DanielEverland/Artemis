@@ -27,35 +27,35 @@ void Renderer::Render()
 	depthBuffer->Clear();
 	swapChain->Present();
 
-	SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	//SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	// Test remove this hard reference to mesh
-	VertexBufferData vertexBufferData(8);
-	vertexBufferData[0] = Vector3(-1.0, -1.0, -1.0);
-	vertexBufferData[1] = Vector3(-1.0, 1.0, -1.0);
-	vertexBufferData[2] = Vector3(1.0, 1.0, -1.0);
-	vertexBufferData[3] = Vector3(1.0, -1.0, -1.0);
-	vertexBufferData[4] = Vector3(-1.0, -1.0, 1.0);
-	vertexBufferData[5] = Vector3(-1.0, 1.0, 1.0);
-	vertexBufferData[6] = Vector3(1.0, 1.0, 1.0);
-	vertexBufferData[7] = Vector3(1.0, -1.0, 1.0);
+	//// Test remove this hard reference to mesh
+	//VertexBufferData vertexBufferData(8);
+	//vertexBufferData[0] = Vector3(-1.0, -1.0, -1.0);
+	//vertexBufferData[1] = Vector3(-1.0, 1.0, -1.0);
+	//vertexBufferData[2] = Vector3(1.0, 1.0, -1.0);
+	//vertexBufferData[3] = Vector3(1.0, -1.0, -1.0);
+	//vertexBufferData[4] = Vector3(-1.0, -1.0, 1.0);
+	//vertexBufferData[5] = Vector3(-1.0, 1.0, 1.0);
+	//vertexBufferData[6] = Vector3(1.0, 1.0, 1.0);
+	//vertexBufferData[7] = Vector3(1.0, -1.0, 1.0);
 
-	IndexBufferData ibd(8 * 3);
-	ibd[0] = 0;		ibd[1] = 1;		ibd[2] = 2;
-	ibd[3] = 0;		ibd[4] = 2;		ibd[5] = 3;
-	ibd[6] = 0;		ibd[7] = 3;		ibd[8] = 4;
-	ibd[9] = 0;		ibd[10] = 4;	ibd[11] = 5;
-	ibd[12] = 0;	ibd[13] = 5;	ibd[14] = 6;
-	ibd[15] = 0;	ibd[16] = 6;	ibd[17] = 7;
-	ibd[18] = 0;	ibd[19] = 7;	ibd[20] = 8;
-	ibd[21] = 0;	ibd[22] = 8;	ibd[23] = 1;
+	//IndexBufferData ibd(8 * 3);
+	//ibd[0] = 0;		ibd[1] = 1;		ibd[2] = 2;
+	//ibd[3] = 0;		ibd[4] = 2;		ibd[5] = 3;
+	//ibd[6] = 0;		ibd[7] = 3;		ibd[8] = 4;
+	//ibd[9] = 0;		ibd[10] = 4;	ibd[11] = 5;
+	//ibd[12] = 0;	ibd[13] = 5;	ibd[14] = 6;
+	//ibd[15] = 0;	ibd[16] = 6;	ibd[17] = 7;
+	//ibd[18] = 0;	ibd[19] = 7;	ibd[20] = 8;
+	//ibd[21] = 0;	ibd[22] = 8;	ibd[23] = 1;
 
-	Mesh mesh = {};
-	mesh.Indices = ibd;
-	mesh.Vertices = vertexBufferData;
-	// End Test
+	//Mesh mesh = {};
+	//mesh.Indices = ibd;
+	//mesh.Vertices = vertexBufferData;
+	//// End Test
 
-	Draw(mesh);
+	//Draw(mesh);
 }
 void Renderer::Resize()
 {

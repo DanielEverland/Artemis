@@ -6,24 +6,36 @@
 
 #include "IComponent.h"
 
+using std::weak_ptr;
 using std::unique_ptr;
 using std::vector;
 
 class ComponentContainer
 {
 public:
+	ComponentContainer() = default;
+	~ComponentContainer()
+	{
+		components.back().reset();
+		for (auto iter = components.begin(); iter != components.end(); iter++)
+		{
+			(*iter).reset();
+		}
+	}
 	int GetCount() const;
 	bool Contains(const IComponent* component) const;
 	void RemoveComponent(const IComponent* component);
-
+	
 	template<class T>
 	T* AddComponent()
 	{
 		static_assert(std::is_base_of<IComponent, T>(), "Type mismatch in AddComponent() -> Component type must inherit IComponent");
 		
-		components.push_back(unique_ptr<IComponent>(new T()));
+		components.push_back(unique_ptr<T>(new T()));
+		components.back().reset();
 		T* newComponent = components.back().get();
 		
+
 		return newComponent;
 	}
 

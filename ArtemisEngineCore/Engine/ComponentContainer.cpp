@@ -2,7 +2,7 @@
 
 int ComponentContainer::GetCount() const
 {
-	return components.size();
+	return int(components.size());
 }
 bool ComponentContainer::Contains(const IComponent* component) const
 {

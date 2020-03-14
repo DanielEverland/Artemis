@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include "IComponent.h"
+#include "Object Management/IComponent.h"
 
 using std::weak_ptr;
 using std::unique_ptr;
@@ -16,30 +16,27 @@ public:
 	ComponentContainer() = default;
 	~ComponentContainer()
 	{
-		components.back().reset();
-		for (auto iter = components.begin(); iter != components.end(); iter++)
-		{
-			(*iter).reset();
-		}
+		(*releasedPointers.back()) = nullptr;
+		delete components.back();
 	}
+
 	int GetCount() const;
-	bool Contains(const IComponent* component) const;
-	void RemoveComponent(const IComponent* component);
+	//bool Contains(const IComponent* component) const;
+	//void RemoveComponent(const IComponent* component);
 	
 	template<class T>
 	T* AddComponent()
 	{
 		static_assert(std::is_base_of<IComponent, T>(), "Type mismatch in AddComponent() -> Component type must inherit IComponent");
 		
-		components.push_back(unique_ptr<T>(new T()));
-		components.back().reset();
-		T* newComponent = components.back().get();
-		
+		T* newComponent = new T();
+		components.push_back(newComponent);
+		releasedPointers.push_back(&newComponent);
 
 		return newComponent;
 	}
 
-	template<class T>
+	/*template<class T>
 	T* GetComponent()
 	{
 		static_assert(std::is_base_of<IComponent, T>(), "Type mismatch in GetComponent() -> Component type must inherit IComponent");
@@ -54,10 +51,11 @@ public:
 		}
 
 		return componentToReturn;
-	}
+	}*/
 
 private:
-	vector<unique_ptr<IComponent>> components;
+	vector<IComponent**> releasedPointers;
+	vector<IComponent*> components;
 
-	bool IsEqual(const vector<unique_ptr<IComponent>>::const_iterator& iter, const IComponent* const other) const;
+	//bool IsEqual(const vector<IComponent*>::const_iterator& iter, const IComponent* const other) const;
 };

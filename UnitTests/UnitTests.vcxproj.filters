@@ -47,6 +47,12 @@
     <ClCompile Include="Components\ComponentTests.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Object Management\SafePtr.cpp">
+      <Filter>Engine\Object Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Object Management\SafeObjRef.cpp">
+      <Filter>Engine\Object Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -78,6 +84,12 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{ba211eb9-61dc-4b20-9718-b6f1ce8ddae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{2fc9e0f0-57d2-44cb-9d68-50b0b2f79bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Object Management">
+      <UniqueIdentifier>{46763f67-a7fa-43d3-8d63-ca04309d8fbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

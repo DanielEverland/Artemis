@@ -168,7 +168,6 @@
     <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Engine\ComponentContainer.h" />
     <ClInclude Include="Engine\GameObject.h" />
-    <ClInclude Include="Engine\IComponent.h" />
     <ClInclude Include="Engine\IntVector2.h" />
     <ClInclude Include="Engine\IntVector3.h" />
     <ClInclude Include="Engine\IntVector4.h" />
@@ -184,11 +183,18 @@
     <ClInclude Include="Engine\Maths\Vectors\Vector3Base.h" />
     <ClInclude Include="Engine\Maths\Vectors\Vector4Base.h" />
     <ClInclude Include="Engine\Maths\Vectors\VectorBase.h" />
+    <ClInclude Include="Engine\Object Management\GlobalObjectManager.h" />
+    <ClInclude Include="Engine\Object Management\IComponent.h" />
+    <ClInclude Include="Engine\Object Management\IObject.h" />
+    <ClInclude Include="Engine\Object Management\ObjectContainer.h" />
+    <ClInclude Include="Engine\Object Management\SafeObjRef.h" />
+    <ClInclude Include="Engine\Object.h" />
     <ClInclude Include="Engine\Quaternion.h" />
     <ClInclude Include="Engine\Rendering\IndexBufferData.h" />
     <ClInclude Include="Engine\Rendering\Mesh.h" />
     <ClInclude Include="Engine\Rendering\RenderingBufferDataContainer.h" />
     <ClInclude Include="Engine\Rendering\VertexBufferData.h" />
+    <ClInclude Include="Engine\SafePtr.h" />
     <ClInclude Include="Engine\Vector2.h" />
     <ClInclude Include="Engine\Vector3.h" />
     <ClInclude Include="Engine\Vector4.h" />
@@ -196,6 +202,7 @@
     <ClInclude Include="Exceptions\DivideByZeroException.h" />
     <ClInclude Include="Exceptions\Exception.h" />
     <ClInclude Include="Exceptions\InvalidArgumentException.h" />
+    <ClInclude Include="Exceptions\InvalidOperationException.h" />
     <ClInclude Include="Exceptions\NullReferenceException.h" />
     <ClInclude Include="Exceptions\OutOfRangeException.h" />
     <ClInclude Include="Formatting\NumberFormatting.h" />
@@ -222,6 +229,8 @@
     <ClCompile Include="Engine\ComponentContainer.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
     <ClCompile Include="Engine\Math.cpp" />
+    <ClCompile Include="Engine\Object Management\GlobalObjectManager.cpp" />
+    <ClCompile Include="Engine\Object.cpp" />
     <ClCompile Include="Engine\Quaternion.cpp" />
     <ClCompile Include="Engine\Rendering\Mesh.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />

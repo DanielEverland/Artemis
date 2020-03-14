@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\ComponentTests.cpp" />
+    <ClCompile Include="Engine\Object Management\SafeObjRef.cpp" />
+    <ClCompile Include="Engine\Object Management\SafePtr.cpp" />
     <ClCompile Include="Math\ArbitraryVector.cpp" />
     <ClCompile Include="Math\IntVector2Tests.cpp" />
     <ClCompile Include="Math\IntVector3Tests.cpp" />

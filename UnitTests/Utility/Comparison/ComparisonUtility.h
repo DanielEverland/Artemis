@@ -19,3 +19,6 @@
 
 #define ExpectThrow(expression, exception) \
 	EXPECT_THROW(expression, exception);
+
+#define ExpectAnyThrow(expression) \
+	EXPECT_ANY_THROW(expression);

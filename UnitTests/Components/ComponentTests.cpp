@@ -5,13 +5,13 @@
 #include <memory>
 #include <thread>
 
-TEST(ComponentContainerTest, EmptyContainer)
-{
-	ComponentContainer container;
-
-
-	ExpectEqual(0, container.GetCount());
-}
+//TEST(ComponentContainerTest, EmptyContainer)
+//{
+//	ComponentContainer container;
+//
+//
+//	ExpectEqual(0, container.GetCount());
+//}
 //TEST(ComponentContainerTest, AddComponent)
 //{
 //	ComponentContainer container;
@@ -44,7 +44,47 @@ TEST(ComponentContainerTest, EmptyContainer)
 //
 //	ExpectFalse(container.Contains(testComponent));
 //}
+
+class TestClassB
+{
+public:
+	int testValue = 5;
+};
+
+class TestClass
+{
+public:
+	TestClassB*&& get()
+	{
+		obj = new TestClassB();
+		return std::move(obj);
+	}
+	void Delete()
+	{
+		delete obj;
+		obj = nullptr;
+	}
+
+private:
+	TestClassB* obj;
+	TestClassB** ptr;
+};
+
 TEST(ComponentContainerTest, ComponentDeallocation)
 {
-	
+	TestClass* test = new TestClass();
+	TestClassB* ptr = std::move(test->get());
+
+	test->Delete();
+
+	int wat = ptr->testValue;
+
+	if (!ptr)
+	{
+		bool yay = true;
+	}
+	else
+	{
+		bool noo = true;
+	}
 }

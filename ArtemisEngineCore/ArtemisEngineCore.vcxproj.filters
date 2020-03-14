@@ -50,6 +50,9 @@
     <Filter Include="Source\Engine\Base Components">
       <UniqueIdentifier>{65de2926-67b8-45ad-a39f-187c2d3f8d75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Object Management">
+      <UniqueIdentifier>{3f0c3ec3-408b-46da-aaa4-9c729fa8caa7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Structs\Color.h">
@@ -205,11 +208,32 @@
     <ClInclude Include="Engine\GameObject.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\IComponent.h">
-      <Filter>Source\Engine\Base Components</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\ComponentContainer.h">
       <Filter>Source\Engine\Base Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object Management\ObjectContainer.h">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object Management\SafeObjRef.h">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object Management\IComponent.h">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object Management\IObject.h">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object.h">
+      <Filter>Source\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object Management\GlobalObjectManager.h">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\InvalidOperationException.h">
+      <Filter>Source\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SafePtr.h">
+      <Filter>Source\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +305,12 @@
     </ClCompile>
     <ClCompile Include="Engine\ComponentContainer.cpp">
       <Filter>Source\Engine\Base Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Object Management\GlobalObjectManager.cpp">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Object.cpp">
+      <Filter>Source\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

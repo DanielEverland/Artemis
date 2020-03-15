@@ -27,6 +27,12 @@ namespace ArtemisEngine
 			return !ptr.expired();
 		}
 
+		// Returns a raw pointer to the pointed to object.
+		T* GetRaw()
+		{
+			return rawPtr;
+		}
+
 		// Dereferences the pointed to object.
 		T* operator->()
 		{

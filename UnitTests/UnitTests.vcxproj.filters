@@ -53,6 +53,9 @@
     <ClCompile Include="Engine\Object Management\SafeObjRef.cpp">
       <Filter>Engine\Object Management</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Object Management\ObjectContainer.cpp">
+      <Filter>Engine\Object Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

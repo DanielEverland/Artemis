@@ -26,9 +26,15 @@ namespace ArtemisEngine
 		}
 		
 		// Creates a SafePtr to the referenced object.
-		SafePtr<T> GetSafePtr()
+		SafePtr<T> GetSafePtr() const
 		{
 			return SafePtr<T>(std::weak_ptr<T>(obj), obj.get());
+		}
+
+		// Returns a raw pointer to the referenced object.
+		T* GetRaw() const
+		{
+			return obj.get();
 		}
 
 	private:

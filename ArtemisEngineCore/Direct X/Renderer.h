@@ -6,7 +6,7 @@
 #include "Direct X/SwapChain.h"
 #include "Direct X/DepthBuffer.h"
 #include "Direct X/RenderTargetView.h"
-#include "Windows/IWindow.h"
+#include "Source/Windows/IWindow.h"
 
 #include "Structs/Color.h"
 #include "Engine/Rendering/Mesh.h"

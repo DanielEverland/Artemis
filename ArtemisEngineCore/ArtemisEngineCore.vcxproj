@@ -210,12 +210,12 @@
     <ClInclude Include="Formatting\NumberFormatting.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\Key.h" />
+    <ClInclude Include="Source\Windows\GameWindow.h" />
+    <ClInclude Include="Source\Windows\IWindow.h" />
+    <ClInclude Include="Source\Windows\Window.h" />
+    <ClInclude Include="Source\Windows\WindowProcedure.h" />
     <ClInclude Include="Structs\Color.h" />
     <ClInclude Include="Time\Time.h" />
-    <ClInclude Include="Windows\GameWindow.h" />
-    <ClInclude Include="Windows\IWindow.h" />
-    <ClInclude Include="Windows\Window.h" />
-    <ClInclude Include="Windows\WindowProcedure.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Debugging\Output.cpp" />
@@ -238,11 +238,11 @@
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Input\Input.cpp" />
+    <ClCompile Include="Source\Windows\GameWindow.cpp" />
+    <ClCompile Include="Source\Windows\Window.cpp" />
+    <ClCompile Include="Source\Windows\WindowProcedure.cpp" />
     <ClCompile Include="Structs\Color.cpp" />
     <ClCompile Include="Time\Time.cpp" />
-    <ClCompile Include="Windows\GameWindow.cpp" />
-    <ClCompile Include="Windows\Window.cpp" />
-    <ClCompile Include="Windows\WindowProcedure.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

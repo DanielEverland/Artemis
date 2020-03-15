@@ -5,318 +5,324 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source">
+    <Filter Include="Source OLD">
       <UniqueIdentifier>{fe3e6bee-cf61-4b1f-abd4-318da4f39cd2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Structs">
+    <Filter Include="Source OLD\Structs">
       <UniqueIdentifier>{260edd3e-c4f9-4ba6-80ca-6c6a6b43ee9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Windows">
+    <Filter Include="Source OLD\Windows">
       <UniqueIdentifier>{83baf69d-7c78-4fea-ab9e-b8fbc1492b86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Time">
+    <Filter Include="Source OLD\Time">
       <UniqueIdentifier>{d47c05b0-b30a-46da-8467-6f96d15647d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Input">
+    <Filter Include="Source OLD\Input">
       <UniqueIdentifier>{10b6eb54-0cff-4c9e-a81d-537cf183a78f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Exceptions">
+    <Filter Include="Source OLD\Exceptions">
       <UniqueIdentifier>{1bfa3945-9cab-4549-89d4-70c6dfaa8258}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine">
+    <Filter Include="Source OLD\Engine">
       <UniqueIdentifier>{f682211d-fbff-4480-8525-4be35f72752f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Math">
+    <Filter Include="Source OLD\Engine\Math">
       <UniqueIdentifier>{aff58505-c6d6-49d1-a422-171addf22e76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Math\Vectors">
+    <Filter Include="Source OLD\Engine\Math\Vectors">
       <UniqueIdentifier>{8588896f-c3c9-479e-b50d-d953d50a3993}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Math\Matrices">
+    <Filter Include="Source OLD\Engine\Math\Matrices">
       <UniqueIdentifier>{91bbd413-5b5a-4dbe-b334-564fc4997edb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Direct X">
-      <UniqueIdentifier>{cd37791d-0a09-49af-905c-5308bede00ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Debugging">
-      <UniqueIdentifier>{a9c6e40e-c24c-4a1e-9168-ab37d27532c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Formatting">
-      <UniqueIdentifier>{018a452b-a22b-4598-b891-f1a797b4a2fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Engine\Rendering">
+    <Filter Include="Source OLD\Engine\Rendering">
       <UniqueIdentifier>{c4380605-9c87-40c2-9a88-e55a9f373c4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Base Components">
+    <Filter Include="Source OLD\Engine\Base Components">
       <UniqueIdentifier>{65de2926-67b8-45ad-a39f-187c2d3f8d75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Object Management">
+    <Filter Include="Source OLD\Engine\Object Management">
       <UniqueIdentifier>{3f0c3ec3-408b-46da-aaa4-9c729fa8caa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source OLD\Direct X">
+      <UniqueIdentifier>{cd37791d-0a09-49af-905c-5308bede00ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source OLD\Debugging">
+      <UniqueIdentifier>{a9c6e40e-c24c-4a1e-9168-ab37d27532c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source OLD\Formatting">
+      <UniqueIdentifier>{018a452b-a22b-4598-b891-f1a797b4a2fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{96fe5c37-550a-424a-b59f-f2911cb35739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Windows">
+      <UniqueIdentifier>{5a2d8c7a-50f5-46eb-8288-cdfa667a2390}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Structs\Color.h">
-      <Filter>Source\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\GameWindow.h">
-      <Filter>Source\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\Window.h">
-      <Filter>Source\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\WindowProcedure.h">
-      <Filter>Source\Windows</Filter>
+      <Filter>Source OLD\Structs</Filter>
     </ClInclude>
     <ClInclude Include="Time\Time.h">
-      <Filter>Source\Time</Filter>
+      <Filter>Source OLD\Time</Filter>
     </ClInclude>
     <ClInclude Include="Input\Input.h">
-      <Filter>Source\Input</Filter>
+      <Filter>Source OLD\Input</Filter>
     </ClInclude>
     <ClInclude Include="Input\Key.h">
-      <Filter>Source\Input</Filter>
+      <Filter>Source OLD\Input</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\DirectXException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\DivideByZeroException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\Exception.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\InvalidArgumentException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\NullReferenceException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\OutOfRangeException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Application.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\IntVector2.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\IntVector3.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Vector2.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Vector3.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Vector4.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\DepthBuffer.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\DirectXHelper.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\RenderTargetView.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\SwapChain.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\Texture2D.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Debugging\IDebugStringReturner.h">
-      <Filter>Source\Debugging</Filter>
+      <Filter>Source OLD\Debugging</Filter>
     </ClInclude>
     <ClInclude Include="Debugging\Output.h">
-      <Filter>Source\Debugging</Filter>
+      <Filter>Source OLD\Debugging</Filter>
     </ClInclude>
     <ClInclude Include="Engine\IntVector4.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Quaternion.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\DoubleVector2.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\DoubleVector3.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\DoubleVector4.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\FloatVector2.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\FloatVector3.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\FloatVector4.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\Vector2Base.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\Vector3Base.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\Vector4Base.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\VectorBase.h">
-      <Filter>Source\Engine\Math\Vectors</Filter>
+      <Filter>Source OLD\Engine\Math\Vectors</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Matrices\GenericMatrix.h">
-      <Filter>Source\Engine\Math\Matrices</Filter>
+      <Filter>Source OLD\Engine\Math\Matrices</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Math.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Formatting\NumberFormatting.h">
-      <Filter>Source\Formatting</Filter>
+      <Filter>Source OLD\Formatting</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\Mesh.h">
-      <Filter>Source\Engine\Rendering</Filter>
+      <Filter>Source OLD\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\VertexBuffer.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\IndexBuffer.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\Renderer.h">
-      <Filter>Source\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows\IWindow.h">
-      <Filter>Source\Windows</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Direct X\GraphicsDevice.h">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\IndexBufferData.h">
-      <Filter>Source\Engine\Rendering</Filter>
+      <Filter>Source OLD\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\RenderingBufferDataContainer.h">
-      <Filter>Source\Engine\Rendering</Filter>
+      <Filter>Source OLD\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\VertexBufferData.h">
-      <Filter>Source\Engine\Rendering</Filter>
+      <Filter>Source OLD\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine\GameObject.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\ComponentContainer.h">
-      <Filter>Source\Engine\Base Components</Filter>
+      <Filter>Source OLD\Engine\Base Components</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object Management\ObjectContainer.h">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object Management\SafeObjRef.h">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object Management\IComponent.h">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object Management\IObject.h">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object Management\GlobalObjectManager.h">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\InvalidOperationException.h">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Engine\SafePtr.h">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object Management\ComponentContainer.h">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Object Management\GameObjectContainer.h">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\GameWindow.h">
+      <Filter>Source\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\IWindow.h">
+      <Filter>Source\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\Window.h">
+      <Filter>Source\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Windows\WindowProcedure.h">
+      <Filter>Source\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
-      <Filter>Source\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows\GameWindow.cpp">
-      <Filter>Source\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows\Window.cpp">
-      <Filter>Source\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Windows\WindowProcedure.cpp">
-      <Filter>Source\Windows</Filter>
+      <Filter>Source OLD\Structs</Filter>
     </ClCompile>
     <ClCompile Include="Time\Time.cpp">
-      <Filter>Source\Time</Filter>
+      <Filter>Source OLD\Time</Filter>
     </ClCompile>
     <ClCompile Include="Input\Input.cpp">
-      <Filter>Source\Input</Filter>
+      <Filter>Source OLD\Input</Filter>
     </ClCompile>
     <ClCompile Include="Exceptions\Exception.cpp">
-      <Filter>Source\Exceptions</Filter>
+      <Filter>Source OLD\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Application.cpp">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\DepthBuffer.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\GraphicsDevice.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\RenderTargetView.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\SwapChain.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\Texture2D.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Debugging\Output.cpp">
-      <Filter>Source\Debugging</Filter>
+      <Filter>Source OLD\Debugging</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Quaternion.cpp">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Math.cpp">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Formatting\NumberFormatting.cpp">
-      <Filter>Source\Formatting</Filter>
+      <Filter>Source OLD\Formatting</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Rendering\Mesh.cpp">
-      <Filter>Source\Engine\Rendering</Filter>
+      <Filter>Source OLD\Engine\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\VertexBuffer.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\IndexBuffer.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Direct X\Renderer.cpp">
-      <Filter>Source\Direct X</Filter>
+      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Engine\GameObject.cpp">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ComponentContainer.cpp">
-      <Filter>Source\Engine\Base Components</Filter>
+      <Filter>Source OLD\Engine\Base Components</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Object Management\GlobalObjectManager.cpp">
-      <Filter>Source\Engine\Object Management</Filter>
+      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Object.cpp">
-      <Filter>Source\Engine</Filter>
+      <Filter>Source OLD\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\GameWindow.cpp">
+      <Filter>Source\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\Window.cpp">
+      <Filter>Source\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Windows\WindowProcedure.cpp">
+      <Filter>Source\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

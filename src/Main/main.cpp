@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ApplicationArguments.h"
 
-#include "Windows\GameWindow.h"
+#include "Source\Windows\GameWindow.h"
 #include "Time\Time.h"
 #include "Exceptions\Exception.h"
 #include "Debugging\Output.h"

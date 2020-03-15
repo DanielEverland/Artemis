@@ -2,8 +2,6 @@
 
 #include <chrono>
 
-#include "Windows/Window.h"
-
 class Time
 {
 public:

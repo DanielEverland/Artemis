@@ -8,11 +8,12 @@
 #include "Source/DirectX/RenderTargetView.h"
 #include "Source/Windows/IWindow.h"
 #include "Include/Game/Color.h"
+#include "Include/Game/Mesh.h"
 
-#include "Engine/Rendering/Mesh.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 
+using namespace ArtemisEngine::Rendering;
 using namespace ArtemisEngine;
 using namespace ArtemisWindow;
 

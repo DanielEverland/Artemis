@@ -4,7 +4,7 @@
 
 #include "DirectXHelper.h"
 #include "GraphicsDevice.h"
-#include "Engine/Rendering/VertexBufferData.h"
+#include "Include/Game/VertexBufferData.h"
 
 using namespace ArtemisEngine::Rendering;
 

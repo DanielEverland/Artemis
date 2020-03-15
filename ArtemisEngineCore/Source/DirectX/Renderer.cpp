@@ -4,6 +4,7 @@
 #include "VertexBuffer.h"
 
 using ArtemisWindow::IWindow;
+using namespace ArtemisEngine::Rendering;
 
 Renderer::Renderer(const IWindow* owner)
 {

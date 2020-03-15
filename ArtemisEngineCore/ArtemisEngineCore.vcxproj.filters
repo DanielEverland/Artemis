@@ -11,18 +11,6 @@
     <Filter Include="Source OLD\Engine">
       <UniqueIdentifier>{f682211d-fbff-4480-8525-4be35f72752f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Engine\Math">
-      <UniqueIdentifier>{aff58505-c6d6-49d1-a422-171addf22e76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source OLD\Engine\Math\Vectors">
-      <UniqueIdentifier>{8588896f-c3c9-479e-b50d-d953d50a3993}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source OLD\Engine\Math\Matrices">
-      <UniqueIdentifier>{91bbd413-5b5a-4dbe-b334-564fc4997edb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source OLD\Engine\Rendering">
-      <UniqueIdentifier>{c4380605-9c87-40c2-9a88-e55a9f373c4a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source OLD\Engine\Base Components">
       <UniqueIdentifier>{65de2926-67b8-45ad-a39f-187c2d3f8d75}</UniqueIdentifier>
     </Filter>
@@ -59,55 +47,13 @@
     <Filter Include="Include\Maths">
       <UniqueIdentifier>{300843e7-9730-4182-8a20-11dfef5456d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game\Rendering">
+      <UniqueIdentifier>{42fa60bd-5c63-402e-8b93-35fabca4d355}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Application.h">
       <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\DoubleVector2.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\DoubleVector3.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\DoubleVector4.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\FloatVector2.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\FloatVector3.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\FloatVector4.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\Vector2Base.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\Vector3Base.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\Vector4Base.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Vectors\VectorBase.h">
-      <Filter>Source OLD\Engine\Math\Vectors</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Maths\Matrices\GenericMatrix.h">
-      <Filter>Source OLD\Engine\Math\Matrices</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Rendering\Mesh.h">
-      <Filter>Source OLD\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Rendering\IndexBufferData.h">
-      <Filter>Source OLD\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Rendering\RenderingBufferDataContainer.h">
-      <Filter>Source OLD\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Rendering\VertexBufferData.h">
-      <Filter>Source OLD\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine\GameObject.h">
       <Filter>Source OLD\Engine</Filter>
@@ -283,13 +229,22 @@
     <ClInclude Include="Include\Game\Vector4.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Rendering\RenderingBufferDataContainer.h">
+      <Filter>Source\Game\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\IndexBufferData.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\VertexBufferData.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Mesh.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Application.cpp">
       <Filter>Source OLD\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Rendering\Mesh.cpp">
-      <Filter>Source OLD\Engine\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Engine\GameObject.cpp">
       <Filter>Source OLD\Engine</Filter>
@@ -359,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Quaternion.cpp">
       <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Rendering\Mesh.cpp">
+      <Filter>Source\Game\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

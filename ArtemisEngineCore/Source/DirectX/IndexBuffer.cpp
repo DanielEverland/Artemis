@@ -1,4 +1,7 @@
+#include "Include/Game/IndexBufferData.h"
 #include "IndexBuffer.h"
+
+using namespace ArtemisEngine::Rendering;
 
 IndexBuffer::IndexBuffer(const GraphicsDevice& device, const IndexBufferData& data)
 {

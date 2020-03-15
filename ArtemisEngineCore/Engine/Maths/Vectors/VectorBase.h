@@ -7,7 +7,7 @@
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/DivideByZeroException.h"
 #include "Include/Game/IDebugStringReturner.h"
-#include "Formatting/NumberFormatting.h"
+#include "Source/Formatting/NumberFormatting.h"
 #include "Engine/Math.h"
 
 using namespace ArtemisEngine;

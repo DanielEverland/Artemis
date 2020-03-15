@@ -32,9 +32,6 @@
     <Filter Include="Source OLD\Engine\Object Management">
       <UniqueIdentifier>{3f0c3ec3-408b-46da-aaa4-9c729fa8caa7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Formatting">
-      <UniqueIdentifier>{018a452b-a22b-4598-b891-f1a797b4a2fe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source">
       <UniqueIdentifier>{96fe5c37-550a-424a-b59f-f2911cb35739}</UniqueIdentifier>
     </Filter>
@@ -52,6 +49,9 @@
     </Filter>
     <Filter Include="Source\DirectX">
       <UniqueIdentifier>{ebee4793-350e-4359-b494-528a22943bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Formatting">
+      <UniqueIdentifier>{1db3ae94-bc29-4274-8712-0bfb01342528}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +132,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Math.h">
       <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Formatting\NumberFormatting.h">
-      <Filter>Source OLD\Formatting</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\Mesh.h">
       <Filter>Source OLD\Engine\Rendering</Filter>
@@ -244,6 +241,9 @@
     <ClInclude Include="Include\Game\Key.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Formatting\NumberFormatting.h">
+      <Filter>Source\Formatting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exceptions\Exception.cpp">
@@ -257,9 +257,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Math.cpp">
       <Filter>Source OLD\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Formatting\NumberFormatting.cpp">
-      <Filter>Source OLD\Formatting</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Rendering\Mesh.cpp">
       <Filter>Source OLD\Engine\Rendering</Filter>
@@ -320,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Input.cpp">
       <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Formatting\NumberFormatting.cpp">
+      <Filter>Source\Formatting</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -196,7 +196,6 @@
     <ClInclude Include="Exceptions\InvalidOperationException.h" />
     <ClInclude Include="Exceptions\NullReferenceException.h" />
     <ClInclude Include="Exceptions\OutOfRangeException.h" />
-    <ClInclude Include="Formatting\NumberFormatting.h" />
     <ClInclude Include="Include\Game\Color.h" />
     <ClInclude Include="Include\Game\IDebugStringReturner.h" />
     <ClInclude Include="Include\Game\Input.h" />
@@ -213,6 +212,7 @@
     <ClInclude Include="Source\DirectX\Texture2D.h" />
     <ClInclude Include="Source\DirectX\VertexBuffer.h" />
     <ClInclude Include="Source\DirectX\VertexBufferConverter.h" />
+    <ClInclude Include="Source\Formatting\NumberFormatting.h" />
     <ClInclude Include="Source\Windows\GameWindow.h" />
     <ClInclude Include="Source\Windows\IWindow.h" />
     <ClInclude Include="Source\Windows\Window.h" />
@@ -228,7 +228,6 @@
     <ClCompile Include="Engine\Quaternion.cpp" />
     <ClCompile Include="Engine\Rendering\Mesh.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
-    <ClCompile Include="Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Source\DirectX\DepthBuffer.cpp" />
     <ClCompile Include="Source\DirectX\GraphicsDevice.cpp" />
     <ClCompile Include="Source\DirectX\IndexBuffer.cpp" />
@@ -237,6 +236,7 @@
     <ClCompile Include="Source\DirectX\SwapChain.cpp" />
     <ClCompile Include="Source\DirectX\Texture2D.cpp" />
     <ClCompile Include="Source\DirectX\VertexBuffer.cpp" />
+    <ClCompile Include="Source\Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Source\Game\Color.cpp" />
     <ClCompile Include="Source\Game\Input.cpp" />
     <ClCompile Include="Source\Game\Output.cpp" />

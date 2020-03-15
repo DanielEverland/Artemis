@@ -1,6 +1,6 @@
 #include "Quaternion.h"
 #include "Math.h"
-#include "..\Formatting\NumberFormatting.h"
+#include "Source\Formatting\NumberFormatting.h"
 
 using namespace ArtemisEngine;
 

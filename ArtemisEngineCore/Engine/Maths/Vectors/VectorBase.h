@@ -4,8 +4,8 @@
 #include <cmath>
 #include <utility>
 
-#include "Exceptions/OutOfRangeException.h"
-#include "Exceptions/DivideByZeroException.h"
+#include "Include/Exceptions/OutOfRangeException.h"
+#include "Include/Exceptions/DivideByZeroException.h"
 #include "Include/Game/IDebugStringReturner.h"
 #include "Source/Formatting/NumberFormatting.h"
 #include "Engine/Math.h"

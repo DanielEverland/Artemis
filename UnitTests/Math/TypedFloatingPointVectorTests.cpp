@@ -3,9 +3,9 @@
 #include <map>
 
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
-#include "Exceptions/DivideByZeroException.h"
-#include "Exceptions/OutOfRangeException.h"
-#include "Exceptions/NullReferenceException.h"
+#include "Include/Exceptions/DivideByZeroException.h"
+#include "Include/Exceptions/OutOfRangeException.h"
+#include "Include/Exceptions/NullReferenceException.h"
 #include "Engine/Vector2.h"
 #include "Engine/Vector3.h"
 #include "Engine/Vector4.h"

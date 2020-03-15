@@ -1,5 +1,5 @@
 #include "GlobalObjectManager.h"
-#include "Exceptions/InvalidOperationException.h"
+#include "Include/Exceptions/InvalidOperationException.h"
 
 unsigned int GlobalObjectManager::currentAvailableIndex = 0;
 std::unordered_set<unsigned int> GlobalObjectManager::objectRegistry = {};

@@ -2,9 +2,9 @@
 #include "ApplicationArguments.h"
 
 #include "Source\Windows\GameWindow.h"
-#include "Include\Game\Output.h"
-#include "Include\Game\Time.h"
-#include "Exceptions\Exception.h"
+#include "Include/Game/Output.h"
+#include "Include/Game/Time.h"
+#include "Include/Exceptions/Exception.h"
 
 using namespace ArtemisWindow;
 

@@ -1,8 +1,8 @@
 #include "pch.h"
 
 #include "Engine/Rendering/RenderingBufferDataContainer.h"
-#include "Exceptions/NullReferenceException.h"
-#include "Exceptions/OutOfRangeException.h"
+#include "Include/Exceptions/NullReferenceException.h"
+#include "Include/Exceptions/OutOfRangeException.h"
 
 namespace Rendering::Buffer
 {

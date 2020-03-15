@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <DbgHelp.h>
 
-#include "Exception.h"
+#include "Include/Exceptions/Exception.h"
 
 const unsigned long Exception::FramesToSkip = 2;
 const unsigned long Exception::FramesToCapture = 25;

@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <typeinfo>
 
-#include "Exceptions/Exception.h"
+#include "Include/Exceptions/Exception.h"
 #include "Include/Game/IDebugStringReturner.h"
 #include "Include/Game/Output.h"
 

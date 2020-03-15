@@ -5,7 +5,7 @@
 #include <string>
 #include <atlstr.h>
 
-#include "Exceptions/DirectXException.h"
+#include "Include/Exceptions/DirectXException.h"
 #include "Include/Game/Output.h"
 
 using namespace ArtemisEngine;

@@ -5,7 +5,7 @@
 
 #include "Utility/Comparison/ComparisonUtility.h"
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
-#include "Exceptions/DivideByZeroException.h"
+#include "Include/Exceptions/DivideByZeroException.h"
 #include "Engine/IntVector2.h"
 #include "Engine/IntVector3.h"
 #include "Engine/IntVector4.h"

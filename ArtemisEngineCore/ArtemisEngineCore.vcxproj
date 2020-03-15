@@ -189,13 +189,13 @@
     <ClInclude Include="Engine\Vector2.h" />
     <ClInclude Include="Engine\Vector3.h" />
     <ClInclude Include="Engine\Vector4.h" />
-    <ClInclude Include="Exceptions\DirectXException.h" />
-    <ClInclude Include="Exceptions\DivideByZeroException.h" />
-    <ClInclude Include="Exceptions\Exception.h" />
-    <ClInclude Include="Exceptions\InvalidArgumentException.h" />
-    <ClInclude Include="Exceptions\InvalidOperationException.h" />
-    <ClInclude Include="Exceptions\NullReferenceException.h" />
-    <ClInclude Include="Exceptions\OutOfRangeException.h" />
+    <ClInclude Include="Include\Exceptions\DirectXException.h" />
+    <ClInclude Include="Include\Exceptions\DivideByZeroException.h" />
+    <ClInclude Include="Include\Exceptions\Exception.h" />
+    <ClInclude Include="Include\Exceptions\InvalidArgumentException.h" />
+    <ClInclude Include="Include\Exceptions\InvalidOperationException.h" />
+    <ClInclude Include="Include\Exceptions\NullReferenceException.h" />
+    <ClInclude Include="Include\Exceptions\OutOfRangeException.h" />
     <ClInclude Include="Include\Game\Color.h" />
     <ClInclude Include="Include\Game\IDebugStringReturner.h" />
     <ClInclude Include="Include\Game\Input.h" />
@@ -227,7 +227,6 @@
     <ClCompile Include="Engine\Object.cpp" />
     <ClCompile Include="Engine\Quaternion.cpp" />
     <ClCompile Include="Engine\Rendering\Mesh.cpp" />
-    <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Source\DirectX\DepthBuffer.cpp" />
     <ClCompile Include="Source\DirectX\GraphicsDevice.cpp" />
     <ClCompile Include="Source\DirectX\IndexBuffer.cpp" />
@@ -236,6 +235,7 @@
     <ClCompile Include="Source\DirectX\SwapChain.cpp" />
     <ClCompile Include="Source\DirectX\Texture2D.cpp" />
     <ClCompile Include="Source\DirectX\VertexBuffer.cpp" />
+    <ClCompile Include="Source\Exceptions\Exception.cpp" />
     <ClCompile Include="Source\Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Source\Game\Color.cpp" />
     <ClCompile Include="Source\Game\Input.cpp" />

@@ -2,7 +2,7 @@
 
 #include "GraphicsDevice.h"
 #include "DirectXHelper.h"
-#include "Exceptions/DirectXException.h"
+#include "Include/Exceptions/DirectXException.h"
 
 
 IDXGIAdapter* GraphicsDevice::DefaultAdapter = 0;

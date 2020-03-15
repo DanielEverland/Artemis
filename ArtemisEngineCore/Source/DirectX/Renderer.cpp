@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-#include "Exceptions/DirectXException.h"
+#include "Include/Exceptions/DirectXException.h"
 #include "VertexBuffer.h"
 
 using ArtemisWindow::IWindow;

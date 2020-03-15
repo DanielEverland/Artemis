@@ -8,9 +8,6 @@
     <Filter Include="Source OLD">
       <UniqueIdentifier>{fe3e6bee-cf61-4b1f-abd4-318da4f39cd2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Exceptions">
-      <UniqueIdentifier>{1bfa3945-9cab-4549-89d4-70c6dfaa8258}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source OLD\Engine">
       <UniqueIdentifier>{f682211d-fbff-4480-8525-4be35f72752f}</UniqueIdentifier>
     </Filter>
@@ -53,26 +50,14 @@
     <Filter Include="Source\Formatting">
       <UniqueIdentifier>{1db3ae94-bc29-4274-8712-0bfb01342528}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Exceptions">
+      <UniqueIdentifier>{2f0c8930-7c31-40ec-be4d-d397d7c44842}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Exceptions">
+      <UniqueIdentifier>{f94efa15-689f-4ae1-8202-5885abbf6852}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exceptions\DirectXException.h">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Exceptions\DivideByZeroException.h">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Exceptions\Exception.h">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Exceptions\InvalidArgumentException.h">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Exceptions\NullReferenceException.h">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Exceptions\OutOfRangeException.h">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Application.h">
       <Filter>Source OLD\Engine</Filter>
     </ClInclude>
@@ -169,9 +154,6 @@
     <ClInclude Include="Engine\Object Management\GlobalObjectManager.h">
       <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Exceptions\InvalidOperationException.h">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\SafePtr.h">
       <Filter>Source OLD\Engine</Filter>
     </ClInclude>
@@ -244,11 +226,29 @@
     <ClInclude Include="Source\Formatting\NumberFormatting.h">
       <Filter>Source\Formatting</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Exceptions\DirectXException.h">
+      <Filter>Include\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Exceptions\DivideByZeroException.h">
+      <Filter>Include\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Exceptions\Exception.h">
+      <Filter>Include\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Exceptions\InvalidArgumentException.h">
+      <Filter>Include\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Exceptions\InvalidOperationException.h">
+      <Filter>Include\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Exceptions\NullReferenceException.h">
+      <Filter>Include\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Exceptions\OutOfRangeException.h">
+      <Filter>Include\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Exceptions\Exception.cpp">
-      <Filter>Source OLD\Exceptions</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Application.cpp">
       <Filter>Source OLD\Engine</Filter>
     </ClCompile>
@@ -320,6 +320,9 @@
     </ClCompile>
     <ClCompile Include="Source\Formatting\NumberFormatting.cpp">
       <Filter>Source\Formatting</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Exceptions\Exception.cpp">
+      <Filter>Source\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

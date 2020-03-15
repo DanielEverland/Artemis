@@ -5,7 +5,7 @@
 #include <algorithm>
 
 #include "Include/Game/IDebugStringReturner.h"
-#include "Exceptions/InvalidArgumentException.h"
+#include "Include/Exceptions/InvalidArgumentException.h"
 #include "Engine/Maths/Vectors/VectorBase.h"
 #include "Engine/Quaternion.h"
 #include "Engine/Vector4.h"

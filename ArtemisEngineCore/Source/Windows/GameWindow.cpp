@@ -7,7 +7,7 @@
 #include "Include/Game/Time.h"
 #include "Include/Game/Key.h"
 #include "Include/Game/Input.h"
-#include "Exceptions/Exception.h"
+#include "Include/Exceptions/Exception.h"
 #include "Engine/Application.h"
 
 using ArtemisWindow::GameWindow;

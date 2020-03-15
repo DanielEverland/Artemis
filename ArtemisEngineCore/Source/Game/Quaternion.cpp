@@ -1,6 +1,7 @@
-#include "Quaternion.h"
-#include "Math.h"
-#include "Source\Formatting\NumberFormatting.h"
+#include "Source/Formatting/NumberFormatting.h"
+
+#include "Include/Game/Quaternion.h"
+#include "Include/Game/Math.h"
 
 using namespace ArtemisEngine;
 

@@ -1,11 +1,11 @@
 #include "pch.h"
 
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
-#include "Engine/IntVector4.h"
-#include "Engine/IntVector3.h"
-#include "Engine/IntVector2.h"
-#include "Engine/Vector2.h"
-#include "Engine/Vector3.h"
+#include "Include/Game/IntVector4.h"
+#include "Include/Game/IntVector3.h"
+#include "Include/Game/IntVector2.h"
+#include "Include/Game/Vector2.h"
+#include "Include/Game/Vector3.h"
 
 namespace Maths::Vectors
 {

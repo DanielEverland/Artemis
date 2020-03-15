@@ -2,7 +2,7 @@
 #include "pch.h"
 
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
-#include "Engine/Maths/Vectors/VectorBase.h"
+#include "Include/Maths/VectorBase.h"
 
 using ArtemisEngine::Maths::Vectors::VectorBase;
 

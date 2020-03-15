@@ -6,9 +6,9 @@
 
 #include "Include/Game/IDebugStringReturner.h"
 #include "Include/Exceptions/InvalidArgumentException.h"
-#include "Engine/Maths/Vectors/VectorBase.h"
-#include "Engine/Quaternion.h"
-#include "Engine/Vector4.h"
+#include "Include/Maths/VectorBase.h"
+#include "Include/Game/Quaternion.h"
+#include "Include/Game/Vector4.h"
 
 using namespace ArtemisEngine;
 using ArtemisEngine::Maths::Vectors::VectorBase;

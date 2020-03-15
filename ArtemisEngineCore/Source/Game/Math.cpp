@@ -1,4 +1,4 @@
-#include "Math.h"
+#include "Include/Game/Math.h"
 
 const double Math::Pi = M_PI;
 const double Math::PositiveInfinity = std::numeric_limits<double>::infinity();

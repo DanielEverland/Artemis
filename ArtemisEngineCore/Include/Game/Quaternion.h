@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Engine/Vector3.h"
+#include "Include/Game/Vector3.h"
 #include "Include/Game/IDebugStringReturner.h"
 
 using namespace ArtemisEngine;

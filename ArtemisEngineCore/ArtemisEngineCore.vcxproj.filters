@@ -56,30 +56,12 @@
     <Filter Include="Source\Exceptions">
       <UniqueIdentifier>{f94efa15-689f-4ae1-8202-5885abbf6852}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Maths">
+      <UniqueIdentifier>{300843e7-9730-4182-8a20-11dfef5456d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Application.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\IntVector2.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\IntVector3.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Vector2.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Vector3.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Vector4.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\IntVector4.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Quaternion.h">
       <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Maths\Vectors\DoubleVector2.h">
@@ -114,9 +96,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Maths\Matrices\GenericMatrix.h">
       <Filter>Source OLD\Engine\Math\Matrices</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Math.h">
-      <Filter>Source OLD\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\Mesh.h">
       <Filter>Source OLD\Engine\Rendering</Filter>
@@ -247,15 +226,66 @@
     <ClInclude Include="Include\Exceptions\OutOfRangeException.h">
       <Filter>Include\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Maths\DoubleVector2.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\DoubleVector3.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\DoubleVector4.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\FloatVector2.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\FloatVector3.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\FloatVector4.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\GenericMatrix.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\Vector2Base.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\Vector3Base.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\Vector4Base.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Maths\VectorBase.h">
+      <Filter>Include\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\IntVector2.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\IntVector3.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\IntVector4.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Math.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Quaternion.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Vector2.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Vector3.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Vector4.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Application.cpp">
-      <Filter>Source OLD\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Quaternion.cpp">
-      <Filter>Source OLD\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Math.cpp">
       <Filter>Source OLD\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Rendering\Mesh.cpp">
@@ -323,6 +353,12 @@
     </ClCompile>
     <ClCompile Include="Source\Exceptions\Exception.cpp">
       <Filter>Source\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Math.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Quaternion.cpp">
+      <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

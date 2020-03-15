@@ -235,6 +235,12 @@
     <ClInclude Include="Engine\SafePtr.h">
       <Filter>Source\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Object Management\ComponentContainer.h">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Object Management\GameObjectContainer.h">
+      <Filter>Source\Engine\Object Management</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">

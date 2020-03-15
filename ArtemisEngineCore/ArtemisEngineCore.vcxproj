@@ -183,6 +183,8 @@
     <ClInclude Include="Engine\Maths\Vectors\Vector3Base.h" />
     <ClInclude Include="Engine\Maths\Vectors\Vector4Base.h" />
     <ClInclude Include="Engine\Maths\Vectors\VectorBase.h" />
+    <ClInclude Include="Engine\Object Management\ComponentContainer.h" />
+    <ClInclude Include="Engine\Object Management\GameObjectContainer.h" />
     <ClInclude Include="Engine\Object Management\GlobalObjectManager.h" />
     <ClInclude Include="Engine\Object Management\IComponent.h" />
     <ClInclude Include="Engine\Object Management\IObject.h" />

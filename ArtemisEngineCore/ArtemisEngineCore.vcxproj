@@ -154,7 +154,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Include\Exceptions\DirectXException.h" />
     <ClInclude Include="Include\Exceptions\DivideByZeroException.h" />
     <ClInclude Include="Include\Exceptions\Exception.h" />
@@ -162,6 +161,7 @@
     <ClInclude Include="Include\Exceptions\InvalidOperationException.h" />
     <ClInclude Include="Include\Exceptions\NullReferenceException.h" />
     <ClInclude Include="Include\Exceptions\OutOfRangeException.h" />
+    <ClInclude Include="Include\Game\Application.h" />
     <ClInclude Include="Include\Game\Color.h" />
     <ClInclude Include="Include\Game\GameObject.h" />
     <ClInclude Include="Include\Game\IDebugStringReturner.h" />
@@ -218,7 +218,6 @@
     <ClInclude Include="Source\Windows\WindowProcedure.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\Application.cpp" />
     <ClCompile Include="Source\DirectX\DepthBuffer.cpp" />
     <ClCompile Include="Source\DirectX\GraphicsDevice.cpp" />
     <ClCompile Include="Source\DirectX\IndexBuffer.cpp" />
@@ -229,6 +228,7 @@
     <ClCompile Include="Source\DirectX\VertexBuffer.cpp" />
     <ClCompile Include="Source\Exceptions\Exception.cpp" />
     <ClCompile Include="Source\Formatting\NumberFormatting.cpp" />
+    <ClCompile Include="Source\Game\Application.cpp" />
     <ClCompile Include="Source\Game\Color.cpp" />
     <ClCompile Include="Source\Game\Input.cpp" />
     <ClCompile Include="Source\Game\Math.cpp" />

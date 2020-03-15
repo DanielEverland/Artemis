@@ -8,7 +8,7 @@
 #include "Include/Game/Key.h"
 #include "Include/Game/Input.h"
 #include "Include/Exceptions/Exception.h"
-#include "Engine/Application.h"
+#include "Include/Game/Application.h"
 
 using ArtemisWindow::GameWindow;
 using std::string;

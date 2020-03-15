@@ -1,6 +1,5 @@
-#include "Application.h"
-
-#include "Debugging/Output.h"
+#include "Include/Game/Application.h"
+#include "Include/Game/Output.h"
 
 bool Application::useVSync = false;
 

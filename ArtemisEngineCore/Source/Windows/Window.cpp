@@ -5,7 +5,7 @@
 #include "WindowProcedure.h"
 #include "Window.h"
 
-#include "Debugging/Output.h"
+#include "Include/Game/Output.h"
 
 namespace ArtemisWindow
 {

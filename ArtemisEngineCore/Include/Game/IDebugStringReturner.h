@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace ArtemisEngine::Debugging
+namespace ArtemisEngine
 {
 	class IDebugStringReturner
 	{

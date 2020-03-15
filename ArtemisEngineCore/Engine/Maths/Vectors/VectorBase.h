@@ -6,11 +6,11 @@
 
 #include "Exceptions/OutOfRangeException.h"
 #include "Exceptions/DivideByZeroException.h"
-#include "Debugging/IDebugStringReturner.h"
+#include "Include/Game/IDebugStringReturner.h"
 #include "Formatting/NumberFormatting.h"
 #include "Engine/Math.h"
 
-using ArtemisEngine::Debugging::IDebugStringReturner;
+using namespace ArtemisEngine;
 
 namespace ArtemisEngine::Maths::Vectors
 {

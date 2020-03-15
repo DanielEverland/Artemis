@@ -41,9 +41,6 @@
     <Filter Include="Source OLD\Direct X">
       <UniqueIdentifier>{cd37791d-0a09-49af-905c-5308bede00ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Debugging">
-      <UniqueIdentifier>{a9c6e40e-c24c-4a1e-9168-ab37d27532c8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source OLD\Formatting">
       <UniqueIdentifier>{018a452b-a22b-4598-b891-f1a797b4a2fe}</UniqueIdentifier>
     </Filter>
@@ -123,12 +120,6 @@
     </ClInclude>
     <ClInclude Include="Direct X\Texture2D.h">
       <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugging\IDebugStringReturner.h">
-      <Filter>Source OLD\Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugging\Output.h">
-      <Filter>Source OLD\Debugging</Filter>
     </ClInclude>
     <ClInclude Include="Engine\IntVector4.h">
       <Filter>Source OLD\Engine</Filter>
@@ -250,6 +241,12 @@
     <ClInclude Include="Include\Game\Time\Time.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Game\IDebugStringReturner.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Output.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -278,9 +275,6 @@
     </ClCompile>
     <ClCompile Include="Direct X\Texture2D.cpp">
       <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
-    <ClCompile Include="Debugging\Output.cpp">
-      <Filter>Source OLD\Debugging</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Quaternion.cpp">
       <Filter>Source OLD\Engine</Filter>
@@ -325,6 +319,9 @@
       <Filter>Source\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Time.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Output.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>

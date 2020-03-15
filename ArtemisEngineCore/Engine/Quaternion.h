@@ -3,10 +3,9 @@
 #include <string>
 
 #include "Engine/Vector3.h"
-#include "Debugging/IDebugStringReturner.h"
+#include "Include/Game/IDebugStringReturner.h"
 
-using ArtemisEngine::Debugging::IDebugStringReturner;
-using ArtemisEngine::Vector3;
+using namespace ArtemisEngine;
 using std::string;
 
 namespace ArtemisEngine

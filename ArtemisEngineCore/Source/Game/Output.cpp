@@ -2,7 +2,11 @@
 #include <Windows.h>
 #include <typeinfo>
 
-#include "Output.h"
+#include "Exceptions/Exception.h"
+#include "Include/Game/IDebugStringReturner.h"
+#include "Include/Game/Output.h"
+
+using namespace ArtemisEngine;
 
 void Output::Space()
 {

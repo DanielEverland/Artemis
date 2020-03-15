@@ -6,7 +6,9 @@
 #include <atlstr.h>
 
 #include "Exceptions/DirectXException.h"
-#include "Debugging/Output.h"
+#include "Include/Game/Output.h"
+
+using namespace ArtemisEngine;
 
 inline void ThrowIfFailed(HRESULT result)
 {

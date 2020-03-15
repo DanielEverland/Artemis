@@ -3,8 +3,8 @@
 #include "GameWindow.h"
 #include "WindowProcedure.h"
 
+#include "Include/Game/Output.h"
 #include "Include/Game/Time.h"
-#include "Debugging/Output.h"
 #include "Input/Key.h"
 #include "Input/Input.h"
 #include "Exceptions/Exception.h"

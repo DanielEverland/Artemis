@@ -154,8 +154,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Debugging\IDebugStringReturner.h" />
-    <ClInclude Include="Debugging\Output.h" />
     <ClInclude Include="Direct X\DepthBuffer.h" />
     <ClInclude Include="Direct X\DirectXHelper.h" />
     <ClInclude Include="Direct X\GraphicsDevice.h" />
@@ -208,6 +206,8 @@
     <ClInclude Include="Exceptions\NullReferenceException.h" />
     <ClInclude Include="Exceptions\OutOfRangeException.h" />
     <ClInclude Include="Formatting\NumberFormatting.h" />
+    <ClInclude Include="Include\Game\IDebugStringReturner.h" />
+    <ClInclude Include="Include\Game\Output.h" />
     <ClInclude Include="Include\Game\Time\Time.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\Key.h" />
@@ -218,7 +218,6 @@
     <ClInclude Include="Structs\Color.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Debugging\Output.cpp" />
     <ClCompile Include="Direct X\DepthBuffer.cpp" />
     <ClCompile Include="Direct X\GraphicsDevice.cpp" />
     <ClCompile Include="Direct X\IndexBuffer.cpp" />
@@ -238,6 +237,7 @@
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Input\Input.cpp" />
+    <ClCompile Include="Source\Game\Output.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
     <ClCompile Include="Source\Windows\GameWindow.cpp" />
     <ClCompile Include="Source\Windows\Window.cpp" />

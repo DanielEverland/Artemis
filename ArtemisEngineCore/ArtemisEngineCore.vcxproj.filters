@@ -38,9 +38,6 @@
     <Filter Include="Source OLD\Engine\Object Management">
       <UniqueIdentifier>{3f0c3ec3-408b-46da-aaa4-9c729fa8caa7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Direct X">
-      <UniqueIdentifier>{cd37791d-0a09-49af-905c-5308bede00ae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source OLD\Formatting">
       <UniqueIdentifier>{018a452b-a22b-4598-b891-f1a797b4a2fe}</UniqueIdentifier>
     </Filter>
@@ -58,6 +55,9 @@
     </Filter>
     <Filter Include="Source\Game">
       <UniqueIdentifier>{76434074-1e5e-4948-8e26-60dd16919ee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\DirectX">
+      <UniqueIdentifier>{ebee4793-350e-4359-b494-528a22943bc8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -106,21 +106,6 @@
     <ClInclude Include="Engine\Vector4.h">
       <Filter>Source OLD\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Direct X\DepthBuffer.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\DirectXHelper.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\RenderTargetView.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\SwapChain.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\Texture2D.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\IntVector4.h">
       <Filter>Source OLD\Engine</Filter>
     </ClInclude>
@@ -168,18 +153,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Rendering\Mesh.h">
       <Filter>Source OLD\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\VertexBuffer.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\IndexBuffer.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\Renderer.h">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct X\GraphicsDevice.h">
-      <Filter>Source OLD\Direct X</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Rendering\IndexBufferData.h">
       <Filter>Source OLD\Engine\Rendering</Filter>
@@ -247,6 +220,36 @@
     <ClInclude Include="Include\Game\Output.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Source\DirectX\DepthBuffer.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\DirectXHelper.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\GraphicsDevice.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\IndexBuffer.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\Renderer.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\RenderTargetView.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\SwapChain.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\Texture2D.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\VertexBuffer.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\VertexBufferConverter.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
@@ -261,21 +264,6 @@
     <ClCompile Include="Engine\Application.cpp">
       <Filter>Source OLD\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Direct X\DepthBuffer.cpp">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
-    <ClCompile Include="Direct X\GraphicsDevice.cpp">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
-    <ClCompile Include="Direct X\RenderTargetView.cpp">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
-    <ClCompile Include="Direct X\SwapChain.cpp">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
-    <ClCompile Include="Direct X\Texture2D.cpp">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Quaternion.cpp">
       <Filter>Source OLD\Engine</Filter>
     </ClCompile>
@@ -287,15 +275,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Rendering\Mesh.cpp">
       <Filter>Source OLD\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Direct X\VertexBuffer.cpp">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
-    <ClCompile Include="Direct X\IndexBuffer.cpp">
-      <Filter>Source OLD\Direct X</Filter>
-    </ClCompile>
-    <ClCompile Include="Direct X\Renderer.cpp">
-      <Filter>Source OLD\Direct X</Filter>
     </ClCompile>
     <ClCompile Include="Engine\GameObject.cpp">
       <Filter>Source OLD\Engine</Filter>
@@ -323,6 +302,30 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Output.cpp">
       <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\DepthBuffer.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\GraphicsDevice.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\IndexBuffer.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\Renderer.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\RenderTargetView.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\SwapChain.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\Texture2D.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\VertexBuffer.cpp">
+      <Filter>Source\DirectX</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

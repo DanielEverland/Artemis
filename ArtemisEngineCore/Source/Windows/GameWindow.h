@@ -11,7 +11,7 @@
 #include <chrono>
 
 #include "Window.h"
-#include "Direct X/Renderer.h"
+#include "Source/DirectX/Renderer.h"
 
 using namespace Microsoft::WRL;
 

@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "Direct X/GraphicsDevice.h"
-#include "Direct X/SwapChain.h"
-#include "Direct X/DepthBuffer.h"
-#include "Direct X/RenderTargetView.h"
+#include "Source/DirectX/GraphicsDevice.h"
+#include "Source/DirectX/SwapChain.h"
+#include "Source/DirectX/DepthBuffer.h"
+#include "Source/DirectX/RenderTargetView.h"
 #include "Source/Windows/IWindow.h"
 
 #include "Structs/Color.h"

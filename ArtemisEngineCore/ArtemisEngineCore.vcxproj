@@ -154,15 +154,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Direct X\DepthBuffer.h" />
-    <ClInclude Include="Direct X\DirectXHelper.h" />
-    <ClInclude Include="Direct X\GraphicsDevice.h" />
-    <ClInclude Include="Direct X\IndexBuffer.h" />
-    <ClInclude Include="Direct X\Renderer.h" />
-    <ClInclude Include="Direct X\RenderTargetView.h" />
-    <ClInclude Include="Direct X\SwapChain.h" />
-    <ClInclude Include="Direct X\Texture2D.h" />
-    <ClInclude Include="Direct X\VertexBuffer.h" />
     <ClInclude Include="Engine\Application.h" />
     <ClInclude Include="Engine\ComponentContainer.h" />
     <ClInclude Include="Engine\GameObject.h" />
@@ -211,6 +202,16 @@
     <ClInclude Include="Include\Game\Time\Time.h" />
     <ClInclude Include="Input\Input.h" />
     <ClInclude Include="Input\Key.h" />
+    <ClInclude Include="Source\DirectX\DepthBuffer.h" />
+    <ClInclude Include="Source\DirectX\DirectXHelper.h" />
+    <ClInclude Include="Source\DirectX\GraphicsDevice.h" />
+    <ClInclude Include="Source\DirectX\IndexBuffer.h" />
+    <ClInclude Include="Source\DirectX\Renderer.h" />
+    <ClInclude Include="Source\DirectX\RenderTargetView.h" />
+    <ClInclude Include="Source\DirectX\SwapChain.h" />
+    <ClInclude Include="Source\DirectX\Texture2D.h" />
+    <ClInclude Include="Source\DirectX\VertexBuffer.h" />
+    <ClInclude Include="Source\DirectX\VertexBufferConverter.h" />
     <ClInclude Include="Source\Windows\GameWindow.h" />
     <ClInclude Include="Source\Windows\IWindow.h" />
     <ClInclude Include="Source\Windows\Window.h" />
@@ -218,14 +219,6 @@
     <ClInclude Include="Structs\Color.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Direct X\DepthBuffer.cpp" />
-    <ClCompile Include="Direct X\GraphicsDevice.cpp" />
-    <ClCompile Include="Direct X\IndexBuffer.cpp" />
-    <ClCompile Include="Direct X\Renderer.cpp" />
-    <ClCompile Include="Direct X\RenderTargetView.cpp" />
-    <ClCompile Include="Direct X\SwapChain.cpp" />
-    <ClCompile Include="Direct X\Texture2D.cpp" />
-    <ClCompile Include="Direct X\VertexBuffer.cpp" />
     <ClCompile Include="Engine\Application.cpp" />
     <ClCompile Include="Engine\ComponentContainer.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
@@ -237,6 +230,14 @@
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Input\Input.cpp" />
+    <ClCompile Include="Source\DirectX\DepthBuffer.cpp" />
+    <ClCompile Include="Source\DirectX\GraphicsDevice.cpp" />
+    <ClCompile Include="Source\DirectX\IndexBuffer.cpp" />
+    <ClCompile Include="Source\DirectX\Renderer.cpp" />
+    <ClCompile Include="Source\DirectX\RenderTargetView.cpp" />
+    <ClCompile Include="Source\DirectX\SwapChain.cpp" />
+    <ClCompile Include="Source\DirectX\Texture2D.cpp" />
+    <ClCompile Include="Source\DirectX\VertexBuffer.cpp" />
     <ClCompile Include="Source\Game\Output.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
     <ClCompile Include="Source\Windows\GameWindow.cpp" />

@@ -8,9 +8,6 @@
     <Filter Include="Source OLD">
       <UniqueIdentifier>{fe3e6bee-cf61-4b1f-abd4-318da4f39cd2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Structs">
-      <UniqueIdentifier>{260edd3e-c4f9-4ba6-80ca-6c6a6b43ee9a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source OLD\Input">
       <UniqueIdentifier>{10b6eb54-0cff-4c9e-a81d-537cf183a78f}</UniqueIdentifier>
     </Filter>
@@ -61,9 +58,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Structs\Color.h">
-      <Filter>Source OLD\Structs</Filter>
-    </ClInclude>
     <ClInclude Include="Input\Input.h">
       <Filter>Source OLD\Input</Filter>
     </ClInclude>
@@ -250,11 +244,11 @@
     <ClInclude Include="Source\DirectX\VertexBufferConverter.h">
       <Filter>Source\DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Game\Color.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Structs\Color.cpp">
-      <Filter>Source OLD\Structs</Filter>
-    </ClCompile>
     <ClCompile Include="Input\Input.cpp">
       <Filter>Source OLD\Input</Filter>
     </ClCompile>
@@ -326,6 +320,9 @@
     </ClCompile>
     <ClCompile Include="Source\DirectX\VertexBuffer.cpp">
       <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Color.cpp">
+      <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

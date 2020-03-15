@@ -7,8 +7,8 @@
 #include "Source/DirectX/DepthBuffer.h"
 #include "Source/DirectX/RenderTargetView.h"
 #include "Source/Windows/IWindow.h"
+#include "Include/Game/Color.h"
 
-#include "Structs/Color.h"
 #include "Engine/Rendering/Mesh.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"

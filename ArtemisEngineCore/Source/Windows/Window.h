@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #include "IWindow.h"
-#include "Structs/Color.h"
+#include "Include/Game/Color.h"
 
 // The min/max macros conflict with like-named member functions.
 // Only use std::min and std::max defined in <algorithm>.

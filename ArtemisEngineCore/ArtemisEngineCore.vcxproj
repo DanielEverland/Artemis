@@ -197,6 +197,7 @@
     <ClInclude Include="Exceptions\NullReferenceException.h" />
     <ClInclude Include="Exceptions\OutOfRangeException.h" />
     <ClInclude Include="Formatting\NumberFormatting.h" />
+    <ClInclude Include="Include\Game\Color.h" />
     <ClInclude Include="Include\Game\IDebugStringReturner.h" />
     <ClInclude Include="Include\Game\Output.h" />
     <ClInclude Include="Include\Game\Time\Time.h" />
@@ -216,7 +217,6 @@
     <ClInclude Include="Source\Windows\IWindow.h" />
     <ClInclude Include="Source\Windows\Window.h" />
     <ClInclude Include="Source\Windows\WindowProcedure.h" />
-    <ClInclude Include="Structs\Color.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Application.cpp" />
@@ -238,12 +238,12 @@
     <ClCompile Include="Source\DirectX\SwapChain.cpp" />
     <ClCompile Include="Source\DirectX\Texture2D.cpp" />
     <ClCompile Include="Source\DirectX\VertexBuffer.cpp" />
+    <ClCompile Include="Source\Game\Color.cpp" />
     <ClCompile Include="Source\Game\Output.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
     <ClCompile Include="Source\Windows\GameWindow.cpp" />
     <ClCompile Include="Source\Windows\Window.cpp" />
     <ClCompile Include="Source\Windows\WindowProcedure.cpp" />
-    <ClCompile Include="Structs\Color.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

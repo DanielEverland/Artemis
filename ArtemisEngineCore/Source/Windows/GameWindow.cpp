@@ -5,8 +5,8 @@
 
 #include "Include/Game/Output.h"
 #include "Include/Game/Time.h"
-#include "Input/Key.h"
-#include "Input/Input.h"
+#include "Include/Game/Key.h"
+#include "Include/Game/Input.h"
 #include "Exceptions/Exception.h"
 #include "Engine/Application.h"
 

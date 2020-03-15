@@ -8,9 +8,6 @@
     <Filter Include="Source OLD">
       <UniqueIdentifier>{fe3e6bee-cf61-4b1f-abd4-318da4f39cd2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Input">
-      <UniqueIdentifier>{10b6eb54-0cff-4c9e-a81d-537cf183a78f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source OLD\Exceptions">
       <UniqueIdentifier>{1bfa3945-9cab-4549-89d4-70c6dfaa8258}</UniqueIdentifier>
     </Filter>
@@ -58,12 +55,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Input\Input.h">
-      <Filter>Source OLD\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Input\Key.h">
-      <Filter>Source OLD\Input</Filter>
-    </ClInclude>
     <ClInclude Include="Exceptions\DirectXException.h">
       <Filter>Source OLD\Exceptions</Filter>
     </ClInclude>
@@ -247,11 +238,14 @@
     <ClInclude Include="Include\Game\Color.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Game\Input.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Key.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Input\Input.cpp">
-      <Filter>Source OLD\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Exceptions\Exception.cpp">
       <Filter>Source OLD\Exceptions</Filter>
     </ClCompile>
@@ -322,6 +316,9 @@
       <Filter>Source\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Color.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Input.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>

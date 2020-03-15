@@ -3,7 +3,7 @@
 #include <map>
 #include <set>
 
-#include "Input/Key.h"
+#include "Key.h"
 
 namespace ArtemisWindow
 {

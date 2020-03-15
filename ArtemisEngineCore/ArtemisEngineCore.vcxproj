@@ -199,10 +199,10 @@
     <ClInclude Include="Formatting\NumberFormatting.h" />
     <ClInclude Include="Include\Game\Color.h" />
     <ClInclude Include="Include\Game\IDebugStringReturner.h" />
+    <ClInclude Include="Include\Game\Input.h" />
+    <ClInclude Include="Include\Game\Key.h" />
     <ClInclude Include="Include\Game\Output.h" />
     <ClInclude Include="Include\Game\Time\Time.h" />
-    <ClInclude Include="Input\Input.h" />
-    <ClInclude Include="Input\Key.h" />
     <ClInclude Include="Source\DirectX\DepthBuffer.h" />
     <ClInclude Include="Source\DirectX\DirectXHelper.h" />
     <ClInclude Include="Source\DirectX\GraphicsDevice.h" />
@@ -229,7 +229,6 @@
     <ClCompile Include="Engine\Rendering\Mesh.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Formatting\NumberFormatting.cpp" />
-    <ClCompile Include="Input\Input.cpp" />
     <ClCompile Include="Source\DirectX\DepthBuffer.cpp" />
     <ClCompile Include="Source\DirectX\GraphicsDevice.cpp" />
     <ClCompile Include="Source\DirectX\IndexBuffer.cpp" />
@@ -239,6 +238,7 @@
     <ClCompile Include="Source\DirectX\Texture2D.cpp" />
     <ClCompile Include="Source\DirectX\VertexBuffer.cpp" />
     <ClCompile Include="Source\Game\Color.cpp" />
+    <ClCompile Include="Source\Game\Input.cpp" />
     <ClCompile Include="Source\Game\Output.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
     <ClCompile Include="Source\Windows\GameWindow.cpp" />

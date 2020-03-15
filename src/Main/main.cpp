@@ -2,7 +2,7 @@
 #include "ApplicationArguments.h"
 
 #include "Source\Windows\GameWindow.h"
-#include "Time\Time.h"
+#include "Include\Game\Time.h"
 #include "Exceptions\Exception.h"
 #include "Debugging\Output.h"
 

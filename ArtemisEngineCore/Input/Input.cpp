@@ -1,6 +1,6 @@
 #include "Input.h"
 
-#include "Time/Time.h"
+#include "Include/Game/Time.h"
 #include "Exceptions/InvalidArgumentException.h"
 #include "Debugging/Output.h"
 

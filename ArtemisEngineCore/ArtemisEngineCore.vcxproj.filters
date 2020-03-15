@@ -11,12 +11,6 @@
     <Filter Include="Source OLD\Structs">
       <UniqueIdentifier>{260edd3e-c4f9-4ba6-80ca-6c6a6b43ee9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Windows">
-      <UniqueIdentifier>{83baf69d-7c78-4fea-ab9e-b8fbc1492b86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source OLD\Time">
-      <UniqueIdentifier>{d47c05b0-b30a-46da-8467-6f96d15647d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source OLD\Input">
       <UniqueIdentifier>{10b6eb54-0cff-4c9e-a81d-537cf183a78f}</UniqueIdentifier>
     </Filter>
@@ -59,13 +53,19 @@
     <Filter Include="Source\Windows">
       <UniqueIdentifier>{5a2d8c7a-50f5-46eb-8288-cdfa667a2390}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{fc4edb29-7002-4871-9eeb-63c2c8c831fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Game">
+      <UniqueIdentifier>{4a878c62-1d0f-4e05-8b6d-70748be86d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game">
+      <UniqueIdentifier>{76434074-1e5e-4948-8e26-60dd16919ee1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Structs\Color.h">
       <Filter>Source OLD\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Time\Time.h">
-      <Filter>Source OLD\Time</Filter>
     </ClInclude>
     <ClInclude Include="Input\Input.h">
       <Filter>Source OLD\Input</Filter>
@@ -247,13 +247,13 @@
     <ClInclude Include="Source\Windows\WindowProcedure.h">
       <Filter>Source\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Game\Time\Time.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Structs\Color.cpp">
       <Filter>Source OLD\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="Time\Time.cpp">
-      <Filter>Source OLD\Time</Filter>
     </ClCompile>
     <ClCompile Include="Input\Input.cpp">
       <Filter>Source OLD\Input</Filter>
@@ -323,6 +323,9 @@
     </ClCompile>
     <ClCompile Include="Source\Windows\WindowProcedure.cpp">
       <Filter>Source\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Time.cpp">
+      <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

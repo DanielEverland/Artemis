@@ -40,7 +40,6 @@
     <ClInclude Include="Utility\Comparison\ComparisonUtilityVectors.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Components\ComponentTests.cpp" />
     <ClCompile Include="Engine\Object Management\ObjectContainer.cpp" />
     <ClCompile Include="Engine\Object Management\SafeObjRef.cpp" />
     <ClCompile Include="Engine\Object Management\SafePtr.cpp" />

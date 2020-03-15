@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Object Management/IObject.h"
-#include "Object Management/GlobalObjectManager.h"
+#include "Source/Game/Object Management/IObject.h"
+#include "Source/Game/Object Management/GlobalObjectManager.h"
 
 class Object : public IObject
 {

@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include "Engine/Object Management/ObjectContainer.h"
-#include "Engine/SafePtr.h"
+#include "Source/Game/Object Management/ObjectContainer.h"
+#include "Include/Game/SafePtr.h"
 
 using namespace ArtemisEngine;
 

@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "SafeObjRef.h"
-#include "Engine/SafePtr.h"
+#include "Include/Game/SafePtr.h"
 
 namespace ArtemisEngine
 {

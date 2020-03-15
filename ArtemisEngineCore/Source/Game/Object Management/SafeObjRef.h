@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "Engine/SafePtr.h"
+#include "Include/Game/SafePtr.h"
 
 namespace ArtemisEngine
 {

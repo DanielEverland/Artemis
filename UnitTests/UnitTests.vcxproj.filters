@@ -44,9 +44,6 @@
     <ClCompile Include="Rendering\RenderBuffer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Components\ComponentTests.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Object Management\SafePtr.cpp">
       <Filter>Engine\Object Management</Filter>
     </ClCompile>
@@ -84,9 +81,6 @@
     </Filter>
     <Filter Include="Rendering">
       <UniqueIdentifier>{c3e7a6fc-ddc5-4c25-82a2-218be2c3359c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{ba211eb9-61dc-4b20-9718-b6f1ce8ddae7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{2fc9e0f0-57d2-44cb-9d68-50b0b2f79bcf}</UniqueIdentifier>

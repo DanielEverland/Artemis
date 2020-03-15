@@ -11,12 +11,6 @@
     <Filter Include="Source OLD\Engine">
       <UniqueIdentifier>{f682211d-fbff-4480-8525-4be35f72752f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source OLD\Engine\Base Components">
-      <UniqueIdentifier>{65de2926-67b8-45ad-a39f-187c2d3f8d75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source OLD\Engine\Object Management">
-      <UniqueIdentifier>{3f0c3ec3-408b-46da-aaa4-9c729fa8caa7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source">
       <UniqueIdentifier>{96fe5c37-550a-424a-b59f-f2911cb35739}</UniqueIdentifier>
     </Filter>
@@ -50,43 +44,13 @@
     <Filter Include="Source\Game\Rendering">
       <UniqueIdentifier>{42fa60bd-5c63-402e-8b93-35fabca4d355}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game\Object Management">
+      <UniqueIdentifier>{2a87ab4d-195c-4288-a8d8-e0d0d16c6dfd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Application.h">
       <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\GameObject.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\ComponentContainer.h">
-      <Filter>Source OLD\Engine\Base Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object Management\ObjectContainer.h">
-      <Filter>Source OLD\Engine\Object Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object Management\SafeObjRef.h">
-      <Filter>Source OLD\Engine\Object Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object Management\IComponent.h">
-      <Filter>Source OLD\Engine\Object Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object Management\IObject.h">
-      <Filter>Source OLD\Engine\Object Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object Management\GlobalObjectManager.h">
-      <Filter>Source OLD\Engine\Object Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\SafePtr.h">
-      <Filter>Source OLD\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object Management\ComponentContainer.h">
-      <Filter>Source OLD\Engine\Object Management</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Object Management\GameObjectContainer.h">
-      <Filter>Source OLD\Engine\Object Management</Filter>
     </ClInclude>
     <ClInclude Include="Source\Windows\GameWindow.h">
       <Filter>Source\Windows</Filter>
@@ -241,21 +205,39 @@
     <ClInclude Include="Include\Game\Mesh.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Game\Object.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\SafePtr.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\GameObject.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\ComponentContainer.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\GameObjectContainer.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\GlobalObjectManager.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\IComponent.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\IObject.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\ObjectContainer.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\SafeObjRef.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Application.cpp">
-      <Filter>Source OLD\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\GameObject.cpp">
-      <Filter>Source OLD\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\ComponentContainer.cpp">
-      <Filter>Source OLD\Engine\Base Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Object Management\GlobalObjectManager.cpp">
-      <Filter>Source OLD\Engine\Object Management</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Object.cpp">
       <Filter>Source OLD\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Windows\GameWindow.cpp">
@@ -317,6 +299,18 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Rendering\Mesh.cpp">
       <Filter>Source\Game\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Object Management\ComponentContainer.cpp">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Object Management\GameObject.cpp">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Object Management\GlobalObjectManager.cpp">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Object Management\Object.cpp">
+      <Filter>Source\Game\Object Management</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

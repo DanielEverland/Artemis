@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include "Object Management/IComponent.h"
+#include "Source/Game/Object Management/IComponent.h"
 
 using std::weak_ptr;
 using std::unique_ptr;

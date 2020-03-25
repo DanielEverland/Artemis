@@ -229,6 +229,9 @@
     <ClInclude Include="Include\Game\Application.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Object Management\ObjectCounter.h">
+      <Filter>Source\Game\Object Management</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Windows\GameWindow.cpp">
@@ -305,6 +308,9 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Application.cpp">
       <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Object Management\ObjectCounter.cpp">
+      <Filter>Source\Game\Object Management</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,7 +10,6 @@ HMODULE GraphicsDevice::DefaultSoftwareDevice = 0;
 
 const std::map<D3D_FEATURE_LEVEL, string> GraphicsDevice::featureLevelNames
 {
-	{ D3D_FEATURE_LEVEL_1_0_CORE, "MCDM Core 1.0" },
 	{ D3D_FEATURE_LEVEL_9_1, "9.3" },
 	{ D3D_FEATURE_LEVEL_9_2, "9.2" },
 	{ D3D_FEATURE_LEVEL_9_3, "9.3" },

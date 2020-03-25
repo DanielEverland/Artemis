@@ -23,7 +23,7 @@
     <ProjectGuid>{D6F75E89-595F-4BAB-939A-3CF95376482D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ArtemisEngineCore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;ARTEMISENGINECORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Boost\boost_1_72_0;..\ArtemisEngineCore</AdditionalIncludeDirectories>
@@ -210,6 +210,7 @@
     <ClInclude Include="Source\Game\Object Management\IComponent.h" />
     <ClInclude Include="Source\Game\Object Management\IObject.h" />
     <ClInclude Include="Source\Game\Object Management\ObjectContainer.h" />
+    <ClInclude Include="Source\Game\Object Management\ObjectCounter.h" />
     <ClInclude Include="Source\Game\Object Management\SafeObjRef.h" />
     <ClInclude Include="Source\Game\Rendering\RenderingBufferDataContainer.h" />
     <ClInclude Include="Source\Windows\GameWindow.h" />
@@ -236,6 +237,7 @@
     <ClCompile Include="Source\Game\Object Management\GameObject.cpp" />
     <ClCompile Include="Source\Game\Object Management\GlobalObjectManager.cpp" />
     <ClCompile Include="Source\Game\Object Management\Object.cpp" />
+    <ClCompile Include="Source\Game\Object Management\ObjectCounter.cpp" />
     <ClCompile Include="Source\Game\Output.cpp" />
     <ClCompile Include="Source\Game\Quaternion.cpp" />
     <ClCompile Include="Source\Game\Rendering\Mesh.cpp" />

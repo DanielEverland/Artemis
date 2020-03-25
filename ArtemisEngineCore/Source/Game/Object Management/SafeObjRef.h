@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 
 #include "Include/Game/SafePtr.h"
 
@@ -22,24 +23,26 @@ namespace ArtemisEngine
 	public:
 		SafeObjRef(T*&& ptr)
 		{
-			obj = shared_ptr<T>(ptr);
+			counter = new ObjectCounter(std::move(ptr));
+		}
+		~SafeObjRef()
+		{
+			counter->Delete();
 		}
 		
 		// Creates a SafePtr to the referenced object.
-		SafePtr<T> GetSafePtr() const
+		SafePtr<T> GetSafePtr()
 		{
-			return SafePtr<T>(std::weak_ptr<T>(obj), obj.get());
+			return counter->GetSafePtr<T>();
 		}
 
 		// Returns a raw pointer to the referenced object.
 		T* GetRaw() const
 		{
-			return obj.get();
+			return counter->GetRaw<T>();
 		}
 
 	private:
-		// This pointer should _never_ be shared outside of this class
-		// Use it as if it were a unique_ptr
-		shared_ptr<T> obj;
+		ObjectCounter* counter;
 	};
 }

@@ -46,7 +46,7 @@ TEST(ObjectContainerTest, Contains)
 {
 	ObjectContainer<TestClass> container;
 	SafePtr<TestClass> ptr = container.Add();
-	SafePtr<TestClass> emptyPtr;
+	SafePtr<TestClass> emptyPtr = {};
 
 	SafePtr<TestClass> removedPtr = container.Add();
 	container.Remove(removedPtr);

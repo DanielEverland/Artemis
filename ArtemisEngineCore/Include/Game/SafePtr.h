@@ -1,14 +1,9 @@
 #pragma once
 
-#include <memory>
+#include "Source/Game/Object Management/ObjectCounter.h"
 
 namespace ArtemisEngine
 {
-	template<class T>
-	class SafeObjRef;
-
-	using std::weak_ptr;
-
 	// Provides a pointer that allows you to safely check
 	// whether the object it points to has been destroyed.
 	//
@@ -19,30 +14,34 @@ namespace ArtemisEngine
 	{
 	public:
 		SafePtr() = default;
+		SafePtr(ObjectCounter* counter)
+		{
+			this->counter = counter;
+		}
 		~SafePtr() = default;
 		
 		// Returns whether the pointer is valid for dereferencing.
 		bool IsValid()
 		{
-			return !ptr.expired();
+			return counter->IsAlive();
 		}
 
 		// Returns a raw pointer to the pointed to object.
 		T* GetRaw()
 		{
-			return rawPtr;
+			return counter->GetRaw<T>();
 		}
 
 		// Dereferences the pointed to object.
 		T* operator->()
 		{
-			return rawPtr;
+			return GetRaw();
 		}
 
 		// Implicitly converts to raw pointer of pointer to object.
 		operator T* ()
 		{
-			return rawPtr;
+			return GetRaw();
 		}
 
 		// Returns whether the pointer can be safely dereferenced
@@ -52,16 +51,6 @@ namespace ArtemisEngine
 		}
 
 	private:
-		friend class SafeObjRef<T>;
-		SafePtr(weak_ptr<T>& objReference, T* rawPtr)
-		{
-			this->ptr = objReference;
-			this->rawPtr = rawPtr;
-		}
-
-		// The weak pointer is used to check for validity
-		// The raw pointer is used for dereferencing
-		weak_ptr<T> ptr;
-		T* rawPtr;
+		ObjectCounter* counter;
 	};
 }

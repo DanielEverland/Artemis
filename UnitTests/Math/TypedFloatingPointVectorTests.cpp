@@ -6,9 +6,9 @@
 #include "Include/Exceptions/DivideByZeroException.h"
 #include "Include/Exceptions/OutOfRangeException.h"
 #include "Include/Exceptions/NullReferenceException.h"
-#include "Engine/Vector2.h"
-#include "Engine/Vector3.h"
-#include "Engine/Vector4.h"
+#include "Include/Game/Vector2.h"
+#include "Include/Game/Vector3.h"
+#include "Include/Game/Vector4.h"
 
 #define Infinity std::numeric_limits<double>::infinity()
 

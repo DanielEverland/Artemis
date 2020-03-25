@@ -5,6 +5,9 @@
 #define ExpectEqual(expectedValue, actualValue) \
 	EXPECT_EQ(expectedValue, actualValue);
 
+#define ExpectNotEqual(expectedValue, actualValue) \
+	EXPECT_NE(expectedValue, actualValue);
+
 #define ExpectNear(expectedValue, actualValue) \
 	EXPECT_NEAR(expectedValue, actualValue, NearComparisonPrecision);
 

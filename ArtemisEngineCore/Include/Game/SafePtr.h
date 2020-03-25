@@ -1,10 +1,14 @@
 #pragma once
 
+
 #include "Include/Exceptions/NullReferenceException.h"
 #include "Source/Game/Object Management/ObjectCounter.h"
 
 namespace ArtemisEngine
 {
+	template<class T>
+	class SafeObjRef;
+
 	// Provides a pointer that allows you to safely check
 	// whether the object it points to has been destroyed.
 	//
@@ -76,6 +80,17 @@ namespace ArtemisEngine
 		operator bool()
 		{
 			return IsValid();
+		}
+
+		template<class TOther>
+		bool operator==(const SafePtr<TOther>& other) const
+		{
+			return other.counter == this->counter;
+		}
+		template<class TOther>
+		bool operator!=(const SafePtr<TOther>& other) const
+		{
+			return other.counter != this->counter;
 		}
 
 		SafePtr<T>& operator=(const SafePtr<T>& other)

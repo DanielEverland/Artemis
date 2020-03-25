@@ -66,11 +66,6 @@ TEST(SafePtrTest, Copy)
 	ExpectEqual(ptr.GetRaw(), copyConstructionPtr.GetRaw());
 	ExpectEqual(ptr.GetRaw(), copyAssignmentPtr.GetRaw());
 }
-template<class T>
-SafePtr<T>& MoveAssignmentTest()
-{
-	return SafePtr<T>();
-}
 TEST(SafePtrTest, Move)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
@@ -102,4 +97,42 @@ TEST(SafePtrTest, NullPtrCopyException)
 
 	ExpectThrow(copyTarget = SafePtr<TestClass>(ptr), NullReferenceException);
 	ExpectThrow(copyTarget = ptr, NullReferenceException);
+}
+
+TEST(SafePtrTest, Equality)
+{
+	SafeObjRef<TestClass> objRefA(new TestClass());
+	SafeObjRef<TestClass> objRefB(new TestClass());
+	SafePtr<TestClass> AA = objRefA.GetSafePtr();
+	SafePtr<TestClass> AB = objRefA.GetSafePtr();
+	SafePtr<TestClass> BA = objRefB.GetSafePtr();
+	SafePtr<TestClass> CA;
+	SafePtr<TestClass> CB;
+
+	ExpectEqual(AA, AB);
+	ExpectEqual(CA, CB);
+
+	// Not using ExpectNotEqual to ensure we're testing equality operator
+	ExpectFalse(AA == BA);
+	ExpectFalse(AA == CA);
+	ExpectFalse(BA == CA);
+}
+
+TEST(SafePtrTest, Inequality)
+{
+	SafeObjRef<TestClass> objRefA(new TestClass());
+	SafeObjRef<TestClass> objRefB(new TestClass());
+	SafePtr<TestClass> AA = objRefA.GetSafePtr();
+	SafePtr<TestClass> AB = objRefA.GetSafePtr();
+	SafePtr<TestClass> BA = objRefB.GetSafePtr();
+	SafePtr<TestClass> CA;
+	SafePtr<TestClass> CB;
+
+	ExpectNotEqual(AA, BA);
+	ExpectNotEqual(AA, CA);
+	ExpectNotEqual(BA, CA);
+
+	// Not using ExpectEqual to ensure we're testing inequality operator
+	ExpectFalse(AA != AB);
+	ExpectFalse(CA != CB);
 }

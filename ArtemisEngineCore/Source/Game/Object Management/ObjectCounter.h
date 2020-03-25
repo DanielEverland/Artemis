@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Include/Exceptions/InvalidOperationException.h"
-
 namespace ArtemisEngine
 {
 	template<class T>

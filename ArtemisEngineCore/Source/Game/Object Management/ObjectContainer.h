@@ -15,7 +15,7 @@ namespace ArtemisEngine
 	public:
 		SafePtr<T> Add()
 		{
-			objects.push_back(SafeObjRef(new T()));
+			objects.push_back(std::move(SafeObjRef(new T())));
 			return objects.back().GetSafePtr();
 		}
 		void Remove(SafePtr<T> toRemove)
@@ -33,7 +33,7 @@ namespace ArtemisEngine
 				}
 			}
 		}
-		bool Contains(SafePtr<T> ptr) const
+		bool Contains(SafePtr<T>& ptr) const
 		{
 			if (!ptr.IsValid())
 				return false;

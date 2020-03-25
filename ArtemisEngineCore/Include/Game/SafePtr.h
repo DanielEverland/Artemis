@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Include/Exceptions/NullReferenceException.h"
 #include "Source/Game/Object Management/ObjectCounter.h"
 
 namespace ArtemisEngine
@@ -14,6 +15,20 @@ namespace ArtemisEngine
 	{
 	public:
 		SafePtr() = default;
+		SafePtr(const SafePtr<T>& other)
+		{
+			if (other.IsNull())
+				throw NullReferenceException("Attempted to copy null safeptr");
+			
+			this->counter = other.counter;
+			this->counter->AddWatcher();
+		}
+		SafePtr(SafePtr<T>&& other)
+		{
+			this->counter = other.counter;
+
+			other.counter = nullptr;
+		}
 		SafePtr(ObjectCounter* counter)
 		{
 			this->counter = counter;
@@ -21,9 +36,15 @@ namespace ArtemisEngine
 		~SafePtr() = default;
 		
 		// Returns whether the pointer is valid for dereferencing.
-		bool IsValid()
+		bool IsValid() const
 		{
-			return counter->IsAlive();
+			return !IsNull() && counter->IsAlive();
+		}
+
+		// Does this pointer not hold a reference to anything?
+		bool IsNull() const
+		{
+			return counter == nullptr;
 		}
 
 		// Returns a raw pointer to the pointed to object.
@@ -48,6 +69,23 @@ namespace ArtemisEngine
 		operator bool()
 		{
 			return IsValid();
+		}
+
+		SafePtr<T>& operator=(const SafePtr<T>& other)
+		{
+			if (other.IsNull())
+				throw NullReferenceException("Attempted to copy null safeptr");
+
+			this->counter = other.counter;
+			this->counter->AddWatcher();
+		}
+		SafePtr<T>& operator=(SafePtr<T>&& other)
+		{
+			this->counter = other.counter;
+
+			other.counter = nullptr;
+
+			return *this;
 		}
 
 	private:

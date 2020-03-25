@@ -21,13 +21,22 @@ namespace ArtemisEngine
 	class SafeObjRef
 	{
 	public:
+		SafeObjRef(const SafeObjRef<T>& other) = delete;
+		SafeObjRef(SafeObjRef<T>&& other)
+		{
+			this->counter = other.counter;
+
+			other.counter = nullptr;
+		}
 		SafeObjRef(T*&& ptr)
 		{
 			counter = new ObjectCounter(std::move(ptr));
 		}
 		~SafeObjRef()
 		{
-			counter->Delete();
+			// Can be true if moved
+			if(counter != nullptr)
+				counter->Delete();
 		}
 		
 		// Creates a SafePtr to the referenced object.
@@ -40,6 +49,16 @@ namespace ArtemisEngine
 		T* GetRaw() const
 		{
 			return counter->GetRaw<T>();
+		}
+
+		SafeObjRef<T>& operator=(const SafeObjRef<T>& other) = delete;
+		SafeObjRef<T>& operator=(SafeObjRef<T>&& other)
+		{
+			this->counter = other.counter;
+
+			other.counter = nullptr;
+
+			return *this;
 		}
 
 	private:

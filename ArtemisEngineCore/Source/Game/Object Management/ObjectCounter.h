@@ -13,9 +13,13 @@ namespace ArtemisEngine
 		ObjectCounter(void*&& obj);
 		~ObjectCounter() = default;
 
+		ObjectCounter(const ObjectCounter& other) = delete;
+		ObjectCounter(ObjectCounter&& other) = delete;
+
 		void Delete();
 		bool IsAlive() const;
 		void RemoveWatcher();
+		void AddWatcher();
 		
 		template<class T>
 		T* GetRaw() const
@@ -26,9 +30,12 @@ namespace ArtemisEngine
 		template<class T>
 		SafePtr<T> GetSafePtr()
 		{
-			watchers++;
+			AddWatcher();
 			return SafePtr<T>(this);
 		}
+
+		ObjectCounter& operator=(const ObjectCounter& other) = delete;
+		ObjectCounter& operator=(ObjectCounter&& other) = delete;
 
 	private:
 		void DeleteSelfIfReady();

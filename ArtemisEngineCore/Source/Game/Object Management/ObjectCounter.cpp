@@ -42,6 +42,11 @@ void ObjectCounter::RemoveWatcher()
 	DeleteSelfIfReady();
 }
 
+void ObjectCounter::AddWatcher()
+{
+	watchers++;
+}
+
 void ObjectCounter::DeleteSelfIfReady()
 {
 	if (watchers <= 0 && isAlive == false)

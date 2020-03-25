@@ -14,10 +14,13 @@ namespace ArtemisEngine
 	class SafePtr
 	{
 	public:
-		SafePtr() = default;
+		SafePtr()
+		{
+			counter = nullptr;
+		}
 		SafePtr(const SafePtr<T>& other)
 		{
-			if (other.IsNull())
+			if (other.IsCounterPtrNull())
 				throw NullReferenceException("Attempted to copy null safeptr");
 			
 			this->counter = other.counter;
@@ -33,16 +36,20 @@ namespace ArtemisEngine
 		{
 			this->counter = counter;
 		}
-		~SafePtr() = default;
+		~SafePtr()
+		{
+			if(!IsCounterPtrNull())
+				counter->RemoveWatcher();
+		}
 		
 		// Returns whether the pointer is valid for dereferencing.
 		bool IsValid() const
 		{
-			return !IsNull() && counter->IsAlive();
+			return !IsCounterPtrNull() && counter->IsAlive();
 		}
 
 		// Does this pointer not hold a reference to anything?
-		bool IsNull() const
+		bool IsCounterPtrNull() const
 		{
 			return counter == nullptr;
 		}
@@ -73,7 +80,7 @@ namespace ArtemisEngine
 
 		SafePtr<T>& operator=(const SafePtr<T>& other)
 		{
-			if (other.IsNull())
+			if (other.IsCounterPtrNull())
 				throw NullReferenceException("Attempted to copy null safeptr");
 
 			this->counter = other.counter;

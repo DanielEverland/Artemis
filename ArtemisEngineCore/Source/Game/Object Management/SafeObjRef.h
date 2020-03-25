@@ -3,6 +3,7 @@
 #include <memory>
 #include <utility>
 
+#include "Include/Exceptions/InvalidOperationException.h"
 #include "Include/Game/SafePtr.h"
 
 namespace ArtemisEngine
@@ -42,13 +43,25 @@ namespace ArtemisEngine
 		// Creates a SafePtr to the referenced object.
 		SafePtr<T> GetSafePtr()
 		{
+			if (!IsValid())
+				throw NullReferenceException("Cannot get SafePtr from invalid SaveObjRef");
+
 			return counter->GetSafePtr<T>();
 		}
 
 		// Returns a raw pointer to the referenced object.
 		T* GetRaw() const
 		{
+			if(!IsValid())
+				throw NullReferenceException("Cannot get raw ptr from invalid SaveObjRef");
+
 			return counter->GetRaw<T>();
+		}
+
+		// Returns whether this object has a reference
+		bool IsValid() const
+		{
+			return counter != nullptr;
 		}
 
 		SafeObjRef<T>& operator=(const SafeObjRef<T>& other) = delete;

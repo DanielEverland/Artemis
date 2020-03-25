@@ -27,3 +27,16 @@ TEST(SafeObjRefTest, Destruction)
 
 	ExpectTrue(ptr.IsValid() == false);
 }
+TEST(SafeObjRefTest, Move)
+{
+	SafeObjRef<TestClass> objRef(new TestClass());
+	SafeObjRef<TestClass> move(new TestClass());
+	move = std::move(objRef);
+
+	ExpectTrue(move.IsValid());
+	ExpectTrue(move.GetSafePtr().IsValid());
+
+	ExpectFalse(objRef.IsValid());
+	ExpectThrow(objRef.GetSafePtr(), NullReferenceException);
+	ExpectThrow(objRef.GetRaw(), NullReferenceException);
+}

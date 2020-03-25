@@ -47,7 +47,7 @@ TEST(SafePtrTest, NullPtr)
 {
 	SafePtr<TestClass> ptr = {};
 
-	ExpectTrue(ptr.IsNull());
+	ExpectTrue(ptr.IsCounterPtrNull());
 	ExpectTrue(!ptr.IsValid());
 }
 TEST(SafePtrTest, Copy)
@@ -82,10 +82,10 @@ TEST(SafePtrTest, Move)
 	SafePtr<TestClass> bM = {};
 	bM = std::move(b);
 
-	ExpectTrue(a.IsNull());
-	ExpectTrue(b.IsNull());
-	ExpectFalse(aM.IsNull());
-	ExpectFalse(bM.IsNull());
+	ExpectTrue(a.IsCounterPtrNull());
+	ExpectTrue(b.IsCounterPtrNull());
+	ExpectFalse(aM.IsCounterPtrNull());
+	ExpectFalse(bM.IsCounterPtrNull());
 
 	ExpectFalse(a.IsValid());
 	ExpectFalse(b.IsValid());

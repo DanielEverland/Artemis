@@ -94,14 +94,14 @@ TEST(ObjectContainerTest, ContainsRaw)
 	ExpectTrue(container.Contains(removedPtr) == false);
 	ExpectTrue(container.Contains(nullptr) == false);
 }
-//TEST(ObjectContainerTest, Destruction)
-//{
-//	ObjectContainer<TestClass>* container = new ObjectContainer<TestClass>();
-//	SafePtr<TestClass> ptr = container->Add();
-//
-//
-//	delete container;
-//
-//
-//	ExpectTrue(ptr.IsValid() == false);
-//}
+TEST(ObjectContainerTest, Destruction)
+{
+	ObjectContainer<TestClass>* container = new ObjectContainer<TestClass>();
+	SafePtr<TestClass> ptr = container->Add<TestClass>();
+
+
+	delete container;
+
+
+	ExpectTrue(ptr.IsValid() == false);
+}

@@ -29,8 +29,11 @@ namespace ArtemisEngine
 
 			other.counter = nullptr;
 		}
-		SafeObjRef(T*&& ptr)
+		template<class U>
+		SafeObjRef(U*&& ptr)
 		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch. U must inherit from T");
+
 			counter = new ObjectCounter(std::move(ptr));
 		}
 		~SafeObjRef()
@@ -77,4 +80,52 @@ namespace ArtemisEngine
 	private:
 		ObjectCounter* counter;
 	};
+
+	// SafeObjRef == SafePtr
+	template<class T1, class T2>
+	bool operator==(const SafeObjRef<T1>& objRef, const SafePtr<T2>& objPtr)
+	{
+		return objRef.GetRaw() == objPtr.GetRaw();
+	}
+	template<class T1, class T2>
+	bool operator==(const SafePtr<T1>& objPtr, const SafeObjRef<T2>& objRef)
+	{
+		return objRef.GetRaw() == objPtr.GetRaw();
+	}
+
+	// SafeObjRef != SafePtr
+	template<class T1, class T2>
+	bool operator!=(const SafeObjRef<T1>& objRef, const SafePtr<T2>& objPtr)
+	{
+		return objRef.GetRaw() != objPtr.GetRaw();
+	}
+	template<class T1, class T2>
+	bool operator!=(const SafePtr<T1>& objPtr, const SafeObjRef<T2>& objRef)
+	{
+		return objRef.GetRaw() != objPtr.GetRaw();
+	}
+
+	// SafeObjRef == T*
+	template<class T1, class T2>
+	bool operator==(const SafeObjRef<T1>& objRef, const T2* rawPtr)
+	{
+		return objRef.GetRaw() == rawPtr;
+	}
+	template<class T1, class T2>
+	bool operator==(const T1* rawPtr, const SafeObjRef<T2>& objRef)
+	{
+		return objRef.GetRaw() == rawPtr;
+	}
+
+	// SafeObjRef != T*
+	template<class T1, class T2>
+	bool operator!=(const SafeObjRef<T1>& objRef, const T2* rawPtr)
+	{
+		return objRef.GetRaw() != rawPtr;
+	}
+	template<class T1, class T2>
+	bool operator!=(const T1* rawPtr, const SafeObjRef<T2>& objRef)
+	{
+		return objRef.GetRaw() != rawPtr;
+	}
 }

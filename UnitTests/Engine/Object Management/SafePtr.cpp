@@ -13,6 +13,13 @@ public:
 	int value = 5;
 };
 
+class Base
+{
+};
+class Derived : public Base
+{
+};
+
 TEST(SafePtrTest, Construction)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
@@ -135,4 +142,11 @@ TEST(SafePtrTest, Inequality)
 	// Not using ExpectEqual to ensure we're testing inequality operator
 	ExpectFalse(AA != AB);
 	ExpectFalse(CA != CB);
+}
+TEST(SafePtrTest, Downcasting)
+{
+	SafeObjRef<Base> objRef(new Derived());
+	SafePtr<Derived> ptr = objRef.GetSafePtr();
+
+	// This is a compile time operation, so if this compiles, we're good to go
 }

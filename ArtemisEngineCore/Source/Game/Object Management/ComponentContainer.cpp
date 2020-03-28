@@ -1,9 +1,9 @@
 #include "ComponentContainer.h"
 
-int ComponentContainer::GetCount() const
-{
-	return int(components.size());
-}
+//int ComponentContainer::GetCount() const
+//{
+//	return int(components.size());
+//}
 //bool ComponentContainer::Contains(const IComponent* component) const
 //{
 //	for (auto iter = components.begin(); iter != components.end(); iter++)

@@ -13,25 +13,33 @@ namespace ArtemisEngine
 	class ObjectContainer
 	{
 	public:
-		SafePtr<T> Add()
+		template<class TAdd>
+		SafePtr<TAdd> Add()
 		{
-			objects.push_back(std::move(SafeObjRef(new T())));
+			static_assert(std::is_base_of<T, TAdd>::value, "Type mismatch in ObjectContainer:Add(). TAdd must be a base type of T!");
+			
+			objects.push_back(std::move(SafeObjRef<T>(new TAdd())));
 			return objects.back().GetSafePtr();
 		}
-		void Remove(SafePtr<T> toRemove)
+		bool Remove(const SafePtr<T>& toRemove)
 		{
-			Remove(toRemove.GetRaw());
+			int origSize = objects.size();
+
+			objects.erase(
+				std::remove_if(objects.begin(), objects.end(), [&toRemove](const SafeObjRef<T>& obj) -> bool { return toRemove == obj; }),
+				objects.end());
+
+			return origSize != objects.size();
 		}
-		void Remove(T* rawPtr)
+		bool Remove(T* rawPtr)
 		{
-			for (auto ptr = objects.begin(); ptr != objects.end(); ptr++)
-			{
-				if (ptr->GetRaw() == rawPtr)
-				{
-					objects.erase(ptr);
-					break;
-				}
-			}
+			int origSize = objects.size();
+
+			objects.erase(
+				std::remove_if(objects.begin(), objects.end(), [&rawPtr](const SafeObjRef<T>& obj) -> bool { return rawPtr == obj; }),
+				objects.end());
+
+			return origSize != objects.size();
 		}
 		bool Contains(SafePtr<T>& ptr) const
 		{

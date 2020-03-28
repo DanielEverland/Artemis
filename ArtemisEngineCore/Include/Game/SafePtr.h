@@ -59,7 +59,7 @@ namespace ArtemisEngine
 		}
 
 		// Returns a raw pointer to the pointed to object.
-		T* GetRaw()
+		T* GetRaw() const
 		{
 			return counter->GetRaw<T>();
 		}
@@ -93,6 +93,13 @@ namespace ArtemisEngine
 			return other.counter != this->counter;
 		}
 
+		template<class TOther>
+		operator SafePtr<TOther>()
+		{
+			static_assert(std::is_base_of<T, TOther>::value, "Downcast failed. T must be base class to TOher");
+
+			return SafePtr<TOther>(counter);
+		}
 		SafePtr<T>& operator=(const SafePtr<T>& other)
 		{
 			if (other.IsCounterPtrNull())

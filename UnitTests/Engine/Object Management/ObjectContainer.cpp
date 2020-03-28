@@ -63,37 +63,37 @@ TEST(ObjectContainerTest, RemoveObjectRaw)
 
 	ExpectTrue(ptr.IsValid() == false);
 }
-//TEST(ObjectContainerTest, Contains)
-//{
-//	ObjectContainer<TestClass> container;
-//	SafePtr<TestClass> ptr = container.Add();
-//	SafePtr<TestClass> emptyPtr = {};
-//
-//	SafePtr<TestClass> removedPtr = container.Add();
-//	container.Remove(removedPtr);
-//
-//
-//
-//	ExpectTrue(container.Contains(ptr));
-//	ExpectTrue(container.Contains(removedPtr) == false);
-//	ExpectTrue(container.Contains(emptyPtr) == false);
-//}
-//TEST(ObjectContainerTest, ContainsRaw)
-//{
-//	ObjectContainer<TestClass> container;
-//	TestClass* ptr = container.Add();
-//	TestClass* emptyPtr = nullptr;
-//
-//	TestClass* removedPtr = container.Add();
-//	container.Remove(removedPtr);
-//
-//
-//
-//	ExpectTrue(container.Contains(ptr));
-//	ExpectTrue(container.Contains(emptyPtr) == false);
-//	ExpectTrue(container.Contains(removedPtr) == false);
-//	ExpectTrue(container.Contains(nullptr) == false);
-//}
+TEST(ObjectContainerTest, Contains)
+{
+	ObjectContainer<TestClass> container;
+	SafePtr<TestClass> ptr = container.Add<TestClass>();
+	SafePtr<TestClass> emptyPtr = {};
+
+	SafePtr<TestClass> removedPtr = container.Add<TestClass>();
+	container.Remove(removedPtr);
+
+
+
+	ExpectTrue(container.Contains(ptr));
+	ExpectTrue(container.Contains(removedPtr) == false);
+	ExpectTrue(container.Contains(emptyPtr) == false);
+}
+TEST(ObjectContainerTest, ContainsRaw)
+{
+	ObjectContainer<TestClass> container;
+	TestClass* ptr = container.Add<TestClass>();
+	TestClass* emptyPtr = nullptr;
+
+	TestClass* removedPtr = container.Add<TestClass>();
+	container.Remove(removedPtr);
+
+
+
+	ExpectTrue(container.Contains(ptr));
+	ExpectTrue(container.Contains(emptyPtr) == false);
+	ExpectTrue(container.Contains(removedPtr) == false);
+	ExpectTrue(container.Contains(nullptr) == false);
+}
 //TEST(ObjectContainerTest, Destruction)
 //{
 //	ObjectContainer<TestClass>* container = new ObjectContainer<TestClass>();

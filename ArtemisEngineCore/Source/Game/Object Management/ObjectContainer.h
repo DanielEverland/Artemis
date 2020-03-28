@@ -46,20 +46,18 @@ namespace ArtemisEngine
 			if (!ptr.IsValid())
 				return false;
 
-			return Contains(ptr.GetRaw());
+			auto iter = std::find(objects.begin(), objects.end(), ptr);
+
+			return iter != objects.end();
 		}
 		bool Contains(T* rawPtr) const
 		{
 			if (rawPtr == nullptr)
 				return false;
 
-			for (auto ptr = objects.begin(); ptr != objects.end(); ptr++)
-			{
-				if (ptr->GetRaw() == rawPtr)
-					return true;
-			}
+			auto iter = std::find(objects.begin(), objects.end(), rawPtr);
 
-			return false;
+			return iter != objects.end();
 		}
 
 	private:

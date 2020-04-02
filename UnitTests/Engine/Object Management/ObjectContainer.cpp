@@ -113,8 +113,10 @@ TEST(ObjectContainerTest, Get)
 	container.Add<A>();
 
 	SafePtr<A> a = container.Get<A>();
+	SafePtr<AA> aa = container.Get<AA>();
 	SafePtr<B> b = container.Get<B>();
 
 	ExpectTrue(a.IsValid() == true);
+	ExpectTrue(aa.IsValid() == false);
 	ExpectTrue(b.IsValid() == false);
 }

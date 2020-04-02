@@ -11,17 +11,19 @@ class TestClass
 
 class Base
 {
+public:
+	virtual void Test() { }
 };
 
-class A : Base
+class A : public Base
 {
 };
 
-class B : Base
+class B : public Base
 {
 };
 
-class AA : A
+class AA : public A
 {
 
 };
@@ -92,7 +94,7 @@ TEST(ObjectContainerTest, ContainsRaw)
 	ExpectTrue(container.Contains(ptr));
 	ExpectTrue(container.Contains(emptyPtr) == false);
 	ExpectTrue(container.Contains(removedPtr) == false);
-	ExpectTrue(container.Contains(nullptr) == false);
+	ExpectTrue(container.Contains<TestClass>(nullptr) == false);
 }
 TEST(ObjectContainerTest, Destruction)
 {
@@ -104,4 +106,15 @@ TEST(ObjectContainerTest, Destruction)
 
 
 	ExpectTrue(ptr.IsValid() == false);
+}
+TEST(ObjectContainerTest, Get)
+{
+	ObjectContainer<Base> container;
+	container.Add<A>();
+
+	SafePtr<A> a = container.Get<A>();
+	SafePtr<B> b = container.Get<B>();
+
+	ExpectTrue(a.IsValid() == true);
+	ExpectTrue(b.IsValid() == false);
 }

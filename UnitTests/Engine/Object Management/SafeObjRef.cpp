@@ -11,6 +11,8 @@ class TestClass
 
 class BaseClass
 {
+public:
+	virtual void Test() { }
 };
 
 class DerivedClass : public BaseClass
@@ -20,7 +22,7 @@ class DerivedClass : public BaseClass
 TEST(SafeObjRefTest, ToSafePtr)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
-	SafePtr<TestClass> ptr = objRef.GetSafePtr();
+	SafePtr<TestClass> ptr = objRef.GetSafePtr<TestClass>();
 
 	ExpectTrue(ptr.IsValid());
 }
@@ -29,7 +31,7 @@ TEST(SafeObjRefTest, Destruction)
 	SafeObjRef<TestClass>* objRef;
 
 	objRef = new SafeObjRef<TestClass>(new TestClass());
-	SafePtr<TestClass> ptr = objRef->GetSafePtr();
+	SafePtr<TestClass> ptr = objRef->GetSafePtr<TestClass>();
 
 	delete objRef;
 
@@ -42,10 +44,10 @@ TEST(SafeObjRefTest, Move)
 	move = std::move(objRef);
 
 	ExpectTrue(move.IsValid());
-	ExpectTrue(move.GetSafePtr().IsValid());
+	ExpectTrue(move.GetSafePtr<TestClass>().IsValid());
 
 	ExpectFalse(objRef.IsValid());
-	ExpectThrow(objRef.GetSafePtr(), NullReferenceException);
+	ExpectThrow(objRef.GetSafePtr<TestClass>(), NullReferenceException);
 	ExpectThrow(objRef.GetRaw(), NullReferenceException);
 }
 TEST(SafeObjRefTest, CompareSafePtr)
@@ -53,7 +55,7 @@ TEST(SafeObjRefTest, CompareSafePtr)
 	SafeObjRef<TestClass>* a = new SafeObjRef<TestClass>(new TestClass());
 	SafeObjRef<TestClass>* b = new SafeObjRef<TestClass>(new TestClass());
 
-	SafePtr<TestClass> fromA = a->GetSafePtr();
+	SafePtr<TestClass> fromA = a->GetSafePtr<TestClass>();
 
 	ExpectTrue((*a) == fromA);
 	ExpectTrue(fromA == (*a));
@@ -65,7 +67,7 @@ TEST(SafeObjRefTest, CompareNotSafePtr)
 	SafeObjRef<TestClass>* a = new SafeObjRef<TestClass>(new TestClass());
 	SafeObjRef<TestClass>* b = new SafeObjRef<TestClass>(new TestClass());
 
-	SafePtr<TestClass> fromA = a->GetSafePtr();
+	SafePtr<TestClass> fromA = a->GetSafePtr<TestClass>();
 	
 	ExpectTrue((*b) != fromA);
 	ExpectTrue(fromA != (*b));
@@ -76,8 +78,8 @@ TEST(SafeObjRefTest, ConstructionDerivedClass)
 {
 	SafeObjRef<BaseClass>* objRef = new SafeObjRef<BaseClass>(new DerivedClass());
 
-	SafePtr<BaseClass> basePtr = objRef->GetSafePtr();
-	SafePtr<DerivedClass> derivedPtr = objRef->GetSafePtr();
+	SafePtr<BaseClass> basePtr = objRef->GetSafePtr<BaseClass>();
+	SafePtr<DerivedClass> derivedPtr = objRef->GetSafePtr<DerivedClass>();
 
 	ExpectTrue(basePtr.IsValid());
 	ExpectTrue(derivedPtr.IsValid());

@@ -44,12 +44,22 @@ namespace ArtemisEngine
 		}
 		
 		// Creates a SafePtr to the referenced object.
-		SafePtr<T> GetSafePtr()
+		template<class U>
+		SafePtr<U> GetSafePtr()
 		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch. U must inherit from T");
+
 			if (!IsValid())
 				throw NullReferenceException("Cannot get SafePtr from invalid SaveObjRef");
-
-			return counter->GetSafePtr<T>();
+			
+			if (CanGetSafePtr<U>())
+			{
+				return counter->GetSafePtr<U>();
+			}
+			else
+			{
+				return SafePtr<U>(nullptr);
+			}
 		}
 
 		// Returns a raw pointer to the referenced object.
@@ -66,6 +76,15 @@ namespace ArtemisEngine
 		{
 			return counter != nullptr;
 		}
+
+		// Returns whether U derives from this instance template type
+		template<class U>
+		bool CanGetSafePtr() const
+		{
+			return dynamic_cast<U*>(counter->GetRaw<T>());
+		}
+		
+
 
 		SafeObjRef<T>& operator=(const SafeObjRef<T>& other) = delete;
 		SafeObjRef<T>& operator=(SafeObjRef<T>&& other)

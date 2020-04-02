@@ -13,16 +13,19 @@ namespace ArtemisEngine
 	class ObjectContainer
 	{
 	public:
-		template<class TAdd>
-		SafePtr<TAdd> Add()
+		template<class U>
+		SafePtr<U> Add()
 		{
-			static_assert(std::is_base_of<T, TAdd>::value, "Type mismatch in ObjectContainer:Add(). TAdd must be a base type of T!");
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch in Add(). Passed type does not derive from type of container!");
 			
-			objects.push_back(std::move(SafeObjRef<T>(new TAdd())));
-			return objects.back().GetSafePtr();
+			objects.push_back(std::move(SafeObjRef<T>(new U())));
+			return objects.back().GetSafePtr<U>();
 		}
-		bool Remove(const SafePtr<T>& toRemove)
+		template<class U>
+		bool Remove(const SafePtr<U>& toRemove)
 		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch in Remove(SafePtr<U>&). Passed type does not derive from type of container!");
+
 			int origSize = objects.size();
 
 			objects.erase(
@@ -31,8 +34,11 @@ namespace ArtemisEngine
 
 			return origSize != objects.size();
 		}
-		bool Remove(T* rawPtr)
+		template<class U>
+		bool Remove(U* rawPtr)
 		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch in Remove(U*). Passed type does not derive from type of container!");
+
 			int origSize = objects.size();
 
 			objects.erase(
@@ -41,8 +47,11 @@ namespace ArtemisEngine
 
 			return origSize != objects.size();
 		}
-		bool Contains(SafePtr<T>& ptr) const
+		template<class U>
+		bool Contains(SafePtr<U>& ptr) const
 		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch in Contains(SafePtr<U>&). Passed type does not derive from type of container!");
+
 			if (!ptr.IsValid())
 				return false;
 
@@ -50,14 +59,33 @@ namespace ArtemisEngine
 
 			return iter != objects.end();
 		}
-		bool Contains(T* rawPtr) const
+		template<class U>
+		bool Contains(U* rawPtr) const
 		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch in Contains(U*). Passed type does not derive from type of container!");
+
 			if (rawPtr == nullptr)
 				return false;
 
 			auto iter = std::find(objects.begin(), objects.end(), rawPtr);
 
 			return iter != objects.end();
+		}
+		template<class U>
+		SafePtr<U> Get()
+		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch in Get(). Passed type does not derive from type of container!");
+
+			auto iter = std::find_if(objects.begin(), objects.end(), [](const SafeObjRef<T>& objRef) -> bool { return objRef.CanGetSafePtr<U>(); });
+
+			if (iter != objects.end())
+			{
+				return iter->GetSafePtr<U>();
+			}
+			else
+			{
+				return SafePtr<U>(nullptr);
+			}			
 		}
 
 	private:

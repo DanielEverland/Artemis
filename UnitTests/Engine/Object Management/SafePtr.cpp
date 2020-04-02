@@ -15,29 +15,36 @@ public:
 
 class Base
 {
+public:
+	virtual void Test() { }
 };
 class Derived : public Base
 {
+};
+class NotDerived
+{
+public:
+	virtual void Test() { }
 };
 
 TEST(SafePtrTest, Construction)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
-	SafePtr<TestClass> ptr = objRef.GetSafePtr();
+	SafePtr<TestClass> ptr = objRef.GetSafePtr<TestClass>();
 
 	ExpectTrue(ptr.IsValid());
 }
 TEST(SafePtrTest, Dereferencing)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
-	SafePtr<TestClass> ptr = objRef.GetSafePtr();
+	SafePtr<TestClass> ptr = objRef.GetSafePtr<TestClass>();
 
 	ExpectEqual(5, ptr->value);
 }
 TEST(SafePtrTest, RawPointer)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
-	SafePtr<TestClass> ptr = objRef.GetSafePtr();
+	SafePtr<TestClass> ptr = objRef.GetSafePtr<TestClass>();
 
 	TestClass* rawPtr = ptr;
 
@@ -46,7 +53,7 @@ TEST(SafePtrTest, RawPointer)
 TEST(SafePtrTest, BoolConversion)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
-	SafePtr<TestClass> ptr = objRef.GetSafePtr();
+	SafePtr<TestClass> ptr = objRef.GetSafePtr<TestClass>();
 
 	ExpectTrue(bool(ptr));
 }
@@ -60,7 +67,7 @@ TEST(SafePtrTest, NullPtr)
 TEST(SafePtrTest, Copy)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
-	SafePtr<TestClass> ptr = objRef.GetSafePtr();
+	SafePtr<TestClass> ptr = objRef.GetSafePtr<TestClass>();
 
 	SafePtr<TestClass> copyConstructionPtr = SafePtr<TestClass>(ptr);
 	SafePtr<TestClass> copyAssignmentPtr = {};
@@ -76,9 +83,9 @@ TEST(SafePtrTest, Copy)
 TEST(SafePtrTest, Move)
 {
 	SafeObjRef<TestClass> objRef(new TestClass());
-	SafePtr<TestClass> refPtr = objRef.GetSafePtr();
-	SafePtr<TestClass> a = objRef.GetSafePtr();
-	SafePtr<TestClass> b = objRef.GetSafePtr();
+	SafePtr<TestClass> refPtr = objRef.GetSafePtr<TestClass>();
+	SafePtr<TestClass> a = objRef.GetSafePtr<TestClass>();
+	SafePtr<TestClass> b = objRef.GetSafePtr<TestClass>();
 
 	SafePtr<TestClass> aM = SafePtr<TestClass>(std::move(a));
 	SafePtr<TestClass> bM = {};
@@ -110,9 +117,9 @@ TEST(SafePtrTest, Equality)
 {
 	SafeObjRef<TestClass> objRefA(new TestClass());
 	SafeObjRef<TestClass> objRefB(new TestClass());
-	SafePtr<TestClass> AA = objRefA.GetSafePtr();
-	SafePtr<TestClass> AB = objRefA.GetSafePtr();
-	SafePtr<TestClass> BA = objRefB.GetSafePtr();
+	SafePtr<TestClass> AA = objRefA.GetSafePtr<TestClass>();
+	SafePtr<TestClass> AB = objRefA.GetSafePtr<TestClass>();
+	SafePtr<TestClass> BA = objRefB.GetSafePtr<TestClass>();
 	SafePtr<TestClass> CA;
 	SafePtr<TestClass> CB;
 
@@ -129,9 +136,9 @@ TEST(SafePtrTest, Inequality)
 {
 	SafeObjRef<TestClass> objRefA(new TestClass());
 	SafeObjRef<TestClass> objRefB(new TestClass());
-	SafePtr<TestClass> AA = objRefA.GetSafePtr();
-	SafePtr<TestClass> AB = objRefA.GetSafePtr();
-	SafePtr<TestClass> BA = objRefB.GetSafePtr();
+	SafePtr<TestClass> AA = objRefA.GetSafePtr<TestClass>();
+	SafePtr<TestClass> AB = objRefA.GetSafePtr<TestClass>();
+	SafePtr<TestClass> BA = objRefB.GetSafePtr<TestClass>();
 	SafePtr<TestClass> CA;
 	SafePtr<TestClass> CB;
 
@@ -146,7 +153,10 @@ TEST(SafePtrTest, Inequality)
 TEST(SafePtrTest, Downcasting)
 {
 	SafeObjRef<Base> objRef(new Derived());
-	SafePtr<Derived> ptr = objRef.GetSafePtr();
+	SafePtr<Derived> ptr = objRef.GetSafePtr<Derived>();
 
 	// This is a compile time operation, so if this compiles, we're good to go
+
+	// This should not compile
+	//SafePtr<NotDerived> oPtr = objRef.GetSafePtr<NotDerived>();
 }

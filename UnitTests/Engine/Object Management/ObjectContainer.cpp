@@ -133,8 +133,10 @@ TEST(ObjectContainerTest, GetAll)
 	std::vector<SafePtr<A>> a = container.GetAll<A>();
 	std::vector<SafePtr<AA>> aa = container.GetAll<AA>();
 	std::vector<SafePtr<B>> b = container.GetAll<B>();
+	std::vector<SafePtr<Base>> base = container.GetAll<Base>();
 
 	ExpectEqual(4, a.size());
 	ExpectEqual(1, aa.size());
 	ExpectEqual(2, b.size());
+	ExpectEqual(6, base.size());
 }

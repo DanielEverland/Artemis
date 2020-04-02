@@ -120,3 +120,21 @@ TEST(ObjectContainerTest, Get)
 	ExpectTrue(aa.IsValid() == false);
 	ExpectTrue(b.IsValid() == false);
 }
+TEST(ObjectContainerTest, GetAll)
+{
+	ObjectContainer<Base> container;
+	container.Add<A>();
+	container.Add<A>();
+	container.Add<A>();
+	container.Add<AA>();
+	container.Add<B>();
+	container.Add<B>();
+
+	std::vector<SafePtr<A>> a = container.GetAll<A>();
+	std::vector<SafePtr<AA>> aa = container.GetAll<AA>();
+	std::vector<SafePtr<B>> b = container.GetAll<B>();
+
+	ExpectEqual(4, a.size());
+	ExpectEqual(1, aa.size());
+	ExpectEqual(2, b.size());
+}

@@ -87,6 +87,23 @@ namespace ArtemisEngine
 				return SafePtr<U>(nullptr);
 			}			
 		}
+		template<class U>
+		std::vector<SafePtr<U>> GetAll()
+		{
+			static_assert(std::is_base_of<T, U>::value, "Type mismatch in GetAll(). Passed type does not derive from type of container!");
+
+			std::vector<SafePtr<U>> toReturn;
+
+			for (SafeObjRef<T>& obj : objects)
+			{
+				if (obj.CanGetSafePtr<U>())
+				{
+					toReturn.push_back(obj.GetSafePtr<U>());
+				}
+			}
+
+			return toReturn;
+		}
 
 	private:
 		std::vector<SafeObjRef<T>> objects;

@@ -313,4 +313,7 @@
       <Filter>Source\Game\Object Management</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Source\VertexShader.hlsl" />
+  </ItemGroup>
 </Project>

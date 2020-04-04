@@ -232,6 +232,12 @@
     <ClInclude Include="Source\Game\Object Management\ObjectCounter.h">
       <Filter>Source\Game\Object Management</Filter>
     </ClInclude>
+    <ClInclude Include="Source\DirectX\RasterizerState.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectX\RenderStateGroups.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Windows\GameWindow.cpp">
@@ -311,6 +317,12 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Object Management\ObjectCounter.cpp">
       <Filter>Source\Game\Object Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\RasterizerState.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\RenderStateGroups.cpp">
+      <Filter>Source\DirectX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

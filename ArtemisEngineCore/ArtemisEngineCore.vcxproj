@@ -197,7 +197,9 @@
     <ClInclude Include="Source\DirectX\DirectXHelper.h" />
     <ClInclude Include="Source\DirectX\GraphicsDevice.h" />
     <ClInclude Include="Source\DirectX\IndexBuffer.h" />
+    <ClInclude Include="Source\DirectX\RasterizerState.h" />
     <ClInclude Include="Source\DirectX\Renderer.h" />
+    <ClInclude Include="Source\DirectX\RenderStateGroups.h" />
     <ClInclude Include="Source\DirectX\RenderTargetView.h" />
     <ClInclude Include="Source\DirectX\SwapChain.h" />
     <ClInclude Include="Source\DirectX\Texture2D.h" />
@@ -222,7 +224,9 @@
     <ClCompile Include="Source\DirectX\DepthBuffer.cpp" />
     <ClCompile Include="Source\DirectX\GraphicsDevice.cpp" />
     <ClCompile Include="Source\DirectX\IndexBuffer.cpp" />
+    <ClCompile Include="Source\DirectX\RasterizerState.cpp" />
     <ClCompile Include="Source\DirectX\Renderer.cpp" />
+    <ClCompile Include="Source\DirectX\RenderStateGroups.cpp" />
     <ClCompile Include="Source\DirectX\RenderTargetView.cpp" />
     <ClCompile Include="Source\DirectX\SwapChain.cpp" />
     <ClCompile Include="Source\DirectX\Texture2D.cpp" />

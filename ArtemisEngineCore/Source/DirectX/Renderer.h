@@ -34,6 +34,7 @@ public:
 	void Render();
 	void Resize();
 	void CreateViewport();
+	void SetRenderState(class RasterizerState* state);
 
 private:
 	static const uint8_t swapChainBufferSize = 3;
@@ -59,4 +60,5 @@ private:
 	void BindIndexBuffer(IndexBuffer& indexBuffer) const;
 	void DrawIndices(const IndexBuffer& indexBuffer) const;
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology);
+	void CreateRenderStates() const;
 };

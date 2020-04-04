@@ -1,7 +1,12 @@
 #include "Renderer.h"
 
-#include "Include/Exceptions/DirectXException.h"
+#include <memory>
+
+#include "RasterizerState.h"
+#include "RenderStateGroups.h"
 #include "VertexBuffer.h"
+
+#include "Include/Exceptions/DirectXException.h"
 
 using ArtemisWindow::IWindow;
 using namespace ArtemisEngine::Rendering;
@@ -19,6 +24,9 @@ void Renderer::Initialize()
 	CreateRawBackbufferColor();
 	CreateResources();
 	CreateViewport();
+	CreateRenderStates();
+
+	SetRenderState(RenderStateGroups::GetSolidState());
 
 	hasInitialized = true;
 }
@@ -90,6 +98,12 @@ void Renderer::CreateViewport()
 
 	rawContext->RSSetViewports(1, &viewPortDescription);
 }
+
+void Renderer::SetRenderState(class RasterizerState* state)
+{
+	graphicsDevice->GetRawContext()->RSSetState(state->GetRawState());
+}
+
 void Renderer::CreateResources()
 {
 	graphicsDevice = shared_ptr<GraphicsDevice>(new GraphicsDevice());
@@ -136,4 +150,9 @@ void Renderer::DrawIndices(const IndexBuffer& indexBuffer) const
 void Renderer::SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology)
 {
 	graphicsDevice->GetRawContext()->IASetPrimitiveTopology(topology);
+}
+
+void Renderer::CreateRenderStates() const
+{
+	RenderStateGroups::CreateStateGroups(graphicsDevice.get());
 }

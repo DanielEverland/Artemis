@@ -11,14 +11,18 @@ RasterizerState::RasterizerState(const GraphicsDevice* device)
 	CreateState(&description, device);
 }
 
+RasterizerState::RasterizerState()
+{
+}
+
 ID3D11RasterizerState* RasterizerState::GetRawState()
 {
-	return *(this->rawState);
+	return rawState.Get();
 }
 
 void RasterizerState::CreateState(D3D11_RASTERIZER_DESC* description, const GraphicsDevice* device)
 {
-	ThrowIfFailed(device->GetRawDevice()->CreateRasterizerState(description, this->rawState));
+	ThrowIfFailed(device->GetRawDevice()->CreateRasterizerState(description, rawState.GetAddressOf()));
 }
 
 D3D11_RASTERIZER_DESC RasterizerState::GetDescription() const

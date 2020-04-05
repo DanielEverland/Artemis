@@ -325,7 +325,4 @@
       <Filter>Source\DirectX</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Source\VertexShader.hlsl" />
-  </ItemGroup>
 </Project>

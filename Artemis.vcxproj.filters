@@ -8,17 +8,28 @@
     <Filter Include="Source\Main">
       <UniqueIdentifier>{8d2395a6-8bb2-4485-8119-4c34eb409d7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{3c65983a-588d-4d2a-806b-462ad57bc370}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main\ApplicationArguments.cpp">
+    <FxCompile Include="Artemis\Shaders\PixelShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Artemis\Shaders\VertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Artemis\Main\ApplicationArguments.cpp">
       <Filter>Source\Main</Filter>
     </ClCompile>
-    <ClCompile Include="src\Main\main.cpp">
+    <ClCompile Include="Artemis\Main\main.cpp">
       <Filter>Source\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Main\ApplicationArguments.h">
+    <ClInclude Include="Artemis\Main\ApplicationArguments.h">
       <Filter>Source\Main</Filter>
     </ClInclude>
   </ItemGroup>

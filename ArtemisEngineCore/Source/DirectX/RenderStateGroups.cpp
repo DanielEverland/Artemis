@@ -2,6 +2,8 @@
 
 #include "RasterizerState.h"
 
+RasterizerState RenderStateGroups::solidState = RasterizerState();
+
 RasterizerState* RenderStateGroups::GetSolidState()
 {
 	return &solidState;

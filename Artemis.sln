@@ -1,16 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29411.138
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Artemis", "Artemis.vcxproj", "{0CDDA68E-0BCB-4A27-84A0-5D9DBF2C16B1}"
 	ProjectSection(ProjectDependencies) = postProject
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA} = {11BA3E2E-0FDD-495A-ADB2-04521A666DFA}
 		{D6F75E89-595F-4BAB-939A-3CF95376482D} = {D6F75E89-595F-4BAB-939A-3CF95376482D}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArtemisEngineCore", "ArtemisEngineCore\ArtemisEngineCore.vcxproj", "{D6F75E89-595F-4BAB-939A-3CF95376482D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{0E80F452-1CEB-4209-9CBA-F621777F92E0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shaders", "Shaders\Shaders.vcxproj", "{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +58,18 @@ Global
 		{0E80F452-1CEB-4209-9CBA-F621777F92E0}.Temp|x64.Build.0 = Release|x64
 		{0E80F452-1CEB-4209-9CBA-F621777F92E0}.Temp|x86.ActiveCfg = Release|Win32
 		{0E80F452-1CEB-4209-9CBA-F621777F92E0}.Temp|x86.Build.0 = Release|Win32
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Debug|x64.ActiveCfg = Debug|x64
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Debug|x64.Build.0 = Debug|x64
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Debug|x86.ActiveCfg = Debug|Win32
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Debug|x86.Build.0 = Debug|Win32
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Release|x64.ActiveCfg = Release|x64
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Release|x64.Build.0 = Release|x64
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Release|x86.ActiveCfg = Release|Win32
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Release|x86.Build.0 = Release|Win32
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Temp|x64.ActiveCfg = Release|x64
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Temp|x64.Build.0 = Release|x64
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Temp|x86.ActiveCfg = Release|Win32
+		{11BA3E2E-0FDD-495A-ADB2-04521A666DFA}.Temp|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

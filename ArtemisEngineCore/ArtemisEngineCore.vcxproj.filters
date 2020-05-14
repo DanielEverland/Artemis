@@ -41,6 +41,12 @@
     <Filter Include="Source\Game\Object Management">
       <UniqueIdentifier>{2a87ab4d-195c-4288-a8d8-e0d0d16c6dfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Utility">
+      <UniqueIdentifier>{38833ab0-9abd-4983-ade2-e86fa78ce84b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Utility">
+      <UniqueIdentifier>{6d976d1e-fbf6-4abe-9ff3-66041c0cbe82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Windows\GameWindow.h">
@@ -238,6 +244,12 @@
     <ClInclude Include="Source\DirectX\RenderStateGroups.h">
       <Filter>Source\DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="Source\DirectX\ShaderLoader.h">
+      <Filter>Source\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Utility\Directory.h">
+      <Filter>Include\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Windows\GameWindow.cpp">
@@ -323,6 +335,12 @@
     </ClCompile>
     <ClCompile Include="Source\DirectX\RenderStateGroups.cpp">
       <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectX\ShaderLoader.cpp">
+      <Filter>Source\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utility\Directory.cpp">
+      <Filter>Source\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

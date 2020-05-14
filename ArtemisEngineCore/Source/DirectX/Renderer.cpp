@@ -5,6 +5,7 @@
 #include "RasterizerState.h"
 #include "RenderStateGroups.h"
 #include "VertexBuffer.h"
+#include "ShaderLoader.h"
 
 #include "Include/Exceptions/DirectXException.h"
 
@@ -23,6 +24,7 @@ void Renderer::Initialize()
 
 	CreateRawBackbufferColor();
 	CreateResources();
+	LoadShaders();
 	CreateViewport();
 	CreateRenderStates();
 
@@ -155,4 +157,9 @@ void Renderer::SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology)
 void Renderer::CreateRenderStates() const
 {
 	RenderStateGroups::CreateStateGroups(graphicsDevice.get());
+}
+
+void Renderer::LoadShaders() const
+{
+	ShaderLoader::LoadShaders(graphicsDevice->GetRawDevice());
 }

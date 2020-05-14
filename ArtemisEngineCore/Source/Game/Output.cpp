@@ -47,6 +47,12 @@ void Output::LogError(const wchar_t* text)
 	LogLineToVS(text);
 }
 
+void Output::LogError(const bool value)
+{
+	LogToVS("Error: ");
+	LogLineToVS(BoolToString(value));
+}
+
 void Output::LogWarning(const IDebugStringReturner& stringReturner)
 {
 	LogWarning(stringReturner.ToString());
@@ -62,6 +68,12 @@ void Output::LogWarning(const wchar_t* text)
 {
 	LogToVS("Warning: ");
 	LogLineToVS(text);
+}
+
+void Output::LogWarning(const bool value)
+{
+	LogToVS("Warning: ");
+	LogLineToVS(BoolToString(value));
 }
 
 //-------------------------------------------------------------------------------------------------------------
@@ -108,6 +120,11 @@ void Output::Log(const wchar_t* text)
 	LogLineToVS(text);
 }
 
+void Output::Log(const bool value)
+{
+	LogLineToVS(BoolToString(value));
+}
+
 //-------------------------------------------------------------------------------------------------------------
 //--------------------------------------------LOG-SAME-LINE----------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
@@ -147,6 +164,11 @@ void Output::LogSameLine(const wchar_t* text)
 	LogToVS(text);
 }
 
+void Output::LogSameLine(const bool value)
+{
+	LogToVS(BoolToString(value));
+}
+
 //-------------------------------------------------------------------------------------------------------------
 //------------------------------------------------ROOT---------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------
@@ -158,6 +180,11 @@ void Output::LogToVS(const string& text)
 void Output::LogToVS(const wchar_t* text)
 {
 	OutputDebugStringW(text);
+}
+
+string Output::BoolToString(const bool value)
+{
+	return value ? "True" : "False";
 }
 
 void Output::LogLineToVS(const string& text)

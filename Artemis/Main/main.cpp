@@ -1,7 +1,9 @@
 #include <iostream>
 #include "ApplicationArguments.h"
 
-#include "Source\Windows\GameWindow.h"
+#include "Source/Windows/GameWindow.h"
+#include "Source/DirectX/ShaderLoader.h"
+
 #include "Include/Game/Output.h"
 #include "Include/Game/Time.h"
 #include "Include/Exceptions/Exception.h"
@@ -20,7 +22,7 @@ int WINAPI wWinMain(_In_ HINSTANCE handleInstance, _In_opt_ HINSTANCE, _In_ PWST
 	{
 		ApplicationArguments::Initialize();
 		InitializeTime();
-
+		
 		CreateMainWindow(handleInstance, windowState);
 	}
 	catch (const Exception& e)

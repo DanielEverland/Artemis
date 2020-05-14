@@ -193,6 +193,7 @@
     <ClInclude Include="Include\Maths\Vector3Base.h" />
     <ClInclude Include="Include\Maths\Vector4Base.h" />
     <ClInclude Include="Include\Maths\VectorBase.h" />
+    <ClInclude Include="Include\Utility\Directory.h" />
     <ClInclude Include="Source\DirectX\DepthBuffer.h" />
     <ClInclude Include="Source\DirectX\DirectXHelper.h" />
     <ClInclude Include="Source\DirectX\GraphicsDevice.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Source\DirectX\Renderer.h" />
     <ClInclude Include="Source\DirectX\RenderStateGroups.h" />
     <ClInclude Include="Source\DirectX\RenderTargetView.h" />
+    <ClInclude Include="Source\DirectX\ShaderLoader.h" />
     <ClInclude Include="Source\DirectX\SwapChain.h" />
     <ClInclude Include="Source\DirectX\Texture2D.h" />
     <ClInclude Include="Source\DirectX\VertexBuffer.h" />
@@ -228,6 +230,7 @@
     <ClCompile Include="Source\DirectX\Renderer.cpp" />
     <ClCompile Include="Source\DirectX\RenderStateGroups.cpp" />
     <ClCompile Include="Source\DirectX\RenderTargetView.cpp" />
+    <ClCompile Include="Source\DirectX\ShaderLoader.cpp" />
     <ClCompile Include="Source\DirectX\SwapChain.cpp" />
     <ClCompile Include="Source\DirectX\Texture2D.cpp" />
     <ClCompile Include="Source\DirectX\VertexBuffer.cpp" />
@@ -246,6 +249,7 @@
     <ClCompile Include="Source\Game\Quaternion.cpp" />
     <ClCompile Include="Source\Game\Rendering\Mesh.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
+    <ClCompile Include="Source\Utility\Directory.cpp" />
     <ClCompile Include="Source\Windows\GameWindow.cpp" />
     <ClCompile Include="Source\Windows\Window.cpp" />
     <ClCompile Include="Source\Windows\WindowProcedure.cpp" />

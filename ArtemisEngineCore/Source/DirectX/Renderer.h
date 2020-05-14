@@ -61,4 +61,5 @@ private:
 	void DrawIndices(const IndexBuffer& indexBuffer) const;
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology);
 	void CreateRenderStates() const;
+	void LoadShaders() const;
 };

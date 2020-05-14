@@ -6,10 +6,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Main\PixelShader.ps">
+    <FxCompile Include="Main\VertexShader.vs.hlsl">
       <Filter>Main</Filter>
     </FxCompile>
-    <FxCompile Include="Main\VertexShader.vs">
+    <FxCompile Include="Main\PixelShader.ps.hlsl">
       <Filter>Main</Filter>
     </FxCompile>
   </ItemGroup>

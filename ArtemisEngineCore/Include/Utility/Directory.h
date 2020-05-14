@@ -13,13 +13,13 @@ namespace ArtemisEngine
 	public:
 		
 		/* Returns a list of all the files in a given directory that matches an extension */
-		static list<string> GetAllFilesWithExtension(string& directory, string extension);
+		static list<string> GetAllFilesWithExtension(const string& directory, const string& extension);
 		
 		/* Returns a list of all the files in a given directory */
-		static list<string> GetAllFiles(string& directory);
+		static list<string> GetAllFiles(const string& directory);
 
 		/* Iterates over a directory using a lambda or functor */
-		static void IterateDirectory(string& directory, std::function<void(string&)> func);
+		static void IterateDirectory(const string& directory, std::function<void(string&)> func);
 
 		/* Returns path to compiled shaders */
 		static string GetShaderDirectory();

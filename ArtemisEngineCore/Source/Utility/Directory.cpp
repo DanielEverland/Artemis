@@ -14,13 +14,13 @@ using namespace ArtemisEngine;
 const int Directory::BufferLength = 512;
 char* Directory::Buffer = new char[BufferLength];
 
-list<string> Directory::GetAllFilesWithExtension(string& directory, string extension)
+list<string> Directory::GetAllFilesWithExtension(const string& directory, const string& extension)
 {
 	list<string> allFiles;
 
-	IterateDirectory(directory, [&allFiles](string& currentPath) -> void
+	IterateDirectory(directory, [&allFiles, extension](string& currentPath) -> void
 	{
-		if (HasExtension(currentPath, ".cso"))
+		if (HasExtension(currentPath, extension))
 		{
 			allFiles.push_back(currentPath);
 		}
@@ -29,7 +29,7 @@ list<string> Directory::GetAllFilesWithExtension(string& directory, string exten
 	return allFiles;
 }
 
-list<string> Directory::GetAllFiles(string& directory)
+list<string> Directory::GetAllFiles(const string& directory)
 {
 	list<string> allFiles;
 
@@ -41,7 +41,7 @@ list<string> Directory::GetAllFiles(string& directory)
 	return allFiles;
 }
 
-void Directory::IterateDirectory(string& directory, std::function<void(string&)> func)
+void Directory::IterateDirectory(const string& directory, std::function<void(string&)> func)
 {
 	directory_iterator iterator(directory);
 	for (auto& entry : iterator)

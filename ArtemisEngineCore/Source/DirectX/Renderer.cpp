@@ -164,6 +164,6 @@ void Renderer::LoadShaders()
 {
 	const string shaderPath = Directory::GetShaderDirectory();
 	
-	ShaderLoader::LoadPixelShaders(shaderPath, graphicsDevice->GetRawDevice(), pixelShaders);
-	ShaderLoader::LoadVertexShaders(shaderPath, graphicsDevice->GetRawDevice(), vertexShaders);
+	pixelShaders = ShaderLoader::LoadPixelShaders(shaderPath, graphicsDevice->GetRawDevice(), pixelShaders);
+	vertexShaders = ShaderLoader::LoadVertexShaders(shaderPath, graphicsDevice->GetRawDevice(), vertexShaders);
 }

@@ -2,6 +2,7 @@
 
 #include <wrl.h>
 #include <d3d11.h>
+#include <list>
 #include <map>
 
 using Microsoft::WRL::ComPtr;
@@ -11,8 +12,9 @@ using std::map;
 class ShaderLoader
 {
 public:
-	static void LoadPixelShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11PixelShader>>& container);
-	static void LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11VertexShader>>& container);
+	static map<string, ComPtr<ID3D11PixelShader>> LoadPixelShaders(
+		const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11PixelShader>>& container);
+	static map<string, ComPtr<ID3D11VertexShader>> LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11VertexShader>>& container);
 	
 private:
 	static const int BlobSize;

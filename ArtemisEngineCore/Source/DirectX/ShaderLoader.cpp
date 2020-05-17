@@ -21,33 +21,45 @@ const string ShaderLoader::VertexShaderExtension = ".cvso";
 // One MB
 const int ShaderLoader::BlobSize = 1024 * 1024;
 
-void ShaderLoader::LoadPixelShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11PixelShader>>& container)
+map<string, ComPtr<ID3D11PixelShader>> ShaderLoader::LoadPixelShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11PixelShader>>& container)
 {
 	list<string> shaderFiles = Directory::GetAllFilesWithExtension(shaderDir, PixelShaderExtension);
+	map<string, ComPtr<ID3D11PixelShader>> shaders;
 
 	for (string& path : shaderFiles)
 	{
 		ComPtr<ID3D11PixelShader> shader;
 		CreatePixelShader(path, device, shader);
+
+		if (shader.Get() != nullptr)
+			shaders.emplace(GetShaderName(path), shader);
 	}
+
+	return shaders;
 }
 
-void ShaderLoader::LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11VertexShader>>& container)
+map<string, ComPtr<ID3D11VertexShader>> ShaderLoader::LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11VertexShader>>& container)
 {
 	list<string> shaderFiles = Directory::GetAllFilesWithExtension(shaderDir, VertexShaderExtension);
+	map<string, ComPtr<ID3D11VertexShader>> shaders;
 
 	for (string& path : shaderFiles)
 	{
 		ComPtr<ID3D11VertexShader> shader;
 		CreateVertexShader(path, device, shader);
+
+		if (shader.Get() != nullptr)
+			shaders.emplace(GetShaderName(path), shader);
 	}
+
+	return shaders;
 }
 
 void ShaderLoader::CreatePixelShader(const string& path, ComPtr<ID3D11Device>& device, ComPtr<ID3D11PixelShader>& shader)
 {
 	ComPtr<ID3DBlob> blob;
 	LoadToBlob(path, blob);
-	
+
 	ThrowIfFailed(device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf()));
 }
 

@@ -250,6 +250,7 @@
     <ClCompile Include="Source\Game\Quaternion.cpp" />
     <ClCompile Include="Source\Game\Rendering\Mesh.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
+    <ClCompile Include="Source\Maths\DoubleVector3.cpp" />
     <ClCompile Include="Source\Utility\Directory.cpp" />
     <ClCompile Include="Source\Utility\Path.cpp" />
     <ClCompile Include="Source\Windows\GameWindow.cpp" />

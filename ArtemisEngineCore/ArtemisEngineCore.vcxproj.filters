@@ -32,9 +32,6 @@
     <Filter Include="Source\Exceptions">
       <UniqueIdentifier>{f94efa15-689f-4ae1-8202-5885abbf6852}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Include\Maths">
-      <UniqueIdentifier>{300843e7-9730-4182-8a20-11dfef5456d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Game\Rendering">
       <UniqueIdentifier>{42fa60bd-5c63-402e-8b93-35fabca4d355}</UniqueIdentifier>
     </Filter>
@@ -136,39 +133,6 @@
     <ClInclude Include="Include\Exceptions\OutOfRangeException.h">
       <Filter>Include\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Maths\DoubleVector2.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\DoubleVector3.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\DoubleVector4.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\FloatVector2.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\FloatVector3.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\FloatVector4.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\GenericMatrix.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\Vector2Base.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\Vector3Base.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\Vector4Base.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Maths\VectorBase.h">
-      <Filter>Include\Maths</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Game\IntVector2.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
@@ -255,6 +219,39 @@
     </ClInclude>
     <ClInclude Include="Include\Utility\Path.h">
       <Filter>Include\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\DoubleVector2.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\DoubleVector3.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\DoubleVector4.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\FloatVector2.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\FloatVector3.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\FloatVector4.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\GenericMatrix.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\Vector2Base.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\Vector3Base.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\Vector4Base.h">
+      <Filter>Source\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maths\VectorBase.h">
+      <Filter>Source\Maths</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

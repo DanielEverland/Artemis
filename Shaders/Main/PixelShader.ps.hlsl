@@ -5,7 +5,7 @@ cbuffer PerObject
 
 struct PixelIn
 {
-	float3 Position : POSITION;
+	float4 PosHomogenous : SV_POSITION;
 	float4 Color : COLOR;
 };
 

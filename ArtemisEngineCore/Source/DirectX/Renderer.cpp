@@ -6,12 +6,15 @@
 #include "RenderStateGroups.h"
 #include "VertexBuffer.h"
 #include "ShaderLoader.h"
+#include "GraphicsDevice.h"
 
 #include "Include/Exceptions/NullReferenceException.h"
 #include "Include/Exceptions/DirectXException.h"
 #include "Include/Game/Matrix.h"
 #include "Include/Utility/Directory.h"
 #include "Include/Game/Camera.h"
+
+#include "PerObjectConstantBuffer.h"
 
 using ArtemisWindow::IWindow;
 using namespace ArtemisEngine::Rendering;
@@ -62,12 +65,34 @@ void Renderer::Render()
 
 	SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
+	// Test remove this hard reference to mesh
 	const Matrix viewMatrix = mainCamera->GetViewMatrix();
 	const Matrix worldMatrix = Matrix::TranslateRotationScale(Vector3(0, 0, 5), Quaternion::GetIdentity(), Vector3::One);
 	const Matrix projectionMatrix = mainCamera->GetProjectionMatrix();
 	const Matrix worldViewProj = worldMatrix * viewMatrix * projectionMatrix;
+
 	
-	// Test remove this hard reference to mesh
+	PerObjectConstantBuffer cBuffer;
+	cBuffer.WorldViewProjMatrix = worldViewProj;
+
+	D3D11_BUFFER_DESC cbDesc;
+	cbDesc.ByteWidth = sizeof(PerObjectConstantBuffer);
+	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
+	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbDesc.MiscFlags = 0;
+	cbDesc.StructureByteStride = 0;
+
+	D3D11_SUBRESOURCE_DATA initData;
+	initData.pSysMem = &cBuffer;
+	initData.SysMemPitch = 0;
+	initData.SysMemSlicePitch = 0;
+
+	ID3D11Buffer* buffer = nullptr;
+	ThrowIfFailed(graphicsDevice->GetRawDevice()->CreateBuffer(&cbDesc, &initData, &buffer));
+	graphicsDevice->GetRawContext()->VSSetConstantBuffers(0, 1, &buffer);
+	
+	
 	graphicsDevice->GetRawContext()->VSSetShader(GetVertexShader("VertexShader").Get(), 0, 0);
 	graphicsDevice->GetRawContext()->PSSetShader(GetPixelShader("PixelShader").Get(), 0, 0);
 	

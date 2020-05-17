@@ -192,6 +192,7 @@
     <ClInclude Include="Source\DirectX\DirectXHelper.h" />
     <ClInclude Include="Source\DirectX\GraphicsDevice.h" />
     <ClInclude Include="Source\DirectX\IndexBuffer.h" />
+    <ClInclude Include="Source\DirectX\PerObjectConstantBuffer.h" />
     <ClInclude Include="Source\DirectX\RasterizerState.h" />
     <ClInclude Include="Source\DirectX\Renderer.h" />
     <ClInclude Include="Source\DirectX\RenderStateGroups.h" />

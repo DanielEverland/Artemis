@@ -147,7 +147,7 @@ void Renderer::CreateViewport()
 	ComPtr<ID3D11RenderTargetView> rawRenderTargetView = renderTargetView->GetRawRenderTargetView();
 	ComPtr<ID3D11DepthStencilView> rawDepthStencilView = depthBuffer->GetRawStencilView();
 
-	rawContext->OMSetRenderTargets(1, &rawRenderTargetView, rawDepthStencilView.Get());
+	rawContext->OMSetRenderTargets(1, rawRenderTargetView.GetAddressOf(), rawDepthStencilView.Get());
 
 	D3D11_VIEWPORT viewPortDescription
 	{

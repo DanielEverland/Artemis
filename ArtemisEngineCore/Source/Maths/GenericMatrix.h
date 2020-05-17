@@ -4,9 +4,10 @@
 #include <initializer_list>
 #include <algorithm>
 
+#include "Source/Maths/VectorBase.h"
+
 #include "Include/Game/IDebugStringReturner.h"
 #include "Include/Exceptions/InvalidArgumentException.h"
-#include "Include/Maths/VectorBase.h"
 #include "Include/Game/Quaternion.h"
 #include "Include/Game/Vector4.h"
 
@@ -424,7 +425,7 @@ namespace ArtemisEngine::Maths::Matrices
 			return *this;
 		}
 
-	private:
+	protected:
 		T CalculateCofactor(unsigned int i, unsigned int j) const
 		{
 			T det = GetMinor(i, j).GetDeterminant();

@@ -22,6 +22,7 @@ namespace ArtemisEngine
 	class SafeObjRef
 	{
 	public:
+		SafeObjRef() = default;
 		SafeObjRef(const SafeObjRef<T>& other) = delete;
 		SafeObjRef(SafeObjRef<T>&& other)
 		{
@@ -83,8 +84,12 @@ namespace ArtemisEngine
 		{
 			return dynamic_cast<U*>(counter->GetRaw<T>());
 		}
-		
 
+		template<class U>
+		operator SafePtr<U>()
+		{
+			return GetSafePtr<U>();
+		}
 
 		SafeObjRef<T>& operator=(const SafeObjRef<T>& other) = delete;
 		SafeObjRef<T>& operator=(SafeObjRef<T>&& other)

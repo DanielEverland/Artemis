@@ -162,6 +162,7 @@
     <ClInclude Include="Include\Exceptions\NullReferenceException.h" />
     <ClInclude Include="Include\Exceptions\OutOfRangeException.h" />
     <ClInclude Include="Include\Game\Application.h" />
+    <ClInclude Include="Include\Game\Camera.h" />
     <ClInclude Include="Include\Game\Color.h" />
     <ClInclude Include="Include\Game\GameObject.h" />
     <ClInclude Include="Include\Game\IDebugStringReturner.h" />
@@ -172,12 +173,14 @@
     <ClInclude Include="Include\Game\IntVector4.h" />
     <ClInclude Include="Include\Game\Key.h" />
     <ClInclude Include="Include\Game\Math.h" />
+    <ClInclude Include="Include\Game\Matrix.h" />
     <ClInclude Include="Include\Game\Mesh.h" />
     <ClInclude Include="Include\Game\Object.h" />
     <ClInclude Include="Include\Game\Output.h" />
     <ClInclude Include="Include\Game\Quaternion.h" />
     <ClInclude Include="Include\Game\SafePtr.h" />
     <ClInclude Include="Include\Game\Time\Time.h" />
+    <ClInclude Include="Include\Game\Transform.h" />
     <ClInclude Include="Include\Game\Vector2.h" />
     <ClInclude Include="Include\Game\Vector3.h" />
     <ClInclude Include="Include\Game\Vector4.h" />
@@ -238,7 +241,9 @@
     <ClCompile Include="Source\Exceptions\Exception.cpp" />
     <ClCompile Include="Source\Formatting\NumberFormatting.cpp" />
     <ClCompile Include="Source\Game\Application.cpp" />
+    <ClCompile Include="Source\Game\Camera.cpp" />
     <ClCompile Include="Source\Game\Color.cpp" />
+    <ClCompile Include="Source\Game\GameObject.cpp" />
     <ClCompile Include="Source\Game\Input.cpp" />
     <ClCompile Include="Source\Game\Math.cpp" />
     <ClCompile Include="Source\Game\Object Management\ComponentContainer.cpp" />
@@ -250,6 +255,7 @@
     <ClCompile Include="Source\Game\Quaternion.cpp" />
     <ClCompile Include="Source\Game\Rendering\Mesh.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
+    <ClCompile Include="Source\Game\Transform.cpp" />
     <ClCompile Include="Source\Maths\DoubleVector3.cpp" />
     <ClCompile Include="Source\Utility\Directory.cpp" />
     <ClCompile Include="Source\Utility\Path.cpp" />

@@ -59,7 +59,7 @@ namespace ArtemisEngine
 		}
 
 		// Returns a raw pointer to the pointed to object.
-		T* GetRaw() const
+		[[nodiscard]] T* GetRaw() const
 		{
 			return counter->GetRaw<T>();
 		}

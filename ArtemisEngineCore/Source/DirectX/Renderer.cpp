@@ -9,7 +9,9 @@
 
 #include "Include/Exceptions/NullReferenceException.h"
 #include "Include/Exceptions/DirectXException.h"
+#include "Include/Game/Matrix.h"
 #include "Include/Utility/Directory.h"
+#include "Include/Game/Camera.h"
 
 using ArtemisWindow::IWindow;
 using namespace ArtemisEngine::Rendering;
@@ -59,6 +61,8 @@ void Renderer::Render()
 	swapChain->Present();
 
 	SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	Matrix viewMatrix = mainCamera->GetViewMatrix();
 	
 	// Test remove this hard reference to mesh
 	graphicsDevice->GetRawContext()->VSSetShader(GetVertexShader("VertexShader").Get(), 0, 0);
@@ -127,6 +131,11 @@ void Renderer::CreateViewport()
 void Renderer::SetRenderState(class RasterizerState* state)
 {
 	graphicsDevice->GetRawContext()->RSSetState(state->GetRawState());
+}
+
+void Renderer::SetCamera(SafePtr<Camera> camera)
+{
+	mainCamera = camera;
 }
 
 void Renderer::CreateResources()

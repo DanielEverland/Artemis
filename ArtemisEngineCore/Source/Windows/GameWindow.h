@@ -12,6 +12,7 @@
 
 #include "Window.h"
 #include "Source/DirectX/Renderer.h"
+#include "Source/Game/Object Management/SafeObjRef.h"
 
 using namespace Microsoft::WRL;
 
@@ -35,6 +36,8 @@ namespace ArtemisWindow
 	private:
 		shared_ptr<Renderer> renderer;
 
+		SafeObjRef<Camera> mainCamera;
+		
 		virtual void RunMessageLoop() final;
 		virtual void CreateWindowClass() const;
 		virtual HWND CreateWindowHandle();

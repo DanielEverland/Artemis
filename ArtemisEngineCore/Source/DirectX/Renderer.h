@@ -7,12 +7,19 @@
 #include "Source/DirectX/SwapChain.h"
 #include "Source/DirectX/DepthBuffer.h"
 #include "Source/DirectX/RenderTargetView.h"
+#include "Include/Game/SafePtr.h"
 #include "Source/Windows/IWindow.h"
 #include "Include/Game/Color.h"
 #include "Include/Game/Mesh.h"
 
+
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+
+namespace ArtemisEngine
+{
+	class Camera;
+}
 
 using namespace ArtemisEngine::Rendering;
 using namespace ArtemisEngine;
@@ -40,6 +47,7 @@ public:
 	void Resize();
 	void CreateViewport();
 	void SetRenderState(class RasterizerState* state);
+	void SetCamera(SafePtr<Camera> camera);
 
 private:
 	static const uint8_t swapChainBufferSize = 3;
@@ -58,6 +66,8 @@ private:
 	map<string, ComPtr<ID3D11PixelShader>> pixelShaders;
 	map<string, ComPtr<ID3D11VertexShader>> vertexShaders;
 
+	SafePtr<Camera> mainCamera;
+	
 	const IWindow* gameWindow;
 
 	void Draw(const Mesh& mesh) const;

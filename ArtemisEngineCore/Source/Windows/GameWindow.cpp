@@ -9,7 +9,9 @@
 #include "Include/Game/Input.h"
 #include "Include/Exceptions/Exception.h"
 #include "Include/Game/Application.h"
+#include "Include/Game/Camera.h"
 
+using namespace ArtemisEngine;
 using ArtemisWindow::GameWindow;
 using std::string;
 
@@ -20,6 +22,8 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 	::GetWindowRect(windowHandle, &previousWindowRect);
 
 	renderer = shared_ptr<Renderer>(new Renderer(this));
+	mainCamera = SafeObjRef<Camera>(new Camera());
+	renderer->SetCamera(mainCamera);
 }
 
 void GameWindow::Show()

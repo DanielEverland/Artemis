@@ -253,6 +253,15 @@
     <ClInclude Include="Source\Maths\VectorBase.h">
       <Filter>Source\Maths</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Game\Transform.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Matrix.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Camera.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Windows\GameWindow.cpp">
@@ -350,6 +359,15 @@
     </ClCompile>
     <ClCompile Include="Source\Maths\DoubleVector3.cpp">
       <Filter>Source\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Transform.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\GameObject.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Camera.cpp">
+      <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

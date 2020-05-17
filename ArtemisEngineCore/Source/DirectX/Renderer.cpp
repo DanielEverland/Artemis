@@ -24,11 +24,11 @@ Renderer::Renderer(const IWindow* owner)
 	gameWindow = owner;
 }
 
-ComPtr<ID3D11VertexShader> Renderer::GetVertexShader(const string& name)
+VertexShaderObject* Renderer::GetVertexShader(const string& name)
 {
 	const auto foundEntry = vertexShaders.find(name);
 	if(foundEntry != vertexShaders.end())
-		return foundEntry->second;
+		return &foundEntry->second;
 		
 	throw NullReferenceException("Couldn't find vertex shader \"" + name + "\"");
 }
@@ -92,10 +92,14 @@ void Renderer::Render()
 	ThrowIfFailed(graphicsDevice->GetRawDevice()->CreateBuffer(&cbDesc, &initData, &buffer));
 	graphicsDevice->GetRawContext()->VSSetConstantBuffers(0, 1, &buffer);
 	
-	
-	graphicsDevice->GetRawContext()->VSSetShader(GetVertexShader("VertexShader").Get(), 0, 0);
+
+	VertexShaderObject* vertexShader = GetVertexShader("VertexShader");
+	graphicsDevice->GetRawContext()->VSSetShader(vertexShader->Shader.Get(), 0, 0);
 	graphicsDevice->GetRawContext()->PSSetShader(GetPixelShader("PixelShader").Get(), 0, 0);
+
+	graphicsDevice->GetRawContext()->IASetInputLayout(vertexShader->InputLayout.Get());
 	
+
 	VertexBufferData vertexBufferData(8);
 	vertexBufferData[0] = Vector3(-1.0, -1.0, -1.0);
 	vertexBufferData[1] = Vector3(-1.0, 1.0, -1.0);

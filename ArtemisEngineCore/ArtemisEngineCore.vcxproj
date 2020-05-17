@@ -202,6 +202,7 @@
     <ClInclude Include="Source\DirectX\Texture2D.h" />
     <ClInclude Include="Source\DirectX\VertexBuffer.h" />
     <ClInclude Include="Source\DirectX\VertexBufferConverter.h" />
+    <ClInclude Include="Source\DirectX\VertexShaderObject.h" />
     <ClInclude Include="Source\Formatting\NumberFormatting.h" />
     <ClInclude Include="Source\Game\Object Management\ComponentContainer.h" />
     <ClInclude Include="Source\Game\Object Management\GameObjectContainer.h" />

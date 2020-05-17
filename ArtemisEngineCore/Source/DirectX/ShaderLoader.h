@@ -5,6 +5,9 @@
 #include <list>
 #include <map>
 
+#include "VertexShaderObject.h"
+
+using Rendering::VertexShaderObject;
 using Microsoft::WRL::ComPtr;
 using std::string;
 using std::map;
@@ -12,9 +15,8 @@ using std::map;
 class ShaderLoader
 {
 public:
-	static map<string, ComPtr<ID3D11PixelShader>> LoadPixelShaders(
-		const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11PixelShader>>& container);
-	static map<string, ComPtr<ID3D11VertexShader>> LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11VertexShader>>& container);
+	static map<string, ComPtr<ID3D11PixelShader>> LoadPixelShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11PixelShader>>& container);
+	static map<string, VertexShaderObject> LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, VertexShaderObject>& container);
 	
 private:
 	static const int BlobSize;

@@ -6,6 +6,7 @@
 
 #include "Source/DirectX/DirectXHelper.h"
 
+#include "Include/Exceptions/InvalidOperationException.h"
 #include "Include/Utility/Directory.h"
 #include "Include/Utility/Path.h"
 
@@ -31,6 +32,9 @@ map<string, ComPtr<ID3D11PixelShader>> ShaderLoader::LoadPixelShaders(const stri
 		ComPtr<ID3D11PixelShader> shader;
 		CreatePixelShader(path, device, shader);
 
+		if(shader.Get() == nullptr)
+			throw InvalidOperationException("Could not create shader at " + path);
+		
 		if (shader.Get() != nullptr)
 			shaders.emplace(GetShaderName(path), shader);
 	}
@@ -38,18 +42,23 @@ map<string, ComPtr<ID3D11PixelShader>> ShaderLoader::LoadPixelShaders(const stri
 	return shaders;
 }
 
-map<string, ComPtr<ID3D11VertexShader>> ShaderLoader::LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11VertexShader>>& container)
+map<string, VertexShaderObject> ShaderLoader::LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, VertexShaderObject>& container)
 {
 	list<string> shaderFiles = Directory::GetAllFilesWithExtension(shaderDir, VertexShaderExtension);
-	map<string, ComPtr<ID3D11VertexShader>> shaders;
+	map<string, VertexShaderObject> shaders;
 
 	for (string& path : shaderFiles)
 	{
+		ComPtr<ID3DBlob> blob;
+		LoadToBlob(path, blob);
+		
 		ComPtr<ID3D11VertexShader> shader;
-		CreateVertexShader(path, device, shader);
+		ThrowIfFailed(device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf()));
 
-		if (shader.Get() != nullptr)
-			shaders.emplace(GetShaderName(path), shader);
+		if (shader.Get() == nullptr)
+			throw InvalidOperationException("Could not create shader at " + path);
+		
+		shaders.emplace(GetShaderName(path), VertexShaderObject(blob.Get(), shader, device));
 	}
 
 	return shaders;
@@ -65,10 +74,7 @@ void ShaderLoader::CreatePixelShader(const string& path, ComPtr<ID3D11Device>& d
 
 void ShaderLoader::CreateVertexShader(const string& path, ComPtr<ID3D11Device>& device, ComPtr<ID3D11VertexShader>& shader)
 {
-	ComPtr<ID3DBlob> blob;
-	LoadToBlob(path, blob);
-
-	ThrowIfFailed(device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf()));
+	
 }
 
 void ShaderLoader::LoadToBlob(const string& path, ComPtr<ID3DBlob>& blob)

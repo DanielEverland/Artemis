@@ -15,6 +15,7 @@
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VertexShaderObject.h"
 
 namespace ArtemisEngine
 {
@@ -34,7 +35,7 @@ class Renderer
 public:
 	explicit Renderer(const IWindow* const window);
 
-	ComPtr<ID3D11VertexShader> GetVertexShader(const string& name);
+	VertexShaderObject* GetVertexShader(const string& name);
 	ComPtr<ID3D11PixelShader> GetPixelShader(const string& name);
 	
 	bool GetUseWARPAdapter() const { return useWARPAdapter; }
@@ -64,7 +65,7 @@ private:
 	shared_ptr<DepthBuffer> depthBuffer;
 
 	map<string, ComPtr<ID3D11PixelShader>> pixelShaders;
-	map<string, ComPtr<ID3D11VertexShader>> vertexShaders;
+	map<string, VertexShaderObject> vertexShaders;
 
 	SafePtr<Camera> mainCamera;
 	

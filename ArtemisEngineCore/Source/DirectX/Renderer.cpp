@@ -7,6 +7,7 @@
 #include "VertexBuffer.h"
 #include "ShaderLoader.h"
 
+#include "Include/Exceptions/NullReferenceException.h"
 #include "Include/Exceptions/DirectXException.h"
 #include "Include/Utility/Directory.h"
 
@@ -16,6 +17,24 @@ using namespace ArtemisEngine::Rendering;
 Renderer::Renderer(const IWindow* owner)
 {
 	gameWindow = owner;
+}
+
+ComPtr<ID3D11VertexShader> Renderer::GetVertexShader(const string& name)
+{
+	const auto foundEntry = vertexShaders.find(name);
+	if(foundEntry != vertexShaders.end())
+		return foundEntry->second;
+		
+	throw NullReferenceException("Couldn't find vertex shader \"" + name + "\"");
+}
+
+ComPtr<ID3D11PixelShader> Renderer::GetPixelShader(const string& name)
+{
+	const auto foundEntry = pixelShaders.find(name);
+	if (foundEntry != pixelShaders.end())
+		return foundEntry->second;
+	
+	throw NullReferenceException("Couldn't find pixel shader \"" + name + "\"");
 }
 
 void Renderer::Initialize()
@@ -28,7 +47,7 @@ void Renderer::Initialize()
 	LoadShaders();
 	CreateViewport();
 	CreateRenderStates();
-
+		
 	SetRenderState(RenderStateGroups::GetSolidState());
 
 	hasInitialized = true;

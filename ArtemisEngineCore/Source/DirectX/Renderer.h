@@ -25,12 +25,15 @@ using std::map;
 class Renderer
 {
 public:
-	Renderer(const IWindow* const window);
+	explicit Renderer(const IWindow* const window);
 
-	inline bool GetUseWARPAdapter() const { return useWARPAdapter; }
-	inline void SetUseWARPAdapter(bool value) { useWARPAdapter = value; }
+	ComPtr<ID3D11VertexShader> GetVertexShader(const string& name);
+	ComPtr<ID3D11PixelShader> GetPixelShader(const string& name);
+	
+	bool GetUseWARPAdapter() const { return useWARPAdapter; }
+	void SetUseWARPAdapter(const bool value) { useWARPAdapter = value; }
 
-	inline bool IsInitialized() const { return hasInitialized; }
+	bool IsInitialized() const { return hasInitialized; }
 
 	void Initialize();
 	void Render();

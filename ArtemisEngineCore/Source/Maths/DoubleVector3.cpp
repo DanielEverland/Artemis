@@ -2,6 +2,7 @@
 
 using namespace Maths::Vectors;
 
+const DoubleVector3 DoubleVector3::One = DoubleVector3(1.0, 1.0, 1.0);
 const DoubleVector3 DoubleVector3::Zero = DoubleVector3(0.0, 0.0, 0.0);
 const DoubleVector3 DoubleVector3::Up = DoubleVector3(0.0, 1.0, 0.0);
 const DoubleVector3 DoubleVector3::Down = DoubleVector3(0.0, -1.0, 0.0);

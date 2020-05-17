@@ -7,5 +7,5 @@ Camera::Camera()
 
 Matrix Camera::GetViewMatrix() const
 {
-	return transform.GetWorldMatrix().GetInverseMatrix();
+	return Matrix::TranslateRotationScale(transform.Position, transform.Rotation, Vector3::One).GetInverseMatrix();
 }

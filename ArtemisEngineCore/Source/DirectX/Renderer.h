@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <map>
 
 #include "Source/DirectX/GraphicsDevice.h"
 #include "Source/DirectX/SwapChain.h"
@@ -18,6 +19,7 @@ using namespace ArtemisEngine;
 using namespace ArtemisWindow;
 
 using std::shared_ptr;
+using std::map;
 
 // Responsible for managing DirectX resources and the entire rendering pipeline
 class Renderer
@@ -50,6 +52,9 @@ private:
 	shared_ptr<RenderTargetView> renderTargetView;
 	shared_ptr<DepthBuffer> depthBuffer;
 
+	map<string, ComPtr<ID3D11PixelShader>> pixelShaders;
+	map<string, ComPtr<ID3D11VertexShader>> vertexShaders;
+
 	const IWindow* gameWindow;
 
 	void Draw(const Mesh& mesh) const;
@@ -61,5 +66,5 @@ private:
 	void DrawIndices(const IndexBuffer& indexBuffer) const;
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY topology);
 	void CreateRenderStates() const;
-	void LoadShaders() const;
+	void LoadShaders();
 };

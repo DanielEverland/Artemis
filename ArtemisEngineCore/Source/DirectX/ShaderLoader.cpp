@@ -1,34 +1,74 @@
 ﻿#include <string>
+#include <map>
 #include <d3dcompiler.h>
-
-#include "Source/DirectX/DirectXHelper.h"
-#include "Include/Utility/Directory.h"
 
 #include "ShaderLoader.h"
 
+#include "Source/DirectX/DirectXHelper.h"
+
+#include "Include/Utility/Directory.h"
+#include "Include/Utility/Path.h"
+
+using std::map;
 using std::string;
 using std::wstring;
 using ArtemisEngine::Directory;
+using namespace ArtemisEngine::IO;
+
+const string ShaderLoader::PixelShaderExtension = ".cpso";
+const string ShaderLoader::VertexShaderExtension = ".cvso";
 
 // One MB
 const int ShaderLoader::BlobSize = 1024 * 1024;
 
-void ShaderLoader::LoadShaders(ComPtr<ID3D11Device>& device)
+void ShaderLoader::LoadPixelShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11PixelShader>>& container)
 {
-	string shaderDir = Directory::GetShaderDirectory();
-	list<string> shaderFiles = Directory::GetAllFilesWithExtension(shaderDir, ".cso");
+	list<string> shaderFiles = Directory::GetAllFilesWithExtension(shaderDir, PixelShaderExtension);
 
-	for(string& path : shaderFiles)
+	for (string& path : shaderFiles)
 	{
-		wstring widePath(path.length(), L' ');
-		std::copy(path.begin(), path.end(), widePath.begin());
-		
-		ID3DBlob* blob;
-		ThrowIfFailed(D3DCreateBlob(BlobSize, &blob));
-		
-	 	ThrowIfFailed(D3DReadFileToBlob(widePath.c_str(), &blob));
-		
-		ID3D11PixelShader* shader;
-		ThrowIfFailed(device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, &shader));
+		ComPtr<ID3D11PixelShader> shader;
+		CreatePixelShader(path, device, shader);
 	}
+}
+
+void ShaderLoader::LoadVertexShaders(const string& shaderDir, ComPtr<ID3D11Device>& device, map<string, ComPtr<ID3D11VertexShader>>& container)
+{
+	list<string> shaderFiles = Directory::GetAllFilesWithExtension(shaderDir, VertexShaderExtension);
+
+	for (string& path : shaderFiles)
+	{
+		ComPtr<ID3D11VertexShader> shader;
+		CreateVertexShader(path, device, shader);
+	}
+}
+
+void ShaderLoader::CreatePixelShader(const string& path, ComPtr<ID3D11Device>& device, ComPtr<ID3D11PixelShader>& shader)
+{
+	ComPtr<ID3DBlob> blob;
+	LoadToBlob(path, blob);
+	
+	ThrowIfFailed(device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf()));
+}
+
+void ShaderLoader::CreateVertexShader(const string& path, ComPtr<ID3D11Device>& device, ComPtr<ID3D11VertexShader>& shader)
+{
+	ComPtr<ID3DBlob> blob;
+	LoadToBlob(path, blob);
+
+	ThrowIfFailed(device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, shader.GetAddressOf()));
+}
+
+void ShaderLoader::LoadToBlob(const string& path, ComPtr<ID3DBlob>& blob)
+{
+	wstring widePath(path.length(), L' ');
+	std::copy(path.begin(), path.end(), widePath.begin());
+
+	ThrowIfFailed(D3DCreateBlob(BlobSize, blob.GetAddressOf()));
+	ThrowIfFailed(D3DReadFileToBlob(widePath.c_str(), blob.GetAddressOf()));
+}
+
+string ShaderLoader::GetShaderName(const string& shaderPath)
+{
+	return Path::GetFilenameWithoutExtension(shaderPath);
 }

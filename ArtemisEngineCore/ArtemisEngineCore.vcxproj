@@ -23,7 +23,7 @@
     <ProjectGuid>{D6F75E89-595F-4BAB-939A-3CF95376482D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ArtemisEngineCore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -194,6 +194,7 @@
     <ClInclude Include="Include\Maths\Vector4Base.h" />
     <ClInclude Include="Include\Maths\VectorBase.h" />
     <ClInclude Include="Include\Utility\Directory.h" />
+    <ClInclude Include="Include\Utility\Path.h" />
     <ClInclude Include="Source\DirectX\DepthBuffer.h" />
     <ClInclude Include="Source\DirectX\DirectXHelper.h" />
     <ClInclude Include="Source\DirectX\GraphicsDevice.h" />
@@ -250,6 +251,7 @@
     <ClCompile Include="Source\Game\Rendering\Mesh.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
     <ClCompile Include="Source\Utility\Directory.cpp" />
+    <ClCompile Include="Source\Utility\Path.cpp" />
     <ClCompile Include="Source\Windows\GameWindow.cpp" />
     <ClCompile Include="Source\Windows\Window.cpp" />
     <ClCompile Include="Source\Windows\WindowProcedure.cpp" />

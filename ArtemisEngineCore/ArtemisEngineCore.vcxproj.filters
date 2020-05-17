@@ -250,6 +250,9 @@
     <ClInclude Include="Include\Utility\Directory.h">
       <Filter>Include\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Utility\Path.h">
+      <Filter>Include\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Windows\GameWindow.cpp">
@@ -340,6 +343,9 @@
       <Filter>Source\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utility\Directory.cpp">
+      <Filter>Source\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utility\Path.cpp">
       <Filter>Source\Utility</Filter>
     </ClCompile>
   </ItemGroup>

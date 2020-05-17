@@ -5,6 +5,9 @@
 
 #include "Key.h"
 
+using std::map;
+using std::set;
+
 namespace ArtemisWindow
 {
 	class GameWindow;
@@ -30,10 +33,6 @@ public:
 	float downTime;
 };
 
-using set = std::set<Key>;
-using map = std::map<Key, KeyInfo>;
-using pair = std::pair<Key, KeyInfo>;
-
 class Input
 {
 	friend class ArtemisWindow::GameWindow;
@@ -49,8 +48,8 @@ private:
 	static const float ClickInterval;
 	static const int KeyboardStateCurrentFlag;
 
-	static map keyBuffer;
-	static set clickedKeys;
+	static map<Key, KeyInfo> keyBuffer;
+	static set<Key> clickedKeys;
 	
 	static void OnKeyDown(const Key key);
 	static void OnKeyUp(const Key key);

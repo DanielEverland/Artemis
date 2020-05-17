@@ -7,8 +7,8 @@
 const float Input::ClickInterval = 0.2f;
 const int Input::KeyboardStateCurrentFlag = 0x8000;
 
-map Input::keyBuffer = { };
-set Input::clickedKeys = { };
+map<Key, KeyInfo> Input::keyBuffer = { };
+set<Key> Input::clickedKeys = { };
 
 bool Input::IsDown(const Key key)
 {
@@ -41,7 +41,7 @@ void Input::OnKeyDown(const Key key)
 	if (iterator == keyBuffer.end())
 	{
 		KeyInfo info(KeyState::Down, Time::GetTimeSinceStart());
-		keyBuffer.insert(pair(key, info));
+		keyBuffer.insert(std::pair(key, info));
 	}
 }
 

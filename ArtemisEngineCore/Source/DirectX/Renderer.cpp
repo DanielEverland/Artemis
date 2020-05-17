@@ -8,6 +8,7 @@
 #include "ShaderLoader.h"
 
 #include "Include/Exceptions/DirectXException.h"
+#include "Include/Utility/Directory.h"
 
 using ArtemisWindow::IWindow;
 using namespace ArtemisEngine::Rendering;
@@ -159,7 +160,10 @@ void Renderer::CreateRenderStates() const
 	RenderStateGroups::CreateStateGroups(graphicsDevice.get());
 }
 
-void Renderer::LoadShaders() const
+void Renderer::LoadShaders()
 {
-	ShaderLoader::LoadShaders(graphicsDevice->GetRawDevice());
+	const string shaderPath = Directory::GetShaderDirectory();
+	
+	ShaderLoader::LoadPixelShaders(shaderPath, graphicsDevice->GetRawDevice(), pixelShaders);
+	ShaderLoader::LoadVertexShaders(shaderPath, graphicsDevice->GetRawDevice(), vertexShaders);
 }

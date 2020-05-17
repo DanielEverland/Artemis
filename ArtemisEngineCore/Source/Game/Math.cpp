@@ -83,6 +83,11 @@ double Math::ArcTangent(double value)
 	return std::atan(value);
 }
 
+double Math::Cotangent(double value)
+{
+	return 1 / Tangent(value);
+}
+
 bool Math::IsFloatingPointIntegral(double value)
 {
 	return std::trunc(value) == value;

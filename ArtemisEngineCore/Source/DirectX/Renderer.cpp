@@ -62,7 +62,10 @@ void Renderer::Render()
 
 	SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	Matrix viewMatrix = mainCamera->GetViewMatrix();
+	const Matrix viewMatrix = mainCamera->GetViewMatrix();
+	const Matrix worldMatrix = Matrix::TranslateRotationScale(Vector3(0, 0, 5), Quaternion::GetIdentity(), Vector3::One);
+	const Matrix projectionMatrix = mainCamera->GetProjectionMatrix();
+	const Matrix worldViewProj = worldMatrix * viewMatrix * projectionMatrix;
 	
 	// Test remove this hard reference to mesh
 	graphicsDevice->GetRawContext()->VSSetShader(GetVertexShader("VertexShader").Get(), 0, 0);

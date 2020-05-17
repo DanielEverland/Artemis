@@ -179,6 +179,7 @@
     <ClInclude Include="Include\Game\Output.h" />
     <ClInclude Include="Include\Game\Quaternion.h" />
     <ClInclude Include="Include\Game\SafePtr.h" />
+    <ClInclude Include="Include\Game\Screen.h" />
     <ClInclude Include="Include\Game\Time\Time.h" />
     <ClInclude Include="Include\Game\Transform.h" />
     <ClInclude Include="Include\Game\Vector2.h" />
@@ -254,6 +255,7 @@
     <ClCompile Include="Source\Game\Output.cpp" />
     <ClCompile Include="Source\Game\Quaternion.cpp" />
     <ClCompile Include="Source\Game\Rendering\Mesh.cpp" />
+    <ClCompile Include="Source\Game\Screen.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
     <ClCompile Include="Source\Game\Transform.cpp" />
     <ClCompile Include="Source\Maths\DoubleVector3.cpp" />

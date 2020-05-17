@@ -271,7 +271,7 @@ namespace ArtemisEngine::Maths::Matrices
 		}
 
 		template<typename = typename std::enable_if<(rows == columns)>::type>
-		GenericMatrix GetIdentityMatrix() const
+		static GenericMatrix GetIdentityMatrix()
 		{
 			return BaseMatrix::GetIdentityMatrix<T, rows>();
 		}

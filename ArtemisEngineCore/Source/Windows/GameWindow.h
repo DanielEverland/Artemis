@@ -30,6 +30,8 @@ namespace ArtemisWindow
 		inline bool IsFullscreen() const { return fullscreen; }
 
 		virtual void Show() override;
+		void SetWidth(unsigned value) override;
+		void SetHeight(unsigned value) override;
 
 		class IComponent* component;
 
@@ -50,6 +52,7 @@ namespace ArtemisWindow
 		void HandleKeyBindings();
 		void OutputFramerate() const;
 		virtual void HasResized() override;
+
 
 		// Messages
 		virtual LONG_PTR HandleMessage(UINT messageCode, UINT_PTR wParam, LONG_PTR lParam);

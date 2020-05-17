@@ -262,6 +262,9 @@
     <ClInclude Include="Include\Game\Camera.h">
       <Filter>Include\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Game\Screen.h">
+      <Filter>Include\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Windows\GameWindow.cpp">
@@ -367,6 +370,9 @@
       <Filter>Source\Game</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\Camera.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Screen.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>

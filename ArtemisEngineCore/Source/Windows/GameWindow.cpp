@@ -10,6 +10,7 @@
 #include "Include/Exceptions/Exception.h"
 #include "Include/Game/Application.h"
 #include "Include/Game/Camera.h"
+#include "Include/Game/Screen.h"
 
 using namespace ArtemisEngine;
 using ArtemisWindow::GameWindow;
@@ -35,6 +36,20 @@ void GameWindow::Show()
 
 	ShowWindow(windowHandle, SW_SHOW);
 	RunMessageLoop();
+}
+
+void GameWindow::SetWidth(unsigned value)
+{
+	Window::SetWidth(value);
+
+	Screen::width = value;
+}
+
+void GameWindow::SetHeight(unsigned value)
+{
+	Window::SetHeight(value);
+
+	Screen::height = value;
 }
 
 void TickTime()

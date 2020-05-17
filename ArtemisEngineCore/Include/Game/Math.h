@@ -57,6 +57,9 @@ public:
 
 	// Computes the angle given the value of tangent
 	static double ArcTangent(double value);
+
+	// Computes the cotangent of angle given in radians
+	static double Cotangent(double value);
 	
 	// Checks if floating point number is an integer
 	// For instance, 3.0 would return true and 3.1 would return false

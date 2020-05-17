@@ -8,7 +8,12 @@ namespace ArtemisEngine
 	{
 	public:
 		Camera();
-		
+
+		float VerticalFieldOfView;
+		float NearClipDistance;
+		float FarClipDistance;
+				
 		[[nodiscard]] Matrix GetViewMatrix() const;
+		[[nodiscard]] Matrix GetProjectionMatrix() const;
 	};
 }

@@ -1,8 +1,8 @@
 #include "pch.h"
 
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
-#include "Include/Game/IntVector3.h"
-#include "Include/Game/Vector2.h"
+#include "Public/Game/IntVector3.h"
+#include "Public/Game/Vector2.h"
 
 namespace Maths::Vectors
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Source/Game/Rendering/RenderingBufferDataContainer.h"
-#include "Include/Game/Vector3.h"
+#include "Private/Game/Rendering/RenderingBufferDataContainer.h"
+#include "Public/Game/Vector3.h"
 
 namespace ArtemisEngine::Rendering
 {

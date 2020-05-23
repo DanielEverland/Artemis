@@ -1,6 +1,6 @@
 #include <windows.h>
 
-#include "Include/Game/Time.h"
+#include "Public/Game/Time.h"
 
 float Time::deltaTime = 0;
 float Time::secondsPerCount = 0;

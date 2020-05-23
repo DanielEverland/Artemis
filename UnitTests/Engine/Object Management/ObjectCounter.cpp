@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include "Source/Game/Object Management/ObjectCounter.h"
-#include "Include/Game/SafePtr.h"
+#include "Private/Game/Object Management/ObjectCounter.h"
+#include "Public/Game/SafePtr.h"
 
 using namespace ArtemisEngine;
 

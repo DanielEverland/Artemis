@@ -1,9 +1,9 @@
 #include "pch.h"
 
-#include "Include/Exceptions/NullReferenceException.h"
-#include "Include/Game/SafePtr.h"
+#include "Public/Exceptions/NullReferenceException.h"
+#include "Public/Game/SafePtr.h"
 
-#include "Source/Game/Object Management/SafeObjRef.h"
+#include "Private/Game/Object Management/SafeObjRef.h"
 
 using namespace ArtemisEngine;
 

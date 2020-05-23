@@ -1,9 +1,9 @@
 #include <assert.h>
 
+#include "Private/Exceptions/DirectXException.h"
+
 #include "GraphicsDevice.h"
 #include "DirectXHelper.h"
-#include "Include/Exceptions/DirectXException.h"
-
 
 IDXGIAdapter* GraphicsDevice::DefaultAdapter = 0;
 HMODULE GraphicsDevice::DefaultSoftwareDevice = 0;

@@ -3,12 +3,12 @@
 #include <map>
 
 #include "Utility/Comparison/ComparisonUtilityVectors.h"
-#include "Include/Exceptions/DivideByZeroException.h"
-#include "Include/Exceptions/OutOfRangeException.h"
-#include "Include/Exceptions/NullReferenceException.h"
-#include "Include/Game/Vector2.h"
-#include "Include/Game/Vector3.h"
-#include "Include/Game/Vector4.h"
+#include "Public/Exceptions/DivideByZeroException.h"
+#include "Public/Exceptions/OutOfRangeException.h"
+#include "Public/Exceptions/NullReferenceException.h"
+#include "Public/Game/Vector2.h"
+#include "Public/Game/Vector3.h"
+#include "Public/Game/Vector4.h"
 
 #define Infinity std::numeric_limits<double>::infinity()
 

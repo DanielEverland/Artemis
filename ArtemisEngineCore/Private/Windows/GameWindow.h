@@ -10,10 +10,10 @@
 #include <cassert>
 #include <chrono>
 
-#include "Source/DirectX/Renderer.h"
-#include "Source/Game/Object Management/SafeObjRef.h"
+#include "Private/DirectX/Renderer.h"
+#include "Private/Game/Object Management/SafeObjRef.h"
 
-#include "Include/Game/World.h"
+#include "Public/Game/World.h"
 #include "Window.h"
 
 using namespace Microsoft::WRL;

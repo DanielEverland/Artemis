@@ -1,12 +1,12 @@
 #include <iostream>
 #include "ApplicationArguments.h"
 
-#include "Source/Windows/GameWindow.h"
-#include "Source/DirectX/ShaderLoader.h"
+#include "Private/Windows/GameWindow.h"
+#include "Private/DirectX/ShaderLoader.h"
+#include "Private/Exceptions/Exception.h"
 
-#include "Include/Game/Output.h"
-#include "Include/Game/Time.h"
-#include "Include/Exceptions/Exception.h"
+#include "Public/Game/Output.h"
+#include "Public/Game/Time.h"
 
 using namespace ArtemisWindow;
 

@@ -4,12 +4,12 @@
 #include <cmath>
 #include <utility>
 
-#include "Source/Formatting/NumberFormatting.h"
+#include "Public/Formatting/NumberFormatting.h"
 
-#include "Include/Exceptions/OutOfRangeException.h"
-#include "Include/Exceptions/DivideByZeroException.h"
-#include "Include/Game/IDebugStringReturner.h"
-#include "Include/Game/Math.h"
+#include "Public/Exceptions/OutOfRangeException.h"
+#include "Public/Exceptions/DivideByZeroException.h"
+#include "Public/Game/IDebugStringReturner.h"
+#include "Public/Game/Math.h"
 
 using namespace ArtemisEngine;
 

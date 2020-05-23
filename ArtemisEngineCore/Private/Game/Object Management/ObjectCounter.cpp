@@ -1,5 +1,5 @@
 #include "ObjectCounter.h"
-#include "Include/Exceptions/NullReferenceException.h"
+#include "Public/Exceptions/NullReferenceException.h"
 
 #include <utility>
 

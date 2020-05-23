@@ -1,8 +1,8 @@
 #pragma once
 #include <memory>
 
-#include "Include/Exceptions/NullReferenceException.h"
-#include "Include/Exceptions/OutOfRangeException.h"
+#include "Public/Exceptions/NullReferenceException.h"
+#include "Public/Exceptions/OutOfRangeException.h"
 
 namespace ArtemisEngine::Rendering
 {

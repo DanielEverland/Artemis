@@ -1,8 +1,8 @@
-#include "Include/Game/Input.h"
+#include "Public/Game/Input.h"
 
-#include "Include/Game/Time.h"
-#include "Include/Game/Output.h"
-#include "Include/Exceptions/InvalidArgumentException.h"
+#include "Public/Game/Time.h"
+#include "Public/Game/Output.h"
+#include "Public/Exceptions/InvalidArgumentException.h"
 
 const float Input::ClickInterval = 0.2f;
 const int Input::KeyboardStateCurrentFlag = 0x8000;

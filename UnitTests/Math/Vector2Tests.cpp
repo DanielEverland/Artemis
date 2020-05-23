@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "Utility/Comparison/ComparisonUtility.h"
-#include "Include/Game/Vector2.h"
+#include "Public/Game/Vector2.h"
 
 namespace Maths::Vectors
 {

@@ -2,17 +2,18 @@
 
 #include <memory>
 
+#include "Private/Exceptions/DirectXException.h"
+
 #include "RasterizerState.h"
 #include "RenderStateGroups.h"
 #include "VertexBuffer.h"
 #include "ShaderLoader.h"
 #include "GraphicsDevice.h"
 
-#include "Include/Exceptions/NullReferenceException.h"
-#include "Include/Exceptions/DirectXException.h"
-#include "Include/Game/Matrix.h"
-#include "Include/Utility/Directory.h"
-#include "Include/Game/Camera.h"
+#include "Public/Exceptions/NullReferenceException.h"
+#include "Public/Game/Matrix.h"
+#include "Public/Utility/Directory.h"
+#include "Public/Game/Camera.h"
 
 #include "PerObjectConstantBuffer.h"
 

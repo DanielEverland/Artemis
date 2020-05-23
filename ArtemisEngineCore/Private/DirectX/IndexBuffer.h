@@ -3,7 +3,7 @@
 #include <d3d11.h>
 
 #include "GraphicsDevice.h"
-#include "Include/Game/IndexBufferData.h"
+#include "Public/Game/IndexBufferData.h"
 
 namespace ArtemisEngine::Rendering
 {

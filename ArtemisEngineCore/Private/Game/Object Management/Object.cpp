@@ -1,5 +1,5 @@
-#include "Include/Game/Object.h"
-#include "Include/Game/World.h"
+#include "Public/Game/Object.h"
+#include "Public/Game/World.h"
 
 using namespace ArtemisEngine;
 

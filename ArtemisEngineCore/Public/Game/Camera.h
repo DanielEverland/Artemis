@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Include/Game/GameObject.h"
+#include "Public/Game/GameObject.h"
 
 namespace ArtemisEngine
 {

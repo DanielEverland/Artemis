@@ -2,10 +2,10 @@
 
 #include <list>
 
-#include "Source/Game/Object Management/IUpdateObject.h"
-#include "Source/Game/Object Management/SafeObjRef.h"
+#include "Private/Game/Object Management/IUpdateObject.h"
+#include "Private/Game/Object Management/SafeObjRef.h"
 
-#include "Source/Game/Object Management/IObject.h"
+#include "Private/Game/Object Management/IObject.h"
 
 using std::list;
 

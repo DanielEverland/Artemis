@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Source/Game/Rendering/RenderingBufferDataContainer.h"
+#include "Private/Game/Rendering/RenderingBufferDataContainer.h"
 
 namespace ArtemisEngine::Rendering
 {

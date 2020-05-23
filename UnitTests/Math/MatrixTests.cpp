@@ -1,8 +1,8 @@
 #include "pch.h"
 
-#include "Include/Maths/GenericMatrix.h"
-#include "Include/Maths/VectorBase.h"
-#include "Include/Game/Quaternion.h"
+#include "Public/Maths/GenericMatrix.h"
+#include "Public/Maths/VectorBase.h"
+#include "Public/Game/Quaternion.h"
 #include "Utility/Comparison/ComparisonUtility.h"
 #include "Utility/Comparison/ComparisonUtilityMatrix.h"
 #include "Utility/Comparison/ComparisonUtilityVectors.h"

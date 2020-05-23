@@ -3,8 +3,8 @@
 #include <memory>
 #include <utility>
 
-#include "Include/Exceptions/InvalidOperationException.h"
-#include "Include/Game/SafePtr.h"
+#include "Public/Exceptions/InvalidOperationException.h"
+#include "Public/Game/SafePtr.h"
 
 namespace ArtemisEngine
 {

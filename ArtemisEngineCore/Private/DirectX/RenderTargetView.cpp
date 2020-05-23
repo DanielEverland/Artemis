@@ -1,4 +1,4 @@
-#include "Include/Exceptions/NullReferenceException.h"
+#include "Public/Exceptions/NullReferenceException.h"
 #include "RenderTargetView.h"
 #include "DirectXHelper.h"
 

@@ -4,11 +4,11 @@
 
 #include "ShaderLoader.h"
 
-#include "Source/DirectX/DirectXHelper.h"
+#include "Private/DirectX/DirectXHelper.h"
 
-#include "Include/Exceptions/InvalidOperationException.h"
-#include "Include/Utility/Directory.h"
-#include "Include/Utility/Path.h"
+#include "Public/Exceptions/InvalidOperationException.h"
+#include "Public/Utility/Directory.h"
+#include "Public/Utility/Path.h"
 
 using std::map;
 using std::string;

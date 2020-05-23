@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Source/Maths/GenericMatrix.h"
+#include "Private/Maths/GenericMatrix.h"
 
 using namespace ArtemisEngine::Maths::Matrices;
 

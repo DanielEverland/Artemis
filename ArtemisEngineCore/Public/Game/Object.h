@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Source/Game/Object Management/IObject.h"
-#include "Source/Game/Object Management/GlobalObjectManager.h"
+#include "Private/Game/Object Management/IObject.h"
+#include "Private/Game/Object Management/GlobalObjectManager.h"
 
 namespace ArtemisEngine
 {

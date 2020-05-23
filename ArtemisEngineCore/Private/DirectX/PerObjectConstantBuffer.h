@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Include/Game/Matrix.h"
+#include "Public/Game/Matrix.h"
 
 namespace ArtemisEngine::Rendering
 {

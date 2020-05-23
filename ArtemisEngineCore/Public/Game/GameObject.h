@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Source/Game/Object Management/ComponentContainer.h"
+#include "Private/Game/Object Management/ComponentContainer.h"
 
 #include "Object.h"
 #include "Transform.h"

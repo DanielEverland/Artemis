@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "Include/Game/IDebugStringReturner.h"
-#include "Include/Exceptions/Exception.h"
+#include "Public/Game/IDebugStringReturner.h"
+#include "Private/Exceptions/Exception.h"
 
 using std::string;
 

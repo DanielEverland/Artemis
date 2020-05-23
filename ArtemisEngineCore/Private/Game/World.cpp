@@ -1,7 +1,7 @@
-﻿#include "Include/Game/World.h"
+﻿#include "Public/Game/World.h"
 
-#include "Include/Game/SafePtr.h"
-#include "Include/Exceptions/NullReferenceException.h"
+#include "Public/Game/SafePtr.h"
+#include "Public/Exceptions/NullReferenceException.h"
 
 using namespace ArtemisEngine;
 

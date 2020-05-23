@@ -1,4 +1,4 @@
-﻿#include "Include/Game/Screen.h"
+﻿#include "Public/Game/Screen.h"
 
 unsigned int ArtemisEngine::Screen::height = 0;
 unsigned int ArtemisEngine::Screen::width = 0;

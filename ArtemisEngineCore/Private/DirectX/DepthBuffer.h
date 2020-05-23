@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Texture2D.h"
-#include "Source/Windows/IWindow.h"
+#include "Private/Windows/IWindow.h"
 
 using namespace ArtemisWindow;
 

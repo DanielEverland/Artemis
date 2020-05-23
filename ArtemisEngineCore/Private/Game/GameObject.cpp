@@ -1,4 +1,4 @@
-﻿#include "Include/Game/GameObject.h"
+﻿#include "Public/Game/GameObject.h"
 
 Vector3 GameObject::GetPosition() const
 {

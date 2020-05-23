@@ -6,5 +6,5 @@
 #pragma once
 
 #include "gtest/gtest.h"
-#include "Include/Game/Output.h"
+#include "Public/Game/Output.h"
 #include "Utility/Comparison/ComparisonUtility.h"

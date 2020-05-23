@@ -1,7 +1,7 @@
 ﻿#include <string>
 
-#include "Include/Utility/Path.h"
-#include "Include/Exceptions/OutOfRangeException.h"
+#include "Public/Utility/Path.h"
+#include "Public/Exceptions/OutOfRangeException.h"
 
 using namespace ArtemisEngine::IO;
 using std::string;

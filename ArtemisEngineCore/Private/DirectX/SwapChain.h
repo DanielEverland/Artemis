@@ -7,7 +7,7 @@
 #include <d3d11.h>
 
 #include "GraphicsDevice.h"
-#include "Source/Windows/IWindow.h"
+#include "Private/Windows/IWindow.h"
 
 using namespace Microsoft::WRL;
 using namespace ArtemisWindow;

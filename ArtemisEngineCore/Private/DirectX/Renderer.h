@@ -3,14 +3,14 @@
 #include <memory>
 #include <map>
 
-#include "Source/DirectX/GraphicsDevice.h"
-#include "Source/DirectX/SwapChain.h"
-#include "Source/DirectX/DepthBuffer.h"
-#include "Source/DirectX/RenderTargetView.h"
-#include "Include/Game/SafePtr.h"
-#include "Source/Windows/IWindow.h"
-#include "Include/Game/Color.h"
-#include "Include/Game/Mesh.h"
+#include "Private/DirectX/GraphicsDevice.h"
+#include "Private/DirectX/SwapChain.h"
+#include "Private/DirectX/DepthBuffer.h"
+#include "Private/DirectX/RenderTargetView.h"
+#include "Public/Game/SafePtr.h"
+#include "Private/Windows/IWindow.h"
+#include "Public/Game/Color.h"
+#include "Public/Game/Mesh.h"
 
 
 #include "VertexBuffer.h"

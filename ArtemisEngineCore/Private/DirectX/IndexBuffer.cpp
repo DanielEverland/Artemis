@@ -1,4 +1,4 @@
-#include "Include/Game/IndexBufferData.h"
+#include "Public/Game/IndexBufferData.h"
 #include "IndexBuffer.h"
 
 using namespace ArtemisEngine::Rendering;

@@ -1,4 +1,4 @@
-#include "Include/Game/Color.h"
+#include "Public/Game/Color.h"
 
 namespace ArtemisEngine
 {

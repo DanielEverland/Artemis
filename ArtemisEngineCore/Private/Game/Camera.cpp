@@ -1,6 +1,6 @@
-﻿#include "Include/Game/Camera.h"
+﻿#include "Public/Game/Camera.h"
 
-#include "Include/Game/Screen.h"
+#include "Public/Game/Screen.h"
 
 Camera::Camera()
 {

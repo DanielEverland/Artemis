@@ -5,8 +5,9 @@
 #include <string>
 #include <atlstr.h>
 
-#include "Include/Exceptions/DirectXException.h"
-#include "Include/Game/Output.h"
+#include "Private/Exceptions/DirectXException.h"
+
+#include "Public/Game/Output.h"
 
 using namespace ArtemisEngine;
 

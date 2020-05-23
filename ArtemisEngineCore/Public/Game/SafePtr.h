@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "Include/Exceptions/NullReferenceException.h"
-#include "Source/Game/Object Management/ObjectCounter.h"
+#include "Public/Exceptions/NullReferenceException.h"
+#include "Private/Game/Object Management/ObjectCounter.h"
 
 namespace ArtemisEngine
 {

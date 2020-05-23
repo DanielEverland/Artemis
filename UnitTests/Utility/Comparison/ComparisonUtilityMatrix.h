@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ComparisonUtility.h"
-#include "Include/Maths/GenericMatrix.h"
+#include "Public/Maths/GenericMatrix.h"
 
 #define MatrixExpectEmpty(matrix) \
 for (unsigned int i = 0; i < matrix.GetRows(); i++) \

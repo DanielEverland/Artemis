@@ -5,390 +5,393 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source">
-      <UniqueIdentifier>{96fe5c37-550a-424a-b59f-f2911cb35739}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Windows">
-      <UniqueIdentifier>{5a2d8c7a-50f5-46eb-8288-cdfa667a2390}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include">
+    <Filter Include="Public">
       <UniqueIdentifier>{fc4edb29-7002-4871-9eeb-63c2c8c831fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Include\Game">
+    <Filter Include="Public\Game">
       <UniqueIdentifier>{4a878c62-1d0f-4e05-8b6d-70748be86d33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Game">
-      <UniqueIdentifier>{76434074-1e5e-4948-8e26-60dd16919ee1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\DirectX">
-      <UniqueIdentifier>{ebee4793-350e-4359-b494-528a22943bc8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Formatting">
-      <UniqueIdentifier>{1db3ae94-bc29-4274-8712-0bfb01342528}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Exceptions">
+    <Filter Include="Public\Exceptions">
       <UniqueIdentifier>{2f0c8930-7c31-40ec-be4d-d397d7c44842}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Exceptions">
-      <UniqueIdentifier>{f94efa15-689f-4ae1-8202-5885abbf6852}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Game\Rendering">
-      <UniqueIdentifier>{42fa60bd-5c63-402e-8b93-35fabca4d355}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Game\Object Management">
-      <UniqueIdentifier>{2a87ab4d-195c-4288-a8d8-e0d0d16c6dfd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Utility">
+    <Filter Include="Public\Utility">
       <UniqueIdentifier>{38833ab0-9abd-4983-ade2-e86fa78ce84b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Utility">
+    <Filter Include="Private">
+      <UniqueIdentifier>{96fe5c37-550a-424a-b59f-f2911cb35739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Windows">
+      <UniqueIdentifier>{5a2d8c7a-50f5-46eb-8288-cdfa667a2390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Game">
+      <UniqueIdentifier>{76434074-1e5e-4948-8e26-60dd16919ee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Game\Rendering">
+      <UniqueIdentifier>{42fa60bd-5c63-402e-8b93-35fabca4d355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Game\Object Management">
+      <UniqueIdentifier>{2a87ab4d-195c-4288-a8d8-e0d0d16c6dfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\DirectX">
+      <UniqueIdentifier>{ebee4793-350e-4359-b494-528a22943bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Formatting">
+      <UniqueIdentifier>{1db3ae94-bc29-4274-8712-0bfb01342528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Exceptions">
+      <UniqueIdentifier>{f94efa15-689f-4ae1-8202-5885abbf6852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Utility">
       <UniqueIdentifier>{6d976d1e-fbf6-4abe-9ff3-66041c0cbe82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Maths">
+    <Filter Include="Private\Maths">
       <UniqueIdentifier>{f14fb915-7f81-473d-987b-3fb797d8d2a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Formatting">
+      <UniqueIdentifier>{76fd404e-980c-4359-9390-b8fbee34462c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Windows\GameWindow.h">
-      <Filter>Source\Windows</Filter>
+    <ClInclude Include="Private\DirectX\DepthBuffer.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Windows\IWindow.h">
-      <Filter>Source\Windows</Filter>
+    <ClInclude Include="Private\DirectX\DirectXHelper.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Windows\Window.h">
-      <Filter>Source\Windows</Filter>
+    <ClInclude Include="Private\DirectX\GraphicsDevice.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Windows\WindowProcedure.h">
-      <Filter>Source\Windows</Filter>
+    <ClInclude Include="Private\DirectX\IndexBuffer.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Time\Time.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\DirectX\PerObjectConstantBuffer.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\IDebugStringReturner.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\DirectX\RasterizerState.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Output.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\DirectX\Renderer.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\DepthBuffer.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\RenderStateGroups.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\DirectXHelper.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\RenderTargetView.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\GraphicsDevice.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\ShaderLoader.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\IndexBuffer.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\SwapChain.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\Renderer.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\Texture2D.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\RenderTargetView.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\VertexBuffer.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\SwapChain.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\VertexBufferConverter.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\Texture2D.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\DirectX\VertexShaderObject.h">
+      <Filter>Private\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\VertexBuffer.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\Exceptions\DirectXException.h">
+      <Filter>Private\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\VertexBufferConverter.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Private\Exceptions\Exception.h">
+      <Filter>Private\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Color.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Exceptions\DivideByZeroException.h">
+      <Filter>Public\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Input.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Exceptions\InvalidArgumentException.h">
+      <Filter>Public\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Key.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Exceptions\InvalidOperationException.h">
+      <Filter>Public\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Formatting\NumberFormatting.h">
-      <Filter>Source\Formatting</Filter>
+    <ClInclude Include="Public\Exceptions\NullReferenceException.h">
+      <Filter>Public\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Exceptions\DirectXException.h">
-      <Filter>Include\Exceptions</Filter>
+    <ClInclude Include="Public\Exceptions\OutOfRangeException.h">
+      <Filter>Public\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Exceptions\DivideByZeroException.h">
-      <Filter>Include\Exceptions</Filter>
+    <ClInclude Include="Public\Formatting\NumberFormatting.h">
+      <Filter>Public\Formatting</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Exceptions\Exception.h">
-      <Filter>Include\Exceptions</Filter>
+    <ClInclude Include="Private\Game\Rendering\RenderingBufferDataContainer.h">
+      <Filter>Private\Game\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Exceptions\InvalidArgumentException.h">
-      <Filter>Include\Exceptions</Filter>
+    <ClInclude Include="Private\Game\Object Management\ComponentContainer.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Exceptions\InvalidOperationException.h">
-      <Filter>Include\Exceptions</Filter>
+    <ClInclude Include="Private\Game\Object Management\GameObjectContainer.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Exceptions\NullReferenceException.h">
-      <Filter>Include\Exceptions</Filter>
+    <ClInclude Include="Private\Game\Object Management\GlobalObjectManager.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Exceptions\OutOfRangeException.h">
-      <Filter>Include\Exceptions</Filter>
+    <ClInclude Include="Private\Game\Object Management\IComponent.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\IntVector2.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Game\Object Management\IObject.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\IntVector3.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Game\Object Management\IUpdateObject.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\IntVector4.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Game\Object Management\ObjectContainer.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Math.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Game\Object Management\ObjectCounter.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Quaternion.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Game\Object Management\SafeObjRef.h">
+      <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Vector2.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\DoubleVector2.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Vector3.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\DoubleVector3.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Vector4.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\DoubleVector4.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Rendering\RenderingBufferDataContainer.h">
-      <Filter>Source\Game\Rendering</Filter>
+    <ClInclude Include="Private\Maths\FloatVector2.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\IndexBufferData.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\FloatVector3.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\VertexBufferData.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\FloatVector4.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Mesh.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\GenericMatrix.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Object.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\Vector2Base.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\SafePtr.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\Vector3Base.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\GameObject.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Private\Maths\Vector4Base.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\ComponentContainer.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Private\Maths\VectorBase.h">
+      <Filter>Private\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\GameObjectContainer.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Private\Windows\GameWindow.h">
+      <Filter>Private\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\GlobalObjectManager.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Private\Windows\IWindow.h">
+      <Filter>Private\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\IComponent.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Private\Windows\Window.h">
+      <Filter>Private\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\IObject.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Private\Windows\WindowProcedure.h">
+      <Filter>Private\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\ObjectContainer.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Public\Game\Application.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\SafeObjRef.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Public\Game\Camera.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Application.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Game\Color.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\ObjectCounter.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Public\Game\GameObject.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\RasterizerState.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Public\Game\IDebugStringReturner.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\RenderStateGroups.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Public\Game\IndexBufferData.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\ShaderLoader.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Public\Game\Input.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Utility\Directory.h">
-      <Filter>Include\Utility</Filter>
+    <ClInclude Include="Public\Game\IntVector2.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Utility\Path.h">
-      <Filter>Include\Utility</Filter>
+    <ClInclude Include="Public\Game\IntVector3.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\DoubleVector2.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\IntVector4.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\DoubleVector3.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Key.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\DoubleVector4.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Math.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\FloatVector2.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Matrix.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\FloatVector3.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Mesh.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\FloatVector4.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Object.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\GenericMatrix.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Output.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\Vector2Base.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Quaternion.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\Vector3Base.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\SafePtr.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\Vector4Base.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Screen.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Maths\VectorBase.h">
-      <Filter>Source\Maths</Filter>
+    <ClInclude Include="Public\Game\Time.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Transform.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Game\Transform.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Matrix.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Game\Vector2.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Camera.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Game\Vector3.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\Screen.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Game\Vector4.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\PerObjectConstantBuffer.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Public\Game\VertexBufferData.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DirectX\VertexShaderObject.h">
-      <Filter>Source\DirectX</Filter>
+    <ClInclude Include="Public\Game\World.h">
+      <Filter>Public\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object Management\IUpdateObject.h">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClInclude Include="Public\Utility\Directory.h">
+      <Filter>Public\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\World.h">
-      <Filter>Include\Game</Filter>
+    <ClInclude Include="Public\Utility\Path.h">
+      <Filter>Public\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Windows\GameWindow.cpp">
-      <Filter>Source\Windows</Filter>
+    <ClCompile Include="Private\DirectX\DepthBuffer.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Windows\Window.cpp">
-      <Filter>Source\Windows</Filter>
+    <ClCompile Include="Private\DirectX\GraphicsDevice.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Windows\WindowProcedure.cpp">
-      <Filter>Source\Windows</Filter>
+    <ClCompile Include="Private\DirectX\IndexBuffer.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Time.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\DirectX\RasterizerState.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Output.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\DirectX\Renderer.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\DepthBuffer.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\DirectX\RenderStateGroups.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\GraphicsDevice.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\DirectX\RenderTargetView.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\IndexBuffer.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\DirectX\ShaderLoader.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\Renderer.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\DirectX\SwapChain.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\RenderTargetView.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\DirectX\Texture2D.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\SwapChain.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\DirectX\VertexBuffer.cpp">
+      <Filter>Private\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\Texture2D.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\Exceptions\Exception.cpp">
+      <Filter>Private\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\VertexBuffer.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\Formatting\NumberFormatting.cpp">
+      <Filter>Private\Formatting</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Color.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Game\Application.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Input.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Game\Camera.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Formatting\NumberFormatting.cpp">
-      <Filter>Source\Formatting</Filter>
+    <ClCompile Include="Private\Game\Color.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Exceptions\Exception.cpp">
-      <Filter>Source\Exceptions</Filter>
+    <ClCompile Include="Private\Game\GameObject.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Math.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Game\Input.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Quaternion.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Game\Math.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Rendering\Mesh.cpp">
-      <Filter>Source\Game\Rendering</Filter>
+    <ClCompile Include="Private\Game\Output.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Object Management\ComponentContainer.cpp">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClCompile Include="Private\Game\Quaternion.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Object Management\GameObject.cpp">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClCompile Include="Private\Game\Screen.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Object Management\GlobalObjectManager.cpp">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClCompile Include="Private\Game\Time.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Object Management\Object.cpp">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClCompile Include="Private\Game\Transform.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Application.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Game\World.cpp">
+      <Filter>Private\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Object Management\ObjectCounter.cpp">
-      <Filter>Source\Game\Object Management</Filter>
+    <ClCompile Include="Private\Game\Rendering\Mesh.cpp">
+      <Filter>Private\Game\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\RasterizerState.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\Game\Object Management\ComponentContainer.cpp">
+      <Filter>Private\Game\Object Management</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\RenderStateGroups.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\Game\Object Management\GameObject.cpp">
+      <Filter>Private\Game\Object Management</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DirectX\ShaderLoader.cpp">
-      <Filter>Source\DirectX</Filter>
+    <ClCompile Include="Private\Game\Object Management\GlobalObjectManager.cpp">
+      <Filter>Private\Game\Object Management</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utility\Directory.cpp">
-      <Filter>Source\Utility</Filter>
+    <ClCompile Include="Private\Game\Object Management\Object.cpp">
+      <Filter>Private\Game\Object Management</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utility\Path.cpp">
-      <Filter>Source\Utility</Filter>
+    <ClCompile Include="Private\Game\Object Management\ObjectCounter.cpp">
+      <Filter>Private\Game\Object Management</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Maths\DoubleVector3.cpp">
-      <Filter>Source\Maths</Filter>
+    <ClCompile Include="Private\Maths\DoubleVector3.cpp">
+      <Filter>Private\Maths</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Transform.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Utility\Directory.cpp">
+      <Filter>Private\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\GameObject.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Utility\Path.cpp">
+      <Filter>Private\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Camera.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Windows\GameWindow.cpp">
+      <Filter>Private\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Screen.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Windows\Window.cpp">
+      <Filter>Private\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\World.cpp">
-      <Filter>Source\Game</Filter>
+    <ClCompile Include="Private\Windows\WindowProcedure.cpp">
+      <Filter>Private\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

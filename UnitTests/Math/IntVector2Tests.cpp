@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "Include/Game/IntVector2.h"
+#include "Public/Game/IntVector2.h"
 
 namespace Maths::Vectors
 {

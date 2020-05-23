@@ -1,16 +1,17 @@
 #include <string>
 
+#include "Private/Exceptions/Exception.h"
+
 #include "GameWindow.h"
 #include "WindowProcedure.h"
 
-#include "Include/Game/Output.h"
-#include "Include/Game/Time.h"
-#include "Include/Game/Key.h"
-#include "Include/Game/Input.h"
-#include "Include/Exceptions/Exception.h"
-#include "Include/Game/Application.h"
-#include "Include/Game/Camera.h"
-#include "Include/Game/Screen.h"
+#include "Public/Game/Output.h"
+#include "Public/Game/Time.h"
+#include "Public/Game/Key.h"
+#include "Public/Game/Input.h"
+#include "Public/Game/Application.h"
+#include "Public/Game/Camera.h"
+#include "Public/Game/Screen.h"
 
 using namespace ArtemisEngine;
 using ArtemisWindow::GameWindow;

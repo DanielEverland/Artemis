@@ -2,9 +2,10 @@
 #include <Windows.h>
 #include <typeinfo>
 
-#include "Include/Exceptions/Exception.h"
-#include "Include/Game/IDebugStringReturner.h"
-#include "Include/Game/Output.h"
+#include "Private/Exceptions/Exception.h"
+
+#include "Public/Game/IDebugStringReturner.h"
+#include "Public/Game/Output.h"
 
 using namespace ArtemisEngine;
 

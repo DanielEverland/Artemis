@@ -5,12 +5,12 @@
 #include <algorithm>
 #include <DirectXMath.h>
 
-#include "Source/Maths/VectorBase.h"
+#include "Private/Maths/VectorBase.h"
 
-#include "Include/Game/IDebugStringReturner.h"
-#include "Include/Exceptions/InvalidArgumentException.h"
-#include "Include/Game/Quaternion.h"
-#include "Include/Game/Vector4.h"
+#include "Public/Game/IDebugStringReturner.h"
+#include "Public/Exceptions/InvalidArgumentException.h"
+#include "Public/Game/Quaternion.h"
+#include "Public/Game/Vector4.h"
 
 using namespace ArtemisEngine;
 using ArtemisEngine::Maths::Vectors::VectorBase;

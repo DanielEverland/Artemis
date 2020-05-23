@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include "Include/Game/Math.h"
-#include "Include/Game/Quaternion.h"
+#include "Public/Game/Math.h"
+#include "Public/Game/Quaternion.h"
 #include "..\Utility\Comparison\ComparisonUtility.h"
 #include "..\Utility\Comparison\ComparisonUtilityQuaternions.h"
 #include "..\Utility\Comparison\ComparisonUtilityVectors.h"

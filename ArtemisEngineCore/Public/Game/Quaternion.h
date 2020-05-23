@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "Include/Game/Vector3.h"
-#include "Include/Game/IDebugStringReturner.h"
+#include "Public/Game/Vector3.h"
+#include "Public/Game/IDebugStringReturner.h"
 
 using namespace ArtemisEngine;
 using std::string;

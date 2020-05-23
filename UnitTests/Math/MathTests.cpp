@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "Include/Game/Math.h"
+#include "Public/Game/Math.h"
 #include "Utility/Comparison/ComparisonUtility.h"
 
 TEST(Math, NormalizeAngle)

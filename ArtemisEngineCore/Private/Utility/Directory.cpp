@@ -2,9 +2,9 @@
 #include <Windows.h>
 #include <filesystem>
 
-#include "Include/Utility/Directory.h"
+#include "Public/Utility/Directory.h"
 
-#include "Include/Game/Output.h"
+#include "Public/Game/Output.h"
 
 using std::filesystem::directory_iterator;
 using std::string;

@@ -4,7 +4,7 @@
 #include <d3d11.h>
 
 #include "GraphicsDevice.h"
-#include "Include/Game/VertexBufferData.h"
+#include "Public/Game/VertexBufferData.h"
 
 using namespace DirectX;
 

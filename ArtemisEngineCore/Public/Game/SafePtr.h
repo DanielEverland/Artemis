@@ -99,6 +99,7 @@ namespace ArtemisEngine
 			// We check if either is base so we can do both upcasts and downcasts.
 			static_assert(std::is_base_of<T, TOther>::value | std::is_base_of<TOther, T>::value, "Cast failed. T must inherit from TOther");
 
+			counter->AddWatcher();
 			return SafePtr<TOther>(counter);
 		}
 		SafePtr<T>& operator=(const SafePtr<T>& other)

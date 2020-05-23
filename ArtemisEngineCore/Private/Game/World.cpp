@@ -5,6 +5,10 @@
 
 using namespace ArtemisEngine;
 
+SafeObjRef<World> World::worldInstance = { };
+list<SafeObjRef<IObject>> World::instantiatedObjects = { };
+list<SafePtr<IUpdateObject>> World::updateObjects = { };
+
 SafePtr<World> World::GetWorld()
 {
 	if(!worldInstance.IsValid())

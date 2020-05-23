@@ -96,7 +96,8 @@ namespace ArtemisEngine
 		template<class TOther>
 		operator SafePtr<TOther>()
 		{
-			static_assert(std::is_base_of<T, TOther>::value, "Downcast failed. T must be base class to TOther");
+			// We check if either is base so we can do both upcasts and downcasts.
+			static_assert(std::is_base_of<T, TOther>::value | std::is_base_of<TOther, T>::value, "Cast failed. T must inherit from TOther");
 
 			return SafePtr<TOther>(counter);
 		}

@@ -50,7 +50,7 @@ namespace ArtemisEngine
 		static_assert(std::is_base_of<IObject, T>::value, "Cannot create object that does not derive from IObject");
 		
 		instantiatedObjects.push_back(SafeObjRef<IObject>(std::move(obj)));
-		SafePtr<T> createdObject = instantiatedObjects.end()->GetSafePtr<T>();
+		SafePtr<T> createdObject = instantiatedObjects.back().GetSafePtr<T>();
 
 		InstantiateObject(createdObject);
 		

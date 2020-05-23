@@ -2,11 +2,12 @@
 
 #include "Source/Game/Object Management/ComponentContainer.h"
 
+#include "Object.h"
 #include "Transform.h"
 
 namespace ArtemisEngine
 {
-	class GameObject
+	class GameObject : public Object
 	{
 	public:
 		template<class T>

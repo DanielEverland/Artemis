@@ -22,8 +22,10 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 	// Initialize the global window rect variable.
 	::GetWindowRect(windowHandle, &previousWindowRect);
 
+	World::worldInstance = SafeObjRef<World>(new World());
+	mainCamera = world->Instantiate<Camera>();
+	
 	renderer = shared_ptr<Renderer>(new Renderer(this));
-	mainCamera = SafeObjRef<Camera>(new Camera());
 	renderer->SetCamera(mainCamera);
 }
 
@@ -69,7 +71,8 @@ void GameWindow::Update()
 	try
 	{
 		TickTime();
-
+		world->UpdateState();
+		
 		OutputFramerate();
 		HandleKeyBindings();
 

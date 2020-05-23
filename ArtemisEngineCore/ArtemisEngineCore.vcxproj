@@ -186,6 +186,7 @@
     <ClInclude Include="Include\Game\Vector3.h" />
     <ClInclude Include="Include\Game\Vector4.h" />
     <ClInclude Include="Include\Game\VertexBufferData.h" />
+    <ClInclude Include="Include\Game\World.h" />
     <ClInclude Include="Include\Utility\Directory.h" />
     <ClInclude Include="Include\Utility\Path.h" />
     <ClInclude Include="Source\DirectX\DepthBuffer.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Source\Game\Object Management\GlobalObjectManager.h" />
     <ClInclude Include="Source\Game\Object Management\IComponent.h" />
     <ClInclude Include="Source\Game\Object Management\IObject.h" />
+    <ClInclude Include="Source\Game\Object Management\IUpdateObject.h" />
     <ClInclude Include="Source\Game\Object Management\ObjectContainer.h" />
     <ClInclude Include="Source\Game\Object Management\ObjectCounter.h" />
     <ClInclude Include="Source\Game\Object Management\SafeObjRef.h" />
@@ -260,6 +262,7 @@
     <ClCompile Include="Source\Game\Screen.cpp" />
     <ClCompile Include="Source\Game\Time.cpp" />
     <ClCompile Include="Source\Game\Transform.cpp" />
+    <ClCompile Include="Source\Game\World.cpp" />
     <ClCompile Include="Source\Maths\DoubleVector3.cpp" />
     <ClCompile Include="Source\Utility\Directory.cpp" />
     <ClCompile Include="Source\Utility\Path.cpp" />

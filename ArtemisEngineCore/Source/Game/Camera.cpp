@@ -4,7 +4,7 @@
 
 Camera::Camera()
 {
-	transform.Position = Vector3::Back * 10;
+	//transform.Position = Vector3::Back * 10;
 
 	VerticalFieldOfView = 60;
 	NearClipDistance = 0.001f;

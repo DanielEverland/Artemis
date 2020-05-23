@@ -10,9 +10,11 @@
 #include <cassert>
 #include <chrono>
 
-#include "Window.h"
 #include "Source/DirectX/Renderer.h"
 #include "Source/Game/Object Management/SafeObjRef.h"
+
+#include "Include/Game/World.h"
+#include "Window.h"
 
 using namespace Microsoft::WRL;
 
@@ -38,7 +40,8 @@ namespace ArtemisWindow
 	private:
 		shared_ptr<Renderer> renderer;
 
-		SafeObjRef<Camera> mainCamera;
+		SafePtr<Camera> mainCamera;
+		SafePtr<World> world;
 		
 		virtual void RunMessageLoop() final;
 		virtual void CreateWindowClass() const;

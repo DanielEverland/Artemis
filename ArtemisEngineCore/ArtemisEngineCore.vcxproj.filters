@@ -139,9 +139,6 @@
     <ClInclude Include="Private\Game\Object Management\IObject.h">
       <Filter>Private\Game\Object Management</Filter>
     </ClInclude>
-    <ClInclude Include="Private\Game\Object Management\IUpdateObject.h">
-      <Filter>Private\Game\Object Management</Filter>
-    </ClInclude>
     <ClInclude Include="Private\Game\Object Management\ObjectContainer.h">
       <Filter>Private\Game\Object Management</Filter>
     </ClInclude>

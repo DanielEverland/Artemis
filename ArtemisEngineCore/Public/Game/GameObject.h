@@ -8,8 +8,12 @@
 namespace ArtemisEngine
 {
 	class GameObject : public Object
-	{
+	{		
 	public:
+		GameObject();
+
+		virtual void Update();
+		
 		template<class T>
 		[[nodiscard]] SafePtr<T> GetComponent() const
 		{
@@ -30,10 +34,14 @@ namespace ArtemisEngine
 		[[nodiscard]] Quaternion GetRotation() const;
 		[[nodiscard]] Vector3 GetScale() const;
 		[[nodiscard]] const Transform* GetTransform() const;
+		[[nodiscard]] bool ShouldUpdate() const;
 		
 	protected:
 		Transform transform;
+		bool updateEnabled;
 
+		void Begin() override;
+		
 		template<class T>
 		SafePtr<T> AddComponent()
 		{
@@ -51,6 +59,6 @@ namespace ArtemisEngine
 		}
 		
 	private:
-		ComponentContainer components;
+		ComponentContainer components;	
 	};
 }

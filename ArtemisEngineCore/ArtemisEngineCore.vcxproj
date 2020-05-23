@@ -176,7 +176,6 @@
     <ClInclude Include="Private\Game\Object Management\GlobalObjectManager.h" />
     <ClInclude Include="Private\Game\Object Management\IComponent.h" />
     <ClInclude Include="Private\Game\Object Management\IObject.h" />
-    <ClInclude Include="Private\Game\Object Management\IUpdateObject.h" />
     <ClInclude Include="Private\Game\Object Management\ObjectContainer.h" />
     <ClInclude Include="Private\Game\Object Management\ObjectCounter.h" />
     <ClInclude Include="Private\Game\Object Management\SafeObjRef.h" />

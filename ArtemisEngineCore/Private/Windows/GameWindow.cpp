@@ -27,8 +27,7 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 	
 	World::worldInstance = SafeObjRef<World>(new World());
 	world = World::GetWorld();
-	mainCamera = world->Instantiate<Camera>();
-	
+	mainCamera = world->Instantiate<Camera>();	
 	renderer = shared_ptr<Renderer>(new Renderer(this));
 	renderer->SetCamera(mainCamera);
 }

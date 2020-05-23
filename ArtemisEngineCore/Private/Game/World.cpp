@@ -7,7 +7,7 @@ using namespace ArtemisEngine;
 
 SafeObjRef<World> World::worldInstance = { };
 list<SafeObjRef<IObject>> World::instantiatedObjects = { };
-list<SafePtr<IUpdateObject>> World::updateObjects = { };
+list<SafePtr<GameObject>> World::updateObjects = { };
 
 SafePtr<World> World::GetWorld()
 {
@@ -19,9 +19,9 @@ SafePtr<World> World::GetWorld()
 
 void World::UpdateState()
 {
-	for (auto backIter = updateObjects.crend(); backIter != updateObjects.crend(); ++backIter)
+	for (auto backIter = updateObjects.crbegin(); backIter != updateObjects.crend(); ++backIter)
 	{
-		SafePtr<IUpdateObject> updateObj = *backIter;
+		SafePtr<GameObject> updateObj = *backIter;
 
 		if(!updateObj.IsValid())
 			throw NullReferenceException("Found destroyed object in update loop!");
@@ -32,7 +32,7 @@ void World::UpdateState()
 
 void World::InstantiateObject(SafePtr<IObject> obj)
 {
-	auto* updateObject = dynamic_cast<IUpdateObject*>(obj.GetRaw());
+	auto* updateObject = dynamic_cast<GameObject*>(obj.GetRaw());
 	if(updateObject != nullptr)
 		AddToUpdateList(obj);
 
@@ -40,7 +40,8 @@ void World::InstantiateObject(SafePtr<IObject> obj)
 	obj->Begin();
 }
 
-void World::AddToUpdateList(const SafePtr<IUpdateObject>& updateObj)
+void World::AddToUpdateList(const SafePtr<GameObject>& updateObj)
 {
-	updateObjects.push_back(updateObj);
+	if(updateObj->ShouldUpdate())
+		updateObjects.push_back(updateObj);
 }

@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include "Private/Game/Object Management/IUpdateObject.h"
+#include "GameObject.h"
 #include "Private/Game/Object Management/SafeObjRef.h"
 
 #include "Private/Game/Object Management/IObject.h"
@@ -31,11 +31,11 @@ namespace ArtemisEngine
 	private:
 		static SafeObjRef<World> worldInstance;
 		static list<SafeObjRef<IObject>> instantiatedObjects;
-		static list<SafePtr<IUpdateObject>> updateObjects;
+		static list<SafePtr<GameObject>> updateObjects;
 
 		static void UpdateState();
 		static void InstantiateObject(SafePtr<IObject> obj);
-		static void AddToUpdateList(const SafePtr<IUpdateObject>& updateObj);
+		static void AddToUpdateList(const SafePtr<GameObject>& updateObj);
 	};
 
 	template<class T>

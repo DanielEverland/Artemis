@@ -1,6 +1,8 @@
 ﻿#include "Public/Game/Camera.h"
 
+#include "Public/Game/Input.h"
 #include "Public/Game/Screen.h"
+#include "Public/Game/Time.h"
 
 Camera::Camera()
 {
@@ -9,6 +11,7 @@ Camera::Camera()
 	VerticalFieldOfView = 60;
 	NearClipDistance = 0.001f;
 	FarClipDistance = 1000;
+	updateEnabled = true;
 }
 
 Matrix Camera::GetViewMatrix() const
@@ -34,4 +37,37 @@ Matrix Camera::GetProjectionMatrix() const
 	projectionMatrix[2][3] = -Q * NearClipDistance;
 
 	return projectionMatrix;
+}
+
+void Camera::Update()
+{
+	if(Input::IsDown(Key::D))
+	{
+		transform.Position.X += Time::GetDeltaTime();
+	}
+
+	if(Input::IsDown(Key::A))
+	{
+		transform.Position.X -= Time::GetDeltaTime();
+	}
+
+	if(Input::IsDown(Key::W))
+	{
+		transform.Position.Z += Time::GetDeltaTime();
+	}
+
+	if(Input::IsDown(Key::S))
+	{
+		transform.Position.Z -= Time::GetDeltaTime();
+	}
+
+	if(Input::IsDown(Key::E))
+	{
+		transform.Position.Y += Time::GetDeltaTime();
+	}
+
+	if(Input::IsDown(Key::Q))
+	{
+		transform.Position.Y -= Time::GetDeltaTime();
+	}
 }

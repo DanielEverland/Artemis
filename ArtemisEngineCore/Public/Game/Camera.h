@@ -15,5 +15,8 @@ namespace ArtemisEngine
 				
 		[[nodiscard]] Matrix GetViewMatrix() const;
 		[[nodiscard]] Matrix GetProjectionMatrix() const;
+
+
+		void Update() override;
 	};
 }

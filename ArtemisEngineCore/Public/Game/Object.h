@@ -25,11 +25,10 @@ namespace ArtemisEngine
 	protected:
 		static class World* GetWorld();
 
+		virtual void SetInstantiated(bool value) override;
+		
 	private:
 		const unsigned int uniqueID;
-
 		bool instantiated;
-
-		virtual void SetInstantiated(bool value) override;
 	};
 }

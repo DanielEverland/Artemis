@@ -69,6 +69,10 @@ namespace ArtemisEngine
 		{
 			return GetRaw();
 		}
+		T* operator->() const
+		{
+			return GetRaw();
+		}
 
 		// Implicitly converts to raw pointer of pointer to object.
 		operator T* ()

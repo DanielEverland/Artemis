@@ -20,9 +20,7 @@ int WINAPI wWinMain(_In_ HINSTANCE handleInstance, _In_opt_ HINSTANCE, _In_ PWST
 		Output::LogError("Couldn't initialize exception symbols!\nExceptions won't output stacktraces!");
 	try
 	{
-		ApplicationArguments::Initialize();
-		InitializeTime();
-		
+		ApplicationArguments::Initialize();		
 		CreateMainWindow(handleInstance, windowState);
 	}
 	catch (const Exception& e)
@@ -49,16 +47,6 @@ void CreateMainWindow(HINSTANCE handleInstance, int windowState)
 	ParseCommandLineArguments(mainWindow);
 
 	mainWindow.Show();
-}
-
-void InitializeTime()
-{
-	QueryPerformanceCounter((LARGE_INTEGER*)&Time::startTime);
-
-	__int64 countsPerSec;
-	QueryPerformanceFrequency((LARGE_INTEGER*)& countsPerSec);
-	
-	Time::secondsPerCount = float(1.0 / double(countsPerSec));
 }
 
 void ParseCommandLineArguments(GameWindow& window)

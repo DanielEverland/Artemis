@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Public/Maths/Vector3Base.h"
+#include "Private/Maths/Vector3Base.h"
 
 using ArtemisEngine::Maths::Vectors::Vector3Base;
 

@@ -4,6 +4,8 @@
 #include "Public/Game/Output.h"
 #include "Public/Exceptions/InvalidArgumentException.h"
 
+using namespace ArtemisEngine;
+
 const float Input::ClickInterval = 0.2f;
 const int Input::KeyboardStateCurrentFlag = 0x8000;
 

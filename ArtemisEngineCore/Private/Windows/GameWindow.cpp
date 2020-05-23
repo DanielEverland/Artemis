@@ -23,6 +23,8 @@ GameWindow::GameWindow(HINSTANCE handleInstance, const LPCWSTR className, int wi
 	// Initialize the global window rect variable.
 	::GetWindowRect(windowHandle, &previousWindowRect);
 
+	InitializeTime();
+	
 	World::worldInstance = SafeObjRef<World>(new World());
 	world = World::GetWorld();
 	mainCamera = world->Instantiate<Camera>();
@@ -56,7 +58,7 @@ void GameWindow::SetHeight(unsigned value)
 	Screen::height = value;
 }
 
-void TickTime()
+void GameWindow::TickTime()
 {
 	static float lastTime = 0;
 
@@ -285,6 +287,16 @@ HWND ArtemisWindow::GameWindow::CreateWindowHandle()
 	assert(handle && "Failed to create window");
 
 	return handle;
+}
+
+void GameWindow::InitializeTime()
+{
+	QueryPerformanceCounter((LARGE_INTEGER*)&Time::startTime);
+
+	__int64 countsPerSec;
+	QueryPerformanceFrequency((LARGE_INTEGER*)& countsPerSec);
+
+	Time::secondsPerCount = float(1.0 / double(countsPerSec));
 }
 
 void GameWindow::RunMessageLoop()

@@ -1,11 +1,14 @@
 #pragma once
 
-class Application
+namespace ArtemisEngine
 {
-public:
-	static void SetVSync(bool enabled);
-	static bool GetVSync();
+	class Application
+	{
+	public:
+		static void SetVSync(bool enabled);
+		static bool GetVSync();
 
-private:
-	bool static useVSync;
-};
+	private:
+		bool static useVSync;
+	};
+}

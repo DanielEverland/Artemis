@@ -46,7 +46,9 @@ namespace ArtemisWindow
 		virtual void RunMessageLoop() final;
 		virtual void CreateWindowClass() const;
 		virtual HWND CreateWindowHandle();
-
+		
+		void InitializeTime();
+		void TickTime();
 		void Update();
 		void Render();
 		

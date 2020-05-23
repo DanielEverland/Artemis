@@ -2,6 +2,8 @@
 
 #include "Public/Game/Time.h"
 
+using namespace ArtemisEngine;
+
 float Time::deltaTime = 0;
 float Time::secondsPerCount = 0;
 unsigned int Time::frameCount = 0;

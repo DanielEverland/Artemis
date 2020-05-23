@@ -13,66 +13,69 @@ namespace ArtemisWindow
 	class GameWindow;
 }
 
-enum class KeyState
+namespace ArtemisEngine
 {
-	Down,
-	Stay,
-	Up,
-};
-
-struct KeyInfo
-{
-public:
-	KeyInfo(KeyState state, float time)
+	enum class KeyState
 	{
-		State = state;
-		downTime = time;
-	}
+		Down,
+		Stay,
+		Up,
+	};
 
-	KeyState State;
-	float downTime;
-};
+	struct KeyInfo
+	{
+	public:
+		KeyInfo(KeyState state, float time)
+		{
+			State = state;
+			downTime = time;
+		}
 
-class Input
-{
-	friend class ArtemisWindow::GameWindow;
+		KeyState State;
+		float downTime;
+	};
 
-public:
-	static bool IsDown(const Key key);
-	static bool IsUp(const Key key);
-	static bool IsStay(const Key key);
-	static bool IsClicked(const Key key);
-	static bool IsAny(const Key key);
+	class Input
+	{
+		friend class ArtemisWindow::GameWindow;
 
-private:
-	static const float ClickInterval;
-	static const int KeyboardStateCurrentFlag;
+	public:
+		static bool IsDown(const Key key);
+		static bool IsUp(const Key key);
+		static bool IsStay(const Key key);
+		static bool IsClicked(const Key key);
+		static bool IsAny(const Key key);
 
-	static map<Key, KeyInfo> keyBuffer;
-	static set<Key> clickedKeys;
-	
-	static void OnKeyDown(const Key key);
-	static void OnKeyUp(const Key key);
-	static bool IsValidClickEvent(float downTime, float upTime);
-	static void ClearClicks();
-	static void ClearDowns();
-	static void ClearUps();
-	static void EndOfFrame();
-	static void SanitizeDownKeys();
+	private:
+		static const float ClickInterval;
+		static const int KeyboardStateCurrentFlag;
 
-	static bool CompareKeyState(Key key, KeyState state);
+		static map<Key, KeyInfo> keyBuffer;
+		static set<Key> clickedKeys;
+		
+		static void OnKeyDown(const Key key);
+		static void OnKeyUp(const Key key);
+		static bool IsValidClickEvent(float downTime, float upTime);
+		static void ClearClicks();
+		static void ClearDowns();
+		static void ClearUps();
+		static void EndOfFrame();
+		static void SanitizeDownKeys();
 
-	static Key DownWParamToKey(UINT_PTR wParam);
-	static Key UpWParamToKey(UINT_PTR wParam);
+		static bool CompareKeyState(Key key, KeyState state);
 
-	static bool IsKeyPressed(UINT_PTR virtualKey);
-	static bool IsKeyInBuffer(Key key);
+		static Key DownWParamToKey(UINT_PTR wParam);
+		static Key UpWParamToKey(UINT_PTR wParam);
 
-	static Key GetDownShiftKey();
-	static Key GetDownControlKey();
-	static Key GetDownAltKey();
+		static bool IsKeyPressed(UINT_PTR virtualKey);
+		static bool IsKeyInBuffer(Key key);
 
-	static Key GetUpShiftKey();
-	static Key GetUpControlKey();
-	static Key GetUpAltKey();
-};
+		static Key GetDownShiftKey();
+		static Key GetDownControlKey();
+		static Key GetDownAltKey();
+
+		static Key GetUpShiftKey();
+		static Key GetUpControlKey();
+		static Key GetUpAltKey();
+	};
+}

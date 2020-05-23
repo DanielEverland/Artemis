@@ -1,20 +1,22 @@
 #pragma once
 
-class Time
+namespace ArtemisEngine
 {
-public:
-	inline static unsigned int GetFrameCount() { return frameCount; }
-	inline static float GetDeltaTime() { return deltaTime; }
-
-	static float GetTimeSinceStart();
-	
-private:
-	static unsigned int frameCount;
-	static __int64 startTime;
-	static __int64 currentTimeBuffer;
-	static float deltaTime;
-	static float secondsPerCount;
+	class Time
+	{
+		friend class GameWindow;
 		
-	friend void TickTime();
-	friend void InitializeTime();
-};
+	public:
+		inline static unsigned int GetFrameCount() { return frameCount; }
+		inline static float GetDeltaTime() { return deltaTime; }
+
+		static float GetTimeSinceStart();
+		
+	private:
+		static unsigned int frameCount;
+		static __int64 startTime;
+		static __int64 currentTimeBuffer;
+		static float deltaTime;
+		static float secondsPerCount;
+	};
+}

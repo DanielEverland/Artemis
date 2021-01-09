@@ -41,32 +41,32 @@ Matrix Camera::GetProjectionMatrix() const
 
 void Camera::Update()
 {
-	if(Input::IsDown(Key::D))
+	if(Input::IsStay(Key::D))
 	{
 		transform.Position.X += Time::GetDeltaTime();
 	}
 
-	if(Input::IsDown(Key::A))
+	if(Input::IsStay(Key::A))
 	{
 		transform.Position.X -= Time::GetDeltaTime();
 	}
 
-	if(Input::IsDown(Key::W))
+	if(Input::IsStay(Key::W))
 	{
 		transform.Position.Z += Time::GetDeltaTime();
 	}
 
-	if(Input::IsDown(Key::S))
+	if(Input::IsStay(Key::S))
 	{
 		transform.Position.Z -= Time::GetDeltaTime();
 	}
 
-	if(Input::IsDown(Key::E))
+	if(Input::IsStay(Key::E))
 	{
 		transform.Position.Y += Time::GetDeltaTime();
 	}
 
-	if(Input::IsDown(Key::Q))
+	if(Input::IsStay(Key::Q))
 	{
 		transform.Position.Y -= Time::GetDeltaTime();
 	}

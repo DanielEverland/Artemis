@@ -72,6 +72,7 @@ void Renderer::Render()
 	const Matrix projectionMatrix = mainCamera->GetProjectionMatrix();
 	const Matrix worldViewProj = worldMatrix * viewMatrix * projectionMatrix;
 
+	Output::Log(viewMatrix);
 	
 	PerObjectConstantBuffer cBuffer;
 	cBuffer.WorldViewProjMatrix = worldViewProj;
@@ -182,6 +183,8 @@ void Renderer::Draw(const Mesh& mesh) const
 {
 	VertexBuffer vertexBuffer(*graphicsDevice, mesh.Vertices);
 	IndexBuffer indexBuffer(*graphicsDevice, mesh.Indices);
+
+	auto t = graphicsDevice->GetRawDevice();
 
 	BindVertexBuffer(vertexBuffer);
 	DrawVertices(vertexBuffer);

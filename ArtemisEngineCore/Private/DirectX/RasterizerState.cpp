@@ -29,7 +29,8 @@ D3D11_RASTERIZER_DESC RasterizerState::GetDescription() const
 {
 	D3D11_RASTERIZER_DESC description;
 
-	description.FillMode = D3D11_FILL_SOLID;
+	//description.FillMode = D3D11_FILL_SOLID;
+	description.FillMode = D3D11_FILL_WIREFRAME;
 	description.CullMode = D3D11_CULL_BACK;
 
 	description.FrontCounterClockwise = false;

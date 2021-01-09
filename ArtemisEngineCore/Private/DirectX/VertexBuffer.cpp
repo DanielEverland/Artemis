@@ -54,7 +54,7 @@ D3D11_SUBRESOURCE_DATA VertexBuffer::CreateResourceData(const VertexBufferData& 
 	for (int i = 0; i < data.GetBufferSize(); i++)
 	{
 		XMFLOAT4 color = colors[i % ColorCount];
-		
+
 		vertexData[i].Pos = XMFLOAT3(data[i].X, data[i].Y, data[i].Z);
 		vertexData[i].Color.x = color.x;
 		vertexData[i].Color.y = color.y;

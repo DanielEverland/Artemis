@@ -66,7 +66,7 @@ namespace ArtemisEngine::Maths::Matrices
 	};
 
 	template<class T, unsigned int rows, unsigned int columns>
-	class GenericMatrix : BaseMatrix
+	class GenericMatrix : BaseMatrix, public IDebugStringReturner
 	{
 	public:
 		typedef VectorBase<T, columns> RowVector;
@@ -74,7 +74,9 @@ namespace ArtemisEngine::Maths::Matrices
 
 		~GenericMatrix() = default;
 		GenericMatrix() = default;
-		
+
+		std::string ToString() const override;
+
 		GenericMatrix(const GenericMatrix& copy)
 		{
 			for (unsigned int i = 0; i < rows; i++)
@@ -449,6 +451,32 @@ namespace ArtemisEngine::Maths::Matrices
 
 		T values[rows][columns] = { };
 	};
+
+	template <class T, unsigned rows, unsigned columns>
+	std::string GenericMatrix<T, rows, columns>::ToString() const
+	{
+		std::string string;
+
+		for(int y = 0; y < rows; y++)
+		{
+			string += "[";
+			
+			for (int x = 0; x < columns; x++)
+			{
+				string += std::to_string(values[x][y]);
+
+				if(x < columns - 1)
+					string += ",\t";
+			}
+
+			string += "]";
+
+			if(y < rows - 1)
+				string += "\n";
+		}
+
+		return string;
+	}
 
 	template<class T, unsigned int rows, unsigned int columns>
 	GenericMatrix<T, rows, columns> operator+(const GenericMatrix<T, rows, columns>& a, const GenericMatrix<T, rows, columns>& b)

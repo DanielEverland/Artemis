@@ -43,7 +43,7 @@ int main(int argc, char** args)
 bool Initialize()
 {
 	// Initialize SDL. SDL_Init will return -1 if it fails.
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+	if (SDL_Init(0) < 0) {
 		std::cout << "Error initializing SDL: " << SDL_GetError() << std::endl;
 		system("pause");
 		return false;

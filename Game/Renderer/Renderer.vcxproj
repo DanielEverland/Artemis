@@ -159,10 +159,12 @@
     <ClInclude Include="Source\RendererCore.h" />
     <ClInclude Include="Source\SDLException.h" />
     <ClInclude Include="Source\SDLHelper.h" />
+    <ClInclude Include="Source\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\SDLException.cpp" />
+    <ClCompile Include="Source\Texture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

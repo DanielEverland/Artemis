@@ -2,6 +2,7 @@
 
 #include "Window.h"
 #include "WindowCore.h"
+#include "RendererCore.h"
 
 Window::Window() : IsShown(false), WindowPtr(nullptr), RendererPtr(nullptr)
 {
@@ -29,6 +30,7 @@ void Window::Show()
 	}
 
 	RendererPtr = std::make_unique<Renderer>(WindowPtr);
+	Renderer::SetPrimaryRenderer(RendererPtr.get());
 
 	IsShown = true;
 }
@@ -37,8 +39,11 @@ void Window::Draw() const
 {
 	RendererPtr->Clear();
 
-	RendererPtr->SetDrawColor(Color::White);
-	RendererPtr->FillRect({ 10, 10, 10, 10 });
+	Texture texture("Resources/Smiley.bmp");
+	RendererPtr->DrawTexture(texture.GetRawTexture(), { 10, 10, 300, 300} );
+
+	//RendererPtr->SetDrawColor(Color::White);
+	//RendererPtr->FillRect({ 10, 10, 10, 10 });
 	
 	RendererPtr->Present();
 }

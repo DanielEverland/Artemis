@@ -3,12 +3,24 @@
 #include <Color.h>
 #include "RendererCore.h"
 
+Renderer* Renderer::PrimaryRenderer = nullptr;
+
 Renderer::Renderer(SDL_Window* sdlWindow) : BackgroundColor(Color::Black), RendererPtr(SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED), SDL_DestroyRenderer)
 {
 }
 
 Renderer::Renderer(SDL_Window* sdlWindow, Color backgroundColor) : BackgroundColor(backgroundColor), RendererPtr(SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED), SDL_DestroyRenderer)
 {
+}
+
+Renderer* Renderer::GetPrimaryRenderer()
+{
+	return PrimaryRenderer;
+}
+
+void Renderer::SetPrimaryRenderer(Renderer* renderer)
+{
+	PrimaryRenderer = renderer;
 }
 
 void Renderer::Clear() const
@@ -30,6 +42,11 @@ void Renderer::SetDrawColor(Color drawColor) const
 void Renderer::FillRect(const SDL_Rect& rect) const
 {
 	THROW_IF_FAILED(SDL_RenderFillRect(GetRawRenderer(), &rect));
+}
+
+void Renderer::DrawTexture(SDL_Texture* texture, const SDL_Rect& rect) const
+{
+	THROW_IF_FAILED(SDL_RenderCopy(GetRawRenderer(), texture, nullptr, &rect));
 }
 
 SDL_Renderer* Renderer::GetRawRenderer() const

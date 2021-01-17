@@ -107,7 +107,8 @@
       <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"</Command>
+      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
+xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,7 +129,8 @@
       <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"</Command>
+      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
+xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,7 +147,8 @@
       <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"</Command>
+      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
+xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,7 +169,8 @@
       <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"</Command>
+      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
+xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

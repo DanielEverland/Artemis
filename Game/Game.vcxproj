@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Color.cpp" />
     <ClCompile Include="Core\Exception.cpp" />
+    <ClCompile Include="Core\Font.cpp" />
     <ClCompile Include="Debugging\DebugCategory.cpp" />
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
     <ClCompile Include="Debugging\GameplayDebugger.cpp" />
@@ -179,7 +180,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Color.h" />
+    <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Exception.h" />
+    <ClInclude Include="Core\Font.h" />
     <ClInclude Include="Debugging\DebugCategory.h" />
     <ClInclude Include="Debugging\DebugCategoryHandle.h" />
     <ClInclude Include="Debugging\GameplayDebugger.h" />
@@ -191,7 +194,17 @@
     <ClInclude Include="Window\Window.h" />
     <ClInclude Include="Window\WindowCore.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets'))" />
+  </Target>
 </Project>

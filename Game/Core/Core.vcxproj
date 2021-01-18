@@ -20,10 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Color.cpp" />
+    <ClCompile Include="Source\Debugging\DebugCategory.cpp" />
+    <ClCompile Include="Source\Debugging\DebugCategoryHandle.cpp" />
+    <ClCompile Include="Source\Debugging\GameplayDebugger.cpp" />
     <ClCompile Include="Source\Exception.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
+    <ClInclude Include="Source\Debugging\DebugCategory.h" />
+    <ClInclude Include="Source\Debugging\DebugCategoryHandle.h" />
+    <ClInclude Include="Source\Debugging\GameplayDebugger.h" />
     <ClInclude Include="Source\Exception.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

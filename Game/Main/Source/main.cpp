@@ -3,6 +3,8 @@
 #include<Window.h>
 #include<memory>
 
+#include<Debugging/GameplayDebugger.h>
+
 #include "Exception.h"
 
 bool Initialize();

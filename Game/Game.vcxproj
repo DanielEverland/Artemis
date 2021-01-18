@@ -18,14 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\main.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5b5bf263-3bf8-4856-8373-e6f04e3b7c17}</ProjectGuid>
-    <RootNamespace>Main</RootNamespace>
+    <ProjectGuid>{a8b0a948-1238-4ebf-93b0-1382e9aea790}</ProjectGuid>
+    <RootNamespace>Game</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -75,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)SDL\include;$(SolutionDir)Game\Window\Source;$(SolutionDir)Game\Renderer\Source;$(SolutionDir)Game\Core\Source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDL\lib\x64;$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)SDL\include;$(SolutionDir)Game\Window\Source;$(SolutionDir)Game\Renderer\Source;$(SolutionDir)Game\Core\Source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDL\lib\x64;$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)SDL\include;$(SolutionDir)Game\Window\Source;$(SolutionDir)Game\Renderer\Source;$(SolutionDir)Game\Core\Source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDL\lib\x64;$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)SDL\include;$(SolutionDir)Game\Window\Source;$(SolutionDir)Game\Renderer\Source;$(SolutionDir)Game\Core\Source;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDL\lib\x64;$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,17 +96,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
-xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -119,19 +111,14 @@ xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
-xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -139,17 +126,12 @@ xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
-xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -159,20 +141,44 @@ xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Core.lib;Renderer.lib;Window.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y "$(SolutionDir)SDL\lib\x64\SDL2.dll" "$(OutDir)"
-xcopy "$(ProjectDir)Resources" "$(TargetDir)Resources" /e /y /i /r</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <Image Include="Resources\Smiley.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Color.cpp" />
+    <ClCompile Include="Core\Exception.cpp" />
+    <ClCompile Include="Debugging\DebugCategory.cpp" />
+    <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
+    <ClCompile Include="Debugging\GameplayDebugger.cpp" />
+    <ClCompile Include="Main\main.cpp" />
+    <ClCompile Include="Renderer\Renderer.cpp" />
+    <ClCompile Include="Renderer\SDLException.cpp" />
+    <ClCompile Include="Renderer\Texture.cpp" />
+    <ClCompile Include="Window\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Color.h" />
+    <ClInclude Include="Core\Exception.h" />
+    <ClInclude Include="Debugging\DebugCategory.h" />
+    <ClInclude Include="Debugging\DebugCategoryHandle.h" />
+    <ClInclude Include="Debugging\GameplayDebugger.h" />
+    <ClInclude Include="Renderer\Renderer.h" />
+    <ClInclude Include="Renderer\RendererCore.h" />
+    <ClInclude Include="Renderer\SDLException.h" />
+    <ClInclude Include="Renderer\SDLHelper.h" />
+    <ClInclude Include="Renderer\Texture.h" />
+    <ClInclude Include="Window\Window.h" />
+    <ClInclude Include="Window\WindowCore.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,8 +1,8 @@
-#include<Renderer.h>
+#include<Renderer/Renderer.h>
 
 #include "Window.h"
 #include "WindowCore.h"
-#include "RendererCore.h"
+#include "Renderer/RendererCore.h"
 
 Window::Window() : IsShown(false), WindowPtr(nullptr), RendererPtr(nullptr)
 {

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Exception.h>
+#include <Core/Exception.h>
 
 class SDLException : public Exception
 {

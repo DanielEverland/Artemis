@@ -1,11 +1,10 @@
-#include<iostream>
-#include<RendererCore.h>
-#include<Window.h>
-#include<memory>
+#include <iostream>
+#include <Renderer/RendererCore.h>
+#include <Window/Window.h>
+#include <memory>
+#include <Core/Exception.h>
+#include <Debugging/GameplayDebugger.h>
 
-#include<Debugging/GameplayDebugger.h>
-
-#include "Exception.h"
 
 bool Initialize();
 bool MainLoop();

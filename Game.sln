@@ -10,6 +10,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua", "Lua\Lua.vcxproj", "{FADB3904-1DC9-4901-934E-F6FF8C8B6397}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Testing", "Testing\Testing.vcxproj", "{8A6609C8-DECB-4436-AD8E-5586DA785972}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FADB3904-1DC9-4901-934E-F6FF8C8B6397} = {FADB3904-1DC9-4901-934E-F6FF8C8B6397}
+		{A8B0A948-1238-4EBF-93B0-1382E9AEA790} = {A8B0A948-1238-4EBF-93B0-1382E9AEA790}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +40,14 @@ Global
 		{FADB3904-1DC9-4901-934E-F6FF8C8B6397}.Release|x64.Build.0 = Release|x64
 		{FADB3904-1DC9-4901-934E-F6FF8C8B6397}.Release|x86.ActiveCfg = Release|Win32
 		{FADB3904-1DC9-4901-934E-F6FF8C8B6397}.Release|x86.Build.0 = Release|Win32
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Debug|x64.ActiveCfg = Debug|x64
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Debug|x64.Build.0 = Debug|x64
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Debug|x86.ActiveCfg = Debug|Win32
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Debug|x86.Build.0 = Debug|Win32
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Release|x64.ActiveCfg = Release|x64
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Release|x64.Build.0 = Release|x64
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Release|x86.ActiveCfg = Release|Win32
+		{8A6609C8-DECB-4436-AD8E-5586DA785972}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

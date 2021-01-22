@@ -1,11 +1,15 @@
 ﻿#pragma once
 
+#include <string>
+
 #include "LuaCoreMinimal.h"
 
 struct LuaState
 {
 public:
-	LuaState();
+	static LuaState CreateFromFile(const std::string& filePath);
+	static LuaState CreateFromString(const std::string& rawString);
+
 	~LuaState();
 
 	LuaState(const LuaState& other)
@@ -37,5 +41,7 @@ public:
 	operator lua_State*() const;
 
 private:
+	LuaState();
+	
 	lua_State* RawState;
 };

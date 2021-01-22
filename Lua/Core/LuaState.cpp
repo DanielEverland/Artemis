@@ -1,6 +1,24 @@
 ﻿// Invisible Walls is the sole owner of all rights of, and to the video game First Class Trouble and affiliated projects and retains all rights to concepts and ideas from First Class Trouble, which are not transferred herein, and retains all common law copyrights and trademarks to the given title.
 #include "LuaState.h"
 
+LuaState LuaState::CreateFromFile(const std::string& filePath)
+{
+	auto newState = LuaState();
+
+	luaL_dofile(newState.RawState, filePath.c_str());
+
+	return newState;
+}
+
+LuaState LuaState::CreateFromString(const std::string& rawString)
+{
+	auto newState = LuaState();
+	
+	luaL_loadstring(newState.RawState, rawString.c_str());
+
+	return newState;
+}
+
 LuaState::LuaState()
 {
 	RawState = lua_open();

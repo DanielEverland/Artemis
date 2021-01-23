@@ -1,47 +1,33 @@
 ﻿#pragma once
 
 #include <string>
+#include <memory>
 
 #include "LuaCoreMinimal.h"
 
 struct LuaState
 {
 public:
-	static LuaState CreateFromFile(const std::string& filePath);
-	static LuaState CreateFromString(const std::string& rawString);
+	static std::unique_ptr<LuaState> CreateFromFile(const std::string& filePath);
+	static std::unique_ptr<LuaState> CreateFromString(const std::string& rawString);
 
-	~LuaState();
-
-	LuaState(const LuaState& other)
-		: RawState(other.RawState)
-	{
-	}
-
+	explicit LuaState();
+	
 	LuaState(LuaState&& other) noexcept
-		: RawState(other.RawState)
+		: RawState(std::move(other.RawState))
 	{
 	}
-
-	LuaState& operator=(const LuaState& other)
-	{
-		if (this == &other)
-			return *this;
-		RawState = other.RawState;
-		return *this;
-	}
-
+	
 	LuaState& operator=(LuaState&& other) noexcept
 	{
 		if (this == &other)
 			return *this;
-		RawState = other.RawState;
+		RawState = std::move(other.RawState);
 		return *this;
 	}
 
 	operator lua_State*() const;
 
 private:
-	LuaState();
-	
-	lua_State* RawState;
+	std::unique_ptr<lua_State, decltype(&lua_close)> RawState;
 };

@@ -7,6 +7,8 @@
 
 #include "gtest/gtest.h"
 
+#define LUA_USE_APICHECK
+
 extern "C" {
 #include <lua.h>
 #include <lualib.h>

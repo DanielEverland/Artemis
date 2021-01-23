@@ -6,5 +6,5 @@ TEST(LuaCore, FromString)
 {
 	lua_State* l = nullptr;
 	EXPECT_EQ(l, nullptr);
-	LuaState state = LuaState::CreateFromString("print \"Hello, lua\"");
+	auto state = LuaState::CreateFromString("print \"Hello, lua\"");
 }

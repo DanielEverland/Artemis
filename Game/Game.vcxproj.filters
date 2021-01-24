@@ -29,9 +29,6 @@
     <ClCompile Include="Core\Color.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Exception.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Debugging\DebugCategory.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Color.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Exception.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Debugging\DebugCategory.h">

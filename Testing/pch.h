@@ -15,4 +15,20 @@ extern "C" {
 #include <lauxlib.h>
 }
 
+#define STRINGIFY(x) #x
+#define EXPAND(x) STRINGIFY(x)
+
+inline std::string GetProjectDir()
+{
+	std::string s = EXPAND(UNITTESTPRJ);
+	s.erase(0, 1); // erase the first quote
+	s.erase(s.size() - 2); // erase the last quote and the dot
+	return s;
+}
+
+inline std::string GetTestFilesDir()
+{
+	return GetProjectDir() + "/TestFiles/";
+}
+
 //#include <Core/LuaState.h>

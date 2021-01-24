@@ -2,7 +2,7 @@
 #include <Renderer/RendererCore.h>
 #include <Window/Window.h>
 #include <memory>
-#include <Core/Exception.h>
+#include <Exception.h>
 #include <Debugging/GameplayDebugger.h>
 
 

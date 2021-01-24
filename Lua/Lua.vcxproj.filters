@@ -4,6 +4,9 @@
     <Filter Include="Core">
       <UniqueIdentifier>{3032785f-fa77-4c94-8a4d-089a9a2037a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{5fa64e04-108b-418f-a129-46caca5f4e32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\LuaInstance.cpp">
@@ -11,6 +14,9 @@
     </ClCompile>
     <ClCompile Include="Core\LuaState.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\LuaException.cpp">
+      <Filter>Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +31,9 @@
     </ClInclude>
     <ClInclude Include="Core\LuaCoreMinimal.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\LuaException.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,8 @@
 ﻿#include "pch.h"
 
 #include <Core/LuaState.h>
+#include <Lua/Exceptions/LuaIOException.h>
+#include <Lua/Exceptions/LuaSyntaxException.h>
 
 TEST(LuaCore, NoArgumentsOneReturnFromFile)
 {
@@ -52,6 +54,11 @@ TEST(LuaCore, TwoArgumentsOneReturnFromFile)
 	auto state = LuaState::CreateFromFile(GetTestFilesDir() + "TwoArgumentsOneReturnFromFile.lua");
 	int returnValue = state->CallFunction<int>("func", a, b);
 	EXPECT_EQ(returnValue, expectedReturn);
+}
+
+TEST(LuaCore, InvalidFilePath)
+{
+	EXPECT_THROW(LuaState::CreateFromFile("invalid path"), LuaIOException);
 }
 
 //TEST(LuaCore, ReturnTuple)

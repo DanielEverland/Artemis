@@ -21,14 +21,24 @@
   <ItemGroup>
     <ClCompile Include="Core\LuaInstance.cpp" />
     <ClCompile Include="Core\LuaState.cpp" />
+    <ClCompile Include="Exceptions\LuaErrorMessageException.cpp" />
     <ClCompile Include="Exceptions\LuaException.cpp" />
+    <ClCompile Include="Exceptions\LuaIOException.cpp" />
+    <ClCompile Include="Exceptions\LuaMemoryException.cpp" />
+    <ClCompile Include="Exceptions\LuaRuntimeException.cpp" />
+    <ClCompile Include="Exceptions\LuaSyntaxException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\LuaCore.h" />
     <ClInclude Include="Core\LuaCoreMinimal.h" />
     <ClInclude Include="Core\LuaInstance.h" />
     <ClInclude Include="Core\LuaState.h" />
+    <ClInclude Include="Exceptions\LuaErrorMessageException.h" />
     <ClInclude Include="Exceptions\LuaException.h" />
+    <ClInclude Include="Exceptions\LuaIOException.h" />
+    <ClInclude Include="Exceptions\LuaMemoryException.h" />
+    <ClInclude Include="Exceptions\LuaRuntimeException.h" />
+    <ClInclude Include="Exceptions\LuaSyntaxException.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

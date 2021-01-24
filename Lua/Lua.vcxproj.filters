@@ -18,6 +18,21 @@
     <ClCompile Include="Exceptions\LuaException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="Exceptions\LuaIOException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\LuaRuntimeException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\LuaErrorMessageException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\LuaMemoryException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\LuaSyntaxException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\LuaInstance.h">
@@ -33,6 +48,21 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions\LuaException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\LuaIOException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\LuaRuntimeException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\LuaErrorMessageException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\LuaMemoryException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\LuaSyntaxException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>

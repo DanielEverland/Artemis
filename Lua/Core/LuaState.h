@@ -117,7 +117,7 @@ private:
 		if (!result)
 		{
 			PrintStack();
-			throw LuaException(result, "Failed getting integer");
+			throw LuaException::GetException(result, "Failed getting integer");
 		}			
 
 		return lua_tointeger(RawState.get(), index);
@@ -128,7 +128,7 @@ private:
 	{
 		const int result = lua_isnumber(RawState.get(), index);
 		if (result != LUA_OK)
-			throw LuaException(result, "Failed getting double");
+			throw LuaException::GetException(result, "Failed getting double");
 
 		return lua_tonumber(RawState.get(), index);
 	}
@@ -138,7 +138,7 @@ private:
 	{
 		const int result = lua_isstring(RawState.get(), index);
 		if (result != LUA_OK)
-			throw LuaException(result, "Failed getting string");
+			throw LuaException::GetException(result, "Failed getting string");
 
 		return lua_tostring(RawState.get(), index);
 	}

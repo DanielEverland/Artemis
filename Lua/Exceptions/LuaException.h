@@ -5,10 +5,9 @@
 class LuaException : public Exception
 {
 public:
-	LuaException(int errorCode, const std::string& message);
-	LuaException(int errorCode, const char* const message);
+	explicit LuaException(const std::exception& e) : Exception(e) { }
+	explicit LuaException(const string& message) : Exception(message) { }
+	explicit LuaException(const char* const message) : Exception(message) { }
 
-private:
-	std::string GetErrorMessage(int errorCode, const std::string& customMessage) const;
-	std::string GetLuaErrorMessage(int errorCode) const;
+	static LuaException&& GetException(int errorCode, const std::string& message);
 };

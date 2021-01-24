@@ -2,33 +2,6 @@
 
 #include <Core/LuaState.h>
 
-//TEST(LuaCore, FunctionArguments)
-//{
-//	const std::string rawString = "function func(a, b) print(\"test\") end";
-//	auto state = LuaState::CreateFromString(rawString);
-//
-//	int firstParam = 1;
-//	float secondParam = 2.5f;
-//
-//	state->CallFunction("func", firstParam, secondParam);
-//}
-
-//TEST(LuaCore, RawLua)
-//{
-//	lua_State* L = luaL_newstate();
-//	luaL_openlibs(L);
-//
-//	int code = luaL_dofile(L, "C:/Users/Daniel/Desktop/test.lua");
-//	int funcReturnCode = lua_getglobal(L, "func");
-//	lua_pcall(L, 0, 1, 0);
-//	int returnValCode = lua_isnumber(L, -1);
-//	int returnValCode2 = lua_isinteger(L, -1);
-//	auto value = lua_tonumber(L, -1);
-//	auto errMsg = lua_tostring(L, -1);
-//
-//	EXPECT_EQ(value, 69);
-//}
-
 TEST(LuaCore, NoArgumentsOneReturnFromFile)
 {
 	const int value = 69;
@@ -43,6 +16,42 @@ TEST(LuaCore, NoArgumentsOneReturnFromString)
 	auto state = LuaState::CreateFromString("function func() return " + std::to_string(value) + " end");
 	int returnValue = state->CallFunction<int>("func");
 	EXPECT_EQ(returnValue, value);
+}
+
+TEST(LuaCore, OneArgumentOneReturnFromString)
+{
+	const int value = 42;
+	auto state = LuaState::CreateFromString("function func(a) return a end");
+	int returnValue = state->CallFunction<int>("func", value);
+	EXPECT_EQ(returnValue, value);
+}
+
+TEST(LuaCore, TwoArgumentsOneReturnFromString)
+{
+	const int a = 42;
+	const int b = 69;
+	const int expectedReturn = a + b;
+	auto state = LuaState::CreateFromString("function func(a, b) return a + b end");
+	int returnValue = state->CallFunction<int>("func", a, b);
+	EXPECT_EQ(returnValue, expectedReturn);
+}
+
+TEST(LuaCore, OneArgumentOneReturnFromFile)
+{
+	const int value = 42;
+	auto state = LuaState::CreateFromFile(GetTestFilesDir() + "OneArgumentOneReturnFromFile.lua");
+	int returnValue = state->CallFunction<int>("func", value);
+	EXPECT_EQ(returnValue, value);
+}
+
+TEST(LuaCore, TwoArgumentsOneReturnFromFile)
+{
+	const int a = 42;
+	const int b = 69;
+	const int expectedReturn = a + b;
+	auto state = LuaState::CreateFromFile(GetTestFilesDir() + "TwoArgumentsOneReturnFromFile.lua");
+	int returnValue = state->CallFunction<int>("func", a, b);
+	EXPECT_EQ(returnValue, expectedReturn);
 }
 
 //TEST(LuaCore, ReturnTuple)

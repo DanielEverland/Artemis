@@ -40,8 +40,8 @@ public:
 	//void CallFunction(const std::string& funcName, Inputs&&... inputs);
 
 	//// Calls a function with arguments and one return type
-	//template<typename Output, typename... Inputs>
-	//Output CallFunction(const std::string& funcName, Inputs&&... inputs);
+	template<typename Output, typename... Inputs>
+	Output CallFunction(const std::string& funcName, Inputs&&... inputs);
 
 	// Calls a function with no arguments and one return type
 	template<typename Output>
@@ -178,20 +178,19 @@ private:
 //	DoLuaCall(funcName, sizeof...(Inputs), 0);
 //}
 //
-//template <typename Output, typename ... Inputs>
-//Output LuaState::CallFunction(const std::string& funcName, Inputs&&... inputs)
-//{
-//	LoadFunction(funcName);
-//	PushValues(inputs...);
-//	DoLuaCall(funcName, sizeof...(Inputs), 1);
-//	return GetValue<Output>(0);
-//}
+template <typename Output, typename ... Inputs>
+Output LuaState::CallFunction(const std::string& funcName, Inputs&&... inputs)
+{
+	LoadFunction(funcName);
+	PushValues(inputs...);
+	DoLuaCall(funcName, sizeof...(Inputs), 1);
+	return GetValue<Output>(LUA_STACK_TOP);
+}
 
 template <typename Output>
 Output LuaState::CallFunction(const std::string& funcName)
 {
 	LoadFunction(funcName);
 	DoLuaCall(funcName, 0, 1);
-	PrintStack();
 	return GetValue<Output>(LUA_STACK_TOP);
 }

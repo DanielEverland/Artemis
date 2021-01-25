@@ -3,6 +3,7 @@
 #include "LuaState.h"
 #include "../Exceptions/LuaException.h"
 #include "../Exceptions/LuaIOException.h"
+#include "../Exceptions/LuaSyntaxException.h"
 
 std::unique_ptr<LuaState> LuaState::CreateFromFile(const std::string& filePath)
 {
@@ -14,7 +15,7 @@ std::unique_ptr<LuaState> LuaState::CreateFromFile(const std::string& filePath)
 	const int result = luaL_dofile(*newState, filePath.c_str());
 	if (result != 0)
 	{
-		throw LuaException::GetException(result, "Couldn't load lua file at path " + filePath);
+		throw LuaSyntaxException("Couldn't load lua file at path " + filePath);
 	}
 	newState->PrintStack();
 	
@@ -28,7 +29,7 @@ std::unique_ptr<LuaState> LuaState::CreateFromString(const std::string& rawStrin
 	const int result = luaL_dostring(*newState, rawString.c_str());
 	if(result != 0)
 	{
-		throw LuaException::GetException(result, "Couldn't create lua state from raw string");
+		throw LuaSyntaxException("Couldn't create lua state from raw string");
 	}
 	
 	return newState;
@@ -39,33 +40,51 @@ LuaState::LuaState() : RawState(luaL_newstate(), lua_close)
 	luaL_openlibs(RawState.get());
 }
 
-//void LuaState::CallFunction(const std::string& funcName) const
-//{
-//	LoadFunction(funcName);
-//	DoLuaCall(funcName, 0, 0);
-//}
+void LuaState::CallFunction(const std::string& funcName) const
+{
+	LoadFunction(funcName);
+	DoLuaCall(funcName, 0, 0);
+}
 
 LuaState::operator lua_State*() const
+{
+	return GetRaw();
+}
+
+lua_State* LuaState::GetRaw() const
 {
 	return RawState.get();
 }
 
 void LuaState::LoadFunction(const std::string& funcName) const
 {
-	lua_getglobal(RawState.get(), funcName.c_str());
-	if(!lua_isfunction(RawState.get(), -1))
+	const int loadedType = lua_getglobal(RawState.get(), funcName.c_str());
+	if(loadedType == LUA_TNIL)
 	{
-		throw LuaException::GetException(LUA_ERRERR, "error loading function '" + funcName + "'");
+		throw LuaSyntaxException("Error loading function '" + funcName + "'. Return Code = " + TypeToString(loadedType));
 	}		
 }
 
 void LuaState::DoLuaCall(const std::string& funcName, int argCount, int returnCount) const
 {
-	const int result = lua_pcall(RawState.get(), argCount, returnCount, 0);
+	const int result = lua_pcall(RawState.get(), argCount, returnCount, 0);	
 	if (result != LUA_OK)
 	{
-		const auto errorMessage = "error running function '" + funcName + "': " + lua_tostring(RawState.get(), -1);
-		throw LuaException::GetException(result, errorMessage);
+		std::string luaErrorMessage = "N/A";
+		if(lua_isstring(GetRaw(), -1))
+		{
+			luaErrorMessage = lua_tostring(RawState.get(), -1);
+		}			
+
+		const auto completeErrorMessage = "Error calling function '" + funcName + "'. Lua Error Message: " + lua_tostring(RawState.get(), -1);
+		
+		switch (result)
+		{
+			case LUA_ERRRUN: throw LuaRuntimeException(completeErrorMessage);
+			case LUA_ERRERR: throw LuaErrorMessageException(completeErrorMessage);
+			case LUA_ERRMEM: throw LuaMemoryException(completeErrorMessage);
+			default: throw LuaException("Unknown error code. " + completeErrorMessage);
+		}
 	}
 }
 

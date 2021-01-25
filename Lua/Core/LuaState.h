@@ -32,8 +32,8 @@ public:
 		return *this;
 	}	
 
-	//// Calls a function without any return type or arguments
-	//void CallFunction(const std::string& funcName) const;
+	// Calls a function without any return type or arguments
+	void CallFunction(const std::string& funcName) const;
 
 	//// Calls a function with arguments but no return type
 	//template<typename... Inputs>
@@ -76,6 +76,7 @@ public:
 private:
 	std::unique_ptr<lua_State, decltype(&lua_close)> RawState;
 
+	lua_State* GetRaw() const;
 	void LoadFunction(const std::string& funcName) const;
 	void DoLuaCall(const std::string& funcName, int argCount, int returnCount) const;
 	void PrintStack() const;
@@ -117,7 +118,7 @@ private:
 		if (!result)
 		{
 			PrintStack();
-			throw LuaException::GetException(result, "Failed getting integer");
+			throw LuaRuntimeException("Failed getting integer");
 		}			
 
 		return lua_tointeger(RawState.get(), index);
@@ -128,7 +129,7 @@ private:
 	{
 		const int result = lua_isnumber(RawState.get(), index);
 		if (result != LUA_OK)
-			throw LuaException::GetException(result, "Failed getting double");
+			throw LuaRuntimeException("Failed getting double");
 
 		return lua_tonumber(RawState.get(), index);
 	}
@@ -138,7 +139,7 @@ private:
 	{
 		const int result = lua_isstring(RawState.get(), index);
 		if (result != LUA_OK)
-			throw LuaException::GetException(result, "Failed getting string");
+			throw LuaRuntimeException("Failed getting string");
 
 		return lua_tostring(RawState.get(), index);
 	}

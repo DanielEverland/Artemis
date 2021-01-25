@@ -3,6 +3,17 @@
 #include <Core/LuaState.h>
 #include <Lua/Exceptions/LuaIOException.h>
 #include <Lua/Exceptions/LuaSyntaxException.h>
+#include <Lua/Exceptions/LuaRuntimeException.h>
+
+TEST(LuaCore, NoArgumentsNoReturnFromString)
+{
+	LuaState::CreateFromString("function func() print(\"test\") end")->CallFunction("func");
+}
+
+TEST(LuaCore, NoArgumentsNoReturnFromFile)
+{
+	LuaState::CreateFromFile(GetTestFilesDir() + "NoArgumentsNoReturnFromFile.lua")->CallFunction("func");
+}
 
 TEST(LuaCore, NoArgumentsOneReturnFromFile)
 {
@@ -59,6 +70,21 @@ TEST(LuaCore, TwoArgumentsOneReturnFromFile)
 TEST(LuaCore, InvalidFilePath)
 {
 	EXPECT_THROW(LuaState::CreateFromFile("invalid path"), LuaIOException);
+}
+
+TEST(LuaCore, MissingFunction)
+{
+	EXPECT_THROW(LuaState::CreateFromString("function func() print(\"test\") end")->CallFunction("funcc"), LuaSyntaxException);
+}
+
+TEST(LuaCore, FromStringError)
+{
+	EXPECT_THROW(LuaState::CreateFromString("this will cause an error"), LuaSyntaxException);
+}
+
+TEST(LuaCore, FromFileError)
+{
+	EXPECT_THROW(LuaState::CreateFromFile(GetTestFilesDir() + "FromFileError.lua"), LuaSyntaxException);
 }
 
 //TEST(LuaCore, ReturnTuple)

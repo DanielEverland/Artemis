@@ -36,29 +36,8 @@ public:
 	template<typename Output, typename... Inputs>
 	disable_deduction<Output> CallFunction(const std::string& funcName, Inputs&&... inputs);
 
-	//template< typename... Outputs, typename... Inputs > /*requires nonempty_pack<Outputs...>*/
-	//std::tuple< Outputs... > CallFunctionReturn(std::string funcName, Inputs&&... inputs)
-	//{
-	//	lua_getglobal(RawState.get(), funcName.c_str());
-
-	//	PushValues(inputs...);
-
-	//	if(lua_pcall(RawState.get(), sizeof...(Inputs), sizeof...(Outputs), 0) != 0)
-	//	{
-	//		const auto errorMessage = "error running function '" + funcName + "': " + lua_tostring(RawState.get(), -1);
-	//		throw std::exception(errorMessage.c_str());
-	//	}
-
-	//	std::tuple<Outputs...> returnValues;
-	//	/*for (int i = 0; i < sizeof...(Outputs); i++)
-	//	{
-	//		std::get<i>(returnValues) = GetValue<typename std::tuple_element<i, std::tuple<Outputs...> >::type>(i + 1);
-	//	}*/
-
-	//	PopValues<0, std::tuple<Outputs...>, Outputs...>(returnValues);
-
-	//	return returnValues;		
-	//}
+	template<typename... Outputs, typename... Inputs, std::size_t i = sizeof...(Outputs), std::enable_if_t<(i > 1), int> = 0>
+	std::tuple<Outputs...> CallFunction(std::string funcName, Inputs&&... inputs);
 
 	operator lua_State*() const;
 
@@ -89,6 +68,12 @@ private:
 	}
 
 	template<>
+	void PushValue(float val)
+	{
+		lua_pushnumber(RawState.get(), val);
+	}
+
+	template<>
 	void PushValue(const std::string& val)
 	{
 		lua_pushstring(RawState.get(), val.c_str());
@@ -105,10 +90,7 @@ private:
 	{
 		const bool result = lua_isinteger(RawState.get(), index);
 		if (!result)
-		{
-			PrintStack();
 			throw LuaRuntimeException("Failed getting integer");
-		}			
 
 		return lua_tointeger(RawState.get(), index);
 	}
@@ -116,9 +98,19 @@ private:
 	template<>
 	double GetValue(int index)
 	{
-		const int result = lua_isnumber(RawState.get(), index);
-		if (result != LUA_OK)
+		const bool result = lua_isnumber(RawState.get(), index);
+		if (!result)
 			throw LuaRuntimeException("Failed getting double");
+
+		return lua_tonumber(RawState.get(), index);
+	}
+
+	template<>
+	float GetValue(int index)
+	{
+		const bool result = lua_isnumber(RawState.get(), index);
+		if (!result)
+			throw LuaRuntimeException("Failed getting float");
 
 		return lua_tonumber(RawState.get(), index);
 	}
@@ -126,8 +118,8 @@ private:
 	template<>
 	std::string GetValue(int index)
 	{
-		const int result = lua_isstring(RawState.get(), index);
-		if (result != LUA_OK)
+		const bool result = lua_isstring(RawState.get(), index);
+		if (!result)
 			throw LuaRuntimeException("Failed getting string");
 
 		return lua_tostring(RawState.get(), index);
@@ -146,17 +138,19 @@ private:
 		PushValue(input);
 	}
 
-	template<unsigned int I, typename Tuple, typename Output, typename ...Outputs>
-	void PopValues(Tuple returnValues)
+	template<unsigned int I, typename Tuple, typename Output, typename ...Outputs, std::size_t i = sizeof...(Outputs), std::enable_if_t<(i > 0), int> = 0>
+	void PopValues(Tuple& returnValues)
 	{
-		std::get<I>(returnValues) = GetValue<Output>(I);
+		Output val = GetValue<Output>((sizeof...(Outputs) + 1 - I) * -1);
+		std::get<I>(returnValues) = val;
 		return PopValues<I + 1, Tuple, Outputs...>(returnValues);
 	}
 
 	template<unsigned int I, typename Tuple, typename Output>
-	void PopValues(Tuple returnValues)
+	void PopValues(Tuple& returnValues)
 	{
-		std::get<I>(returnValues) = GetValue<Output>(I);
+		Output val = GetValue<Output>(-1);
+		std::get<I>(returnValues) = val;
 	}
 };
 
@@ -182,7 +176,26 @@ disable_deduction<Output> LuaState::CallFunction(const std::string& funcName, In
 	{
 		PushValues(inputs...);
 	}
-	
+
+	PrintStack();
 	DoLuaCall(funcName, sizeof...(Inputs), 1);
 	return GetValue<Output>(LUA_STACK_TOP);
+}
+
+template <typename ... Outputs, typename ... Inputs, std::size_t i, std::enable_if_t<(i > 1), int>>
+std::tuple<Outputs...> LuaState::CallFunction(std::string funcName, Inputs&&... inputs)
+{
+	LoadFunction(funcName);
+
+	if constexpr (sizeof...(Inputs) > 0)
+	{
+		PushValues(inputs...);
+	}
+
+	DoLuaCall(funcName, sizeof...(Inputs), sizeof...(Outputs));
+
+	std::tuple<Outputs...> returnValues;
+	PopValues<0, std::tuple<Outputs...>, Outputs...>(returnValues);
+
+	return returnValues;
 }

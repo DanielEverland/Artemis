@@ -99,8 +99,14 @@ void LuaState::PrintStack() const
             break;
 
         case LUA_TNUMBER:  /* numbers */
-            printf("%g", lua_tonumber(RawState.get(), i));
-            break;
+	        {
+			lua_Number nmbr = lua_tonumber(RawState.get(), i);
+			int integer = nmbr;
+			double floatpoint = nmbr;
+			printf("%g", lua_tonumber(RawState.get(), i));
+			break;
+	        }
+			
 
         default:  /* other values */
             printf("%s", lua_typename(RawState.get(), t));

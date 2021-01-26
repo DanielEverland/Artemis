@@ -112,16 +112,16 @@ TEST(LuaCore, FromFileError)
 	EXPECT_THROW(LuaState::CreateFromFile(GetTestFilesDir() + "FromFileError.lua"), LuaSyntaxException);
 }
 
-//TEST(LuaCore, ReturnTuple)
-//{
-//	const std::string rawString = "function func(a, b) return a, b end";
-//	auto state = LuaState::CreateFromString(rawString);
-//
-//	int firstParam = 1;
-//	float secondParam = 2.5f;
-//	
-//	auto returnValue = state->CallFunctionReturn<int, float>("func", firstParam, secondParam);
-//	
-//	EXPECT_EQ(std::get<0>(returnValue), firstParam);
-//	EXPECT_EQ(std::get<1>(returnValue), secondParam);
-//}
+TEST(LuaCore, ReturnTuple)
+{
+	const std::string rawString = "function func(a, b) return a, b end";
+	auto state = LuaState::CreateFromString(rawString);
+
+	int firstParam = 420;
+	float secondParam = 69.66f;
+	
+	auto returnValue = state->CallFunction<int, float>("func", firstParam, secondParam);
+	
+	EXPECT_EQ(std::get<0>(returnValue), firstParam);
+	EXPECT_EQ(std::get<1>(returnValue), secondParam);
+}

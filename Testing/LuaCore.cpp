@@ -3,7 +3,32 @@
 #include <Core/LuaState.h>
 #include <Lua/Exceptions/LuaIOException.h>
 #include <Lua/Exceptions/LuaSyntaxException.h>
-#include <Lua/Exceptions/LuaRuntimeException.h>
+
+TEST(LuaCore, TwoArgumentsNoReturnFromFile)
+{
+	int a = 42;
+	int b = 69;
+	LuaState::CreateFromFile(GetTestFilesDir() + "TwoArgumentsNoReturnFromFile.lua")->CallFunction("func", a, b);
+}
+
+TEST(LuaCore, OneArgumentNoReturnFromFile)
+{
+	int a = 42;
+	LuaState::CreateFromFile(GetTestFilesDir() + "OneArgumentNoReturnFromFile.lua")->CallFunction("func", a);
+}
+
+TEST(LuaCore, TwoArgumentsNoReturnFromString)
+{
+	int a = 42;
+	int b = 69;
+	LuaState::CreateFromString("function func(a, b) print(a + b) end")->CallFunction("func", a, b);
+}
+
+TEST(LuaCore, OneArgumentNoReturnFromString)
+{
+	int a = 42;
+	LuaState::CreateFromString("function func(a) print(a) end")->CallFunction("func", a);
+}
 
 TEST(LuaCore, NoArgumentsNoReturnFromString)
 {

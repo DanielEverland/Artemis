@@ -11,6 +11,15 @@
 //template<typename... Args>
 //concept nonempty_pack = sizeof...(Args) > 0;
 
+template<typename T>
+struct type_identity
+{
+	using type = T;
+};
+
+template<class T>
+using disable_deduction = typename type_identity<T>::type;
+
 struct LuaState
 {
 public:
@@ -19,57 +28,37 @@ public:
 
 	explicit LuaState();
 	
-	LuaState(LuaState&& other) noexcept
-		: RawState(std::move(other.RawState))
-	{
-	}
-	
-	LuaState& operator=(LuaState&& other) noexcept
-	{
-		if (this == &other)
-			return *this;
-		RawState = std::move(other.RawState);
-		return *this;
-	}	
+	// Calls a function with arguments but no return type
+	template<typename... Inputs>
+	void CallFunction(const std::string& funcName, Inputs&&... inputs);
 
-	// Calls a function without any return type or arguments
-	void CallFunction(const std::string& funcName) const;
-
-	//// Calls a function with arguments but no return type
-	//template<typename... Inputs>
-	//void CallFunction(const std::string& funcName, Inputs&&... inputs);
-
-	//// Calls a function with arguments and one return type
+	// Calls a function with arguments and one return type
 	template<typename Output, typename... Inputs>
-	Output CallFunction(const std::string& funcName, Inputs&&... inputs);
+	disable_deduction<Output> CallFunction(const std::string& funcName, Inputs&&... inputs);
 
-	// Calls a function with no arguments and one return type
-	template<typename Output>
-	Output CallFunction(const std::string& funcName);
+	//template< typename... Outputs, typename... Inputs > /*requires nonempty_pack<Outputs...>*/
+	//std::tuple< Outputs... > CallFunctionReturn(std::string funcName, Inputs&&... inputs)
+	//{
+	//	lua_getglobal(RawState.get(), funcName.c_str());
 
-	template< typename... Outputs, typename... Inputs > /*requires nonempty_pack<Outputs...>*/
-	std::tuple< Outputs... > CallFunctionReturn(std::string funcName, Inputs&&... inputs)
-	{
-		lua_getglobal(RawState.get(), funcName.c_str());
+	//	PushValues(inputs...);
 
-		PushValues(inputs...);
+	//	if(lua_pcall(RawState.get(), sizeof...(Inputs), sizeof...(Outputs), 0) != 0)
+	//	{
+	//		const auto errorMessage = "error running function '" + funcName + "': " + lua_tostring(RawState.get(), -1);
+	//		throw std::exception(errorMessage.c_str());
+	//	}
 
-		if(lua_pcall(RawState.get(), sizeof...(Inputs), sizeof...(Outputs), 0) != 0)
-		{
-			const auto errorMessage = "error running function '" + funcName + "': " + lua_tostring(RawState.get(), -1);
-			throw std::exception(errorMessage.c_str());
-		}
+	//	std::tuple<Outputs...> returnValues;
+	//	/*for (int i = 0; i < sizeof...(Outputs); i++)
+	//	{
+	//		std::get<i>(returnValues) = GetValue<typename std::tuple_element<i, std::tuple<Outputs...> >::type>(i + 1);
+	//	}*/
 
-		std::tuple<Outputs...> returnValues;
-		/*for (int i = 0; i < sizeof...(Outputs); i++)
-		{
-			std::get<i>(returnValues) = GetValue<typename std::tuple_element<i, std::tuple<Outputs...> >::type>(i + 1);
-		}*/
+	//	PopValues<0, std::tuple<Outputs...>, Outputs...>(returnValues);
 
-		PopValues<0, std::tuple<Outputs...>, Outputs...>(returnValues);
-
-		return returnValues;		
-	}
+	//	return returnValues;		
+	//}
 
 	operator lua_State*() const;
 
@@ -171,27 +160,29 @@ private:
 	}
 };
 
-//template <typename ... Inputs>
-//void LuaState::CallFunction(const std::string& funcName, Inputs&&... inputs)
-//{
-//	LoadFunction(funcName);
-//	PushValues(inputs...);
-//	DoLuaCall(funcName, sizeof...(Inputs), 0);
-//}
-//
-template <typename Output, typename ... Inputs>
-Output LuaState::CallFunction(const std::string& funcName, Inputs&&... inputs)
+template <typename ... Inputs>
+void LuaState::CallFunction(const std::string& funcName, Inputs&&... inputs)
 {
 	LoadFunction(funcName);
-	PushValues(inputs...);
-	DoLuaCall(funcName, sizeof...(Inputs), 1);
-	return GetValue<Output>(LUA_STACK_TOP);
+	
+	if constexpr (sizeof...(Inputs) > 0)
+	{
+		PushValues(inputs...);
+	}
+	
+	DoLuaCall(funcName, sizeof...(Inputs), 0);
 }
 
-template <typename Output>
-Output LuaState::CallFunction(const std::string& funcName)
+template <typename Output, typename ... Inputs>
+disable_deduction<Output> LuaState::CallFunction(const std::string& funcName, Inputs&&... inputs)
 {
 	LoadFunction(funcName);
-	DoLuaCall(funcName, 0, 1);
+
+	if constexpr(sizeof...(Inputs) > 0)
+	{
+		PushValues(inputs...);
+	}
+	
+	DoLuaCall(funcName, sizeof...(Inputs), 1);
 	return GetValue<Output>(LUA_STACK_TOP);
 }

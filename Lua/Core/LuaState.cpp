@@ -40,12 +40,6 @@ LuaState::LuaState() : RawState(luaL_newstate(), lua_close)
 	luaL_openlibs(RawState.get());
 }
 
-void LuaState::CallFunction(const std::string& funcName) const
-{
-	LoadFunction(funcName);
-	DoLuaCall(funcName, 0, 0);
-}
-
 LuaState::operator lua_State*() const
 {
 	return GetRaw();

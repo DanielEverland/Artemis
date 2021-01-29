@@ -15,6 +15,9 @@ extern "C" {
 #include <lauxlib.h>
 }
 
+// JSON
+#include <Core/IO/Json.h>
+
 #define STRINGIFY(x) #x
 #define EXPAND(x) STRINGIFY(x)
 
@@ -31,4 +34,4 @@ inline std::string GetTestFilesDir()
 	return GetProjectDir() + "/TestFiles/";
 }
 
-//#include <Core/LuaState.h>
+#include <INIReader/INIReader.h>

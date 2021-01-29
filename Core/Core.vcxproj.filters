@@ -10,6 +10,9 @@
     <Filter Include="IO">
       <UniqueIdentifier>{f8429f15-4dce-4fcc-9215-4026936d5a72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{e7c12d08-54e1-449b-bdbc-53078a7385fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exceptions\Exception.cpp">
@@ -26,6 +29,12 @@
     </ClCompile>
     <ClCompile Include="Exceptions\ArgumentException.cpp">
       <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\IOException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugging\Logger.cpp">
+      <Filter>Debugging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,5 +53,21 @@
     <ClInclude Include="Exceptions\ArgumentException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="IO\Json.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\IOException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\Verbosity.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\Logger.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

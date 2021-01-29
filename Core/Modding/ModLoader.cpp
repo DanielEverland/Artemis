@@ -15,7 +15,7 @@ string ModLoader::GetModdingDirectory()
 
 void ModLoader::LoadMods()
 {
-	std::cout << "outputting all mod directories" << std::endl;
+	std::cout << "Outputting all mod directories" << std::endl;
 	for(const string& modDirectory : GetAllModDirectories())
 	{
 		std::cout << modDirectory << std::endl;

@@ -5,6 +5,8 @@
 #include <Exception.h>
 #include <Debugging/GameplayDebugger.h>
 
+#include "Modding/ModLoader.h"
+
 
 bool Initialize();
 bool MainLoop();
@@ -20,6 +22,8 @@ int main(int argc, char** args)
 	if(!Initialize())
 		return -1;
 
+	ModLoader::LoadMods();
+	
 	while (true)
 	{
 		try

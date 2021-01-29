@@ -39,8 +39,8 @@ void Window::Draw() const
 {
 	RendererPtr->Clear();
 
-	Texture texture("Resources/Smiley.bmp");
-	RendererPtr->DrawTexture(texture.GetRawTexture(), { 10, 10, 300, 300} );
+	//Texture texture("Resources/Smiley.bmp");
+	//RendererPtr->DrawTexture(texture.GetRawTexture(), { 10, 10, 300, 300} );
 
 	//RendererPtr->SetDrawColor(Color::White);
 	//RendererPtr->FillRect({ 10, 10, 10, 10 });

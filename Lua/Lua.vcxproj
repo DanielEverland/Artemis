@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\GlobalState.cpp" />
     <ClCompile Include="Core\LuaInstance.cpp" />
     <ClCompile Include="Core\LuaState.cpp" />
     <ClCompile Include="Exceptions\LuaErrorMessageException.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="Exceptions\LuaSyntaxException.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\GlobalState.h" />
     <ClInclude Include="Core\LuaCore.h" />
     <ClInclude Include="Core\LuaCoreMinimal.h" />
     <ClInclude Include="Core\LuaInstance.h" />

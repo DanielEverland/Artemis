@@ -4,14 +4,44 @@
     <Filter Include="Exceptions">
       <UniqueIdentifier>{6d5c35af-076f-4c31-abb0-50e197444f4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modding">
+      <UniqueIdentifier>{2bf8961e-5141-4713-852d-83bf6e5f3912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{f8429f15-4dce-4fcc-9215-4026936d5a72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exceptions\Exception.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="Modding\ModLoader.cpp">
+      <Filter>Modding</Filter>
+    </ClCompile>
+    <ClCompile Include="IO\Directory.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="IO\Path.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\ArgumentException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exceptions\Exception.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Modding\ModLoader.h">
+      <Filter>Modding</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\Directory.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\Path.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\ArgumentException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>

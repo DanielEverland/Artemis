@@ -13,6 +13,9 @@
     <Filter Include="Debugging">
       <UniqueIdentifier>{e7c12d08-54e1-449b-bdbc-53078a7385fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{87cd686f-b292-47b9-b7b5-8d4d656cf2c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exceptions\Exception.cpp">
@@ -35,6 +38,15 @@
     </ClCompile>
     <ClCompile Include="Debugging\Logger.cpp">
       <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Color.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Font.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\GameConfiguration.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +77,21 @@
     <ClInclude Include="Debugging\Logger.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="StringUtility.h" />
+    <ClInclude Include="Core\Color.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Font.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameConfiguration.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\StringUtility.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

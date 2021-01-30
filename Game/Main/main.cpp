@@ -5,9 +5,13 @@
 #include <Exception.h>
 #include <Debugging/GameplayDebugger.h>
 
+
+#include "GameConfiguration.h"
 #include "Modding/ModLoader.h"
 
-
+void ExecuteMainLoop();
+void LoadCoreEssentials();
+void LoadCore();
 bool Initialize();
 bool MainLoop();
 void Kill();
@@ -22,13 +26,30 @@ int main(int argc, char** args)
 	if(!Initialize())
 		return -1;
 
-	ModLoader::LoadMods();
+	LoadCoreEssentials();
+	LoadCore();
+	ExecuteMainLoop();
 	
+	return 0;
+}
+
+void LoadCoreEssentials()
+{
+	GameConfiguration::Load();
+}
+
+void LoadCore()
+{
+	ModLoader::LoadMods();
+}
+
+void ExecuteMainLoop()
+{
 	while (true)
 	{
 		try
 		{
-			if(!MainLoop())
+			if (!MainLoop())
 				break;
 		}
 		catch (const Exception& e)
@@ -40,9 +61,6 @@ int main(int argc, char** args)
 			std::cout << "Caught std exception in main loop" << std::endl;
 		}
 	}
-	
-	
-	return 0;
 }
 
 bool Initialize()

@@ -72,22 +72,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(SolutionDir)\INIReader;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(SolutionDir)\INIReader;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(SolutionDir)\INIReader;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);D:\Daniel\Artemis\SDL\include;$(ProjectDir)\Core;$(SolutionDir)\Core\Exceptions;$(SolutionDir)\Core;$(SolutionDir)\INIReader;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>INIReader.lib;ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
@@ -120,7 +120,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>INIReader.lib;ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
@@ -136,7 +136,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>INIReader.lib;ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
@@ -156,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>INIReader.lib;ArtemisCore.lib;Dbghelp.lib;SDL2.lib;SDL2Main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
@@ -166,8 +166,6 @@
     <Image Include="Resources\Smiley.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Color.cpp" />
-    <ClCompile Include="Core\Font.cpp" />
     <ClCompile Include="Debugging\DebugCategory.cpp" />
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
     <ClCompile Include="Debugging\GameplayDebugger.cpp" />
@@ -178,9 +176,6 @@
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Color.h" />
-    <ClInclude Include="Core\Core.h" />
-    <ClInclude Include="Core\Font.h" />
     <ClInclude Include="Debugging\DebugCategory.h" />
     <ClInclude Include="Debugging\DebugCategoryHandle.h" />
     <ClInclude Include="Debugging\GameplayDebugger.h" />

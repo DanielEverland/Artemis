@@ -4,9 +4,6 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{e543fea8-6abb-4b07-b6b6-c55200e29bc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{31b67e7e-7322-4bbb-bdcf-68266d677334}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Debugging">
       <UniqueIdentifier>{2b0020af-f00f-4d6e-86b3-77516ff2e1d0}</UniqueIdentifier>
     </Filter>
@@ -26,9 +23,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Color.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Debugging\DebugCategory.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
@@ -53,14 +47,8 @@
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Font.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Color.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Debugging\DebugCategory.h">
       <Filter>Debugging</Filter>
     </ClInclude>
@@ -90,12 +78,6 @@
     </ClInclude>
     <ClInclude Include="Window\WindowCore.h">
       <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Font.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Core.h">
-      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

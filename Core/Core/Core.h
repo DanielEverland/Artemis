@@ -4,6 +4,14 @@
 #include <string>
 #include <iostream>
 
+#include <IO/Path.h>
+#include <IO/Directory.h>
+
+#include <INIReader/INIReader.h>
+
+#include "StringUtility.h"
+#include "GameConfiguration.h"
+
 // IO
 using std::cout;
 using std::cin;

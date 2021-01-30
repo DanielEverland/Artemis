@@ -25,6 +25,7 @@
     <ClCompile Include="Exceptions\ArgumentException.cpp" />
     <ClCompile Include="Exceptions\IOException.cpp" />
     <ClCompile Include="IO\Directory.cpp" />
+    <ClCompile Include="IO\Json.cpp" />
     <ClCompile Include="IO\Path.cpp" />
   </ItemGroup>
   <ItemGroup>

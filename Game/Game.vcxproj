@@ -26,6 +26,10 @@
     <ClInclude Include="Debugging\Logger.h" />
     <ClInclude Include="Debugging\Verbosity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Modding\Mod.h" />
+    <ClInclude Include="Modding\ModCore.h" />
+    <ClInclude Include="Modding\ModException.h" />
+    <ClInclude Include="Modding\ModInfo.h" />
     <ClInclude Include="Modding\ModLoader.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\RendererCore.h" />
@@ -41,6 +45,7 @@
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
     <ClCompile Include="Debugging\GameplayDebugger.cpp" />
     <ClCompile Include="Debugging\Logger.cpp" />
+    <ClCompile Include="Modding\Mod.cpp" />
     <ClCompile Include="Modding\ModLoader.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\SDLException.cpp" />
@@ -104,22 +109,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -201,11 +206,15 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\boost.1.72.0.0\build\boost.targets" Condition="Exists('..\packages\boost.1.72.0.0\build\boost.targets')" />
+    <Import Project="..\packages\lua.5.4.2\build\native\Lua.targets" Condition="Exists('..\packages\lua.5.4.2\build\native\Lua.targets')" />
+    <Import Project="..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\boost.1.72.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.72.0.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\lua.5.4.2\build\native\Lua.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\lua.5.4.2\build\native\Lua.targets'))" />
+    <Error Condition="!Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets'))" />
   </Target>
 </Project>

@@ -3,10 +3,9 @@
 #include <Game.h>
 
 #include "ModLoader.h"
+#include "Mod.h"
 
 string ModLoaderCategory = "ModLoader";
-
-string ModLoader::ModInfoName = "modinfo.json";
 
 string ModLoader::GetModdingDirectory()
 {
@@ -23,6 +22,7 @@ void ModLoader::LoadMods()
 	for(const string& modDirectory : GetAllModDirectories())
 	{
 		Logger::Log(ModLoaderCategory, Verbosity::Verbose, modDirectory);
+		Mod currentMod(modDirectory);
 	}
 }
 
@@ -65,8 +65,8 @@ bool ModLoader::GetModInfoFilePath(const string& directory, string& modFilePath)
 
 	for (const string& filePath : Directory::GetAllFiles(directory))
 	{
-		const bool matchesFilename = Path::GetFileName(filePath) == ModInfoName;
-		Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, "Checking " + filePath + "\n\t" + Path::GetFileName(filePath) + " == " + ModInfoName + ": " + sbool(matchesFilename));
+		const bool matchesFilename = Path::GetFileName(filePath) == Mod::ModInfoName;
+		Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, "Checking " + filePath + "\n\t" + Path::GetFileName(filePath) + " == " + Mod::ModInfoName + ": " + sbool(matchesFilename));
 		if(matchesFilename)
 		{
 			modFilePath = Path::RemoveLastDeliminatorPart(filePath);

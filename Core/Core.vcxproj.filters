@@ -33,6 +33,9 @@
     <ClCompile Include="Core\Font.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="IO\Json.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exceptions\Exception.h">

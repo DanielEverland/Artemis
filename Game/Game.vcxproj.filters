@@ -44,6 +44,18 @@
     <ClInclude Include="Debugging\Verbosity.h">
       <Filter>Debugging</Filter>
     </ClInclude>
+    <ClInclude Include="Modding\Mod.h">
+      <Filter>Modding</Filter>
+    </ClInclude>
+    <ClInclude Include="Modding\ModInfo.h">
+      <Filter>Modding</Filter>
+    </ClInclude>
+    <ClInclude Include="Modding\ModCore.h">
+      <Filter>Modding</Filter>
+    </ClInclude>
+    <ClInclude Include="Modding\ModException.h">
+      <Filter>Modding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modding">
@@ -92,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Debugging\Logger.cpp">
       <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Modding\Mod.cpp">
+      <Filter>Modding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

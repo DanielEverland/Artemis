@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Exception.h>
-#include <memory>
 
 class LuaException : public Exception
 {

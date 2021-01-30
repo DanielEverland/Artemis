@@ -18,3 +18,8 @@ static void trim(std::string& s) {
     ltrim(s);
     rtrim(s);
 }
+
+static string sbool(bool value)
+{
+	return value ? "true" : "false";
+}

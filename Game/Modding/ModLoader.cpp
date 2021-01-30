@@ -4,26 +4,32 @@
 
 #include "ModLoader.h"
 
-string DebugCategory = "ModLoader";
+string ModLoaderCategory = "ModLoader";
 
-string ModLoader::ModInfoName = "modinfo.lua";
+string ModLoader::ModInfoName = "modinfo.json";
 
 string ModLoader::GetModdingDirectory()
 {
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
 	return Directory::GetProjectDirectory() + "Mods";
 }
 
 void ModLoader::LoadMods()
 {
-	Logger::Log("ModLoader", Verbosity::VeryVerbose, "Outputting all mod directories");
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+
+	std::vector<string> modDirectories = GetAllModDirectories();
+	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Outputting all mod directories");
 	for(const string& modDirectory : GetAllModDirectories())
 	{
-		Logger::Log("ModLoader", Verbosity::VeryVerbose, modDirectory);
+		Logger::Log(ModLoaderCategory, Verbosity::Verbose, modDirectory);
 	}
 }
 
 std::vector<std::string> ModLoader::GetAllModDirectories()
 {
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+
 	std::vector<string> modDirectories;
 	
 	std::queue<string> directoriesToSearch;
@@ -33,6 +39,8 @@ std::vector<std::string> ModLoader::GetAllModDirectories()
 	{
 		const string currentDirectory = directoriesToSearch.front();
 		directoriesToSearch.pop();
+
+		Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Checking directory " + currentDirectory);
 
 		string modinfoPath;
 		if(GetModInfoFilePath(currentDirectory, modinfoPath))
@@ -53,9 +61,13 @@ std::vector<std::string> ModLoader::GetAllModDirectories()
 
 bool ModLoader::GetModInfoFilePath(const string& directory, string& modFilePath)
 {
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+
 	for (const string& filePath : Directory::GetAllFiles(directory))
 	{
-		if(Path::GetFileName(filePath) == ModInfoName)
+		const bool matchesFilename = Path::GetFileName(filePath) == ModInfoName;
+		Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, "Checking " + filePath + "\n\t" + Path::GetFileName(filePath) + " == " + ModInfoName + ": " + sbool(matchesFilename));
+		if(matchesFilename)
 		{
 			modFilePath = Path::RemoveLastDeliminatorPart(filePath);
 			return true;

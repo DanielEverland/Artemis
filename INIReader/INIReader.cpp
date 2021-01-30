@@ -1,14 +1,17 @@
 ﻿#include <fstream>
 #include <algorithm>
 
-#include <Core/Exceptions/IOException.h>
-#include <Core/StringUtility.h>
+#include <Core.h>
 
 #include "INIReader.h"
 #include "INISyntaxException.h"
 
 using std::fstream;
 using std::string;
+
+INIReader::INIReader()
+{
+}
 
 INIReader::INIReader(const string& filePath)
 {

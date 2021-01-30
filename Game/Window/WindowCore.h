@@ -1,4 +1,4 @@
 ﻿#pragma once
 
-#include<SDL.h>
-#include<iostream>
+#include <Renderer/RendererCore.h>
+#include <iostream>

@@ -1,62 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{e543fea8-6abb-4b07-b6b6-c55200e29bc1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Debugging">
-      <UniqueIdentifier>{2b0020af-f00f-4d6e-86b3-77516ff2e1d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Main">
-      <UniqueIdentifier>{b4392143-9c2c-43b5-8e78-91c2e60d1142}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Renderer">
-      <UniqueIdentifier>{d3abfd6a-1a9c-4d99-aa7a-479523422e9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window">
-      <UniqueIdentifier>{bddb2b8d-5bca-4b12-a306-cd27873943df}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Smiley.bmp">
-      <Filter>Resources</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Debugging\DebugCategory.cpp">
-      <Filter>Debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="Debugging\DebugCategoryHandle.cpp">
-      <Filter>Debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="Debugging\GameplayDebugger.cpp">
-      <Filter>Debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="Main\main.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\Renderer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\SDLException.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\Texture.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Window\Window.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Debugging\DebugCategory.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugging\DebugCategoryHandle.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugging\GameplayDebugger.h">
-      <Filter>Debugging</Filter>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Modding\ModLoader.h">
+      <Filter>Modding</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Renderer.h">
       <Filter>Renderer</Filter>
@@ -79,5 +26,75 @@
     <ClInclude Include="Window\WindowCore.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="Config\GameConfiguration.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\DebugCategory.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\DebugCategoryHandle.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\GameplayDebugger.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\Logger.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugging\Verbosity.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Modding">
+      <UniqueIdentifier>{76508272-c2b1-42a2-bcf8-cb6e3c7c1257}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{ce606949-c10a-421e-b08b-e33e108f8c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{48399c33-5cf4-418e-a1d5-8afa049c5268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{db5a4d21-5e1f-4ae0-844c-e62661a06245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{9822cdcf-cfef-48a7-9c2a-97eb9773d8e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Modding\ModLoader.cpp">
+      <Filter>Modding</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\SDLException.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Texture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\GameConfiguration.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugging\DebugCategory.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugging\DebugCategoryHandle.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugging\GameplayDebugger.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugging\Logger.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

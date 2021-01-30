@@ -13,6 +13,7 @@ using std::string;
 class INIReader
 {
 public:
+	explicit INIReader();
 	explicit INIReader(const string& filePath);
 	bool Contains(const string& category, const string& valueName);
 

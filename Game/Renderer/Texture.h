@@ -2,7 +2,7 @@
 
 #include <string>
 #include <memory>
-#include <SDL_render.h>
+#include <Renderer/RendererCore.h>
 
 class Texture
 {

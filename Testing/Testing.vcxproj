@@ -33,19 +33,19 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Exceptions;$(SolutionDir)Game;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Exceptions;$(SolutionDir)Game;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Exceptions;$(SolutionDir)Game;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Exceptions;$(SolutionDir)Game;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemGroup>
@@ -54,6 +54,7 @@
   <ItemGroup>
     <ClCompile Include="INIReader.cpp" />
     <ClCompile Include="Json.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="LuaCore.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="pch.cpp">
@@ -67,9 +68,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Game\Game.vcxproj">
-      <Project>{a8b0a948-1238-4ebf-93b0-1382e9aea790}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\INIReader\INIReader.vcxproj">
       <Project>{95ac8b34-9624-4fdb-a684-29e777984058}</Project>
     </ProjectReference>
@@ -99,7 +97,7 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <AdditionalDependencies>ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Game.lib;ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference />
   </ItemDefinitionGroup>
@@ -118,7 +116,7 @@
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <AdditionalDependencies>ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Game.lib;ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference />
   </ItemDefinitionGroup>
@@ -138,7 +136,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <AdditionalDependencies>ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Game.lib;ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference />
   </ItemDefinitionGroup>
@@ -158,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
-      <AdditionalDependencies>ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Game.lib;ArtemisCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference />
   </ItemDefinitionGroup>

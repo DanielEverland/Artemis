@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-class INIReader;
+#include "INIReader/INIReader.h"
 
 class GameConfiguration
 {

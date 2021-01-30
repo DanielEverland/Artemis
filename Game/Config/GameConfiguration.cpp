@@ -1,8 +1,8 @@
 ﻿#include "GameConfiguration.h"
 
-#include <Core.h>
+#include <Game.h>
 
-#include <INIReader.h>
+INIReader GameConfiguration::Reader = INIReader();
 
 void GameConfiguration::Load()
 {

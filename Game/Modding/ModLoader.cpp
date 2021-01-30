@@ -1,24 +1,24 @@
 ﻿#include <queue>
 
-#include <iostream>
+#include <Game.h>
 
 #include "ModLoader.h"
-#include <IO/Directory.h>
-#include <IO/Path.h>
+
+string DebugCategory = "ModLoader";
 
 string ModLoader::ModInfoName = "modinfo.lua";
 
 string ModLoader::GetModdingDirectory()
 {
-	return Directory::GetProjectDirectory() + "\Mods";
+	return Directory::GetProjectDirectory() + "Mods";
 }
 
 void ModLoader::LoadMods()
 {
-	std::cout << "Outputting all mod directories" << std::endl;
+	Logger::Log("ModLoader", Verbosity::VeryVerbose, "Outputting all mod directories");
 	for(const string& modDirectory : GetAllModDirectories())
 	{
-		std::cout << modDirectory << std::endl;
+		Logger::Log("ModLoader", Verbosity::VeryVerbose, modDirectory);
 	}
 }
 

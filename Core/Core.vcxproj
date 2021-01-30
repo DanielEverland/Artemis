@@ -21,30 +21,23 @@
   <ItemGroup>
     <ClCompile Include="Core\Color.cpp" />
     <ClCompile Include="Core\Font.cpp" />
-    <ClCompile Include="Core\GameConfiguration.cpp" />
-    <ClCompile Include="Debugging\Logger.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Exceptions\ArgumentException.cpp" />
     <ClCompile Include="Exceptions\IOException.cpp" />
     <ClCompile Include="IO\Directory.cpp" />
     <ClCompile Include="IO\Path.cpp" />
-    <ClCompile Include="Modding\ModLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Color.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Font.h" />
-    <ClInclude Include="Core\GameConfiguration.h" />
     <ClInclude Include="Core\StringUtility.h" />
-    <ClInclude Include="Debugging\Logger.h" />
-    <ClInclude Include="Debugging\Verbosity.h" />
     <ClInclude Include="Exceptions\Exception.h" />
     <ClInclude Include="Exceptions\ArgumentException.h" />
     <ClInclude Include="Exceptions\IOException.h" />
     <ClInclude Include="IO\Directory.h" />
     <ClInclude Include="IO\Json.h" />
     <ClInclude Include="IO\Path.h" />
-    <ClInclude Include="Modding\ModLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -104,19 +97,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core;$(SolutionDir)Core\Core;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core;$(SolutionDir)Core\Core;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core;$(SolutionDir)Core\Core;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Core;$(SolutionDir)Core\Core;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Core\Core;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -135,8 +128,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Dbghelp.lib;INIReader.lib</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -159,8 +155,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Dbghelp.lib;INIReader.lib</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -179,8 +178,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Dbghelp.lib;INIReader.lib</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -203,8 +205,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Dbghelp.lib;INIReader.lib</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(TargetDir)" /e /y /i /r</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

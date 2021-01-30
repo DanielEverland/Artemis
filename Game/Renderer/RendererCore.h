@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #pragma warning(push, 0)
-#include <SDL.h>
-#include <SDL_render.h>
-#include <SDL_surface.h>
+#include <SDL/include/SDL.h>
+#include <SDL/include/SDL_render.h>
+#include <SDL/include/SDL_surface.h>
 #pragma warning(pop)
 
 #include "SDLHelper.h"

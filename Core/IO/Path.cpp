@@ -1,5 +1,5 @@
 ﻿#include "Path.h"
-#include "Exceptions/ArgumentException.h"
+#include <Core.h>
 
 string Path::GetFileName(string fullPath)
 {

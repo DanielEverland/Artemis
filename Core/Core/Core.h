@@ -4,13 +4,14 @@
 #include <string>
 #include <iostream>
 
-#include <IO/Path.h>
-#include <IO/Directory.h>
+#include "../IO/Path.h"
+#include "../IO/Directory.h"
 
-#include <INIReader/INIReader.h>
+#include "../Exceptions/IOException.h"
+#include "../Exceptions/ArgumentException.h"
 
 #include "StringUtility.h"
-#include "GameConfiguration.h"
+#include "Color.h"
 
 // IO
 using std::cout;

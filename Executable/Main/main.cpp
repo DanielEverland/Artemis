@@ -2,11 +2,11 @@
 #include <Renderer/RendererCore.h>
 #include <Window/Window.h>
 #include <memory>
-#include <Exception.h>
+#include <Game.h>
 #include <Debugging/GameplayDebugger.h>
 
 
-#include "GameConfiguration.h"
+#include "Config/GameConfiguration.h"
 #include "Modding/ModLoader.h"
 
 void ExecuteMainLoop();

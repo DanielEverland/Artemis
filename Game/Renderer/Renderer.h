@@ -3,7 +3,7 @@
 #include"RendererCore.h"
 #include<memory>
 
-#include<Color.h>
+#include<Game.h>
 
 class Renderer
 {

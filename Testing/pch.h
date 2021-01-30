@@ -18,6 +18,10 @@ extern "C" {
 // JSON
 #include <Core/IO/Json.h>
 
+// Exceptions
+#include <Core/Exceptions/ArgumentException.h>
+#include <Core/Exceptions/IOException.h>
+
 #define STRINGIFY(x) #x
 #define EXPAND(x) STRINGIFY(x)
 

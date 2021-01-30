@@ -65,11 +65,11 @@ bool Logger::TryParseVerbosity(string verbosityString, Verbosity& outValue)
 {
 	trim(verbosityString);
 
-	for (const auto& [verbosityString, verbosityEnum] : FromStringLookup)
+	for (const auto& [lookupString, lookupEnum] : FromStringLookup)
 	{
-		if (IsEqual(verbosityString, verbosityString))
+		if (IsEqual(lookupString, verbosityString))
 		{
-			outValue = verbosityEnum;
+			outValue = lookupEnum;
 			return true;
 		}
 	}

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application\Application.h" />
     <ClInclude Include="Config\GameConfiguration.h" />
     <ClInclude Include="Debugging\DebugCategory.h" />
     <ClInclude Include="Debugging\DebugCategoryHandle.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="Window\WindowCore.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Config\GameConfiguration.cpp" />
     <ClCompile Include="Debugging\DebugCategory.cpp" />
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />

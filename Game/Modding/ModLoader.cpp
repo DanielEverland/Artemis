@@ -8,7 +8,14 @@
 
 string ModLoaderCategory = "ModLoader";
 string ModLoader::EntityAssetExtension = ".entity";
+
+set<string> ModLoader::LuaFileExtensions =
+{
+	".lua"
+};
+
 map<string, EntityType> ModLoader::LoadedTypes = map<string, EntityType>();
+vector<unique_ptr<LuaState>> ModLoader::AllLuaFiles = { };
 
 string ModLoader::GetModdingDirectory()
 {
@@ -106,6 +113,11 @@ void ModLoader::LoadAsset(const string& fullPath, const string& extension)
 	{
 		LoadEntityAsset(fullPath);
 	}
+
+	if(LuaFileExtensions.contains(extension))
+	{
+		LoadLuaAsset(fullPath);
+	}
 }
 
 void ModLoader::LoadEntityAsset(const string& fullPath)
@@ -124,6 +136,13 @@ void ModLoader::LoadEntityAsset(const string& fullPath)
 	const EntityType entityType(typeName, json);
 
 	LoadedTypes.insert(LoadedTypes.begin(), std::pair<string, EntityType>(typeName, entityType));
+}
+
+void ModLoader::LoadLuaAsset(const string& fullPath)
+{
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+	
+	AllLuaFiles.push_back(LuaState::CreateFromFile(fullPath));
 }
 
 bool ModLoader::GetModInfoFilePath(const string& directory, string& modFilePath)

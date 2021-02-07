@@ -17,7 +17,8 @@ public:
 	explicit EntityType(const string& typeString, const Json& prototype);
 
 	void LoadData();
-	
+
+	[[nodiscard]] bool IsAbstract() const;
 	[[nodiscard]] string GetType() const;
 	[[nodiscard]] bool IsBaseType() const;
 	[[nodiscard]] const EntityType* GetBaseType() const;

@@ -40,9 +40,21 @@ LuaState::LuaState() : RawState(luaL_newstate(), lua_close)
 	luaL_openlibs(RawState.get());
 }
 
-int LuaState::GetStackSize()
+int LuaState::GetStackSize() const
 {
 	return lua_gettop(GetRaw());
+}
+
+bool LuaState::HasFunction(const string& functionName) const
+{
+	const int loadedType = lua_getglobal(RawState.get(), functionName.c_str()) != LUA_TNIL;
+	if(loadedType == LUA_TNIL)
+		return false;
+
+	const bool isFunction = lua_isfunction(GetRaw(), -1);
+	lua_remove(GetRaw(), -1);
+	
+	return isFunction;
 }
 
 void LuaState::CreateGlobalTable(const string& tableName) const

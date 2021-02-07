@@ -54,6 +54,11 @@ void EntityType::LoadData()
 	}
 }
 
+bool EntityType::IsAbstract() const
+{
+	return Prototype.At<bool>(JsonKeyIsAbstract);
+}
+
 vector<const EntityType*> EntityType::GetTypeHierarchy() const
 {
 	vector<const EntityType*> hierarchy;

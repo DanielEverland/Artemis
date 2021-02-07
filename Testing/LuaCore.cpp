@@ -168,5 +168,41 @@ TEST(LuaCore, PushTableStringUnchangedStackSize)
 TEST(LuaCore, RunFunctionImmediately)
 {
 	const string rawLua = "function func() print(\"test\") end func()";
-	EXPECT_NO_THROW(auto state = LuaState::CreateFromString(rawLua));
+	EXPECT_NO_THROW(auto state = LuaState::CreateFromString(rawLua));	
+}
+
+TEST(LuaCore, HasFunctionProper)
+{
+	const string rawLua = "function func() end";
+	EXPECT_TRUE(LuaState::CreateFromString(rawLua)->HasFunction("func"));
+}
+
+TEST(LuaCore, HasFunctionNone)
+{
+	const string rawLua = "function notFuncName() end";
+	EXPECT_FALSE(LuaState::CreateFromString(rawLua)->HasFunction("func"));
+}
+
+TEST(LuaCore, HasFunctionVariableName)
+{
+	const string rawLua = "func = 2";
+	EXPECT_FALSE(LuaState::CreateFromString(rawLua)->HasFunction("func"));
+}
+
+TEST(LuaCore, HasFunctionStackSizeRetentionTrue)
+{
+	const string rawLua = "function func() end";
+	auto state = LuaState::CreateFromString(rawLua);
+	const int preStackSize = state->GetStackSize();
+	const bool hasFunction = state->HasFunction("func");
+	EXPECT_EQ(state->GetStackSize(), preStackSize);
+}
+
+TEST(LuaCore, HasFunctionStackSizeRetentionFalse)
+{
+	const string rawLua = "func = 2";
+	auto state = LuaState::CreateFromString(rawLua);
+	const int preStackSize = state->GetStackSize();
+	const bool hasFunction = state->HasFunction("func");
+	EXPECT_EQ(state->GetStackSize(), preStackSize);
 }

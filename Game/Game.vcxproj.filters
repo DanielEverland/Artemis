@@ -62,6 +62,9 @@
     <ClInclude Include="Modding\EntityType.h">
       <Filter>Modding</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modding">
@@ -78,6 +81,9 @@
     </Filter>
     <Filter Include="Debugging">
       <UniqueIdentifier>{9822cdcf-cfef-48a7-9c2a-97eb9773d8e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{a0bc3e5f-1a39-4ac2-9239-8ca4ad4f67c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="Modding\EntityType.cpp">
       <Filter>Modding</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Application.cpp">
+      <Filter>Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

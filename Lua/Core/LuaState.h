@@ -28,7 +28,8 @@ public:
 
 	explicit LuaState();
 
-	int GetStackSize();
+	int GetStackSize() const;
+	bool HasFunction(const string& functionName) const;
 	
 	// Calls a function with arguments but no return type
 	template<typename... Inputs>

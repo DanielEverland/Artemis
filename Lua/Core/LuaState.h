@@ -27,10 +27,18 @@ public:
 	static std::unique_ptr<LuaState> CreateFromString(const std::string& rawString);
 
 	explicit LuaState();
+
+	int GetStackSize();
 	
 	// Calls a function with arguments but no return type
 	template<typename... Inputs>
 	void CallFunction(const std::string& funcName, Inputs&&... inputs);
+
+	// Creates a global table to the state
+	void CreateGlobalTable(const string& tableName) const;
+
+	// Pushes a string to the global table
+	void PushTableString(const string& tableName, const string& key, const string& value) const;
 
 	// Calls a function with arguments and one return type
 	template<typename Output, typename... Inputs>
@@ -48,6 +56,8 @@ private:
 	void LoadFunction(const std::string& funcName) const;
 	void DoLuaCall(const std::string& funcName, int argCount, int returnCount) const;
 	void PrintStack() const;
+	string GetStackType(int index) const;
+	LuaRuntimeException GetGettingValueException(const string& expectedValueType, int index) const;
 	
 	template<typename T>
 	void PushValue(T val)
@@ -90,7 +100,7 @@ private:
 	{
 		const bool result = lua_isinteger(RawState.get(), index);
 		if (!result)
-			throw LuaRuntimeException("Failed getting integer");
+			throw GetGettingValueException("int", index);
 
 		return lua_tointeger(RawState.get(), index);
 	}
@@ -100,7 +110,7 @@ private:
 	{
 		const bool result = lua_isnumber(RawState.get(), index);
 		if (!result)
-			throw LuaRuntimeException("Failed getting double");
+			throw GetGettingValueException("double", index);
 
 		return lua_tonumber(RawState.get(), index);
 	}
@@ -110,7 +120,7 @@ private:
 	{
 		const bool result = lua_isnumber(RawState.get(), index);
 		if (!result)
-			throw LuaRuntimeException("Failed getting float");
+			throw GetGettingValueException("float", index);
 
 		return lua_tonumber(RawState.get(), index);
 	}
@@ -120,7 +130,7 @@ private:
 	{
 		const bool result = lua_isstring(RawState.get(), index);
 		if (!result)
-			throw LuaRuntimeException("Failed getting string");
+			throw GetGettingValueException("string", index);
 
 		return lua_tostring(RawState.get(), index);
 	}

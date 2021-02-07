@@ -47,5 +47,12 @@ TEST(Path, GetFileName)
 TEST(Path, GetFileNameNoDeliminators)
 {
 	const string fullString = "IHaveNoDeliminators";
-	EXPECT_THROW(Path::GetFileName(fullString), ArgumentException);
+	EXPECT_THROW(Path::GetFileName(fullString), ArgumentException);	
+}
+
+TEST(Path, GetFileNameExtension)
+{
+	const string extension = ".txt";
+	const string fullString = "C:/This/Is/A/Test/Path/TestFile" + extension;
+	EXPECT_EQ(Path::GetFileNameExtension(fullString), extension);
 }

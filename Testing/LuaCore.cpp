@@ -125,3 +125,48 @@ TEST(LuaCore, ReturnTuple)
 	EXPECT_EQ(std::get<0>(returnValue), firstParam);
 	EXPECT_EQ(std::get<1>(returnValue), secondParam);
 }
+
+TEST(LuaCore, CreateTable)
+{
+	LuaState state;
+	EXPECT_NO_THROW(state.CreateGlobalTable("table"));
+}
+
+TEST(LuaCore, PushTableString)
+{
+	const string tableName = "table";
+	LuaState state;
+	state.CreateGlobalTable(tableName);
+	EXPECT_NO_THROW(state.PushTableString(tableName, "stringKey", "stringValue"));	
+}
+
+TEST(LuaCore, ReadTableStringFromRawLua)
+{
+	const string tableName = "table";
+	const string keyName = "stringKey";
+	const string valueName = "stringValue";
+	const string rawLua = "function func() return " + tableName + "[\"" + keyName + "\"] end";
+	
+	auto state = LuaState::CreateFromString(rawLua);
+	state->CreateGlobalTable(tableName);
+	state->PushTableString(tableName, keyName, valueName);
+	const string actualOutput = state->CallFunction<string>("func");
+	EXPECT_EQ(actualOutput, valueName);
+}
+
+TEST(LuaCore, PushTableStringUnchangedStackSize)
+{
+	const string tableName = "table";
+	LuaState state;
+
+	const int preStackSize = state.GetStackSize();
+	state.CreateGlobalTable(tableName);
+	state.PushTableString(tableName, "stringKey", "stringValue");
+	EXPECT_EQ(state.GetStackSize(), preStackSize);
+}
+
+TEST(LuaCore, RunFunctionImmediately)
+{
+	const string rawLua = "function func() print(\"test\") end func()";
+	EXPECT_NO_THROW(auto state = LuaState::CreateFromString(rawLua));
+}

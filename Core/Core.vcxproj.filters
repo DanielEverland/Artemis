@@ -36,6 +36,12 @@
     <ClCompile Include="IO\Json.cpp">
       <Filter>IO</Filter>
     </ClCompile>
+    <ClCompile Include="IO\JsonException.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions\InvalidOperationException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exceptions\Exception.h">
@@ -67,6 +73,15 @@
     </ClInclude>
     <ClInclude Include="Core\StringUtility.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\JsonMagicNumbers.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\JsonException.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\InvalidOperationException.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

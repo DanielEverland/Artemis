@@ -60,3 +60,22 @@ TEST(Json, OverloadingData)
 	EXPECT_EQ(deserializedDataObject.SecondString, stringNone);
 	EXPECT_EQ(deserializedDataObject.Integer, firstInteger);
 }
+
+TEST(Json, OverloadingRawJson)
+{
+	const string key = "key";
+	const string firstString = "first";
+	const string secondString = "second";
+
+	const string firstRawJson = "{ \"" + key + "\" : \"" + firstString + "\" }";
+	const string secondRawJson = "{ \"" + key + "\" : \"" + secondString + "\" }";
+
+	Json data = Json::FromString(firstRawJson);
+	const Json second = Json::FromString(secondRawJson);
+
+	EXPECT_EQ(data.At<string>(key), firstString);
+	
+	data.Merge(second);
+
+	EXPECT_EQ(data.At<string>(key), secondString);
+}

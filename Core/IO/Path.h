@@ -10,4 +10,5 @@ public:
 	static string GetFileName(string fullPath);
 	static string GetFileNameWithoutExtension(const string& fullPath);
 	static string RemoveLastDeliminatorPart(string fullPath);
+	static string GetFileNameExtension(const string& fullPath);
 };

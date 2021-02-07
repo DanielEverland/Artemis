@@ -40,6 +40,27 @@ LuaState::LuaState() : RawState(luaL_newstate(), lua_close)
 	luaL_openlibs(RawState.get());
 }
 
+int LuaState::GetStackSize()
+{
+	return lua_gettop(GetRaw());
+}
+
+void LuaState::CreateGlobalTable(const string& tableName) const
+{
+	lua_newtable(GetRaw(), tableName.c_str());
+	lua_setglobal(GetRaw(), tableName.c_str());
+}
+
+void LuaState::PushTableString(const string& tableName, const string& key, const string& value) const
+{
+	lua_getglobal(GetRaw(), tableName.c_str());
+	lua_pushstring(GetRaw(), key.c_str());
+	lua_pushstring(GetRaw(), value.c_str());
+	lua_settable(GetRaw(), -3);
+	// Pop the table from the stack
+	lua_remove(GetRaw(), -1);
+}
+
 LuaState::operator lua_State*() const
 {
 	return GetRaw();
@@ -91,21 +112,24 @@ void LuaState::PrintStack() const
         switch (t) {
 
         case LUA_TSTRING:  /* strings */
-            printf("`%s'", lua_tostring(RawState.get(), i));
+		{
+			string val(lua_tostring(RawState.get(), i));
+            printf("`%s'", val.c_str());
             break;
+        }
 
         case LUA_TBOOLEAN:  /* booleans */
             printf(lua_toboolean(RawState.get(), i) ? "true" : "false");
             break;
 
         case LUA_TNUMBER:  /* numbers */
-	        {
+	    {
 			lua_Number nmbr = lua_tonumber(RawState.get(), i);
 			int integer = nmbr;
 			double floatpoint = nmbr;
 			printf("%g", lua_tonumber(RawState.get(), i));
 			break;
-	        }
+	    }
 			
 
         default:  /* other values */
@@ -117,4 +141,39 @@ void LuaState::PrintStack() const
     }
     printf("\n");  /* end the listing */
     printf("\n");  /* end the listing */
+}
+
+string LuaState::GetStackType(int index) const
+{
+	int type = lua_type(GetRaw(), index);
+	switch(type)
+	{
+		case LUA_TNONE:
+			return "None";
+		case LUA_TNIL:
+			return "Nil";
+		case LUA_TBOOLEAN:
+			return "Boolean";
+		case LUA_TLIGHTUSERDATA:
+			return "LightUserData";
+		case LUA_TNUMBER:
+			return "Number";
+		case LUA_TSTRING:
+			return "String";
+		case LUA_TTABLE:
+			return "Table";
+		case LUA_TFUNCTION:
+			return "Function";
+		case LUA_TUSERDATA:
+			return "UserData";
+		case LUA_TTHREAD:
+			return "Thread";
+		default:
+			return "Unknown";
+	}
+}
+
+LuaRuntimeException LuaState::GetGettingValueException(const string& expectedValueType, int index) const
+{
+	return LuaRuntimeException("Failed getting " + expectedValueType + ". Actual type: " + GetStackType(index));
 }

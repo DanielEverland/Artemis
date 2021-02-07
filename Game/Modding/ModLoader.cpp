@@ -1,4 +1,5 @@
 ﻿#include <queue>
+#include <filesystem>
 
 #include <Game.h>
 
@@ -6,6 +7,8 @@
 #include "Mod.h"
 
 string ModLoaderCategory = "ModLoader";
+string ModLoader::EntityAssetExtension = ".entity";
+map<string, EntityType> ModLoader::LoadedTypes = map<string, EntityType>();
 
 string ModLoader::GetModdingDirectory()
 {
@@ -13,27 +16,42 @@ string ModLoader::GetModdingDirectory()
 	return Directory::GetProjectDirectory() + "Mods";
 }
 
+EntityType* ModLoader::GetType(const string& typeName)
+{
+	if(!LoadedTypes.contains(typeName))
+		throw ArgumentException("Attempted to get " + typeName + ", but the type isn't loaded");
+
+	return &LoadedTypes.find(typeName)->second;
+}
+
 void ModLoader::LoadMods()
 {
 	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
 
-	std::vector<string> modDirectories = GetAllModDirectories();
-	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Outputting all mod directories");
-	for(const string& modDirectory : GetAllModDirectories())
-	{
-		Logger::Log(ModLoaderCategory, Verbosity::Verbose, modDirectory);
-		Mod currentMod(modDirectory);
-	}
+	LoadMods(GetModdingDirectory());
 }
 
-std::vector<std::string> ModLoader::GetAllModDirectories()
+void ModLoader::LoadMods(const string& directory)
+{
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+
+	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Outputting all mod directories");
+	for (const string& modDirectory : GetAllModDirectories(directory))
+	{
+		LoadMod(modDirectory);
+	}
+
+	LoadEntities();
+}
+
+std::vector<std::string> ModLoader::GetAllModDirectories(const string& directory)
 {
 	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
 
 	std::vector<string> modDirectories;
 	
 	std::queue<string> directoriesToSearch;
-	directoriesToSearch.push(GetModdingDirectory());
+	directoriesToSearch.push(directory);
 
 	while (!directoriesToSearch.empty())
 	{
@@ -57,6 +75,55 @@ std::vector<std::string> ModLoader::GetAllModDirectories()
 	}
 
 	return modDirectories;
+}
+
+void ModLoader::LoadEntities()
+{
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+	
+	for(auto& [typeName, typeData] : LoadedTypes)
+	{
+		typeData.LoadData();
+	}
+}
+
+void ModLoader::LoadMod(const string& directory)
+{
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+	
+	for (const auto iter : std::filesystem::recursive_directory_iterator(directory))
+	{
+		LoadAsset(iter.path().string(), Path::GetFileNameExtension(iter.path().string()));
+	}
+}
+
+void ModLoader::LoadAsset(const string& fullPath, const string& extension)
+{
+	const string funcName = __FUNCTION__;
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, funcName + ": " + fullPath);
+
+	if(extension == EntityAssetExtension)
+	{
+		LoadEntityAsset(fullPath);
+	}
+}
+
+void ModLoader::LoadEntityAsset(const string& fullPath)
+{
+	const string funcName = __FUNCTION__;
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, funcName + ": " + fullPath);
+
+	auto json = Json::FromFile(fullPath);
+	if(!json.Contains(JsonKeyType))
+		throw JsonException(fullPath + ": Doesn't contain key " + JsonKeyType);
+
+	if (!json.Contains(JsonKeyName))
+		throw JsonException(fullPath + ": Doesn't contain key " + JsonKeyName);
+
+	const auto typeName = json.At<string>(JsonKeyType);
+	const EntityType entityType(typeName, json);
+
+	LoadedTypes.insert(LoadedTypes.begin(), std::pair<string, EntityType>(typeName, entityType));
 }
 
 bool ModLoader::GetModInfoFilePath(const string& directory, string& modFilePath)

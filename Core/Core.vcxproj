@@ -23,9 +23,11 @@
     <ClCompile Include="Core\Font.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Exceptions\ArgumentException.cpp" />
+    <ClCompile Include="Exceptions\InvalidOperationException.cpp" />
     <ClCompile Include="Exceptions\IOException.cpp" />
     <ClCompile Include="IO\Directory.cpp" />
     <ClCompile Include="IO\Json.cpp" />
+    <ClCompile Include="IO\JsonException.cpp" />
     <ClCompile Include="IO\Path.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,9 +37,12 @@
     <ClInclude Include="Core\StringUtility.h" />
     <ClInclude Include="Exceptions\Exception.h" />
     <ClInclude Include="Exceptions\ArgumentException.h" />
+    <ClInclude Include="Exceptions\InvalidOperationException.h" />
     <ClInclude Include="Exceptions\IOException.h" />
     <ClInclude Include="IO\Directory.h" />
     <ClInclude Include="IO\Json.h" />
+    <ClInclude Include="IO\JsonException.h" />
+    <ClInclude Include="IO\JsonMagicNumbers.h" />
     <ClInclude Include="IO\Path.h" />
   </ItemGroup>
   <ItemGroup>

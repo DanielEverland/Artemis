@@ -56,6 +56,12 @@
     <ClInclude Include="Modding\ModException.h">
       <Filter>Modding</Filter>
     </ClInclude>
+    <ClInclude Include="Modding\Entity.h">
+      <Filter>Modding</Filter>
+    </ClInclude>
+    <ClInclude Include="Modding\EntityType.h">
+      <Filter>Modding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modding">
@@ -106,6 +112,12 @@
       <Filter>Debugging</Filter>
     </ClCompile>
     <ClCompile Include="Modding\Mod.cpp">
+      <Filter>Modding</Filter>
+    </ClCompile>
+    <ClCompile Include="Modding\Entity.cpp">
+      <Filter>Modding</Filter>
+    </ClCompile>
+    <ClCompile Include="Modding\EntityType.cpp">
       <Filter>Modding</Filter>
     </ClCompile>
   </ItemGroup>

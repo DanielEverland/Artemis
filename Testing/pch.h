@@ -22,6 +22,9 @@ extern "C" {
 #include <Core/Exceptions/ArgumentException.h>
 #include <Core/Exceptions/IOException.h>
 
+// Modding
+#include <Modding/EntityType.h>
+
 #define STRINGIFY(x) #x
 #define EXPAND(x) STRINGIFY(x)
 

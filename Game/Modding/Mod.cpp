@@ -1,4 +1,6 @@
-﻿#include "Mod.h"
+﻿#include <filesystem>
+
+#include "Mod.h"
 
 #include "ModException.h"
 
@@ -11,7 +13,17 @@ Mod::Mod(const string& rootDirectory)
 	Logger::Log(ModCategory, Verbosity::VeryVerbose, __FUNCTION__);
 	
 	RootDirectory = rootDirectory;
+}
+
+void Mod::Load()
+{
+	Logger::Log(ModCategory, Verbosity::VeryVerbose, __FUNCTION__);
+		
 	LoadModInfo();
+
+	Logger::Log(ModCategory, Verbosity::Log, "Loading " + Info.Name);
+
+	LoadAssets();
 }
 
 void Mod::LoadModInfo()
@@ -23,8 +35,14 @@ void Mod::LoadModInfo()
 	Info = Json::FromFile(modInfoFilePath).Get<ModInfo>();
 	
 	VerifyModInfo();
-	
-	Logger::Log(ModCategory, Verbosity::Log, "Loaded mod " + Info.Name);
+}
+
+void Mod::LoadAssets()
+{
+	for(auto iter : std::filesystem::recursive_directory_iterator(RootDirectory))
+	{
+		Logger::Log(ModCategory, Verbosity::Log, iter.path().string());
+	}
 }
 
 void Mod::VerifyModInfo() const

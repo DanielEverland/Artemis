@@ -11,11 +11,14 @@ public:
 
 	static string ModInfoName;
 
+	void Load();
+
 private:
 	string RootDirectory;
 	ModInfo Info;
 
 	void LoadModInfo();
+	void LoadAssets();
 	void VerifyModInfo() const;
-	string GetModInfoFilePath() const;
+	[[nodiscard]] string GetModInfoFilePath() const;
 };

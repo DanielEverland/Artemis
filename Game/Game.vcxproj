@@ -26,11 +26,13 @@
     <ClInclude Include="Debugging\Logger.h" />
     <ClInclude Include="Debugging\Verbosity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Modding\Entity.h" />
     <ClInclude Include="Modding\Mod.h" />
     <ClInclude Include="Modding\ModCore.h" />
     <ClInclude Include="Modding\ModException.h" />
     <ClInclude Include="Modding\ModInfo.h" />
     <ClInclude Include="Modding\ModLoader.h" />
+    <ClInclude Include="Modding\EntityType.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\RendererCore.h" />
     <ClInclude Include="Renderer\SDLException.h" />
@@ -45,8 +47,10 @@
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
     <ClCompile Include="Debugging\GameplayDebugger.cpp" />
     <ClCompile Include="Debugging\Logger.cpp" />
+    <ClCompile Include="Modding\Entity.cpp" />
     <ClCompile Include="Modding\Mod.cpp" />
     <ClCompile Include="Modding\ModLoader.cpp" />
+    <ClCompile Include="Modding\EntityType.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\SDLException.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />

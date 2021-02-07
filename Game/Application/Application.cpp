@@ -6,18 +6,27 @@
 #include "Config/GameConfiguration.h"
 #include "Modding/ModLoader.h"
 
-Application::Application()
-{
-}
+Application::Application() = default;
 
 Application::~Application()
 {
 	SDL_Quit();
 }
 
-void Application::Start()
+void Application::Start() const
 {
-	ExecuteMainLoop();
+	try
+	{
+		ExecuteMainLoop();
+	}
+	catch (const Exception& e)
+	{
+		std::cout << "Caught exception in main loop\n" << e.GetMessageW() << std::endl;
+	}
+	catch (const std::exception&)
+	{
+		std::cout << "Caught std exception in main loop" << std::endl;
+	}
 }
 
 bool Application::InitializeCore()
@@ -58,24 +67,15 @@ bool Application::InitializeSDL()
 	return true;
 }
 
-void Application::ExecuteMainLoop()
+void Application::ExecuteMainLoop() const
 {
+	CallLuaApplicationStarted();
+	
 	while (true)
 	{
-		try
-		{
-			if (!MainLoop())
-				break;
-		}
-		catch (const Exception& e)
-		{
-			std::cout << "Caught exception in main loop\n" << e.GetMessageW() << std::endl;
-		}
-		catch (const std::exception&)
-		{
-			std::cout << "Caught std exception in main loop" << std::endl;
-		}
-	}
+		if (!MainLoop())
+			break;
+	}	
 }
 
 bool Application::MainLoop() const
@@ -96,4 +96,16 @@ bool Application::MainLoop() const
 	WindowPtr->Draw();
 
 	return true;
+}
+
+void Application::CallLuaApplicationStarted()
+{
+	for(auto iter = ModLoader::GetAllLuaFiles().begin(); iter != ModLoader::GetAllLuaFiles().end(); ++iter)
+	{
+		LuaState* luaState = (*iter).get();
+		if(luaState->HasFunction(JsonApplicationStartFunctionName))
+		{
+			luaState->CallFunction(JsonApplicationStartFunctionName);
+		}
+	}
 }

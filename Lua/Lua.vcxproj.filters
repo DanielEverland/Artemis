@@ -71,6 +71,9 @@
     <ClInclude Include="Core\LuaState.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Core\LuaMagicNumbers.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

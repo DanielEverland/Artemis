@@ -7,6 +7,8 @@ extern "C" {
 #include <lauxlib.h>
 }
 
+#include "LuaMagicNumbers.h"
+
 #include <../Lua/Exceptions/LuaException.h>
 #include <../Lua/Exceptions/LuaIOException.h>
 #include <../Lua/Exceptions/LuaSyntaxException.h>

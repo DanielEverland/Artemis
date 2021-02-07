@@ -23,6 +23,11 @@ string ModLoader::GetModdingDirectory()
 	return Directory::GetProjectDirectory() + "Mods";
 }
 
+const vector<unique_ptr<LuaState>>& ModLoader::GetAllLuaFiles()
+{
+	return AllLuaFiles;
+}
+
 EntityType* ModLoader::GetType(const string& typeName)
 {
 	if(!LoadedTypes.contains(typeName))

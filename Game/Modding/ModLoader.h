@@ -16,6 +16,7 @@ public:
 	
 	static string GetModdingDirectory();
 
+	static const vector<unique_ptr<LuaState>>& GetAllLuaFiles();
 	static EntityType* GetType(const string& typeName);
 	static void LoadMods();
 	static void LoadMods(const string& directory);

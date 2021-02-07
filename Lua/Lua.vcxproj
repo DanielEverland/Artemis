@@ -34,6 +34,7 @@
     <ClInclude Include="Core\LuaCore.h" />
     <ClInclude Include="Core\LuaCoreMinimal.h" />
     <ClInclude Include="Core\LuaInstance.h" />
+    <ClInclude Include="Core\LuaMagicNumbers.h" />
     <ClInclude Include="Core\LuaState.h" />
     <ClInclude Include="Exceptions\LuaErrorMessageException.h" />
     <ClInclude Include="Exceptions\LuaException.h" />

@@ -9,7 +9,7 @@ public:
 	~Application();
 	
 	bool Initialize();
-	void Start();
+	void Start() const;
 
 private:
 	unique_ptr<Window> WindowPtr;
@@ -17,6 +17,7 @@ private:
 	bool InitializeCore();
 	
 	bool InitializeSDL();
-	void ExecuteMainLoop();
+	void ExecuteMainLoop() const;
 	bool MainLoop() const;
+	static void CallLuaApplicationStarted();
 };

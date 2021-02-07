@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application\Application.h" />
     <ClInclude Include="Config\GameConfiguration.h" />
     <ClInclude Include="Debugging\DebugCategory.h" />
     <ClInclude Include="Debugging\DebugCategoryHandle.h" />
     <ClInclude Include="Debugging\GameplayDebugger.h" />
     <ClInclude Include="Debugging\Logger.h" />
     <ClInclude Include="Debugging\Verbosity.h" />
+    <ClInclude Include="Framework\Application.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Modding\Entity.h" />
     <ClInclude Include="Modding\Mod.h" />
@@ -43,12 +43,12 @@
     <ClInclude Include="Window\WindowCore.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Config\GameConfiguration.cpp" />
     <ClCompile Include="Debugging\DebugCategory.cpp" />
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
     <ClCompile Include="Debugging\GameplayDebugger.cpp" />
     <ClCompile Include="Debugging\Logger.cpp" />
+    <ClCompile Include="Framework\Application.cpp" />
     <ClCompile Include="Modding\Entity.cpp" />
     <ClCompile Include="Modding\Mod.cpp" />
     <ClCompile Include="Modding\ModLoader.cpp" />

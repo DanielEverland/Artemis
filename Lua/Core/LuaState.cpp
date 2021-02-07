@@ -1,6 +1,8 @@
 ﻿#include <filesystem>
 
 #include "LuaState.h"
+
+#include "../../Game/Debugging/Logger.h"
 #include "../Exceptions/LuaException.h"
 #include "../Exceptions/LuaIOException.h"
 #include "../Exceptions/LuaSyntaxException.h"
@@ -38,6 +40,7 @@ std::unique_ptr<LuaState> LuaState::CreateFromString(const std::string& rawStrin
 LuaState::LuaState() : RawState(luaL_newstate(), lua_close)
 {
 	luaL_openlibs(RawState.get());
+	ExposeFunction("NewEntity", &LuaState::CFunc_NewEntity);
 }
 
 int LuaState::GetStackSize() const
@@ -76,6 +79,19 @@ void LuaState::PushTableString(const string& tableName, const string& key, const
 LuaState::operator lua_State*() const
 {
 	return GetRaw();
+}
+
+int LuaState::CFunc_NewEntity(lua_State* luaState)
+{
+	string entityName = lua_tostring(luaState, 1);
+		
+	return 0;
+}
+
+void LuaState::ExposeFunction(const string& functionName, lua_CFunction func)
+{
+	lua_pushcfunction(GetRaw(), func);
+	lua_setglobal(GetRaw(), functionName.c_str());
 }
 
 lua_State* LuaState::GetRaw() const

@@ -1,3 +1,3 @@
 function ApplicationStart() 
-    print("ApplicationStarted")
+    NewEntity("ApplicationStarted")
 end

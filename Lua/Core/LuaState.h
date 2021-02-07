@@ -53,6 +53,9 @@ public:
 private:
 	std::unique_ptr<lua_State, decltype(&lua_close)> RawState;
 
+	static int CFunc_NewEntity(lua_State* luaState);
+
+	void ExposeFunction(const string& functionName, lua_CFunction func);
 	lua_State* GetRaw() const;
 	void LoadFunction(const std::string& funcName) const;
 	void DoLuaCall(const std::string& funcName, int argCount, int returnCount) const;

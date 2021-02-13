@@ -3,11 +3,11 @@
 
 #include <boost/algorithm/string/predicate.hpp>
 
-#include <Game.h>
-
 #include "Logger.h"
+#include "StringUtility.h"
 #include "Verbosity.h"
-#include "Config/GameConfiguration.h"
+#include "../Config/GameConfiguration.h"
+#include "../Exceptions/ArgumentException.h"
 
 map<string, Verbosity> Logger::CachedCategoryVerbosities = { };
 string Logger::ConfigurationSectionName = "Logging";

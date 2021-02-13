@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Core/Exceptions/Exception.h>
+#include <../Exceptions/Exception.h>
 
 class INISyntaxException : Exception
 {

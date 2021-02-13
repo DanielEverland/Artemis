@@ -15,10 +15,12 @@ public:
 
 	static bool InitializeSymbols();
 
-	inline const string GetStackTrace() const { return stackTrace; }
-	inline const string GetMessage() const { return what(); }
-	const string GetTypeName() const;
+	string GetStackTrace() const { return stackTrace; }
+	string GetMessage() const { return what(); }
+	string GetTypeName() const;
+	string ToString() const;
 
+	operator string() const;
 	bool operator==(const Exception& other) const;
 
 private:
@@ -28,6 +30,7 @@ private:
 	static const unsigned long long SymbolBufferSize;
 
 	static HANDLE processHandle;
+	static string CallstackLineIdentifier;
 
 	string stackTrace;
 

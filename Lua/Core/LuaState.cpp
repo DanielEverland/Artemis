@@ -2,10 +2,16 @@
 
 #include "LuaState.h"
 
-#include "../../Game/Debugging/Logger.h"
 #include "../Exceptions/LuaException.h"
 #include "../Exceptions/LuaIOException.h"
 #include "../Exceptions/LuaSyntaxException.h"
+
+#include "Core/Core.h"
+
+namespace
+{
+	const string LogCategoryLua = "Lua";
+}
 
 std::unique_ptr<LuaState> LuaState::CreateFromFile(const std::string& filePath)
 {
@@ -84,7 +90,8 @@ LuaState::operator lua_State*() const
 int LuaState::CFunc_NewEntity(lua_State* luaState)
 {
 	string entityName = lua_tostring(luaState, 1);
-		
+	throw Exception("test");
+
 	return 0;
 }
 
@@ -110,6 +117,8 @@ void LuaState::LoadFunction(const std::string& funcName) const
 
 void LuaState::DoLuaCall(const std::string& funcName, int argCount, int returnCount) const
 {
+	TRY_START
+	
 	const int result = lua_pcall(RawState.get(), argCount, returnCount, 0);	
 	if (result != LUA_OK)
 	{
@@ -129,6 +138,8 @@ void LuaState::DoLuaCall(const std::string& funcName, int argCount, int returnCo
 			default: throw LuaException("Unknown error code. " + completeErrorMessage);
 		}
 	}
+
+	TRY_END_CUSTOM(LogCategoryLua, Verbosity::Error, "Failed calling Lua function \"" + funcName + "\"")
 }
 
 void LuaState::PrintStack() const

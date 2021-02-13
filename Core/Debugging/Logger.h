@@ -1,7 +1,9 @@
 #pragma once
 
 #include <map>
+#include <string>
 
+using std::string;
 using std::map;
 
 enum class Verbosity;

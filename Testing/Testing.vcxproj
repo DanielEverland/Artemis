@@ -69,9 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\INIReader\INIReader.vcxproj">
-      <Project>{95ac8b34-9624-4fdb-a684-29e777984058}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Lua\Lua.vcxproj">
       <Project>{fadb3904-1dc9-4901-934e-f6ff8c8b6397}</Project>
     </ProjectReference>

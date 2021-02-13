@@ -1,7 +1,8 @@
 #include "pch.h"
 
 #include <Core/Exceptions/IOException.h>
-#include "INIReader/INISyntaxException.h"
+#include <Core/INIReader/INIReader.h>
+#include <Core/INIReader/INISyntaxException.h>
 
 string TestFilesDir = GetTestFilesDir() + "ini/";
 

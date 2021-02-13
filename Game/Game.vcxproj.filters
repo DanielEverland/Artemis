@@ -26,9 +26,6 @@
     <ClInclude Include="Window\WindowCore.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="Config\GameConfiguration.h">
-      <Filter>Config</Filter>
-    </ClInclude>
     <ClInclude Include="Debugging\DebugCategory.h">
       <Filter>Debugging</Filter>
     </ClInclude>
@@ -36,12 +33,6 @@
       <Filter>Debugging</Filter>
     </ClInclude>
     <ClInclude Include="Debugging\GameplayDebugger.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugging\Logger.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugging\Verbosity.h">
       <Filter>Debugging</Filter>
     </ClInclude>
     <ClInclude Include="Modding\Mod.h">
@@ -76,9 +67,6 @@
     <Filter Include="Window">
       <UniqueIdentifier>{48399c33-5cf4-418e-a1d5-8afa049c5268}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Config">
-      <UniqueIdentifier>{db5a4d21-5e1f-4ae0-844c-e62661a06245}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Debugging">
       <UniqueIdentifier>{9822cdcf-cfef-48a7-9c2a-97eb9773d8e2}</UniqueIdentifier>
     </Filter>
@@ -102,9 +90,6 @@
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="Config\GameConfiguration.cpp">
-      <Filter>Config</Filter>
-    </ClCompile>
     <ClCompile Include="Debugging\DebugCategory.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
@@ -112,9 +97,6 @@
       <Filter>Debugging</Filter>
     </ClCompile>
     <ClCompile Include="Debugging\GameplayDebugger.cpp">
-      <Filter>Debugging</Filter>
-    </ClCompile>
-    <ClCompile Include="Debugging\Logger.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
     <ClCompile Include="Modding\Mod.cpp">

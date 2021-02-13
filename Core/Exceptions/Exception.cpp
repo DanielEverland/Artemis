@@ -1,10 +1,21 @@
 ﻿#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <typeinfo>
+#include <sstream>
 
 #include "Exception.h"
 
 #include <string>
+
+#include "../Debugging/Verbosity.h"
+#include "../Debugging/Logger.h"
+
+namespace
+{
+	string LogCategoryException = "Exception";
+}
+
+string Exception::CallstackLineIdentifier = "[Callstack]";
 
 const unsigned long Exception::FramesToSkip = 2;
 const unsigned long Exception::FramesToCapture = 25;
@@ -42,6 +53,23 @@ void Exception::CreateStacktrace()
 			else
 			{
 				AppendFrame(info);
+			}
+		}
+		else
+		{
+#if _DEBUG
+			std::ostringstream stream;
+			stream << GetLastError();
+			Logger::Log(LogCategoryException, Verbosity::Error, "Failed getting symbol info: " + stream.str());
+#endif			
+			
+			if (TryGetFileInfo(frames[i], &displacement, &line))
+			{
+				stackTrace.append("UnknownFile::" + GetPrettyFileName(line.FileName) + "\n");
+			}
+			else
+			{
+				stackTrace.append("UnknownFile::UnknownFunction\n");
 			}
 		}
 	}
@@ -86,6 +114,7 @@ SYMBOL_INFO* Exception::CreateInfoPointer(ULONG64* buffer) const
 
 void Exception::AppendFrame(const SYMBOL_INFO* const info)
 {
+	stackTrace.append(CallstackLineIdentifier + " ");
 	stackTrace.append(info->Name);
 	stackTrace.append("()\n");
 }
@@ -94,12 +123,14 @@ void Exception::AppendFrameWithFileData(const SYMBOL_INFO* const info, const IMA
 {
 	string prettyFileName = GetPrettyFileName(line->FileName);
 
+	stackTrace.append(CallstackLineIdentifier + " ");
 	stackTrace.append(prettyFileName);
 	stackTrace.append(":::");
 	stackTrace.append(info->Name);
 	stackTrace.append("(");
 	stackTrace.append(std::to_string(line->LineNumber));
-	stackTrace.append(")\n");
+	stackTrace.append(")");
+	stackTrace.append("\n");
 }
 
 string Exception::GetPrettyFileName(const char* fileName) const
@@ -109,7 +140,7 @@ string Exception::GetPrettyFileName(const char* fileName) const
 	return str.substr(lastIndex + 1);
 }
 
-const string Exception::GetTypeName() const
+string Exception::GetTypeName() const
 {
 	string name = typeid(*this).name();
 
@@ -120,4 +151,14 @@ const string Exception::GetTypeName() const
 	name = name.substr(index + 1);
 
 	return name;
+}
+
+string Exception::ToString() const
+{
+	return GetTypeName() + "(\"" + GetMessageW() + "\")\n" + GetStackTrace();
+}
+
+Exception::operator string() const
+{
+	return ToString();
 }

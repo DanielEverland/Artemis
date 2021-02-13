@@ -1,3 +1,3 @@
 function ApplicationStart() 
-    NewEntity("ApplicationStarted")
+    NewEntity("New_Entry")
 end

@@ -19,26 +19,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Config\GameConfiguration.cpp" />
     <ClCompile Include="Core\Color.cpp" />
     <ClCompile Include="Core\Font.cpp" />
+    <ClCompile Include="Debugging\Logger.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Exceptions\ArgumentException.cpp" />
     <ClCompile Include="Exceptions\InvalidOperationException.cpp" />
     <ClCompile Include="Exceptions\IOException.cpp" />
+    <ClCompile Include="INIReader\INIReader.cpp" />
     <ClCompile Include="IO\Directory.cpp" />
     <ClCompile Include="IO\Json.cpp" />
     <ClCompile Include="IO\JsonException.cpp" />
     <ClCompile Include="IO\Path.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Config\GameConfiguration.h" />
     <ClInclude Include="Core\Color.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Font.h" />
     <ClInclude Include="Core\StringUtility.h" />
+    <ClInclude Include="Debugging\Logger.h" />
+    <ClInclude Include="Debugging\Verbosity.h" />
     <ClInclude Include="Exceptions\Exception.h" />
     <ClInclude Include="Exceptions\ArgumentException.h" />
     <ClInclude Include="Exceptions\InvalidOperationException.h" />
     <ClInclude Include="Exceptions\IOException.h" />
+    <ClInclude Include="INIReader\INIReader.h" />
+    <ClInclude Include="INIReader\INISyntaxException.h" />
     <ClInclude Include="IO\Directory.h" />
     <ClInclude Include="IO\Json.h" />
     <ClInclude Include="IO\JsonException.h" />

@@ -3,8 +3,12 @@
 #include <Renderer/RendererCore.h>
 #include "Application.h"
 
-#include "Config/GameConfiguration.h"
 #include "Modding/ModLoader.h"
+
+namespace
+{
+	const string LogCategoryApplication = "Application";
+}
 
 Application::Application() = default;
 
@@ -15,24 +19,14 @@ Application::~Application()
 
 void Application::Start() const
 {
-	try
-	{
-		ExecuteMainLoop();
-	}
-	catch (const Exception& e)
-	{
-		std::cout << "Caught exception in main loop\n" << e.GetMessageW() << std::endl;
-	}
-	catch (const std::exception&)
-	{
-		std::cout << "Caught std exception in main loop" << std::endl;
-	}
+	ExecuteMainLoop();
 }
 
 bool Application::InitializeCore()
 {
 	bool initializationFailed = false;
-	
+
+	Exception::InitializeSymbols();
 	initializationFailed |= !InitializeSDL();
 	GameConfiguration::Load();
 	
@@ -70,12 +64,16 @@ bool Application::InitializeSDL()
 void Application::ExecuteMainLoop() const
 {
 	CallLuaApplicationStarted();
-	
+
 	while (true)
 	{
+		TRY_START
+		
 		if (!MainLoop())
 			break;
-	}	
+
+		TRY_END(LogCategoryApplication, Verbosity::Error)
+	}
 }
 
 bool Application::MainLoop() const

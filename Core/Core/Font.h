@@ -1,6 +1,8 @@
 ﻿#pragma once
 
-#include <Core.h>
+#include <string>
+
+using std::string;
 
 class Font
 {

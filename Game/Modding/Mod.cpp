@@ -1,7 +1,9 @@
 ﻿#include <filesystem>
 
-#include "Mod.h"
+#include <Core/Debugging/Logger.h>
+#include <Core/Debugging/Verbosity.h>
 
+#include "Mod.h"
 #include "ModException.h"
 
 string ModCategory = "Mod";

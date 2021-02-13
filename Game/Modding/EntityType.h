@@ -1,11 +1,9 @@
 ﻿#pragma once
 
 #include <string>
+#include "../../Core/IO/Json.h"
 
-#include <Game.h>
-
-#include "Core/IO/Json.h"
-
+using std::vector;
 using std::string;
 
 class EntityType

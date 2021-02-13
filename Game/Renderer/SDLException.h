@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Game.h>
+#include "Exception.h"
 
 class SDLException : public Exception
 {

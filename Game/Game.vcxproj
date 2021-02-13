@@ -24,7 +24,6 @@
     <ClInclude Include="Debugging\GameplayDebugger.h" />
     <ClInclude Include="Framework\Application.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Modding\Entity.h" />
     <ClInclude Include="Modding\Mod.h" />
     <ClInclude Include="Modding\ModCore.h" />
     <ClInclude Include="Modding\ModException.h" />
@@ -38,13 +37,15 @@
     <ClInclude Include="Renderer\Texture.h" />
     <ClInclude Include="Window\Window.h" />
     <ClInclude Include="Window\WindowCore.h" />
+    <ClInclude Include="World\Entity.h" />
+    <ClInclude Include="World\Object.h" />
+    <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Debugging\DebugCategory.cpp" />
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
     <ClCompile Include="Debugging\GameplayDebugger.cpp" />
     <ClCompile Include="Framework\Application.cpp" />
-    <ClCompile Include="Modding\Entity.cpp" />
     <ClCompile Include="Modding\Mod.cpp" />
     <ClCompile Include="Modding\ModLoader.cpp" />
     <ClCompile Include="Modding\EntityType.cpp" />
@@ -52,6 +53,9 @@
     <ClCompile Include="Renderer\SDLException.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Window\Window.cpp" />
+    <ClCompile Include="World\Entity.cpp" />
+    <ClCompile Include="World\Object.cpp" />
+    <ClCompile Include="World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -110,22 +114,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

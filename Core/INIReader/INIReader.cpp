@@ -1,10 +1,11 @@
 ﻿#include <fstream>
 #include <algorithm>
 
-#include <Core.h>
+#include <StringUtility.h>
 
 #include "INIReader.h"
 #include "INISyntaxException.h"
+#include "../Exceptions/IOException.h"
 
 using std::fstream;
 using std::string;

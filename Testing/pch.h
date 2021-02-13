@@ -40,5 +40,3 @@ inline std::string GetTestFilesDir()
 {
 	return GetProjectDir() + "/TestFiles/";
 }
-
-#include <INIReader/INIReader.h>

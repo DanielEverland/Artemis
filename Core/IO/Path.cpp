@@ -1,5 +1,6 @@
 ﻿#include "Path.h"
-#include <Core.h>
+
+#include "../Exceptions/ArgumentException.h"
 
 string Path::GetFileName(string fullPath)
 {
@@ -45,4 +46,36 @@ string Path::GetFileNameExtension(const string& fullPath)
     }
 
     return fullPath.substr(last_slash_idx, fullPath.length());
+}
+
+string Path::GetRelativeProjectPath(const string& fullPath)
+{
+	if(!IsSubDirectory(fullPath, GetProjectPath()))
+		throw ArgumentException("Path \"" + fullPath + "\" is not a subdirectory of project directory \"" + GetProjectPath() + "\"");
+
+	const int projectPathLength = GetProjectPath().length();
+	return fullPath.substr(projectPathLength, fullPath.length() - projectPathLength);
+}
+
+string Path::GetRelativeModPath(const string& fullPath)
+{
+	const string modDirectory = GetProjectPath() + "\\Mods";
+	
+    if (!IsSubDirectory(fullPath, GetProjectPath()))
+        throw ArgumentException("Path \"" + fullPath + "\" is not a subdirectory of project directory \"" + modDirectory + "\"");
+
+    const int modPathLength = modDirectory.length();
+    return fullPath.substr(modPathLength, fullPath.length() - modPathLength);
+}
+
+bool Path::IsSubDirectory(const string& a, const string& b)
+{
+	return b.rfind(a, 0);
+}
+
+string Path::GetProjectPath()
+{
+	char fileName[255];
+	GetModuleFileNameA(nullptr, fileName, sizeof(fileName));
+	return RemoveLastDeliminatorPart(fileName);
 }

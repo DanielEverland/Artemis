@@ -1,8 +1,10 @@
 ﻿#pragma once
 
-#include <Game.h>
+#include <string>
 
 #include "ModInfo.h"
+
+using std::string;
 
 class Mod
 {

@@ -1,9 +1,9 @@
 #pragma once
 
-#include"RendererCore.h"
-#include<memory>
+#include "RendererCore.h"
+#include <memory>
 
-#include<Game.h>
+#include <Core/Core/Color.h>
 
 class Renderer
 {

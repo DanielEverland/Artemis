@@ -47,14 +47,20 @@
     <ClInclude Include="Modding\ModException.h">
       <Filter>Modding</Filter>
     </ClInclude>
-    <ClInclude Include="Modding\Entity.h">
-      <Filter>Modding</Filter>
-    </ClInclude>
     <ClInclude Include="Modding\EntityType.h">
       <Filter>Modding</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Application.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="World\World.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Entity.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="World\Object.h">
+      <Filter>World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +78,9 @@
     </Filter>
     <Filter Include="Framework">
       <UniqueIdentifier>{a0bc3e5f-1a39-4ac2-9239-8ca4ad4f67c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World">
+      <UniqueIdentifier>{8c7095c9-7d9e-4a3e-b478-033078a72be7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -102,14 +111,20 @@
     <ClCompile Include="Modding\Mod.cpp">
       <Filter>Modding</Filter>
     </ClCompile>
-    <ClCompile Include="Modding\Entity.cpp">
-      <Filter>Modding</Filter>
-    </ClCompile>
     <ClCompile Include="Modding\EntityType.cpp">
       <Filter>Modding</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Application.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="World\World.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Entity.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Object.cpp">
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

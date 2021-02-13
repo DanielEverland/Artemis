@@ -1,7 +1,7 @@
 #include "pch.h"
 
-#include <Debugging/Logger.h>
-#include <Debugging/Verbosity.h>
+#include <Core/Debugging/Logger.h>
+#include <Core/Debugging/Verbosity.h>
 
 TEST(Logger, ParseValidStrings)
 {

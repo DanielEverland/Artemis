@@ -124,8 +124,6 @@ void Exception::AppendFrameWithFileData(const SYMBOL_INFO* const info, const IMA
 	string prettyFileName = GetPrettyFileName(line->FileName);
 
 	stackTrace.append(CallstackLineIdentifier + " ");
-	stackTrace.append(prettyFileName);
-	stackTrace.append(":::");
 	stackTrace.append(info->Name);
 	stackTrace.append("(");
 	stackTrace.append(std::to_string(line->LineNumber));

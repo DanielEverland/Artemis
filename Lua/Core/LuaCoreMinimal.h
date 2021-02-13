@@ -9,12 +9,12 @@ extern "C" {
 
 #include "LuaMagicNumbers.h"
 
-#include <../Lua/Exceptions/LuaException.h>
-#include <../Lua/Exceptions/LuaIOException.h>
-#include <../Lua/Exceptions/LuaSyntaxException.h>
-#include <../Lua/Exceptions/LuaMemoryException.h>
-#include <../Lua/Exceptions/LuaRuntimeException.h>
-#include <../Lua/Exceptions/LuaErrorMessageException.h>
+#include <Lua/Exceptions/LuaException.h>
+#include <Lua/Exceptions/LuaIOException.h>
+#include <Lua/Exceptions/LuaSyntaxException.h>
+#include <Lua/Exceptions/LuaMemoryException.h>
+#include <Lua/Exceptions/LuaRuntimeException.h>
+#include <Lua/Exceptions/LuaErrorMessageException.h>
 
 #define LUA_STACK_TOP -1
 #define LUA_STACK_BOTTOM 1

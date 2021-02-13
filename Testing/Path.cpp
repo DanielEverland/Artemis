@@ -54,5 +54,22 @@ TEST(Path, GetFileNameExtension)
 {
 	const string extension = ".txt";
 	const string fullString = "C:/This/Is/A/Test/Path/TestFile" + extension;
-	EXPECT_EQ(Path::GetFileNameExtension(fullString), extension);
+	EXPECT_EQ(Path::GetFileNameExtension(fullString), extension);	
+}
+
+TEST(Path, IsSubdirectory)
+{
+	const string a = "C:\\ADir";
+	const string b = "C:\\ADir\\BDir";
+
+	EXPECT_TRUE(Path::IsSubDirectory(b, a));
+}
+
+TEST(Path, ProjectRelativePath)
+{
+	const string projectPath = Path::GetProjectPath();
+	const string relativePath = "subdir/fileName.txt";
+	const string fullPath = projectPath + relativePath;
+
+	EXPECT_EQ(Path::GetRelativeProjectPath(fullPath), relativePath);
 }

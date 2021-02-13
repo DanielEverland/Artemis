@@ -1,6 +1,6 @@
 ﻿#include "GameConfiguration.h"
 
-#include <Core.h>
+#include "../IO/Directory.h"
 
 INIReader GameConfiguration::Reader = INIReader();
 

@@ -2,14 +2,10 @@
 
 #include <string>
 #include <memory>
-#include <vector>
 
-#include <../Lua/Exceptions/LuaException.h>
+#include <Lua/Exceptions/LuaException.h>
 
 #include "LuaCoreMinimal.h"
-
-//template<typename... Args>
-//concept nonempty_pack = sizeof...(Args) > 0;
 
 template<typename T>
 struct type_identity

@@ -2,7 +2,8 @@
 
 #include <string>
 #include <memory>
-#include <Renderer/RendererCore.h>
+
+#include <Game/Renderer/RendererCore.h>
 
 class Texture
 {

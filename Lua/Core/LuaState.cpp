@@ -2,11 +2,13 @@
 
 #include "LuaState.h"
 
+#include "../../Game/Framework/Application.h"
+#include "../../Game/Modding/ModLoader.h"
 #include "../Exceptions/LuaException.h"
 #include "../Exceptions/LuaIOException.h"
 #include "../Exceptions/LuaSyntaxException.h"
-
-#include "Core/Core.h"
+#include <Game/World/World.h>
+#include <Core/Core/Core.h>
 
 namespace
 {
@@ -25,7 +27,6 @@ std::unique_ptr<LuaState> LuaState::CreateFromFile(const std::string& filePath)
 	{
 		throw LuaSyntaxException("Couldn't load lua file at path " + filePath);
 	}
-	newState->PrintStack();
 	
 	return newState;
 }
@@ -89,9 +90,11 @@ LuaState::operator lua_State*() const
 
 int LuaState::CFunc_NewEntity(lua_State* luaState)
 {
-	string entityName = lua_tostring(luaState, 1);
-	throw Exception("test");
+	const string entityTypeName = lua_tostring(luaState, 1);
+	const EntityType* type = ModLoader::GetType(entityTypeName);
 
+	Application::Get()->GetWorld()->CreateEntity<Entity>(type);
+	
 	return 0;
 }
 

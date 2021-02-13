@@ -1,7 +1,6 @@
-﻿#include <Core/Core/Core.h>
+﻿#include "EntityType.h"
 
-#include "EntityType.h"
-
+#include "InvalidOperationException.h"
 #include "ModLoader.h"
 
 EntityType EntityType::Empty = EntityType("");

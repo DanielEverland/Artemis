@@ -1,16 +1,28 @@
-﻿#include <Game.h>
+﻿#include <Game/Game.h>
 
-#include <Renderer/RendererCore.h>
+#include <Game/Renderer/RendererCore.h>
 #include "Application.h"
+#include "Core/Config/GameConfiguration.h"
+#include "../Modding/ModLoader.h"
+#include <Core/Debugging/Verbosity.h>
+#include <Core/Debugging/Logger.h>
 
-#include "Modding/ModLoader.h"
+Application* Application::Instance = nullptr;
 
 namespace
 {
 	const string LogCategoryApplication = "Application";
 }
 
-Application::Application() = default;
+Application* Application::Get()
+{
+	return Instance;
+}
+
+Application::Application()
+{
+	Instance = this;
+}
 
 Application::~Application()
 {
@@ -20,6 +32,11 @@ Application::~Application()
 void Application::Start() const
 {
 	ExecuteMainLoop();
+}
+
+void Application::LoadLevel()
+{
+	CurrentWorld = std::make_unique<World>();
 }
 
 bool Application::InitializeCore()
@@ -38,7 +55,8 @@ bool Application::Initialize()
 	bool initializationFailed = false;
 
 	initializationFailed |= !InitializeCore();
-	
+
+	LoadLevel();
 	ModLoader::LoadMods();
 
 	return !initializationFailed;
@@ -100,7 +118,7 @@ void Application::CallLuaApplicationStarted()
 {
 	for(auto iter = ModLoader::GetAllLuaFiles().begin(); iter != ModLoader::GetAllLuaFiles().end(); ++iter)
 	{
-		LuaState* luaState = (*iter).get();
+		LuaState* luaState = (*iter).second.get();
 		if(luaState->HasFunction(JsonApplicationStartFunctionName))
 		{
 			luaState->CallFunction(JsonApplicationStartFunctionName);

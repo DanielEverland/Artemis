@@ -1,10 +1,15 @@
 ﻿#include <queue>
 #include <filesystem>
 
-#include <Game.h>
+#include <Game/Game.h>
+#include <Core/IO/Directory.h>
+#include <Core/Exceptions/ArgumentException.h>
+#include <Core/Core/StringUtility.h>
 
 #include "ModLoader.h"
 #include "Mod.h"
+#include "Core/IO/JsonException.h"
+#include "Core/IO/Path.h"
 
 string ModLoaderCategory = "ModLoader";
 string ModLoader::EntityAssetExtension = ".entity";
@@ -15,7 +20,7 @@ set<string> ModLoader::LuaFileExtensions =
 };
 
 map<string, EntityType> ModLoader::LoadedTypes = map<string, EntityType>();
-vector<unique_ptr<LuaState>> ModLoader::AllLuaFiles = { };
+map<string, unique_ptr<LuaState>> ModLoader::AllLuaFiles = { };
 
 string ModLoader::GetModdingDirectory()
 {
@@ -23,7 +28,7 @@ string ModLoader::GetModdingDirectory()
 	return Directory::GetProjectDirectory() + "Mods";
 }
 
-const vector<unique_ptr<LuaState>>& ModLoader::GetAllLuaFiles()
+const map<string, unique_ptr<LuaState>>& ModLoader::GetAllLuaFiles()
 {
 	return AllLuaFiles;
 }
@@ -146,8 +151,11 @@ void ModLoader::LoadEntityAsset(const string& fullPath)
 void ModLoader::LoadLuaAsset(const string& fullPath)
 {
 	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+
+	const string luaName = Path::GetRelativeModPath(fullPath);
+	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Loading Lua file: \"" + luaName + "\"");
 	
-	AllLuaFiles.push_back(LuaState::CreateFromFile(fullPath));
+	AllLuaFiles.insert_or_assign(luaName, LuaState::CreateFromFile(fullPath));
 }
 
 bool ModLoader::GetModInfoFilePath(const string& directory, string& modFilePath)

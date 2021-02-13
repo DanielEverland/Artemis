@@ -1,7 +1,8 @@
 #pragma once
 
-#include<memory>
-#include<Renderer/Renderer.h>
+#include <memory>
+
+#include "../Renderer/Renderer.h"
 
 using std::unique_ptr;
 

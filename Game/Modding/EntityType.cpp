@@ -53,6 +53,16 @@ void EntityType::LoadData()
 	}
 }
 
+EntityType::operator string() const
+{
+	return ToString();
+}
+
+string EntityType::ToString() const
+{
+	return Data.At<string>("Name");
+}
+
 bool EntityType::IsAbstract() const
 {
 	return Prototype.At<bool>(JsonKeyIsAbstract);

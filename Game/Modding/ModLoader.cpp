@@ -36,7 +36,7 @@ const map<string, unique_ptr<LuaState>>& ModLoader::GetAllLuaFiles()
 EntityType* ModLoader::GetType(const string& typeName)
 {
 	if(!LoadedTypes.contains(typeName))
-		throw ArgumentException("Attempted to get " + typeName + ", but the type isn't loaded");
+		throw ArgumentException("Attempted to get \"" + typeName + "\", but the type isn't loaded");
 
 	return &LoadedTypes.find(typeName)->second;
 }

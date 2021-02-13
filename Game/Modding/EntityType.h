@@ -16,6 +16,9 @@ public:
 
 	void LoadData();
 
+	operator string() const;
+	
+	[[nodiscard]] string ToString() const;
 	[[nodiscard]] bool IsAbstract() const;
 	[[nodiscard]] string GetType() const;
 	[[nodiscard]] bool IsBaseType() const;

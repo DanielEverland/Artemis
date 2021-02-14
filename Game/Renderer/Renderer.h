@@ -5,6 +5,8 @@
 
 #include <Core/Core/Color.h>
 
+class Texture;
+
 class Renderer
 {
 public:	
@@ -16,6 +18,7 @@ public:
 	
 	void FillRect(const SDL_Rect& rect) const;
 	void DrawTexture(SDL_Texture* texture, const SDL_Rect& rect) const;
+	void DrawTexture(Texture* texture, const SDL_Rect& rect) const;
 	
 	void Clear() const;
 	void Present() const;

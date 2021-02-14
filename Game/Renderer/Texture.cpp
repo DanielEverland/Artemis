@@ -4,15 +4,16 @@
 
 Texture::Texture(const std::string& filePath) : RawTexture(nullptr, SDL_DestroyTexture)
 {
-	SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
+	SDL_Surface* surface = IMG_Load(filePath.c_str());
 
 	if(!surface)
-		throw SDLException("Couldn't load " + filePath);
+		throw SDLException("Couldn't load " + filePath + " due to error: " + SDL_GetError());
 	
 	RawTexture = std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)>(SDL_CreateTextureFromSurface(Renderer::GetPrimaryRenderer()->GetRawRenderer(), surface), SDL_DestroyTexture);
 
+	string err = SDL_GetError();
 	if(!RawTexture)
-		throw SDLException("Couldn't convert surface to texture for file " + filePath);
+		throw SDLException("Couldn't convert surface to texture for file " + filePath + " due to error: " + SDL_GetError());
 	
 	SDL_FreeSurface(surface);
 }

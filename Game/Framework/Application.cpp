@@ -7,6 +7,8 @@
 #include <Core/Debugging/Verbosity.h>
 #include <Core/Debugging/Logger.h>
 
+#include "Game/World/Character.h"
+
 Application* Application::Instance = nullptr;
 
 namespace
@@ -114,7 +116,7 @@ bool Application::MainLoop() const
 	return true;
 }
 
-void Application::CallLuaApplicationStarted()
+void Application::CallLuaApplicationStarted() const
 {
 	for(auto iter = ModLoader::GetAllLuaFiles().begin(); iter != ModLoader::GetAllLuaFiles().end(); ++iter)
 	{
@@ -124,4 +126,6 @@ void Application::CallLuaApplicationStarted()
 			luaState->CallFunction(JsonApplicationStartFunctionName);
 		}
 	}
+
+	Character::Create(GetWorld());
 }

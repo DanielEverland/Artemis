@@ -18,3 +18,8 @@ Entity::Entity(const EntityType* type, World* world) : Object(world), Type(type)
 
 	Logger::Log(LogCategoryEntity, Verbosity::VeryVerbose, "Creating entity of type \"" + type->ToString() + "\"");
 }
+
+const Json* Entity::GetData() const
+{
+	return GetType()->GetData();
+}

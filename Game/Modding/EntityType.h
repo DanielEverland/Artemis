@@ -25,7 +25,8 @@ public:
 	[[nodiscard]] const EntityType* GetBaseType() const;
 	[[nodiscard]] string GetBaseTypeName() const;
 	[[nodiscard]] Json GetPrototype() const;
-	[[nodiscard]] Json GetData() const;
+	[[nodiscard]] const Json* GetData() const;
+	[[nodiscard]] Json* GetData();
 	[[nodiscard]] bool IsEmpty() const;
 
 	friend bool operator==(const EntityType& lhs, const EntityType& rhs)

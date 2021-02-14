@@ -6,7 +6,21 @@
 TEST(Path, RemoveLastDeliminatorPart)
 {
 	const string expectedOutput = "C:/This/Is/A/Test/Path/";
+	const string expectedOutput_Backslash = R"(D:\Daniel\Artemis\Resources\Mods\)";
 	const string lastPart = "IWillBeRemoved";
+	const string fullString = expectedOutput + lastPart;
+	const string fullString_Backslash = expectedOutput_Backslash + lastPart;
+
+	const string actualOutput = Path::RemoveLastDeliminatorPart(fullString);
+	const string actualOutput_Backslash = Path::RemoveLastDeliminatorPart(fullString_Backslash);
+	EXPECT_EQ(actualOutput, expectedOutput);
+	EXPECT_EQ(actualOutput_Backslash, expectedOutput_Backslash);
+}
+
+TEST(Path, RemoveLastDeliminatorPartWithFinalCharacterDeliminator)
+{
+	const string expectedOutput = "C:/This/Is/A/Test/Path/";
+	const string lastPart = "IWillBeRemoved/";
 	const string fullString = expectedOutput + lastPart;
 
 	const string actualOutput = Path::RemoveLastDeliminatorPart(fullString);

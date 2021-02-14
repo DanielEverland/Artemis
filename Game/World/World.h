@@ -13,11 +13,13 @@ class World
 {
 public:	
 	template<class T, typename = typename std::enable_if<std::is_base_of<Entity, T>::value, T>::type>
-	weak_ptr<T> CreateEntity(const EntityType* type)
+	shared_ptr<T> CreateEntity(const EntityType* type)
 	{
-		AllEntities.push_back(std::make_unique<T>(Entity(type, this)));
-		return AllEntities.back();
+		AllEntities.push_back(std::make_shared<T>(T(type, this)));
+		return std::dynamic_pointer_cast<T>(AllEntities.back());
 	}
+
+	vector<shared_ptr<Entity>>* GetAllEntities();
 	
 private:
 	vector<shared_ptr<Entity>> AllEntities;

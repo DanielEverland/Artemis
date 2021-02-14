@@ -4,6 +4,7 @@
 #include <SDL/include/SDL.h>
 #include <SDL/include/SDL_render.h>
 #include <SDL/include/SDL_surface.h>
+#include <SDL/include/SDL_image.h>
 #pragma warning(pop)
 
 #include "SDLHelper.h"

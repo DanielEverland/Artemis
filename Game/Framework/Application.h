@@ -28,5 +28,5 @@ private:
 	bool InitializeSDL();
 	void ExecuteMainLoop() const;
 	bool MainLoop() const;
-	static void CallLuaApplicationStarted();
+	void CallLuaApplicationStarted() const;
 };

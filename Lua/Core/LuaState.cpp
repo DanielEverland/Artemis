@@ -93,7 +93,7 @@ int LuaState::CFunc_NewEntity(lua_State* luaState)
 	const string entityTypeName = lua_tostring(luaState, 1);
 	const EntityType* type = ModLoader::GetType(entityTypeName);
 
-	Application::Get()->GetWorld()->CreateEntity<Entity>(type);
+	//Application::Get()->GetWorld()->CreateEntity<Entity>(type);
 	
 	return 0;
 }

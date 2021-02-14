@@ -28,13 +28,20 @@ string Path::GetFileNameWithoutExtension(const string& fullPath)
 
 string Path::RemoveLastDeliminatorPart(string fullPath)
 {
+	const char finalChar = fullPath.at(fullPath.length() - 1);
+	if(finalChar == '/' || finalChar == '\\')
+	{
+		fullPath = fullPath.substr(0, fullPath.length() - 1);
+	}
+	
     const size_t last_slash_idx = fullPath.find_last_of("\\/");
     if (std::string::npos == last_slash_idx)
     {
         throw ArgumentException("No deliminators present in path \"" + fullPath + "\"");
     }
-	
-	return fullPath.erase(last_slash_idx + 1, fullPath.length());
+
+	string toReturn = fullPath.erase(last_slash_idx + 1, fullPath.length());
+	return toReturn;
 }
 
 string Path::GetFileNameExtension(const string& fullPath)

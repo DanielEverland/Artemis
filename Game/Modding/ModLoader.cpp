@@ -70,7 +70,11 @@ void ModLoader::LoadMods(const string& directory)
 	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Outputting all mod directories");
 	for (const string& modDirectory : GetAllModDirectories(directory))
 	{
+		TRY_START
+
 		LoadMod(modDirectory);
+
+		TRY_END_CUSTOM(ModLoaderCategory, Verbosity::Error, "Failed to load mod at directory " + directory);
 	}
 
 	LoadEntities();
@@ -125,7 +129,11 @@ void ModLoader::LoadMod(const string& directory)
 	
 	for (const auto iter : std::filesystem::recursive_directory_iterator(directory))
 	{
+		TRY_START
+		
 		LoadAsset(iter.path().string(), Path::GetFileNameExtension(iter.path().string()));
+
+		TRY_END_CUSTOM(ModLoaderCategory, Verbosity::Error, "Failed loading asset " + directory);
 	}
 }
 

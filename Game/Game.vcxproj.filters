@@ -62,6 +62,9 @@
     <ClInclude Include="World\Object.h">
       <Filter>World</Filter>
     </ClInclude>
+    <ClInclude Include="World\Character.h">
+      <Filter>World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modding">
@@ -124,6 +127,9 @@
       <Filter>World</Filter>
     </ClCompile>
     <ClCompile Include="World\Object.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\Character.cpp">
       <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>

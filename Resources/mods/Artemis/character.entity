@@ -1,5 +1,6 @@
 {
     "Type" : "Character",
     "BaseType" : "Base",
-    "Name" : "characterType"
+    "Name" : "characterType",
+    "Texture" : "CharacterTexture"
 }

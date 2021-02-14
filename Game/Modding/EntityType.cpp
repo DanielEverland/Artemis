@@ -87,9 +87,14 @@ Json EntityType::GetPrototype() const
 	return Prototype;
 }
 
-Json EntityType::GetData() const
+const Json* EntityType::GetData() const
 {
-	return Data;
+	return &Data;
+}
+
+Json* EntityType::GetData()
+{
+	return &Data;
 }
 
 bool EntityType::IsEmpty() const

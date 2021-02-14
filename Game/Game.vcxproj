@@ -37,6 +37,7 @@
     <ClInclude Include="Renderer\Texture.h" />
     <ClInclude Include="Window\Window.h" />
     <ClInclude Include="Window\WindowCore.h" />
+    <ClInclude Include="World\Character.h" />
     <ClInclude Include="World\Entity.h" />
     <ClInclude Include="World\Object.h" />
     <ClInclude Include="World\World.h" />
@@ -53,6 +54,7 @@
     <ClCompile Include="Renderer\SDLException.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Window\Window.cpp" />
+    <ClCompile Include="World\Character.cpp" />
     <ClCompile Include="World\Entity.cpp" />
     <ClCompile Include="World\Object.cpp" />
     <ClCompile Include="World\World.cpp" />
@@ -115,22 +117,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Daniel\Artemis\x64\Debug;D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\SDL_Image\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Daniel\Artemis\x64\Debug;D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\SDL_Image\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Daniel\Artemis\x64\Debug;D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\SDL_Image\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)Core\Exceptions;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Daniel\Artemis\x64\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Daniel\Artemis\x64\Debug;D:\Daniel\Artemis\SDL\lib\x64;D:\Daniel\Artemis\SDL_Image\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -149,7 +151,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Lua.lib</AdditionalDependencies>
+      <AdditionalDependencies>Lua.lib;SDL2.lib;SDL2_Image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -173,7 +175,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Lua.lib</AdditionalDependencies>
+      <AdditionalDependencies>Lua.lib;SDL2.lib;SDL2_Image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -193,7 +195,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Lua.lib</AdditionalDependencies>
+      <AdditionalDependencies>Lua.lib;SDL2.lib;SDL2_Image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -217,7 +219,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Lua.lib</AdditionalDependencies>
+      <AdditionalDependencies>Lua.lib;SDL2.lib;SDL2_Image.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

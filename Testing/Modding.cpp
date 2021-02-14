@@ -34,6 +34,6 @@ TEST(Modding, LoadingEntities)
 {
 	ModLoader::LoadMods(TestFilesDir);
 	const EntityType* characterType = ModLoader::GetType("Character");
-	EXPECT_EQ("characterType", characterType->GetData().At<string>(JsonKeyName));
-	EXPECT_EQ("base", characterType->GetData().At<string>(JsonKeyTestField));
+	EXPECT_EQ("characterType", characterType->GetData()->At<string>(JsonKeyName));
+	EXPECT_EQ("base", characterType->GetData()->At<string>(JsonKeyTestField));
 }

@@ -23,6 +23,7 @@
     <ClInclude Include="Debugging\DebugCategoryHandle.h" />
     <ClInclude Include="Debugging\GameplayDebugger.h" />
     <ClInclude Include="Framework\Application.h" />
+    <ClInclude Include="Framework\Time.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Modding\Mod.h" />
     <ClInclude Include="Modding\ModCore.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Debugging\DebugCategoryHandle.cpp" />
     <ClCompile Include="Debugging\GameplayDebugger.cpp" />
     <ClCompile Include="Framework\Application.cpp" />
+    <ClCompile Include="Framework\Time.cpp" />
     <ClCompile Include="Modding\Mod.cpp" />
     <ClCompile Include="Modding\ModLoader.cpp" />
     <ClCompile Include="Modding\EntityType.cpp" />

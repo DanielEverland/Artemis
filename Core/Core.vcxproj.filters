@@ -60,6 +60,12 @@
     <ClCompile Include="Debugging\Logger.cpp">
       <Filter>Debugging</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Vector.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Rect.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exceptions\Exception.h">
@@ -115,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="Debugging\Verbosity.h">
       <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vector.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Rect.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

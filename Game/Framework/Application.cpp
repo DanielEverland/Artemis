@@ -24,6 +24,7 @@ Application* Application::Get()
 Application::Application()
 {
 	Instance = this;
+	StartTime = clock();
 }
 
 Application::~Application()
@@ -39,6 +40,11 @@ void Application::Start() const
 void Application::LoadLevel()
 {
 	CurrentWorld = std::make_unique<World>();
+}
+
+float Application::GetTime() const
+{
+	return (clock() - StartTime) / (float)CLOCKS_PER_SEC;
 }
 
 bool Application::InitializeCore()
@@ -111,6 +117,7 @@ bool Application::MainLoop() const
 		}
 	}
 
+	CurrentWorld->Tick();
 	WindowPtr->Draw();
 
 	return true;

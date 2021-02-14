@@ -22,6 +22,8 @@
     <ClCompile Include="Config\GameConfiguration.cpp" />
     <ClCompile Include="Core\Color.cpp" />
     <ClCompile Include="Core\Font.cpp" />
+    <ClCompile Include="Core\Rect.cpp" />
+    <ClCompile Include="Core\Vector.cpp" />
     <ClCompile Include="Debugging\Logger.cpp" />
     <ClCompile Include="Exceptions\Exception.cpp" />
     <ClCompile Include="Exceptions\ArgumentException.cpp" />
@@ -38,7 +40,9 @@
     <ClInclude Include="Core\Color.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Font.h" />
+    <ClInclude Include="Core\Rect.h" />
     <ClInclude Include="Core\StringUtility.h" />
+    <ClInclude Include="Core\Vector.h" />
     <ClInclude Include="Debugging\Logger.h" />
     <ClInclude Include="Debugging\Verbosity.h" />
     <ClInclude Include="Exceptions\Exception.h" />

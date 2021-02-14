@@ -11,7 +11,7 @@ namespace
 	const string LogCategoryEntity = "Entity";
 }
 
-Entity::Entity(const EntityType* type, World* world) : Object(world), Type(type)
+Entity::Entity(const EntityType* type, World* world) : Object(world), Type(type), LocalPosition(0, 0), LocalScale(1, 1)
 {
 	if(type == nullptr)
 		throw ArgumentException("Type is null");

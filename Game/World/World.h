@@ -20,6 +20,7 @@ public:
 	}
 
 	vector<shared_ptr<Entity>>* GetAllEntities();
+	void Tick();
 	
 private:
 	vector<shared_ptr<Entity>> AllEntities;

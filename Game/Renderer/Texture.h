@@ -12,6 +12,11 @@ public:
 
 	SDL_Texture* GetRawTexture() const;
 
+	[[nodiscard]] int GetWidth() const;
+	[[nodiscard]] int GetHeight() const;
+
 private:
 	std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)> RawTexture;
+	int Width;
+	int Height;
 };

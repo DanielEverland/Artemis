@@ -13,6 +13,9 @@ public:
 	static std::shared_ptr<Character> Create(World* world);
 
 	void Draw() override;
+	void Update() override;
+	
+	[[nodiscard]] Rect GetBounds() override;
 	
 private:
 	Texture* Appearance;

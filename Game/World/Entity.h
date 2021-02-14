@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include <type_traits>
-
+#include <Core/Core/Vector.h>
+#include <Core/Core/Rect.h>
 #include "Object.h"
 #include "Core/IO/Json.h"
 
@@ -15,9 +15,15 @@ public:
 
 	[[nodiscard]] const EntityType* GetType() const { return Type; }
 	[[nodiscard]] const Json* GetData() const;
+	[[nodiscard]] virtual Rect GetBounds() = 0;
 
+	virtual void Update() = 0;
 	virtual void Draw() = 0;
 
+protected:
+	Vector LocalPosition;
+	Vector LocalScale;
+	
 private:
 	const EntityType* Type;
 };

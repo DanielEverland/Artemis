@@ -19,8 +19,15 @@ set<string> ModLoader::LuaFileExtensions =
 	".lua"
 };
 
+set<string> ModLoader::TextureFileExtensions =
+{
+	".png",
+	".bmp"
+};
+
 map<string, EntityType> ModLoader::LoadedTypes = map<string, EntityType>();
 map<string, unique_ptr<LuaState>> ModLoader::AllLuaFiles = { };
+map<string, Texture> ModLoader::LoadedTextures = { };
 
 string ModLoader::GetModdingDirectory()
 {
@@ -36,9 +43,17 @@ const map<string, unique_ptr<LuaState>>& ModLoader::GetAllLuaFiles()
 EntityType* ModLoader::GetType(const string& typeName)
 {
 	if(!LoadedTypes.contains(typeName))
-		throw ArgumentException("Attempted to get \"" + typeName + "\", but the type isn't loaded");
+		throw ArgumentException("Attempted to get type \"" + typeName + "\", but the type isn't loaded");
 
 	return &LoadedTypes.find(typeName)->second;
+}
+
+Texture* ModLoader::GetTexture(const string& textureName)
+{
+	if(!LoadedTextures.contains(textureName))
+		throw ArgumentException("Attempted to get texture \"" + textureName + "\", but it isn't loaded");
+
+	return &LoadedTextures.find(textureName)->second;
 }
 
 void ModLoader::LoadMods()
@@ -128,6 +143,11 @@ void ModLoader::LoadAsset(const string& fullPath, const string& extension)
 	{
 		LoadLuaAsset(fullPath);
 	}
+
+	if(TextureFileExtensions.contains(extension))
+	{
+		LoadTexture(fullPath);
+	}
 }
 
 void ModLoader::LoadEntityAsset(const string& fullPath)
@@ -156,6 +176,16 @@ void ModLoader::LoadLuaAsset(const string& fullPath)
 	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Loading Lua file: \"" + luaName + "\"");
 	
 	AllLuaFiles.insert_or_assign(luaName, LuaState::CreateFromFile(fullPath));
+}
+
+void ModLoader::LoadTexture(const string& fullPath)
+{
+	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
+
+	const string textureName = Path::GetFileNameWithoutExtension(fullPath);
+	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Loading texture: \"" + textureName+ "\"");
+
+	LoadedTextures.insert_or_assign(textureName, Texture(fullPath));
 }
 
 bool ModLoader::GetModInfoFilePath(const string& directory, string& modFilePath)

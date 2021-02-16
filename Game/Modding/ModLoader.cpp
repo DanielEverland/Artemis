@@ -203,7 +203,7 @@ bool ModLoader::GetModInfoFilePath(const string& directory, string& modFilePath)
 	for (const string& filePath : Directory::GetAllFiles(directory))
 	{
 		const bool matchesFilename = Path::GetFileName(filePath) == Mod::ModInfoName;
-		Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, "Checking " + filePath + "\n\t" + Path::GetFileName(filePath) + " == " + Mod::ModInfoName + ": " + sbool(matchesFilename));
+		Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, "Checking " + filePath + "\n\t" + Path::GetFileName(filePath) + " == " + Mod::ModInfoName + ": " + StringUtility::BoolToString(matchesFilename));
 		if(matchesFilename)
 		{
 			modFilePath = Path::RemoveLastDeliminatorPart(filePath);

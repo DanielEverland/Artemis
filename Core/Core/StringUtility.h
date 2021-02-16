@@ -21,7 +21,11 @@ static void trim(std::string& s) {
     rtrim(s);
 }
 
-static string sbool(bool value)
+class StringUtility
 {
-	return value ? "true" : "false";
-}
+public:
+    static string BoolToString(bool value)
+    {
+        return value ? "true" : "false";
+    }
+};

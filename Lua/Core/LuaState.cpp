@@ -88,8 +88,10 @@ LuaState::operator lua_State*() const
 	return GetRaw();
 }
 
+#pragma warning(push, 0)
 int LuaState::CFunc_NewEntity(lua_State* luaState)
 {
+	
 	//const string entityTypeName = lua_tostring(luaState, 1);
 	//const EntityType* type = ModLoader::GetType(entityTypeName);
 
@@ -97,6 +99,7 @@ int LuaState::CFunc_NewEntity(lua_State* luaState)
 	
 	return 0;
 }
+#pragma warning(pop)
 
 void LuaState::ExposeFunction(const string& functionName, lua_CFunction func)
 {

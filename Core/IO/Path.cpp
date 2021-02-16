@@ -60,7 +60,7 @@ string Path::GetRelativeProjectPath(const string& fullPath)
 	if(!IsSubDirectory(fullPath, GetProjectPath()))
 		throw ArgumentException("Path \"" + fullPath + "\" is not a subdirectory of project directory \"" + GetProjectPath() + "\"");
 
-	const int projectPathLength = GetProjectPath().length();
+	const size_t projectPathLength = GetProjectPath().length();
 	return fullPath.substr(projectPathLength, fullPath.length() - projectPathLength);
 }
 
@@ -71,7 +71,7 @@ string Path::GetRelativeModPath(const string& fullPath)
     if (!IsSubDirectory(fullPath, GetProjectPath()))
         throw ArgumentException("Path \"" + fullPath + "\" is not a subdirectory of project directory \"" + modDirectory + "\"");
 
-    const int modPathLength = modDirectory.length();
+    const size_t modPathLength = modDirectory.length();
     return fullPath.substr(modPathLength, fullPath.length() - modPathLength);
 }
 

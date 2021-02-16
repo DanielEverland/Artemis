@@ -1,8 +1,10 @@
 ﻿#pragma once
 
+#pragma warning(push, 0)
 #include <Windows.h>
 #include <DbgHelp.h>
 #include <stdexcept>
+#pragma warning(pop)
 
 using std::string;
 

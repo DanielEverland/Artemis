@@ -151,7 +151,7 @@ private:
 	template<unsigned int I, typename Tuple, typename Output, typename ...Outputs, std::size_t i = sizeof...(Outputs), std::enable_if_t<(i > 0), int> = 0>
 	void PopValues(Tuple& returnValues)
 	{
-		Output val = GetValue<Output>((sizeof...(Outputs) + 1 - I) * -1);
+		Output val = GetValue<Output>(static_cast<long>((sizeof...(Outputs) + 1 - I)) * -1);
 		std::get<I>(returnValues) = val;
 		return PopValues<I + 1, Tuple, Outputs...>(returnValues);
 	}

@@ -1,8 +1,7 @@
 ﻿#include <fstream>
 
 #include "Json.h"
-
-#include <Core.h>
+#include "../Exceptions/InvalidOperationException.h"
 
 Json::Json()
 {

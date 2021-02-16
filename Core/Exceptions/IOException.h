@@ -2,7 +2,7 @@
 
 #include "Exception.h"
 
-class IOException : Exception
+class IOException : public Exception
 {
 public:
 	explicit IOException(const std::exception& e)

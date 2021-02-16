@@ -6,7 +6,7 @@
 
 using std::string;
 
-class Exception : private std::runtime_error
+class Exception : public std::runtime_error
 {
 public:
 	explicit Exception(const std::exception& e) : runtime_error(e.what()) { CreateStacktrace(); }

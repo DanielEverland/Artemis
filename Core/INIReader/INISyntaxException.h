@@ -2,7 +2,7 @@
 
 #include <../Exceptions/Exception.h>
 
-class INISyntaxException : Exception
+class INISyntaxException : public Exception
 {
 public:
 	explicit INISyntaxException(const std::exception& e)

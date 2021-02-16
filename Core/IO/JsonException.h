@@ -2,7 +2,7 @@
 
 #include "../Exceptions/Exception.h"
 
-class JsonException : Exception
+class JsonException : public Exception
 {
 public:
 	explicit JsonException(const std::exception& e)

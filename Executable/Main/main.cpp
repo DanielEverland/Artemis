@@ -3,9 +3,11 @@
 
 string LogCategoryMain = "Main";
 
+#pragma warning(disable:4100)
 // You must include the command line parameters for your main function to be recognized by SDL
 int main(int argc, char** args)
 {
+#pragma warning(default:4100)
 	TRY_START
 	
 	Application application = { };

@@ -69,7 +69,7 @@ bool LuaState::HasFunction(const string& functionName) const
 
 void LuaState::CreateGlobalTable(const string& tableName) const
 {
-	lua_newtable(GetRaw(), tableName.c_str());
+	lua_newtable(GetRaw());
 	lua_setglobal(GetRaw(), tableName.c_str());
 }
 

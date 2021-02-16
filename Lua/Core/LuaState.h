@@ -102,7 +102,7 @@ private:
 		if (!result)
 			throw GetGettingValueException("int", index);
 
-		return lua_tointeger(RawState.get(), index);
+		return static_cast<int>(lua_tointeger(RawState.get(), index));
 	}
 
 	template<>
@@ -112,7 +112,7 @@ private:
 		if (!result)
 			throw GetGettingValueException("double", index);
 
-		return lua_tonumber(RawState.get(), index);
+		return static_cast<double>(lua_tonumber(RawState.get(), index));
 	}
 
 	template<>
@@ -122,7 +122,7 @@ private:
 		if (!result)
 			throw GetGettingValueException("float", index);
 
-		return lua_tonumber(RawState.get(), index);
+		return static_cast<float>(lua_tonumber(RawState.get(), index));
 	}
 
 	template<>

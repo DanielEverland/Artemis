@@ -13,7 +13,7 @@ int main(int argc, char** args)
 		return -1;
 
 	application.Start();
+	
+	TRY_END(LogCategoryMain, Verbosity::Fatal);	
 	return 0;
-
-	TRY_END(LogCategoryMain, Verbosity::Fatal);
 }

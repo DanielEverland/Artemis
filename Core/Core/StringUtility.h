@@ -15,15 +15,14 @@ static void rtrim(std::string& s) {
         return !std::isspace(ch);
         }).base(), s.end());
 }
-
-static void trim(std::string& s) {
-    ltrim(s);
-    rtrim(s);
-}
-
 class StringUtility
 {
 public:
+	static void Trim(std::string& s)
+	{
+        ltrim(s);
+        rtrim(s);
+	}
     static string BoolToString(bool value)
     {
         return value ? "true" : "false";

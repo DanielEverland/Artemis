@@ -58,7 +58,7 @@ void INIReader::ReadFile(const string& filePath)
 	string line;
 	while (std::getline(file, line))
 	{
-		trim(line);
+		StringUtility::Trim(line);
 		
 		if(line.empty())
 			continue;		

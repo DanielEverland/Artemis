@@ -63,7 +63,7 @@ Verbosity Logger::ParseVerbosity(const string& verbosityString)
 
 bool Logger::TryParseVerbosity(string verbosityString, Verbosity& outValue)
 {
-	trim(verbosityString);
+	StringUtility::Trim(verbosityString);
 
 	for (const auto& [lookupString, lookupEnum] : FromStringLookup)
 	{

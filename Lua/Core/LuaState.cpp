@@ -166,9 +166,6 @@ void LuaState::PrintStack() const
 
         case LUA_TNUMBER:  /* numbers */
 	    {
-			lua_Number nmbr = lua_tonumber(RawState.get(), i);
-			int integer = nmbr;
-			double floatpoint = nmbr;
 			printf("%g", lua_tonumber(RawState.get(), i));
 			break;
 	    }

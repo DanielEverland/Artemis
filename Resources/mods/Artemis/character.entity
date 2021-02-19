@@ -2,5 +2,7 @@
     "Type" : "Character",
     "BaseType" : "Base",
     "Name" : "characterType",
-    "Texture" : "CharacterTexture"
+    "Texture" : "CharacterTexture",
+
+    "Scripts" : [ "Test" ]
 }

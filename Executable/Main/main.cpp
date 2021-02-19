@@ -1,6 +1,8 @@
 #include <Core/Core/Core.h>
 #include <Framework/Application.h>
 
+#include "Core/Config/GameConfiguration.h"
+
 string LogCategoryMain = "Main";
 
 #pragma warning(disable:4100)
@@ -9,6 +11,8 @@ int main(int argc, char** args)
 {
 #pragma warning(default:4100)
 	TRY_START
+
+	GameConfiguration::Load();
 	
 	Application application = { };
 	if (!application.Initialize())

@@ -17,6 +17,7 @@ public:
 	void LoadData();
 
 	operator string() const;
+	operator string();
 	
 	[[nodiscard]] string ToString() const;
 	[[nodiscard]] bool IsAbstract() const;

@@ -180,8 +180,8 @@ void ModLoader::LoadLuaAsset(const string& fullPath)
 {
 	Logger::Log(ModLoaderCategory, Verbosity::VeryVerbose, __FUNCTION__);
 
-	const string luaName = Path::GetRelativeModPath(fullPath);
-	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Loading Lua file: \"" + luaName + "\"");
+	const string luaName = Path::GetFileNameWithoutExtension(fullPath);
+	Logger::Log(ModLoaderCategory, Verbosity::Verbose, "Loading Lua file: \"" + fullPath + "\" as Lua name \"" + luaName + "\"");
 	
 	AllLuaFiles.insert_or_assign(luaName, LuaState::CreateFromFile(fullPath));
 }

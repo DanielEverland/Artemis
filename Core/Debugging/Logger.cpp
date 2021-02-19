@@ -11,6 +11,8 @@
 
 map<string, Verbosity> Logger::CachedCategoryVerbosities = { };
 string Logger::ConfigurationSectionName = "Logging";
+Verbosity Logger::GlobalVerbosity = Verbosity::Log;
+bool Logger::HasLoadedGlobalVerbosity = false;
 
 map<string, Verbosity> Logger::FromStringLookup =
 {
@@ -77,6 +79,17 @@ bool Logger::TryParseVerbosity(string verbosityString, Verbosity& outValue)
 	return false;
 }
 
+Verbosity Logger::GetGlobalVerbosity()
+{
+	if(!HasLoadedGlobalVerbosity)
+	{
+		HasLoadedGlobalVerbosity = true;
+		GlobalVerbosity = GetMinimumVerbosity("Global");
+	}
+
+	return GlobalVerbosity;
+}
+
 Verbosity Logger::GetMinimumVerbosity(const string& category)
 {
 	if(!CachedCategoryVerbosities.contains(category))
@@ -87,7 +100,7 @@ Verbosity Logger::GetMinimumVerbosity(const string& category)
 
 void Logger::LoadMinimumVerbosity(const string& category)
 {
-	const string verbosityString = GameConfiguration::GetReader().Get<string>(ConfigurationSectionName, category, "Log");
+	const string verbosityString = GameConfiguration::GetReader().Get<string>(ConfigurationSectionName, category, "Fatal");
 	const Verbosity verbosityEnum = ParseVerbosity(verbosityString);
 	CachedCategoryVerbosities.insert(CachedCategoryVerbosities.begin(), std::pair<string, Verbosity>(category, verbosityEnum));
 }
@@ -99,5 +112,5 @@ bool Logger::IsEqual(const string& verbosityString, const string& comparer)
 
 bool Logger::MoreOrEquallyVerbose(const Verbosity& a, const Verbosity& b)
 {
-	return static_cast<int>(a) >= static_cast<int>(b);
+	return static_cast<int>(a) >= static_cast<int>(b) || static_cast<int>(a) >= static_cast<int>(GetGlobalVerbosity());
 }

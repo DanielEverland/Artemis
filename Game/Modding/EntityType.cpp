@@ -58,6 +58,11 @@ EntityType::operator string() const
 	return ToString();
 }
 
+EntityType::operator string()
+{
+	return ToString();
+}
+
 string EntityType::ToString() const
 {
 	return Data.At<string>("Name");

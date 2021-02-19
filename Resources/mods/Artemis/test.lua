@@ -1,3 +1,7 @@
 function ApplicationStart() 
-    NewEntity("Base")
+    NewEntity("Character")
+end
+
+function Update()
+    print("update called")
 end

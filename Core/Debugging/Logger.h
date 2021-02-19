@@ -17,10 +17,13 @@ public:
 	static bool TryParseVerbosity(string verbosityString, Verbosity& outValue);
 
 private:
+	static Verbosity GlobalVerbosity;
+	static bool HasLoadedGlobalVerbosity;
 	static string ConfigurationSectionName;
 	static map<string, Verbosity> FromStringLookup;
 	static map<string, Verbosity> CachedCategoryVerbosities;
 
+	static Verbosity GetGlobalVerbosity();
 	static Verbosity GetMinimumVerbosity(const string& category);
 	static void LoadMinimumVerbosity(const string& category);
 	static bool IsEqual(const string& verbosityString, const string& comparer);

@@ -34,11 +34,13 @@ Application::~Application()
 
 void Application::Start() const
 {
+	Logger::Log(LogCategoryApplication, Verbosity::VeryVerbose, __FUNCTION__);
 	ExecuteMainLoop();
 }
 
 void Application::LoadLevel()
 {
+	Logger::Log(LogCategoryApplication, Verbosity::Log, __FUNCTION__);
 	CurrentWorld = std::make_unique<World>();
 }
 
@@ -49,17 +51,18 @@ float Application::GetTime() const
 
 bool Application::InitializeCore()
 {
+	Logger::Log(LogCategoryApplication, Verbosity::VeryVerbose, __FUNCTION__);
 	bool initializationFailed = false;
 
 	Exception::InitializeSymbols();
 	initializationFailed |= !InitializeSDL();
-	GameConfiguration::Load();
 	
 	return !initializationFailed;
 }
 
 bool Application::Initialize()
 {
+	Logger::Log(LogCategoryApplication, Verbosity::VeryVerbose, __FUNCTION__);
 	bool initializationFailed = false;
 
 	initializationFailed |= !InitializeCore();
@@ -72,6 +75,7 @@ bool Application::Initialize()
 
 bool Application::InitializeSDL()
 {
+	Logger::Log(LogCategoryApplication, Verbosity::VeryVerbose, __FUNCTION__);
 	// Initialize SDL. SDL_Init will return -1 if it fails.
 	if (SDL_Init(0) < 0) {
 		std::cout << "Error initializing SDL: " << SDL_GetError() << std::endl;
@@ -89,6 +93,7 @@ bool Application::InitializeSDL()
 
 void Application::ExecuteMainLoop() const
 {
+	Logger::Log(LogCategoryApplication, Verbosity::VeryVerbose, __FUNCTION__);
 	CallLuaApplicationStarted();
 
 	while (true)
@@ -125,14 +130,17 @@ bool Application::MainLoop() const
 
 void Application::CallLuaApplicationStarted() const
 {
+	Logger::Log(LogCategoryApplication, Verbosity::VeryVerbose, __FUNCTION__);
+	
 	for(auto iter = ModLoader::GetAllLuaFiles().begin(); iter != ModLoader::GetAllLuaFiles().end(); ++iter)
 	{
 		LuaState* luaState = (*iter).second.get();
 		if(luaState->HasFunction(JsonApplicationStartFunctionName))
 		{
+			Logger::Log(LogCategoryApplication, Verbosity::Verbose, "Calling " + JsonApplicationStartFunctionName + " on " + (*iter).first);
 			luaState->CallFunction(JsonApplicationStartFunctionName);
 		}
 	}
 
-	Character::Create(GetWorld());
+	//Character::Create(GetWorld());
 }

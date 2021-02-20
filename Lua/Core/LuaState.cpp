@@ -10,6 +10,8 @@
 #include <Game/World/World.h>
 #include <Core/Core/Core.h>
 
+#include "LuaTable.h"
+
 namespace
 {
 	const string LogCategoryLua = "Lua";
@@ -48,6 +50,11 @@ LuaState::LuaState() : RawState(luaL_newstate(), lua_close)
 {
 	luaL_openlibs(RawState.get());
 	ExposeFunction("NewEntity", &LuaState::CFunc_NewEntity);
+}
+
+LuaTable LuaState::operator[](const string& tableName)
+{
+	return LuaTable::CreateRoot(tableName, this);
 }
 
 int LuaState::GetStackSize() const

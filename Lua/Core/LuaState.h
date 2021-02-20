@@ -7,6 +7,10 @@
 
 #include "LuaCoreMinimal.h"
 
+using std::shared_ptr;
+
+struct LuaTable;
+
 template<typename T>
 struct type_identity
 {
@@ -24,9 +28,11 @@ public:
 
 	explicit LuaState();
 
-	int GetStackSize() const;
-	bool HasFunction(const string& functionName) const;
+	LuaTable operator[](const string& tableName);
 	
+	[[nodiscard]] int GetStackSize() const;
+	[[nodiscard]] bool HasFunction(const string& functionName) const;
+		
 	// Calls a function with arguments but no return type
 	template<typename... Inputs>
 	void CallFunction(const std::string& funcName, Inputs&&... inputs);
@@ -44,21 +50,6 @@ public:
 	template<typename... Outputs, typename... Inputs, std::size_t i = sizeof...(Outputs), std::enable_if_t<(i > 1), int> = 0>
 	std::tuple<Outputs...> CallFunction(std::string funcName, Inputs&&... inputs);
 
-	operator lua_State*() const;
-
-private:
-	std::unique_ptr<lua_State, decltype(&lua_close)> RawState;
-
-	static int CFunc_NewEntity(lua_State* luaState);
-
-	void ExposeFunction(const string& functionName, lua_CFunction func);
-	lua_State* GetRaw() const;
-	void LoadFunction(const std::string& funcName) const;
-	void DoLuaCall(const std::string& funcName, int argCount, int returnCount) const;
-	void PrintStack() const;
-	string GetStackType(int index) const;
-	LuaRuntimeException GetGettingValueException(const string& expectedValueType, int index) const;
-	
 	template<typename T>
 	void PushValue(T val)
 	{
@@ -135,6 +126,22 @@ private:
 		return lua_tostring(RawState.get(), index);
 	}
 	
+	operator lua_State*() const;
+
+	lua_State* GetRaw() const;
+	void PrintStack() const;
+
+private:
+	std::unique_ptr<lua_State, decltype(&lua_close)> RawState;
+
+	static int CFunc_NewEntity(lua_State* luaState);
+
+	void ExposeFunction(const string& functionName, lua_CFunction func);
+	void LoadFunction(const std::string& funcName) const;
+	void DoLuaCall(const std::string& funcName, int argCount, int returnCount) const;
+	string GetStackType(int index) const;
+	LuaRuntimeException GetGettingValueException(const string& expectedValueType, int index) const;
+
 	template<typename Input, typename ...Inputs>
 	void PushValues(Input&& input, Inputs&&... inputs)
 	{

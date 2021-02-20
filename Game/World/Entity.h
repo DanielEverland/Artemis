@@ -30,4 +30,7 @@ private:
 	std::vector<LuaState*> Scripts;
 
 	void LoadScripts();
+
+	/*void ExposeFunctionsToScripts();
+	void ExposeSetPositionToScripts();*/
 };

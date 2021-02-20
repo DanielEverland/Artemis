@@ -3,5 +3,5 @@ function ApplicationStart()
 end
 
 function Update()
-    print("update called")
+    print(Position.X)
 end

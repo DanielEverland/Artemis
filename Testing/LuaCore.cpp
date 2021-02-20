@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 
 #include <Core/LuaState.h>
+#include <Core/LuaTable.h>
 #include <Lua/Exceptions/LuaIOException.h>
 #include <Lua/Exceptions/LuaSyntaxException.h>
 
@@ -205,4 +206,60 @@ TEST(LuaCore, HasFunctionStackSizeRetentionFalse)
 	const int preStackSize = state->GetStackSize();
 	const bool hasFunction = state->HasFunction("func");
 	EXPECT_EQ(state->GetStackSize(), preStackSize);
+}
+
+TEST(LuaCore, GetLuaTableValue)
+{
+	const int expectedValue = 10;
+	const string rootName = "root";
+	const string tableValueName = "testValue";
+	auto state = LuaState::CreateFromString("");
+	LuaTable table = (*state)[rootName];
+	table.SetValue(expectedValue, tableValueName);
+
+	LuaTable tableGetter = (*state)[rootName];
+	int val = tableGetter.GetValue<int>(tableValueName);
+	EXPECT_EQ(val, expectedValue);
+}
+
+TEST(LuaCore, GetNestedLuaTableValue)
+{
+	const int expectedValue = 10;
+	const string rootName = "root";
+	const string tableValueName = "testValue";
+	const string nestedTableName = "nested";
+	auto state = LuaState::CreateFromString("");
+	LuaTable table = (*state)[rootName][nestedTableName];
+	table.SetValue(expectedValue, tableValueName);
+
+	LuaTable tableGetter = (*state)[rootName][nestedTableName];
+	int val = tableGetter.GetValue<int>(tableValueName);
+	EXPECT_EQ(val, expectedValue);
+}
+
+TEST(LuaCore, GetListBasedTable)
+{
+	const string values[7] = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+	const string tableName = "days";
+	string luaString;
+	luaString += tableName;
+	luaString += " = {";
+	for(int i = 0; i < values->length(); i++)
+	{
+		if(i > 0)
+			luaString += ", ";
+		
+		luaString += "\"";
+		luaString += values[i];
+		luaString += "\"";
+	}
+	luaString += "}";
+
+	auto state = LuaState::CreateFromString(luaString);
+	LuaTable table = (*state)[tableName];
+	
+	for (int i = 0; i < values->length(); i++)
+	{
+		EXPECT_EQ(values[i], table.GetValue<string>(i));
+	}
 }

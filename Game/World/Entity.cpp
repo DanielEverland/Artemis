@@ -53,4 +53,22 @@ void Entity::LoadScripts()
 		Logger::Log(LogCategoryEntity, Verbosity::Verbose, "Loading script \"" + scriptName + "\" for type \"" + static_cast<string>(*Type) + "\"");
 		Scripts.push_back(ModLoader::GetAllLuaFiles().at(scriptName).get());
 	}
+
+	//for (LuaState* state : Scripts)
+	//{
+	//	
+	//}
+	//ExposeFunctionsToScripts();
 }
+
+//void Entity::ExposeFunctionsToScripts()
+//{
+//	ExposeSetPositionToScripts();
+//}
+//
+//void Entity::ExposeSetPositionToScripts()
+//{
+//	/*for (LuaState* state : Scripts)
+//	{
+//	}*/
+//}

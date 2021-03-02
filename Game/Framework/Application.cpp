@@ -67,6 +67,7 @@ bool Application::Initialize()
 
 	initializationFailed |= !InitializeCore();
 
+	GlobalLuaState = std::make_shared<LuaState>(LuaState());
 	LoadLevel();
 	ModLoader::LoadMods();
 
@@ -137,8 +138,12 @@ void Application::CallLuaApplicationStarted() const
 		LuaState* luaState = (*iter).second.get();
 		if(luaState->HasFunction(JsonApplicationStartFunctionName))
 		{
+			TRY_START
+			
 			Logger::Log(LogCategoryApplication, Verbosity::Verbose, "Calling " + JsonApplicationStartFunctionName + " on " + (*iter).first);
 			luaState->CallFunction(JsonApplicationStartFunctionName);
+
+			TRY_END(LogCategoryApplication, Verbosity::Log)
 		}
 	}
 

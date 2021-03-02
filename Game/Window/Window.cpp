@@ -1,6 +1,8 @@
 #include "Window.h"
 #include "WindowCore.h"
 #include <Game/Framework/Application.h>
+#include <Game/World/EntityIterator.h>
+#include <Game/World/Entity.h>
 
 Window::Window() : IsShown(false), WindowPtr(nullptr), RendererPtr(nullptr)
 {
@@ -42,11 +44,16 @@ void Window::Draw() const
 
 	//RendererPtr->SetDrawColor(Color::White);
 	//RendererPtr->FillRect({ 10, 10, 10, 10 });
-
-	for(shared_ptr<Entity>& entity : *Application::Get()->GetWorld()->GetAllEntities())
+	
+	for(auto iter = GetWorld()->GetEntityIterator<Entity>(); iter; ++iter)
 	{
-		entity->Draw();
+		iter->Draw();
 	}
 	
 	RendererPtr->Present();
+}
+
+World* Window::GetWorld()
+{
+	return Application::GetWorld();
 }

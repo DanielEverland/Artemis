@@ -1,11 +1,9 @@
 ﻿#pragma once
 
-// Lua
-extern "C" {
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
-}
+#include <Lua/Src/lua.h>
+#include <Lua/Src/lualib.h>
+#include <Lua/Src/lauxlib.h>
+
 
 #include "LuaMagicNumbers.h"
 

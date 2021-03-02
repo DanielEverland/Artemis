@@ -7,16 +7,16 @@ class World;
 
 class Character : public Entity
 {
-public:
-	Character(const EntityType* type, World* world) : Entity(type, world), Appearance(nullptr) { }
-	virtual ~Character() = default;
-	static std::shared_ptr<Character> Create(World* world);
-
-	void Draw() override;
-	void Update() override;
-	
-	[[nodiscard]] Rect GetBounds() override;
-	
-private:
-	Texture* Appearance;
+//public:
+//	Character(const EntityType* type, World* world) : Entity(type, world), Appearance(nullptr) { }
+//	virtual ~Character() = default;
+//	static std::shared_ptr<Character> Create(World* world);
+//
+//	void Draw() override;
+//	void Update() override;
+//	
+//	[[nodiscard]] Rect GetBounds() override;
+//	
+//private:
+//	Texture* Appearance;
 };

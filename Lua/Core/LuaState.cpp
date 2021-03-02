@@ -49,6 +49,7 @@ std::unique_ptr<LuaState> LuaState::CreateFromString(const std::string& rawStrin
 LuaState::LuaState() : RawState(luaL_newstate(), lua_close)
 {
 	luaL_openlibs(RawState.get());
+	luaL_newmetatable(RawState.get(), LuaEntityMetaTableName.c_str());
 	ExposeFunction("NewEntity", &LuaState::CFunc_NewEntity);
 }
 

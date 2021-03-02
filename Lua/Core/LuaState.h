@@ -4,6 +4,8 @@
 #include <memory>
 
 #include <Lua/Exceptions/LuaException.h>
+#include <Lua/Src/lua.h>
+
 
 #include "LuaCoreMinimal.h"
 

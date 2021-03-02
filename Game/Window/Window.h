@@ -19,4 +19,6 @@ private:
 	bool IsShown;
 	struct SDL_Window* WindowPtr;
 	unique_ptr<Renderer> RendererPtr;
+	
+	static class World* GetWorld();
 };

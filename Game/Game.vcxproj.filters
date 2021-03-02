@@ -68,6 +68,9 @@
     <ClInclude Include="Framework\Time.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="World\EntityIterator.h">
+      <Filter>World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Modding">
@@ -137,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Time.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="World\EntityIterator.cpp">
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

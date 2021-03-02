@@ -7,6 +7,9 @@
     <Filter Include="Exceptions">
       <UniqueIdentifier>{5fa64e04-108b-418f-a129-46caca5f4e32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{279d6957-253f-4515-a499-fe30005a0aed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\LuaInstance.cpp">

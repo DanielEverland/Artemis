@@ -11,8 +11,9 @@ public:
 	Application();
 	~Application();
 
-	[[nodiscard]] World* GetWorld() const { return CurrentWorld.get(); }
-
+	[[nodiscard]] static World* GetWorld() { return Instance->CurrentWorld.get(); }
+	[[nodiscard]] static shared_ptr<LuaState> GetGlobalLuaState() { return Instance->GlobalLuaState; }
+	
 	bool Initialize();
 	void Start() const;
 	void LoadLevel();
@@ -24,6 +25,7 @@ private:
 	clock_t StartTime;
 	unique_ptr<Window> WindowPtr;
 	unique_ptr<World> CurrentWorld;
+	shared_ptr<LuaState> GlobalLuaState;
 
 	bool InitializeCore();
 	

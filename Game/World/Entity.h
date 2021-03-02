@@ -10,10 +10,9 @@ class EntityType;
 
 class Entity : public Object
 {
-public:
-	Entity(const EntityType* type, World* world);
-	virtual ~Entity() = default;
-
+public:	
+	static constexpr size_t LuaMembersSize = sizeof(Vector) + sizeof(Vector);
+	
 	[[nodiscard]] const EntityType* GetType() const { return Type; }
 	[[nodiscard]] const Json* GetData() const;
 	[[nodiscard]] virtual Rect GetBounds()  { return { { 0, 0 }, { 0, 0 } }; };
@@ -21,16 +20,38 @@ public:
 	virtual void Update();
 	virtual void Draw() { }
 
-protected:
+
+	Entity(Entity&& other)
+		: Object(std::move(other)),
+		  LocalPosition(std::move(other.LocalPosition)),
+		  LocalScale(std::move(other.LocalScale)),
+		  Type(other.Type),
+		  Scripts(std::move(other.Scripts))
+	{
+	}
+
+	Entity& operator=(Entity&& other)
+	{
+		if (this == &other)
+			return *this;
+		Object::operator =(std::move(other));
+		LocalPosition = std::move(other.LocalPosition);
+		LocalScale = std::move(other.LocalScale);
+		Type = other.Type;
+		Scripts = std::move(other.Scripts);
+		return *this;
+	}
+
 	Vector LocalPosition;
+protected:
 	Vector LocalScale;
+
+	LuaState* GetLuaState() const;
 	
 private:
 	const EntityType* Type;
 	std::vector<LuaState*> Scripts;
 
 	void LoadScripts();
-
-	/*void ExposeFunctionsToScripts();
-	void ExposeSetPositionToScripts();*/
+	//void CreateLuaUserData();
 };

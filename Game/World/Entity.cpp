@@ -12,14 +12,6 @@ namespace
 	const string LogCategoryEntity = "Entity";
 }
 
-Entity::Entity(const EntityType* type, World* world) : Object(world), LocalPosition(0, 0), LocalScale(1, 1), Type(type)
-{
-	if(type == nullptr)
-		throw ArgumentException("Type is null");
-
-	LoadScripts();
-}
-
 const Json* Entity::GetData() const
 {
 	return GetType()->GetData();
@@ -34,6 +26,11 @@ void Entity::Update()
 			state->CallFunction(LuaUpdateFunctionName);
 		}
 	}
+}
+
+LuaState* Entity::GetLuaState() const
+{
+	return nullptr;
 }
 
 void Entity::LoadScripts()
@@ -53,22 +50,10 @@ void Entity::LoadScripts()
 		Logger::Log(LogCategoryEntity, Verbosity::Verbose, "Loading script \"" + scriptName + "\" for type \"" + static_cast<string>(*Type) + "\"");
 		Scripts.push_back(ModLoader::GetAllLuaFiles().at(scriptName).get());
 	}
-
-	//for (LuaState* state : Scripts)
-	//{
-	//	
-	//}
-	//ExposeFunctionsToScripts();
 }
 
-//void Entity::ExposeFunctionsToScripts()
+//void Entity::CreateLuaUserData()
 //{
-//	ExposeSetPositionToScripts();
-//}
-//
-//void Entity::ExposeSetPositionToScripts()
-//{
-//	/*for (LuaState* state : Scripts)
-//	{
-//	}*/
+//	size_t userDataSize = LuaMembersSize;
+//	
 //}

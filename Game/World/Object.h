@@ -10,7 +10,7 @@ class Object
 {
 public:
 	virtual ~Object() = default;
-	Object(World* world);
+	//Object(World* world);
 
  	[[nodiscard]] virtual World* GetWorld() const { return PrivateWorld; }
 		

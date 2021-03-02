@@ -40,6 +40,7 @@
     <ClInclude Include="Window\WindowCore.h" />
     <ClInclude Include="World\Character.h" />
     <ClInclude Include="World\Entity.h" />
+    <ClInclude Include="World\EntityIterator.h" />
     <ClInclude Include="World\Object.h" />
     <ClInclude Include="World\World.h" />
   </ItemGroup>
@@ -58,6 +59,7 @@
     <ClCompile Include="Window\Window.cpp" />
     <ClCompile Include="World\Character.cpp" />
     <ClCompile Include="World\Entity.cpp" />
+    <ClCompile Include="World\EntityIterator.cpp" />
     <ClCompile Include="World\Object.cpp" />
     <ClCompile Include="World\World.cpp" />
   </ItemGroup>
@@ -231,7 +233,6 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\boost.1.72.0.0\build\boost.targets" Condition="Exists('..\packages\boost.1.72.0.0\build\boost.targets')" />
-    <Import Project="..\packages\lua.5.4.2\build\native\Lua.targets" Condition="Exists('..\packages\lua.5.4.2\build\native\Lua.targets')" />
     <Import Project="..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -239,7 +240,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\boost.1.72.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.72.0.0\build\boost.targets'))" />
-    <Error Condition="!Exists('..\packages\lua.5.4.2\build\native\Lua.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\lua.5.4.2\build\native\Lua.targets'))" />
     <Error Condition="!Exists('..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.9.1\build\native\nlohmann.json.targets'))" />
   </Target>
 </Project>

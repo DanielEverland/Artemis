@@ -8,6 +8,7 @@ namespace
 {
 	string JsonApplicationStartFunctionName = "ApplicationStart";
 	string LuaUpdateFunctionName = "Update";
+	string LuaEntityMetaTableName = "EntityMetaTable";
 
 	string JsonVariableScriptsName = "Scripts";
 }

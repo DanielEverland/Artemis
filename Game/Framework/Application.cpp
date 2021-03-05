@@ -9,6 +9,10 @@
 
 #include "Game/World/Character.h"
 
+// TEMP FOR TESTING
+#include <Lua/Src/lua.h>
+#include <Lua/Core/LuaCoreMinimal.h>
+
 Application* Application::Instance = nullptr;
 
 namespace
@@ -146,6 +150,4 @@ void Application::CallLuaApplicationStarted() const
 			TRY_END(LogCategoryApplication, Verbosity::Log)
 		}
 	}
-
-	//Character::Create(GetWorld());
 }

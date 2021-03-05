@@ -41,6 +41,7 @@ public:
 		Scripts = std::move(other.Scripts);
 		return *this;
 	}
+	std::vector<LuaState*> Scripts;
 
 	Vector LocalPosition;
 protected:
@@ -50,7 +51,6 @@ protected:
 	
 private:
 	const EntityType* Type;
-	std::vector<LuaState*> Scripts;
 
 	void LoadScripts();
 	//void CreateLuaUserData();

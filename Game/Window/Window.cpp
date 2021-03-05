@@ -47,7 +47,10 @@ void Window::Draw() const
 	
 	for(auto iter = GetWorld()->GetEntityIterator<Entity>(); iter; ++iter)
 	{
-		iter->Draw();
+#pragma warning(push, 0)
+		auto test = iter->Scripts;
+		if(test.size() > 0)
+			bool hasFunction = iter->Scripts[0]->HasFunction("Draw");
 	}
 	
 	RendererPtr->Present();

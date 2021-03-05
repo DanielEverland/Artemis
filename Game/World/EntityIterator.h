@@ -57,7 +57,7 @@ EntityIterator<T>& EntityIterator<T>::operator++()
 	{
 		++CurrentIterator;
 	}
-	while (!dynamic_cast<T*>(CurrentIterator->second.get()) && CurrentIterator != EndIterator);
+	while (CurrentIterator != EndIterator && !dynamic_cast<T*>(CurrentIterator->second.get()));
 	
 	return *this;
 }

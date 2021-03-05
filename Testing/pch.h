@@ -9,11 +9,7 @@
 
 #define LUA_USE_APICHECK
 
-extern "C" {
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
-}
+#include <Core/LuaCore.h>
 
 // JSON
 #include <Core/IO/Json.h>

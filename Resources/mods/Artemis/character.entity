@@ -1,8 +1,0 @@
-{
-    "Type" : "Character",
-    "BaseType" : "Base",
-    "Name" : "characterType",
-    "Texture" : "CharacterTexture",
-
-    "Scripts" : [ "Test" ]
-}

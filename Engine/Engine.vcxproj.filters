@@ -1,2 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{e03604f4-8c47-41ef-986a-9163d25c464c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Memory">
+      <UniqueIdentifier>{068b6206-6d74-4d09-9fd7-a07e66b711be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{8b70e661-6841-4cd8-bd6f-dbe4750ad298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Exception">
+      <UniqueIdentifier>{76673959-82de-44bb-a60d-6cd6717fa3e8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Memory\IAllocator.h">
+      <Filter>Source\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Types.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Memory\BaseAllocator.h">
+      <Filter>Source\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Memory\LinearAllocator.h">
+      <Filter>Source\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Exception\Exception.h">
+      <Filter>Source\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Exception\ArgumentException.h">
+      <Filter>Source\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Macros.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Memory\IDeallocator.h">
+      <Filter>Source\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Memory\AllocatorUtility.h">
+      <Filter>Source\Memory</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Memory\BaseAllocator.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\LinearAllocator.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\IAllocator.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Exception\Exception.cpp">
+      <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Exception\ArgumentException.cpp">
+      <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\IDeallocator.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\AllocatorUtility.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

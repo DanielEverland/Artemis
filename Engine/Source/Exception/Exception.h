@@ -10,9 +10,8 @@ namespace ArtemisEngine
 	class Exception : public std::runtime_error
 	{
 	public:
-		explicit Exception(const std::exception& e);
-		explicit Exception(const string& message);
-		explicit Exception(const char* const message);
+		explicit Exception(const string& message) : runtime_error(message) { }
+		explicit Exception(const char* const message) : runtime_error(message) { }
 
 		virtual ~Exception() = default;
 	};

@@ -20,15 +20,8 @@ LinearAllocator::~LinearAllocator() = default;
 #pragma warning(disable:4100)
 void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
 {
-	if(size == 0)
-	{
-		throw ArgumentException("Cannot allocate memory of non-positive size");
-	}
-
-	if(alignment == 0)
-	{
-		throw ArgumentException("Cannot allocate memory with an alignment of 0");
-	}
+	Assert(size > 0, ArgumentException("Cannot allocate memory of non-positive size"))
+	Assert(alignment > 0, ArgumentException("Cannot allocate memory with an alignment of 0"))
 
 	const uintptr_t currentAddress = GetAlignedPosition(alignment);
 	auto* const finalPointer = reinterpret_cast<void*>(currentAddress);

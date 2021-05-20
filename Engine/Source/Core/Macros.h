@@ -7,3 +7,5 @@
 NO_WARNING_BEGIN \
 expression \
 NO_WARNING_END
+
+#define Assert(expression, exception) if(!(expression)) { throw exception; }

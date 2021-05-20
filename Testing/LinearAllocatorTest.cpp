@@ -52,8 +52,12 @@ TEST_F(LinearAllocatorTest, SimpleAllocation)
 
 TEST_F(LinearAllocatorTest, ZeroSizeAssertion)
 {
-	const size_t allocatedSize = 0;
-	EXPECT_ANY_THROW(Allocator.Allocate(allocatedSize, 1));
+	EXPECT_THROW(Allocator.Allocate(0, alignof(A)), ArgumentException);
+}
+
+TEST_F(LinearAllocatorTest, AlignmentZeroDisallowed)
+{
+	EXPECT_THROW(Allocator.Allocate(sizeof(A), 0), ArgumentException);
 }
 
 TEST_F(LinearAllocatorTest, DoubleAllocationDifference)
@@ -99,7 +103,3 @@ TEST_F(LinearAllocatorTest, OffsetAllocationTest)
 	EXPECT_EQ(delta, 8);
 }
 
-TEST_F(LinearAllocatorTest, AlignmentZeroDisallowed)
-{
-	EXPECT_THROW(Allocator.Allocate(sizeof(A), 0), ArgumentException);
-}

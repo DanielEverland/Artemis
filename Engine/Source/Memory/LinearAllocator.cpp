@@ -17,7 +17,6 @@ LinearAllocator::LinearAllocator(void* start, size_t size) : BaseAllocator(start
 
 LinearAllocator::~LinearAllocator() = default;
 
-#pragma warning(disable:4100)
 void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
 {
 	Assert(size > 0, ArgumentException("Cannot allocate memory of non-positive size"))

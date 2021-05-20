@@ -33,9 +33,10 @@ void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
 	}
 
 	const uintptr_t currentAddress = GetAlignedPosition(alignment);
+	void* finalPointer = reinterpret_cast<void*>(currentAddress);
 	CurrentPosition = reinterpret_cast<void*>(currentAddress + size);
 	
-	return CurrentPosition;
+	return finalPointer;
 }
 
 uintptr_t LinearAllocator::GetAlignedPosition(const uint8 alignment) const

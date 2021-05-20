@@ -12,6 +12,11 @@ struct A
 	char a : 8;
 };
 
+struct B
+{
+	char c;
+};
+
 class AllocatorUtilityTest : public ::testing::Test
 {
 public:
@@ -43,4 +48,34 @@ TEST_F(AllocatorUtilityTest, MisalignedPointerNextAddress)
 	const uint8 returnedAdjustment = AllocatorUtility::GetMemoryAddressAdjustment(TestPtr, alignof(A));
 
 	EXPECT_EQ(expectedAdjustment, returnedAdjustment);
+}
+
+TEST_F(AllocatorUtilityTest, NaturalAdjustment)
+{
+	// This test wil dynamically allocate objects that need to be adjusted
+	// 8 BYTES  8 BYTES
+	// |        |        |        |
+	//
+	// This will allocate the following:
+	//     A
+	// |////////|
+	//
+	// Then we allocate B of 1 byte:
+	//     A         B
+	// |////////|/       |
+	//
+	// At this point if we allocate A again it needs an adjustment of 7 bytes
+	//     A         B       A
+	// |////////|/       |////////|
+	//
+	// Therefore the expected adjustment is 7.
+	const uint8 expectedAdjustment = 7;
+	
+	const auto currentAddress = reinterpret_cast<uintptr_t>(TestPtr);
+	const uint8 adjustmentA = AllocatorUtility::GetMemoryAddressAdjustment(TestPtr, alignof(B));
+	const uintptr_t bAddress = currentAddress + adjustmentA + sizeof(B);
+	void* bPtr = reinterpret_cast<void*>(bAddress);
+	const uint8 actualAdjustment = AllocatorUtility::GetMemoryAddressAdjustment(bPtr, alignof(A));
+
+	EXPECT_EQ(expectedAdjustment, actualAdjustment);
 }

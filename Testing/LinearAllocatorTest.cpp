@@ -30,9 +30,6 @@ struct A
 struct B
 {
 	char c;
-	__int64 d;
-	int b;
-	char a;
 };
 
 struct C
@@ -79,5 +76,23 @@ TEST_F(LinearAllocatorTest, DoubleAllocationAlignment)
 	const auto secondAddress = reinterpret_cast<uintptr_t>(Allocator.Allocate(requestedSizeB, alignmentB));
 	const uintptr_t delta = secondAddress - firstAddress;
 	
-	EXPECT_EQ(delta, requestedSizeB);
+	EXPECT_EQ(delta, requestedSizeA);
+}
+
+TEST_F(LinearAllocatorTest, OffsetAllocationTest)
+{
+	const size_t requestedSizeA = sizeof(A);
+	const size_t alignmentA = alignof(A);
+
+	const size_t requestedSizeB = sizeof(B);
+	const size_t alignmentB = alignof(B);
+	
+	const auto firstAddress = reinterpret_cast<uintptr_t>(Allocator.Allocate(requestedSizeB, alignmentB));
+	const auto secondAddress = reinterpret_cast<uintptr_t>(Allocator.Allocate(requestedSizeA, alignmentA));
+	const uintptr_t delta = secondAddress - firstAddress;
+
+	// We expect the delta to be 8, even though the size of B is only 1.
+	// This is because it's been shifted 7 bytes to become aligned.
+	EXPECT_EQ(requestedSizeB, 1);
+	EXPECT_EQ(delta, 8);
 }

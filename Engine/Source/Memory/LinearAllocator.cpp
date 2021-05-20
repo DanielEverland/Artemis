@@ -6,7 +6,7 @@
 
 using namespace ArtemisEngine;
 
-LinearAllocator::LinearAllocator() : BaseAllocator()
+LinearAllocator::LinearAllocator() : BaseAllocator(), CurrentPosition(nullptr)
 {
 }
 
@@ -15,9 +15,7 @@ LinearAllocator::LinearAllocator(void* start, size_t size) : BaseAllocator(start
 	CurrentPosition = StartPosition;
 }
 
-LinearAllocator::~LinearAllocator()
-{
-}
+LinearAllocator::~LinearAllocator() = default;
 
 #pragma warning(disable:4100)
 void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
@@ -33,8 +31,8 @@ void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
 	}
 
 	const uintptr_t currentAddress = GetAlignedPosition(alignment);
-	void* finalPointer = reinterpret_cast<void*>(currentAddress);
-	CurrentPosition = reinterpret_cast<void*>(currentAddress + size);
+	auto* const finalPointer = reinterpret_cast<void*>(currentAddress);
+	ForwardPosition(size);
 	
 	return finalPointer;
 }
@@ -46,8 +44,9 @@ uintptr_t LinearAllocator::GetAlignedPosition(const uint8 alignment) const
 	return currentPositionAddress + adjustment;
 }
 
-void LinearAllocator::ForwardPosition(uintptr_t currentAddress, size_t size, uint8 alignment)
+void LinearAllocator::ForwardPosition(const size_t size)
 {
-	const uintptr_t newPos = currentAddress + size + alignment;
-	CurrentPosition = reinterpret_cast<void*>(newPos);
+	const auto currentPositionAddress = reinterpret_cast<uintptr_t>(CurrentPosition);
+	const uintptr_t newAddress = currentPositionAddress + size;
+	CurrentPosition = reinterpret_cast<void*>(newAddress);
 }

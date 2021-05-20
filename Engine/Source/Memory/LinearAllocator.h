@@ -10,7 +10,7 @@ namespace ArtemisEngine
 	public:
 		LinearAllocator();
 		LinearAllocator(void* start, size_t size);
-		~LinearAllocator();
+		virtual ~LinearAllocator();
 		
 		void* Allocate(const size_t size, const uint8 alignment) override;
 
@@ -18,6 +18,6 @@ namespace ArtemisEngine
 		void* CurrentPosition;
 
 		[[nodiscard]] uintptr_t GetAlignedPosition(const uint8 alignment) const;
-		void ForwardPosition(uintptr_t currentAddress, size_t size, uint8 alignment);
+		void ForwardPosition(const size_t size);
 	};
 }

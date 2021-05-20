@@ -3,6 +3,8 @@
 #include <Memory/LinearAllocator.h>
 #include <Memory/AllocatorUtility.h>
 
+#include "Exception/ArgumentException.h"
+
 using namespace ArtemisEngine;
 
 class LinearAllocatorTest : public ::testing::Test
@@ -95,4 +97,9 @@ TEST_F(LinearAllocatorTest, OffsetAllocationTest)
 	// This is because it's been shifted 7 bytes to become aligned.
 	EXPECT_EQ(requestedSizeB, 1);
 	EXPECT_EQ(delta, 8);
+}
+
+TEST_F(LinearAllocatorTest, AlignmentZeroDisallowed)
+{
+	EXPECT_THROW(Allocator.Allocate(sizeof(A), 0), ArgumentException);
 }

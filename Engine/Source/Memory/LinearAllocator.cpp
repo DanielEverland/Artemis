@@ -29,6 +29,11 @@ void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
 	return finalPointer;
 }
 
+void LinearAllocator::Clear()
+{
+	CurrentPosition = StartPosition;
+}
+
 uintptr_t LinearAllocator::GetAlignedPosition(const uint8 alignment) const
 {
 	const uint8 adjustment = AllocatorUtility::GetMemoryAddressAdjustment(CurrentPosition, alignment);

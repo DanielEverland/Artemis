@@ -12,6 +12,8 @@ namespace ArtemisEngine
 		BaseAllocator(void* start, size_t size);
 		virtual ~BaseAllocator() = default;
 
+		virtual void Clear() = 0;
+
 	protected:
 		void* StartPosition;
 		size_t Size;

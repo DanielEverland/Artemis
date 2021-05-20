@@ -13,11 +13,13 @@ public:
 	LinearAllocatorTest()
 	{
 		const size_t testSize = 1 * 1024;
-		void* testMemory = malloc(testSize);
-		Allocator = LinearAllocator(testMemory, testSize);
+		AllocatorStart = malloc(testSize);
+		Allocator = LinearAllocator(AllocatorStart, testSize);
 	}
+
 	
 protected:
+	void* AllocatorStart;
 	LinearAllocator Allocator;
 };
 
@@ -103,3 +105,20 @@ TEST_F(LinearAllocatorTest, OffsetAllocationTest)
 	EXPECT_EQ(delta, 8);
 }
 
+TEST_F(LinearAllocatorTest, Clear)
+{
+	const auto startAddress = reinterpret_cast<uintptr_t>(AllocatorStart);
+	const size_t requestedSizeA = sizeof(A);
+	const size_t alignmentA = alignof(A);
+	
+	const auto firstAddress = reinterpret_cast<uintptr_t>(Allocator.Allocate(requestedSizeA, alignmentA));
+	const auto secondAddress = reinterpret_cast<uintptr_t>(Allocator.Allocate(requestedSizeA, alignmentA));
+
+	Allocator.Clear();
+	
+	const auto thirdAddress = reinterpret_cast<uintptr_t>(Allocator.Allocate(requestedSizeA, alignmentA));
+
+	EXPECT_EQ(startAddress, firstAddress);
+	EXPECT_LT(startAddress, secondAddress);
+	EXPECT_EQ(startAddress, thirdAddress);
+}

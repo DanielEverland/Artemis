@@ -2,6 +2,7 @@
 
 
 #include "Exception/ArgumentException.h"
+#include "Exception/OutOfMemoryException.h"
 #include "Exception/Exception.h"
 
 using namespace ArtemisEngine;
@@ -29,5 +30,18 @@ TEST(ExceptionTests, ArgumentExceptionStringConstructor)
 TEST(ExceptionTests, ArgumentExceptionCBasedStringConstructor)
 {
 	const auto exception = ArgumentException("Message");
+	EXPECT_EQ(exception.what(), static_cast<string>("Message"));
+}
+
+TEST(ExceptionTests, OutOfMemoryExceptionStringConstructor)
+{
+	const auto message = string("Message");
+	const auto exception = OutOfMemoryException(message);
+	EXPECT_EQ(exception.what(), message);
+}
+
+TEST(ExceptionTests, OutOfMemoryExceptionCBasedStringConstructor)
+{
+	const auto exception = OutOfMemoryException("Message");
 	EXPECT_EQ(exception.what(), static_cast<string>("Message"));
 }

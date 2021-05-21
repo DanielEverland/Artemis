@@ -2,26 +2,10 @@
 
 #include <Memory/LinearAllocator.h>
 #include <Memory/AllocatorUtility.h>
-
-#include "Exception/ArgumentException.h"
+#include <Exception/ArgumentException.h>
+#include <Exception/OutOfMemoryException.h>
 
 using namespace ArtemisEngine;
-
-class LinearAllocatorTest : public ::testing::Test
-{
-public:
-	LinearAllocatorTest()
-	{
-		const size_t testSize = 1 * 1024;
-		AllocatorStart = malloc(testSize);
-		Allocator = LinearAllocator(AllocatorStart, testSize);
-	}
-
-	
-protected:
-	void* AllocatorStart;
-	LinearAllocator Allocator;
-};
 
 struct A
 {
@@ -43,6 +27,28 @@ struct C
 	char a;
 	char c;
 	char unused[2];
+};
+
+class LinearAllocatorTest : public ::testing::Test
+{
+public:
+	LinearAllocatorTest()
+	{
+		const size_t testSize = 1 * 1024;
+		AllocatorStart = malloc(testSize);
+		Allocator = LinearAllocator(AllocatorStart, testSize);
+
+		const size_t smallTestSize = sizeof(B);
+		SmallAllocatorStart = malloc(smallTestSize);
+		SmallAllocator = LinearAllocator(SmallAllocatorStart, smallTestSize);
+	}
+
+	
+protected:
+	void* AllocatorStart;
+	void* SmallAllocatorStart;
+	LinearAllocator Allocator;
+	LinearAllocator SmallAllocator;
 };
 
 TEST_F(LinearAllocatorTest, SimpleAllocation)
@@ -126,4 +132,11 @@ TEST_F(LinearAllocatorTest, Clear)
 TEST_F(LinearAllocatorTest, NonPowerOfTwoAlignment)
 {
 	EXPECT_THROW(Allocator.Allocate(sizeof(A), 3), ArgumentException);
+}
+
+TEST_F(LinearAllocatorTest, OutOfMemoryException)
+{
+	// SmallAllocator has an exact size of B
+	EXPECT_NO_THROW(SmallAllocator.Allocate(sizeof(B), alignof(B)));
+	EXPECT_THROW(SmallAllocator.Allocate(sizeof(B), alignof(B)), OutOfMemoryException);
 }

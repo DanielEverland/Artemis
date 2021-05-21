@@ -4,6 +4,7 @@
 #include <Exception/ArgumentException.h>
 
 #include "AllocatorUtility.h"
+#include "Exception/OutOfMemoryException.h"
 
 using namespace ArtemisEngine;
 
@@ -26,6 +27,9 @@ void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
 
 	const uintptr_t currentAddress = GetAlignedPosition(alignment);
 	auto* const finalPointer = reinterpret_cast<void*>(currentAddress);
+
+	Assert(!IsOutOfBounds(finalPointer, size), OutOfMemoryException("LinearAllocator failed allocation due to running out of memory"))
+	
 	ForwardPosition(size);
 	
 	return finalPointer;

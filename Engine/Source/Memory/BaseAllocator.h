@@ -15,6 +15,8 @@ namespace ArtemisEngine
 		virtual void Clear() = 0;
 
 	protected:
+		bool IsOutOfBounds(void* pointer, size_t size) const;
+		
 		void* StartPosition;
 		size_t Size;
 	};

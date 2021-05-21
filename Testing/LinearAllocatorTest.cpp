@@ -122,3 +122,8 @@ TEST_F(LinearAllocatorTest, Clear)
 	EXPECT_LT(startAddress, secondAddress);
 	EXPECT_EQ(startAddress, thirdAddress);
 }
+
+TEST_F(LinearAllocatorTest, NonPowerOfTwoAlignment)
+{
+	EXPECT_THROW(Allocator.Allocate(sizeof(A), 3), ArgumentException);
+}

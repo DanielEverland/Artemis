@@ -1,5 +1,6 @@
 ﻿#include "LinearAllocator.h"
 
+#include <Core/Math.h>
 #include <Exception/ArgumentException.h>
 
 #include "AllocatorUtility.h"
@@ -21,6 +22,7 @@ void* LinearAllocator::Allocate(const size_t size, const uint8 alignment)
 {
 	Assert(size > 0, ArgumentException("Cannot allocate memory of non-positive size"))
 	Assert(alignment > 0, ArgumentException("Cannot allocate memory with an alignment of 0"))
+	Assert(Math::IsPowerOfTwo(alignment), ArgumentException("Alignment must be power of two!"))
 
 	const uintptr_t currentAddress = GetAlignedPosition(alignment);
 	auto* const finalPointer = reinterpret_cast<void*>(currentAddress);

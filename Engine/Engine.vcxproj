@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Core\Macros.h" />
+    <ClInclude Include="Source\Core\Math.h" />
     <ClInclude Include="Source\Core\Types.h" />
     <ClInclude Include="Source\Exception\ArgumentException.h" />
     <ClInclude Include="Source\Exception\Exception.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Source\Memory\LinearAllocator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Core\Math.cpp" />
     <ClCompile Include="Source\Exception\ArgumentException.cpp" />
     <ClCompile Include="Source\Exception\Exception.cpp" />
     <ClCompile Include="Source\Memory\AllocatorUtility.cpp" />

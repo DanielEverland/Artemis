@@ -1,6 +1,7 @@
 #include "pch.h"
 
-#include "Memory/AllocatorUtility.h"
+#include <Exception/ArgumentException.h>
+#include <Memory/AllocatorUtility.h>
 
 using namespace ArtemisEngine;
 
@@ -78,4 +79,9 @@ TEST_F(AllocatorUtilityTest, NaturalAdjustment)
 	const uint8 actualAdjustment = AllocatorUtility::GetMemoryAddressAdjustment(bPtr, alignof(A));
 
 	EXPECT_EQ(expectedAdjustment, actualAdjustment);
+}
+
+TEST_F(AllocatorUtilityTest, NonPowerOfTwoAlignment)
+{
+	EXPECT_THROW(AllocatorUtility::GetMemoryAddressAdjustment(TestPtr, 3), ArgumentException);
 }

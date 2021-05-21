@@ -45,6 +45,9 @@
     <ClInclude Include="Source\Memory\AllocatorUtility.h">
       <Filter>Source\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\Math.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -67,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="Source\Memory\AllocatorUtility.cpp">
       <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Math.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

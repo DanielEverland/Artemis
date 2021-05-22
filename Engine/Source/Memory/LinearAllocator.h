@@ -13,7 +13,7 @@ namespace ArtemisEngine
 		virtual ~LinearAllocator();
 		
 		void* Allocate(const size_t size, const uint8 alignment) override;
-		void Clear() override;
+		void Clear();
 		
 	private:
 		void* CurrentPosition;

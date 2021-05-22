@@ -12,8 +12,6 @@ namespace ArtemisEngine
 		BaseAllocator(void* start, size_t size);
 		virtual ~BaseAllocator() = default;
 
-		virtual void Clear() = 0;
-
 	protected:
 		bool IsOutOfBounds(void* pointer, size_t size) const;
 		

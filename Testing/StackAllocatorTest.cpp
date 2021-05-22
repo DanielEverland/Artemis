@@ -43,6 +43,7 @@ protected:
 	StackAllocator Allocator;
 };
 
+#ifdef ENABLE_ASSERT
 TEST_F(StackAllocatorTest, ZeroSizeAssertion)
 {
 	EXPECT_THROW(Allocator.Allocate(0, alignof(A)), ArgumentException);
@@ -57,3 +58,4 @@ TEST_F(StackAllocatorTest, NonPowerOfTwoAlignment)
 {
 	EXPECT_THROW(Allocator.Allocate(sizeof(A), 3), ArgumentException);
 }
+#endif

@@ -81,7 +81,9 @@ TEST_F(AllocatorUtilityTest, NaturalAdjustment)
 	EXPECT_EQ(expectedAdjustment, actualAdjustment);
 }
 
+#ifdef ENABLE_ASSERT
 TEST_F(AllocatorUtilityTest, NonPowerOfTwoAlignment)
 {
 	EXPECT_THROW(AllocatorUtility::GetMemoryAddressAdjustment(TestPtr, 3), ArgumentException);
 }
+#endif

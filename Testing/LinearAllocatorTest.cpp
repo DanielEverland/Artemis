@@ -58,16 +58,6 @@ TEST_F(LinearAllocatorTest, SimpleAllocation)
 	EXPECT_TRUE(allocatedMemory != nullptr);
 }
 
-TEST_F(LinearAllocatorTest, ZeroSizeAssertion)
-{
-	EXPECT_THROW(Allocator.Allocate(0, alignof(A)), ArgumentException);
-}
-
-TEST_F(LinearAllocatorTest, AlignmentZeroDisallowed)
-{
-	EXPECT_THROW(Allocator.Allocate(sizeof(A), 0), ArgumentException);
-}
-
 TEST_F(LinearAllocatorTest, DoubleAllocationDifference)
 {
 	void* firstMemory = Allocator.Allocate(sizeof(A), alignof(A));
@@ -129,6 +119,17 @@ TEST_F(LinearAllocatorTest, Clear)
 	EXPECT_EQ(startAddress, thirdAddress);
 }
 
+#ifdef ENABLE_ASSERT
+TEST_F(LinearAllocatorTest, ZeroSizeAssertion)
+{
+	EXPECT_THROW(Allocator.Allocate(0, alignof(A)), ArgumentException);
+}
+
+TEST_F(LinearAllocatorTest, AlignmentZeroDisallowed)
+{
+	EXPECT_THROW(Allocator.Allocate(sizeof(A), 0), ArgumentException);
+}
+
 TEST_F(LinearAllocatorTest, NonPowerOfTwoAlignment)
 {
 	EXPECT_THROW(Allocator.Allocate(sizeof(A), 3), ArgumentException);
@@ -140,3 +141,4 @@ TEST_F(LinearAllocatorTest, OutOfMemoryException)
 	EXPECT_NO_THROW(SmallAllocator.Allocate(sizeof(B), alignof(B)));
 	EXPECT_THROW(SmallAllocator.Allocate(sizeof(B), alignof(B)), OutOfMemoryException);
 }
+#endif

@@ -167,6 +167,7 @@
     <ClInclude Include="Source\Memory\IAllocator.h" />
     <ClInclude Include="Source\Memory\IDeallocator.h" />
     <ClInclude Include="Source\Memory\LinearAllocator.h" />
+    <ClInclude Include="Source\Memory\StackAllocator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Core\Math.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Source\Memory\IAllocator.cpp" />
     <ClCompile Include="Source\Memory\IDeallocator.cpp" />
     <ClCompile Include="Source\Memory\LinearAllocator.cpp" />
+    <ClCompile Include="Source\Memory\StackAllocator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

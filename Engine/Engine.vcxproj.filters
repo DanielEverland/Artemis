@@ -51,6 +51,9 @@
     <ClInclude Include="Source\Exception\OutOfMemoryException.h">
       <Filter>Source\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Memory\StackAllocator.h">
+      <Filter>Source\Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="Source\Exception\OutOfMemoryException.cpp">
       <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\StackAllocator.cpp">
+      <Filter>Source\Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

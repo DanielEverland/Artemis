@@ -19,3 +19,20 @@ uint8 AllocatorUtility::GetMemoryAddressAdjustment(void* address, uint8 alignmen
 
 	return adjustment;
 }
+
+uint8 AllocatorUtility::GetMemoryAddressAdjustmentWithHeader(void* address, uint8 alignment, uint8 headerSize)
+{
+	Assert(headerSize > 0, ArgumentException("Header size must be a positive unsigned int"));
+	
+	uint8 adjustment = GetMemoryAddressAdjustment(address, alignment);
+	
+	if(adjustment < headerSize)
+	{
+		adjustment += alignment * ((headerSize - adjustment) / alignment);
+
+		if(headerSize % alignment > 0)
+			adjustment += alignment;
+	}
+
+	return adjustment;
+}

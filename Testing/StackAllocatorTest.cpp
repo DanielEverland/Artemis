@@ -2,6 +2,7 @@
 
 
 #include "Exception/ArgumentException.h"
+#include "Exception/OutOfMemoryException.h"
 #include "Memory/StackAllocator.h"
 
 using namespace ArtemisEngine;
@@ -42,6 +43,36 @@ protected:
 	void* AllocatorStart;
 	StackAllocator Allocator;
 };
+
+TEST_F(StackAllocatorTest, ReallocationSamePointer)
+{
+	const void* firstPtr = Allocator.Allocate(sizeof(A), alignof(A));
+	Allocator.Deallocate(firstPtr);
+	const void* secondPtr = Allocator.Allocate(sizeof(A), alignof(A));
+
+	EXPECT_EQ(firstPtr, secondPtr);
+}
+
+#ifdef _DEBUG
+TEST_F(StackAllocatorTest, OutOfMemory)
+{
+	StackAllocator smallAllocator(malloc(sizeof(A)), sizeof(A));
+
+	// This won't work, since it also needs size for the header
+	EXPECT_THROW(smallAllocator.Allocate(sizeof(A), alignof(A)), OutOfMemoryException);
+}
+
+TEST_F(StackAllocatorTest, DeallocateNonTopException)
+{
+	const void* firstPtr = Allocator.Allocate(sizeof(A), alignof(A));
+	const void* secondPtr = Allocator.Allocate(sizeof(A), alignof(A));
+	const void* thirdPtr = Allocator.Allocate(sizeof(A), alignof(A));
+
+	EXPECT_NO_THROW(Allocator.Deallocate(thirdPtr));
+	EXPECT_THROW(Allocator.Deallocate(firstPtr), ArgumentException);
+	EXPECT_NO_THROW(Allocator.Deallocate(secondPtr));
+}
+#endif
 
 #ifdef ENABLE_ASSERT
 TEST_F(StackAllocatorTest, ZeroSizeAssertion)

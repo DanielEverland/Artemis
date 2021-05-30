@@ -5,5 +5,5 @@ class IDeallocator
 public:
 	virtual ~IDeallocator() = default;
 	
-	virtual void Deallocate(void* block) = 0;
+	virtual void Deallocate(const void* const block) = 0;
 };

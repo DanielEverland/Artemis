@@ -75,6 +75,21 @@ TEST_F(StackAllocatorTest, DeallocateNonTopException)
 #endif
 
 #ifdef ENABLE_ASSERT
+TEST_F(StackAllocatorTest, ZeroSizeCreationAssert)
+{
+	EXPECT_THROW(StackAllocator(AllocatorStart, 0), ArgumentException);
+}
+
+TEST_F(StackAllocatorTest, OnlyHeaderSizeCreationAssert)
+{
+	EXPECT_THROW(StackAllocator(AllocatorStart, 1), ArgumentException);
+}
+
+TEST_F(StackAllocatorTest, InvalidStartPointerAssert)
+{
+	EXPECT_THROW(StackAllocator(nullptr, sizeof(A)), ArgumentException);
+}
+
 TEST_F(StackAllocatorTest, ZeroSizeAssertion)
 {
 	EXPECT_THROW(Allocator.Allocate(0, alignof(A)), ArgumentException);

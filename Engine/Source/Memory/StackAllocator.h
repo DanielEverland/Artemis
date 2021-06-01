@@ -25,10 +25,10 @@ namespace ArtemisEngine
 #endif
 		};
 		
-		void* Current;
+		void* Current{};
 
 #if _DEBUG
-		void* Previous;
+		void* Previous{};
 #endif
 		
 		static uint8 GetHeaderSize();

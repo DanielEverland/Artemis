@@ -15,6 +15,7 @@ StackAllocator::StackAllocator() : BaseAllocator()
 
 StackAllocator::StackAllocator(void* start, size_t size) : BaseAllocator(start, size)
 {
+	Assert(size > sizeof(AllocationHeader), ArgumentException("StackAllocator size must be larger than size of header!"));
 	Current = StartPosition;
 
 #if _DEBUG

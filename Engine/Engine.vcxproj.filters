@@ -54,6 +54,9 @@
     <ClInclude Include="Source\Memory\StackAllocator.h">
       <Filter>Source\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Memory\FreeListAllocator.h">
+      <Filter>Source\Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source\Exception</Filter>
     </ClCompile>
     <ClCompile Include="Source\Memory\StackAllocator.cpp">
+      <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Memory\FreeListAllocator.cpp">
       <Filter>Source\Memory</Filter>
     </ClCompile>
   </ItemGroup>

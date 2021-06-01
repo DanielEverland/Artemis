@@ -5,6 +5,8 @@
 #include <Exception/ArgumentException.h>
 #include <Exception/OutOfMemoryException.h>
 
+#include "Memory/StackAllocator.h"
+
 using namespace ArtemisEngine;
 
 struct A
@@ -120,6 +122,16 @@ TEST_F(LinearAllocatorTest, Clear)
 }
 
 #ifdef ENABLE_ASSERT
+TEST_F(LinearAllocatorTest, ZeroSizeCreationAssert)
+{
+	EXPECT_THROW(LinearAllocator(AllocatorStart, 0), ArgumentException);
+}
+
+TEST_F(LinearAllocatorTest, InvalidStartPointerAssert)
+{
+	EXPECT_THROW(LinearAllocator(nullptr, sizeof(A)), ArgumentException);
+}
+
 TEST_F(LinearAllocatorTest, ZeroSizeAssertion)
 {
 	EXPECT_THROW(Allocator.Allocate(0, alignof(A)), ArgumentException);

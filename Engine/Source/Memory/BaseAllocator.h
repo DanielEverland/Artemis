@@ -13,7 +13,7 @@ namespace ArtemisEngine
 		virtual ~BaseAllocator() = default;
 
 	protected:
-		bool IsOutOfBounds(void* pointer, size_t size) const;
+		bool IsOutOfBounds(const void* const pointer, size_t size = 0) const;
 		
 		void* StartPosition;
 		size_t Size;

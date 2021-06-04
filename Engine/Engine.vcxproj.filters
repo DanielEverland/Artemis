@@ -57,6 +57,9 @@
     <ClInclude Include="Source\Memory\FreeListAllocator.h">
       <Filter>Source\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Exception\NullPointerException.h">
+      <Filter>Source\Exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -91,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="Source\Memory\FreeListAllocator.cpp">
       <Filter>Source\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Exception\NullPointerException.cpp">
+      <Filter>Source\Exception</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -42,6 +42,7 @@
   <ItemGroup>
     <ClCompile Include="AllocatorUtilityTest.cpp" />
     <ClCompile Include="ExceptionTests.cpp" />
+    <ClCompile Include="FreeListAllocator.cpp" />
     <ClCompile Include="LinearAllocatorTest.cpp" />
     <ClCompile Include="MathTest.cpp" />
     <ClCompile Include="pch.cpp">

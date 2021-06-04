@@ -36,3 +36,8 @@ uint8 AllocatorUtility::GetMemoryAddressAdjustmentWithHeader(void* address, uint
 
 	return adjustment;
 }
+
+uintptr_t AllocatorUtility::GetAddress(const void* ptr)
+{
+	return reinterpret_cast<uintptr_t>(ptr);
+}

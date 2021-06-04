@@ -1,9 +1,9 @@
 #include "pch.h"
 
-
 #include "Exception/ArgumentException.h"
 #include "Exception/OutOfMemoryException.h"
 #include "Exception/Exception.h"
+#include "Exception/NullPointerException.h"
 
 using namespace ArtemisEngine;
 
@@ -43,5 +43,18 @@ TEST(ExceptionTests, OutOfMemoryExceptionStringConstructor)
 TEST(ExceptionTests, OutOfMemoryExceptionCBasedStringConstructor)
 {
 	const auto exception = OutOfMemoryException("Message");
+	EXPECT_EQ(exception.what(), static_cast<string>("Message"));
+}
+
+TEST(ExceptionTests, NullPointerExceptionStringConstructor)
+{
+	const auto message = string("Message");
+	const auto exception = NullPointerException(message);
+	EXPECT_EQ(exception.what(), message);
+}
+
+TEST(ExceptionTests, NullPointerExceptionCBasedStringConstructor)
+{
+	const auto exception = NullPointerException("Message");
 	EXPECT_EQ(exception.what(), static_cast<string>("Message"));
 }

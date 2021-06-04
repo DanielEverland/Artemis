@@ -161,6 +161,7 @@
     <ClInclude Include="Source\Core\Types.h" />
     <ClInclude Include="Source\Exception\ArgumentException.h" />
     <ClInclude Include="Source\Exception\Exception.h" />
+    <ClInclude Include="Source\Exception\NullPointerException.h" />
     <ClInclude Include="Source\Exception\OutOfMemoryException.h" />
     <ClInclude Include="Source\Memory\AllocatorUtility.h" />
     <ClInclude Include="Source\Memory\BaseAllocator.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Source\Core\Math.cpp" />
     <ClCompile Include="Source\Exception\ArgumentException.cpp" />
     <ClCompile Include="Source\Exception\Exception.cpp" />
+    <ClCompile Include="Source\Exception\NullPointerException.cpp" />
     <ClCompile Include="Source\Exception\OutOfMemoryException.cpp" />
     <ClCompile Include="Source\Memory\AllocatorUtility.cpp" />
     <ClCompile Include="Source\Memory\BaseAllocator.cpp" />

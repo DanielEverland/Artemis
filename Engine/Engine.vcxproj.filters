@@ -13,6 +13,9 @@
     <Filter Include="Source\Exception">
       <UniqueIdentifier>{76673959-82de-44bb-a60d-6cd6717fa3e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Application">
+      <UniqueIdentifier>{aa315ef0-7efd-40a2-a7e7-0b764cb684fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Memory\IAllocator.h">
@@ -60,6 +63,9 @@
     <ClInclude Include="Source\Exception\NullPointerException.h">
       <Filter>Source\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Application\Application.h">
+      <Filter>Source\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -97,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="Source\Exception\NullPointerException.cpp">
       <Filter>Source\Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\Application.cpp">
+      <Filter>Source\Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

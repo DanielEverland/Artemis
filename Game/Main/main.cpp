@@ -1,8 +1,10 @@
+#include <Windows.h>
+
 #include <Application/Application.h>
 
 using namespace ArtemisEngine;
 
-int main(int argc, char* argv[])
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
 	Application primaryApplication;
 	primaryApplication.RunMainLoop();

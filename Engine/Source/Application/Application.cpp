@@ -5,6 +5,13 @@
 
 using namespace ArtemisEngine;
 
+Application::Application()
+{
+    InitializeSDL();
+    CreatePrimaryAllocator();
+    CreateMainWindow();
+}
+
 Application::~Application()
 {
 	MainWindow.reset();
@@ -14,9 +21,6 @@ Application::~Application()
 
 void Application::RunMainLoop()
 {
-	CreatePrimaryAllocator();
-    CreateMainWindow();
-
     while (true)
     {
         if (!MainLoop())
@@ -59,4 +63,12 @@ bool Application::MainLoop() const
 	MainWindow->Draw();
 
 	return true;
+}
+
+void Application::InitializeSDL()
+{
+    // Initialize SDL. SDL_Init will return -1 if it fails.
+    if (SDL_Init(0) < 0) {
+        system("pause");
+    }
 }

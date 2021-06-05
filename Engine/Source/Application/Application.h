@@ -10,6 +10,7 @@ namespace ArtemisEngine
 	class Application
 	{
 	public:
+		Application();
 		~Application();
 		
 		void RunMainLoop();
@@ -21,6 +22,7 @@ namespace ArtemisEngine
 		[[nodiscard]] static size_t GetStartMemoryAllocationSize();
 
 		bool MainLoop() const;
+		static void InitializeSDL();
 		void CreatePrimaryAllocator();
 		void CreateMainWindow();
 	};

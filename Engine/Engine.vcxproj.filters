@@ -16,6 +16,9 @@
     <Filter Include="Source\Application">
       <UniqueIdentifier>{aa315ef0-7efd-40a2-a7e7-0b764cb684fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\IO">
+      <UniqueIdentifier>{bb52f2bc-8842-40a7-8578-ff13da981ff2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Memory\IAllocator.h">
@@ -66,6 +69,15 @@
     <ClInclude Include="Source\Application\Application.h">
       <Filter>Source\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\SizeDef.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IO\Path.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IO\Directory.h">
+      <Filter>Source\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -106,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="Source\Application\Application.cpp">
       <Filter>Source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IO\Path.cpp">
+      <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\IO\Directory.cpp">
+      <Filter>Source\IO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

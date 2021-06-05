@@ -159,11 +159,14 @@
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Core\Macros.h" />
     <ClInclude Include="Source\Core\Math.h" />
+    <ClInclude Include="Source\Core\SizeDef.h" />
     <ClInclude Include="Source\Core\Types.h" />
     <ClInclude Include="Source\Exception\ArgumentException.h" />
     <ClInclude Include="Source\Exception\Exception.h" />
     <ClInclude Include="Source\Exception\NullPointerException.h" />
     <ClInclude Include="Source\Exception\OutOfMemoryException.h" />
+    <ClInclude Include="Source\IO\Directory.h" />
+    <ClInclude Include="Source\IO\Path.h" />
     <ClInclude Include="Source\Memory\AllocatorUtility.h" />
     <ClInclude Include="Source\Memory\BaseAllocator.h" />
     <ClInclude Include="Source\Memory\FreeListAllocator.h" />
@@ -179,6 +182,8 @@
     <ClCompile Include="Source\Exception\Exception.cpp" />
     <ClCompile Include="Source\Exception\NullPointerException.cpp" />
     <ClCompile Include="Source\Exception\OutOfMemoryException.cpp" />
+    <ClCompile Include="Source\IO\Directory.cpp" />
+    <ClCompile Include="Source\IO\Path.cpp" />
     <ClCompile Include="Source\Memory\AllocatorUtility.cpp" />
     <ClCompile Include="Source\Memory\BaseAllocator.cpp" />
     <ClCompile Include="Source\Memory\FreeListAllocator.cpp" />

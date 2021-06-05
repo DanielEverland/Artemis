@@ -8,9 +8,7 @@ NO_WARNING_BEGIN \
 expression \
 NO_WARNING_END
 
-#ifdef _DEBUG
-#define ENABLE_ASSERT
-#endif
+#define ENABLE_ASSERT _DEBUG
 
 #ifdef ENABLE_ASSERT
 #define Assert(expression, exception) if (!(expression)) { throw exception; }

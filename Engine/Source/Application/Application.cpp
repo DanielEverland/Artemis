@@ -1,11 +1,16 @@
 ﻿#include "Application.h"
 #include "SDL.h"
+#include "Core/SizeDef.h"
+#include "Memory/FreeListAllocator.h"
+
 #define SHAPE_SIZE 64
 
 using namespace ArtemisEngine;
 
 void Application::RunMainLoop()
 {
+	CreatePrimaryAllocator();
+	
     SDL_Window* Main_Window;
     SDL_Renderer* Main_Renderer;
     SDL_Surface* Loading_Surf;
@@ -90,4 +95,16 @@ void Application::RunMainLoop()
     SDL_DestroyRenderer(Main_Renderer);
     SDL_DestroyWindow(Main_Window);
     SDL_Quit();
+}
+
+void Application::CreatePrimaryAllocator()
+{
+	const size_t size = GetStartMemoryAllocationSize();
+	void* ptr = malloc(size);
+    PrimaryAllocator = std::make_shared<FreeListAllocator>(ptr, size);
+}
+
+size_t Application::GetStartMemoryAllocationSize()
+{
+	return megabyte * 250;
 }

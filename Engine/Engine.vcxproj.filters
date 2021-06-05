@@ -78,6 +78,9 @@
     <ClInclude Include="Source\IO\Directory.h">
       <Filter>Source\IO</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Application\Window.h">
+      <Filter>Source\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Source\IO\Directory.cpp">
       <Filter>Source\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\Window.cpp">
+      <Filter>Source\Application</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

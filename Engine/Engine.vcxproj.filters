@@ -19,6 +19,12 @@
     <Filter Include="Source\IO">
       <UniqueIdentifier>{bb52f2bc-8842-40a7-8578-ff13da981ff2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Debugging">
+      <UniqueIdentifier>{fccf3ae5-d336-4aa5-b84c-5f1bd4b4b31e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Config">
+      <UniqueIdentifier>{24dd9d16-add5-46e5-bd58-59a19a29721e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Memory\IAllocator.h">
@@ -81,6 +87,27 @@
     <ClInclude Include="Source\Application\Window.h">
       <Filter>Source\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\INIReader.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\StringUtility.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Exception\INISyntaxException.h">
+      <Filter>Source\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Exception\IOException.h">
+      <Filter>Source\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Debugging\Logger.h">
+      <Filter>Source\Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Debugging\Verbosity.h">
+      <Filter>Source\Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Config\GameConfiguration.h">
+      <Filter>Source\Config</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -130,6 +157,15 @@
     </ClCompile>
     <ClCompile Include="Source\Application\Window.cpp">
       <Filter>Source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\INIReader.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Debugging\Logger.cpp">
+      <Filter>Source\Debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Config\GameConfiguration.cpp">
+      <Filter>Source\Config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

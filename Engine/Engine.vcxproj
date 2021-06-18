@@ -157,13 +157,20 @@
   <ItemGroup>
     <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="Source\Application\Window.h" />
+    <ClInclude Include="Source\Config\GameConfiguration.h" />
     <ClInclude Include="Source\Core.h" />
+    <ClInclude Include="Source\Core\INIReader.h" />
     <ClInclude Include="Source\Core\Macros.h" />
     <ClInclude Include="Source\Core\Math.h" />
     <ClInclude Include="Source\Core\SizeDef.h" />
+    <ClInclude Include="Source\Core\StringUtility.h" />
     <ClInclude Include="Source\Core\Types.h" />
+    <ClInclude Include="Source\Debugging\Logger.h" />
+    <ClInclude Include="Source\Debugging\Verbosity.h" />
     <ClInclude Include="Source\Exception\ArgumentException.h" />
     <ClInclude Include="Source\Exception\Exception.h" />
+    <ClInclude Include="Source\Exception\INISyntaxException.h" />
+    <ClInclude Include="Source\Exception\IOException.h" />
     <ClInclude Include="Source\Exception\NullPointerException.h" />
     <ClInclude Include="Source\Exception\OutOfMemoryException.h" />
     <ClInclude Include="Source\IO\Directory.h" />
@@ -179,7 +186,10 @@
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\Application\Window.cpp" />
+    <ClCompile Include="Source\Config\GameConfiguration.cpp" />
+    <ClCompile Include="Source\Core\INIReader.cpp" />
     <ClCompile Include="Source\Core\Math.cpp" />
+    <ClCompile Include="Source\Debugging\Logger.cpp" />
     <ClCompile Include="Source\Exception\ArgumentException.cpp" />
     <ClCompile Include="Source\Exception\Exception.cpp" />
     <ClCompile Include="Source\Exception\NullPointerException.cpp" />

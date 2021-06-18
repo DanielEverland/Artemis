@@ -1,4 +1,5 @@
 ﻿#include "Window.h"
+#include <iostream>
 
 using namespace ArtemisEngine;
 
@@ -45,6 +46,7 @@ Window::~Window()
 
 void Window::Draw()
 {
+    std::cout << "test" << std::endl;
     /* Rectangles for drawing which will specify source (inside the texture)
    and target (on the screen) for rendering our textures. */
     SDL_Rect SrcR;

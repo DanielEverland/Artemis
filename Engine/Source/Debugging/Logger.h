@@ -38,4 +38,6 @@ namespace ArtemisEngine
 
 #define Log(Category, Verbosity, Message) \
 	if constexpr(static_cast<int>(CompileTimeVerbosity_##Category) <= static_cast<int>(Verbosity)) { Logger::LogMessage(#Category, Verbosity, Message); }
+
+#define FuncName __FUNCTION__
 }

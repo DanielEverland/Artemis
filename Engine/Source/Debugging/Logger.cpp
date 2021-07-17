@@ -1,13 +1,18 @@
 #include <string>
 #include <iostream>
+#include <windows.h>
+#include <format>
+#include <codecvt>
 
 #include "Logger.h"
 #include "Verbosity.h"
 #include "../Config/GameConfiguration.h"
 #include "Core/StringUtility.h"
 #include "Exception/ArgumentException.h"
+#include <debugapi.h>
 
 using namespace ArtemisEngine;
+using namespace std;
 
 map<string, Verbosity> Logger::CachedCategoryVerbosities = { };
 string Logger::ConfigurationSectionName = "Logging";
@@ -26,10 +31,12 @@ map<string, Verbosity> Logger::FromStringLookup =
 
 void Logger::LogMessage(const string& category, const Verbosity& verbosity, const string& message)
 {
-	const Verbosity minimumVerbosity = GetMinimumVerbosity(category);
-	if (MoreOrEquallyVerbose(verbosity, minimumVerbosity))
+	if (MoreOrEquallyVerbose(verbosity, GetMinimumVerbosity(category)))
 	{
-		std::cout << category << ": " << VerbosityToString(verbosity) << ": " << message << std::endl;
+		const string formattedMessage = std::format("{}: {}: {}\n", category, VerbosityToString(verbosity), message);
+		std::cout << formattedMessage;
+		
+		OutputDebugString(StringUtility::ConvertUtf8ToWide(formattedMessage).c_str());
 	}
 }
 
@@ -60,7 +67,7 @@ Verbosity Logger::ParseVerbosity(const string& verbosityString)
 	if (TryParseVerbosity(verbosityString, temp))
 		return temp;
 
-	throw ArgumentException("Could not convert " + verbosityString + " to Verbosity enum");
+	throw ArgumentException(std::format("Could not convert {} to Verbosity enum", verbosityString));
 }
 
 bool Logger::TryParseVerbosity(string verbosityString, Verbosity& outValue)
@@ -100,7 +107,7 @@ Verbosity Logger::GetMinimumVerbosity(const string& category)
 
 void Logger::LoadMinimumVerbosity(const string& category)
 {
-	const string verbosityString = GameConfiguration::GetReader().Get<string>(ConfigurationSectionName, category, "Fatal");
+	const string verbosityString = GameConfiguration::GetReader().Get<string>(ConfigurationSectionName, category, "Log");
 	const Verbosity verbosityEnum = ParseVerbosity(verbosityString);
 	CachedCategoryVerbosities.insert(CachedCategoryVerbosities.begin(), std::pair<string, Verbosity>(category, verbosityEnum));
 }

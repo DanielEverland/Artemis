@@ -49,29 +49,7 @@ Window::~Window()
 
 void Window::Draw()
 {
-    std::cout << "test" << std::endl;
-    /* Rectangles for drawing which will specify source (inside the texture)
-   and target (on the screen) for rendering our textures. */
-    SDL_Rect SrcR;
-    SDL_Rect DestR;
-
-    SrcR.x = 0;
-    SrcR.y = 0;
-    SrcR.w = SHAPE_SIZE;
-    SrcR.h = SHAPE_SIZE;
-
-    DestR.x = 640 / 2 - SHAPE_SIZE / 2;
-    DestR.y = 580 / 2 - SHAPE_SIZE / 2;
-    DestR.w = SHAPE_SIZE;
-    DestR.h = SHAPE_SIZE;
-
-    /* render background, whereas NULL for source and destination
-            rectangles just means "use the default" */
-    //SDL_RenderCopy(Renderer, Background_Tx, NULL, NULL);
-
-    ///* render the current animation step of our shape */
-    //SDL_RenderCopy(Renderer, BlueShapes, &SrcR, &DestR);
-    //SDL_RenderPresent(Renderer);
+	MainRenderer->DoRender();
 }
 
 SDL_Window* Window::GetRaw()

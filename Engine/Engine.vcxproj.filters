@@ -126,6 +126,12 @@
     <ClInclude Include="Source\Rendering\SwapChain.h">
       <Filter>Source\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\RenderTargetView.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Color.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -193,6 +199,12 @@
     </ClCompile>
     <ClCompile Include="Source\Rendering\SwapChain.cpp">
       <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\RenderTargetView.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Color.cpp">
+      <Filter>Source\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

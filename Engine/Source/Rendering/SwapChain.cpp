@@ -2,6 +2,7 @@
 
 #include <SDL_syswm.h>
 
+#include "Application/Application.h"
 #include "Application/Window.h"
 
 using namespace ArtemisEngine;
@@ -12,7 +13,7 @@ SwapChain::SwapChain(Window* window, shared_ptr<GraphicsDevice> graphicsDevice) 
 	ComPtr<IDXGIFactory> factory = GetFactory();
 
 	CheckResult(factory->CreateSwapChain(
-		Device->GetRaw().Get(),
+		Device->GetRawDevice().Get(),
 		&description,
 		&RawSwapChain),
 		"Failed creating swapchain");
@@ -54,7 +55,7 @@ DXGI_MODE_DESC SwapChain::GetBufferDescription() const
 
 ComPtr<IDXGIFactory> SwapChain::GetFactory() const
 {
-	ComPtr<ID3D11Device> device = Device->GetRaw();
+	ComPtr<ID3D11Device> device = Device->GetRawDevice();
 
 	ComPtr<IDXGIDevice> dxgiDevice;
 	CheckResult(device->QueryInterface(__uuidof(IDXGIDevice), &dxgiDevice),
@@ -69,4 +70,16 @@ ComPtr<IDXGIFactory> SwapChain::GetFactory() const
 	format("{}: Couldn't get IDXGIFactory", FuncName));
 
 	return factory;
+}
+
+void SwapChain::GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const
+{
+	CheckResult(RawSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(backBuffer.GetAddressOf())),
+	format("{}: Couldn't get Texture buffer", FuncName));
+}
+
+void SwapChain::Present() const
+{
+	CheckResult(RawSwapChain->Present(false, 0),
+	format("{}: Couldn't present swapchain", FuncName));
 }

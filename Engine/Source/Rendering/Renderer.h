@@ -6,8 +6,10 @@
 #include "Core.h"
 #include "DirectXCore.h"
 #include "GraphicsDevice.h"
+#include "RenderTargetView.h"
 #include "SwapChain.h"
 #include "Application/Window.h"
+#include "Core/Color.h"
 
 namespace ArtemisEngine
 {
@@ -18,25 +20,24 @@ namespace ArtemisEngine
 	public:
 		Renderer(Window* targetWindow);
 		~Renderer();
+
+		void DoRender();
 	
 	private:
-		static const std::map<D3D_FEATURE_LEVEL, string> FeatureLevelNames;
-		static D3D_FEATURE_LEVEL FeatureLevels[];
-
-		D3D_FEATURE_LEVEL UsedFeatureLevel;
+		static Color BackbufferColor;
+		
 		Window* MainWindow;
+		float* RawBackbufferColor;
 
 		shared_ptr<GraphicsDevice> Device;
 		shared_ptr<SwapChain> SwapChain;
-		ComPtr<ID3D11DeviceContext> Context;
-
+		shared_ptr<RenderTargetView> RenderTargetView;
+		
 		static uint32 GetDeviceFlags();
 		void OutputDebugInfo() const;
 		
-		[[nodiscard]] string GetFeatureLevelString() const;
-		[[nodiscard]] string GetGraphicsAdapterString() const;
-
 		void InitializeD3D();
+		void CreateRenderTarget();
 		void CreateDevice();
 		void CreateSwapChain();
 	};

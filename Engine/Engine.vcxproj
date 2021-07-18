@@ -171,6 +171,7 @@
     <ClInclude Include="Source\Application\Window.h" />
     <ClInclude Include="Source\Config\GameConfiguration.h" />
     <ClInclude Include="Source\Core.h" />
+    <ClInclude Include="Source\Core\Color.h" />
     <ClInclude Include="Source\Core\INIReader.h" />
     <ClInclude Include="Source\Core\Macros.h" />
     <ClInclude Include="Source\Core\Math.h" />
@@ -198,12 +199,14 @@
     <ClInclude Include="Source\Rendering\DirectXCore.h" />
     <ClInclude Include="Source\Rendering\GraphicsDevice.h" />
     <ClInclude Include="Source\Rendering\Renderer.h" />
+    <ClInclude Include="Source\Rendering\RenderTargetView.h" />
     <ClInclude Include="Source\Rendering\SwapChain.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\Application\Window.cpp" />
     <ClCompile Include="Source\Config\GameConfiguration.cpp" />
+    <ClCompile Include="Source\Core\Color.cpp" />
     <ClCompile Include="Source\Core\INIReader.cpp" />
     <ClCompile Include="Source\Core\Math.cpp" />
     <ClCompile Include="Source\Debugging\Logger.cpp" />
@@ -222,6 +225,7 @@
     <ClCompile Include="Source\Memory\StackAllocator.cpp" />
     <ClCompile Include="Source\Rendering\GraphicsDevice.cpp" />
     <ClCompile Include="Source\Rendering\Renderer.cpp" />
+    <ClCompile Include="Source\Rendering\RenderTargetView.cpp" />
     <ClCompile Include="Source\Rendering\SwapChain.cpp" />
   </ItemGroup>
   <ItemGroup>

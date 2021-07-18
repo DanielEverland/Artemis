@@ -11,7 +11,7 @@ NO_WARNING_END
 #define ENABLE_ASSERT _DEBUG
 
 #ifdef ENABLE_ASSERT
-#define Assert(expression, exception) if (!(expression)) { throw exception; }
+#define Assert(expression, exception) if (!(expression)) { throw (exception); }
 #else
 #define Assert(expression, exception)
 #endif

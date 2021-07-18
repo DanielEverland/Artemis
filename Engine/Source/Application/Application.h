@@ -4,7 +4,6 @@
 
 #include "Window.h"
 #include "Memory/BaseAllocator.h"
-#include "Rendering/Renderer.h"
 
 namespace ArtemisEngine
 {

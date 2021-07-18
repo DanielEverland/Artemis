@@ -41,7 +41,7 @@ void* StackAllocator::Allocate(size_t size, uint8 alignment)
 	CreateAllocationHeader(alignedAddress, adjustment);
 	ForwardPosition(alignedAddress, size);
 
-#if _DEBUG
+#ifdef _DEBUG
 	Previous = finalPointer;
 #endif
 
@@ -50,7 +50,9 @@ void* StackAllocator::Allocate(size_t size, uint8 alignment)
 
 void StackAllocator::Deallocate(const void* const blockToDeallocate)
 {
+#ifdef _DEBUG
 	Assert(blockToDeallocate == Previous, ArgumentException("Deallocated block must be the top of the stack"))
+#endif
 
 	const auto blockAddress = reinterpret_cast<uintptr_t>(blockToDeallocate);
 	auto* const header = reinterpret_cast<AllocationHeader*>(blockAddress - sizeof(AllocationHeader));

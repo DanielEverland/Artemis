@@ -6,7 +6,11 @@
 #include <format>
 #include <utility>
 
+#include <SDL.h>
+#include <SDL_syswm.h>
+
 #include "DirectXCore.h"
+#include "SwapChain.h"
 #include "Core/StringUtility.h"
 
 using namespace ArtemisEngine;
@@ -31,26 +35,46 @@ D3D_FEATURE_LEVEL Renderer::FeatureLevels[] =
 	D3D_FEATURE_LEVEL_11_1,
 };
 
-Renderer::Renderer(SDL_Window* targetWindow)
+Renderer::Renderer(Window* targetWindow) : MainWindow(targetWindow)
 {
-	Window = std::move(targetWindow);
-
 	InitializeD3D();
+}
+
+Renderer::~Renderer()
+{
+	Context->Release();
+	Context = nullptr;
+
+	SDL_DestroyWindow(MainWindow->GetRaw());
 }
 
 void Renderer::InitializeD3D()
 {
+	CreateDevice();
+	CreateSwapChain();	
+	OutputDebugInfo();
+}
+
+void Renderer::CreateDevice()
+{
 	const uint32 featureLevelsNum = ARRAYSIZE(FeatureLevels);
-	CheckResult(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, GetDeviceFlags(), FeatureLevels, featureLevelsNum, D3D11_SDK_VERSION, &Device, &UsedFeatureLevel, &Context),
-	"Unable to create device");
+
+	ComPtr<ID3D11Device> rawDevice;	
+	CheckResult(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, GetDeviceFlags(), FeatureLevels, featureLevelsNum, D3D11_SDK_VERSION, &rawDevice, &UsedFeatureLevel, &Context),
+		"Unable to create device");
 
 	if (UsedFeatureLevel != D3D_FEATURE_LEVEL_11_1)
 	{
 		MessageBox(0, L"Direct3D Feature Level 11 unsupported", 0, 0);
 		throw DirectXException("Direct3D Feature Level 11 unsupported");
 	}
-	
-	OutputDebugInfo();
+
+	Device = std::make_shared<GraphicsDevice>(rawDevice);
+}
+
+void Renderer::CreateSwapChain()
+{
+	SwapChain = make_shared<ArtemisEngine::SwapChain>(MainWindow, Device);
 }
 
 uint32 Renderer::GetDeviceFlags()
@@ -61,7 +85,7 @@ uint32 Renderer::GetDeviceFlags()
 	flags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-	return flags;
+	return flags; 
 }
 
 void Renderer::OutputDebugInfo() const
@@ -87,7 +111,7 @@ string Renderer::GetFeatureLevelString() const
 string Renderer::GetGraphicsAdapterString() const
 {
 	ComPtr<IDXGIDevice> dxgiDevice;
-	CheckResult(Device->QueryInterface(__uuidof(IDXGIDevice), &dxgiDevice),
+	CheckResult(Device->GetRaw()->QueryInterface(__uuidof(IDXGIDevice), &dxgiDevice),
 	std::format("{}: {}", FuncName, "Couldn't get IDXGIDevice"));
 
 	ComPtr<IDXGIAdapter> adapter;

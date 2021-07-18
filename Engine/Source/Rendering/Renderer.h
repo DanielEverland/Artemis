@@ -5,6 +5,9 @@
 
 #include "Core.h"
 #include "DirectXCore.h"
+#include "GraphicsDevice.h"
+#include "SwapChain.h"
+#include "Application/Window.h"
 
 namespace ArtemisEngine
 {
@@ -13,15 +16,18 @@ namespace ArtemisEngine
 	class Renderer
 	{
 	public:
-		Renderer(SDL_Window* targetWindow);
+		Renderer(Window* targetWindow);
+		~Renderer();
 	
 	private:
 		static const std::map<D3D_FEATURE_LEVEL, string> FeatureLevelNames;
 		static D3D_FEATURE_LEVEL FeatureLevels[];
 
 		D3D_FEATURE_LEVEL UsedFeatureLevel;
-		SDL_Window* Window;
-		ComPtr<ID3D11Device> Device;
+		Window* MainWindow;
+
+		shared_ptr<GraphicsDevice> Device;
+		shared_ptr<SwapChain> SwapChain;
 		ComPtr<ID3D11DeviceContext> Context;
 
 		static uint32 GetDeviceFlags();
@@ -31,5 +37,7 @@ namespace ArtemisEngine
 		[[nodiscard]] string GetGraphicsAdapterString() const;
 
 		void InitializeD3D();
+		void CreateDevice();
+		void CreateSwapChain();
 	};
 }

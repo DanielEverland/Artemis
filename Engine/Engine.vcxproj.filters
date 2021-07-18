@@ -120,6 +120,12 @@
     <ClInclude Include="Source\Rendering\DirectXCore.h">
       <Filter>Source\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\GraphicsDevice.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\SwapChain.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -180,6 +186,12 @@
       <Filter>Source\Config</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\Renderer.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\GraphicsDevice.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\SwapChain.cpp">
       <Filter>Source\Rendering</Filter>
     </ClCompile>
   </ItemGroup>

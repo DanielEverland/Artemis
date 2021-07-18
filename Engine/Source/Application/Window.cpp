@@ -1,5 +1,8 @@
 ﻿#include "Window.h"
+
 #include <iostream>
+
+#include "Rendering/Renderer.h"
 
 using namespace ArtemisEngine;
 
@@ -7,8 +10,8 @@ using namespace ArtemisEngine;
 
 Window::Window()
 {
-    MainWindow = SDL_CreateWindow("Artemis", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 580, 0);
-    MainRenderer = std::make_unique<Renderer>(MainWindow);
+    MainWindow = SDL_CreateWindow("Artemis", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, GetWidth(), GetHeight(), 0);
+    MainRenderer = new Renderer(this);
 	
     /* The loading of the background texture. Since SDL_LoadBMP() returns
     a surface, we convert it to a texture afterwards for fast accelerated
@@ -69,4 +72,19 @@ void Window::Draw()
     ///* render the current animation step of our shape */
     //SDL_RenderCopy(Renderer, BlueShapes, &SrcR, &DestR);
     //SDL_RenderPresent(Renderer);
+}
+
+SDL_Window* Window::GetRaw()
+{
+	return MainWindow;
+}
+
+int32 Window::GetHeight()
+{
+	return 640;
+}
+
+int32 Window::GetWidth()
+{
+	return 580;
 }

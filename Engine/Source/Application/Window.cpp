@@ -8,19 +8,19 @@ using namespace ArtemisEngine;
 Window::Window()
 {
     MainWindow = SDL_CreateWindow("Artemis", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 580, 0);
-    Renderer = SDL_CreateRenderer(MainWindow, -1, SDL_RENDERER_ACCELERATED);
+    MainRenderer = std::make_unique<Renderer>(MainWindow);
 	
     /* The loading of the background texture. Since SDL_LoadBMP() returns
     a surface, we convert it to a texture afterwards for fast accelerated
     blitting. */
-    Loading_Surf = SDL_LoadBMP("C:\\Users\\Daniel\\Desktop\\Background.bmp");
-    Background_Tx = SDL_CreateTextureFromSurface(Renderer, Loading_Surf);
-    SDL_FreeSurface(Loading_Surf); /* we got the texture now -> free surface */
+    //Loading_Surf = SDL_LoadBMP("C:\\Users\\Daniel\\Desktop\\Background.bmp");
+    //Background_Tx = SDL_CreateTextureFromSurface(Renderer, Loading_Surf);
+    //SDL_FreeSurface(Loading_Surf); /* we got the texture now -> free surface */
 
-    /* Load an additional texture */
-    Loading_Surf = SDL_LoadBMP("C:\\Users\\Daniel\\Desktop\\Blueshapes.bmp");
-    BlueShapes = SDL_CreateTextureFromSurface(Renderer, Loading_Surf);
-    SDL_FreeSurface(Loading_Surf);
+    ///* Load an additional texture */
+    //Loading_Surf = SDL_LoadBMP("C:\\Users\\Daniel\\Desktop\\Blueshapes.bmp");
+    //BlueShapes = SDL_CreateTextureFromSurface(Renderer, Loading_Surf);
+    //SDL_FreeSurface(Loading_Surf);
 }
 
 Window::~Window()
@@ -38,10 +38,10 @@ Window::~Window()
     main surface, and SDL_RenderCopy() as the blit function to that main
     surface, with SDL_RenderPresent() as the old SDL_Flip() function.*/
 
-    SDL_DestroyTexture(BlueShapes);
+    /*SDL_DestroyTexture(BlueShapes);
     SDL_DestroyTexture(Background_Tx);
     SDL_DestroyRenderer(Renderer);
-    SDL_DestroyWindow(MainWindow);
+    SDL_DestroyWindow(MainWindow);*/
 }
 
 void Window::Draw()
@@ -64,9 +64,9 @@ void Window::Draw()
 
     /* render background, whereas NULL for source and destination
             rectangles just means "use the default" */
-    SDL_RenderCopy(Renderer, Background_Tx, NULL, NULL);
+    //SDL_RenderCopy(Renderer, Background_Tx, NULL, NULL);
 
-    /* render the current animation step of our shape */
-    SDL_RenderCopy(Renderer, BlueShapes, &SrcR, &DestR);
-    SDL_RenderPresent(Renderer);
+    ///* render the current animation step of our shape */
+    //SDL_RenderCopy(Renderer, BlueShapes, &SrcR, &DestR);
+    //SDL_RenderPresent(Renderer);
 }

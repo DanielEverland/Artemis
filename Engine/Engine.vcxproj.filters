@@ -25,6 +25,9 @@
     <Filter Include="Source\Config">
       <UniqueIdentifier>{24dd9d16-add5-46e5-bd58-59a19a29721e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Rendering">
+      <UniqueIdentifier>{edde0497-9769-41e9-9e0b-9e1dcb6b0bb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Memory\IAllocator.h">
@@ -108,6 +111,15 @@
     <ClInclude Include="Source\Config\GameConfiguration.h">
       <Filter>Source\Config</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\Renderer.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Exception\DirectXException.h">
+      <Filter>Source\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\DirectXCore.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -166,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="Source\Config\GameConfiguration.cpp">
       <Filter>Source\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Renderer.cpp">
+      <Filter>Source\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

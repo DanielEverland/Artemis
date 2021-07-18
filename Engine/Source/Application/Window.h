@@ -4,6 +4,9 @@
 #include <SDL_render.h>
 #include <SDL_video.h>
 
+#include <memory>
+
+#include "Rendering/Renderer.h"
 #include "Core.h"
 
 namespace ArtemisEngine
@@ -17,7 +20,8 @@ namespace ArtemisEngine
 		
 	private:
 		SDL_Window* MainWindow;
-		SDL_Renderer* Renderer;
+
+		std::unique_ptr<Renderer> MainRenderer;
 
 		// TEMP SHIT:
 		SDL_Surface* Loading_Surf;

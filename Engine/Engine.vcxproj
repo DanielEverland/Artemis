@@ -97,6 +97,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>Dbghelp.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -117,6 +120,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>Dbghelp.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -133,6 +139,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>Dbghelp.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -153,6 +162,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>Dbghelp.lib;d3d11.lib;d3dcompiler.lib;dxguid.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application\Application.h" />
@@ -168,6 +180,7 @@
     <ClInclude Include="Source\Debugging\Logger.h" />
     <ClInclude Include="Source\Debugging\Verbosity.h" />
     <ClInclude Include="Source\Exception\ArgumentException.h" />
+    <ClInclude Include="Source\Exception\DirectXException.h" />
     <ClInclude Include="Source\Exception\Exception.h" />
     <ClInclude Include="Source\Exception\INISyntaxException.h" />
     <ClInclude Include="Source\Exception\IOException.h" />
@@ -182,6 +195,8 @@
     <ClInclude Include="Source\Memory\IDeallocator.h" />
     <ClInclude Include="Source\Memory\LinearAllocator.h" />
     <ClInclude Include="Source\Memory\StackAllocator.h" />
+    <ClInclude Include="Source\Rendering\DirectXCore.h" />
+    <ClInclude Include="Source\Rendering\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp" />
@@ -203,6 +218,7 @@
     <ClCompile Include="Source\Memory\IDeallocator.cpp" />
     <ClCompile Include="Source\Memory\LinearAllocator.cpp" />
     <ClCompile Include="Source\Memory\StackAllocator.cpp" />
+    <ClCompile Include="Source\Rendering\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

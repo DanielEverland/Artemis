@@ -4,6 +4,7 @@
 
 #include "Window.h"
 #include "Memory/BaseAllocator.h"
+#include "Rendering/Renderer.h"
 
 namespace ArtemisEngine
 {
@@ -17,7 +18,7 @@ namespace ArtemisEngine
 
 	private:
 		std::shared_ptr<BaseAllocator> PrimaryAllocator;
-		std::unique_ptr<Window> MainWindow;		
+		std::unique_ptr<Window> MainWindow;
 		
 		[[nodiscard]] static size_t GetStartMemoryAllocationSize();
 

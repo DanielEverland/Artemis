@@ -1,12 +1,14 @@
 ﻿#pragma once
 
 #include <d3d11.h>
+#include <DirectXMath.h>
 #include <wrl.h>
 #include <format>
 
 #include "Exception/DirectXException.h"
 
 using namespace Microsoft::WRL;
+using namespace DirectX;
 
 constexpr void CheckResult(HRESULT result, const string& message)
 {

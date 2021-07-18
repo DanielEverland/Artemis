@@ -88,6 +88,11 @@ void GraphicsDevice::CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backB
 	format("{}: Couldn't create RenderTargetView", FuncName));
 }
 
+void GraphicsDevice::ClearDepthStencilView()
+{
+	RawContext->ClearDepthStencilView(RawDepthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.f, 0);
+}
+
 string GraphicsDevice::GetFeatureLevelString() const
 {
 	const auto iter = FeatureLevelNames.find(UsedFeatureLevel);

@@ -32,10 +32,14 @@ namespace ArtemisEngine
 		shared_ptr<GraphicsDevice> Device;
 		shared_ptr<SwapChain> SwapChain;
 		shared_ptr<RenderTargetView> RenderTargetView;
+
+		XMMATRIX ProjectionMatrix;
+		XMMATRIX WorldMatrix;
 				
 		void InitializeD3D();
 		void CreateRenderTarget();
 		void CreateDevice();
 		void CreateSwapChain();
+		void CreateProjectionMatrix();
 	};
 }

@@ -19,6 +19,8 @@ Color Renderer::BackbufferColor = Color::CornflowerBlue;
 
 Renderer::Renderer(Window* targetWindow) : MainWindow(targetWindow)
 {
+	WorldMatrix = XMMatrixIdentity();
+	
 	RawBackbufferColor = new float[4];
 	Color::CornflowerBlue.ToFloat(RawBackbufferColor);
 	
@@ -33,6 +35,9 @@ Renderer::~Renderer()
 void Renderer::DoRender()
 {
 	RenderTargetView->Clear(RawBackbufferColor);
+	Device->ClearDepthStencilView();
+
+	
 	SwapChain->Present();
 }
 
@@ -41,6 +46,7 @@ void Renderer::InitializeD3D()
 	CreateDevice();
 	CreateSwapChain();
 	CreateRenderTarget();
+	CreateProjectionMatrix();
 }
 
 void Renderer::CreateRenderTarget()
@@ -57,4 +63,9 @@ void Renderer::CreateDevice()
 void Renderer::CreateSwapChain()
 {
 	SwapChain = make_shared<ArtemisEngine::SwapChain>(MainWindow, Device);
+}
+
+void Renderer::CreateProjectionMatrix()
+{
+	ProjectionMatrix = XMMatrixOrthographicLH(static_cast<float>(MainWindow->GetWidth()), static_cast<float>(MainWindow->GetHeight()), 0.f, 1.f);
 }

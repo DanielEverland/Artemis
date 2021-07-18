@@ -2,6 +2,7 @@
 
 #include <utility>
 
+#include "Application/Window.h"
 #include "Core/StringUtility.h"
 
 using namespace ArtemisEngine;
@@ -26,20 +27,13 @@ D3D_FEATURE_LEVEL GraphicsDevice::FeatureLevels[] =
 	D3D_FEATURE_LEVEL_11_1,
 };
 
-GraphicsDevice::GraphicsDevice()
+GraphicsDevice::GraphicsDevice(Window* targetWindow) : TargetWindow(targetWindow)
 {
-	const uint32 featureLevelsNum = ARRAYSIZE(FeatureLevels);
-	
-	CheckResult(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, GetDeviceFlags(), FeatureLevels, featureLevelsNum, D3D11_SDK_VERSION, &RawDevice, &UsedFeatureLevel, &RawContext),
-		"Unable to create device");
+	CreateDevice();
 
-	if (UsedFeatureLevel != D3D_FEATURE_LEVEL_11_1)
-	{
-		MessageBox(0, L"Direct3D Feature Level 11 unsupported", 0, 0);
-		throw DirectXException("Direct3D Feature Level 11 unsupported");
-	}
-
-	OutputDebugInfo();
+	CreateDepthStencilBuffer();
+	CreateDepthStencilState();
+	CreateDepthStencilView();
 }
 
 GraphicsDevice::~GraphicsDevice()
@@ -56,6 +50,11 @@ ComPtr<ID3D11Device> GraphicsDevice::GetRawDevice() const
 ComPtr<ID3D11DeviceContext> GraphicsDevice::GetRawContext() const
 {
 	return RawContext;
+}
+
+ComPtr<ID3D11DepthStencilView> GraphicsDevice::GetRawStencilView() const
+{
+	return RawDepthStencilView;
 }
 
 void GraphicsDevice::GetMSAASupport(DXGI_FORMAT dxgiFormat, UINT* sampleCount, UINT* quality) const
@@ -135,4 +134,114 @@ string GraphicsDevice::GetGraphicsAdapterString() const
 		std::format("{}: {}", FuncName, "Couldn't get description"));
 
 	return StringUtility::ConvertWideToUtf8(description.Description);
+}
+
+void GraphicsDevice::CreateDevice()
+{
+	const uint32 featureLevelsNum = ARRAYSIZE(FeatureLevels);
+
+	CheckResult(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, GetDeviceFlags(), FeatureLevels, featureLevelsNum, D3D11_SDK_VERSION, &RawDevice, &UsedFeatureLevel, &RawContext),
+		"Unable to create device");
+
+	if (UsedFeatureLevel != D3D_FEATURE_LEVEL_11_1)
+	{
+		MessageBox(0, L"Direct3D Feature Level 11 unsupported", 0, 0);
+		throw DirectXException("Direct3D Feature Level 11 unsupported");
+	}
+
+	OutputDebugInfo();
+}
+
+void GraphicsDevice::CreateDepthStencilBuffer()
+{
+	D3D11_TEXTURE2D_DESC depthBufferDescription;
+	
+	depthBufferDescription.Width = TargetWindow->GetWidth();
+	depthBufferDescription.Height = TargetWindow->GetHeight();
+	depthBufferDescription.MipLevels = 1;
+	depthBufferDescription.ArraySize = 1;
+	depthBufferDescription.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	depthBufferDescription.SampleDesc.Count = 1;
+	depthBufferDescription.SampleDesc.Quality = 0;
+	depthBufferDescription.Usage = D3D11_USAGE_DEFAULT;
+	depthBufferDescription.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	depthBufferDescription.CPUAccessFlags = 0;
+	depthBufferDescription.MiscFlags = 0;
+
+	CheckResult(RawDevice->CreateTexture2D(&depthBufferDescription, nullptr, &RawDepthStencilBuffer),
+	format("{}: Failed creating depth buffer", FuncName));
+}
+
+void GraphicsDevice::CreateDepthStencilState()
+{
+	D3D11_DEPTH_STENCIL_DESC depthStencilDescription;
+	
+	depthStencilDescription.DepthEnable = true;
+	depthStencilDescription.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	depthStencilDescription.DepthFunc = D3D11_COMPARISON_LESS;
+
+	depthStencilDescription.StencilEnable = true;
+	depthStencilDescription.StencilReadMask = 0xFF;
+	depthStencilDescription.StencilWriteMask = 0xFF;
+	
+	depthStencilDescription.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDescription.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	depthStencilDescription.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDescription.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	
+	depthStencilDescription.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDescription.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+	depthStencilDescription.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	depthStencilDescription.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	
+	CheckResult(RawDevice->CreateDepthStencilState(&depthStencilDescription, &RawDepthStencilState),
+	format("{}: Failed creating depth stencil state", FuncName));
+	
+	RawContext->OMSetDepthStencilState(RawDepthStencilState.Get(), 1);
+}
+
+void GraphicsDevice::CreateDepthStencilView()
+{
+	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDescription;
+
+	depthStencilViewDescription.Flags = 0;
+	depthStencilViewDescription.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	depthStencilViewDescription.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	depthStencilViewDescription.Texture2D.MipSlice = 0;
+	
+	CheckResult(RawDevice->CreateDepthStencilView(RawDepthStencilBuffer.Get(), &depthStencilViewDescription, &RawDepthStencilView),
+	format("{}: Failed creating depth stencil view", FuncName));
+}
+
+void GraphicsDevice::CreateRasterizerState()
+{
+	D3D11_RASTERIZER_DESC rasterDescription;
+
+	rasterDescription.AntialiasedLineEnable = false;
+	rasterDescription.CullMode = D3D11_CULL_BACK;
+	rasterDescription.DepthBias = 0;
+	rasterDescription.DepthBiasClamp = 0.0f;
+	rasterDescription.DepthClipEnable = true;
+	rasterDescription.FillMode = D3D11_FILL_SOLID;
+	rasterDescription.FrontCounterClockwise = false;
+	rasterDescription.MultisampleEnable = false;
+	rasterDescription.ScissorEnable = false;
+	rasterDescription.SlopeScaledDepthBias = 0.0f;
+	
+	CheckResult(RawDevice->CreateRasterizerState(&rasterDescription, &RawRasterizerState),
+		format("{}: Failed creating rasterizer state", FuncName));
+	
+	RawContext->RSSetState(RawRasterizerState.Get());
+}
+
+void GraphicsDevice::CreateViewport()
+{
+	Viewport.Width = static_cast<FLOAT>(TargetWindow->GetWidth());
+	Viewport.Height = static_cast<FLOAT>(TargetWindow->GetHeight());
+	Viewport.MinDepth = 0.0f;
+	Viewport.MaxDepth = 1.0f;
+	Viewport.TopLeftX = 0.0f;
+	Viewport.TopLeftY = 0.0f;
+	
+	RawContext->RSSetViewports(1, &Viewport);
 }

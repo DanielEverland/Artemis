@@ -32,10 +32,7 @@ namespace ArtemisEngine
 		shared_ptr<GraphicsDevice> Device;
 		shared_ptr<SwapChain> SwapChain;
 		shared_ptr<RenderTargetView> RenderTargetView;
-		
-		static uint32 GetDeviceFlags();
-		void OutputDebugInfo() const;
-		
+				
 		void InitializeD3D();
 		void CreateRenderTarget();
 		void CreateDevice();

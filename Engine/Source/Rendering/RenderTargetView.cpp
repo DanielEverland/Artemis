@@ -12,3 +12,8 @@ void RenderTargetView::Clear(const float* clearColor) const
 {
 	GraphicsDevice->GetRawContext()->ClearRenderTargetView(RawRenderTargetView.Get(), clearColor);
 }
+
+ComPtr<ID3D11RenderTargetView> RenderTargetView::GetRawRenderTargetView() const
+{
+	return RawRenderTargetView;
+}

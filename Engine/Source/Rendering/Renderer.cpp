@@ -46,11 +46,12 @@ void Renderer::InitializeD3D()
 void Renderer::CreateRenderTarget()
 {
 	RenderTargetView = make_shared<ArtemisEngine::RenderTargetView>(SwapChain, Device);
+	Device->GetRawContext()->OMSetRenderTargets(1, &RenderTargetView->GetRawRenderTargetView(), Device->GetRawStencilView().Get());
 }
 
 void Renderer::CreateDevice()
 {
-	Device = make_shared<GraphicsDevice>();
+	Device = make_shared<GraphicsDevice>(MainWindow);
 }
 
 void Renderer::CreateSwapChain()

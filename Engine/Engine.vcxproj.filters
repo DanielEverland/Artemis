@@ -28,6 +28,15 @@
     <Filter Include="Source\Rendering">
       <UniqueIdentifier>{edde0497-9769-41e9-9e0b-9e1dcb6b0bb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{9b4e4bf3-a876-4296-add2-7bcfdfca8664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Vertex">
+      <UniqueIdentifier>{47983e23-f9db-4138-a92c-d8943f23cc42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\PixelShader">
+      <UniqueIdentifier>{c6cbfd71-fb5b-46e6-907b-b9707070c8ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Memory\IAllocator.h">
@@ -132,6 +141,36 @@
     <ClInclude Include="Source\Core\Color.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\ColorShaderClass.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Model.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Camera.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\cameraclass.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\colorshaderclass.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\d3dclass.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\graphicsclass.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\inputclass.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\modelclass.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\systemclass.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -206,8 +245,53 @@
     <ClCompile Include="Source\Core\Color.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\ColorShaderClass.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Model.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Camera.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\cameraclass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\colorshaderclass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\d3dclass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\graphicsclass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\inputclass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\modelclass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\systemclass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Shaders\Vertex\Color.vs">
+      <Filter>Shaders\Vertex</Filter>
+    </None>
+    <None Include="Shaders\PixelShader\Color.ps">
+      <Filter>Shaders\PixelShader</Filter>
+    </None>
+    <None Include="Source\color.ps">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="Source\color.vs">
+      <Filter>Source</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 
 #include <utility>
 
+#include "Renderer.h"
 #include "Application/Window.h"
 #include "Core/StringUtility.h"
 
@@ -24,7 +25,7 @@ const std::map<D3D_FEATURE_LEVEL, string> GraphicsDevice::FeatureLevelNames
 
 D3D_FEATURE_LEVEL GraphicsDevice::FeatureLevels[] =
 {
-	D3D_FEATURE_LEVEL_11_1,
+	D3D_FEATURE_LEVEL_11_0,
 };
 
 GraphicsDevice::GraphicsDevice(Window* targetWindow) : TargetWindow(targetWindow)
@@ -34,6 +35,7 @@ GraphicsDevice::GraphicsDevice(Window* targetWindow) : TargetWindow(targetWindow
 	CreateDepthStencilBuffer();
 	CreateDepthStencilState();
 	CreateDepthStencilView();
+	CreateViewport();
 }
 
 GraphicsDevice::~GraphicsDevice()
@@ -65,7 +67,7 @@ void GraphicsDevice::GetMSAASupport(DXGI_FORMAT dxgiFormat, UINT* sampleCount, U
 	UINT qualityBuffer = 0;
 
 	CheckResult(RawDevice->CheckMultisampleQualityLevels(dxgiFormat, MSAASampleCount, &qualityBuffer),
-	format("{}: Failed checking multi-sample quality levels", FuncName));
+		format("{}: Failed checking multi-sample quality levels", FuncName));
 
 	// Quality buffer starts at 0, so we have to subtract one value
 	qualityBuffer--;
@@ -85,12 +87,22 @@ void GraphicsDevice::GetMSAASupport(DXGI_FORMAT dxgiFormat, UINT* sampleCount, U
 void GraphicsDevice::CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backBuffer, ComPtr<ID3D11RenderTargetView>& renderTargetView) const
 {
 	CheckResult(RawDevice->CreateRenderTargetView(backBuffer.Get(), 0, &renderTargetView),
-	format("{}: Couldn't create RenderTargetView", FuncName));
+		format("{}: Couldn't create RenderTargetView", FuncName));
+}
+
+void GraphicsDevice::ClearRenderTargetView(const float* clearColor)
+{
+	RawContext->ClearRenderTargetView(m_renderTargetView, clearColor);
 }
 
 void GraphicsDevice::ClearDepthStencilView()
 {
 	RawContext->ClearDepthStencilView(RawDepthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.f, 0);
+}
+
+void GraphicsDevice::Present()
+{
+	m_swapChain->Present(0, 0);
 }
 
 string GraphicsDevice::GetFeatureLevelString() const
@@ -145,10 +157,57 @@ void GraphicsDevice::CreateDevice()
 {
 	const uint32 featureLevelsNum = ARRAYSIZE(FeatureLevels);
 
-	CheckResult(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, GetDeviceFlags(), FeatureLevels, featureLevelsNum, D3D11_SDK_VERSION, &RawDevice, &UsedFeatureLevel, &RawContext),
+
+
+	DXGI_SWAP_CHAIN_DESC swapChainDesc;
+
+	// Set to a single back buffer.
+	swapChainDesc.BufferCount = 1;
+
+	// Set the width and height of the back buffer.
+	swapChainDesc.BufferDesc.Width = TargetWindow->GetWidth();
+	swapChainDesc.BufferDesc.Height = TargetWindow->GetHeight();
+
+	// Set regular 32-bit surface for the back buffer.
+	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+	// Set the refresh rate of the back buffer.
+	swapChainDesc.BufferDesc.RefreshRate.Numerator = 0;
+	swapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
+
+	// Set the usage of the back buffer.
+	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+
+	// Set the handle for the window to render to.
+	swapChainDesc.OutputWindow = TargetWindow->GetHandle();
+
+	// Turn multisampling off.
+	swapChainDesc.SampleDesc.Count = 1;
+	swapChainDesc.SampleDesc.Quality = 0;
+
+	// Set to full screen or windowed mode.
+	swapChainDesc.Windowed = true;
+
+	// Set the scan line ordering and scaling to unspecified.
+	swapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+	swapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+
+	// Discard the back buffer contents after presenting.
+	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+
+	// Don't set the advanced flags.
+	swapChainDesc.Flags = 0;
+
+	// Set the feature level to DirectX 11.
+	featureLevel = D3D_FEATURE_LEVEL_11_0;
+
+
+	
+
+	CheckResult(D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, GetDeviceFlags(), FeatureLevels, featureLevelsNum, D3D11_SDK_VERSION, &swapChainDesc, &m_swapChain, &RawDevice, &UsedFeatureLevel, &RawContext),
 		"Unable to create device");
 
-	if (UsedFeatureLevel != D3D_FEATURE_LEVEL_11_1)
+	if (UsedFeatureLevel != D3D_FEATURE_LEVEL_11_0)
 	{
 		MessageBox(0, L"Direct3D Feature Level 11 unsupported", 0, 0);
 		throw DirectXException("Direct3D Feature Level 11 unsupported");
@@ -174,7 +233,7 @@ void GraphicsDevice::CreateDepthStencilBuffer()
 	depthBufferDescription.MiscFlags = 0;
 
 	CheckResult(RawDevice->CreateTexture2D(&depthBufferDescription, nullptr, &RawDepthStencilBuffer),
-	format("{}: Failed creating depth buffer", FuncName));
+		format("{}: Failed creating depth buffer", FuncName));
 }
 
 void GraphicsDevice::CreateDepthStencilState()
@@ -200,7 +259,7 @@ void GraphicsDevice::CreateDepthStencilState()
 	depthStencilDescription.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 	
 	CheckResult(RawDevice->CreateDepthStencilState(&depthStencilDescription, &RawDepthStencilState),
-	format("{}: Failed creating depth stencil state", FuncName));
+		format("{}: Failed creating depth stencil state", FuncName));
 	
 	RawContext->OMSetDepthStencilState(RawDepthStencilState.Get(), 1);
 }
@@ -215,7 +274,23 @@ void GraphicsDevice::CreateDepthStencilView()
 	depthStencilViewDescription.Texture2D.MipSlice = 0;
 	
 	CheckResult(RawDevice->CreateDepthStencilView(RawDepthStencilBuffer.Get(), &depthStencilViewDescription, &RawDepthStencilView),
-	format("{}: Failed creating depth stencil view", FuncName));
+		format("{}: Failed creating depth stencil view", FuncName));
+
+	
+
+
+	// Get the pointer to the back buffer.
+	ID3D11Texture2D* backBufferPtr;
+	HRESULT result = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBufferPtr);
+
+	// Create the render target view with the back buffer pointer.
+	result = RawDevice->CreateRenderTargetView(backBufferPtr, NULL, &m_renderTargetView);
+
+	
+	RawContext->OMSetRenderTargets(1, &m_renderTargetView, RawDepthStencilView.Get());
+	
+	/*ID3D11RenderTargetView* view[4];
+	RawContext->OMGetRenderTargets(1, view, nullptr);*/
 }
 
 void GraphicsDevice::CreateRasterizerState()

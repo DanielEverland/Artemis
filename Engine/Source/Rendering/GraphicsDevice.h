@@ -19,7 +19,9 @@ namespace ArtemisEngine
 		
 		void GetMSAASupport(DXGI_FORMAT format, UINT* sampleCount, UINT* quality) const;
 		void CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backBuffer, ComPtr<ID3D11RenderTargetView>& renderTargetView) const;
+		void ClearRenderTargetView(const float* clearColor);
 		void ClearDepthStencilView();
+		void Present();
 		
 	private:
 		static const UINT MSAASampleCount = 4;
@@ -27,6 +29,8 @@ namespace ArtemisEngine
 		static D3D_FEATURE_LEVEL FeatureLevels[];
 
 		D3D_FEATURE_LEVEL UsedFeatureLevel;
+		D3D_FEATURE_LEVEL featureLevel;
+		IDXGISwapChain* m_swapChain;
 		Window* TargetWindow;
 		
 		ComPtr<ID3D11Device> RawDevice;
@@ -35,7 +39,10 @@ namespace ArtemisEngine
 		ComPtr<ID3D11Texture2D> RawDepthStencilBuffer;
 		ComPtr<ID3D11DepthStencilView> RawDepthStencilView;
 		ComPtr<ID3D11RasterizerState> RawRasterizerState;
+		ComPtr<ID3D11RenderTargetView> RenderTargetView;
 		D3D11_VIEWPORT Viewport;
+
+		ID3D11RenderTargetView* m_renderTargetView;
 
 		string GetFeatureLevelString() const;
 		static uint32 GetDeviceFlags();

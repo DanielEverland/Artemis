@@ -8,6 +8,7 @@
 #include "Core.h"
 #include <SDL_events.h>
 #include <SDL.h>
+#include <systemclass.h>
 
 using namespace ArtemisEngine;
 
@@ -31,7 +32,7 @@ Application::~Application()
 
 void Application::RunMainLoop()
 {
-    Log(LogApplication, Verbosity::Verbose, FuncName)
+    /*Log(LogApplication, Verbosity::Verbose, FuncName)
 	
     while (true)
     {
@@ -39,7 +40,30 @@ void Application::RunMainLoop()
             break;
     }
 
-    SDL_Quit();
+    SDL_Quit();*/
+
+	SystemClass* System;
+	bool result;
+
+
+	// Create the system object.
+	System = new SystemClass;
+	if (!System)
+	{
+		return;
+	}
+
+	// Initialize and run the system object.
+	result = System->Initialize();
+	if (result)
+	{
+		System->Run();
+	}
+
+	// Shutdown and release the system object.
+	System->Shutdown();
+	delete System;
+	System = 0;
 }
 
 void Application::CreatePrimaryAllocator()
@@ -82,6 +106,7 @@ bool Application::MainLoop() const
         }
     }
 
+	MainWindow->Update();
 	MainWindow->Draw();
 
 	return true;

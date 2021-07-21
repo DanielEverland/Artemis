@@ -1,6 +1,8 @@
 ﻿#include "Window.h"
 
 #include <iostream>
+#include <SDL_events.h>
+
 
 #include "Rendering/Renderer.h"
 
@@ -8,9 +10,18 @@ using namespace ArtemisEngine;
 
 #define SHAPE_SIZE 64
 
+DefineLogCategory(LogWindow, Verbosity::VeryVerbose)
+
 Window::Window()
 {
     MainWindow = SDL_CreateWindow("Artemis", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, GetWidth(), GetHeight(), 0);
+
+    SDL_SysWMinfo wmInfo;
+    SDL_VERSION(&wmInfo.version);
+    SDL_GetWindowWMInfo(MainWindow, &wmInfo);
+    Handle = wmInfo.info.win.window;
+
+	
     MainRenderer = new Renderer(this);
 	
     /* The loading of the background texture. Since SDL_LoadBMP() returns
@@ -47,6 +58,31 @@ Window::~Window()
     SDL_DestroyWindow(MainWindow);*/
 }
 
+void Window::Update()
+{
+	int* x = new int;
+	int* y = new int;
+	SDL_PumpEvents();
+	SDL_GetMouseState(x, y);
+
+    /*(*x) = static_cast<int>((GetWidth() / 2.f) - (*x));
+    (*y) = static_cast<int>((GetHeight() / 2.f) - (*y));*/
+
+	float relX = static_cast<float>(*x) / GetWidth();
+	float relY = static_cast<float>(*y) / GetHeight();
+
+	float rotX = relX * 360.f;
+	float rotY = relY * 360.f;
+	
+    Log(LogWindow, Verbosity::Log,
+		format("x: {}, y: {}", to_string(rotX), to_string(rotY)));
+
+	MainRenderer->GetMainCamera()->SetRotation(rotX, rotY, 0.f);
+	
+	delete x;
+	delete y;
+}
+
 void Window::Draw()
 {
 	MainRenderer->DoRender();
@@ -57,12 +93,22 @@ SDL_Window* Window::GetRaw()
 	return MainWindow;
 }
 
-int32 Window::GetHeight()
+HWND Window::GetHandle()
 {
-	return 640;
+	return Handle;
+}
+
+Renderer* Window::GetRenderer()
+{
+	return MainRenderer;
 }
 
 int32 Window::GetWidth()
 {
-	return 580;
+	return 1920;
+}
+
+int32 Window::GetHeight()
+{
+    return 1080;
 }

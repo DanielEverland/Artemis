@@ -15,6 +15,8 @@ namespace ArtemisEngine
 		[[nodiscard]] DXGI_SWAP_CHAIN_DESC GetDescription() const;
 		[[nodiscard]] DXGI_MODE_DESC GetBufferDescription() const;
 		[[nodiscard]] ComPtr<IDXGIFactory> GetFactory() const;
+		[[nodiscard]] ComPtr<IDXGISwapChain> GetRawSwapChain() const;
+		
 		void GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const;
 		void Present() const;
 

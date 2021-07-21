@@ -84,7 +84,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -103,7 +103,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -126,7 +126,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -145,7 +145,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -169,6 +169,8 @@
   <ItemGroup>
     <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="Source\Application\Window.h" />
+    <ClInclude Include="Source\cameraclass.h" />
+    <ClInclude Include="Source\colorshaderclass.h" />
     <ClInclude Include="Source\Config\GameConfiguration.h" />
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\Core\Color.h" />
@@ -178,6 +180,7 @@
     <ClInclude Include="Source\Core\SizeDef.h" />
     <ClInclude Include="Source\Core\StringUtility.h" />
     <ClInclude Include="Source\Core\Types.h" />
+    <ClInclude Include="Source\d3dclass.h" />
     <ClInclude Include="Source\Debugging\Logger.h" />
     <ClInclude Include="Source\Debugging\Verbosity.h" />
     <ClInclude Include="Source\Exception\ArgumentException.h" />
@@ -187,6 +190,8 @@
     <ClInclude Include="Source\Exception\IOException.h" />
     <ClInclude Include="Source\Exception\NullPointerException.h" />
     <ClInclude Include="Source\Exception\OutOfMemoryException.h" />
+    <ClInclude Include="Source\graphicsclass.h" />
+    <ClInclude Include="Source\inputclass.h" />
     <ClInclude Include="Source\IO\Directory.h" />
     <ClInclude Include="Source\IO\Path.h" />
     <ClInclude Include="Source\Memory\AllocatorUtility.h" />
@@ -196,26 +201,37 @@
     <ClInclude Include="Source\Memory\IDeallocator.h" />
     <ClInclude Include="Source\Memory\LinearAllocator.h" />
     <ClInclude Include="Source\Memory\StackAllocator.h" />
+    <ClInclude Include="Source\modelclass.h" />
+    <ClInclude Include="Source\Rendering\Camera.h" />
+    <ClInclude Include="Source\Rendering\ColorShaderClass.h" />
     <ClInclude Include="Source\Rendering\DirectXCore.h" />
     <ClInclude Include="Source\Rendering\GraphicsDevice.h" />
+    <ClInclude Include="Source\Rendering\Model.h" />
     <ClInclude Include="Source\Rendering\Renderer.h" />
     <ClInclude Include="Source\Rendering\RenderTargetView.h" />
     <ClInclude Include="Source\Rendering\SwapChain.h" />
+    <ClInclude Include="Source\systemclass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\Application\Window.cpp" />
+    <ClCompile Include="Source\cameraclass.cpp" />
+    <ClCompile Include="Source\colorshaderclass.cpp" />
     <ClCompile Include="Source\Config\GameConfiguration.cpp" />
     <ClCompile Include="Source\Core\Color.cpp" />
     <ClCompile Include="Source\Core\INIReader.cpp" />
     <ClCompile Include="Source\Core\Math.cpp" />
+    <ClCompile Include="Source\d3dclass.cpp" />
     <ClCompile Include="Source\Debugging\Logger.cpp" />
     <ClCompile Include="Source\Exception\ArgumentException.cpp" />
     <ClCompile Include="Source\Exception\Exception.cpp" />
     <ClCompile Include="Source\Exception\NullPointerException.cpp" />
     <ClCompile Include="Source\Exception\OutOfMemoryException.cpp" />
+    <ClCompile Include="Source\graphicsclass.cpp" />
+    <ClCompile Include="Source\inputclass.cpp" />
     <ClCompile Include="Source\IO\Directory.cpp" />
     <ClCompile Include="Source\IO\Path.cpp" />
+    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Memory\AllocatorUtility.cpp" />
     <ClCompile Include="Source\Memory\BaseAllocator.cpp" />
     <ClCompile Include="Source\Memory\FreeListAllocator.cpp" />
@@ -223,13 +239,22 @@
     <ClCompile Include="Source\Memory\IDeallocator.cpp" />
     <ClCompile Include="Source\Memory\LinearAllocator.cpp" />
     <ClCompile Include="Source\Memory\StackAllocator.cpp" />
+    <ClCompile Include="Source\modelclass.cpp" />
+    <ClCompile Include="Source\Rendering\Camera.cpp" />
+    <ClCompile Include="Source\Rendering\ColorShaderClass.cpp" />
     <ClCompile Include="Source\Rendering\GraphicsDevice.cpp" />
+    <ClCompile Include="Source\Rendering\Model.cpp" />
     <ClCompile Include="Source\Rendering\Renderer.cpp" />
     <ClCompile Include="Source\Rendering\RenderTargetView.cpp" />
     <ClCompile Include="Source\Rendering\SwapChain.cpp" />
+    <ClCompile Include="Source\systemclass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Shaders\PixelShader\Color.ps" />
+    <None Include="Shaders\Vertex\Color.vs" />
+    <None Include="Source\color.ps" />
+    <None Include="Source\color.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

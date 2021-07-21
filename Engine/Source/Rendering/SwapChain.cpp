@@ -45,7 +45,7 @@ DXGI_MODE_DESC SwapChain::GetBufferDescription() const
 	DXGI_MODE_DESC description;
 	description.Width = TargetWindow->GetWidth();
 	description.Height = TargetWindow->GetHeight();
-	description.RefreshRate = { 1, 30 };
+	description.RefreshRate = { 0, 1 };
 	description.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	description.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	description.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
@@ -70,6 +70,11 @@ ComPtr<IDXGIFactory> SwapChain::GetFactory() const
 	format("{}: Couldn't get IDXGIFactory", FuncName));
 
 	return factory;
+}
+
+ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const
+{
+	return RawSwapChain;
 }
 
 void SwapChain::GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const

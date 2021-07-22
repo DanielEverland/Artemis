@@ -3,6 +3,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "systemclass.h"
 
+#include "Rendering/Renderer.h"
+
 
 SystemClass::SystemClass()
 {
@@ -21,18 +23,19 @@ SystemClass::~SystemClass()
 }
 
 
-bool SystemClass::Initialize()
+bool SystemClass::Initialize(Renderer* renderer)
 {
-	int screenWidth, screenHeight;
+	//int screenWidth, screenHeight;
 	bool result;
 
 
 	// Initialize the width and height of the screen to zero before sending the variables into the function.
-	screenWidth = 0;
-	screenHeight = 0;
+	/*screenWidth = 0;
+	screenHeight = 0;*/
 
 	// Initialize the windows api.
-	InitializeWindows(screenWidth, screenHeight);
+	//InitializeWindows(screenWidth, screenHeight);
+	m_hwnd = renderer->GetMainWindow()->GetHandle();
 
 	// Create the input object.  This object will be used to handle reading the keyboard input from the user.
 	m_Input = new InputClass;
@@ -52,7 +55,7 @@ bool SystemClass::Initialize()
 	}
 
 	// Initialize the graphics object.
-	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd);
+	result = m_Graphics->Initialize(renderer->GetMainWindow()->GetWidth(), renderer->GetMainWindow()->GetHeight(), m_hwnd, renderer);
 	if(!result)
 	{
 		return false;

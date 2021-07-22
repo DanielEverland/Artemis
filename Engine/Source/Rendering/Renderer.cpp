@@ -71,11 +71,26 @@ shared_ptr<SwapChain> Renderer::GetSwapChain()
 	return SwapChain;
 }
 
+shared_ptr<GraphicsDevice> Renderer::GetDevice()
+{
+	return Device;
+}
+
+shared_ptr<RenderTargetView> Renderer::GetRenderTargetView()
+{
+	return RenderTargetView;
+}
+
+Window* Renderer::GetMainWindow()
+{
+	return MainWindow;
+}
+
 void Renderer::InitializeD3D()
 {
 	CreateDevice();
-	//CreateSwapChain();
-	//CreateRenderTarget();
+	CreateSwapChain();
+	CreateRenderTarget();
 	CreateProjectionMatrix();
 	CreateRenderObjects();
 }
@@ -83,10 +98,7 @@ void Renderer::InitializeD3D()
 void Renderer::CreateRenderTarget()
 {
 	RenderTargetView = make_shared<ArtemisEngine::RenderTargetView>(SwapChain, Device);
-	Device->GetRawContext()->OMSetRenderTargets(1, &RenderTargetView->GetRawRenderTargetView(), Device->GetRawStencilView().Get());
-
-	ID3D11RenderTargetView* view[4];
-	Device->GetRawContext()->OMGetRenderTargets(1, view, nullptr);
+	Device->GetRawContext()->OMSetRenderTargets(1, RenderTargetView->GetRawRenderTargetView().GetAddressOf(), Device->GetRawStencilView().Get());
 }
 
 void Renderer::CreateDevice()

@@ -16,6 +16,9 @@ namespace ArtemisEngine
 		[[nodiscard]] ComPtr<ID3D11Device> GetRawDevice() const;
 		[[nodiscard]] ComPtr<ID3D11DeviceContext> GetRawContext() const;
 		[[nodiscard]] ComPtr<ID3D11DepthStencilView> GetRawStencilView() const;
+		[[nodiscard]] ComPtr<ID3D11RasterizerState> GetRawRasterizerState() const;
+		[[nodiscard]] ComPtr<ID3D11Texture2D> GetRawDepthStencilBuffer() const;
+		[[nodiscard]] ComPtr<ID3D11DepthStencilState> GetRawDepthStencilState() const;
 		
 		void GetMSAASupport(DXGI_FORMAT format, UINT* sampleCount, UINT* quality) const;
 		void CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backBuffer, ComPtr<ID3D11RenderTargetView>& renderTargetView) const;

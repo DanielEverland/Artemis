@@ -12,6 +12,7 @@
 #include "cameraclass.h"
 #include "modelclass.h"
 #include "colorshaderclass.h"
+#include "Rendering/Renderer.h"
 
 
 /////////////
@@ -33,7 +34,7 @@ public:
 	GraphicsClass(const GraphicsClass&);
 	~GraphicsClass();
 
-	bool Initialize(int, int, HWND);
+	bool Initialize(int, int, HWND, Renderer* renderer);
 	void Shutdown();
 	bool Frame();
 

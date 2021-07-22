@@ -28,6 +28,9 @@ namespace ArtemisEngine
 		
 		[[nodiscard]] shared_ptr<Camera> GetMainCamera();
 		[[nodiscard]] shared_ptr<SwapChain> GetSwapChain();
+		[[nodiscard]] shared_ptr<GraphicsDevice> GetDevice();
+		[[nodiscard]] shared_ptr<RenderTargetView> GetRenderTargetView();
+		[[nodiscard]] Window* GetMainWindow();
 	
 	private:
 		static Color BackbufferColor;

@@ -22,6 +22,7 @@
 ///////////////////////
 #include "inputclass.h"
 #include "graphicsclass.h"
+#include "Rendering/Renderer.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +35,7 @@ public:
 	SystemClass(const SystemClass&);
 	~SystemClass();
 
-	bool Initialize();
+	bool Initialize(Renderer* graphicsDevice);
 	void Shutdown();
 	void Run();
 

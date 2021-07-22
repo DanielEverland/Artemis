@@ -10,6 +10,8 @@
 #include <SDL.h>
 #include <systemclass.h>
 
+#include "Rendering/Renderer.h"
+
 using namespace ArtemisEngine;
 
 DefineLogCategory(LogApplication, Verbosity::VeryVerbose)
@@ -54,7 +56,7 @@ void Application::RunMainLoop()
 	}
 
 	// Initialize and run the system object.
-	result = System->Initialize();
+	result = System->Initialize(MainWindow->GetRenderer());
 	if (result)
 	{
 		System->Run();

@@ -3,6 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #include "graphicsclass.h"
 #include "colorshaderclass.h"
+#include "Rendering/Renderer.h"
 
 
 GraphicsClass::GraphicsClass()
@@ -24,13 +25,13 @@ GraphicsClass::~GraphicsClass()
 }
 
 
-bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
+bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, Renderer* renderer)
 {
 	bool result;
 
 
 	// Create the Direct3D object.
-	m_Direct3D = new D3DClass;
+	m_Direct3D = new D3DClass(renderer);
 	if(!m_Direct3D)
 	{
 		return false;

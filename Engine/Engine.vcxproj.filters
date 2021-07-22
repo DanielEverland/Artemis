@@ -269,9 +269,6 @@
     <ClCompile Include="Source\inputclass.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\modelclass.cpp">
       <Filter>Source</Filter>
     </ClCompile>

@@ -79,7 +79,7 @@ ComPtr<IDXGISwapChain> SwapChain::GetRawSwapChain() const
 
 void SwapChain::GetBuffer(ComPtr<ID3D11Texture2D>& backBuffer) const
 {
-	CheckResult(RawSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(backBuffer.GetAddressOf())),
+	CheckResult(RawSwapChain->GetBuffer(0, IID_PPV_ARGS(backBuffer.GetAddressOf())),
 	format("{}: Couldn't get Texture buffer", FuncName));
 }
 

@@ -11,7 +11,7 @@ namespace ArtemisEngine
 		RenderTargetView(shared_ptr<SwapChain> swapChain, shared_ptr<GraphicsDevice> graphicsDevice);
 		void Clear(const float* clearColor) const;
 
-		ComPtr<ID3D11RenderTargetView> GetRawRenderTargetView() const;
+		[[nodiscard]] ComPtr<ID3D11RenderTargetView> GetRawRenderTargetView() const;
 
 	private:
 		ComPtr<ID3D11Texture2D> BackBuffer;

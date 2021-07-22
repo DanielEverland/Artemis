@@ -231,7 +231,6 @@
     <ClCompile Include="Source\inputclass.cpp" />
     <ClCompile Include="Source\IO\Directory.cpp" />
     <ClCompile Include="Source\IO\Path.cpp" />
-    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Memory\AllocatorUtility.cpp" />
     <ClCompile Include="Source\Memory\BaseAllocator.cpp" />
     <ClCompile Include="Source\Memory\FreeListAllocator.cpp" />

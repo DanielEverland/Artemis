@@ -59,6 +59,21 @@ ComPtr<ID3D11DepthStencilView> GraphicsDevice::GetRawStencilView() const
 	return RawDepthStencilView;
 }
 
+ComPtr<ID3D11RasterizerState> GraphicsDevice::GetRawRasterizerState() const
+{
+	return RawRasterizerState;
+}
+
+ComPtr<ID3D11Texture2D> GraphicsDevice::GetRawDepthStencilBuffer() const
+{
+	return RawDepthStencilBuffer;
+}
+
+ComPtr<ID3D11DepthStencilState> GraphicsDevice::GetRawDepthStencilState() const
+{
+	return RawDepthStencilState;
+}
+
 void GraphicsDevice::GetMSAASupport(DXGI_FORMAT dxgiFormat, UINT* sampleCount, UINT* quality) const
 {
 	*sampleCount = 1;

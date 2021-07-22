@@ -331,6 +331,8 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 
 	// Create an orthographic projection matrix for 2D rendering.
 	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth, (float)screenHeight, screenNear, screenDepth);
+	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth / 100.f, (float)screenHeight / 100.f, screenNear, screenDepth);
+	m_projectionMatrix = m_orthoMatrix;
 
 	return true;
 }

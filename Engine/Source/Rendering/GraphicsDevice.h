@@ -5,6 +5,7 @@
 
 namespace ArtemisEngine
 {
+	class Renderer;
 	class Window;
 
 	class GraphicsDevice
@@ -33,7 +34,6 @@ namespace ArtemisEngine
 
 		D3D_FEATURE_LEVEL UsedFeatureLevel;
 		D3D_FEATURE_LEVEL featureLevel;
-		IDXGISwapChain* m_swapChain;
 		Window* TargetWindow;
 		
 		ComPtr<ID3D11Device> RawDevice;
@@ -45,8 +45,6 @@ namespace ArtemisEngine
 		ComPtr<ID3D11RenderTargetView> RenderTargetView;
 		D3D11_VIEWPORT Viewport;
 
-		ID3D11RenderTargetView* m_renderTargetView;
-
 		string GetFeatureLevelString() const;
 		static uint32 GetDeviceFlags();
 		void OutputDebugInfo() const;
@@ -57,5 +55,45 @@ namespace ArtemisEngine
 		void CreateDepthStencilView();
 		void CreateRasterizerState();
 		void CreateViewport();
+
+
+
+
+
+
+
+
+		///
+	public:
+		void Initialize(Renderer* renderer, int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear);
+		void Shutdown();
+
+		void BeginScene(float red, float green, float blue, float alpha);
+		void EndScene();
+
+		ID3D11Device* GetDevice();
+		ID3D11DeviceContext* GetDeviceContext();
+
+		void GetProjectionMatrix(XMMATRIX&);
+		void GetWorldMatrix(XMMATRIX&);
+		void GetOrthoMatrix(XMMATRIX&);
+
+		void GetVideoCardInfo(char*, int&);
+
+	private:
+		bool m_vsync_enabled;
+		int m_videoCardMemory;
+		char m_videoCardDescription[128];
+		ComPtr<IDXGISwapChain> m_swapChain;
+		ComPtr<ID3D11Device> m_device;
+		ComPtr<ID3D11DeviceContext> m_deviceContext;
+		ComPtr<ID3D11RenderTargetView> m_renderTargetView;
+		ComPtr<ID3D11RasterizerState> m_rasterState;
+		ComPtr<ID3D11Texture2D> m_depthStencilBuffer;
+		ComPtr<ID3D11DepthStencilState> m_depthStencilState;
+		ComPtr<ID3D11DepthStencilView> m_depthStencilView;
+		XMMATRIX m_projectionMatrix;
+		XMMATRIX m_worldMatrix;
+		XMMATRIX m_orthoMatrix;
 	};
 }

@@ -156,9 +156,6 @@
     <ClInclude Include="Source\colorshaderclass.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\d3dclass.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\graphicsclass.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -261,9 +258,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\colorshaderclass.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\d3dclass.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\graphicsclass.cpp">

@@ -180,7 +180,6 @@
     <ClInclude Include="Source\Core\SizeDef.h" />
     <ClInclude Include="Source\Core\StringUtility.h" />
     <ClInclude Include="Source\Core\Types.h" />
-    <ClInclude Include="Source\d3dclass.h" />
     <ClInclude Include="Source\Debugging\Logger.h" />
     <ClInclude Include="Source\Debugging\Verbosity.h" />
     <ClInclude Include="Source\Exception\ArgumentException.h" />
@@ -222,7 +221,6 @@
     <ClCompile Include="Source\Core\Color.cpp" />
     <ClCompile Include="Source\Core\INIReader.cpp" />
     <ClCompile Include="Source\Core\Math.cpp" />
-    <ClCompile Include="Source\d3dclass.cpp" />
     <ClCompile Include="Source\Debugging\Logger.cpp" />
     <ClCompile Include="Source\Exception\ArgumentException.cpp" />
     <ClCompile Include="Source\Exception\Exception.cpp" />

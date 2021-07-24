@@ -8,12 +8,13 @@
 ///////////////////////
 // MY CLASS INCLUDES //
 ///////////////////////
-#include "d3dclass.h"
+#include "Rendering/GraphicsDevice.h"
 #include "cameraclass.h"
 #include "modelclass.h"
 #include "colorshaderclass.h"
 #include "Rendering/Renderer.h"
 
+using namespace ArtemisEngine;
 
 /////////////
 // GLOBALS //
@@ -31,9 +32,6 @@ class GraphicsClass
 {
 public:
 	GraphicsClass();
-	GraphicsClass(const GraphicsClass&);
-	~GraphicsClass();
-
 	bool Initialize(int, int, HWND, Renderer* renderer);
 	void Shutdown();
 	bool Frame();
@@ -42,7 +40,7 @@ private:
 	bool Render();
 
 private:
-	D3DClass* m_Direct3D;
+	shared_ptr<GraphicsDevice> GraphicsDevice;
 	CameraClass* m_Camera;
 	ModelClass* m_Model;
 	ColorShaderClass* m_ColorShader;

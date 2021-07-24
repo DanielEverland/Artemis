@@ -1,6 +1,12 @@
 ﻿#include "GraphicsDevice.h"
 
+#pragma comment(lib, "dxgi.lib")
+
 #include <utility>
+
+#include <d3d11.h>
+#include <directxmath.h>
+#include <wrl/client.h>
 
 #include "Renderer.h"
 #include "Application/Window.h"
@@ -107,7 +113,7 @@ void GraphicsDevice::CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backB
 
 void GraphicsDevice::ClearRenderTargetView(const float* clearColor)
 {
-	RawContext->ClearRenderTargetView(m_renderTargetView, clearColor);
+	RawContext->ClearRenderTargetView(m_renderTargetView.Get(), clearColor);
 }
 
 void GraphicsDevice::ClearDepthStencilView()
@@ -339,4 +345,207 @@ void GraphicsDevice::CreateViewport()
 	Viewport.TopLeftY = 0.0f;
 	
 	RawContext->RSSetViewports(1, &Viewport);
+}
+
+
+
+
+
+
+
+///
+void GraphicsDevice::Initialize(Renderer* renderer, int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
+{
+	m_depthStencilState = renderer->GetDevice()->GetRawDepthStencilState();
+	m_depthStencilView = renderer->GetDevice()->GetRawStencilView();
+	m_depthStencilBuffer = renderer->GetDevice()->GetRawDepthStencilBuffer();
+	m_rasterState = renderer->GetDevice()->GetRawRasterizerState();
+	m_device = renderer->GetDevice()->GetRawDevice();
+	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
+	m_deviceContext = renderer->GetDevice()->GetRawContext();
+	m_renderTargetView = renderer->GetRenderTargetView()->GetRawRenderTargetView();
+	
+	IDXGIFactory* factory;
+	IDXGIAdapter* adapter;
+	IDXGIOutput* adapterOutput;
+	unsigned int numModes, i, numerator, denominator;
+	unsigned long long stringLength;
+	DXGI_MODE_DESC* displayModeList;
+	DXGI_ADAPTER_DESC adapterDesc;
+	int error;
+	D3D11_VIEWPORT viewport;
+	float fieldOfView, screenAspect;
+
+	// Store the vsync setting.
+	m_vsync_enabled = vsync;
+
+	// Create a DirectX graphics interface factory.
+	CheckResult(CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&factory),
+		"Failed initializing factory");
+
+	// Use the factory to create an adapter for the primary graphics interface (video card).
+	CheckResult(factory->EnumAdapters(0, &adapter),
+		"Failed creating adapter for GPU");
+
+	// Enumerate the primary adapter output (monitor).
+	CheckResult(adapter->EnumOutputs(0, &adapterOutput),
+		"Failed creating adapter for monitor");
+
+	// Get the number of modes that fit the DXGI_FORMAT_R8G8B8A8_UNORM display format for the adapter output (monitor).
+	CheckResult(adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, NULL),
+		"Failed retrieving display format");
+
+	// Create a list to hold all the possible display modes for this monitor/video card combination.
+	displayModeList = new DXGI_MODE_DESC[numModes];
+	if (!displayModeList)
+	{
+		throw DirectXException("Couldn't allocate memory for display modes");
+	}
+
+	// Now fill the display mode list structures.
+	CheckResult(adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, displayModeList),
+		"Couldn't retrieve display mode list");
+
+	// Now go through all the display modes and find the one that matches the screen width and height.
+	// When a match is found store the numerator and denominator of the refresh rate for that monitor.
+	for (i = 0; i < numModes; i++)
+	{
+		if (displayModeList[i].Width == (unsigned int)screenWidth)
+		{
+			if (displayModeList[i].Height == (unsigned int)screenHeight)
+			{
+				numerator = displayModeList[i].RefreshRate.Numerator;
+				denominator = displayModeList[i].RefreshRate.Denominator;
+			}
+		}
+	}
+
+	// Get the adapter (video card) description.
+	CheckResult(adapter->GetDesc(&adapterDesc),
+		"Couldn't retrieve GPU description");
+
+	// Store the dedicated video card memory in megabytes.
+	m_videoCardMemory = (int)(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
+
+	// Convert the name of the video card to a character array and store it.
+	error = wcstombs_s(&stringLength, m_videoCardDescription, 128, adapterDesc.Description, 128);
+	if (error != 0)
+	{
+		throw DirectXException("Couldn't store GPU name");
+	}
+
+	// Release the display mode list.
+	delete[] displayModeList;
+	displayModeList = 0;
+
+	// Release the adapter output.
+	adapterOutput->Release();
+	adapterOutput = 0;
+
+	// Release the adapter.
+	adapter->Release();
+	adapter = 0;
+
+	// Release the factory.
+	factory->Release();
+	factory = 0;
+
+	// Setup the viewport for rendering.
+	viewport.Width = (float)screenWidth;
+	viewport.Height = (float)screenHeight;
+	viewport.MinDepth = 0.0f;
+	viewport.MaxDepth = 1.0f;
+	viewport.TopLeftX = 0.0f;
+	viewport.TopLeftY = 0.0f;
+
+	// Create the viewport.
+	m_deviceContext->RSSetViewports(1, &viewport);
+
+	// Setup the projection matrix.
+	fieldOfView = 3.141592654f / 4.0f;
+	screenAspect = (float)screenWidth / (float)screenHeight;
+
+	// Create the projection matrix for 3D rendering.
+	m_projectionMatrix = XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, screenNear, screenDepth);
+
+	// Initialize the world matrix to the identity matrix.
+	m_worldMatrix = XMMatrixIdentity();
+
+	// Create an orthographic projection matrix for 2D rendering.
+	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth, (float)screenHeight, screenNear, screenDepth);
+	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth / 100.f, (float)screenHeight / 100.f, screenNear, screenDepth);
+	m_projectionMatrix = m_orthoMatrix;
+}
+
+void GraphicsDevice::BeginScene(float red, float green, float blue, float alpha)
+{
+	float color[4];
+
+
+	// Setup the color to clear the buffer to.
+	color[0] = red;
+	color[1] = green;
+	color[2] = blue;
+	color[3] = alpha;
+
+	// Clear the back buffer.
+	m_deviceContext->ClearRenderTargetView(m_renderTargetView.Get(), color);
+
+	// Clear the depth buffer.
+	m_deviceContext->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+void GraphicsDevice::EndScene()
+{
+	// Present the back buffer to the screen since rendering is complete.
+	if (m_vsync_enabled)
+	{
+		// Lock to screen refresh rate.
+		m_swapChain->Present(1, 0);
+	}
+	else
+	{
+		// Present as fast as possible.
+		m_swapChain->Present(0, 0);
+	}
+}
+
+ID3D11Device* GraphicsDevice::GetDevice()
+{
+	return m_device.Get();
+}
+
+ID3D11DeviceContext* GraphicsDevice::GetDeviceContext()
+{
+	return m_deviceContext.Get();
+}
+
+void GraphicsDevice::GetOrthoMatrix(XMMATRIX& orthoMatrix)
+{
+	orthoMatrix = m_orthoMatrix;
+}
+
+void GraphicsDevice::GetProjectionMatrix(XMMATRIX& projectionMatrix)
+{
+	projectionMatrix = m_projectionMatrix;
+}
+
+void GraphicsDevice::GetVideoCardInfo(char* cardName, int& memory)
+{
+	strcpy_s(cardName, 128, m_videoCardDescription);
+	memory = m_videoCardMemory;
+}
+
+void GraphicsDevice::GetWorldMatrix(XMMATRIX& worldMatrix)
+{
+	worldMatrix = m_worldMatrix;
+}
+
+void GraphicsDevice::Shutdown()
+{
+	// Before shutting down set to windowed mode or when you release the swap chain it will throw an exception.
+	if (m_swapChain)
+	{
+		m_swapChain->SetFullscreenState(false, NULL);
+	}
 }

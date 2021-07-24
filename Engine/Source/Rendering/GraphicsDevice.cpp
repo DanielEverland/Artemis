@@ -113,7 +113,7 @@ void GraphicsDevice::CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backB
 
 void GraphicsDevice::ClearRenderTargetView(const float* clearColor)
 {
-	RawContext->ClearRenderTargetView(m_renderTargetView.Get(), clearColor);
+	RawContext->ClearRenderTargetView(RenderTargetView.Get(), clearColor);
 }
 
 void GraphicsDevice::ClearDepthStencilView()
@@ -305,10 +305,10 @@ void GraphicsDevice::CreateDepthStencilView()
 	HRESULT result = m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBufferPtr);
 
 	// Create the render target view with the back buffer pointer.
-	result = RawDevice->CreateRenderTargetView(backBufferPtr, NULL, &m_renderTargetView);
+	result = RawDevice->CreateRenderTargetView(backBufferPtr, NULL, RenderTargetView.GetAddressOf());
 
 	
-	RawContext->OMSetRenderTargets(1, &m_renderTargetView, RawDepthStencilView.Get());
+	RawContext->OMSetRenderTargets(1, RenderTargetView.GetAddressOf(), RawDepthStencilView.Get());
 	
 	/*ID3D11RenderTargetView* view[4];
 	RawContext->OMGetRenderTargets(1, view, nullptr);*/
@@ -356,14 +356,7 @@ void GraphicsDevice::CreateViewport()
 ///
 void GraphicsDevice::Initialize(Renderer* renderer, int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
-	m_depthStencilState = renderer->GetDevice()->GetRawDepthStencilState();
-	m_depthStencilView = renderer->GetDevice()->GetRawStencilView();
-	m_depthStencilBuffer = renderer->GetDevice()->GetRawDepthStencilBuffer();
-	m_rasterState = renderer->GetDevice()->GetRawRasterizerState();
-	m_device = renderer->GetDevice()->GetRawDevice();
 	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
-	m_deviceContext = renderer->GetDevice()->GetRawContext();
-	m_renderTargetView = renderer->GetRenderTargetView()->GetRawRenderTargetView();
 	
 	IDXGIFactory* factory;
 	IDXGIAdapter* adapter;
@@ -459,7 +452,7 @@ void GraphicsDevice::Initialize(Renderer* renderer, int screenWidth, int screenH
 	viewport.TopLeftY = 0.0f;
 
 	// Create the viewport.
-	m_deviceContext->RSSetViewports(1, &viewport);
+	RawContext->RSSetViewports(1, &viewport);
 
 	// Setup the projection matrix.
 	fieldOfView = 3.141592654f / 4.0f;
@@ -489,10 +482,10 @@ void GraphicsDevice::BeginScene(float red, float green, float blue, float alpha)
 	color[3] = alpha;
 
 	// Clear the back buffer.
-	m_deviceContext->ClearRenderTargetView(m_renderTargetView.Get(), color);
+	RawContext->ClearRenderTargetView(RenderTargetView.Get(), color);
 
 	// Clear the depth buffer.
-	m_deviceContext->ClearDepthStencilView(m_depthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+	RawContext->ClearDepthStencilView(RawDepthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void GraphicsDevice::EndScene()
@@ -512,12 +505,12 @@ void GraphicsDevice::EndScene()
 
 ID3D11Device* GraphicsDevice::GetDevice()
 {
-	return m_device.Get();
+	return RawDevice.Get();
 }
 
 ID3D11DeviceContext* GraphicsDevice::GetDeviceContext()
 {
-	return m_deviceContext.Get();
+	return RawContext.Get();
 }
 
 void GraphicsDevice::GetOrthoMatrix(XMMATRIX& orthoMatrix)

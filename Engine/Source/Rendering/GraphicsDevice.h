@@ -85,13 +85,6 @@ namespace ArtemisEngine
 		int m_videoCardMemory;
 		char m_videoCardDescription[128];
 		ComPtr<IDXGISwapChain> m_swapChain;
-		ComPtr<ID3D11Device> m_device;
-		ComPtr<ID3D11DeviceContext> m_deviceContext;
-		ComPtr<ID3D11RenderTargetView> m_renderTargetView;
-		ComPtr<ID3D11RasterizerState> m_rasterState;
-		ComPtr<ID3D11Texture2D> m_depthStencilBuffer;
-		ComPtr<ID3D11DepthStencilState> m_depthStencilState;
-		ComPtr<ID3D11DepthStencilView> m_depthStencilView;
 		XMMATRIX m_projectionMatrix;
 		XMMATRIX m_worldMatrix;
 		XMMATRIX m_orthoMatrix;

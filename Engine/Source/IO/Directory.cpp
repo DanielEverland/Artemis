@@ -39,3 +39,8 @@ vector<string> Directory::GetAllDirectories(const string& directory)
 
 	return allDirectories;
 }
+
+bool Directory::Exists(const string& directory)
+{
+	return is_directory(directory);
+}

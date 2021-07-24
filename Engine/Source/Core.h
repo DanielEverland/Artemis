@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <functional>
 #include <format>
 #include <memory>
 
@@ -18,3 +19,5 @@ using std::make_shared;
 using std::make_unique;
 
 using std::move;
+
+using std::function;

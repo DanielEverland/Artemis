@@ -171,6 +171,9 @@
     <ClInclude Include="Source\systemclass.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\ShaderLoader.h">
+      <Filter>Source\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Memory\BaseAllocator.cpp">
@@ -274,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="Source\systemclass.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\ShaderLoader.cpp">
+      <Filter>Source\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -50,6 +50,7 @@ namespace ArtemisEngine
 				
 		void InitializeD3D();
 		void CreateRenderTarget();
+		void LoadShaders() const;
 		void CreateDevice();
 		void CreateSwapChain();
 		void CreateProjectionMatrix();

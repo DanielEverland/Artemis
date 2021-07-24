@@ -209,6 +209,7 @@
     <ClInclude Include="Source\Rendering\Model.h" />
     <ClInclude Include="Source\Rendering\Renderer.h" />
     <ClInclude Include="Source\Rendering\RenderTargetView.h" />
+    <ClInclude Include="Source\Rendering\ShaderLoader.h" />
     <ClInclude Include="Source\Rendering\SwapChain.h" />
     <ClInclude Include="Source\systemclass.h" />
   </ItemGroup>
@@ -245,6 +246,7 @@
     <ClCompile Include="Source\Rendering\Model.cpp" />
     <ClCompile Include="Source\Rendering\Renderer.cpp" />
     <ClCompile Include="Source\Rendering\RenderTargetView.cpp" />
+    <ClCompile Include="Source\Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Source\Rendering\SwapChain.cpp" />
     <ClCompile Include="Source\systemclass.cpp" />
   </ItemGroup>

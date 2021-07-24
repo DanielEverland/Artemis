@@ -8,6 +8,7 @@
 #include <SDL.h>
 
 #include "DirectXCore.h"
+#include "ShaderLoader.h"
 #include "SwapChain.h"
 #include "Core/StringUtility.h"
 
@@ -89,6 +90,7 @@ Window* Renderer::GetMainWindow()
 void Renderer::InitializeD3D()
 {
 	CreateDevice();
+	LoadShaders();
 	CreateSwapChain();
 	CreateRenderTarget();
 	CreateProjectionMatrix();
@@ -99,6 +101,11 @@ void Renderer::CreateRenderTarget()
 {
 	RenderTargetView = make_shared<ArtemisEngine::RenderTargetView>(SwapChain, Device);
 	Device->GetRawContext()->OMSetRenderTargets(1, RenderTargetView->GetRawRenderTargetView().GetAddressOf(), Device->GetRawStencilView().Get());
+}
+
+void Renderer::LoadShaders() const
+{
+	ShaderLoader::LoadAllShaders(Device);
 }
 
 void Renderer::CreateDevice()

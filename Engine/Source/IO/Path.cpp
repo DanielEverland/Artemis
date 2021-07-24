@@ -19,11 +19,15 @@ string Path::GetFileName(string fullPath)
 string Path::GetFileNameWithoutExtension(const string& fullPath)
 {
     string fileName = GetFileName(fullPath);
+    return GetFullPathWithoutExtension(fileName);
+}
 
-    const size_t period_idx = fileName.rfind('.');
+string Path::GetFullPathWithoutExtension(string fullPath)
+{
+    const size_t period_idx = fullPath.rfind('.');
     Assert(std::string::npos != period_idx, ArgumentException("No extension deliminator dot (.) present in path \"" + fullPath + "\""))
 
-    return fileName.erase(period_idx);
+    return fullPath.erase(period_idx);
 }
 
 string Path::RemoveLastDeliminatorPart(string fullPath)
@@ -80,4 +84,14 @@ string Path::GetProjectPath()
     char fileName[255];
     GetModuleFileNameA(nullptr, fileName, sizeof(fileName));
     return RemoveLastDeliminatorPart(fileName);
+}
+
+string Path::GetRelativePath(const string& fullPath, const string& toRemove)
+{
+    return fullPath.substr(toRemove.size() + 1, fullPath.size() - toRemove.size());
+}
+
+RecursiveDirectoryIterator Path::GetRecursiveIterator(const string& directory)
+{
+	return RecursiveDirectoryIterator(directory);
 }

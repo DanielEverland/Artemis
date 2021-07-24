@@ -49,7 +49,11 @@ void SetDirectories(char** argv)
 {
 	// Can't get post-build events to work with arguments
 	SourceDirectory = R"(D:\Daniel\Artemis\Engine\Shaders)";
-	TargetDirectory = R"(D:\Daniel\Artemis\Engine\x64\$(Configuration)\Shaders)";
+#if _DEBUG
+	TargetDirectory = R"(D:\Daniel\Artemis\Engine\x64\Debug\Shaders)";
+#else
+	TargetDirectory = R"(D:\Daniel\Artemis\Engine\x64\Release\Shaders)";
+#endif
 	CompilerPath = R"(C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\fxc.exe)";
 }
 

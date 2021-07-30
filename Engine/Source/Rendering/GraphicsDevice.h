@@ -14,6 +14,9 @@ namespace ArtemisEngine
 		GraphicsDevice(Window* targetWindow);
 		~GraphicsDevice();
 
+		[[nodiscard]] static ComPtr<IDXGIFactory> CreateFactory();
+		[[nodiscard]] static ComPtr<IDXGIAdapter> CreateAdapter();
+		
 		[[nodiscard]] ComPtr<ID3D11Device> GetRawDevice() const;
 		[[nodiscard]] ComPtr<ID3D11DeviceContext> GetRawContext() const;
 		[[nodiscard]] ComPtr<ID3D11DepthStencilView> GetRawStencilView() const;
@@ -55,12 +58,8 @@ namespace ArtemisEngine
 		void CreateDepthStencilView();
 		void CreateRasterizerState();
 		void CreateViewport();
-
-
-
-
-
-
+		void CacheGPUInformation();
+		void SetViewport() const;
 
 
 		///
@@ -78,12 +77,10 @@ namespace ArtemisEngine
 		void GetWorldMatrix(XMMATRIX&);
 		void GetOrthoMatrix(XMMATRIX&);
 
-		void GetVideoCardInfo(char*, int&);
-
 	private:
 		bool m_vsync_enabled;
-		int m_videoCardMemory;
-		char m_videoCardDescription[128];
+		int GPUMemory;
+		string GPUName;
 		ComPtr<IDXGISwapChain> m_swapChain;
 		XMMATRIX m_projectionMatrix;
 		XMMATRIX m_worldMatrix;

@@ -10,6 +10,7 @@
 
 #include "Renderer.h"
 #include "Application/Window.h"
+#include "Core/Math.h"
 #include "Core/StringUtility.h"
 
 using namespace ArtemisEngine;
@@ -42,6 +43,8 @@ GraphicsDevice::GraphicsDevice(Window* targetWindow) : TargetWindow(targetWindow
 	CreateDepthStencilState();
 	CreateDepthStencilView();
 	CreateViewport();
+	CacheGPUInformation();
+	SetViewport();
 }
 
 GraphicsDevice::~GraphicsDevice()
@@ -78,6 +81,25 @@ ComPtr<ID3D11Texture2D> GraphicsDevice::GetRawDepthStencilBuffer() const
 ComPtr<ID3D11DepthStencilState> GraphicsDevice::GetRawDepthStencilState() const
 {
 	return RawDepthStencilState;
+}
+
+ComPtr<IDXGIFactory> GraphicsDevice::CreateFactory()
+{
+	ComPtr<IDXGIFactory> factory;
+	CheckResult(CreateDXGIFactory(__uuidof(IDXGIFactory), reinterpret_cast<void**>(factory.GetAddressOf())),
+		"Failed initializing factory");
+	return factory;
+}
+
+ComPtr<IDXGIAdapter> GraphicsDevice::CreateAdapter()
+{
+	ComPtr<IDXGIAdapter> adapter;
+
+	ComPtr<IDXGIFactory> factory = CreateFactory();
+	CheckResult(factory->EnumAdapters(0, adapter.GetAddressOf()),
+		"Failed creating adapter for GPU");
+
+	return adapter;
 }
 
 void GraphicsDevice::GetMSAASupport(DXGI_FORMAT dxgiFormat, UINT* sampleCount, UINT* quality) const
@@ -347,91 +369,37 @@ void GraphicsDevice::CreateViewport()
 	RawContext->RSSetViewports(1, &Viewport);
 }
 
-
-
-
-
-
-
 ///
-void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, bool vsync, float screenDepth, float screenNear)
+
+void GraphicsDevice::CacheGPUInformation()
 {
-	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
-	
-	IDXGIFactory* factory;
-	IDXGIAdapter* adapter;
-	IDXGIOutput* adapterOutput;
-	unsigned int numModes;
 	unsigned long long stringLength;
 	DXGI_ADAPTER_DESC adapterDesc;
-	D3D11_VIEWPORT viewport;
-
-	// Store the vsync setting.
-	m_vsync_enabled = vsync;
-
-	// Create a DirectX graphics interface factory.
-	CheckResult(CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&factory),
-		"Failed initializing factory");
-
-	// Use the factory to create an adapter for the primary graphics interface (video card).
-	CheckResult(factory->EnumAdapters(0, &adapter),
-		"Failed creating adapter for GPU");
-
-	// Enumerate the primary adapter output (monitor).
-	CheckResult(adapter->EnumOutputs(0, &adapterOutput),
-		"Failed creating adapter for monitor");
-
-	// Get the number of modes that fit the DXGI_FORMAT_R8G8B8A8_UNORM display format for the adapter output (monitor).
-	CheckResult(adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, NULL),
-		"Failed retrieving display format");
-
-	// Create a list to hold all the possible display modes for this monitor/video card combination.
-	DXGI_MODE_DESC* displayModeList = new DXGI_MODE_DESC[numModes];
-	if (!displayModeList)
-	{
-		throw DirectXException("Couldn't allocate memory for display modes");
-	}
-
-	// Now fill the display mode list structures.
-	CheckResult(adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, displayModeList),
-		"Couldn't retrieve display mode list");
-
+	ComPtr<IDXGIAdapter> adapter = CreateAdapter();
+	
 	// Get the adapter (video card) description.
 	CheckResult(adapter->GetDesc(&adapterDesc),
-		"Couldn't retrieve GPU description");
+	            "Couldn't retrieve GPU description");
 
 	// Store the dedicated video card memory in megabytes.
-	m_videoCardMemory = static_cast<int>(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
+	GPUMemory = static_cast<int>(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
 
 	// Convert the name of the video card to a character array and store it.
-	const int error = wcstombs_s(&stringLength, m_videoCardDescription, 128, adapterDesc.Description, 128);
+	char tempGPUName[128];
+	const int error = wcstombs_s(&stringLength, tempGPUName, 128, adapterDesc.Description, 128);
 	if (error != 0)
 	{
 		throw DirectXException("Couldn't store GPU name");
 	}
 
-	// Release the display mode list.
-	delete[] displayModeList;
-	displayModeList = nullptr;
+	GPUName = string(tempGPUName);
+}
 
-	// Release the adapter output.
-	adapterOutput->Release();
-	adapterOutput = nullptr;
-
-	// Release the adapter.
-	adapter->Release();
-	adapter = nullptr;
-
-	// Release the factory.
-	factory->Release();
-	factory = nullptr;
-
-	// Setup the viewport for rendering.
-	const auto screenWidth = static_cast<float>(TargetWindow->GetWidth());
-	const auto screenHeight = static_cast<float>(TargetWindow->GetHeight());
-	
-	viewport.Width = screenWidth;
-	viewport.Height = screenHeight;
+void GraphicsDevice::SetViewport() const
+{
+	D3D11_VIEWPORT viewport;
+	viewport.Width = static_cast<float>(TargetWindow->GetWidth());
+	viewport.Height = static_cast<float>(TargetWindow->GetHeight());
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0.0f;
@@ -439,9 +407,20 @@ void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, bool vsync, float
 
 	// Create the viewport.
 	RawContext->RSSetViewports(1, &viewport);
+}
 
+void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, bool vsync, float screenDepth, float screenNear)
+{
+	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
+	
+	// Store the vsync setting.
+	m_vsync_enabled = vsync;
+	
+	const auto screenWidth = static_cast<float>(TargetWindow->GetWidth());
+	const auto screenHeight = static_cast<float>(TargetWindow->GetHeight());
+	
 	// Setup the projection matrix.
-	const float fieldOfView = 3.141592654f / 4.0f;
+	const float fieldOfView = Math::PI / 4.0f;
 	const float screenAspect = screenWidth / screenHeight;
 
 	// Create the projection matrix for 3D rendering.
@@ -507,12 +486,6 @@ void GraphicsDevice::GetOrthoMatrix(XMMATRIX& orthoMatrix)
 void GraphicsDevice::GetProjectionMatrix(XMMATRIX& projectionMatrix)
 {
 	projectionMatrix = m_projectionMatrix;
-}
-
-void GraphicsDevice::GetVideoCardInfo(char* cardName, int& memory)
-{
-	strcpy_s(cardName, 128, m_videoCardDescription);
-	memory = m_videoCardMemory;
 }
 
 void GraphicsDevice::GetWorldMatrix(XMMATRIX& worldMatrix)

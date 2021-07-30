@@ -409,12 +409,14 @@ void GraphicsDevice::SetViewport() const
 	RawContext->RSSetViewports(1, &viewport);
 }
 
-void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, bool vsync, float screenDepth, float screenNear)
+void GraphicsDevice::SetVSync(bool enabled)
+{
+	VSyncEnabled = enabled;
+}
+
+void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, float screenDepth, float screenNear)
 {
 	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
-	
-	// Store the vsync setting.
-	m_vsync_enabled = vsync;
 	
 	const auto screenWidth = static_cast<float>(TargetWindow->GetWidth());
 	const auto screenHeight = static_cast<float>(TargetWindow->GetHeight());
@@ -456,7 +458,7 @@ void GraphicsDevice::BeginScene(float red, float green, float blue, float alpha)
 void GraphicsDevice::EndScene()
 {
 	// Present the back buffer to the screen since rendering is complete.
-	if (m_vsync_enabled)
+	if (VSyncEnabled)
 	{
 		// Lock to screen refresh rate.
 		m_swapChain->Present(1, 0);

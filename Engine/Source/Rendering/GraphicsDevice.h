@@ -23,6 +23,8 @@ namespace ArtemisEngine
 		[[nodiscard]] ComPtr<ID3D11RasterizerState> GetRawRasterizerState() const;
 		[[nodiscard]] ComPtr<ID3D11Texture2D> GetRawDepthStencilBuffer() const;
 		[[nodiscard]] ComPtr<ID3D11DepthStencilState> GetRawDepthStencilState() const;
+
+		void SetVSync(bool enabled);
 		
 		void GetMSAASupport(DXGI_FORMAT format, UINT* sampleCount, UINT* quality) const;
 		void CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backBuffer, ComPtr<ID3D11RenderTargetView>& renderTargetView) const;
@@ -64,7 +66,7 @@ namespace ArtemisEngine
 
 		///
 	public:
-		void Initialize(shared_ptr<Renderer> renderer, bool vsync, float screenDepth, float screenNear);
+		void Initialize(shared_ptr<Renderer> renderer, float screenDepth, float screenNear);
 		void Shutdown();
 
 		void BeginScene(float red, float green, float blue, float alpha);
@@ -78,7 +80,7 @@ namespace ArtemisEngine
 		void GetOrthoMatrix(XMMATRIX&);
 
 	private:
-		bool m_vsync_enabled;
+		bool VSyncEnabled;
 		int GPUMemory;
 		string GPUName;
 		ComPtr<IDXGISwapChain> m_swapChain;

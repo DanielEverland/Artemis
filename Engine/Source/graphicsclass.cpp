@@ -20,7 +20,7 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, sha
 	GraphicsDevice = renderer->GetDevice();
 	
 	// Initialize the Direct3D object.
-	GraphicsDevice->Initialize(renderer, screenWidth, screenHeight, VSYNC_ENABLED, hwnd, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
+	GraphicsDevice->Initialize(renderer, VSYNC_ENABLED, SCREEN_DEPTH, SCREEN_NEAR);
 
 	// Create the camera object.
 	m_Camera = new CameraClass;

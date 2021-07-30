@@ -354,20 +354,17 @@ void GraphicsDevice::CreateViewport()
 
 
 ///
-void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
+void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, bool vsync, float screenDepth, float screenNear)
 {
 	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
 	
 	IDXGIFactory* factory;
 	IDXGIAdapter* adapter;
 	IDXGIOutput* adapterOutput;
-	unsigned int numModes, i, numerator, denominator;
+	unsigned int numModes;
 	unsigned long long stringLength;
-	DXGI_MODE_DESC* displayModeList;
 	DXGI_ADAPTER_DESC adapterDesc;
-	int error;
 	D3D11_VIEWPORT viewport;
-	float fieldOfView, screenAspect;
 
 	// Store the vsync setting.
 	m_vsync_enabled = vsync;
@@ -389,7 +386,7 @@ void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, int screenWidth, 
 		"Failed retrieving display format");
 
 	// Create a list to hold all the possible display modes for this monitor/video card combination.
-	displayModeList = new DXGI_MODE_DESC[numModes];
+	DXGI_MODE_DESC* displayModeList = new DXGI_MODE_DESC[numModes];
 	if (!displayModeList)
 	{
 		throw DirectXException("Couldn't allocate memory for display modes");
@@ -399,29 +396,15 @@ void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, int screenWidth, 
 	CheckResult(adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, displayModeList),
 		"Couldn't retrieve display mode list");
 
-	// Now go through all the display modes and find the one that matches the screen width and height.
-	// When a match is found store the numerator and denominator of the refresh rate for that monitor.
-	for (i = 0; i < numModes; i++)
-	{
-		if (displayModeList[i].Width == (unsigned int)screenWidth)
-		{
-			if (displayModeList[i].Height == (unsigned int)screenHeight)
-			{
-				numerator = displayModeList[i].RefreshRate.Numerator;
-				denominator = displayModeList[i].RefreshRate.Denominator;
-			}
-		}
-	}
-
 	// Get the adapter (video card) description.
 	CheckResult(adapter->GetDesc(&adapterDesc),
 		"Couldn't retrieve GPU description");
 
 	// Store the dedicated video card memory in megabytes.
-	m_videoCardMemory = (int)(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
+	m_videoCardMemory = static_cast<int>(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
 
 	// Convert the name of the video card to a character array and store it.
-	error = wcstombs_s(&stringLength, m_videoCardDescription, 128, adapterDesc.Description, 128);
+	const int error = wcstombs_s(&stringLength, m_videoCardDescription, 128, adapterDesc.Description, 128);
 	if (error != 0)
 	{
 		throw DirectXException("Couldn't store GPU name");
@@ -429,23 +412,26 @@ void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, int screenWidth, 
 
 	// Release the display mode list.
 	delete[] displayModeList;
-	displayModeList = 0;
+	displayModeList = nullptr;
 
 	// Release the adapter output.
 	adapterOutput->Release();
-	adapterOutput = 0;
+	adapterOutput = nullptr;
 
 	// Release the adapter.
 	adapter->Release();
-	adapter = 0;
+	adapter = nullptr;
 
 	// Release the factory.
 	factory->Release();
-	factory = 0;
+	factory = nullptr;
 
 	// Setup the viewport for rendering.
-	viewport.Width = (float)screenWidth;
-	viewport.Height = (float)screenHeight;
+	const auto screenWidth = static_cast<float>(TargetWindow->GetWidth());
+	const auto screenHeight = static_cast<float>(TargetWindow->GetHeight());
+	
+	viewport.Width = screenWidth;
+	viewport.Height = screenHeight;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0.0f;
@@ -455,8 +441,8 @@ void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, int screenWidth, 
 	RawContext->RSSetViewports(1, &viewport);
 
 	// Setup the projection matrix.
-	fieldOfView = 3.141592654f / 4.0f;
-	screenAspect = (float)screenWidth / (float)screenHeight;
+	const float fieldOfView = 3.141592654f / 4.0f;
+	const float screenAspect = screenWidth / screenHeight;
 
 	// Create the projection matrix for 3D rendering.
 	m_projectionMatrix = XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, screenNear, screenDepth);
@@ -465,8 +451,8 @@ void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, int screenWidth, 
 	m_worldMatrix = XMMatrixIdentity();
 
 	// Create an orthographic projection matrix for 2D rendering.
-	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth, (float)screenHeight, screenNear, screenDepth);
-	m_orthoMatrix = XMMatrixOrthographicLH((float)screenWidth / 100.f, (float)screenHeight / 100.f, screenNear, screenDepth);
+	m_orthoMatrix = XMMatrixOrthographicLH(screenWidth, screenHeight, screenNear, screenDepth);
+	m_orthoMatrix = XMMatrixOrthographicLH(screenWidth / 100.f, screenHeight / 100.f, screenNear, screenDepth);
 	m_projectionMatrix = m_orthoMatrix;
 }
 

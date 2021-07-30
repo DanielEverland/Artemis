@@ -35,7 +35,7 @@ public:
 	SystemClass(const SystemClass&);
 	~SystemClass();
 
-	bool Initialize(Renderer* graphicsDevice);
+	bool Initialize(shared_ptr<Renderer> graphicsDevice);
 	void Shutdown();
 	void Run();
 

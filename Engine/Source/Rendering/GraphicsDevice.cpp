@@ -354,7 +354,7 @@ void GraphicsDevice::CreateViewport()
 
 
 ///
-void GraphicsDevice::Initialize(Renderer* renderer, int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
+void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscreen, float screenDepth, float screenNear)
 {
 	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
 	

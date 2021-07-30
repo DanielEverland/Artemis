@@ -22,7 +22,7 @@ Window::Window()
     Handle = wmInfo.info.win.window;
 
 	
-    MainRenderer = new Renderer(this);
+    MainRenderer = make_shared<Renderer>(this);
 	
     /* The loading of the background texture. Since SDL_LoadBMP() returns
     a surface, we convert it to a texture afterwards for fast accelerated
@@ -98,7 +98,7 @@ HWND Window::GetHandle()
 	return Handle;
 }
 
-Renderer* Window::GetRenderer()
+shared_ptr<Renderer> Window::GetRenderer()
 {
 	return MainRenderer;
 }

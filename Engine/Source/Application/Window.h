@@ -24,11 +24,11 @@ namespace ArtemisEngine
 		[[nodiscard]] int32 GetWidth();
 		[[nodiscard]] int32 GetHeight();
 		[[nodiscard]] HWND GetHandle();
-		[[nodiscard]] Renderer* GetRenderer();
+		[[nodiscard]] shared_ptr<Renderer> GetRenderer();
 		
 	private:
 		SDL_Window* MainWindow;
-		Renderer* MainRenderer;
+		shared_ptr<Renderer> MainRenderer;
 		HWND Handle;
 
 		// TEMP SHIT:

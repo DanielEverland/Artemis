@@ -23,7 +23,7 @@ SystemClass::~SystemClass()
 }
 
 
-bool SystemClass::Initialize(Renderer* renderer)
+bool SystemClass::Initialize(shared_ptr<Renderer> renderer)
 {
 	//int screenWidth, screenHeight;
 	bool result;

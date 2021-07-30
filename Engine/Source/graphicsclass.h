@@ -32,7 +32,7 @@ class GraphicsClass
 {
 public:
 	GraphicsClass();
-	bool Initialize(int, int, HWND, Renderer* renderer);
+	bool Initialize(int, int, HWND, shared_ptr<Renderer> renderer);
 	void Shutdown();
 	bool Frame();
 

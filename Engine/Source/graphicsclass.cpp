@@ -13,7 +13,7 @@ GraphicsClass::GraphicsClass()
 	m_ColorShader = 0;
 }
 
-bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, Renderer* renderer)
+bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd, shared_ptr<Renderer> renderer)
 {
 	bool result;
 

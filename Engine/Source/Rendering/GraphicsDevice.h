@@ -25,7 +25,8 @@ namespace ArtemisEngine
 		[[nodiscard]] ComPtr<ID3D11DepthStencilState> GetRawDepthStencilState() const;
 
 		void SetVSync(bool enabled);
-		
+		void CreateProjectionMatrix();
+
 		void GetMSAASupport(DXGI_FORMAT format, UINT* sampleCount, UINT* quality) const;
 		void CreateRenderTargetView(const ComPtr<ID3D11Texture2D>& backBuffer, ComPtr<ID3D11RenderTargetView>& renderTargetView) const;
 		void ClearRenderTargetView(const float* clearColor);
@@ -37,6 +38,9 @@ namespace ArtemisEngine
 		static const std::map<D3D_FEATURE_LEVEL, string> FeatureLevelNames;
 		static D3D_FEATURE_LEVEL FeatureLevels[];
 
+		float ScreenNear;
+		float ScreenFar;
+		
 		D3D_FEATURE_LEVEL UsedFeatureLevel;
 		D3D_FEATURE_LEVEL featureLevel;
 		Window* TargetWindow;
@@ -66,26 +70,25 @@ namespace ArtemisEngine
 
 		///
 	public:
-		void Initialize(shared_ptr<Renderer> renderer, float screenDepth, float screenNear);
-		void Shutdown();
+		void Shutdown() const;
 
 		void BeginScene(float red, float green, float blue, float alpha);
 		void EndScene();
 
 		ID3D11Device* GetDevice();
 		ID3D11DeviceContext* GetDeviceContext();
+		ComPtr<IDXGISwapChain> GetSwapChain() const;
 
-		void GetProjectionMatrix(XMMATRIX&);
-		void GetWorldMatrix(XMMATRIX&);
-		void GetOrthoMatrix(XMMATRIX&);
+		void GetProjectionMatrix(XMMATRIX&) const;
+		void GetWorldMatrix(XMMATRIX&) const;
 
 	private:
 		bool VSyncEnabled;
 		int GPUMemory;
 		string GPUName;
 		ComPtr<IDXGISwapChain> m_swapChain;
-		XMMATRIX m_projectionMatrix;
-		XMMATRIX m_worldMatrix;
+		XMMATRIX ProjectionMatrix;
+		XMMATRIX WorldMatrix;
 		XMMATRIX m_orthoMatrix;
 	};
 }

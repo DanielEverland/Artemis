@@ -35,7 +35,7 @@ D3D_FEATURE_LEVEL GraphicsDevice::FeatureLevels[] =
 	D3D_FEATURE_LEVEL_11_0,
 };
 
-GraphicsDevice::GraphicsDevice(Window* targetWindow) : TargetWindow(targetWindow)
+GraphicsDevice::GraphicsDevice(Window* targetWindow) : TargetWindow(targetWindow), WorldMatrix(XMMatrixIdentity()), ScreenNear(0.1f), ScreenFar(1000.f)
 {
 	CreateDevice();
 
@@ -43,6 +43,7 @@ GraphicsDevice::GraphicsDevice(Window* targetWindow) : TargetWindow(targetWindow
 	CreateDepthStencilState();
 	CreateDepthStencilView();
 	CreateViewport();
+	CreateProjectionMatrix();
 	CacheGPUInformation();
 	SetViewport();
 }
@@ -414,27 +415,10 @@ void GraphicsDevice::SetVSync(bool enabled)
 	VSyncEnabled = enabled;
 }
 
-void GraphicsDevice::Initialize(shared_ptr<Renderer> renderer, float screenDepth, float screenNear)
+void GraphicsDevice::CreateProjectionMatrix()
 {
-	m_swapChain = renderer->GetSwapChain()->GetRawSwapChain();
-	
-	const auto screenWidth = static_cast<float>(TargetWindow->GetWidth());
-	const auto screenHeight = static_cast<float>(TargetWindow->GetHeight());
-	
-	// Setup the projection matrix.
-	const float fieldOfView = Math::PI / 4.0f;
-	const float screenAspect = screenWidth / screenHeight;
-
-	// Create the projection matrix for 3D rendering.
-	m_projectionMatrix = XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, screenNear, screenDepth);
-
-	// Initialize the world matrix to the identity matrix.
-	m_worldMatrix = XMMatrixIdentity();
-
 	// Create an orthographic projection matrix for 2D rendering.
-	m_orthoMatrix = XMMatrixOrthographicLH(screenWidth, screenHeight, screenNear, screenDepth);
-	m_orthoMatrix = XMMatrixOrthographicLH(screenWidth / 100.f, screenHeight / 100.f, screenNear, screenDepth);
-	m_projectionMatrix = m_orthoMatrix;
+	ProjectionMatrix = XMMatrixOrthographicLH(static_cast<float>(TargetWindow->GetWidth()) / 100.f, static_cast<float>(TargetWindow->GetHeight()) / 100.f, ScreenNear, ScreenFar);
 }
 
 void GraphicsDevice::BeginScene(float red, float green, float blue, float alpha)
@@ -461,12 +445,12 @@ void GraphicsDevice::EndScene()
 	if (VSyncEnabled)
 	{
 		// Lock to screen refresh rate.
-		m_swapChain->Present(1, 0);
+		GetSwapChain()->Present(1, 0);
 	}
 	else
 	{
 		// Present as fast as possible.
-		m_swapChain->Present(0, 0);
+		GetSwapChain()->Present(0, 0);
 	}
 }
 
@@ -480,26 +464,23 @@ ID3D11DeviceContext* GraphicsDevice::GetDeviceContext()
 	return RawContext.Get();
 }
 
-void GraphicsDevice::GetOrthoMatrix(XMMATRIX& orthoMatrix)
+ComPtr<IDXGISwapChain> GraphicsDevice::GetSwapChain() const
 {
-	orthoMatrix = m_orthoMatrix;
+	return TargetWindow->GetRenderer()->GetSwapChain()->GetRawSwapChain();
 }
 
-void GraphicsDevice::GetProjectionMatrix(XMMATRIX& projectionMatrix)
+void GraphicsDevice::GetProjectionMatrix(XMMATRIX& projectionMatrix) const
 {
-	projectionMatrix = m_projectionMatrix;
+	projectionMatrix = ProjectionMatrix;
 }
 
-void GraphicsDevice::GetWorldMatrix(XMMATRIX& worldMatrix)
+void GraphicsDevice::GetWorldMatrix(XMMATRIX& worldMatrix) const
 {
-	worldMatrix = m_worldMatrix;
+	worldMatrix = WorldMatrix;
 }
 
-void GraphicsDevice::Shutdown()
+void GraphicsDevice::Shutdown() const
 {
 	// Before shutting down set to windowed mode or when you release the swap chain it will throw an exception.
-	if (m_swapChain)
-	{
-		m_swapChain->SetFullscreenState(false, NULL);
-	}
+	GetSwapChain()->SetFullscreenState(false, nullptr);
 }
